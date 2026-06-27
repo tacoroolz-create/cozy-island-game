@@ -44,7 +44,7 @@ class NPC {
             const nx = this.gridX + d[0];
             const ny = this.gridY + d[1];
             if (nx >= 0 && nx < CONFIG.WORLD_WIDTH && ny >= 0 && ny < CONFIG.WORLD_HEIGHT) {
-                if (!TILE_SOLID.has(world.tiles[nx][ny].type) && !buildingAt(nx, ny)) {
+                if (!isSolidTile(nx, ny) && !buildingAt(nx, ny)) {
                     this.gridX = nx;
                     this.gridY = ny;
                     this.facing = d[0] > 0 ? 'right' : d[0] < 0 ? 'left' : d[1] > 0 ? 'down' : 'up';

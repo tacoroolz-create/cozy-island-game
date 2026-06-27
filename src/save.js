@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 4;
+const SAVE_VERSION = 5;
 const SAVE_KEY = 'cozyIslandSave';
 const MIGRATIONS = [
     // v1 → v2: added buildings
@@ -31,6 +31,34 @@ const MIGRATIONS = [
                     // but we need to ensure the data triggers it
                     delete bd.interiorW;
                     delete bd.interiorH;
+                }
+            }
+        }
+        return data;
+    },
+    // v4 → v5: trees/palms are now 2-tall (solid trunk + passable canopy)
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    const tile = tiles[x][y];
+                    if (!tile) continue;
+                    if ((tile.type === 'tree' || tile.type === 'palm') && !tile.isTreeTop && tile.solid === undefined) {
+                        tile.solid = true;
+                        const topY = y - 1;
+                        if (topY >= 0 && topY < CONFIG.WORLD_HEIGHT && tiles[x][topY] && !tiles[x][topY].isTreeTop) {
+                            tiles[x][topY] = {
+                                type: tile.type,
+                                variant: tile.variant || 0,
+                                isTreeTop: true,
+                                solid: false,
+                                depleted: tile.depleted || false,
+                                respawnAt: tile.respawnAt || null
+                            };
+                        }
+                    }
                 }
             }
         }
