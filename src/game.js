@@ -273,10 +273,9 @@ const HARVEST_TYPES = {
     rock:        { drops: [{id:'stone', count:2, chance:1.0}], respawnHours: 24, tool: null, name: 'Rock' },
     shiny_rock:  { drops: [{id:'stone', count:1, chance:1.0}, {id:'magnet', count:1, chance:0.8}, {id:'crystal', count:1, chance:0.4}], respawnHours: 24, tool: null, name: 'Shiny Rock' },
     weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
-    bird_poop:   { drops: [{id:'bird_poop', count:1, chance:1.0}, {id:'seed', count:1, chance:0.3}, {id:'rose_seed', count:1, chance:0.1}, {id:'tulip_bulb', count:1, chance:0.1}], respawnHours: 4, tool: null, name: 'Bird Poop' },
-    flower:      { drops: [{id:'seed', count:1, chance:0.3}, {id:'rose_seed', count:1, chance:0.1}], respawnHours: 8, tool: null, name: 'Flower' },
-    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' },
-    tulip:       { drops: [{id:'tulip_bulb', count:1, chance:0.8}, {id:'seed', count:1, chance:0.3}], respawnHours: 8, tool: null, name: 'Tulip' }
+    bird_poop:   { drops: [{id:'seed', count:1, chance:1.0}, {id:'rose_seed', count:1, chance:0.5}, {id:'tulip_bulb', count:1, chance:0.5}], disappears: true, name: 'Bird Poop' },
+    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' }
+    // Note: flower, tulip, and water pond decorations have been removed from world generation.
 };
 
 // ===== NOTIFICATIONS =====
@@ -1654,6 +1653,15 @@ function tryHarvest() {
         }
     }
 
+    // Some harvestables disappear entirely instead of becoming depleted.
+    if (harvestDef.disappears) {
+        tile.type = 'grass';
+        tile.variant = 0;
+        tile.depleted = false;
+        tile.respawnAt = null;
+        return;
+    }
+
     // Mark bottom tile as depleted, and sync the top tile if there is one.
     tile.depleted = true;
     tile.respawnAt = world.timeMinutes + harvestDef.respawnHours * 60;
@@ -1679,6 +1687,30 @@ function checkRespawns() {
                 tile.respawnAt = null;
             }
         }
+    }
+}
+
+// Spawn new bird poop on random grass tiles at the start of each day.
+function spawnBirdPoop(targetCount) {
+    if (!world) return;
+    let attempts = 0;
+    let spawned = 0;
+    const px = player ? player.x : -1;
+    const py = player ? player.y : -1;
+    while (spawned < targetCount && attempts < 500) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const tile = world.tiles[x][y];
+        if (!tile || tile.type !== 'grass') continue;
+        if (isSolidTile(x, y)) continue;
+        if (buildingAt(x, y)) continue;
+        if (x === px && y === py) continue;
+        world.tiles[x][y] = { type: 'bird_poop', variant: 0 };
+        spawned++;
+    }
+    if (spawned > 0 && player) {
+        notify('The birds have been busy overnight...');
     }
 }
 
@@ -2065,8 +2097,8 @@ class World {
         // Scatter decorations on a 10x10 grid — at most 1 decoration per cell
         // This keeps open space for building
         const CELL = 10;
-        const decorations = ['tree', 'tree', 'rock', 'shiny_rock', 'flower', 'water', 'weeds', 'bird_poop', 'tulip'];
-        const beachDecorations = ['palm', 'palm', 'flower'];
+        const decorations = ['tree', 'tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
+        const beachDecorations = ['palm', 'palm'];
 
         for (let cx = 0; cx < CONFIG.WORLD_WIDTH; cx += CELL) {
             for (let cy = 0; cy < CONFIG.WORLD_HEIGHT; cy += CELL) {
@@ -2082,7 +2114,6 @@ class World {
                     if (random() < 0.35) {
                         const type = random(beachDecorations);
                         if (type === 'palm') this.placeTree(tx, ty, 'palm');
-                        else this.tiles[tx][ty] = { type: type, variant: floor(random(2)) };
                     }
                     continue;
                 }
@@ -2092,11 +2123,8 @@ class World {
                     if (type === 'tree') this.placeTree(tx, ty, 'tree');
                     else if (type === 'rock') this.tiles[tx][ty] = { type: 'rock', variant: floor(random(2)) };
                     else if (type === 'shiny_rock') this.tiles[tx][ty] = { type: 'shiny_rock', variant: 0 };
-                    else if (type === 'flower') this.tiles[tx][ty] = { type: 'flower', variant: floor(random(4)) };
-                    else if (type === 'water') this.tiles[tx][ty] = { type: 'water', variant: 0 };
                     else if (type === 'weeds') this.tiles[tx][ty] = { type: 'weeds', variant: floor(random(2)) };
                     else if (type === 'bird_poop') this.tiles[tx][ty] = { type: 'bird_poop', variant: 0 };
-                    else if (type === 'tulip') this.tiles[tx][ty] = { type: 'tulip', variant: floor(random(2)) };
                 }
             }
         }
@@ -2115,6 +2143,9 @@ class World {
             this.tiles[rx][ry] = { type: 'rosebush', variant: 0 };
             rosebushesPlaced++;
         }
+
+        // Seed the world with an initial set of bird poop.
+        spawnBirdPoop(3 + floor(random(3)));
     }
 
     // Place a 2-tall tree/palm: solid trunk at (x,y) and passable canopy at (x,y-1).
@@ -2159,6 +2190,8 @@ class World {
         if (this.timeMinutes >= 24 * 60) {
             this.timeMinutes = 0;
             this.day++;
+            // Sunrise: new bird poop appears across the island.
+            spawnBirdPoop(3 + floor(random(3)));
         }
     }
 
@@ -2534,6 +2567,10 @@ class World {
                             };
                         }
                     }
+                }
+                // v5 saves may still have removed flower/tulip/water decorations.
+                if (tile.type === 'flower' || tile.type === 'tulip' || tile.type === 'water') {
+                    this.tiles[x][y] = { type: 'grass', variant: 0 };
                 }
             }
         }

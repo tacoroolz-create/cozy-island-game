@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 5;
+const SAVE_VERSION = 6;
 const SAVE_KEY = 'cozyIslandSave';
 const MIGRATIONS = [
     // v1 → v2: added buildings
@@ -58,6 +58,22 @@ const MIGRATIONS = [
                                 respawnAt: tile.respawnAt || null
                             };
                         }
+                    }
+                }
+            }
+        }
+        return data;
+    },
+    // v5 → v6: removed flower/tulip/water decorations from world generation
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    const tile = tiles[x][y];
+                    if (tile && (tile.type === 'flower' || tile.type === 'tulip' || tile.type === 'water')) {
+                        tiles[x][y] = { type: 'grass', variant: 0 };
                     }
                 }
             }
