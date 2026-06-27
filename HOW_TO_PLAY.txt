@@ -1,0 +1,95 @@
+# Cozy Island — How to Play
+
+## Controls
+
+  WASD / Arrow Keys — Move player
+  Enter             — Harvest / Interact / Talk to neighbor
+  E                 — Open / Close menu (inventory, crafting, treasure, gardening, magic, friends, settings)
+  Q / W             — Switch menu tabs (left / right)
+  1-8               — Select hotbar slot
+  ESC               — Pause menu (press S to save)
+
+## Harvesting
+
+Walk up to a tree, rock, palm, weeds, shiny rock, bird poop, or flower and press Enter to harvest it. Each tile gives different items:
+
+  Tree        → Log (3) + sometimes Stick
+  Palm        → Log (2) + sometimes Banana
+  Rock        → Stone (2)
+  Shiny Rock  → Stone (1) + usually Magnet + sometimes Crystal
+  Weeds       → Fiber (2) + sometimes Bean
+  Bird Poop   → Bird Poop (1) + sometimes Seed, Rose Seed, or Tulip Bulb
+  Flower      → Sometimes Seed, Berry, or Rose Seed
+  Rose Bush   → Rose Seed (1) + sometimes Berry (only 2 per island!)
+  Tulip       → Tulip Bulb (80%) + sometimes Seed
+
+Harvested tiles go dark and need time to recover. They will regrow on their own after a few in-game hours — just walk away and come back later.
+
+## Inventory
+
+Press E to open the menu. The Inventory tab has:
+  - 8 hotbar slots (bottom of screen, selectable with number keys 1-8)
+  - 16 Materials slots (logs, stone, fiber, crystals, seeds, etc.)
+  - 16 Gift slots (bananas, berries, beans — things you give to neighbors)
+  - 16 Tool slots (axe, hoe, pickaxe, gettin' stick, etc.)
+  - 16 Block slots (thatch and other building materials)
+
+Items auto-sort into their proper category when you pick them up. Use arrow keys to navigate, press Enter to swap a selected item into your active hotbar slot.
+
+## Crafting
+
+Open the menu (E) and switch to the Crafting tab (Q/W). Recipes show required materials. When you have everything, select a recipe and press Enter to craft.
+
+Recipes:
+  Gettin' Stick — Magnet + Stick + Fiber (pulls treasure from the water! 3 uses)
+  Axe           — Log + Stick + Stone (chops wood faster)
+  Hoe           — Log + Fiber (tills soil)
+  Pickaxe       — Stone x2 + Stick (mines rocks faster)
+  Thatch        — Fiber + Log (building material)
+
+## Treasure
+
+Use a Gettin' Stick to pull treasure from the water. Equip it, face the ocean, and press Enter to cast. Wait for a pull, then reel in your reward — glass bottles, metal rods, iron ingots, gold coins, old radios, and sometimes rusty tools. Each pull uses 1 durability (3 uses per stick).
+
+## Gardening
+
+Find seeds from bird poop, flowers, or harvesting. Plant them in fertile soil (appears in jungle/swamp areas). Plants grow over 3 days. Once fully grown, pick them up and place them anywhere as decoration.
+
+## Neighbors
+
+Neighbors arrive on your island by dinghy, at least one per season (max 9 total). Walk up to a neighbor and press Enter to talk. You'll have multiple-choice dialogue options that affect your friendship.
+
+Friendship (0-10 hearts):
+  - Talking once per day: +1
+  - Giving liked gifts: +2-5
+  - Being rude: -1
+  - Using tools on them: -3
+  - Below 3 friendship for too long: neighbor may leave!
+
+## Magic
+
+Befriend neighbors to learn magic tricks. Magic tricks can:
+  - Make unwanted neighbors vanish
+  - Make permanent features movable
+  - Summon fairies
+  - Change day to night
+  - Change seasons
+
+## Time
+
+One real minute = one in-game hour. A full day-night cycle takes 30 real minutes. Seasons last 40 days each: Sweet (spring), Saucy (summer), Cool (fall), Yeesh (winter). Holidays on day 1 of each season, festivals every 6 days.
+
+## Saving
+
+The game auto-saves every 60 seconds and on new days. You can manually save in the Settings tab (press S). Saves are versioned and will survive game updates.
+
+## Tips
+
+- Explore the whole island — decorations are sparse (1 per 10x10 area) so there's plenty of open space for building
+- Beaches have palm trees with bananas
+- Shiny rocks are rare but give magnets and crystals (used for crafting)
+- Bird poop sometimes contains seeds (used for gardening)
+- Your starter shack appears next to your spawn point — it's your first shelter!
+- Neighbors will build their own shacks on their first night after arriving
+- Talk to neighbors daily to build friendship fast!
+- Craft a Gettin' Stick early to start pulling treasure from the water

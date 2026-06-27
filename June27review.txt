@@ -1,0 +1,242 @@
+Cozy Island Game — Full Project Review (June 27)
+================================================
+
+Scope: architecture, crafting, tools, buildings, movement, inventory,
+aesthetics, Gettin' Stick, save system, and prioritized next steps.
+
+---
+
+1. ARCHITECTURE & CODEBASE HEALTH
+
+What's good
+- Files are split by domain (game, crafting, gardening, gettin', save, etc.)
+- Save/load is versioned and has migrations
+- The p5.js global-mode pattern works for this scale
+
+What's risky
+- 12 files share hundreds of globals with no module boundaries. As features
+  grow, this becomes a foot-gun.
+- Several files wrap window.keyPressed and drawGame() at runtime. This works
+  but is brittle — order matters, and double-wrapping is possible.
+- loadGame() mutates global world, player, inventory directly rather than
+  returning new state. Makes debugging harder.
+
+Standard recommendation
+- For this project scope, global p5 mode is fine.
+- Consider one "state manager" object soon, or migrate to p5 instance mode if
+  3+ more major systems are added (underworld, minigames, etc.)
+
+---
+
+2. CRAFTING & RECIPES
+
+What's good
+- Recipes are data-driven (output + inputs array)
+- Material blocks show owned/needed counts
+- Remodel recipes appear contextually when inside a building
+
+What's non-standard / confusing
+- Material counts use tiny 6px text (owned/count) — hard to read.
+  Standard: show item icons + counts in normal text, or a tooltip on hover.
+- No text recipe list in a readable format. Currently ingredients are only
+  shown as colored squares with micro-text. Players won't memorize colors.
+  A standard approach is:
+  - Line 1: Recipe name + result icon
+  - Line 2: "3 Log + 2 Fiber + 1 Stone" as actual readable text
+- No feedback on why a recipe is unavailable. It greys out, but doesn't say
+  "need 2 more Log".
+- Tool outputs don't show durability in the crafting preview.
+- Mouse-click crafting has no confirmation. Accidental crafts are easy.
+
+Recommended fixes
+1. Add readable ingredient text under each recipe name
+2. Add hover/selected tooltip: "Requires: 2 Log, 1 Stick, 1 Stone"
+3. Show output durability for tools ("Gettin' Stick 3/3")
+4. Add a small "Can't craft — need X more Y" message when player tries to
+   craft without materials
+
+---
+
+3. TOOLS & DURABILITY
+
+What's good
+- Durability is stored per item instance, not per item type
+- Gettin' Stick consumes durability on successful pull
+- Waterlogged tools come in with reduced durability (nice flavor)
+
+What's non-standard / confusing
+- Axe/Hoe/Pickaxe recipes exist but can't be used yet. Standard practice:
+  don't expose craftable items until their mechanic exists.
+- Durability only shown in notifications. No UI element on item or hotbar.
+- Tools in treasure table are called "Rusty Axe" but give item id 'axe'.
+  The player receives a normal-looking Axe with low durability.
+  Consider a separate 'rusty_axe' item or rename the base tool.
+
+Recommended fixes
+1. Either implement axe/hoe/pickaxe harvesting bonuses or hide recipes for now
+2. Show durability on hotbar/inventory item slots ("3/3", "2/3", etc.)
+3. Consider renaming treasure tools to match their found state
+
+---
+
+4. BUILDINGS & INTERIORS
+
+What's good
+- Enter/exit is now door-locked
+- Exit places you in front of the building
+- Interior grid is persistent and serializable
+- Walls and floor are visually distinct
+
+What's non-standard / confusing
+- Interior size is tied to exterior sprite dimensions. A 3x2 shack gives a
+  3x4 interior (2 walkable + 2 wall). That feels cramped. Standard cozy games
+  usually have interiors larger than the exterior implies.
+- No "this is your house" marker on the outside.
+- The exterior door is not visually marked.
+- Inside, the door is just a brown square with "EXIT".
+  Standard: show the same door sprite facing inward, maybe with an arrow.
+- Remodel expands interior but doesn't expand the exterior sprite. You can
+  have a 10x12 interior inside a 3x2 shack sprite.
+- You can expand width/height endlessly with no cap.
+
+Recommended fixes
+1. Add a welcome mat or different floor tile under the exterior door
+2. Cap interior expansion (e.g., max 12x12) or increase material costs per level
+3. Eventually decouple interior size from exterior sprite, or scale exterior
+   sprite to match largest dimension
+4. Show interior dimensions in the remodel menu
+
+---
+
+5. MOVEMENT & INPUT
+
+What's good
+- WASD + arrow support
+- Mouse can click tabs, craft, and interact
+- Grid-based movement fits the retro aesthetic
+
+What's non-standard / confusing
+- Movement is held-key with a cooldown, not press-per-tile. Standard grid
+  movement is usually one tile per keypress, or smooth continuous.
+- Click-to-interact on the entire canvas triggers Enter logic. Clicking to
+  close a notification could accidentally harvest or enter a building.
+- Mouse in menu only supports inventory click-to-swap, not hotbar selection.
+- No gamepad support (not required, but common for cozy games).
+
+Recommended fixes
+1. Consider tap-to-move-one-tile instead of held-key
+2. Add hotbar mouse selection
+3. Don't treat canvas click as Enter while notifications are visible
+
+---
+
+6. INVENTORY & ITEMS
+
+What's good
+- Categories exist (material, tool, treasure, gift, block)
+- Stack limits per item
+- 88 slots total (5x16 + 8 hotbar)
+
+What's non-standard / confusing
+- "Treasure" is both a tab name and an item category. Slightly off.
+- Item colors are used as fallback sprites. Colored squares in inventory are
+  hard to read. Standard: show actual item sprite if loaded, color fallback.
+- No sorting/filtering in inventory.
+- Hotbar is 8 slots but only visually distinguished, not a separate functional
+  row. Standard hotbar: press 1-8 to instantly select.
+
+Recommended fixes
+1. Show item sprites in inventory/hotbar
+2. Add 1-8 hotkeys for hotbar selection
+3. Consider renaming "Treasure" tab to "Collections" or "Treasure Log"
+
+---
+
+7. AESTHETICS & PRESENTATION
+
+What's good
+- Consistent pixel-art resolution (16px tiles, 480x272 canvas)
+- Retro color palette
+- noSmooth() and pixelDensity(1) keep it crisp
+
+What's non-standard / confusing
+- Canvas is 480x272 (PSP resolution). Looks retro but is very small on modern
+  screens. Standard: scale canvas with CSS while keeping internal resolution.
+- UI font is Courier New. Fits retro vibe, but pixel fonts are more readable.
+- No transition when entering/exiting buildings.
+- Notifications stack at the top. Standard: anchor them bottom-center or
+  bottom-left.
+- Start screen says "Sweet Dreams" but the game is island daytime.
+
+Recommended fixes
+1. Scale the canvas 2x or 3x via CSS for playability
+2. Add a 200ms fade when entering/exiting buildings
+3. Move notifications to bottom-left or bottom-center
+
+---
+
+8. GETTIN' STICK / TREASURE
+
+What's good
+- No fishing — purely treasure pulling, as designed
+- Weighted loot table
+- Durability cost on use
+- Tools found with reduced durability
+
+What's non-standard / confusing
+- Pulled treasure doesn't go through any "reel-in" player input. Standard
+  fishing/treasure mechanics let the player press a button when the bobber
+  moves.
+- No failure state. It always succeeds eventually.
+- Treasure items currently have no use beyond collecting.
+
+Recommended fixes
+1. Add a player-timed "reel" input when "! ! Pull !" appears
+2. Give treasure items at least one current use (sell, display, recycle)
+
+---
+
+9. SAVE SYSTEM
+
+What's good
+- Versioned with migrations
+- Saves buildings, interiors, inventory, NPCs
+- Manual save in Settings tab
+
+What's non-standard / confusing
+- No autosave. Standard cozy games autosave on sleep/exit/building enter/etc.
+- Load is buried in the start menu. In-game "Load Game" in Settings is risky.
+- Save data isn't validated against ITEMS changes. Renaming an item id silently
+  breaks old saves.
+
+Recommended fixes
+1. Add autosave on major events (enter/exit building, craft, day end)
+2. Keep "Load Game" only at start screen, "Save Game" only in Settings
+3. Validate loaded item ids against ITEMS and drop invalid ones
+
+---
+
+10. BIGGEST PRIORITY FIXES
+
+If working on this next, prioritize in this order:
+
+1. Show readable recipe ingredients (currently the #1 UX gap)
+2. Add item sprites to inventory/hotbar (color squares aren't enough)
+3. Implement or hide axe/hoe/pickaxe (dead weight right now)
+4. Add timed reel input to Gettin' Stick (makes it feel like a real mechanic)
+5. Scale the canvas for modern screens (480x272 is tiny)
+6. Add autosave + load only at start (safer player experience)
+
+---
+
+VERDICT
+
+This is a solid prototype. Systems mostly align with cozy-game conventions.
+The biggest gap isn't feature count — it's UX feedback and presentation.
+Players need to understand what items are, what recipes require, and what tools
+ do without memorizing colors or trying random keys.
+
+p5.js + vanilla JS is a reasonable choice for this scope. The main thing to
+watch is global-state sprawl as more features are added. If the project grows
+to include underworld, minigames, and other large systems, consider migrating
+to p5 instance mode or adding a central state manager.

@@ -1,0 +1,10 @@
+Rose seed - A red rose seed. 
+Tulip bulb - A white tulip bulb. 
+Stone - A block of stone you chipped off of a boulder. 
+Magnet - A magic rock you chipped off of a shiny rock. 
+Crystal - A magic rock you chipped off of a shiny rock. 
+Stick - A flexible piece of wood you found near a tree. 
+Log - A sturdy piece of wood you found near a tree. 
+Fiber - Long strips of plant fiber that grow from the dirt. 
+Bean - An edible seed you can eat or plant. 
+Berry - A sweet gift from the garden. 
