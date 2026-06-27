@@ -258,19 +258,19 @@ class RhythmGame extends Minigame {
         textAlign(CENTER, TOP);
         textSize(10);
         textFont('Courier New');
-        text('Rhythm vs ' + this.opponent.name, 240, 24);
+        text('Rhythm vs ' + this.opponent.name, width / 2, 24);
 
         // Hit zone
         stroke(255, 255, 100);
         strokeWeight(1);
-        line(165, 40, 315, 40);
+        line(width / 2 - 75, 40, width / 2 + 75, 40);
         noStroke();
 
         // Arrows
         const dirs = ['\u2191', '\u2193', '\u2190', '\u2192'];
         for (const a of this.arrows) {
             if (a.hit) continue;
-            const ax = 200 + a.dir * 30;
+            const ax = width / 2 - 40 + a.dir * 30;
             fill(a.dir === 0 ? '#4CAF50' : a.dir === 1 ? '#FF5722' : a.dir === 2 ? '#2196F3' : '#FFC107');
             textSize(16);
             textAlign(CENTER, CENTER);
@@ -281,7 +281,7 @@ class RhythmGame extends Minigame {
         fill(200);
         textSize(8);
         textAlign(CENTER, BOTTOM);
-        text('Score: ' + this.score + '  Hits: ' + this.hits + '/' + this.targetHits, 240, 170);
+        text('Score: ' + this.score + '  Hits: ' + this.hits + '/' + this.targetHits, width / 2, 170);
     }
 }
 

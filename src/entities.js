@@ -55,22 +55,24 @@ class NPC {
 
     draw() {
         if (!this.isPresent) return;
+        // NPCs are 1 tile wide, 2 tiles tall, drawn bottom-anchored at (gridX, gridY).
         const sx = this.gridX * CONFIG.TILE_SIZE - cameraX;
         const sy = this.gridY * CONFIG.TILE_SIZE - cameraY;
-        // Placeholder: colored 2-tall rect
         fill(this.color);
         noStroke();
-        rect(sx, sy, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
-        // Name tag
-        if (Math.abs(sx - 240) < 240 && Math.abs(sy - 136) < 136) {
+        rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+        // Name tag above head
+        const halfW = CONFIG.CANVAS_WIDTH / 2;
+        const halfH = CONFIG.CANVAS_HEIGHT / 2;
+        if (Math.abs(sx - halfW) < halfW && Math.abs(sy - halfH) < halfH) {
             fill(0, 0, 0, 150);
             textAlign(CENTER, BOTTOM);
             textSize(7);
             textFont('Courier New');
             const nw = textWidth(this.name) + 4;
-            rect(sx + 8 - nw/2, sy - 10, nw, 9);
+            rect(sx + CONFIG.TILE_SIZE / 2 - nw / 2, sy - CONFIG.TILE_SIZE - 12, nw, 9);
             fill(255);
-            text(this.name, sx + 8, sy - 2);
+            text(this.name, sx + CONFIG.TILE_SIZE / 2, sy - CONFIG.TILE_SIZE - 3);
         }
     }
 

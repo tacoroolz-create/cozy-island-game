@@ -20,8 +20,8 @@ const CONFIG = {
     TILE_SIZE: 16,
     WORLD_WIDTH: 100,
     WORLD_HEIGHT: 100,
-    CANVAS_WIDTH: 480,
-    CANVAS_HEIGHT: 272,
+    CANVAS_WIDTH: 640,
+    CANVAS_HEIGHT: 384,
     DAY_LENGTH_MINUTES: 30
 };
 
@@ -1977,16 +1977,17 @@ class Player {
 
         const spr = SPRITES['sprites.player'];
         if (spr) {
-            // Draw player sprite (16x16)
-            image(spr, screenX, screenY, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE);
+            // Player is 1 tile wide, 2 tiles tall (drawn bottom-anchored).
+            // Feet are at (x, y); head/shoulders occupy the tile above.
+            image(spr, screenX, screenY - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
         } else {
-            // Fallback: blue square with face
+            // Fallback: blue 2-tall figure
             fill(0, 100, 255);
             noStroke();
-            rect(screenX, screenY, this.size, this.size);
+            rect(screenX, screenY - CONFIG.TILE_SIZE, this.size, this.size * 2);
             fill(255);
-            rect(screenX + 3, screenY + 4, 3, 3);
-            rect(screenX + 10, screenY + 4, 3, 3);
+            rect(screenX + 3, screenY - CONFIG.TILE_SIZE + 4, 3, 3);
+            rect(screenX + 10, screenY - CONFIG.TILE_SIZE + 4, 3, 3);
         }
     }
     

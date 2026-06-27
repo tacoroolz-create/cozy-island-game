@@ -176,8 +176,8 @@ function getDialogueTree() {
 function drawDialogueScreen() {
     if (!dialogueState.active) return;
 
-    // Bottom 1/3 panel
-    const panelH = 90;
+    // Bottom dialogue panel
+    const panelH = 120;
     const panelY = height - panelH;
 
     fill(0, 0, 0, 200);
@@ -233,21 +233,21 @@ function drawDialogueScreen() {
     // NPC name
     fill(255, 255, 200);
     textAlign(LEFT, TOP);
-    textSize(10);
+    textSize(14);
     textFont('Courier New');
     text(dialogueState.npc.name, 38, panelY + 6);
 
     // Text (typewriter)
     const visibleText = node.text.substring(0, Math.floor(dialogueState.textRevealed));
     fill(230);
-    textSize(9);
-    text(visibleText, 38, panelY + 22, width - 46, 30);
+    textSize(12);
+    text(visibleText, 38, panelY + 24, width - 46, 44);
 
     // Choices
     if (dialogueState.choicesVisible) {
         for (let i = 0; i < node.choices.length; i++) {
             const ch = node.choices[i];
-            const cy = panelY + 56 + i * 10;
+            const cy = panelY + 72 + i * 14;
             if (i === dialogueState.selectedChoice) {
                 fill(255, 255, 100);
                 text('\u25B6 ' + ch.text, 38, cy);
@@ -258,12 +258,12 @@ function drawDialogueScreen() {
         }
         fill(120);
         textAlign(RIGHT, BOTTOM);
-        textSize(7);
+        textSize(9);
         text('Arrows: choose  Enter: select  Esc: exit', width - 4, height - 4);
     } else {
         fill(120);
         textAlign(RIGHT, BOTTOM);
-        textSize(7);
+        textSize(9);
         text('Enter: continue', width - 4, height - 4);
     }
 }
@@ -337,13 +337,16 @@ function handleDialogueKey(keyCode, key) {
 }
 
 // Check if player is facing an NPC
+// NPCs are 1 wide, 2 tall, so we check both the tile at feet level and head level.
 function npcAtFacing() {
     const facing = player.getFacingTile();
     if (!facing) return null;
     for (const npc of npcs) {
-        if (npc.isPresent && npc.gridX === facing.x && npc.gridY === facing.y) {
-            return npc;
-        }
+        if (!npc.isPresent) continue;
+        // Feet tile
+        if (npc.gridX === facing.x && npc.gridY === facing.y) return npc;
+        // Head tile (one tile above feet)
+        if (npc.gridX === facing.x && npc.gridY - 1 === facing.y) return npc;
     }
     return null;
 }
