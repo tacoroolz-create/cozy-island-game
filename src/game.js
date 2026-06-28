@@ -136,7 +136,7 @@ let cameraX = 0;
 let cameraY = 0;
 
 // UI state
-let selectedMenuOption = 0;
+let selectedMenuOption = 1; // Default-highlight "Load" on the start menu
 
 // Movement cooldown for grid-based movement (ms)
 let lastMoveTime = 0;
@@ -194,6 +194,39 @@ const ITEMS = {
     turtle_egg:  { name: 'Turtle Egg',  category: 'gift',     maxStack: 10, color: '#E8DCC5', desc: 'A smooth, patterned egg left behind by a nesting sea turtle.' },
     stale_toast: { name: 'Stale Toast', category: 'tool',     maxStack: 10, color: '#D2B48C', desc: 'A hardened piece of toast perfect for throwing at targets.' },
     cicada_shell:{ name: 'Cicada Shell',category: 'material', maxStack: 99, color: '#B8A070', desc: 'A translucent shell left behind by a summer cicada. Useful in magic tricks.' },
+
+    // ===== CONSUMABLES (cooked foods — great gifts for neighbors) =====
+    grilled_banana: { name: 'Grilled Banana', category: 'gift', maxStack: 20, color: '#E0A92E', desc: 'A warm, caramelized banana. A sweet treat.' },
+    berry_jam:      { name: 'Berry Jam',      category: 'gift', maxStack: 20, color: '#9C1F3A', desc: 'Sweet jam cooked down from fresh berries.' },
+    fruit_salad:    { name: 'Fruit Salad',    category: 'gift', maxStack: 20, color: '#FF8A65', desc: 'A cheerful bowl of mixed island fruit.' },
+
+    // ===== HOME IMPROVEMENT ITEMS =====
+    // Placeable inside your home. `home` metadata drives placement:
+    //   cls: 'furniture' (solid, sits on floor) | 'decoration' (visual, hangs on wall or lays on floor)
+    //   placeOn: 'floor' | 'wall'   solid: blocks movement when true
+    // Equip one in the hotbar and click an open tile inside a building to place it.
+    // --- Furniture (12) — solid blocks on the floor ---
+    chair:        { name: 'Wooden Chair',  category: 'block', maxStack: 99, color: '#8B5A2B', desc: 'A simple wooden chair.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    armchair:     { name: 'Armchair',      category: 'block', maxStack: 99, color: '#7E57C2', desc: 'A cushioned armchair to sink into.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    stool:        { name: 'Stool',         category: 'block', maxStack: 99, color: '#A1887F', desc: 'A little round stool.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    bench:        { name: 'Wooden Bench',  category: 'block', maxStack: 99, color: '#9C6B3F', desc: 'A long wooden bench.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    end_table:    { name: 'End Table',     category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A small table for beside a chair or bed.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    coffee_table: { name: 'Coffee Table',  category: 'block', maxStack: 99, color: '#795548', desc: 'A low table for the middle of the room.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    bookshelf:    { name: 'Bookshelf',     category: 'block', maxStack: 99, color: '#5D4037', desc: 'Tall shelves full of books.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    dresser:      { name: 'Dresser',       category: 'block', maxStack: 99, color: '#6D4C41', desc: 'A drawer dresser for your things.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    cabinet:      { name: 'Side Cabinet',  category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A cozy little storage cabinet.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    floor_lamp:   { name: 'Floor Lamp',    category: 'block', maxStack: 99, color: '#FFE082', desc: 'A warm standing lamp.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    potted_plant: { name: 'Potted Plant',  category: 'block', maxStack: 99, color: '#4CAF50', desc: 'A leafy plant in a clay pot.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    fireplace:    { name: 'Fireplace',     category: 'block', maxStack: 99, color: '#B0BEC5', desc: 'A stone fireplace to warm the room.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    // --- Decoration (8) — visual objects on the wall (or rugs on the floor) ---
+    tapestry:     { name: 'Wall Tapestry', category: 'block', maxStack: 99, color: '#AD1457', desc: 'A woven tapestry to hang on the wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    painting:     { name: 'Framed Painting', category: 'block', maxStack: 99, color: '#C0A062', desc: 'A framed painting for the wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    window:       { name: 'Window',        category: 'block', maxStack: 99, color: '#81D4FA', desc: 'A glass window that lets in light.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    drapes:       { name: 'Drapes',        category: 'block', maxStack: 99, color: '#7B1FA2', desc: 'Flowing curtains for a window.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    wall_clock:   { name: 'Wall Clock',    category: 'block', maxStack: 99, color: '#455A64', desc: 'A ticking clock for the wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    wall_shelf:   { name: 'Wall Shelf',    category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A floating shelf for trinkets.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    round_rug:    { name: 'Round Rug',     category: 'block', maxStack: 99, color: '#E57373', desc: 'A soft round rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+    runner_rug:   { name: 'Runner Rug',    category: 'block', maxStack: 99, color: '#64B5F6', desc: 'A long runner rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
 };
 
 // ===== INVENTORY =====
@@ -608,9 +641,9 @@ function handleInteriorMovement() {
             lastMoveTime = now;
             return;
         }
-        // Walls and furniture block movement
+        // Walls, beds, and solid furniture block movement
         const tile = b.interiorTiles[newX][newY];
-        if (tile.type === 'wall' || tile.type === 'bed') {
+        if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile)) {
             lastMoveTime = now;
             return;
         }
@@ -1112,14 +1145,22 @@ function drawSettingsTab(x, y, w, h) {
     text('S - Save Game', x, y + 20);
     text('ESC - Pause Game', x, y + 32);
 
+    // Clickable action rows (hit-tested in mousePressed with matching offsets).
+    fill('#7CB342');
+    textSize(9);
+    text('▶ Save Game', x, y + 50);
+    fill('#FF8A80');
+    text('▶ Save and Quit to Menu', x, y + 66);
+
     fill(120);
-    text('Volume: [TBD]', x, y + 48);
-    text('Controls: [TBD]', x, y + 60);
-    text('Mute: [TBD]', x, y + 72);
+    textSize(8);
+    text('Volume: [TBD]', x, y + 86);
+    text('Controls: [TBD]', x, y + 98);
+    text('Mute: [TBD]', x, y + 110);
 
     fill(255, 255, 100);
-    textSize(9);
-    text('Press S to save your game', x, y + h - 16);
+    textSize(8);
+    text('Press S to save · click a row above to act', x, y + h - 14);
 }
 
 function drawMenuSlot(slotIndex, x, y, size) {
@@ -1297,8 +1338,20 @@ function mousePressed() {
         return;
     }
 
-    // ===== INSIDE: click to interact (sleep on bed at night, exit on door) =====
+    // ===== INSIDE: click to interact (place/pick up furniture, sleep, exit) =====
     if (gameState === STATE.INSIDE) {
+        // Furniture/decoration placement & pickup on the clicked interior tile.
+        const it = getInteriorTileAtMouse();
+        if (it) {
+            const active = inventory.getActiveItem();
+            // Holding a placeable home item -> try to place it.
+            if (active && ITEMS[active.id] && ITEMS[active.id].home) {
+                if (tryPlaceHomeItemInside(it.x, it.y)) return;
+            } else {
+                // Empty / non-placeable hand -> try to pick a placed item back up.
+                if (tryPickupHomeInside(it.x, it.y)) return;
+            }
+        }
         // Try sleeping in the bed first (only if it's night)
         if (trySleep()) return;
         // Otherwise try to exit
@@ -1313,6 +1366,8 @@ function mousePressed() {
         const leftY = pad + 20;
         const leftW = 320;
         const tabH = 16;
+        const leftH = height - leftY - pad - 20; // match drawMenuScreen
+        const contentH = leftH - tabH - 8;
 
         // --- Tab bar clicks ---
         const tabW = leftW / MENU_TABS.length;
@@ -1353,36 +1408,29 @@ function mousePressed() {
             }
         }
 
-        // --- Crafting tab: click a recipe to craft it ---
-        if (menuTab === 1 && typeof getActiveRecipes === 'function') {
-            const recipes = getActiveRecipes();
+        // --- Crafting tab: branching menu clicks (categories / recipes) ---
+        if (menuTab === 1 && typeof craftingTabClick === 'function') {
             const contentY = leftY + tabH + 4;
-            const rowH = 30;
-            const listY = contentY + 14;
-            const recipeX = leftX + 4;
-            const recipeW = leftW - 8;
-            for (let i = 0; i < Math.min(recipes.length, 20); i++) {
-                const ry = listY + i * rowH;
-                if (mouseX >= recipeX && mouseX < recipeX + recipeW &&
-                    mouseY >= ry && mouseY < ry + rowH - 2) {
-                    craftSelectedIndex = i;
-                    craftItem(i);
-                    return;
-                }
-            }
+            if (craftingTabClick(leftX + 4, contentY, leftW - 8, contentH)) return;
         }
 
-        // --- Settings tab: click "Save Game" text ---
+        // --- Settings tab: clickable action rows ---
         if (menuTab === 6) {
             const contentY = leftY + tabH + 4;
             const sx = leftX + 4;
-            // "S - Save Game" is at y + 20
-            const saveY = contentY + 20;
-            if (mouseY >= saveY - 4 && mouseY < saveY + 10 &&
-                mouseX >= sx && mouseX < sx + 120) {
-                if (typeof saveGame === 'function') saveGame();
-                else if (typeof enhancedSaveGame === 'function') enhancedSaveGame();
+            // "▶ Save Game" row at y + 50
+            const saveY = contentY + 50;
+            if (mouseY >= saveY - 4 && mouseY < saveY + 11 &&
+                mouseX >= sx && mouseX < sx + 200) {
+                saveGame();
                 notify('Game saved!');
+                return;
+            }
+            // "▶ Save and Quit to Menu" row at y + 66
+            const quitY = contentY + 66;
+            if (mouseY >= quitY - 4 && mouseY < quitY + 11 &&
+                mouseX >= sx && mouseX < sx + 220) {
+                saveAndQuit();
                 return;
             }
         }
@@ -1650,6 +1698,15 @@ function drawInteriorTile(tile, sx, sy, TS) {
         fill('#4E342E');
         rect(sx, sy + TS / 2 - 1, TS, 1);
         rect(sx + TS / 2 - 1, sy, 1, TS / 2);
+        // Hung wall decoration (tapestry, painting, window, etc.)
+        if (tile.deco && ITEMS[tile.deco]) {
+            drawWallDeco(tile.deco, sx, sy, TS);
+        }
+    } else if (tile.type === 'home') {
+        // Floor base, then the placed furniture / floor decoration on top.
+        const grassSpr = SPRITES['tiles.grass'];
+        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); noStroke(); rect(sx, sy, TS, TS); }
+        drawHomeItem(tile.item, sx, sy, TS);
     } else if (tile.type === 'grass') {
         const spr = SPRITES['tiles.grass'];
         if (spr) {
@@ -1678,6 +1735,122 @@ function drawInteriorTile(tile, sx, sy, TS) {
         fill('#7CB342');
         rect(sx, sy, TS, TS);
     }
+}
+
+// ===== HOME ITEM HELPERS =====
+// True if an interior tile holds a solid (movement-blocking) furniture piece.
+function isSolidHomeTile(tile) {
+    if (!tile || tile.type !== 'home') return false;
+    const item = ITEMS[tile.item];
+    return !!(item && item.home && item.home.solid);
+}
+
+// Draw a placed furniture / floor-decoration item. We have no sprites yet, so
+// these are simple shaded shapes colored by the item — good enough to read the
+// room, and easy to swap for art later.
+function drawHomeItem(itemId, sx, sy, TS) {
+    const item = ITEMS[itemId];
+    if (!item) return;
+    const spr = SPRITES['items.' + itemId];
+    if (spr) { image(spr, sx, sy, TS, TS); return; }
+    const c = item.color;
+    noStroke();
+    const home = item.home || {};
+    if (home.cls === 'decoration') {
+        // Floor decoration (rug): flat ellipse covering most of the tile.
+        fill(c);
+        ellipse(sx + TS / 2, sy + TS / 2, TS - 2, TS - 4);
+        fill(0, 0, 0, 40);
+        ellipse(sx + TS / 2, sy + TS / 2, TS - 8, TS - 10);
+    } else {
+        // Furniture: a body block with a darker base shadow and a light top edge.
+        fill(0, 0, 0, 50);
+        rect(sx + 2, sy + TS - 4, TS - 4, 3);
+        fill(c);
+        rect(sx + 2, sy + 3, TS - 4, TS - 6, 2);
+        fill(255, 255, 255, 45);
+        rect(sx + 2, sy + 3, TS - 4, 2, 2);
+    }
+}
+
+// Draw a decoration hung on a wall tile (overlay on top of the wood wall).
+function drawWallDeco(itemId, sx, sy, TS) {
+    const item = ITEMS[itemId];
+    if (!item) return;
+    const spr = SPRITES['items.' + itemId];
+    if (spr) { image(spr, sx, sy, TS, TS); return; }
+    noStroke();
+    // Dark frame, then the colored face inset within it.
+    fill(20, 14, 10);
+    rect(sx + 2, sy + 2, TS - 4, TS - 4);
+    fill(item.color);
+    rect(sx + 3, sy + 3, TS - 6, TS - 6);
+}
+
+// Convert mouse position to an interior tile coordinate (or null if outside).
+function getInteriorTileAtMouse() {
+    if (!insideBuilding) return null;
+    const b = insideBuilding;
+    const TS = CONFIG.TILE_SIZE;
+    const interiorPixW = b.interiorW * TS;
+    const interiorPixH = b.interiorH * TS;
+    const offsetX = Math.floor((CONFIG.CANVAS_WIDTH - interiorPixW) / 2);
+    const offsetY = Math.floor((CONFIG.CANVAS_HEIGHT - interiorPixH) / 2);
+    const tx = Math.floor((mouseX - offsetX) / TS);
+    const ty = Math.floor((mouseY - offsetY) / TS);
+    if (tx < 0 || tx >= b.interiorW || ty < 0 || ty >= b.interiorH) return null;
+    return { x: tx, y: ty };
+}
+
+// Try to place the equipped home item on the clicked interior tile.
+// Returns true if a placement happened (or was attempted with feedback).
+function tryPlaceHomeItemInside(tx, ty) {
+    if (!insideBuilding) return false;
+    const active = inventory.getActiveItem();
+    if (!active) return false;
+    const item = ITEMS[active.id];
+    if (!item || !item.home) return false; // not a placeable item
+
+    const b = insideBuilding;
+    const tile = b.interiorTiles[tx][ty];
+    const home = item.home;
+
+    if (home.placeOn === 'wall') {
+        if (tile.type !== 'wall') { notify(item.name + ' must hang on a wall.'); return true; }
+        if (tile.deco) { notify('That wall spot is taken.'); return true; }
+        tile.deco = active.id;
+    } else {
+        // Floor placement: only on an empty grass floor tile, not the door.
+        const door = b.getInteriorDoorPos();
+        if (tx === door.x && ty === door.y) { notify("Can't block the door."); return true; }
+        if (tile.type !== 'grass') { notify('Place that on an empty floor tile.'); return true; }
+        b.interiorTiles[tx][ty] = { type: 'home', item: active.id };
+    }
+    inventory.removeItem(active.id, 1);
+    notify('Placed ' + item.name + '.');
+    return true;
+}
+
+// Try to pick up a placed home item from the clicked tile (empty hand).
+function tryPickupHomeInside(tx, ty) {
+    if (!insideBuilding) return false;
+    const b = insideBuilding;
+    const tile = b.interiorTiles[tx][ty];
+    if (tile.type === 'home') {
+        const id = tile.item;
+        b.interiorTiles[tx][ty] = { type: 'grass', variant: floor(Math.random() * 3) };
+        inventory.addItem(id, 1);
+        notify('Picked up ' + (ITEMS[id] ? ITEMS[id].name : id) + '.');
+        return true;
+    }
+    if (tile.type === 'wall' && tile.deco) {
+        const id = tile.deco;
+        delete tile.deco;
+        inventory.addItem(id, 1);
+        notify('Took down ' + (ITEMS[id] ? ITEMS[id].name : id) + '.');
+        return true;
+    }
+    return false;
 }
 
 function keyPressed() {
@@ -2044,7 +2217,7 @@ function handleStartMenuSelection() {
             break;
         case 2: // Settings - go straight to menu settings tab
             gameState = STATE.MENU;
-            menuTab = 4;
+            menuTab = 6;
             break;
     }
 }
@@ -2083,6 +2256,15 @@ function spawnPlayerShack() {
 
 function saveGame() {
     enhancedSaveGame();
+}
+
+// Save the game, then return to the start menu.
+function saveAndQuit() {
+    saveGame();
+    notify('Game saved. Returning to menu...');
+    insideBuilding = null;
+    gameState = STATE.START;
+    selectedMenuOption = 1; // default-highlight "Load"
 }
 
 function loadGame() {
