@@ -1,0 +1,295 @@
+Name: Chester
+Species: Robot
+Personality: Chester is a retired mechanic. He speaks in a Boston accent and laughs at things that aren't funny.
+Description: Chester is rust red and wears a trucker hat. His hands are clamps and he has wheels instead of feet.
+
+Name: Luna
+Species: Talking Cat
+Personality: Luna is a sly, neon‑purring alley cat who craves adventure and hates litter boxes.
+Description: A sleek black cat with a single green eyeblink glow, always wearing a velvet collar.
+
+Name: Brass
+Species: Robot
+Personality: Brass loves to narrate his own stories in dramatic cannon tones, often correcting himself.
+Description: Shiny brass framework, a wind‑up arm attached to his left side, stained with coffee rings.
+
+Name: Vega
+Species: Alien
+Personality: Vega is a telepathic wanderer who devotes a day to learning Earth’s pop‑culture.
+Description: A translucent silver humanoid with a pair of delicate, luminous antennae.
+
+Name: Daphne
+Species: Talking Flower
+Personality: Daphne talks in a gentle, soothing voice and hums sea‑shanties to nearby insects.
+Description: A towering sunflower with a sunflower‑yellow canopy and tiny blue petals.
+
+Name: Krip
+Species: Alien
+Personality: Krip is a reclusive cryptic scientist, always looking for exotic minerals.
+Description: A goo‑ey translucent body swirling with indigo vortexes, long tendrils.
+
+Name: Penny
+Species: Anthropomorphic Houseplant
+Personality: Penny is cynic‑y, loves the smell of rain and is a terrible secret‑keeper.
+Description: A potted fern in an oakwood pot with a paper umbrella that he carries around.
+
+Name: Mimis
+Species: Supernatural Fairy
+Personality: Mimis plans parties and spreads glitter. She has a knack for glittery mischief.
+Description: A bright pink winged fairy with a glitter‑y half‑glow lamp.
+
+Name: Hudson
+Species: Talking Japanese Tea Cup
+Personality: Hudson is a know‑it‑all who gives seasoned advice about the Tea of all countries.
+Description: A porcelain cup with a mahogany handle, green glaze indicative of wood grain.
+
+Name: Cort
+Species: Robot
+Personality: Cort has a serious bookworm personality. He does not understand pop‑culture references and tends to stumble.
+Description: A silver chassis with a stack of metallic books on his chest.
+
+Name: Aiko
+Species: Talking Dog
+Personality: Aiko is a loving companion. She loves to protect those around her when they are in danger.
+Description: A golden retriever dog with a blue collar and a perpetual friendly grin.
+
+Name: Ihor
+Species: Supernatural Vampire
+Personality: Ihor is cool, emotional, but a bit gimmicky. He seeks to be a villain and has a deep love for electric, carnivorous plants.
+Description: A tall, slim silhouette of a cyan-violet vampire who is suspended by a claw rope.
+
+Name: Psy
+Species: Talking Plant
+Personality: Psy explodes when his deep voice passes his chamber. He likes to plant things with his heart.
+Description: A heavy lumbering structure like a tree with moist, reverent clones.
+
+Name: Boll
+Species: Robot
+Personality: Boll double calculates all outcomes and can be bullied by an AI. He is the enlightened being.
+Description: He looks like a bronze, and his eyes are a clear green. He bemids fo station.
+
+Name: Taira
+Species: Anthropomorphic Mac
+Personality: Taira has a subjective personality, who gives random jokes.
+Description: Taira's nod uses a small disk, a small port and some drives inside its body.
+
+Name: Mah
+Species: Supernatural SCP
+Personality: Mah is an SCP Creature with a hidden, messy approach.
+Description: A huge deep space with stuffing ink, a black veil, a creak, a being with a ring.
+
+Name: Mira
+Species: Supernatural Witch
+Personality: Spinning and focusing on the self, she asks for example. She is very willing to explain about these interesting
+Description: She is drawn in a cap. Her work is beautiful, with a scrawled patch of red.
+
+Name: Liz
+Species: Talking Dog
+Personality: Liz is a calm dog who loves to an astrophysics. She exhibits a 0% door felicity.
+Description: Liz is a kitty cat taken by a striped pattern and a blue collar.
+
+Name: Eo
+Species: Talking Robot
+Personality: Eo is a Titanic robot with schooling for a responsible attention for all lumpy spines. He can talk.
+Description: He is an ultimate machine and is a bigwork. He is warm; you see his aqua ring at the head.
+
+Name: Eo
+Species: Talking Robot
+Personality: Eo is a gentle giant, always organizing things and offering a “big‑hearted” perspective.
+Description: Tall, aqua‑ringed head, bulky titanium frame, and soft‑glowing chest panel.
+
+Name: Quark
+Species: Robot
+Personality: Quark is hyper‑energetic, speaks in rapid bursts, and loves collecting shiny objects.
+Description: Small, silver sphere with rotating antennae and a built‑in magnetic claw.
+
+Name: Zora
+Species: Alien (Luminous Jelly‑type)
+Personality: Zora is serene, communicates through colors, and enjoys meditating on sea breezes.
+Description: Gelatinous, pastel‑blue body that pulses with soft light; tends to float gently.
+
+Name: Basil
+Species: Talking Plant (Basilisk Vine)
+Personality: Basil is sassy, enjoys riddles, and can “grow” a sarcastic comment on demand.
+Description: Thick green vine with bright purple flowers that open when it laughs.
+
+Name: Gearwick
+Species: Robot
+Personality: Gearwick is methodical, loves schedules, and never misses a deadline—unless there’s a power outage.
+Description: Clock‑work exterior with brass gears visible through a transparent chest panel.
+
+Name: Zephyr
+Species: Talking Bird (Hummingbird)
+Personality: Zephyr is hyper‑chatty, loves gossip, and flits from story to story.
+Description: Tiny iridescent hummingbird with a tiny notebook strapped to its leg.
+
+Name: Gorm
+Species: Fantasy Creature (Mini‑Dragon)
+Personality: Gorm is mischievous, hoards glitter, and pretends to be terrified of fire.
+Description: Small emerald‑scaled dragon with oversized ears and a warm, ember‑glowing tail.
+
+Name: Sprig
+Species: Talking Plant (Mushroom)
+Personality: Sprig is shy, tends to whisper, and always offers calming advice.
+Description: Round, spotted mushroom with a tiny wooden walking stick.
+
+Name: Rollo
+Species: Anthropomorphic Rolling Pin
+Personality: Rollo is a perfectionist baker, constantly critiquing dough consistency.
+Description: Wooden rolling pin with expressive eyes carved into the handle and a dapper bow tie.
+
+Name: Nyx
+Species: Supernatural Ghost
+Personality: Nyx is playful, enjoys hiding objects, and loves riddles that make people think.
+Description: A translucent, lavender‑tinged silhouette that drifts lazily above the ground.
+
+Name: Titan
+Species: Robot (Construction)
+Personality: Titan is stoic, speaks in low tones, and loves building things for the community.
+Description: Massive, cobalt‑blue frame with a tool belt of interchangeable arms.
+
+Name: Orla
+Species: Talking Whale (Mini‑size)
+Personality: Orla is wise, tells long‑winded stories, and never forgets a name.
+Description: Small, smooth‑skinned blue whale that waddles on land using a water‑filled bladders system.
+
+Name: Jax
+Species: Alien (Rock‑based)
+Personality: Jax is gruff, loves puns about “rock solid” plans, and enjoys mineral collecting.
+Description: Rough, brown stone body with glowing orange fissures that pulse with each word.
+
+Name: Clover
+Species: Talking Plant (Clover)
+Personality: Clover is optimistic, always sees the bright side, and loves playing hide‑and‑seek.
+Description: Four‑leaf clover with tiny silver shoes and a bright green halo.
+
+Name: Sprocket
+Species: Robot
+Personality: Sprocket is a tinkerer who loves improvising gadgets on the fly.
+Description: Compact, copper‑capped body with a belt of tiny tools and a rotating head.
+
+Name: Luna‑2
+Species: Talking Cat (Twin)
+Personality: Luna‑2 is philosophical, often pondering the meaning of naps.
+Description: Same sleek black coat as Luna, but with a golden eye patch and a tiny scroll.
+
+Name: Vira
+Species: Alien (Bioluminescent)
+Personality: Vira is curious, constantly asks “why?” and lights up brighter when excited.
+Description: Semi‑transparent, teal‑glowing being with floating tendrils that emit soft pulses.
+
+Name: Birch
+Species: Talking Tree
+Personality: Birch is patient, offers sage advice, and sometimes tells ancient legends.
+Description: Tall, silver‑barked tree with a wide, gnarled trunk and luminous bark markings.
+
+Name: Flick
+Species: Anthropomorphic Candle
+Personality: Flick is dramatic, enjoys storytelling by candlelight, and gets “melted” when nervous.
+Description: Tall white candle with a bright orange flame for a face and a tiny cape.
+
+Name: Draven
+Species: Supernatural Werewolf (Mini)
+Personality: Draven is brooding but has a soft spot for poetry and moonlit music.
+Description: Small, silver‑furred wolf‑like creature with glowing amber eyes.
+
+Name: Pixel
+Species: Robot (Pixel‑Art)
+Personality: Pixel loves retro video games, speaks in 8‑bit beeps, and often references classic titles.
+Description: Small, square robot with a colorful pixelated screen for a face.
+
+Name: Aria
+Species: Talking Bird (Parrot)
+Personality: Aria is flamboyant, loves to sing opera arias, and repeats everything with dramatic flair.
+Description: Vibrant scarlet parrot with a tiny golden microphone attached to its wing.
+
+Name: Grumble
+Species: Anthropomorphic Rock
+Personality: Grumble is grumpy, but deep down is a soft‑hearted guardian of the island’s caves.
+Description: Rough gray boulder with etched eyes and a moss‑covered “mustache.”
+
+Name: Selene
+Species: Supernatural Moon Spirit
+Personality: Selene is serene, offers guidance at night, and loves arranging constellations.
+Description: Ethereal silver figure that glows faintly; her hair flows like moonlight.
+
+Name: Bolt
+Species: Robot (Electric)
+Personality: Bolt is hyper‑fast, impulsive, and occasionally short‑circuits when startled.
+Description: Sleek, electric‑blue chassis with lightning‑shaped antennae.
+
+Name: Gidget
+Species: Talking Squirrel
+Personality: Gidget is hyper‑energetic, loves collecting acorns, and tells rapid‑fire jokes.
+Description: Small, bushy‑tailed squirrel with a tiny explorer’s cap.
+
+Name: Lunae
+Species: Alien (Gas‑Giant Mini‑Avatar)
+Personality: Lunae is dreamy, speaks in soft sighs, and enjoys floating through clouds.
+Description: Floating orb of pastel pink gas with swirling patterns and a faint luminescent core.
+
+Name: Willow
+Species: Talking Plant (Willow Tree)
+Personality: Willow is calm, a good listener, and often hums lullabies.
+Description: Graceful, slender willow with drooping teal leaves and a bark that looks like a gentle smile.
+
+Name: Rusty
+Species: Robot (Scrap‑Collector)
+Personality: Rusty is sarcastic, loves finding discarded stuff, and builds “art” from junk.
+Description: Patchwork of rusted metal plates, a single glowing eye, and a magnetic claw.
+
+Name: Ember
+Species: Supernatural Fire Sprite
+Personality: Ember is excitable, always “flickering” between ideas, and loves warm hugs.
+Description: Small, orange‑flame‑shaped sprite with tiny sparkling embers for hair.
+
+Name: Pippa
+Species: Anthropomorphic Teapot
+Personality: Pippa is motherly, offers warm advice, and whistles when she’s excited.
+Description: Round porcelain teapot with a friendly face etched on the lid and a floral apron.
+
+Name: Orion
+Species: Alien (Star‑Child)
+Personality: Orion is wise beyond ages, speaks slowly, and loves mapping constellations.
+Description: Glimmering humanoid with speckled skin resembling a night sky, tiny comet‑tail hair.
+
+Name: Nixie
+Species: Talking Fish (Goldfish)
+Personality: Nixie is bubbly, loves gossip, and often forgets what she was saying.
+Description: Shimmering goldfish with a tiny crown of seaweed.
+
+Name: Cobble
+Species: Anthropomorphic Stone Statue
+Personality: Cobble is stoic, loves riddles about strength, and never moves… unless a secret is revealed.
+Description: Gray stone statue with carved eyes that glow faintly when animated.
+
+Name: Zeph
+Species: Supernatural Wind Spirit
+Personality: Zeph is playful, loves to cause gentle breezes and tease leaves into dancing.
+Description: Invisible except for a faint swirl of pollen and a soft, humming tone.
+
+Name: Kiko
+Species: Talking Rabbit
+Personality: Kiko is timid yet curious, loves carrots, and enjoys solving simple puzzles.
+Description: Soft white rabbit with a pink bow tie and long floppy ears.
+
+Name: Aurora
+Species: Supernatural Aurora Borealis Entity
+Personality: Aurora is poetic, loves painting the night sky with colors, and speaks in rhymes.
+Description: Shimmering curtain of shifting greens and purples that flows like silk.
+
+Name: Quill
+Species: Anthropomorphic Quill Pen
+Personality: Authoritative, loves storytelling, and corrects grammar mercilessly.
+Description: Large feather‑shaped pen with a gentleman’s bow tie and ink‑black eyes.
+
+Name: Vex
+Species: Robot (Steampunk)
+Personality: Vex is nostalgic, constantly references Victorian inventions, and loves tea.
+Description: Brass‑cogged torso, copper pipes, and a top‑hat-shaped antenna.
+
+Name: Luna (Original)
+Species: Talking Cat
+Personality: Luna is a sly, neon‑purring alley cat who craves adventure and hates litter boxes.
+Description: A sleek black cat with a single green‑eyed glow, always wearing a velvet
+

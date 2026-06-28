@@ -23,17 +23,109 @@ function updateTime(dt) {
     }
 }
 
-function onNewDay() {
-    // Holiday on day 1 of each season
-    const isHoliday = world.day === 1;
-    // Festival every 6 days
-    const isFestival = world.day > 1 && (world.day % 6) === 1;
+// ===== NONSENSICAL ISLAND HOLIDAYS =====
+// One unique community event every 6 days (day 1, 7, 13, 19 ...).
+// Year = SEASON_LENGTH * 4 = 160 days, so 160 / 6 = ~27 events.
+// Kept deterministic so players can learn the island calendar.
+const HOLIDAY_INTERVAL = 6;
+const HOLIDAYS = [
+    { name: 'Backwards Hats Day',     desc: 'Everyone wears their hat backwards, even if they do not have a hat.' },
+    { name: 'Compliment a Crab Day',  desc: 'Beach crabs receive one mandatory sincere compliment before noon.' },
+    { name: 'Talk Like an Eagle Day', desc: 'All islanders must begin every sentence with a mighty "Kyaaaaa!"' },
+    { name: 'Toast Toss Tournament',  desc: 'Beach targets appear and islanders throw stale toast for prizes.' },
+    { name: 'Silent Shouting Day',    desc: 'Residents mouth their excitement very widely but make no sound.' },
+    { name: 'Tinfoil Crown Parade',   desc: 'Whoever crafts the shiniest foil crown becomes honorary mayor until sunset.' },
+    { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
+    { name: 'Mismatched Sock March',  desc: 'Islanders march in pairs wearing deliberately mismatched socks.' },
+    { name: 'Talk Like a Boat Day',  desc: 'Everyone creaks gently and refers to themselves as "the vessel".' },
+    { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
+    { name: 'Invisible Ladder Week-start', desc: 'Residents pretend to climb invisible ladders for the first hour after sunrise.' },
+    { name: 'Pinecone Prom',          desc: 'Formal attire and slow dances with whichever pinecone accepts you.' },
+    { name: 'Gargle-the-News Hour',   desc: 'Morning gossip is delivered entirely through gargled humming.' },
+    { name: 'Reverse Burglary',       desc: 'People sneak into each other\'s homes and leave nice gifts.' },
+    { name: 'Suspicious Pebble Day',  desc: 'Every resident must carry a pebble and regard it with faint concern.' },
+    { name: 'Mandatory Nap Interlude', desc: 'Between noon and one, the island collectively naps wherever they stand.' },
+    { name: 'Bucket on the Head Eve', desc: 'Buckets are worn as hats; the bucketless are politely pitied.' },
+    { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
+    { name: 'Pet Rock Adoption Fair', desc: 'Every rock is named and given a tiny paper collar.' },
+    { name: 'Opposite Compliment Day', desc: 'Praise is delivered as insults that are clearly meant warmly.' },
+    { name: 'One Big Scarf Festival', desc: 'The whole village shares a single impossibly long scarf.' },
+    { name: 'Door-Holding Olympics',  desc: 'Politeness is scored by how long someone holds a door open.' },
+    { name: 'Fruit Apology Day',      desc: 'All disagreements are resolved by offering a fruit and bowing.' },
+    { name: 'Humming in Unison Hour', desc: 'At mid-afternoon, the island hums the same three notes.' },
+    { name: 'Cloud-Naming Congress',  desc: 'Residents vote on official names for every cloud in the sky.' },
+    { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
+    { name: 'The Great Blink-Off',    desc: 'A staring contest where the first to blink wins a ceremonial ribbon.' },
+    { name: 'Jellybean Council',      desc: 'A single jellybean is placed on a pedestal and consulted for advice.' },
+    { name: 'Hat-Stacking Jubilee',   desc: 'The wearing of multiple hats is both encouraged and competitively scored.' }
+];
 
-    if (isHoliday) {
-        notify('Holiday! ' + world.season + ' season begins!');
+// Day 1 of each season is still its own "season begins" holiday.
+function isHolidayDay(day) {
+    if (day === undefined) day = world ? world.day : 1;
+    if (day === 1) return true; // first day of year / first season start
+    return day > 1 && (day % HOLIDAY_INTERVAL) === 1;
+}
+
+function getHolidayIndex(day) {
+    if (day === undefined) day = world ? world.day : 1;
+    // Index 0 is reserved for day 1 (year/season start); every subsequent
+    // HOLIDAY_INTERVAL day maps to the next entry in the HOLIDAYS list.
+    if (day <= 1) return 0;
+    return 1 + Math.floor((day - 2) / HOLIDAY_INTERVAL);
+}
+
+function getHolidayForDay(day) {
+    if (day === undefined) day = world ? world.day : 1;
+    if (!isHolidayDay(day)) return null;
+    const idx = getHolidayIndex(day);
+    const wrapped = idx % HOLIDAYS.length;
+    return HOLIDAYS[wrapped] || null;
+}
+
+function getCurrentHoliday() {
+    if (!world) return null;
+    return getHolidayForDay(world.day);
+}
+
+function getHolidayName(day) {
+    const h = getHolidayForDay(day);
+    return h ? h.name : '';
+}
+
+function getHolidayDesc(day) {
+    const h = getHolidayForDay(day);
+    return h ? h.desc : '';
+}
+
+function onNewDay() {
+    const day = world ? world.day : 1;
+    const seasonIdx = Math.floor((day - 1) / SEASON_LENGTH);
+    const isSeasonStart = (day > 1) && ((day - 1) % SEASON_LENGTH === 0);
+    const isFestival = isHolidayDay(day);
+
+    if (isSeasonStart) {
+        const nextSeason = SEASONS[seasonIdx % SEASONS.length];
+        if (nextSeason !== world.season) {
+            world.season = nextSeason;
+        }
+        onNewSeason();
     }
+
     if (isFestival) {
-        notify('Festival day!');
+        const holiday = getHolidayForDay(day);
+        if (holiday) {
+            notify('Holiday! Today is ' + holiday.name + '!', 4000);
+            if (holiday.name === 'Toast Toss Tournament' && typeof spawnToastTargets === 'function') {
+                spawnToastTargets(4 + Math.floor(Math.random() * 3));
+                if (typeof inventory !== 'undefined') {
+                    inventory.addItem('stale_toast', 5);
+                    notify('You received 5 Stale Toast for the tournament!', 3000);
+                }
+            }
+        }
+    } else if (isSeasonStart) {
+        notify('Holiday! ' + world.season + ' season begins!', 4000);
     }
 
     // Dispatch to registered callbacks
@@ -43,12 +135,7 @@ function onNewDay() {
 }
 
 function onNewSeason() {
-    // Advance season
-    const idx = SEASONS.indexOf(world.season);
-    world.season = SEASONS[(idx + 1) % 4];
-    if (world.season === 'Sweet') {
-        // Year passed
-    }
+    // Notify and dispatch callbacks. The actual season value is updated before this is called.
     notify('New season: ' + world.season + '!');
 
     for (const cb of newSeasonCallbacks) {
@@ -57,7 +144,10 @@ function onNewSeason() {
 }
 
 function getDateString() {
-    return 'Day ' + world.day + ' - ' + world.season + ' Season';
+    const holiday = getCurrentHoliday();
+    let s = 'Day ' + world.day + ' - ' + world.season + ' Season';
+    if (holiday) s += ' - ' + holiday.name;
+    return s;
 }
 
 function getTimeString() {

@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 6;
+const SAVE_VERSION = 8;
 const SAVE_KEY = 'cozyIslandSave';
 const MIGRATIONS = [
     // v1 → v2: added buildings
@@ -27,8 +27,6 @@ const MIGRATIONS = [
         if (data.buildings) {
             for (const bd of data.buildings) {
                 if (!bd.interiorTiles) {
-                    // Will be initialized by Building constructor on deserialize
-                    // but we need to ensure the data triggers it
                     delete bd.interiorW;
                     delete bd.interiorH;
                 }
@@ -36,7 +34,7 @@ const MIGRATIONS = [
         }
         return data;
     },
-    // v4 → v5: trees/palms are now 2-tall (solid trunk + passable canopy)
+    // v4 → v5: trees are now 2-tall (solid trunk + passable canopy)
     function(data) {
         if (data.world && data.world.tiles) {
             const tiles = data.world.tiles;
@@ -45,12 +43,12 @@ const MIGRATIONS = [
                 for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
                     const tile = tiles[x][y];
                     if (!tile) continue;
-                    if ((tile.type === 'tree' || tile.type === 'palm') && !tile.isTreeTop && tile.solid === undefined) {
+                    if (tile.type === 'tree' && !tile.isTreeTop && tile.solid === undefined) {
                         tile.solid = true;
                         const topY = y - 1;
                         if (topY >= 0 && topY < CONFIG.WORLD_HEIGHT && tiles[x][topY] && !tiles[x][topY].isTreeTop) {
                             tiles[x][topY] = {
-                                type: tile.type,
+                                type: 'tree',
                                 variant: tile.variant || 0,
                                 isTreeTop: true,
                                 solid: false,
@@ -79,6 +77,40 @@ const MIGRATIONS = [
             }
         }
         return data;
+    },
+    // v6 → v7: added wild hog and hog poop tiles
+    function(data) {
+        if (!data.hog) data.hog = { name: 'Hog', gridX: 50, gridY: 50, friendship: 0, dailyFed: false, named: false };
+        if (!data.hogPoopTiles) data.hogPoopTiles = [];
+        return data;
+    },
+    // v7 → v8: trees are now fully solid 2-tall stacks (canopy no longer passable)
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    const tile = tiles[x][y];
+                    if (!tile) continue;
+                    if (tile.type === 'tree') {
+                        tile.solid = true;
+                        if (tile.isTreeTop) {
+                            // Sync depleted/respawn state with the trunk tile below.
+                            const trunkY = y + 1;
+                            if (trunkY < CONFIG.WORLD_HEIGHT) {
+                                const trunk = tiles[x][trunkY];
+                                if (trunk && !trunk.isTreeTop) {
+                                    tile.depleted = trunk.depleted || false;
+                                    tile.respawnAt = trunk.respawnAt || null;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return data;
     }
     // Future migrations go here
 ];
@@ -92,7 +124,16 @@ function serializeGame() {
         inventory: inventory.serialize(),
         buildings: buildings.map(b => b.serialize()),
         npcs: npcs.map(n => n.serialize()),
-        knownMagic: knownMagic || []
+        knownMagic: knownMagic || [],
+        birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
+        crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
+        turtles: turtles.map(t => ({ type: t.type, gridX: t.gridX, gridY: t.gridY, variant: t.variant })),
+        seagulls: seagulls.map(s => ({ type: s.type, gridX: s.gridX, gridY: s.gridY, variant: s.variant })),
+        butterflies: butterflies.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant })),
+        cicadas: cicadas.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
+        groundLoot: groundLoot.slice(),
+        hog: hog ? hog.serialize() : null,
+        hogPoopTiles: hogPoopTiles.slice()
     };
 }
 
@@ -121,6 +162,43 @@ function deserializeGame(data) {
     }
 
     knownMagic = data.knownMagic || [];
+
+    birds = [];
+    crabs = [];
+    turtles = [];
+    seagulls = [];
+    butterflies = [];
+    cicadas = [];
+    groundLoot = [];
+    _lastAnimalHour = null;
+    if (data.birds) {
+        for (const b of data.birds) birds.push(new Animal(b.type, b.gridX, b.gridY, b.variant || 0));
+    }
+    if (data.crabs) {
+        for (const c of data.crabs) crabs.push(new Animal(c.type, c.gridX, c.gridY, c.variant || 0));
+    }
+    if (data.turtles) {
+        for (const t of data.turtles) turtles.push(new Animal(t.type, t.gridX, t.gridY, t.variant || 0));
+    }
+    if (data.seagulls) {
+        for (const s of data.seagulls) seagulls.push(new Animal(s.type, s.gridX, s.gridY, s.variant || 0));
+    }
+    if (data.butterflies) {
+        for (const b of data.butterflies) butterflies.push(new Animal(b.type, b.gridX, b.gridY, b.variant || 0));
+    }
+    if (data.cicadas) {
+        for (const c of data.cicadas) cicadas.push(new Animal(c.type, c.gridX, c.gridY, c.variant || 0));
+    }
+    if (data.groundLoot) groundLoot = data.groundLoot.slice();
+
+    hog = null;
+    hogPoopTiles = [];
+    if (data.hog) {
+        hog = Hog.deserialize(data.hog);
+    }
+    if (data.hogPoopTiles) {
+        hogPoopTiles = data.hogPoopTiles.slice();
+    }
 }
 
 function migrateSave(data) {

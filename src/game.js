@@ -25,35 +25,107 @@ const CONFIG = {
     DAY_LENGTH_MINUTES: 30
 };
 
-// Sprite registry — holds loaded p5.Image objects, null if not loaded
+// Sprite registry - holds loaded p5.Image objects, null if not loaded
 const SPRITES = {};
 const SPRITE_DEFS = {
-    'tiles.grass':       'assets/tiles/grass.png',
-    'tiles.beach':       'assets/tiles/beach.png',
-    'tiles.water':       'assets/tiles/water.png',
-    'tiles.tree':        'assets/tiles/tree.png',
-    'tiles.palm':        'assets/tiles/palm.png',
-    'tiles.rock':        'assets/tiles/rock.png',
-    'tiles.shiny_rock':  'assets/tiles/shiny_rock.png',
-    'tiles.weeds':       'assets/tiles/weeds.png',
-    'tiles.bird_poop':   'assets/tiles/bird_poop.png',
-    'tiles.rosebush':    'assets/tiles/rosebush.png',
-    'tiles.tulip':       'assets/tiles/tulip.png',
-    'sprites.player':    'assets/sprites/player.png',
-    'items.log':         'assets/sprites/log.png',
-    'items.stone':       'assets/sprites/stone.png',
-    'items.magnet':      'assets/sprites/magnet.png',
-    'items.crystal':     'assets/sprites/crystal.png',
-    'items.stick':       'assets/sprites/stick.png',
-    'items.fiber':       'assets/sprites/fiber.png',
-    'items.bean':       'assets/sprites/bean.png',
-    'items.berry':       'assets/sprites/berry.png',
-    'items.banana':      'assets/sprites/banana.png',
-    'items.seed':        'assets/sprites/seed.png',
-    'items.axe':         'assets/sprites/axe.png',
-    'items.hoe':         'assets/sprites/hoe.png',
-    'sprites.shack':     'assets/sprites/shack.png',
-    'sprites.house':     'assets/sprites/house.png'
+    'tiles.grass':            'assets/tiles/grass.png',
+    'tiles.beach':            'assets/tiles/beach.png',
+    'tiles.water':            'assets/tiles/water.png',
+    'tiles.tree':             'assets/tiles/tree.png',
+    'tiles.rock':             'assets/tiles/rock.png',
+    'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
+    'tiles.weeds':            'assets/tiles/weeds.png',
+    'tiles.bird_poop':        'assets/tiles/bird_poop.png',
+    'tiles.rosebush':         'assets/tiles/rosebush.png',
+    'tiles.bed_blue':         'assets/tiles/bed_blue.png',
+    'tiles.bed_orange':       'assets/tiles/bed_orange.png',
+    'tiles.bed_red':          'assets/tiles/bed_red.png',
+    'tiles.picnicblanket':    'assets/tiles/picnicblanket.png',
+    'sprites.player':         'assets/sprites/player.png',
+    'sprites.mira':           'assets/sprites/mira.png',
+    'sprites.luna':           'assets/sprites/luna.png',
+    'sprites.brass':          'assets/sprites/brass.png',
+    'sprites.krip':           'assets/sprites/krip.png',
+    'sprites.penny':          'assets/sprites/penny.png',
+    'sprites.mimis':          'assets/sprites/mimis.png',
+    'sprites.hudson':         'assets/sprites/hudson.png',
+    'sprites.cort':           'assets/sprites/cort.png',
+    'sprites.aiko':           'assets/sprites/aiko.png',
+    'sprites.ihor':           'assets/sprites/ihor.png',
+    'sprites.psy':            'assets/sprites/psy.png',
+    'sprites.boll':           'assets/sprites/boll.png',
+    'sprites.taira':          'assets/sprites/taira.png',
+    'sprites.mah':            'assets/sprites/mah.png',
+    'sprites.liz':            'assets/sprites/liz.png',
+    'sprites.eo':             'assets/sprites/eo.png',
+    'sprites.quark':          'assets/sprites/quark.png',
+    'sprites.zora':           'assets/sprites/zora.png',
+    'sprites.basil':          'assets/sprites/basil.png',
+    'sprites.gearwick':       'assets/sprites/gearwick.png',
+    'sprites.zephyr':         'assets/sprites/zephyr.png',
+    'sprites.gorm':           'assets/sprites/gorm.png',
+    'sprites.sprig':          'assets/sprites/sprig.png',
+    'sprites.rollo':          'assets/sprites/rollo.png',
+    'sprites.nyx':            'assets/sprites/nyx.png',
+    'sprites.titan':          'assets/sprites/titan.png',
+    'sprites.orla':           'assets/sprites/orla.png',
+    'sprites.jax':            'assets/sprites/jax.png',
+    'sprites.clover':         'assets/sprites/clover.png',
+    'sprites.sprocket':       'assets/sprites/sprocket.png',
+    'sprites.luna-2':         'assets/sprites/luna-2.png',
+    'sprites.vira':           'assets/sprites/vira.png',
+    'sprites.birch':          'assets/sprites/birch.png',
+    'sprites.flick':          'assets/sprites/flick.png',
+    'sprites.draven':         'assets/sprites/draven.png',
+    'sprites.pixel':          'assets/sprites/pixel.png',
+    'sprites.aria':           'assets/sprites/aria.png',
+    'sprites.grumble':        'assets/sprites/grumble.png',
+    'sprites.selene':         'assets/sprites/selene.png',
+    'sprites.bolt':           'assets/sprites/bolt.png',
+    'sprites.gidget':         'assets/sprites/gidget.png',
+    'sprites.lunae':          'assets/sprites/lunae.png',
+    'sprites.willow':         'assets/sprites/willow.png',
+    'sprites.rusty':          'assets/sprites/rusty.png',
+    'sprites.ember':          'assets/sprites/ember.png',
+    'sprites.pippa':          'assets/sprites/pippa.png',
+    'sprites.orion':          'assets/sprites/orion.png',
+    'sprites.nixie':          'assets/sprites/nixie.png',
+    'sprites.cobble':         'assets/sprites/cobble.png',
+    'sprites.zeph':           'assets/sprites/zeph.png',
+    'sprites.kiko':           'assets/sprites/kiko.png',
+    'sprites.aurora':         'assets/sprites/aurora.png',
+    'sprites.quill':          'assets/sprites/quill.png',
+    'sprites.vex':            'assets/sprites/vex.png',
+    'sprites.daphne':         'assets/sprites/daphne.png',
+    'sprites.chester':        'assets/sprites/chester.png',
+    'sprites.vega':           'assets/sprites/vega.png',
+    'sprites.turtle':         'assets/sprites/turtle.png',
+    'sprites.seagull':        'assets/sprites/seagull.png',
+    'items.log':              'assets/sprites/log.png',
+    'items.stone':            'assets/sprites/stone.png',
+    'items.magnet':           'assets/sprites/magnet.png',
+    'items.crystal':          'assets/sprites/crystal.png',
+    'items.stick':            'assets/sprites/stick.png',
+    'items.fiber':            'assets/sprites/fiber.png',
+    'items.bean':             'assets/sprites/bean.png',
+    'items.berry':            'assets/sprites/berry.png',
+    'items.banana':           'assets/sprites/banana.png',
+    'items.seed':             'assets/sprites/seed.png',
+    'items.axe':              'assets/sprites/axe.png',
+    'items.hoe':              'assets/sprites/hoe.png',
+    'items.feather':          'assets/sprites/feather.png',
+    'items.seashell':         'assets/sprites/seashell.png',
+    'items.turtle_egg':       'assets/sprites/turtle_egg.png',
+    'items.stale_toast':      'assets/sprites/stale_toast.png',
+    'sprites.shack':          'assets/sprites/shack.png',
+    'sprites.house':          'assets/sprites/house.png',
+    'sprites.bird':           'assets/sprites/animals/bird.png',
+    'sprites.bird2':          'assets/sprites/animals/bird2.png',
+    'sprites.butterfly':      'assets/sprites/butterfly.png',
+    'sprites.cicada':         'assets/sprites/cicada.png',
+    'items.cicada_shell':     'assets/sprites/cicada_shell.png',
+    'sprites.hog':            'assets/sprites/hog.png',
+    'tiles.poop':             'assets/sprites/poop.png',
 };
 
 // Global game state
@@ -72,17 +144,19 @@ const MOVE_COOLDOWN = 120;
 const startMenuOptions = ['Start', 'Load', 'Settings'];
 const settingsMenuOptions = ['Back'];
 
-// Tiles that block player movement
-const TILE_SOLID = new Set(['sea', 'water', 'tree', 'rock', 'palm', 'shiny_rock', 'rosebush']);
+// Tiles that block player movement by default.
+const TILE_SOLID = new Set(['sea', 'water', 'tree', 'rock', 'shiny_rock', 'rosebush']);
 
-// Helper: check if a tile is solid. Individual tiles can override with a `solid` property
-// (used for 2-tall trees: trunk solid, leaves passable).
+// Helper: check if a tile is solid. Individual tiles can override with a `solid` property.
+// Animals also block movement (solid obstacles).
 function isSolidTile(x, y) {
     if (x < 0 || x >= CONFIG.WORLD_WIDTH || y < 0 || y >= CONFIG.WORLD_HEIGHT) return true;
     const tile = world.tiles[x][y];
     if (!tile) return true;
     if (tile.solid !== undefined) return tile.solid;
-    return TILE_SOLID.has(tile.type);
+    if (TILE_SOLID.has(tile.type)) return true;
+    if (typeof animalAt === 'function' && animalAt(x, y)) return true;
+    return false;
 }
 
 // Water animation frame counter
@@ -114,7 +188,12 @@ const ITEMS = {
     iron_ingot:  { name: 'Iron Ingot',  category: 'treasure', maxStack: 99, color: '#90A4AE', desc: 'A heavy rust-spotted ingot. Good metal.' },
     metal_rod:   { name: 'Metal Rod',   category: 'treasure', maxStack: 99, color: '#78909C', desc: 'A bent metal rod. Could be useful.' },
     old_radio:   { name: 'Old Radio',   category: 'treasure', maxStack: 99, color: '#8D6E63', desc: 'A waterlogged transistor radio. Static only... for now.' },
-    gold_coin:   { name: 'Gold Coin',   category: 'treasure', maxStack: 99, color: '#FFD700', desc: 'An ancient gold coin pulled from the deep.' }
+    gold_coin:   { name: 'Gold Coin',   category: 'treasure', maxStack: 99, color: '#FFD700', desc: 'An ancient gold coin pulled from the deep.' },
+    feather:     { name: 'Feather',     category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A soft feather left behind by a bird.' },
+    seashell:    { name: 'Seashell',    category: 'gift',     maxStack: 20, color: '#FFE4E1', desc: 'A polished shell from a grateful crab.' },
+    turtle_egg:  { name: 'Turtle Egg',  category: 'gift',     maxStack: 10, color: '#E8DCC5', desc: 'A smooth, patterned egg left behind by a nesting sea turtle.' },
+    stale_toast: { name: 'Stale Toast', category: 'tool',     maxStack: 10, color: '#D2B48C', desc: 'A hardened piece of toast perfect for throwing at targets.' },
+    cicada_shell:{ name: 'Cicada Shell',category: 'material', maxStack: 99, color: '#B8A070', desc: 'A translucent shell left behind by a summer cicada. Useful in magic tricks.' },
 };
 
 // ===== INVENTORY =====
@@ -126,7 +205,7 @@ let hotbarSlot = 0;            // Active hotbar slot (1-8)
 let buildings = [];
 let insideBuilding = null;  // building we're currently inside (null = outside)
 
-// Building exterior tiers — each has a sprite key and base tile dimensions
+// Building exterior tiers - each has a sprite key and base tile dimensions
 const BUILDING_TIERS = {
     shack: { spriteKey: 'sprites.shack', name: 'Shack' },
     house: { spriteKey: 'sprites.house', name: 'House' }
@@ -146,7 +225,7 @@ class Building {
         const ts = this.tileSize;
         this.interiorW = ts.w;
         this.interiorH = ts.h + INTERIOR_WALL_HEIGHT; // walkable area + wall on top
-        // Interior tile grid — grass floor for shack
+        // Interior tile grid - grass floor for shack
         this.interiorTiles = [];
         this.initInterior();
     }
@@ -158,14 +237,21 @@ class Building {
         return { w: Math.ceil(spr.width / CONFIG.TILE_SIZE), h: Math.ceil(spr.height / CONFIG.TILE_SIZE) };
     }
 
-    // Initialize interior tiles — grass floor, wall row on top
+    // Initialize interior tiles - grass floor, wall row on top, bed on the left, picnic blanket on the right
     initInterior() {
         this.interiorTiles = [];
+        const bedVariant = ['bed_blue', 'bed_orange', 'bed_red'][floor(random(3))];
         for (let x = 0; x < this.interiorW; x++) {
             this.interiorTiles[x] = [];
             for (let y = 0; y < this.interiorH; y++) {
                 if (y < INTERIOR_WALL_HEIGHT) {
                     this.interiorTiles[x][y] = { type: 'wall', variant: 0 };
+                } else if (x === 0 && y === INTERIOR_WALL_HEIGHT) {
+                    // Bed on the left, against the back wall
+                    this.interiorTiles[x][y] = { type: 'bed', variant: bedVariant };
+                } else if (x === this.interiorW - 1 && y === INTERIOR_WALL_HEIGHT) {
+                    // Picnic blanket on the right, against the back wall
+                    this.interiorTiles[x][y] = { type: 'picnicblanket', variant: 0 };
                 } else {
                     this.interiorTiles[x][y] = { type: 'grass', variant: floor(Math.random() * 3) };
                 }
@@ -269,12 +355,12 @@ function buildingAt(x, y) {
 // Each harvestable tile type: what it drops, respawn time (game hours), tool needed (null = bare hands)
 const HARVEST_TYPES = {
     tree:        { drops: [{id:'log', count:2, chance:1.0}, {id:'berry', count:2, chance:1.0}, {id:'stick', count:1, chance:0.5}], respawnHours: 12, tool: null, name: 'Tree' },
-    palm:        { drops: [{id:'banana', count:2, chance:1.0}, {id:'fiber', count:2, chance:1.0}], respawnHours: 8,  tool: null, name: 'Palm Tree' },
     rock:        { drops: [{id:'stone', count:2, chance:1.0}], respawnHours: 24, tool: null, name: 'Rock' },
     shiny_rock:  { drops: [{id:'stone', count:1, chance:1.0}, {id:'magnet', count:1, chance:0.8}, {id:'crystal', count:1, chance:0.4}], respawnHours: 24, tool: null, name: 'Shiny Rock' },
     weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
     bird_poop:   { drops: [{id:'seed', count:1, chance:1.0}, {id:'rose_seed', count:1, chance:0.5}, {id:'tulip_bulb', count:1, chance:0.5}], disappears: true, name: 'Bird Poop' },
-    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' }
+    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' },
+    toast_target:{ drops: [], disappears: true, tool: 'stale_toast', name: 'Toast Target' }
     // Note: flower, tulip, and water pond decorations have been removed from world generation.
 };
 
@@ -342,6 +428,9 @@ function setup() {
     // Initialize buildings
     buildings = [];
     spawnPlayerShack();
+
+    // Spawn the single wild hog
+    spawnHog();
 
     // Center camera on player
     updateCamera();
@@ -451,7 +540,7 @@ function handleMovement() {
     }
 }
 
-// Movement inside a building — clamped to interior dimensions, walls block
+// Movement inside a building - clamped to interior dimensions, walls block
 function handleInteriorMovement() {
     if (gameState !== STATE.INSIDE || !player || !insideBuilding) return;
     
@@ -475,9 +564,9 @@ function handleInteriorMovement() {
             lastMoveTime = now;
             return;
         }
-        // Walls block movement
+        // Walls and furniture block movement
         const tile = b.interiorTiles[newX][newY];
-        if (tile.type === 'wall') {
+        if (tile.type === 'wall' || tile.type === 'bed' || tile.type === 'picnicblanket') {
             lastMoveTime = now;
             return;
         }
@@ -510,11 +599,14 @@ function drawGame() {    // Handle continuous movement
     // Draw NPCs
     if (typeof drawEntities === 'function') drawEntities();
 
+    // Draw animals (birds/crabs)
+    if (typeof drawAnimals === 'function') drawAnimals();
+
+    // Draw wild hog and poop
+    if (typeof drawHog === 'function') drawHog();
+
     // Draw player
     player.draw();
-
-    // Draw tree/palm canopies on top of player so walking under them looks right.
-    world.drawTreeTops();
 
     // Day/night overlay
     drawDayNightOverlay();
@@ -530,6 +622,9 @@ function drawGame() {    // Handle continuous movement
 
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
+    if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
+    if (typeof updateHog === 'function') updateHog(deltaTime);
+    if (typeof checkAnimalSunEvents === 'function') checkAnimalSunEvents();
     if (typeof updateFairies === 'function') updateFairies(deltaTime);
     if (typeof updateDialogue === 'function') updateDialogue(deltaTime);
     if (typeof updateMinigame === 'function' && gameState === 'minigame') updateMinigame(deltaTime);
@@ -581,7 +676,7 @@ function drawUI() {
     fill(255);
     textAlign(LEFT, CENTER);
     textSize(12);
-    text('Day 1 - Sweet Season', 10, 15);
+    text(getDateString(), 10, 15);
 
     textAlign(RIGHT, CENTER);
     text('🕐 ' + world.getTimeString(), width - 10, 15);
@@ -595,7 +690,7 @@ function drawUI() {
         text('Saved!', width - 35, 45);
     }
 
-    // Hotbar — 8 slots at bottom center
+    // Hotbar - 8 slots at bottom center
     drawHotbar();
 }
 
@@ -688,10 +783,10 @@ function drawDurabilityPips(slot, x, y, size) {
     for (let i = 0; i < maxDur; i++) {
         const px = startX + i * (pipSize + gap);
         if (i < cur) {
-            // Filled — green if healthy, yellow at 1, red at 0 (shouldn't show at 0)
+            // Filled - green if healthy, yellow at 1, red at 0 (shouldn't show at 0)
             fill(cur > 1 ? '#7CB342' : '#FFD93D');
         } else {
-            // Hollow — dark grey
+            // Hollow - dark grey
             fill(60, 60, 60, 200);
         }
         // Small diamond shape
@@ -1143,13 +1238,17 @@ function mousePressed() {
                 return;
             }
         }
+        // Toast Toss interaction (only on holiday)
+        if (typeof tryToastToss === 'function' && tryToastToss()) return;
         tryHarvest();
         return;
     }
 
-    // ===== INSIDE: click to interact (exit on door) =====
+    // ===== INSIDE: click to interact (sleep on bed at night, exit on door) =====
     if (gameState === STATE.INSIDE) {
-        // Same as pressing Enter — try to exit
+        // Try sleeping in the bed first (only if it's night)
+        if (trySleep()) return;
+        // Otherwise try to exit
         tryExitBuilding();
         return;
     }
@@ -1295,30 +1394,108 @@ function tryExitBuilding() {
     // Only exit if player is standing on the interior door tile
     if (player.x !== intDoor.x || player.y !== intDoor.y) return false;
 
-    // Place player directly in front of the exterior door (one tile below it),
-    // facing up toward the building.
+    // Find a clear tile near the exterior door to place the player.
+    // Check candidates in order: directly below the door, then further out,
+    // then to the sides. This is robust even if something spawned in front.
     const door = b.getDoorTile();
-    player.x = door.x;
-    player.y = door.y + 1; // one tile below the door
-    player.facing = 'up';
+    const candidates = [
+        { x: door.x,     y: door.y + 1 },
+        { x: door.x,     y: door.y + 2 },
+        { x: door.x - 1, y: door.y + 1 },
+        { x: door.x + 1, y: door.y + 1 },
+        { x: door.x - 1, y: door.y + 2 },
+        { x: door.x + 1, y: door.y + 2 },
+    ];
 
-    // Make sure the exit tile isn't solid (walk on grass, not ocean)
-    if (world.tiles[player.x] && world.tiles[player.x][player.y]) {
-        if (TILE_SOLID.has(world.tiles[player.x][player.y].type)) {
-            // Try the tile above the door instead
-            player.y = door.y + 1;
-            if (TILE_SOLID.has(world.tiles[player.x][player.y].type)) {
-                // Last resort: use saved position
-                player.x = savedPlayerX;
-                player.y = savedPlayerY;
-            }
+    let exitX = null, exitY = null;
+    for (const c of candidates) {
+        if (c.x < 0 || c.x >= CONFIG.WORLD_WIDTH || c.y < 0 || c.y >= CONFIG.WORLD_HEIGHT) continue;
+        if (!world.tiles[c.x] || !world.tiles[c.x][c.y]) continue;
+        if (isSolidTile(c.x, c.y)) continue;
+        if (buildingAt(c.x, c.y)) continue;
+        exitX = c.x;
+        exitY = c.y;
+        break;
+    }
+
+    if (exitX === null) {
+        // No clear tile found — clear the spot directly below the door and use it
+        exitX = door.x;
+        exitY = door.y + 1;
+        if (exitY >= 0 && exitY < CONFIG.WORLD_HEIGHT && world.tiles[exitX] && world.tiles[exitX][exitY]) {
+            world.tiles[exitX][exitY] = { type: 'grass', variant: 0 };
         }
     }
+
+    player.x = exitX;
+    player.y = exitY;
+    player.facing = 'up';
 
     insideBuilding = null;
     gameState = STATE.PLAYING;
     updateCamera();
     notify("Exited building");
+    return true;
+}
+
+// ===== SLEEPING =====
+// Night is defined as 8 PM (20:00) to 6 AM (06:00).
+function isNightTime() {
+    const hour = world.timeMinutes / 60;
+    return hour >= 20 || hour < 6;
+}
+
+// If the player is adjacent to a bed inside a building and it's night, skip to 6 AM.
+function trySleep() {
+    if (!insideBuilding || !world) return false;
+    const b = insideBuilding;
+
+    // Find the bed tile
+    let bedX = -1, bedY = -1;
+    for (let x = 0; x < b.interiorW; x++) {
+        for (let y = 0; y < b.interiorH; y++) {
+            if (b.interiorTiles[x][y].type === 'bed') {
+                bedX = x;
+                bedY = y;
+            }
+        }
+    }
+    if (bedX < 0 || bedY < 0) return false;
+
+    // Player must be standing next to the bed and facing it
+    const dx = bedX - player.x;
+    const dy = bedY - player.y;
+    const isAdjacent = (abs(dx) === 1 && dy === 0) || (dx === 0 && abs(dy) === 1);
+    if (!isAdjacent) return false;
+
+    // Check facing direction matches the bed
+    const facing = player.getFacingTile ? player.getFacingTile() : null;
+    if (!facing || facing.x !== bedX || facing.y !== bedY) return false;
+
+    if (!isNightTime()) {
+        notify("You can only sleep at night.");
+        return false;
+    }
+
+    // Skip to next day 6:00 AM
+    world.day++;
+    world.timeMinutes = 6 * 60;
+    notify("You slept until morning. Day " + world.day + " begins!");
+
+    // Spawn new bird poop at sunrise
+    spawnBirdPoop(3 + floor(random(3)));
+
+    // Wake up just outside the bed
+    // Move player to a free adjacent tile if they're currently standing in the bed tile
+    if (player.x === bedX && player.y === bedY) {
+        // Prefer the tile below the bed (foot of the bed)
+        const wakeX = bedX;
+        const wakeY = min(bedY + 1, b.interiorH - 2);
+        if (b.interiorTiles[wakeX][wakeY].type !== 'wall' && b.interiorTiles[wakeX][wakeY].type !== 'bed') {
+            player.x = wakeX;
+            player.y = wakeY;
+        }
+    }
     return true;
 }
 
@@ -1429,6 +1606,24 @@ function drawInteriorTile(tile, sx, sy, TS) {
             fill('#7CB342');
             rect(sx, sy, TS, TS);
         }
+    } else if (tile.type === 'bed') {
+        const spr = SPRITES['tiles.' + tile.variant];
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            fill('#8B4513');
+            rect(sx, sy, TS, TS);
+            fill('#FFD700');
+            rect(sx + 2, sy + 2, TS - 4, TS - 4);
+        }
+    } else if (tile.type === 'picnicblanket') {
+        const spr = SPRITES['tiles.picnicblanket'];
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            fill('#E53935');
+            rect(sx, sy, TS, TS);
+        }
     } else {
         // Fallback
         fill('#7CB342');
@@ -1459,9 +1654,9 @@ function keyPressed() {
             invSelectedSlot = 0;
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
-            // Check if facing a building — enter it
+            // Check if facing a building - enter it
             if (tryEnterBuilding()) return false;
-            // Check if facing an NPC — talk to them
+            // Check if facing an NPC - talk to them
             if (typeof npcAtFacing === 'function') {
                 const npc = npcAtFacing();
                 if (npc) {
@@ -1469,11 +1664,13 @@ function keyPressed() {
                     return false;
                 }
             }
+            // Toast Toss interaction (only on holiday, before normal harvest)
+            if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Otherwise try harvest (gettin/gardening handled by their own key wrappers)
             tryHarvest();
             return false;
         } else if (keyCode === SHIFT) {
-            // Shift+Enter for advanced NPC menu — check on Enter with shift held
+            // Shift+Enter for advanced NPC menu - check on Enter with shift held
             return false;
         } else if (keyCode >= 49 && keyCode <= 56) {
             hotbarSlot = keyCode - 49;
@@ -1490,7 +1687,8 @@ function keyPressed() {
             invSelectedSlot = 0;
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
-            // Try to exit building (must be on door tile)
+            // Try to sleep in the bed (only at night), otherwise exit building
+            if (trySleep()) return false;
             tryExitBuilding();
             return false;
         } else if (keyCode >= 49 && keyCode <= 56) {
@@ -1587,7 +1785,7 @@ function tryHarvest() {
         if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
         const tile = world.tiles[tx][ty];
         const harvestDef = HARVEST_TYPES[tile.type];
-        // Tree/palm tops are not harvestable — only the solid trunk tile below.
+        // Tree tops are not harvestable - only the solid trunk tile below.
         if (!harvestDef || tile.depleted || tile.isTreeTop) continue;
 
         // Prefer the tile we're facing
@@ -1714,6 +1912,79 @@ function spawnBirdPoop(targetCount) {
     }
 }
 
+// Spawn Toast Toss Tournament targets on beach tiles.
+function spawnToastTargets(targetCount) {
+    if (!world) return;
+    let attempts = 0;
+    let spawned = 0;
+    const px = player ? player.x : -1;
+    const py = player ? player.y : -1;
+    while (spawned < targetCount && attempts < 500) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const tile = world.tiles[x][y];
+        if (!tile || tile.type !== 'beach') continue;
+        if (isSolidTile(x, y)) continue;
+        if (buildingAt(x, y)) continue;
+        if (x === px && y === py) continue;
+        world.tiles[x][y] = { type: 'toast_target', variant: floor(random(3)) };
+        spawned++;
+    }
+    if (spawned > 0) {
+        notify(spawned + ' toast targets appeared on the beach!');
+    }
+}
+
+function tryToastToss() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Toast Toss Tournament') return false;
+
+    const facing = player.getFacingTile ? player.getFacingTile() : null;
+    if (!facing || !facing.tile) return false;
+    if (facing.tile.type !== 'toast_target') return false;
+
+    const active = inventory.getActiveItem();
+    if (!active || active.id !== 'stale_toast') {
+        notify('Equip some Stale Toast to join the tournament!');
+        return false;
+    }
+
+    // Score based on distance from target center - represented by variant.
+    const variant = facing.tile.variant || 0;
+    const scoreRoll = random();
+    let prize = null;
+    let prizeCount = 1;
+    let message = '';
+
+    if (variant === 0 && scoreRoll < 0.7) {
+        prize = 'gold_coin';
+        prizeCount = 1 + floor(random(2));
+        message = 'Bullseye! The toast lands square in the target. You win ' + prizeCount + ' Gold Coin' + (prizeCount > 1 ? 's' : '') + '!';
+    } else if (scoreRoll < 0.5) {
+        prize = 'banana';
+        prizeCount = 1 + floor(random(2));
+        message = 'Nice toss! The toast clips the rim. You win ' + prizeCount + ' Banana' + (prizeCount > 1 ? 's' : '') + '!';
+    } else {
+        message = 'Splat! The toast misses entirely. The target just stares back.';
+    }
+
+    inventory.removeItem('stale_toast', 1);
+    if (prize) {
+        inventory.addItem(prize, prizeCount);
+        notify(message + ' (-1 toast)');
+    } else {
+        notify(message + ' (-1 toast)');
+    }
+
+    // Target disappears after being hit.
+    facing.tile.type = 'beach';
+    facing.tile.variant = 0;
+    facing.tile.depleted = false;
+    facing.tile.respawnAt = null;
+    return true;
+}
+
 function handleStartMenuSelection() {
     switch(selectedMenuOption) {
         case 0: // Start
@@ -1738,8 +2009,16 @@ function startNewGame() {
     npcs = [];
     knownMagic = [];
     fairyEntities = [];
+    birds = [];
+    crabs = [];
+    groundLoot = [];
+    _lastAnimalHour = null;
     // Spawn first neighbor
     checkArrivals();
+    // Spawn initial animals at the start of the day
+    if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
+    // Spawn hog if not already present (fresh games)
+    if (typeof spawnHog === 'function' && !hog) spawnHog();
     updateCamera();
     gameState = STATE.PLAYING;
 }
@@ -1749,20 +2028,15 @@ function spawnPlayerShack() {
     // Shack is 48x32 (3x2 tiles). Place it 2 tiles to the right of player spawn.
     const sx = 52;
     const sy = 49; // slightly above player so visible
-    // Clear any decorations at those tiles
+    // Clear building footprint plus 1 tile above (canopy) and 2 tiles below (exit path).
     for (let dx = 0; dx < 3; dx++) {
-        for (let dy = 0; dy < 2; dy++) {
-            if (world.tiles[sx + dx] && world.tiles[sx + dx][sy + dy]) {
-                if (world.tiles[sx + dx][sy + dy].type !== 'sea' && world.tiles[sx + dx][sy + dy].type !== 'beach') {
-                    world.tiles[sx + dx][sy + dy] = { type: 'grass', variant: 0 };
-                }
-            }
-            // Also remove any tree/palm canopy tops directly above the cleared row.
-            if (dy === 0) {
-                const aboveY = sy + dy - 1;
-                if (aboveY >= 0 && world.tiles[sx + dx] && world.tiles[sx + dx][aboveY] && world.tiles[sx + dx][aboveY].isTreeTop) {
-                    world.tiles[sx + dx][aboveY] = { type: 'grass', variant: 0 };
-                }
+        for (let dy = -1; dy < 4; dy++) {
+            const tx = sx + dx, ty = sy + dy;
+            if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+            if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
+            const t = world.tiles[tx][ty];
+            if (t.type !== 'sea' && t.type !== 'beach') {
+                world.tiles[tx][ty] = { type: 'grass', variant: 0 };
             }
         }
     }
@@ -1770,50 +2044,26 @@ function spawnPlayerShack() {
 }
 
 function saveGame() {
-    const data = {
-        player: player.serialize(),
-        world: world.serialize(),
-        inventory: inventory.serialize(),
-        buildings: buildings.map(b => b.serialize()),
-        timestamp: millis()
-    };
-
-    localStorage.setItem('cozyIslandSave', JSON.stringify(data));
-    world.showSaveIndicator = true;
-    setTimeout(() => {
-        world.showSaveIndicator = false;
-    }, 2000);
+    enhancedSaveGame();
 }
 
 function loadGame() {
-    const saved = localStorage.getItem('cozyIslandSave');
-    if (saved) {
-        try {
-            const data = JSON.parse(saved);
-            player = new Player(data.player.x, data.player.y);
-            player.deserialize(data.player);
-            world = new World();
-            world.deserialize(data.world);
-            inventory = new Inventory();
-            if (data.inventory) inventory.deserialize(data.inventory);
-            buildings = [];
-            if (data.buildings) {
-                for (const bd of data.buildings) {
-                    buildings.push(Building.deserialize(bd));
-                }
-            }
-            updateCamera();
-            gameState = STATE.PLAYING;
-        } catch (e) {
-            console.error('Failed to load save:', e);
-        }
+    if (typeof enhancedLoadGame === 'function' && enhancedLoadGame()) {
+        updateCamera();
+        // Ensure systems that may not be in old saves are present
+        if (typeof checkArrivals === 'function' && (!npcs || npcs.length === 0)) checkArrivals();
+        if (typeof spawnHog === 'function' && !hog) spawnHog();
+        gameState = STATE.PLAYING;
+        notify('Save loaded!');
+        return true;
     }
+    notify('No save found');
+    return false;
 }
 
 function loadSaveData() {
     // Checks if a save exists (used at startup)
-    // Actual loading happens in loadGame()
-    return localStorage.getItem('cozyIslandSave') !== null;
+    return localStorage.getItem(SAVE_KEY) !== null;
 }
 
 // ===== INVENTORY CLASS =====
@@ -1841,7 +2091,7 @@ class Inventory {
         const item = ITEMS[itemId];
         if (!item) return false;
 
-        // Tools don't stack — each gets its own slot with durability.
+        // Tools don't stack - each gets its own slot with durability.
         const isTool = item.category === 'tool';
         const durability = (opts.durability !== undefined) ? opts.durability
                           : (typeof item.durability === 'number') ? item.durability
@@ -1938,7 +2188,7 @@ class Inventory {
 
     deserialize(data) {
         if (data.slots) {
-            // Handle old saves with 24 slots — migrate to new size
+            // Handle old saves with 24 slots - migrate to new size
             if (data.slots.length < INV_TOTAL) {
                 const newSlots = new Array(INV_TOTAL).fill(null);
                 for (let i = 0; i < data.slots.length; i++) newSlots[i] = data.slots[i];
@@ -2002,7 +2252,7 @@ class Player {
             }
         }
 
-        // Collision check — buildings block movement
+        // Collision check - buildings block movement
         if (buildingAt(newX, newY)) {
             return;
         }
@@ -2094,11 +2344,10 @@ class World {
             }
         }
 
-        // Scatter decorations on a 10x10 grid — at most 1 decoration per cell
+        // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
         const CELL = 10;
         const decorations = ['tree', 'tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
-        const beachDecorations = ['palm', 'palm'];
 
         for (let cx = 0; cx < CONFIG.WORLD_WIDTH; cx += CELL) {
             for (let cy = 0; cy < CONFIG.WORLD_HEIGHT; cy += CELL) {
@@ -2110,14 +2359,10 @@ class World {
                 const d = dist(tx, ty, centerX, centerY);
                 if (d > 42) continue;          // skip sea
                 if (d > 38) {
-                    // Beach zone — mostly empty, occasional palm
-                    if (random() < 0.35) {
-                        const type = random(beachDecorations);
-                        if (type === 'palm') this.placeTree(tx, ty, 'palm');
-                    }
+                    // Beach zone - mostly empty for now.
                     continue;
                 }
-                // Interior — 1 decoration per cell, ~80% chance (some cells stay empty)
+                // Interior - 1 decoration per cell, ~80% chance (some cells stay empty)
                 if (random() < 0.8) {
                     const type = random(decorations);
                     if (type === 'tree') this.placeTree(tx, ty, 'tree');
@@ -2148,19 +2393,18 @@ class World {
         spawnBirdPoop(3 + floor(random(3)));
     }
 
-    // Place a 2-tall tree/palm: solid trunk at (x,y) and passable canopy at (x,y-1).
-    placeTree(x, y, type) {
-        const baseTerrain = type === 'palm' ? 'beach' : 'grass';
-        if (this.tiles[x][y].type !== baseTerrain) return;
+    // Place a 2-tall tree: solid trunk at (x,y) and solid canopy at (x,y-1).
+    placeTree(x, y, type = 'tree') {
+        if (this.tiles[x][y].type !== 'grass') return;
         const topY = y - 1;
         if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return;
         const topTile = this.tiles[x][topY];
-        if (!topTile || topTile.type !== baseTerrain) return;
+        if (!topTile || topTile.type !== 'grass') return;
         // Ensure the top spot hasn't already been claimed by another decoration.
         if (topTile.solid === true || topTile.isTreeTop === true) return;
 
-        this.tiles[x][y] = { type: type, variant: floor(random(3)), solid: true };
-        this.tiles[x][topY] = { type: type, variant: floor(random(3)), isTreeTop: true, solid: false };
+        this.tiles[x][y] = { type: 'tree', variant: floor(random(3)), solid: true };
+        this.tiles[x][topY] = { type: 'tree', variant: floor(random(3)), isTreeTop: true, solid: true };
     }
     
     draw() {
@@ -2192,52 +2436,16 @@ class World {
             this.day++;
             // Sunrise: new bird poop appears across the island.
             spawnBirdPoop(3 + floor(random(3)));
+            // Sunrise: animals spawn (handled by checkAnimalSunEvents too, but ensure on wrap)
+            if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
+            if (typeof onHogNewDay === 'function') onHogNewDay();
         }
     }
 
-    // Pass 2: draw tree/palm canopy tops on top of entities/player.
+    // Pass 2: draw tree canopy tops as part of the base world pass.
+    // Both trunk and top tiles are now solid, so depth sorting is simple.
     drawTreeTops() {
-        push();
-        translate(-cameraX, -cameraY);
-        
-        const startTileX = floor(cameraX / CONFIG.TILE_SIZE);
-        const startTileY = floor(cameraY / CONFIG.TILE_SIZE);
-        const endTileX = startTileX + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + 2;
-        const endTileY = startTileY + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + 2;
-        
-        for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
-            for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
-                const tile = this.tiles[x][y];
-                if (!tile || !tile.isTreeTop) continue;
-                this.drawTreeTop(x, y, tile);
-            }
-        }
-        
-        pop();
-    }
-
-    drawTreeTop(x, y, tile) {
-        const screenX = x * CONFIG.TILE_SIZE;
-        const screenY = y * CONFIG.TILE_SIZE;
-        const TS = CONFIG.TILE_SIZE;
-        const type = tile.type;
-        const spr = SPRITES['tiles.' + type];
-        if (spr) {
-            // Draw the upper 16 pixels of the 16x32 sprite.
-            image(spr, screenX, screenY, TS, TS, 0, 0, spr.width, TS);
-        } else {
-            if (type === 'tree') {
-                fill('#2E7D32');
-                ellipse(screenX + 8, screenY + 12, 12, 12);
-            } else if (type === 'palm') {
-                fill('#4CAF50');
-                ellipse(screenX + 8, screenY + 12, 14, 8);
-            }
-        }
-        if (tile.depleted) {
-            fill(0, 0, 0, 120);
-            rect(screenX, screenY, TS, TS);
-        }
+        // Deprecated: canopy tops are drawn during drawTile now that trees are fully solid.
     }
     
     drawTile(x, y, tile) {
@@ -2263,7 +2471,7 @@ class World {
             case 'sea': {
                 const spr = SPRITES['tiles.water'];
                 if (spr) {
-                    // Single 16x16 sprite — draw whole thing, no frame slicing
+                    // Single 16x16 sprite - draw whole thing, no frame slicing
                     image(spr, screenX, screenY, TS, TS);
                 } else {
                     fill('#4A90C8');
@@ -2317,13 +2525,13 @@ class World {
             case 'tree': {
                 const isTop = tile.isTreeTop;
                 // Draw the correct base terrain under the tile.
-                drawBase(isTop ? 'grass' : 'grass');
-                // Both trunk and canopy tiles draw their own half of the 16x32 sprite.
+                drawBase('grass');
+                // Both trunk and top tiles draw their own half of the 16x32 sprite.
                 const spr = SPRITES['tiles.tree'];
                 if (spr) {
                     if (isTop) {
-                        // Top half of the sprite (upper canopy) — drawn only in the tree-top pass,
-                        // which happens AFTER entities/player so the player walks behind it.
+                        // Top half of the sprite (upper canopy).
+                        image(spr, screenX, screenY, TS, TS, 0, 0, spr.width, TS);
                     } else {
                         // Bottom half (trunk) drawn during the base pass.
                         // Source: lower 16 pixels of the 16x32 sprite.
@@ -2337,34 +2545,6 @@ class World {
                     } else {
                         fill('#8B4513');
                         rect(screenX + 6, screenY + 4, 4, 10);
-                    }
-                }
-                if (!isTop && tile.depleted) {
-                    fill(0, 0, 0, 120);
-                    rect(screenX, screenY, TS, TS);
-                }
-                break;
-            }
-            case 'palm': {
-                const isTop = tile.isTreeTop;
-                // Draw the correct base terrain under the tile.
-                drawBase(isTop ? 'beach' : 'beach');
-                const spr = SPRITES['tiles.palm'];
-                if (spr) {
-                    if (isTop) {
-                        // Top half drawn in the tree-top pass.
-                    } else {
-                        // Bottom half drawn in base pass.
-                        const sy = spr.height - TS;
-                        image(spr, screenX, screenY, TS, TS, 0, sy, spr.width, TS);
-                    }
-                } else {
-                    if (isTop) {
-                        fill('#4CAF50');
-                        ellipse(screenX + 8, screenY + 12, 14, 8);
-                    } else {
-                        fill('#8B4513');
-                        rect(screenX + 7, screenY + 2, 3, 12);
                     }
                 }
                 if (!isTop && tile.depleted) {
@@ -2452,7 +2632,7 @@ class World {
                 break;
             }
             case 'flower': {
-                // No sprite yet — draw grass base + fallback flower
+                // No sprite yet - draw grass base + fallback flower
                 drawBase('grass');
                 const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'];
                 fill(colors[tile.variant]);
@@ -2486,7 +2666,7 @@ class World {
                 break;
             }
             case 'rosebush': {
-                // 32x32 sprite — draw grass base, then rosebush centered extending upward
+                // 32x32 sprite - draw grass base, then rosebush centered extending upward
                 drawBase('grass');
                 const spr = SPRITES['tiles.rosebush'];
                 if (spr) {
@@ -2509,7 +2689,7 @@ class World {
                 break;
             }
             case 'water': {
-                // Small pond — draw grass base, then water sprite on top
+                // Small pond - draw grass base, then water sprite on top
                 drawBase('grass');
                 const spr = SPRITES['tiles.water'];
                 if (spr) {
@@ -2517,6 +2697,25 @@ class World {
                 } else {
                     fill('#4A90C8');
                     ellipse(screenX + 8, screenY + 8, 14, 12);
+                }
+                break;
+            }
+            case 'toast_target': {
+                // Toast target - draw beach base, then target sprite or concentric rings
+                drawBase('beach');
+                const spr = SPRITES['tiles.toast_target'];
+                if (spr) {
+                    image(spr, screenX, screenY, TS, TS);
+                } else {
+                    // Fallback: beach + target rings
+                    fill('#FFFFFF');
+                    ellipse(screenX + 8, screenY + 8, 14, 14);
+                    fill('#E53935');
+                    ellipse(screenX + 8, screenY + 8, 10, 10);
+                    fill('#FFFFFF');
+                    ellipse(screenX + 8, screenY + 8, 6, 6);
+                    fill('#E53935');
+                    ellipse(screenX + 8, screenY + 8, 3, 3);
                 }
                 break;
             }
@@ -2545,28 +2744,33 @@ class World {
         this.season = data.season;
         this.timeMinutes = data.timeMinutes;
         this.tiles = data.tiles;
-        // v4 saves may have single-tile trees/palms without top tiles.
-        // Convert them to the new 2-tall format: trunk solid, canopy passable.
+        // Tree migration: ensure all tree tiles (trunk and top) are solid 2-tall stacks.
         for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
             for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
                 const tile = this.tiles[x][y];
                 if (!tile) continue;
-                if ((tile.type === 'tree' || tile.type === 'palm') && !tile.isTreeTop && tile.solid === undefined) {
+                if (tile.type === 'tree' && !tile.isTreeTop && tile.solid === undefined) {
                     tile.solid = true;
                     const topY = y - 1;
                     if (topY >= 0 && topY < CONFIG.WORLD_HEIGHT) {
                         const topTile = this.tiles[x][topY];
                         if (topTile && !topTile.isTreeTop) {
                             this.tiles[x][topY] = {
-                                type: tile.type,
+                                type: 'tree',
                                 variant: tile.variant || 0,
                                 isTreeTop: true,
-                                solid: false,
+                                solid: true,
                                 depleted: tile.depleted || false,
                                 respawnAt: tile.respawnAt || null
                             };
+                        } else if (topTile && topTile.isTreeTop) {
+                            topTile.solid = true;
                         }
                     }
+                }
+                // Ensure any existing tree top tile is solid in old saves.
+                if (tile.type === 'tree' && tile.isTreeTop) {
+                    tile.solid = true;
                 }
                 // v5 saves may still have removed flower/tulip/water decorations.
                 if (tile.type === 'flower' || tile.type === 'tulip' || tile.type === 'water') {

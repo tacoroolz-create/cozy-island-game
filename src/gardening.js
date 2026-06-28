@@ -162,7 +162,7 @@ function isSeedItem(id) {
 
 // ===== NEW-DAY HOOK =====
 // Advances every plot's growthDays and promotes stage when threshold reached.
-function onNewDay() {
+function onGardenNewDay() {
     for (const key in gardenPlots) {
         const plot = gardenPlots[key];
         const def = PLANTS[plot.type];
@@ -192,14 +192,13 @@ function registerNewDay() {
         return;
     }
 
-    // Wrap World.prototype.draw so we observe day rollover.
+    // Wrap World.prototype.draw so we observe day rollover and dispatch to daycycle.
     const proto = window.World.prototype;
     const origDraw = proto.draw;
     proto.draw = function () {
         const before = this.day;
         origDraw.apply(this, arguments);
         const after = this.day;
-        // Also handle midnight rollover where day doesn't change but time wraps.
         // On the very first frame, _lastKnownDay is null -> seed it, don't fire.
         if (_lastKnownDay === null) {
             _lastKnownDay = after;
@@ -207,7 +206,9 @@ function registerNewDay() {
         }
         if (after !== _lastKnownDay) {
             _lastKnownDay = after;
-            onNewDay();
+            // ponytail: dispatch to central daycycle hook; avoid shadowing onNewDay
+            if (typeof onNewDay === 'function') onNewDay();
+            if (typeof onGardenNewDay === 'function') onGardenNewDay();
         }
     };
 }

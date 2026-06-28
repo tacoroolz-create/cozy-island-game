@@ -2,15 +2,63 @@
 // Neighbors that arrive, build shacks, befriend, and depart
 
 const NPC_DEFS = [
-    { name: 'Mira',  personality: 'friendly',  color: '#E91E63' },
-    { name: 'Toby',  personality: 'shy',       color: '#2196F3' },
-    { name: 'Greta', personality: 'grumpy',   color: '#795548' },
-    { name: 'Pip',   personality: 'cheerful',  color: '#FFC107' },
-    { name: 'Hazel', personality: 'wise',      color: '#4CAF50' },
-    { name: 'Finn',  personality: 'adventurous',color: '#FF5722' },
-    { name: 'Luna',  personality: 'dreamy',    color: '#9C27B0' },
-    { name: 'Buck',  personality: 'jolly',      color: '#FF9800' },
-    { name: 'Wren',  personality: 'quiet',      color: '#607D8B' }
+    { name: 'Chester', personality: 'custom', species: 'Robot', color: '#e7d238' },
+    { name: 'Luna', personality: 'custom', species: 'Talking Cat', color: '#a71f94' },
+    { name: 'Brass', personality: 'custom', species: 'Robot', color: '#4a0679' },
+    { name: 'Vega', personality: 'custom', species: 'Alien', color: '#96b300' },
+    { name: 'Daphne', personality: 'custom', species: 'Talking Flower', color: '#33796f' },
+    { name: 'Krip', personality: 'custom', species: 'Alien', color: '#793abb' },
+    { name: 'Penny', personality: 'custom', species: 'Anthropomorphic Houseplant', color: '#e922e9' },
+    { name: 'Mimis', personality: 'custom', species: 'Supernatural Fairy', color: '#5e5be8' },
+    { name: 'Hudson', personality: 'custom', species: 'Talking Japanese Tea Cup', color: '#0dec50' },
+    { name: 'Cort', personality: 'custom', species: 'Robot', color: '#d6b270' },
+    { name: 'Aiko', personality: 'custom', species: 'Talking Dog', color: '#2d1170' },
+    { name: 'Ihor', personality: 'custom', species: 'Supernatural Vampire', color: '#30f1ec' },
+    { name: 'Psy', personality: 'custom', species: 'Talking Plant', color: '#014ca7' },
+    { name: 'Boll', personality: 'custom', species: 'Robot', color: '#0820ae' },
+    { name: 'Taira', personality: 'custom', species: 'Anthropomorphic Mac', color: '#9ef7ee' },
+    { name: 'Mah', personality: 'custom', species: 'Supernatural SCP', color: '#b56d0a' },
+    { name: 'Mira', personality: 'custom', species: 'Supernatural Witch', color: '#80ae70' },
+    { name: 'Liz', personality: 'custom', species: 'Talking Dog', color: '#88984b' },
+    { name: 'Eo', personality: 'custom', species: 'Talking Robot', color: '#c9006a' },
+    { name: 'Quark', personality: 'custom', species: 'Robot', color: '#aff54f' },
+    { name: 'Zora', personality: 'custom', species: 'Alien (Luminous Jelly‑type)', color: '#ed9caa' },
+    { name: 'Basil', personality: 'custom', species: 'Talking Plant (Basilisk Vine)', color: '#b078ab' },
+    { name: 'Gearwick', personality: 'custom', species: 'Robot', color: '#2266a0' },
+    { name: 'Zephyr', personality: 'custom', species: 'Talking Bird (Hummingbird)', color: '#b5b2af' },
+    { name: 'Gorm', personality: 'custom', species: 'Fantasy Creature (Mini‑Dragon)', color: '#fa080b' },
+    { name: 'Sprig', personality: 'custom', species: 'Talking Plant (Mushroom)', color: '#cd5dc4' },
+    { name: 'Rollo', personality: 'custom', species: 'Anthropomorphic Rolling Pin', color: '#c96644' },
+    { name: 'Nyx', personality: 'custom', species: 'Supernatural Ghost', color: '#6b636a' },
+    { name: 'Titan', personality: 'custom', species: 'Robot (Construction)', color: '#8c9097' },
+    { name: 'Orla', personality: 'custom', species: 'Talking Whale (Mini‑size)', color: '#b440ef' },
+    { name: 'Jax', personality: 'custom', species: 'Alien (Rock‑based)', color: '#0e4459' },
+    { name: 'Clover', personality: 'custom', species: 'Talking Plant (Clover)', color: '#5698fb' },
+    { name: 'Sprocket', personality: 'custom', species: 'Robot', color: '#80a829' },
+    { name: 'Luna-2', personality: 'custom', species: 'Talking Cat (Twin)', color: '#082761' },
+    { name: 'Vira', personality: 'custom', species: 'Alien (Bioluminescent)', color: '#7f0f4f' },
+    { name: 'Birch', personality: 'custom', species: 'Talking Tree', color: '#c51f82' },
+    { name: 'Flick', personality: 'custom', species: 'Anthropomorphic Candle', color: '#9b557c' },
+    { name: 'Draven', personality: 'custom', species: 'Supernatural Werewolf (Mini)', color: '#583e24' },
+    { name: 'Pixel', personality: 'custom', species: 'Robot (Pixel‑Art)', color: '#d5d06c' },
+    { name: 'Aria', personality: 'custom', species: 'Talking Bird (Parrot)', color: '#9debe8' },
+    { name: 'Grumble', personality: 'custom', species: 'Anthropomorphic Rock', color: '#b5da9a' },
+    { name: 'Selene', personality: 'custom', species: 'Supernatural Moon Spirit', color: '#614c71' },
+    { name: 'Bolt', personality: 'custom', species: 'Robot (Electric)', color: '#6cd417' },
+    { name: 'Gidget', personality: 'custom', species: 'Talking Squirrel', color: '#ac9359' },
+    { name: 'Lunae', personality: 'custom', species: 'Alien (Gas‑Giant Mini‑Avatar)', color: '#42d4b8' },
+    { name: 'Willow', personality: 'custom', species: 'Talking Plant (Willow Tree)', color: '#2d2e9f' },
+    { name: 'Rusty', personality: 'custom', species: 'Robot (Scrap‑Collector)', color: '#8c608f' },
+    { name: 'Ember', personality: 'custom', species: 'Supernatural Fire Sprite', color: '#1d3a2d' },
+    { name: 'Pippa', personality: 'custom', species: 'Anthropomorphic Teapot', color: '#1318d4' },
+    { name: 'Orion', personality: 'custom', species: 'Alien (Star‑Child)', color: '#879016' },
+    { name: 'Nixie', personality: 'custom', species: 'Talking Fish (Goldfish)', color: '#5c0e26' },
+    { name: 'Cobble', personality: 'custom', species: 'Anthropomorphic Stone Statue', color: '#9ecb98' },
+    { name: 'Zeph', personality: 'custom', species: 'Supernatural Wind Spirit', color: '#c4c5c9' },
+    { name: 'Kiko', personality: 'custom', species: 'Talking Rabbit', color: '#33af19' },
+    { name: 'Aurora', personality: 'custom', species: 'Supernatural Aurora Borealis Entity', color: '#fb9b3d' },
+    { name: 'Quill', personality: 'custom', species: 'Anthropomorphic Quill Pen', color: '#43d638' },
+    { name: 'Vex', personality: 'custom', species: 'Robot (Steampunk)', color: '#220158' },
 ];
 
 let npcs = [];
@@ -21,6 +69,7 @@ class NPC {
         this.id = index;
         this.name = def.name;
         this.personality = def.personality;
+        this.species = def.species || '';
         this.color = def.color;
         this.gridX = 50;
         this.gridY = 50;
@@ -58,9 +107,16 @@ class NPC {
         // NPCs are 1 tile wide, 2 tiles tall, drawn bottom-anchored at (gridX, gridY).
         const sx = this.gridX * CONFIG.TILE_SIZE - cameraX;
         const sy = this.gridY * CONFIG.TILE_SIZE - cameraY;
-        fill(this.color);
-        noStroke();
-        rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+        // Use per-NPC sprite if available, otherwise fall back to colored rectangle.
+        const spriteKey = 'sprites.' + this.name.toLowerCase();
+        const spr = SPRITES[spriteKey] || null;
+        if (spr) {
+            image(spr, sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+        } else {
+            fill(this.color);
+            noStroke();
+            rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+        }
         // Name tag above head
         const halfW = CONFIG.CANVAS_WIDTH / 2;
         const halfH = CONFIG.CANVAS_HEIGHT / 2;
@@ -119,7 +175,7 @@ class NPC {
 
 // Check for new NPC arrivals — called on new day
 function checkArrivals() {
-    if (npcs.length >= 9) return;
+    if (npcs.length >= NPC_DEFS.length) return;
     if (npcQueue.length === 0) {
         // Fill queue with unused defs
         npcQueue = NPC_DEFS.map((d, i) => ({def: d, index: i}))
@@ -159,10 +215,21 @@ function buildNpcShack(npc) {
             if (!clear) break;
         }
         if (clear) {
-            buildings.push(new Building('shack', sx, sy, npc.id));
+            const b = new Building('shack', sx, sy, npc.id);
+            buildings.push(b);
             npc.hasHome = true;
             npc.hutX = sx;
             npc.hutY = sy;
+            // Clear 2 tiles below the door so the exit is always walkable.
+            const door = b.getDoorTile();
+            for (let clearDy = 1; clearDy <= 2; clearDy++) {
+                const cx = door.x, cy = door.y + clearDy;
+                if (cx >= 0 && cx < CONFIG.WORLD_WIDTH && cy >= 0 && cy < CONFIG.WORLD_HEIGHT &&
+                    world.tiles[cx] && world.tiles[cx][cy] &&
+                    world.tiles[cx][cy].type !== 'sea' && world.tiles[cx][cy].type !== 'beach') {
+                    world.tiles[cx][cy] = { type: 'grass', variant: 0 };
+                }
+            }
             notify(npc.name + ' built a shack!');
             return;
         }
