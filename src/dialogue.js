@@ -413,34 +413,66 @@ function getDialogueTree() {
     return dialogueState.npc._dialogueTree;
 }
 
-function drawDialogueScreen() {
-    if (!dialogueState.active) return;
+// Word-wrap a string to a list of lines that each fit within maxWidth.
+// Assumes the caller has already set textSize/textFont.
+function wrapTextLines(str, maxWidth) {
+    const words = String(str).split(' ');
+    const lines = [];
+    let cur = '';
+    for (const w of words) {
+        const test = cur ? cur + ' ' + w : w;
+        if (cur && textWidth(test) > maxWidth) {
+            lines.push(cur);
+            cur = w;
+        } else {
+            cur = test;
+        }
+    }
+    if (cur) lines.push(cur);
+    return lines.length ? lines : [''];
+}
 
-    // Bottom dialogue panel
-    const panelH = 120;
-    const panelY = height - panelH;
+// True if the cursor moved since the previous frame — lets hover-highlight take
+// over only when the user is using the mouse, not when it's resting on a choice.
+function mouseMovedRecently() {
+    return mouseX !== pmouseX || mouseY !== pmouseY;
+}
 
+function drawDialoguePanelBg(panelY, panelH) {
     fill(0, 0, 0, 200);
     noStroke();
     rect(0, panelY, width, panelH);
-
     stroke(180, 160, 120);
     strokeWeight(1);
     noFill();
     rect(0, panelY, width, panelH);
     noStroke();
+}
 
+function drawDialogueScreen() {
+    if (!dialogueState.active) return;
+
+    // ===== Advanced interaction menu (Talk / Give Gift / ...) =====
     if (dialogueState.advancedMenu) {
-        // Advanced interaction menu
+        const panelH = 120;
+        const panelY = height - panelH;
+        drawDialoguePanelBg(panelY, panelH);
+
         fill(255, 255, 200);
         textAlign(LEFT, TOP);
         textSize(10);
         textFont('Courier New');
         text(dialogueState.npc.name, 8, panelY + 6);
 
+        dialogueState._advRects = [];
         for (let i = 0; i < dialogueState.advancedOptions.length; i++) {
             const opt = dialogueState.advancedOptions[i];
             const oy = panelY + 22 + i * 14;
+            // Hover-to-highlight (only while the mouse is actually moving, so a
+            // resting cursor doesn't fight keyboard navigation).
+            if (mouseMovedRecently() && mouseX >= 8 && mouseX <= width - 8 && mouseY >= oy - 2 && mouseY < oy + 12) {
+                dialogueState.advancedSelected = i;
+            }
             if (i === dialogueState.advancedSelected) {
                 fill(255, 255, 100);
                 text('\u25B6 ' + opt.text, 12, oy);
@@ -448,21 +480,55 @@ function drawDialogueScreen() {
                 fill(200);
                 text('  ' + opt.text, 12, oy);
             }
+            dialogueState._advRects.push({ x: 8, y: oy - 2, w: width - 16, h: 14, index: i });
         }
         fill(120);
         textAlign(RIGHT, BOTTOM);
         textSize(7);
-        text('Arrows: select  Enter: confirm  Esc: cancel', width - 4, height - 4);
+        text('Arrows/WASD: select  Enter/click: confirm  Esc: cancel', width - 4, height - 4);
         return;
     }
 
-    // Normal dialogue
+    // ===== Normal branching dialogue =====
     const tree = getDialogueTree();
     if (!tree) return;
     const node = tree[dialogueState.currentNode];
     if (!node) return;
 
-    // NPC portrait placeholder
+    // --- Layout metrics ---
+    const textX = 38;
+    const topPad = 24;                 // space for the name/portrait header
+    const textMaxW = width - textX - 10;
+    const bodySize = 12, bodyLineH = 14;
+    const choiceSize = 11, choiceLineH = 13, choiceGap = 5, markerW = 14;
+    const footerH = 14;
+
+    textFont('Courier New');
+
+    // Measure the full body text so the panel can grow to fit it.
+    textSize(bodySize);
+    const fullText = getNodeText(node);
+    const bodyLines = wrapTextLines(fullText, textMaxW);
+    const bodyH = bodyLines.length * bodyLineH;
+
+    // Pre-wrap each choice (so long options also wrap, never trailing off-screen).
+    textSize(choiceSize);
+    const choiceBlocks = (node.choices || []).map(ch => {
+        const lines = wrapTextLines(ch.text, textMaxW - markerW);
+        return { text: ch.text, lines, h: Math.max(choiceLineH, lines.length * choiceLineH) };
+    });
+    const choicesH = dialogueState.choicesVisible
+        ? choiceBlocks.reduce((sum, b) => sum + b.h + choiceGap, 0)
+        : 0;
+
+    // Size the panel to fit header + body + choices + footer (with a sane cap).
+    let panelH = topPad + bodyH + 8 + choicesH + footerH;
+    panelH = Math.max(120, Math.min(panelH, height - 24));
+    const panelY = height - panelH;
+
+    drawDialoguePanelBg(panelY, panelH);
+
+    // Portrait
     fill(dialogueState.npc.color);
     rect(8, panelY + 8, 24, 24);
     stroke(200);
@@ -470,60 +536,136 @@ function drawDialogueScreen() {
     rect(8, panelY + 8, 24, 24);
     noStroke();
 
-    // NPC name + species subtitle
+    // Name + species subtitle
     fill(255, 255, 200);
     textAlign(LEFT, TOP);
     textSize(14);
-    textFont('Courier New');
-    text(dialogueState.npc.name, 38, panelY + 6);
+    text(dialogueState.npc.name, textX, panelY + 6);
     fill(180);
     textSize(8);
-    text(dialogueState.npc.species || '', 38 + textWidth(dialogueState.npc.name) + 8, panelY + 10);
+    text(dialogueState.npc.species || '', textX + textWidth(dialogueState.npc.name) + 8, panelY + 10);
 
-    // Text (typewriter)
-    const visibleText = getNodeText(node).substring(0, Math.floor(dialogueState.textRevealed));
+    // Body text (typewriter) \u2014 drawn line-by-line with our own wrapping so it
+    // exactly matches the measured height and is never clipped by the choices.
+    const visibleText = fullText.substring(0, Math.floor(dialogueState.textRevealed));
+    textSize(bodySize);
     fill(230);
-    textSize(12);
-    text(visibleText, 38, panelY + 24, width - 46, 44);
+    textAlign(LEFT, TOP);
+    const visLines = wrapTextLines(visibleText, textMaxW);
+    for (let i = 0; i < visLines.length; i++) {
+        text(visLines[i], textX, panelY + topPad + i * bodyLineH);
+    }
 
     // Choices
+    dialogueState._choiceRects = [];
     if (dialogueState.choicesVisible) {
-        for (let i = 0; i < node.choices.length; i++) {
-            const ch = node.choices[i];
-            const cy = panelY + 72 + i * 14;
-            if (i === dialogueState.selectedChoice) {
-                fill(255, 255, 100);
-                text('\u25B6 ' + ch.text, 38, cy);
-            } else {
-                fill(200);
-                text('  ' + ch.text, 38, cy);
+        textSize(choiceSize);
+        let cy = panelY + topPad + bodyH + 8;
+        for (let i = 0; i < choiceBlocks.length; i++) {
+            const blk = choiceBlocks[i];
+            const rect_ = { x: textX - 4, y: cy - 2, w: textMaxW + 8, h: blk.h, index: i };
+            // Hover-to-highlight (only while the mouse is actually moving).
+            if (mouseMovedRecently() && mouseY >= rect_.y && mouseY < rect_.y + rect_.h && mouseX >= rect_.x && mouseX < rect_.x + rect_.w) {
+                dialogueState.selectedChoice = i;
             }
+            const selected = i === dialogueState.selectedChoice;
+            fill(selected ? color(255, 255, 100) : color(200));
+            textAlign(LEFT, TOP);
+            if (selected) text('\u25B6', textX, cy);
+            for (let j = 0; j < blk.lines.length; j++) {
+                text(blk.lines[j], textX + markerW, cy + j * choiceLineH);
+            }
+            dialogueState._choiceRects.push(rect_);
+            cy += blk.h + choiceGap;
         }
         fill(120);
         textAlign(RIGHT, BOTTOM);
-        textSize(9);
-        text('Arrows: choose  Enter: select  Esc: exit', width - 4, height - 4);
+        textSize(8);
+        text('Arrows/WASD: choose \u00B7 Enter/click: select \u00B7 Esc: exit', width - 4, height - 4);
     } else {
         fill(120);
         textAlign(RIGHT, BOTTOM);
-        textSize(9);
-        text('Enter: continue', width - 4, height - 4);
+        textSize(8);
+        text('Enter/click: continue', width - 4, height - 4);
     }
+}
+
+// Reveal the full body text immediately (skip the typewriter), showing choices.
+function revealDialogueText() {
+    const tree = getDialogueTree();
+    const node = tree ? tree[dialogueState.currentNode] : null;
+    if (!node) return;
+    dialogueState.textRevealed = getNodeText(node).length;
+    dialogueState.choicesVisible = true;
+}
+
+// Apply the choice at index i (friendship + advance/close).
+function selectDialogueChoice(i) {
+    const tree = getDialogueTree();
+    const node = tree ? tree[dialogueState.currentNode] : null;
+    if (!node || !node.choices[i]) return;
+    const choice = node.choices[i];
+    if (choice.friendshipDelta) {
+        dialogueState.npc.friendship = Math.min(10, dialogueState.npc.friendship + choice.friendshipDelta);
+    }
+    if (choice.next === null) {
+        closeDialogue();
+    } else {
+        dialogueState.currentNode = choice.next;
+        dialogueState.textRevealed = 0;
+        dialogueState.selectedChoice = 0;
+        dialogueState.choicesVisible = false;
+    }
+}
+
+// Mouse click during dialogue: skip the typewriter, or pick a choice / menu option.
+function handleDialogueClick(mx, my) {
+    if (!dialogueState.active) return false;
+
+    if (dialogueState.advancedMenu) {
+        for (const r of (dialogueState._advRects || [])) {
+            if (mx >= r.x && mx < r.x + r.w && my >= r.y && my < r.y + r.h) {
+                const opt = dialogueState.advancedOptions[r.index];
+                if (opt && opt.action) opt.action();
+                return true;
+            }
+        }
+        return true; // swallow stray clicks while the menu is open
+    }
+
+    if (!dialogueState.choicesVisible) {
+        revealDialogueText();
+        return true;
+    }
+
+    for (const r of (dialogueState._choiceRects || [])) {
+        if (mx >= r.x && mx < r.x + r.w && my >= r.y && my < r.y + r.h) {
+            dialogueState.selectedChoice = r.index;
+            selectDialogueChoice(r.index);
+            return true;
+        }
+    }
+    return true; // clicks anywhere during dialogue stay in the dialogue
 }
 
 function handleDialogueKey(keyCode, key) {
     if (!dialogueState.active) return false;
 
+    // Movement-key aliases: W/A = up/prev, S/D = down/next (alongside arrows).
+    const isUp = keyCode === UP_ARROW || keyCode === 87 || keyCode === 65;   // W, A
+    const isDown = keyCode === DOWN_ARROW || keyCode === 83 || keyCode === 68; // S, D
+
     if (dialogueState.advancedMenu) {
-        if (keyCode === UP_ARROW) {
-            dialogueState.advancedSelected = (dialogueState.advancedSelected - 1 + dialogueState.advancedOptions.length) % dialogueState.advancedOptions.length;
+        const n = dialogueState.advancedOptions.length;
+        if (isUp) {
+            dialogueState.advancedSelected = (dialogueState.advancedSelected - 1 + n) % n;
             return true;
-        } else if (keyCode === DOWN_ARROW) {
-            dialogueState.advancedSelected = (dialogueState.advancedSelected + 1) % dialogueState.advancedOptions.length;
+        } else if (isDown) {
+            dialogueState.advancedSelected = (dialogueState.advancedSelected + 1) % n;
             return true;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             const opt = dialogueState.advancedOptions[dialogueState.advancedSelected];
-            if (opt.action) opt.action();
+            if (opt && opt.action) opt.action();
             return true;
         } else if (keyCode === ESCAPE) {
             closeDialogue();
@@ -533,13 +675,9 @@ function handleDialogueKey(keyCode, key) {
     }
 
     if (!dialogueState.choicesVisible) {
-        // Skip typewriter
+        // Skip the typewriter and show the choices.
         if (keyCode === ENTER || keyCode === RETURN) {
-            const tree = getDialogueTree();
-            const node = tree[dialogueState.currentNode];
-            const fullText = getNodeText(node);
-            dialogueState.textRevealed = fullText.length;
-            dialogueState.choicesVisible = true;
+            revealDialogueText();
             return true;
         } else if (keyCode === ESCAPE) {
             closeDialogue();
@@ -551,27 +689,16 @@ function handleDialogueKey(keyCode, key) {
     // Choices visible
     const tree = getDialogueTree();
     const node = tree[dialogueState.currentNode];
+    const n = node.choices.length;
 
-    if (keyCode === UP_ARROW) {
-        dialogueState.selectedChoice = (dialogueState.selectedChoice - 1 + node.choices.length) % node.choices.length;
+    if (isUp) {
+        dialogueState.selectedChoice = (dialogueState.selectedChoice - 1 + n) % n;
         return true;
-    } else if (keyCode === DOWN_ARROW) {
-        dialogueState.selectedChoice = (dialogueState.selectedChoice + 1) % node.choices.length;
+    } else if (isDown) {
+        dialogueState.selectedChoice = (dialogueState.selectedChoice + 1) % n;
         return true;
     } else if (keyCode === ENTER || keyCode === RETURN) {
-        const choice = node.choices[dialogueState.selectedChoice];
-        // Apply friendship delta
-        if (choice.friendshipDelta) {
-            dialogueState.npc.friendship = Math.min(10, dialogueState.npc.friendship + choice.friendshipDelta);
-        }
-        if (choice.next === null) {
-            closeDialogue();
-        } else {
-            dialogueState.currentNode = choice.next;
-            dialogueState.textRevealed = 0;
-            dialogueState.selectedChoice = 0;
-            dialogueState.choicesVisible = false;
-        }
+        selectDialogueChoice(dialogueState.selectedChoice);
         return true;
     } else if (keyCode === ESCAPE) {
         closeDialogue();

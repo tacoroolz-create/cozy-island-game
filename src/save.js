@@ -2,7 +2,55 @@
 // Migration-safe save/load with version numbering
 
 const SAVE_VERSION = 9;
-const SAVE_KEY = 'cozyIslandSave';
+const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
+
+// ===== MULTI-SLOT SAVES =====
+// Three named save slots. The active game writes to `currentSlot`, and the slot
+// is labeled with `currentSaveName` (chosen when the player starts a new game).
+const SAVE_SLOT_COUNT = 3;
+function saveSlotKey(i) { return 'cozyIslandSave_' + i; }
+
+let currentSlot = 0;        // which slot the active game saves to
+let currentSaveName = '';   // display name for the active save
+
+// Light-parse a slot's metadata for the menu without fully loading it.
+// Returns { exists, name, timestamp, day }.
+function getSaveSlotInfo(i) {
+    try {
+        const raw = localStorage.getItem(saveSlotKey(i));
+        if (!raw) return { exists: false };
+        const d = JSON.parse(raw);
+        return {
+            exists: true,
+            name: d.saveName || ('Save ' + (i + 1)),
+            timestamp: d.timestamp || 0,
+            day: (d.world && d.world.day) || 1
+        };
+    } catch (e) {
+        return { exists: false };
+    }
+}
+
+function getAllSaveSlots() {
+    const arr = [];
+    for (let i = 0; i < SAVE_SLOT_COUNT; i++) arr.push(getSaveSlotInfo(i));
+    return arr;
+}
+
+// One-time migration: fold a legacy single-slot save into slot 0 so existing
+// players keep their game when slots are introduced.
+function migrateLegacySave() {
+    const legacy = localStorage.getItem(SAVE_KEY);
+    if (!legacy) return;
+    if (localStorage.getItem(saveSlotKey(0))) return; // don't clobber an existing slot 0
+    try {
+        const d = JSON.parse(legacy);
+        if (!d.saveName) d.saveName = 'Save 1';
+        d.slot = 0;
+        localStorage.setItem(saveSlotKey(0), JSON.stringify(d));
+        localStorage.removeItem(SAVE_KEY);
+    } catch (e) { /* leave legacy data untouched on parse failure */ }
+}
 const MIGRATIONS = [
     // v1 → v2: added buildings
     function(data) {
@@ -227,8 +275,10 @@ function migrateSave(data) {
 
 function enhancedSaveGame() {
     const data = serializeGame();
+    data.saveName = currentSaveName || ('Save ' + (currentSlot + 1));
+    data.slot = currentSlot;
     try {
-        localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+        localStorage.setItem(saveSlotKey(currentSlot), JSON.stringify(data));
         world.showSaveIndicator = true;
         setTimeout(() => { world.showSaveIndicator = false; }, 2000);
     } catch(e) {
@@ -237,18 +287,26 @@ function enhancedSaveGame() {
     }
 }
 
-function enhancedLoadGame() {
-    const saved = localStorage.getItem(SAVE_KEY);
+// Load a specific slot. On success, makes it the active slot.
+function enhancedLoadGameFromSlot(i) {
+    const saved = localStorage.getItem(saveSlotKey(i));
     if (!saved) return false;
     try {
         let data = JSON.parse(saved);
         data = migrateSave(data);
         deserializeGame(data);
+        currentSlot = i;
+        currentSaveName = data.saveName || ('Save ' + (i + 1));
         return true;
     } catch(e) {
         console.error('Load failed:', e);
         return false;
     }
+}
+
+// Back-compat: load whatever the active slot is.
+function enhancedLoadGame() {
+    return enhancedLoadGameFromSlot(currentSlot);
 }
 
 // Auto-save every 60 real seconds

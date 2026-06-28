@@ -141,8 +141,16 @@ let selectedMenuOption = 1; // Default-highlight "Load" on the start menu
 // Movement cooldown for grid-based movement (ms)
 let lastMoveTime = 0;
 const MOVE_COOLDOWN = 120;
-const startMenuOptions = ['Start', 'Load', 'Settings'];
+const startMenuOptions = ['New Game', 'Load Game', 'Settings'];
 const settingsMenuOptions = ['Back'];
+
+// Start-screen sub-views: 'main' (top menu) | 'slots' (choose a save slot) |
+// 'name' (type a name for a new save).
+let startView = 'main';
+let startMode = 'new';        // what the slot picker is for: 'new' | 'load'
+let slotSelectIndex = 0;      // highlighted row in the slot picker (0..2 = slots, 3 = Back)
+let nameEntryText = '';       // current text in the name-entry field
+let nameEntrySlot = 0;        // slot being named
 
 // Tiles that block player movement by default.
 const TILE_SOLID = new Set(['sea', 'water', 'tree', 'rock', 'shiny_rock', 'rosebush']);
@@ -553,7 +561,7 @@ function draw() {
     }
 }
 
-function drawStartScreen() {
+function drawStartBackdrop() {
     // Gradient sky background
     for (let y = 0; y < height; y++) {
         const inter = map(y, 0, height, 0, 1);
@@ -561,7 +569,6 @@ function drawStartScreen() {
         stroke(c);
         line(0, y, width, y);
     }
-    
     // Title
     fill(255);
     textAlign(CENTER, CENTER);
@@ -570,8 +577,16 @@ function drawStartScreen() {
     text('Cozy Island', width / 2, 60);
     textSize(16);
     text('🏝️ ✧ Sweet Dreams ✧ 🏝️', width / 2, 85);
-    
-    // Menu options
+}
+
+function drawStartScreen() {
+    if (startView === 'slots') { drawSlotSelect(); return; }
+    if (startView === 'name')  { drawNameEntry();  return; }
+
+    drawStartBackdrop();
+
+    // Main menu options
+    textAlign(CENTER, CENTER);
     textSize(20);
     for (let i = 0; i < startMenuOptions.length; i++) {
         if (i === selectedMenuOption) {
@@ -582,11 +597,123 @@ function drawStartScreen() {
             text('  ' + startMenuOptions[i], width / 2, 150 + i * 40);
         }
     }
-    
+
     // Instructions
     textSize(12);
     fill(200);
     text('Use arrows or click to select, Enter to confirm', width / 2, height - 30);
+}
+
+// Y position of slot-picker row i (0..2 = slots, 3 = Back).
+function slotRowY(i) { return 150 + i * 46; }
+
+function drawSlotSelect() {
+    drawStartBackdrop();
+
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(18);
+    textFont('Courier New');
+    text(startMode === 'new' ? 'New Game — choose a slot' : 'Load Game — choose a slot', width / 2, 120);
+
+    const slots = getAllSaveSlots();
+    textSize(14);
+    for (let i = 0; i < SAVE_SLOT_COUNT; i++) {
+        const info = slots[i];
+        const y = slotRowY(i);
+        const selectable = (startMode === 'new') || info.exists;
+        const selected = i === slotSelectIndex;
+
+        // Row plate
+        const plateW = 320, plateH = 38;
+        if (selected) fill(255, 255, 255, 60); else fill(255, 255, 255, 25);
+        noStroke();
+        rect(width / 2 - plateW / 2, y - plateH / 2, plateW, plateH, 6);
+
+        // Label
+        let label, sub;
+        if (info.exists) {
+            label = 'Slot ' + (i + 1) + ': ' + info.name;
+            sub = 'Day ' + info.day + '  ·  ' + formatSaveTime(info.timestamp);
+            if (startMode === 'new') sub += '  ·  will overwrite';
+        } else {
+            label = 'Slot ' + (i + 1) + ': — empty —';
+            sub = startMode === 'load' ? '(nothing to load)' : 'start a fresh island here';
+        }
+
+        fill(selected ? color(255, 255, 120) : (selectable ? color(255) : color(180, 180, 180, 160)));
+        textAlign(CENTER, BOTTOM);
+        textSize(14);
+        text((selected ? '▶ ' : '') + label, width / 2, y - 1);
+        fill(selectable ? 220 : 150, selectable ? 220 : 150, selectable ? 230 : 160, 220);
+        textAlign(CENTER, TOP);
+        textSize(9);
+        text(sub, width / 2, y + 1);
+    }
+
+    // Back row
+    const by = slotRowY(SAVE_SLOT_COUNT);
+    fill(slotSelectIndex === SAVE_SLOT_COUNT ? color(255, 255, 120) : color(255));
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text((slotSelectIndex === SAVE_SLOT_COUNT ? '▶ ' : '') + 'Back', width / 2, by);
+
+    textSize(11);
+    fill(200);
+    text('Arrows/click to choose · Enter to confirm · Esc to go back', width / 2, height - 26);
+}
+
+function drawNameEntry() {
+    drawStartBackdrop();
+
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(18);
+    textFont('Courier New');
+    text('Name your island save', width / 2, 130);
+
+    // Text field
+    const boxW = 320, boxH = 40;
+    const bx = width / 2 - boxW / 2, by = 170;
+    fill(255, 255, 255, 40);
+    stroke(255);
+    strokeWeight(1);
+    rect(bx, by, boxW, boxH, 6);
+    noStroke();
+
+    // Blinking cursor
+    const showCursor = (floor(millis() / 500) % 2 === 0);
+    const shown = nameEntryText + (showCursor ? '_' : '');
+    fill(255, 255, 180);
+    textAlign(LEFT, CENTER);
+    textSize(18);
+    text(shown || (showCursor ? '_' : ''), bx + 10, by + boxH / 2);
+
+    // Placeholder hint when empty
+    if (!nameEntryText) {
+        fill(220, 220, 220, 120);
+        textAlign(RIGHT, CENTER);
+        textSize(11);
+        text('default: Save ' + (nameEntrySlot + 1), bx + boxW - 10, by + boxH / 2);
+    }
+
+    fill(200);
+    textAlign(CENTER, CENTER);
+    textSize(11);
+    text('Type a name · Enter to begin · Esc to go back', width / 2, height - 26);
+}
+
+// Friendly short timestamp for the slot list.
+function formatSaveTime(ts) {
+    if (!ts) return 'unknown';
+    const d = new Date(ts);
+    const mm = ('0' + (d.getMonth() + 1)).slice(-2);
+    const dd = ('0' + d.getDate()).slice(-2);
+    let h = d.getHours();
+    const ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    const min = ('0' + d.getMinutes()).slice(-2);
+    return mm + '/' + dd + ' ' + h + ':' + min + ap;
 }
 
 function handleMovement() {
@@ -936,11 +1063,11 @@ function drawMenuScreen() {
             if (typeof drawCraftingTab === 'function') drawCraftingTab(leftX + 4, contentY, leftW - 8, contentH);
             break;
         case 2:
-            drawPlaceholderTab(leftX + 4, contentY, 'Treasure', 'Use a Gettin Stick to pull treasure from the water. Sea creatures are coming soon!');
+            drawPlaceholderTab(leftX + 4, contentY, 'Treasure', 'Use a Gettin Stick to pull treasure from the water. Sea creatures are coming soon!', leftW - 8);
             break;
         case 3:
             if (typeof drawGardeningTab === 'function') drawGardeningTab(leftX + 4, contentY, leftW - 8, contentH);
-            else drawPlaceholderTab(leftX + 4, contentY, 'Gardening', 'Plant seeds in fertile soil.');
+            else drawPlaceholderTab(leftX + 4, contentY, 'Gardening', 'Plant seeds in fertile soil.', leftW - 8);
             break;
         case 4:
             if (typeof drawMagicTab === 'function') drawMagicTab(leftX + 4, contentY, leftW - 8, contentH);
@@ -1094,7 +1221,8 @@ function drawCraftingTab(x, y, w, h) {
     text('(Not yet implemented)', x, y + 28);
 }
 
-function drawPlaceholderTab(x, y, title, desc) {
+function drawPlaceholderTab(x, y, title, desc, w) {
+    const wrapW = w || 304; // default to the menu content width so text wraps
     fill(200);
     textAlign(LEFT, TOP);
     textSize(10);
@@ -1102,8 +1230,10 @@ function drawPlaceholderTab(x, y, title, desc) {
     text(title, x, y);
     fill(120);
     textSize(8);
-    text(desc, x, y + 16);
-    text('(Coming soon)', x, y + 28);
+    // Wrap the description within the panel; measure its height to place the footer.
+    text(desc, x, y + 16, wrapW, 60);
+    const lines = Math.max(1, Math.ceil(textWidth(desc) / wrapW));
+    text('(Coming soon)', x, y + 16 + lines * 11 + 4);
 }
 
 // ===== MAGIC TAB =====
@@ -1294,12 +1424,34 @@ function getSlotAtMouse() {
 }
 
 function mousePressed() {
+    // ===== DIALOGUE: click to advance text / pick a response =====
+    if (gameState === 'dialogue') {
+        if (typeof handleDialogueClick === 'function') handleDialogueClick(mouseX, mouseY);
+        return;
+    }
+
     // ===== START SCREEN =====
     if (gameState === STATE.START) {
-        // Menu options are at y = 150 + i*40, centered horizontally
+        // Name-entry screen: clicks don't pick anything (keyboard-driven).
+        if (startView === 'name') return;
+
+        // Slot picker: click a slot row or Back.
+        if (startView === 'slots') {
+            for (let i = 0; i <= SAVE_SLOT_COUNT; i++) {
+                const oy = slotRowY(i);
+                if (mouseY >= oy - 20 && mouseY < oy + 20 &&
+                    mouseX >= width / 2 - 160 && mouseX < width / 2 + 160) {
+                    slotSelectIndex = i;
+                    chooseSlot(i);
+                    return;
+                }
+            }
+            return;
+        }
+
+        // Main menu options at y = 150 + i*40, centered horizontally.
         for (let i = 0; i < startMenuOptions.length; i++) {
             const oy = 150 + i * 40;
-            // Approximate text width for 20px font
             const tw = textWidth(startMenuOptions[i]) + 40; // generous hit area
             if (mouseY >= oy - 14 && mouseY < oy + 14 &&
                 mouseX >= width / 2 - tw / 2 && mouseX < width / 2 + tw / 2) {
@@ -1494,9 +1646,25 @@ function tryExitBuilding() {
     // Only exit if player is standing on the interior door tile
     if (player.x !== intDoor.x || player.y !== intDoor.y) return false;
 
-    // Find a clear tile near the exterior door to place the player.
-    // Check candidates in order: directly below the door, then further out,
-    // then to the sides. This is robust even if something spawned in front.
+    // Place the player on the clear standing tile just outside this building's door.
+    const spot = findExteriorStandingTile(b);
+    player.x = spot.x;
+    player.y = spot.y;
+    player.facing = 'down';
+
+    insideBuilding = null;
+    gameState = STATE.PLAYING;
+    updateCamera();
+    notify("Exited building");
+    return true;
+}
+
+// ===== OVERWORLD SPAWN HELPERS =====
+// Finds a clear, walkable tile just outside a building's door (overworld coords).
+// Checks candidates in order: directly below the door, then further out, then to
+// the sides. Robust even if something spawned in front. As a last resort it
+// clears the tile directly below the door so the player is never stuck.
+function findExteriorStandingTile(b) {
     const door = b.getDoorTile();
     const candidates = [
         { x: door.x,     y: door.y + 1 },
@@ -1506,36 +1674,39 @@ function tryExitBuilding() {
         { x: door.x - 1, y: door.y + 2 },
         { x: door.x + 1, y: door.y + 2 },
     ];
-
-    let exitX = null, exitY = null;
     for (const c of candidates) {
         if (c.x < 0 || c.x >= CONFIG.WORLD_WIDTH || c.y < 0 || c.y >= CONFIG.WORLD_HEIGHT) continue;
         if (!world.tiles[c.x] || !world.tiles[c.x][c.y]) continue;
         if (isSolidTile(c.x, c.y)) continue;
         if (buildingAt(c.x, c.y)) continue;
-        exitX = c.x;
-        exitY = c.y;
-        break;
+        return { x: c.x, y: c.y };
     }
-
-    if (exitX === null) {
-        // No clear tile found — clear the spot directly below the door and use it
-        exitX = door.x;
-        exitY = door.y + 1;
-        if (exitY >= 0 && exitY < CONFIG.WORLD_HEIGHT && world.tiles[exitX] && world.tiles[exitX][exitY]) {
-            world.tiles[exitX][exitY] = { type: 'grass', variant: 0 };
-        }
+    // No clear tile found — clear the spot directly below the door and use it.
+    const fx = door.x, fy = door.y + 1;
+    if (fy >= 0 && fy < CONFIG.WORLD_HEIGHT && world.tiles[fx] && world.tiles[fx][fy]) {
+        world.tiles[fx][fy] = { type: 'grass', variant: 0 };
     }
+    return { x: fx, y: fy };
+}
 
-    player.x = exitX;
-    player.y = exitY;
-    player.facing = 'up';
+// The player's home shack (owner 'player'), falling back to the first building.
+function getPlayerShack() {
+    if (!buildings || buildings.length === 0) return null;
+    return buildings.find(b => b.owner === 'player') || buildings[0];
+}
 
+// Place the player in the overworld, standing in the space in front of the shack.
+// This is the single source of truth for "where the player appears in the
+// overworld" — used by both new games and loads so the player can never be
+// warped to the top-left by a stale/interior saved position.
+function placePlayerAtShackEntrance() {
+    const b = getPlayerShack();
+    const spot = b ? findExteriorStandingTile(b) : { x: 50, y: 50 };
+    player.x = spot.x;
+    player.y = spot.y;
+    player.facing = 'down';
     insideBuilding = null;
-    gameState = STATE.PLAYING;
     updateCamera();
-    notify("Exited building");
-    return true;
 }
 
 // ===== SLEEPING =====
@@ -1855,6 +2026,36 @@ function tryPickupHomeInside(tx, ty) {
 
 function keyPressed() {
     if (gameState === STATE.START) {
+        // --- Name-entry sub-screen: capture typed characters ---
+        if (startView === 'name') {
+            if (keyCode === ENTER || keyCode === RETURN) {
+                beginNewGameInSlot(nameEntrySlot, nameEntryText);
+            } else if (keyCode === ESCAPE) {
+                startView = 'slots';
+            } else if (keyCode === BACKSPACE) {
+                nameEntryText = nameEntryText.slice(0, -1);
+            } else if (key && key.length === 1 && /[A-Za-z0-9 '!\-]/.test(key) && nameEntryText.length < 16) {
+                nameEntryText += key;
+            }
+            return false;
+        }
+
+        // --- Slot-picker sub-screen ---
+        if (startView === 'slots') {
+            const rowCount = SAVE_SLOT_COUNT + 1; // slots + Back
+            if (keyCode === UP_ARROW) {
+                slotSelectIndex = (slotSelectIndex - 1 + rowCount) % rowCount;
+            } else if (keyCode === DOWN_ARROW) {
+                slotSelectIndex = (slotSelectIndex + 1) % rowCount;
+            } else if (keyCode === ENTER || keyCode === RETURN) {
+                chooseSlot(slotSelectIndex);
+            } else if (keyCode === ESCAPE) {
+                startView = 'main';
+            }
+            return false;
+        }
+
+        // --- Main start menu ---
         if (keyCode === UP_ARROW) {
             selectedMenuOption = (selectedMenuOption - 1 + startMenuOptions.length) % startMenuOptions.length;
             return false;
@@ -2209,17 +2410,67 @@ function tryToastToss() {
 
 function handleStartMenuSelection() {
     switch(selectedMenuOption) {
-        case 0: // Start
-            startNewGame();
+        case 0: // New Game -> choose a slot, then name it
+            startMode = 'new';
+            startView = 'slots';
+            slotSelectIndex = 0;
             break;
-        case 1: // Load
-            loadGame();
+        case 1: // Load Game -> choose a slot to load
+            startMode = 'load';
+            startView = 'slots';
+            // Default-highlight the first occupied slot, if any.
+            slotSelectIndex = 0;
+            const slots = getAllSaveSlots();
+            const firstFilled = slots.findIndex(s => s.exists);
+            if (firstFilled >= 0) slotSelectIndex = firstFilled;
             break;
         case 2: // Settings - go straight to menu settings tab
             gameState = STATE.MENU;
             menuTab = 6;
             break;
     }
+}
+
+// Handle a choice in the slot picker (index 0..2 = slots, SAVE_SLOT_COUNT = Back).
+function chooseSlot(i) {
+    if (i === SAVE_SLOT_COUNT) { startView = 'main'; return; } // Back
+
+    if (startMode === 'load') {
+        const info = getSaveSlotInfo(i);
+        if (!info.exists) { notify('That slot is empty.'); return; }
+        loadGameFromSlot(i);
+    } else {
+        // New game: go to the name-entry screen for this slot.
+        nameEntrySlot = i;
+        nameEntryText = '';
+        startView = 'name';
+    }
+}
+
+// Start a brand-new game in the given slot under the chosen name, then persist it.
+function beginNewGameInSlot(slot, name) {
+    currentSlot = slot;
+    currentSaveName = (name && name.trim()) ? name.trim() : ('Save ' + (slot + 1));
+    startView = 'main';
+    startNewGame();        // builds the world, places player, sets STATE.PLAYING
+    enhancedSaveGame();    // immediately persist so the named slot exists
+    notify('New island "' + currentSaveName + '" created!');
+}
+
+// Load a specific slot into the overworld.
+function loadGameFromSlot(slot) {
+    if (typeof enhancedLoadGameFromSlot === 'function' && enhancedLoadGameFromSlot(slot)) {
+        if (typeof checkArrivals === 'function' && (!npcs || npcs.length === 0)) checkArrivals();
+        if (typeof spawnHog === 'function' && !hog) spawnHog();
+        // Always re-enter the overworld in front of the shack (never warp top-left).
+        placePlayerAtShackEntrance();
+        startView = 'main';
+        gameState = STATE.PLAYING;
+        notify('Loaded: ' + currentSaveName);
+        return true;
+    }
+    notify('That slot is empty');
+    return false;
 }
 
 function startNewGame() {
@@ -2241,7 +2492,8 @@ function startNewGame() {
     if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
     // Spawn hog if not already present (fresh games)
     if (typeof spawnHog === 'function' && !hog) spawnHog();
-    updateCamera();
+    // Stand the player in front of the shack (single source of truth).
+    placePlayerAtShackEntrance();
     gameState = STATE.PLAYING;
 }
 
@@ -2264,15 +2516,19 @@ function saveAndQuit() {
     notify('Game saved. Returning to menu...');
     insideBuilding = null;
     gameState = STATE.START;
-    selectedMenuOption = 1; // default-highlight "Load"
+    startView = 'main';
+    selectedMenuOption = 1; // default-highlight "Load Game"
 }
 
 function loadGame() {
     if (typeof enhancedLoadGame === 'function' && enhancedLoadGame()) {
-        updateCamera();
         // Ensure systems that may not be in old saves are present
         if (typeof checkArrivals === 'function' && (!npcs || npcs.length === 0)) checkArrivals();
         if (typeof spawnHog === 'function' && !hog) spawnHog();
+        // Always re-enter the overworld in front of the shack. The saved position
+        // can be interior coords (if saved indoors), which would otherwise warp
+        // the player to the top-left of the map.
+        placePlayerAtShackEntrance();
         gameState = STATE.PLAYING;
         notify('Save loaded!');
         return true;
@@ -2282,7 +2538,10 @@ function loadGame() {
 }
 
 function loadSaveData() {
-    // Checks if a save exists (used at startup)
+    // Run at startup: fold any legacy single-slot save into slot 0, then report
+    // whether any slot has a save.
+    if (typeof migrateLegacySave === 'function') migrateLegacySave();
+    if (typeof getAllSaveSlots === 'function') return getAllSaveSlots().some(s => s.exists);
     return localStorage.getItem(SAVE_KEY) !== null;
 }
 
@@ -2605,6 +2864,79 @@ class Player {
     }
 }
 
+// ===== TERRAIN EDGE ROUNDING =====
+// Purely visual: softens the hard square boundaries between terrain heights by
+// carving rounded corners. "Height" is water (0) < beach (1) < land (2). A
+// higher tile that meets lower terrain on two sides of a corner gets that corner
+// rounded off with the lower terrain's color. Collision is unaffected.
+let ROUND_TERRAIN = true;
+
+// Approximate palette used to carve corners (close to the tile sprites).
+const TERRAIN_EDGE_COLORS = { 0: '#4A90C8', 1: '#F4E4BC', 2: '#7CB342' };
+
+// Terrain height level. Anything that sits on land (grass, trees, rocks, flowers)
+// counts as land so we only round true coast/beach edges, not grass detail.
+// Off-map neighbors are treated as land so the rectangular world border isn't carved.
+function terrainLevel(tile) {
+    if (!tile) return 2;
+    if (tile.type === 'sea' || tile.type === 'water') return 0;
+    if (tile.type === 'beach') return 1;
+    return 2;
+}
+
+// CONVEX corner: carve the protruding corner of a HIGHER tile. Fills the area of
+// the tile corner OUTSIDE a quarter circle (centered inset from the corner) with
+// the lower terrain's color, rounding off the bump.
+// (hx,vy) pick the corner: (-1,-1)=NW, (1,-1)=NE, (-1,1)=SW, (1,1)=SE.
+function drawCornerWedge(sx, sy, TS, hx, vy, r, col) {
+    const outerX = hx > 0 ? sx + TS : sx;
+    const outerY = vy > 0 ? sy + TS : sy;
+    const centerX = outerX - hx * r;
+    const centerY = outerY - vy * r;
+    const bx = outerX - hx * r, by = outerY;        // point on the horizontal edge
+    const ax = outerX,          ay = outerY - vy * r; // point on the vertical edge
+    const a0 = Math.atan2(by - centerY, bx - centerX);
+    const a1 = Math.atan2(ay - centerY, ax - centerX);
+    let da = a1 - a0;
+    while (da > Math.PI) da -= 2 * Math.PI;
+    while (da < -Math.PI) da += 2 * Math.PI;
+    fill(col);
+    noStroke();
+    beginShape();
+    vertex(outerX, outerY);
+    const segs = 6;
+    for (let i = 0; i <= segs; i++) {
+        const a = a0 + da * (i / segs);
+        vertex(centerX + Math.cos(a) * r, centerY + Math.sin(a) * r);
+    }
+    endShape(CLOSE);
+}
+
+// CONCAVE corner: fillet an inner corner of a LOWER tile that has higher terrain
+// wrapping around it. Fills a quarter disk (pie slice) centered AT the corner
+// with the higher terrain's color, so the wrap reads as a smooth inner curve.
+function drawCornerFill(sx, sy, TS, hx, vy, r, col) {
+    const outerX = hx > 0 ? sx + TS : sx;
+    const outerY = vy > 0 ? sy + TS : sy;
+    const bx = outerX - hx * r, by = outerY;        // point on the horizontal edge
+    const ax = outerX,          ay = outerY - vy * r; // point on the vertical edge
+    const a0 = Math.atan2(by - outerY, bx - outerX);
+    const a1 = Math.atan2(ay - outerY, ax - outerX);
+    let da = a1 - a0;
+    while (da > Math.PI) da -= 2 * Math.PI;
+    while (da < -Math.PI) da += 2 * Math.PI;
+    fill(col);
+    noStroke();
+    beginShape();
+    vertex(outerX, outerY);
+    const segs = 6;
+    for (let i = 0; i <= segs; i++) {
+        const a = a0 + da * (i / segs);
+        vertex(outerX + Math.cos(a) * r, outerY + Math.sin(a) * r);
+    }
+    endShape(CLOSE);
+}
+
 // World class
 class World {
     constructor() {
@@ -2635,6 +2967,10 @@ class World {
                 }
             }
         }
+
+        // Smooth the coastline: remove lone 1-tile extrusions/notches so the
+        // island reads as natural curves instead of rasterized jaggies.
+        this.smoothTerrain(2);
 
         // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
@@ -2685,6 +3021,44 @@ class World {
         spawnBirdPoop(3 + floor(random(3)));
     }
 
+    // Smooth the base terrain (sea/beach/grass) by removing lone 1-tile
+    // extrusions and notches. A tile flips to its dominant neighbor type when 3+
+    // of its 4 orthogonal neighbors share that type — so single pokes get
+    // absorbed while genuine corners (2 vs 2) are preserved. Run before
+    // decorations are placed, on new-world generation only.
+    smoothTerrain(passes = 1) {
+        const BASE = { sea: true, beach: true, grass: true };
+        const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
+        for (let p = 0; p < passes; p++) {
+            const changes = [];
+            for (let x = 0; x < W; x++) {
+                for (let y = 0; y < H; y++) {
+                    const t = this.tiles[x][y];
+                    if (!t || !BASE[t.type]) continue;
+                    const counts = {};
+                    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+                        const nx = x + dx, ny = y + dy;
+                        if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+                        const nt = this.tiles[nx][ny];
+                        if (!nt || !BASE[nt.type]) continue;
+                        counts[nt.type] = (counts[nt.type] || 0) + 1;
+                    }
+                    let domType = null, domCount = 0;
+                    for (const k in counts) {
+                        if (counts[k] > domCount) { domCount = counts[k]; domType = k; }
+                    }
+                    if (domType && domType !== t.type && domCount >= 3) {
+                        changes.push([x, y, domType]);
+                    }
+                }
+            }
+            if (changes.length === 0) break;
+            for (const [x, y, type] of changes) {
+                this.tiles[x][y] = { type, variant: floor(random(3)) };
+            }
+        }
+    }
+
     // Place a 2-tall tree: solid trunk at (x,y) and solid canopy at (x,y-1).
     placeTree(x, y, type = 'tree') {
         if (this.tiles[x][y].type !== 'grass') return;
@@ -2715,7 +3089,17 @@ class World {
                 this.drawTile(x, y, this.tiles[x][y]);
             }
         }
-        
+
+        // Pass 2: soften terrain boundaries by rounding outer corners. Each wedge
+        // stays inside its own tile, so this never paints over trees/buildings.
+        if (ROUND_TERRAIN) {
+            for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
+                for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
+                    this.drawTerrainCornerRounding(x, y);
+                }
+            }
+        }
+
         pop();
         
         // Update time (30 real minutes = 24 game hours)
@@ -2740,6 +3124,34 @@ class World {
         // Deprecated: canopy tops are drawn during drawTile now that trees are fully solid.
     }
     
+    // Round both convex (protruding) and concave (inner) corners of this tile
+    // where it borders a different terrain height.
+    drawTerrainCornerRounding(x, y) {
+        const L = terrainLevel(this.tiles[x][y]);
+        const TS = CONFIG.TILE_SIZE;
+        const sx = x * TS, sy = y * TS;
+        const r = Math.max(4, Math.round(TS * 0.5));
+
+        // 4 corners: NW, NE, SW, SE
+        const corners = [ [-1, -1], [1, -1], [-1, 1], [1, 1] ];
+        for (const [hx, vy] of corners) {
+            const hTile = (this.tiles[x + hx]) ? this.tiles[x + hx][y] : null;       // horizontal neighbor
+            const vTile = this.tiles[x][y + vy] !== undefined ? this.tiles[x][y + vy] : null; // vertical neighbor
+            const lvlH = terrainLevel(hTile);
+            const lvlV = terrainLevel(vTile);
+
+            if (lvlH < L && lvlV < L) {
+                // Convex outer corner: carve this higher tile's bump with the
+                // higher of the two lower neighbors (correct grass→beach→water layering).
+                drawCornerWedge(sx, sy, TS, hx, vy, r, TERRAIN_EDGE_COLORS[Math.max(lvlH, lvlV)]);
+            } else if (lvlH > L && lvlV > L) {
+                // Concave inner corner: fillet with the lower of the two higher
+                // neighbors (the terrain directly above this one).
+                drawCornerFill(sx, sy, TS, hx, vy, r, TERRAIN_EDGE_COLORS[Math.min(lvlH, lvlV)]);
+            }
+        }
+    }
+
     drawTile(x, y, tile) {
         const screenX = x * CONFIG.TILE_SIZE;
         const screenY = y * CONFIG.TILE_SIZE;
