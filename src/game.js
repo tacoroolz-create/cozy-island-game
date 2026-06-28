@@ -221,11 +221,10 @@ class Building {
         this.gridY = gridY;
         this.owner = owner || null; // NPC id or null for player
         this.spriteKey = BUILDING_TIERS[type] ? BUILDING_TIERS[type].spriteKey : 'sprites.' + type;
-        // Interior dimensions in tiles. Start = exterior sprite size.
-        const ts = this.tileSize;
-        this.interiorW = ts.w;
-        this.interiorH = ts.h + INTERIOR_WALL_HEIGHT; // walkable area + wall on top
-        // Interior tile grid - grass floor for shack
+        // Fixed interior dimensions: 5 tiles wide, 2 wall rows + 3 floor rows.
+        this.interiorW = 5;
+        this.interiorH = INTERIOR_WALL_HEIGHT + 3;
+        // Interior tile grid
         this.interiorTiles = [];
         this.initInterior();
     }
@@ -1341,7 +1340,7 @@ function mousePressed() {
     if (gameState === STATE.PAUSED) {
         // "ESC - Resume" at y=120, "S - Save Game" at y=145
         if (mouseY >= 110 && mouseY < 130) {
-            gameState = STATE.PLAYING;
+            gameState = insideBuilding ? STATE.INSIDE : STATE.PLAYING;
             return;
         }
         if (mouseY >= 135 && mouseY < 155) {
@@ -1545,15 +1544,16 @@ function drawInterior() {
     textFont('Courier New');
     text('EXIT', doorX + TS / 2, doorY - 1);
 
-    // Draw player
+    // Draw player — 2 tiles tall, bottom-anchored at player tile.
+    // The top half peeks above the bottom wall row when on the top floor tile.
     const px = offsetX + player.x * TS;
     const py = offsetY + player.y * TS;
     const pSpr = SPRITES['sprites.player'];
     if (pSpr) {
-        image(pSpr, px, py, TS, TS);
+        image(pSpr, px, py - TS, TS, TS * 2);
     } else {
         fill(0, 100, 255);
-        rect(px, py, TS, TS);
+        rect(px, py - TS, TS, TS * 2);
     }
 
     // Draw HUD (time, day)
@@ -1607,6 +1607,9 @@ function drawInteriorTile(tile, sx, sy, TS) {
             rect(sx, sy, TS, TS);
         }
     } else if (tile.type === 'bed') {
+        // Grass base first so no dark gaps around the sprite
+        const grassSpr = SPRITES['tiles.grass'];
+        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
         const spr = SPRITES['tiles.' + tile.variant];
         if (spr) {
             image(spr, sx, sy, TS, TS);
@@ -1617,9 +1620,14 @@ function drawInteriorTile(tile, sx, sy, TS) {
             rect(sx + 2, sy + 2, TS - 4, TS - 4);
         }
     } else if (tile.type === 'picnicblanket') {
+        // Grass base first
+        const grassSpr = SPRITES['tiles.grass'];
+        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
         const spr = SPRITES['tiles.picnicblanket'];
         if (spr) {
-            image(spr, sx, sy, TS, TS);
+            // Draw at native sprite size, bottom-left anchored to tile corner.
+            // Extends upward/rightward so the full blanket is visible.
+            image(spr, sx, sy + TS - spr.height, spr.width, spr.height);
         } else {
             fill('#E53935');
             rect(sx, sy, TS, TS);
@@ -1708,7 +1716,7 @@ function keyPressed() {
         return false;
     } else if (gameState === STATE.MENU) {
         if (key === 'e' || key === 'E' || keyCode === ESCAPE) {
-            gameState = STATE.PLAYING;
+            gameState = insideBuilding ? STATE.INSIDE : STATE.PLAYING;
             return false;
         } else if (key === 'q' || key === 'Q') {
             menuTab = (menuTab - 1 + MENU_TABS.length) % MENU_TABS.length;
@@ -1752,7 +1760,7 @@ function keyPressed() {
         return false;
     } else if (gameState === STATE.PAUSED) {
         if (keyCode === ESCAPE) {
-            gameState = STATE.PLAYING;
+            gameState = insideBuilding ? STATE.INSIDE : STATE.PLAYING;
             return false;
         } else if (key === 's' || key === 'S') {
             saveGame();
@@ -2529,27 +2537,22 @@ class World {
                 // Both trunk and top tiles draw their own half of the 16x32 sprite.
                 const spr = SPRITES['tiles.tree'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     if (isTop) {
-                        // Top half of the sprite (upper canopy).
                         image(spr, screenX, screenY, TS, TS, 0, 0, spr.width, TS);
                     } else {
-                        // Bottom half (trunk) drawn during the base pass.
-                        // Source: lower 16 pixels of the 16x32 sprite.
                         const sy = spr.height - TS;
                         image(spr, screenX, screenY, TS, TS, 0, sy, spr.width, TS);
                     }
+                    noTint();
                 } else {
                     if (isTop) {
-                        fill('#2E7D32');
+                        fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                         ellipse(screenX + 8, screenY + 12, 12, 12);
                     } else {
-                        fill('#8B4513');
+                        fill(tile.depleted ? '#7A6050' : '#8B4513');
                         rect(screenX + 6, screenY + 4, 4, 10);
                     }
-                }
-                if (!isTop && tile.depleted) {
-                    fill(0, 0, 0, 120);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
@@ -2558,18 +2561,16 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.rock'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     const offsetX = screenX - (spr.width - TS) / 2;
                     const offsetY = screenY - (spr.height - TS);
                     image(spr, offsetX, offsetY);
+                    noTint();
                 } else {
-                    fill('#9E9E9E');
+                    fill(tile.depleted ? '#888' : '#9E9E9E');
                     ellipse(screenX + 8, screenY + 10, 10, 8);
-                    fill('#BDBDBD');
+                    fill(tile.depleted ? '#AAA' : '#BDBDBD');
                     ellipse(screenX + 6, screenY + 8, 4, 3);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 120);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
@@ -2578,19 +2579,19 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.shiny_rock'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     image(spr, screenX, screenY, TS, TS);
+                    noTint();
                 } else {
-                    fill('#BDBDBD');
+                    fill(tile.depleted ? '#AAA' : '#BDBDBD');
                     ellipse(screenX + 8, screenY + 10, 10, 8);
-                    fill('#FFD700');
-                    const sx = screenX + 6 + (waterFrame % 2);
-                    const sy = screenY + 7 + (waterFrame % 2);
-                    rect(sx, sy, 1, 1);
-                    rect(sx + 2, sy + 2, 1, 1);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 120);
-                    rect(screenX, screenY, TS, TS);
+                    if (!tile.depleted) {
+                        fill('#FFD700');
+                        const sx = screenX + 6 + (waterFrame % 2);
+                        const sy = screenY + 7 + (waterFrame % 2);
+                        rect(sx, sy, 1, 1);
+                        rect(sx + 2, sy + 2, 1, 1);
+                    }
                 }
                 break;
             }
@@ -2599,17 +2600,15 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.weeds'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     image(spr, screenX, screenY, TS, TS);
+                    noTint();
                 } else {
-                    fill('#558B2F');
+                    fill(tile.depleted ? '#8A9E8A' : '#558B2F');
                     rect(screenX + 3, screenY + 6, 1, 8);
                     rect(screenX + 7, screenY + 4, 1, 10);
                     rect(screenX + 11, screenY + 7, 1, 6);
                     rect(screenX + 13, screenY + 5, 1, 9);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 100);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
@@ -2618,16 +2617,14 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.bird_poop'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     image(spr, screenX, screenY, TS, TS);
+                    noTint();
                 } else {
-                    fill('#E0E0E0');
+                    fill(tile.depleted ? '#B0B0B0' : '#E0E0E0');
                     ellipse(screenX + 8, screenY + 9, 8, 5);
-                    fill('#FFFFFF');
+                    fill(tile.depleted ? '#C8C8C8' : '#FFFFFF');
                     ellipse(screenX + 6, screenY + 8, 3, 2);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 100);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
@@ -2635,14 +2632,10 @@ class World {
                 // No sprite yet - draw grass base + fallback flower
                 drawBase('grass');
                 const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'];
-                fill(colors[tile.variant]);
+                fill(tile.depleted ? '#999' : colors[tile.variant]);
                 ellipse(screenX + 8, screenY + 8, 6, 6);
-                fill('#FFD93D');
+                fill(tile.depleted ? '#BBB' : '#FFD93D');
                 ellipse(screenX + 8, screenY + 8, 3, 3);
-                if (tile.depleted) {
-                    fill(0, 0, 0, 100);
-                    rect(screenX, screenY, TS, TS);
-                }
                 break;
             }
             case 'tulip': {
@@ -2650,18 +2643,15 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.tulip'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     image(spr, screenX, screenY, TS, TS);
+                    noTint();
                 } else {
-                    // Fallback: green stem + colored cup
-                    fill('#558B2F');
+                    fill(tile.depleted ? '#8A9E8A' : '#558B2F');
                     rect(screenX + 7, screenY + 6, 2, 8);
                     const tcolors = ['#E53935', '#F5F5F5'];
-                    fill(tcolors[tile.variant || 0]);
+                    fill(tile.depleted ? '#AAA' : tcolors[tile.variant || 0]);
                     ellipse(screenX + 8, screenY + 5, 6, 5);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 100);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
@@ -2670,21 +2660,18 @@ class World {
                 drawBase('grass');
                 const spr = SPRITES['tiles.rosebush'];
                 if (spr) {
+                    if (tile.depleted) tint(160, 160, 160);
                     const offsetX = screenX - (spr.width - TS) / 2;
                     const offsetY = screenY - (spr.height - TS);
                     image(spr, offsetX, offsetY);
+                    noTint();
                 } else {
-                    // Fallback: green bush with red dots
-                    fill('#2E7D32');
+                    fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                     ellipse(screenX + 8, screenY + 8, 14, 12);
-                    fill('#E53935');
+                    fill(tile.depleted ? '#AAA' : '#E53935');
                     ellipse(screenX + 4, screenY + 6, 3, 3);
                     ellipse(screenX + 12, screenY + 8, 3, 3);
                     ellipse(screenX + 8, screenY + 4, 3, 3);
-                }
-                if (tile.depleted) {
-                    fill(0, 0, 0, 120);
-                    rect(screenX, screenY, TS, TS);
                 }
                 break;
             }
