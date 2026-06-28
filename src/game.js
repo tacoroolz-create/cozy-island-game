@@ -40,7 +40,7 @@ const SPRITE_DEFS = {
     'tiles.bed_blue':         'assets/tiles/bed_blue.png',
     'tiles.bed_orange':       'assets/tiles/bed_orange.png',
     'tiles.bed_red':          'assets/tiles/bed_red.png',
-    'tiles.picnicblanket':    'assets/tiles/picnicblanket.png',
+    'tiles.sprout':           'assets/tiles/sprout.png',
     'sprites.player':         'assets/sprites/player.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
@@ -207,8 +207,11 @@ let insideBuilding = null;  // building we're currently inside (null = outside)
 
 // Building exterior tiers - each has a sprite key and base tile dimensions
 const BUILDING_TIERS = {
-    shack: { spriteKey: 'sprites.shack', name: 'Shack' },
-    house: { spriteKey: 'sprites.house', name: 'House' }
+    // w/h = exterior footprint in tiles. doorWidth = how many bottom-center tiles
+    // act as the entrance. interiorW/interiorFloorRows = interior size (floor rows
+    // are in addition to INTERIOR_WALL_HEIGHT wall rows on top).
+    shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 5, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x80 sprite
+    house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 }   // 64x64 sprite
 };
 
 // Interior wall height (top wall area for decoration)
@@ -221,22 +224,27 @@ class Building {
         this.gridY = gridY;
         this.owner = owner || null; // NPC id or null for player
         this.spriteKey = BUILDING_TIERS[type] ? BUILDING_TIERS[type].spriteKey : 'sprites.' + type;
-        // Fixed interior dimensions: 5 tiles wide, 2 wall rows + 3 floor rows.
-        this.interiorW = 5;
-        this.interiorH = INTERIOR_WALL_HEIGHT + 3;
+        // Interior dimensions from the building tier (fallback 5 wide, 3 floor rows).
+        const tierDef = BUILDING_TIERS[type] || {};
+        this.interiorW = tierDef.interiorW || 5;
+        this.interiorH = INTERIOR_WALL_HEIGHT + (tierDef.interiorFloorRows || 3);
         // Interior tile grid
         this.interiorTiles = [];
         this.initInterior();
     }
 
-    // Returns the exterior sprite dimensions in tiles
+    // Returns the exterior footprint in tiles. Prefers the explicit dimensions
+    // declared in BUILDING_TIERS (robust against async sprite loading); falls
+    // back to deriving from the loaded sprite, then a sensible default.
     get tileSize() {
+        const def = BUILDING_TIERS[this.type];
+        if (def && def.w && def.h) return { w: def.w, h: def.h };
         const spr = SPRITES[this.spriteKey];
-        if (!spr) return { w: 3, h: 2 };
+        if (!spr) return { w: 8, h: 5 };
         return { w: Math.ceil(spr.width / CONFIG.TILE_SIZE), h: Math.ceil(spr.height / CONFIG.TILE_SIZE) };
     }
 
-    // Initialize interior tiles - grass floor, wall row on top, bed on the left, picnic blanket on the right
+    // Initialize interior tiles - grass floor, wall row on top, bed on the left
     initInterior() {
         this.interiorTiles = [];
         const bedVariant = ['bed_blue', 'bed_orange', 'bed_red'][floor(random(3))];
@@ -248,9 +256,6 @@ class Building {
                 } else if (x === 0 && y === INTERIOR_WALL_HEIGHT) {
                     // Bed on the left, against the back wall
                     this.interiorTiles[x][y] = { type: 'bed', variant: bedVariant };
-                } else if (x === this.interiorW - 1 && y === INTERIOR_WALL_HEIGHT) {
-                    // Picnic blanket on the right, against the back wall
-                    this.interiorTiles[x][y] = { type: 'picnicblanket', variant: 0 };
                 } else {
                     this.interiorTiles[x][y] = { type: 'grass', variant: floor(Math.random() * 3) };
                 }
@@ -295,10 +300,28 @@ class Building {
         return x >= this.gridX && x < this.gridX + ts.w && y >= this.gridY && y < this.gridY + ts.h;
     }
 
-    // Door tile (bottom-center of exterior, in world coords)
+    // Primary door tile (bottom-center of exterior, in world coords).
+    // Used as the anchor for interior spawn and exit placement.
     getDoorTile() {
         const ts = this.tileSize;
         return { x: this.gridX + Math.floor(ts.w / 2), y: this.gridY + ts.h - 1 };
+    }
+
+    // All walkable door tiles, in world coords. A doorWidth of 2 makes the two
+    // center-bottom tiles both valid entrances.
+    getDoorTiles() {
+        const ts = this.tileSize;
+        const def = BUILDING_TIERS[this.type] || {};
+        const dw = def.doorWidth || 1;
+        const cy = this.gridY + ts.h - 1;
+        const center = this.gridX + Math.floor(ts.w / 2);
+        if (dw >= 2) return [{ x: center - 1, y: cy }, { x: center, y: cy }];
+        return [{ x: center, y: cy }];
+    }
+
+    // Is (x,y) one of this building's door tiles?
+    isDoorTile(x, y) {
+        return this.getDoorTiles().some(d => d.x === x && d.y === y);
     }
 
     // Interior door position (bottom-center of walkable area, in interior coords)
@@ -339,6 +362,23 @@ class Building {
         if (data.interiorH) b.interiorH = data.interiorH;
         if (data.interiorTiles) b.interiorTiles = data.interiorTiles;
         return b;
+    }
+}
+
+// Clear terrain under and just around a building so it sits on grass and the
+// exit path in front of the door is always walkable. Sea/beach are left intact.
+function clearBuildingFootprint(b) {
+    const ts = b.tileSize;
+    for (let dx = -1; dx <= ts.w; dx++) {
+        for (let dy = -1; dy <= ts.h + 2; dy++) {
+            const tx = b.gridX + dx, ty = b.gridY + dy;
+            if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+            if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
+            const t = world.tiles[tx][ty];
+            if (t.type !== 'sea' && t.type !== 'beach') {
+                world.tiles[tx][ty] = { type: 'grass', variant: 0 };
+            }
+        }
     }
 }
 
@@ -399,11 +439,16 @@ function drawNotifications() {
     }
 }
 
+// Bump this whenever sprite art is updated so browsers re-fetch images instead
+// of serving stale cached copies (images aren't covered by the index.html ?v=).
+const ASSET_VERSION = '20260628';
+
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
+        const url = path + (path.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
         // loadImage with error callback so missing files don't hang preload
-        SPRITES[key] = loadImage(path, () => {}, () => {
-            console.warn(`Failed to load sprite ${key} from ${path}`);
+        SPRITES[key] = loadImage(url, () => {}, () => {
+            console.warn(`Failed to load sprite ${key} from ${url}`);
             SPRITES[key] = null;
         });
     }
@@ -565,7 +610,7 @@ function handleInteriorMovement() {
         }
         // Walls and furniture block movement
         const tile = b.interiorTiles[newX][newY];
-        if (tile.type === 'wall' || tile.type === 'bed' || tile.type === 'picnicblanket') {
+        if (tile.type === 'wall' || tile.type === 'bed') {
             lastMoveTime = now;
             return;
         }
@@ -1239,6 +1284,15 @@ function mousePressed() {
         }
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
+        // Use the selected hotbar item on a clicked adjacent tile (e.g. plant a seed).
+        if (typeof tryUseActiveItemAt === 'function') {
+            const TS = CONFIG.TILE_SIZE;
+            const tx = Math.floor((mouseX + cameraX) / TS);
+            const ty = Math.floor((mouseY + cameraY) / TS);
+            // Adjacent = within 1 tile (incl. diagonals), but not the player's own tile.
+            const adj = Math.max(Math.abs(tx - player.x), Math.abs(ty - player.y)) === 1;
+            if (adj && tryUseActiveItemAt(tx, ty)) return;
+        }
         tryHarvest();
         return;
     }
@@ -1362,10 +1416,9 @@ function tryEnterBuilding() {
     const b = buildingAt(facing.x, facing.y);
     if (!b) return false;
 
-    // Only enter from the door tile (bottom-center of the building exterior).
-    // The player must be facing that specific tile.
-    const door = b.getDoorTile();
-    if (facing.x !== door.x || facing.y !== door.y) {
+    // Only enter via a door tile (bottom-center of the exterior; may be 2 wide).
+    // The player must be facing one of those tiles.
+    if (!b.isDoorTile(facing.x, facing.y)) {
         notify("The door is on the front of the building.");
         return false;
     }
@@ -1549,9 +1602,8 @@ function drawInterior() {
     const px = offsetX + player.x * TS;
     const py = offsetY + player.y * TS;
     const pSpr = SPRITES['sprites.player'];
-    if (pSpr) {
-        image(pSpr, px, py - TS, TS, TS * 2);
-    } else {
+    const pMoving = (millis() - lastMoveTime) < 180;
+    if (!drawCharacterSprite(pSpr, px, py - TS, player.facing, pMoving)) {
         fill(0, 100, 255);
         rect(px, py - TS, TS, TS * 2);
     }
@@ -1612,25 +1664,14 @@ function drawInteriorTile(tile, sx, sy, TS) {
         if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
         const spr = SPRITES['tiles.' + tile.variant];
         if (spr) {
-            image(spr, sx, sy, TS, TS);
+            // Bed sprite is 16x32 (2 tiles tall). Bottom-anchored so the base sits
+            // on this floor tile and the headboard rises into the wall row above.
+            image(spr, sx, sy - TS, TS, TS * 2);
         } else {
             fill('#8B4513');
             rect(sx, sy, TS, TS);
             fill('#FFD700');
             rect(sx + 2, sy + 2, TS - 4, TS - 4);
-        }
-    } else if (tile.type === 'picnicblanket') {
-        // Grass base first
-        const grassSpr = SPRITES['tiles.grass'];
-        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
-        const spr = SPRITES['tiles.picnicblanket'];
-        if (spr) {
-            // Draw at native sprite size, bottom-left anchored to tile corner.
-            // Extends upward/rightward so the full blanket is visible.
-            image(spr, sx, sy + TS - spr.height, spr.width, spr.height);
-        } else {
-            fill('#E53935');
-            rect(sx, sy, TS, TS);
         }
     } else {
         // Fallback
@@ -2033,22 +2074,11 @@ function startNewGame() {
 
 // Spawn the player's starter shack just beside the spawn point
 function spawnPlayerShack() {
-    // Shack is 48x32 (3x2 tiles). Place it 2 tiles to the right of player spawn.
-    const sx = 52;
-    const sy = 49; // slightly above player so visible
-    // Clear building footprint plus 1 tile above (canopy) and 2 tiles below (exit path).
-    for (let dx = 0; dx < 3; dx++) {
-        for (let dy = -1; dy < 4; dy++) {
-            const tx = sx + dx, ty = sy + dy;
-            if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-            if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
-            const t = world.tiles[tx][ty];
-            if (t.type !== 'sea' && t.type !== 'beach') {
-                world.tiles[tx][ty] = { type: 'grass', variant: 0 };
-            }
-        }
-    }
-    buildings.push(new Building('shack', sx, sy, 'player'));
+    // Shack exterior is 8x5 tiles. Place it just right of the player spawn (50,50),
+    // so the player stands clear of it and the door faces open ground.
+    const b = new Building('shack', 52, 47, 'player');
+    clearBuildingFootprint(b);
+    buildings.push(b);
 }
 
 function saveGame() {
@@ -2240,6 +2270,79 @@ class Inventory {
     }
 }
 
+// ===== CHARACTER ANIMATION =====
+// Hybrid sprite system for the player and NPCs.
+//
+// A character image can be either:
+//   * a plain 16x32 still  -> animated with a horizontal flip (for facing left)
+//     and a gentle vertical "bob" while moving. No new art required.
+//   * a sprite SHEET of 16x32 frames -> rows = facing directions, columns =
+//     walk frames. Detected automatically from the image dimensions.
+//
+// Sheet row conventions (by number of rows):
+//   4 rows: 0=down, 1=left, 2=right, 3=up
+//   3 rows: 0=down, 1=up, 2=side  (side is mirrored for left vs right)
+//   1-2 rows: single-direction animation, mirrored for left
+// Columns are walk frames; column 0 is the idle pose.
+const CHAR_FW = 16;            // source frame width
+const CHAR_FH = 32;            // source frame height
+const WALK_FRAME_MS = 150;     // ms per animation frame
+const BOB_PATTERN = [0, -1, -2, -1]; // vertical bob offsets for still-image walk
+
+// Draw an image, optionally mirrored horizontally, optionally from a source rect.
+function drawSpriteMaybeFlipped(spr, dx, dy, dw, dh, flip, sx, sy, sw, sh) {
+    const hasSrc = (sx !== undefined);
+    if (!flip) {
+        if (hasSrc) image(spr, dx, dy, dw, dh, sx, sy, sw, sh);
+        else image(spr, dx, dy, dw, dh);
+        return;
+    }
+    push();
+    translate(dx + dw, dy);
+    scale(-1, 1);
+    if (hasSrc) image(spr, 0, 0, dw, dh, sx, sy, sw, sh);
+    else image(spr, 0, 0, dw, dh);
+    pop();
+}
+
+// Draw a character sprite at (dx,dy) as a TS-wide x 2*TS-tall figure.
+// facing: 'down'|'up'|'left'|'right'. moving: bool. Returns false if no sprite.
+function drawCharacterSprite(spr, dx, dy, facing, moving) {
+    if (!spr) return false;
+    const TS = CONFIG.TILE_SIZE;
+    const drawW = TS, drawH = TS * 2;
+    const cols = Math.max(1, Math.floor(spr.width / CHAR_FW));
+    const rows = Math.max(1, Math.floor(spr.height / CHAR_FH));
+    const phase = Math.floor(millis() / WALK_FRAME_MS);
+
+    // Plain single still image -> bob + flip.
+    // Convention: un-flipped art faces LEFT, so mirror when facing right.
+    if (cols <= 1 && rows <= 1) {
+        const bob = moving ? BOB_PATTERN[phase % BOB_PATTERN.length] : 0;
+        drawSpriteMaybeFlipped(spr, dx, dy + bob, drawW, drawH, facing === 'right');
+        return true;
+    }
+
+    // Sprite sheet -> choose row by facing, column by walk frame.
+    // Convention: side-row art faces LEFT, so mirror when facing right.
+    let row = 0, flip = false;
+    if (rows >= 4) {
+        row = { down: 0, left: 1, right: 2, up: 3 }[facing];
+        if (row === undefined) row = 0;
+    } else if (rows === 3) {
+        if (facing === 'up') row = 1;
+        else if (facing === 'left' || facing === 'right') { row = 2; flip = (facing === 'right'); }
+        else row = 0;
+    } else {
+        row = 0;
+        flip = (facing === 'right');
+    }
+    const frame = moving ? (phase % cols) : 0;
+    drawSpriteMaybeFlipped(spr, dx, dy, drawW, drawH, flip,
+        frame * CHAR_FW, row * CHAR_FH, CHAR_FW, CHAR_FH);
+    return true;
+}
+
 // Player class - simple blue square placeholder
 class Player {
     constructor(x, y) {
@@ -2291,11 +2394,10 @@ class Player {
         const screenY = this.y * CONFIG.TILE_SIZE - cameraY;
 
         const spr = SPRITES['sprites.player'];
-        if (spr) {
-            // Player is 1 tile wide, 2 tiles tall (drawn bottom-anchored).
-            // Feet are at (x, y); head/shoulders occupy the tile above.
-            image(spr, screenX, screenY - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
-        } else {
+        // Player is 1 tile wide, 2 tiles tall (drawn bottom-anchored).
+        // Considered "moving" briefly after each grid step.
+        const moving = (millis() - lastMoveTime) < 180;
+        if (!drawCharacterSprite(spr, screenX, screenY - CONFIG.TILE_SIZE, this.facing, moving)) {
             // Fallback: blue 2-tall figure
             fill(0, 100, 255);
             noStroke();

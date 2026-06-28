@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 8;
+const SAVE_VERSION = 9;
 const SAVE_KEY = 'cozyIslandSave';
 const MIGRATIONS = [
     // v1 → v2: added buildings
@@ -111,6 +111,11 @@ const MIGRATIONS = [
             }
         }
         return data;
+    },
+    // v8 -> v9: garden plots are now persisted
+    function(data) {
+        if (!data.gardenPlots) data.gardenPlots = {};
+        return data;
     }
     // Future migrations go here
 ];
@@ -133,7 +138,8 @@ function serializeGame() {
         cicadas: cicadas.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
         groundLoot: groundLoot.slice(),
         hog: hog ? hog.serialize() : null,
-        hogPoopTiles: hogPoopTiles.slice()
+        hogPoopTiles: hogPoopTiles.slice(),
+        gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {}
     };
 }
 
@@ -199,6 +205,11 @@ function deserializeGame(data) {
     if (data.hogPoopTiles) {
         hogPoopTiles = data.hogPoopTiles.slice();
     }
+
+    if (typeof gardenPlots !== 'undefined') {
+        gardenPlots = data.gardenPlots || {};
+    }
+    if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
 }
 
 function migrateSave(data) {

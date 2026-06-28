@@ -65,6 +65,18 @@ function invalidateFertileCache() { _fertileSet = null; }
 function plotKey(x, y) { return x + ',' + y; }
 function getPlot(x, y) { return gardenPlots[plotKey(x, y)] || null; }
 
+// Can a seed be planted at (x,y)? Plantable = open ground (plain grass) or
+// fertile soil, with nothing solid/built on it and no existing plot.
+function canPlantAt(x, y) {
+    if (!world || !world.tiles[x] || !world.tiles[x][y]) return false;
+    const tile = world.tiles[x][y];
+    if (tile.type !== 'grass' && !isFertile(x, y)) return false;
+    if (typeof isSolidTile === 'function' && isSolidTile(x, y)) return false;
+    if (typeof buildingAt === 'function' && buildingAt(x, y)) return false;
+    if (getPlot(x, y)) return false;
+    return true;
+}
+
 // ===== ACTIONS =====
 // Resolve a seed item id to a plant id. Returns null for unknown seeds.
 function resolvePlantType(seedId) {
@@ -80,25 +92,16 @@ function resolvePlantType(seedId) {
 // Plant a seed at (x,y). Consumes one seed from inventory.
 // Returns true on success. Notifies on failure reasons.
 function plantSeed(x, y, seedId) {
-    // Validate coords.
-    if (!world || !world.tiles[x] || !world.tiles[x][y]) {
-        notify("Can't plant here.");
-        return false;
-    }
-    // Must be fertile soil.
-    if (!isFertile(x, y)) {
-        notify("The soil here isn't tilled.");
-        return false;
-    }
-    // Must not already have a plot.
-    if (getPlot(x, y)) {
-        notify("Something's already growing here.");
-        return false;
-    }
-    // Resolve plant type.
+    // Resolve plant type first so we can reject non-seeds cleanly.
     const plantId = resolvePlantType(seedId);
     if (!plantId) {
         notify("That isn't a seed.");
+        return false;
+    }
+    // Must be plantable ground (open grass or fertile soil), nothing there yet.
+    if (!canPlantAt(x, y)) {
+        if (getPlot(x, y)) notify("Something's already growing here.");
+        else notify("You can't plant there.");
         return false;
     }
     // Consume the seed.
@@ -151,8 +154,23 @@ function tryPlantFromHotbar() {
     if (!isSeedItem(active.id)) return false;
     // Try to plant; if the spot is invalid, fall through (return false) so the
     // normal harvest path can run instead.
-    if (!isFertile(facing.x, facing.y)) return false;
+    if (!canPlantAt(facing.x, facing.y)) return false;
     return plantSeed(facing.x, facing.y, active.id);
+}
+
+// Use the currently active hotbar item on a target tile (e.g., a clicked tile).
+// The caller is responsible for confirming the tile is adjacent to the player.
+// Returns true if the item was used. This is the general "use selected item"
+// dispatch — extend it as more usable items are added.
+function tryUseActiveItemAt(tx, ty) {
+    if (!player || !inventory) return false;
+    const active = inventory.getActiveItem();
+    if (!active) return false;
+    // Seeds -> plant a sprout on open ground.
+    if (isSeedItem(active.id)) {
+        return plantSeed(tx, ty, active.id);
+    }
+    return false;
 }
 
 // Is this item id a plantable seed? (generic seed, berry, or mystery seed.)
@@ -237,8 +255,21 @@ function drawGardenOverlay() {
 
             const sx = x * TS - cameraX;
             const sy = y * TS - cameraY;
-            // Stage-progressive visual: seedling = tiny dot, sprout = small,
-            // mature = full circle + slight color shift.
+
+            // Stage 0 (freshly planted): show a little sprout.
+            // Uses the 'tiles.sprout' sprite if one has been added, otherwise a
+            // drawn placeholder (stem + two leaves).
+            if (plot.stage === 0) {
+                const sproutSpr = (typeof SPRITES !== 'undefined') ? SPRITES['tiles.sprout'] : null;
+                if (sproutSpr) {
+                    image(sproutSpr, sx, sy, TS, TS);
+                } else {
+                    drawSproutPlaceholder(sx, sy, TS);
+                }
+                continue;
+            }
+
+            // Later stages: growing bloom.
             const cx = sx + TS / 2;
             const cy = sy + TS / 2 + 2;
             const ratio = (plot.stage + 1) / def.stages; // 0.33..1
@@ -246,10 +277,8 @@ function drawGardenOverlay() {
 
             noStroke();
             // Stem
-            if (plot.stage > 0) {
-                fill('#558B2F');
-                rect(cx - 0.5, cy - r + 1, 1, r);
-            }
+            fill('#558B2F');
+            rect(cx - 0.5, cy - r + 1, 1, r);
             // Bloom
             fill(def.color);
             ellipse(cx, cy - r + 1, r * 2, r * 2);
@@ -260,6 +289,25 @@ function drawGardenOverlay() {
             }
         }
     }
+}
+
+// Placeholder sprout drawing: a short green stem with two small leaves,
+// rooted at the bottom-center of the tile. Replaced automatically once a
+// 'tiles.sprout' sprite (assets/tiles/sprout.png) is added.
+function drawSproutPlaceholder(sx, sy, TS) {
+    noStroke();
+    const cx = sx + TS / 2;
+    const baseY = sy + TS - 3;
+    // Stem
+    fill('#558B2F');
+    rect(cx - 0.5, baseY - 6, 1, 6);
+    // Two leaves
+    fill('#7CB342');
+    ellipse(cx - 2.5, baseY - 5, 4, 2.5);
+    ellipse(cx + 2.5, baseY - 5, 4, 2.5);
+    // Tiny top tip
+    fill('#9CCC65');
+    ellipse(cx, baseY - 7, 2, 2);
 }
 
 // ===== GARDENING TAB =====

@@ -83,6 +83,7 @@ class NPC {
         this.departureCounter = 0;
         this.animFrame = 0;
         this.daysOnIsland = 0;
+        this.lastMoveAt = 0;
     }
 
     update(dt, gameTime) {
@@ -97,6 +98,7 @@ class NPC {
                     this.gridX = nx;
                     this.gridY = ny;
                     this.facing = d[0] > 0 ? 'right' : d[0] < 0 ? 'left' : d[1] > 0 ? 'down' : 'up';
+                    this.lastMoveAt = millis();
                 }
             }
         }
@@ -110,9 +112,8 @@ class NPC {
         // Use per-NPC sprite if available, otherwise fall back to colored rectangle.
         const spriteKey = 'sprites.' + this.name.toLowerCase();
         const spr = SPRITES[spriteKey] || null;
-        if (spr) {
-            image(spr, sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
-        } else {
+        const moving = (millis() - (this.lastMoveAt || 0)) < 300;
+        if (!drawCharacterSprite(spr, sx, sy - CONFIG.TILE_SIZE, this.facing, moving)) {
             fill(this.color);
             noStroke();
             rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
@@ -199,20 +200,21 @@ function checkArrivals() {
 // Build shack for NPC on first night
 function buildNpcShack(npc) {
     if (npc.hasHome) return;
-    // Find clear spot near their current position
-    for (let attempts = 0; attempts < 50; attempts++) {
-        const sx = npc.gridX + Math.floor(Math.random() * 10 - 5);
-        const sy = npc.gridY + Math.floor(Math.random() * 10 - 5);
-        // Check 3x2 area is clear
+    // Shack footprint in tiles (matches the exterior sprite).
+    const dims = (typeof BUILDING_TIERS !== 'undefined' && BUILDING_TIERS.shack) ? BUILDING_TIERS.shack : { w: 8, h: 5 };
+    // Find a clear spot near their current position big enough for the shack.
+    for (let attempts = 0; attempts < 80; attempts++) {
+        const sx = npc.gridX + Math.floor(Math.random() * 12 - 6);
+        const sy = npc.gridY + Math.floor(Math.random() * 12 - 6);
+        // Check the full footprint is clear (no solids, no other buildings).
         let clear = true;
-        for (let dx = 0; dx < 3; dx++) {
-            for (let dy = 0; dy < 2; dy++) {
+        for (let dx = 0; dx < dims.w && clear; dx++) {
+            for (let dy = 0; dy < dims.h; dy++) {
                 const tx = sx + dx, ty = sy + dy;
-                if (tx < 1 || tx > 97 || ty < 1 || ty > 98) { clear = false; break; }
+                if (tx < 1 || tx > CONFIG.WORLD_WIDTH - 2 || ty < 1 || ty > CONFIG.WORLD_HEIGHT - 2) { clear = false; break; }
                 if (TILE_SOLID.has(world.tiles[tx][ty].type)) { clear = false; break; }
                 if (buildingAt(tx, ty)) { clear = false; break; }
             }
-            if (!clear) break;
         }
         if (clear) {
             const b = new Building('shack', sx, sy, npc.id);
@@ -220,16 +222,8 @@ function buildNpcShack(npc) {
             npc.hasHome = true;
             npc.hutX = sx;
             npc.hutY = sy;
-            // Clear 2 tiles below the door so the exit is always walkable.
-            const door = b.getDoorTile();
-            for (let clearDy = 1; clearDy <= 2; clearDy++) {
-                const cx = door.x, cy = door.y + clearDy;
-                if (cx >= 0 && cx < CONFIG.WORLD_WIDTH && cy >= 0 && cy < CONFIG.WORLD_HEIGHT &&
-                    world.tiles[cx] && world.tiles[cx][cy] &&
-                    world.tiles[cx][cy].type !== 'sea' && world.tiles[cx][cy].type !== 'beach') {
-                    world.tiles[cx][cy] = { type: 'grass', variant: 0 };
-                }
-            }
+            // Clear the footprint and exit path so the shack sits on grass.
+            if (typeof clearBuildingFootprint === 'function') clearBuildingFootprint(b);
             notify(npc.name + ' built a shack!');
             return;
         }
