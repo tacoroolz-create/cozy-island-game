@@ -395,11 +395,19 @@ function getDialogueTree() {
     if (!dialogueState.npc) return null;
     // Prefer custom character dialogue; fall back to personality-based generic tree.
     if (!dialogueState.npc._dialogueTree) {
-        const factory = CHARACTER_DIALOGUES[dialogueState.npc.name];
-        if (factory) {
-            dialogueState.npc._dialogueTree = factory();
+        // Prefer hand-written dialogue (from NPCConvo2.txt), then the
+        // procedurally-built character tree, then the generic fallback.
+        const name = dialogueState.npc.name;
+        if (typeof WRITTEN_DIALOGUES !== 'undefined' && WRITTEN_DIALOGUES[name]) {
+            // Deep-clone so per-conversation mutations (e.g. stink prefix) don't persist.
+            dialogueState.npc._dialogueTree = JSON.parse(JSON.stringify(WRITTEN_DIALOGUES[name]));
         } else {
-            dialogueState.npc._dialogueTree = generateDialogue(dialogueState.npc.personality, dialogueState.npc.name);
+            const factory = CHARACTER_DIALOGUES[name];
+            if (factory) {
+                dialogueState.npc._dialogueTree = factory();
+            } else {
+                dialogueState.npc._dialogueTree = generateDialogue(dialogueState.npc.personality, name);
+            }
         }
     }
     return dialogueState.npc._dialogueTree;
