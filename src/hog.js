@@ -18,6 +18,7 @@ class Hog {
         this.moveTimer = 0;
         this.frameTimer = 0;
         this.named = false;
+        this.facing = 'right';   // horizontal facing only; vertical moves don't change it
     }
 
     update(dt, gameMinutes) {
@@ -33,6 +34,9 @@ class Hog {
         if (nx >= 0 && nx < CONFIG.WORLD_WIDTH && ny >= 0 && ny < CONFIG.WORLD_HEIGHT) {
             const t = world.tiles[nx][ny];
             if (t && t.type === 'grass' && !isSolidTile(nx, ny) && !buildingAt(nx, ny) && !npcAt(nx, ny)) {
+                // Only horizontal movement flips his facing; vertical keeps the last one.
+                if (d[0] > 0) this.facing = 'right';
+                else if (d[0] < 0) this.facing = 'left';
                 this.gridX = nx;
                 this.gridY = ny;
             }
@@ -42,10 +46,21 @@ class Hog {
     draw() {
         const sx = this.gridX * CONFIG.TILE_SIZE - cameraX;
         const sy = this.gridY * CONFIG.TILE_SIZE - cameraY;
-        const spr = SPRITES['sprites.hog'];
-        const wobble = Math.sin(this.frameTimer * 0.005) * 1;
+        const TS = CONFIG.TILE_SIZE;
+        // hoggy.png is a 2-frame sheet (two 32×32 frames). The frames alternate slowly
+        // to read as breathing. He's drawn slightly larger than a tile, bottom-aligned.
+        const spr = SPRITES['sprites.hoggy'];
         if (spr) {
-            image(spr, sx, sy - CONFIG.TILE_SIZE + wobble, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+            const frame = Math.floor(this.frameTimer / 650) % 2;  // ~0.65s per breath frame
+            const fw = 32, fh = 32;          // source frame size in the sheet
+            const w = TS * 1.5, h = TS * 1.5; // on-screen size
+            const dx = sx + (TS - w) / 2, dy = sy + TS - h;
+            push();
+            // Sheet faces left by default; flip horizontally when facing right.
+            translate(dx + w / 2, dy + h / 2);
+            scale(this.facing === 'right' ? -1 : 1, 1);
+            image(spr, -w / 2, -h / 2, w, h, frame * fw, 0, fw, fh);
+            pop();
         } else {
             fill('#8B5A2B');
             noStroke();
@@ -99,7 +114,8 @@ class Hog {
             gridY: this.gridY,
             friendship: this.friendship,
             dailyFed: this.dailyFed,
-            named: this.named
+            named: this.named,
+            facing: this.facing
         };
     }
 
@@ -109,6 +125,7 @@ class Hog {
         h.friendship = data.friendship || 0;
         h.dailyFed = data.dailyFed || false;
         h.named = data.named || false;
+        h.facing = data.facing || 'right';
         return h;
     }
 }

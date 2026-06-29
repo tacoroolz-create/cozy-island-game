@@ -70,7 +70,7 @@ function getPlot(x, y) { return gardenPlots[plotKey(x, y)] || null; }
 function canPlantAt(x, y) {
     if (!world || !world.tiles[x] || !world.tiles[x][y]) return false;
     const tile = world.tiles[x][y];
-    if (tile.type !== 'grass' && !isFertile(x, y)) return false;
+    if (tile.type !== 'grass' && tile.type !== 'soil' && !isFertile(x, y)) return false;
     if (typeof isSolidTile === 'function' && isSolidTile(x, y)) return false;
     if (typeof buildingAt === 'function' && buildingAt(x, y)) return false;
     if (getPlot(x, y)) return false;
@@ -333,6 +333,12 @@ function drawGardeningTab(x, y, w, h) {
         text('No seeds in inventory.', x, listY);
         text('Find seeds by harvesting flowers,', x, listY + 10);
         text('bird poop, or weeds.', x, listY + 20);
+        // Garden Day extra hint
+        const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+        if (holiday && holiday.name === 'Garden Day') {
+            fill(255, 255, 150);
+            text('It\'s Garden Day! Hoes never break — till freely.', x, listY + 34);
+        }
         return;
     }
 
@@ -363,7 +369,12 @@ function drawGardeningTab(x, y, w, h) {
     fill(120);
     textSize(7);
     textAlign(LEFT, BOTTOM);
-    text('Tip: till grass with a hoe to make soil.', x, y + h - 2);
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (holiday && holiday.name === 'Garden Day') {
+        text('Tip: till grass with a hoe to make soil. Hoes never break today!', x, y + h - 2);
+    } else {
+        text('Tip: till grass with a hoe to make soil.', x, y + h - 2);
+    }
 }
 
 // Collect distinct seed item ids + counts currently in inventory.

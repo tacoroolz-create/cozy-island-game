@@ -16,6 +16,35 @@ let dialogueState = {
     advancedSelected: 0
 };
 
+// ===== HOLIDAY GREETING HELPER =====
+// Returns a short holiday-themed prefix that NPCs prepend to the start of any
+// conversation. Each holiday gets its own comment bank; names hash to a stable
+// comment per NPC so the same character isn't random from sentence to sentence.
+function getHolidayGreetingPrefix(name) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday) return '';
+    let comments;
+    if (holiday.name === 'Garden Day') {
+        comments = [
+            "I've been saving my seeds all year!",
+            "I ate sunflower seeds. Does that count?",
+            "Today I'm planting everything. Even the spoons if they sprout.",
+            "My pockets are full of seed packets and optimism.",
+            "The soil feels extra wiggly today. I think it's excited, too."
+        ];
+    } else {
+        comments = [
+            `Can you believe today is ${holiday.name}? I already started my preparations.`,
+            `Hard to focus with ${holiday.name} going on. It's honestly beautiful.`,
+            `I'm ${name}, and yes, I'm observing ${holiday.name} properly this year.`,
+            `${holiday.name} always sneaks up on me. You celebrating?`,
+            `Between you and me, ${holiday.name} is my favorite nonsense.`
+        ];
+    }
+    const idx = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % comments.length;
+    return comments[idx] + ' ';
+}
+
 // ===== PER-CHARACTER DIALOGUE TREES =====
 // Built from the CharacterDraft.txt cast. Each character gets at least 5 nodes.
 
@@ -41,15 +70,8 @@ function makeCharacterTree(name, species, personality, description) {
     let holidayComment = '';
     let holidayChoices = [];
     if (holiday) {
-        const comments = [
-            `Can you believe today is ${holiday.name}? I already started my preparations.`,
-            `Hard to focus with ${holiday.name} going on. It's honestly beautiful.`,
-            `I'm ${name}, and yes, I'm observing ${holiday.name} properly this year.`,
-            `${holiday.name} always sneaks up on me. You celebrating?`,
-            `Between you and me, ${holiday.name} is my favorite nonsense.`
-        ];
-        holidayComment = comments[Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % comments.length];
-        holidayPrefix = holidayComment + ' ';
+        holidayComment = getHolidayGreetingPrefix(name).trim();
+        holidayPrefix = holidayComment ? holidayComment + ' ' : '';
         holidayChoices = [{ text: `What happens on ${holiday.name}?`, next: 'holiday', friendshipDelta: 0 }];
     }
 
@@ -62,9 +84,14 @@ function makeCharacterTree(name, species, personality, description) {
     // Topic D: advice/wisdom
     const adviceText = `My advice? Stay curious, keep a snack handy, and never trust a door that opens both ways.`;
     // Topic E: holiday-specific blurb
-    const holidayText = holiday
-        ? `${holiday.name}: ${holiday.desc} I'd tell you more, but I think experiencing it is half the fun.`
-        : `No holiday today. Just a regular, wonderfully strange island day.`;
+    let holidayText;
+    if (holiday && holiday.name === 'Garden Day') {
+        holidayText = `${holiday.name}: ${holiday.desc} Best news: hoes never break today, so till until your thumbs turn green.`;
+    } else if (holiday) {
+        holidayText = `${holiday.name}: ${holiday.desc} I'd tell you more, but I think experiencing it is half the fun.`;
+    } else {
+        holidayText = `No holiday today. Just a regular, wonderfully strange island day.`;
+    }
 
     const startChoices = [
         { text: "Tell me about yourself.", next: 'about', friendshipDelta: 0 },
@@ -320,6 +347,14 @@ function openDialogue(npc) {
     if (tree && tree.start && stinkPrefix) {
         tree.start.text = stinkPrefix + tree.start.text;
     }
+
+    // Inject a holiday greeting prefix for all conversations on a holiday.
+    if (tree && tree.start) {
+        const holidayPrefix = getHolidayGreetingPrefix(npc.name);
+        if (holidayPrefix) {
+            tree.start.text = holidayPrefix + tree.start.text;
+        }
+    }
 }
 
 function openAdvancedMenu(npc) {
@@ -328,7 +363,22 @@ function openAdvancedMenu(npc) {
     dialogueState.advancedMenu = true;
     dialogueState.advancedSelected = 0;
     dialogueState.advancedOptions = [
-        { text: 'Talk', action: () => { dialogueState.advancedMenu = false; dialogueState.currentNode = 'start'; dialogueState.textRevealed = 0; dialogueState.selectedChoice = 0; dialogueState.choicesVisible = false; npc.gainTalk(); } },
+        { text: 'Talk', action: () => {
+            dialogueState.advancedMenu = false;
+            dialogueState.currentNode = 'start';
+            dialogueState.textRevealed = 0;
+            dialogueState.selectedChoice = 0;
+            dialogueState.choicesVisible = false;
+            npc.gainTalk();
+            // Re-apply holiday greeting to the start node when re-entering talk.
+            const tree = getDialogueTree();
+            if (tree && tree.start) {
+                const holidayPrefix = getHolidayGreetingPrefix(npc.name);
+                if (holidayPrefix && !tree.start.text.startsWith(holidayPrefix.trim())) {
+                    tree.start.text = holidayPrefix + tree.start.text;
+                }
+            }
+        } },
         { text: 'Give Gift', action: () => { dialogueState.advancedMenu = false; giveGift(npc); } },
         { text: 'Challenge to Game', action: () => { dialogueState.advancedMenu = false; startMinigame(npc); } },
         { text: 'Cancel', action: () => { closeDialogue(); } }
@@ -345,7 +395,7 @@ function giveGift(npc) {
     }
     // Generic gift value based on category
     const item = ITEMS[active.id];
-    let value = item.category === 'food' ? 3 : item.category === 'material' ? 1 : 5;
+    let value = item.category === 'food' ? 9 : item.category === 'material' ? 3 : 15;
     inventory.removeItem(active.id, 1);
     npc.gainGift(value);
     notify('Gave ' + item.name + ' to ' + npc.name + '! (+' + value + ' friendship)');
@@ -606,7 +656,7 @@ function selectDialogueChoice(i) {
     if (!node || !node.choices[i]) return;
     const choice = node.choices[i];
     if (choice.friendshipDelta) {
-        dialogueState.npc.friendship = Math.min(10, dialogueState.npc.friendship + choice.friendshipDelta);
+        dialogueState.npc.friendship = Math.min(300, dialogueState.npc.friendship + choice.friendshipDelta * 3);
     }
     if (choice.next === null) {
         closeDialogue();

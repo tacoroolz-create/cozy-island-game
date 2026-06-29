@@ -1,0 +1,30 @@
+Holiday Name                  | Runnable? | Notes
+------------------------------------------------------------
+Backwards Hats Day             | No       | No specific code found
+Compliment a Crab Day          | Yes      | Implemented
+Talk Like an Eagle Day         | Yes      | Implemented
+Toast Toss Tournament          | Yes      | Implemented
+Garden Day                     | Yes      | Implemented
+Tinfoil Crown Parade           | No       | No specific code found
+Spoon Appreciation Day         | No       | No specific code found
+Mismatched Sock March          | No       | No specific code found
+Talk Like a Boat Day           | No       | No specific code found
+Left-Handed High-Fives         | No       | No specific code found
+Invisible Ladder Week-start    | No       | No specific code found
+Pinecone Prom                  | No       | No specific code found
+Gargle-the-News Hour           | No       | No specific code found
+Suspicious Pebble Day          | No       | No specific code found
+Mandatory Nap Interlude        | No       | No specific code found
+Bucket on the Head Eve         | No       | No specific code found
+Lawn Mumble Day                | No       | No specific code found
+Pet Rock Adoption Fair         | No       | No specific code found
+Opposite Compliment Day        | No       | No specific code found
+One Big Scarf Festival         | No       | No specific code found
+Door-Holding Olympics          | No       | No specific code found
+Fruit Apology Day              | No       | No specific code found
+Humming in Unison Hour         | No       | No specific code found
+Cloud-Naming Congress          | No       | No specific code found
+Tied-Shoe Celebration          | No       | No specific code found
+The Great Blink-Off            | No       | No specific code found
+Jellybean Council              | No       | No specific code found
+Hat-Stacking Jubilee           | No       | No specific code found

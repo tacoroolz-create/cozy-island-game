@@ -33,7 +33,7 @@ const HOLIDAYS = [
     { name: 'Compliment a Crab Day',  desc: 'Beach crabs receive one mandatory sincere compliment before noon.' },
     { name: 'Talk Like an Eagle Day', desc: 'All islanders must begin every sentence with a mighty "Kyaaaaa!"' },
     { name: 'Toast Toss Tournament',  desc: 'Beach targets appear and islanders throw stale toast for prizes.' },
-    { name: 'Silent Shouting Day',    desc: 'Residents mouth their excitement very widely but make no sound.' },
+    { name: 'Garden Day',             desc: 'A day for the player and neighbors to start gardens. Hoes have unlimited durability and everyone has dirt on their mind.' },
     { name: 'Tinfoil Crown Parade',   desc: 'Whoever crafts the shiniest foil crown becomes honorary mayor until sunset.' },
     { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
     { name: 'Mismatched Sock March',  desc: 'Islanders march in pairs wearing deliberately mismatched socks.' },
@@ -122,6 +122,11 @@ function onNewDay() {
                     inventory.addItem('stale_toast', 5);
                     notify('You received 5 Stale Toast for the tournament!', 3000);
                 }
+            }
+            if (holiday.name === 'Garden Day' && typeof inventory !== 'undefined') {
+                // Give the player a starter seed pack for the community planting day.
+                inventory.addItem('seed', 3);
+                notify('Garden Day seed pack: +3 seeds! Grab a hoe and join the fun.', 3500);
             }
         }
     } else if (isSeasonStart) {

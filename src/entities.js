@@ -135,18 +135,18 @@ class NPC {
 
     gainTalk() {
         if (!this.dailyTalked) {
-            this.friendship = Math.min(10, this.friendship + 1);
+            this.friendship = Math.min(300, this.friendship + 3);
             this.dailyTalked = true;
         }
     }
 
     gainGift(value) {
-        this.friendship = Math.min(10, this.friendship + value);
+        this.friendship = Math.min(300, this.friendship + value);
     }
 
-    lossRude() { this.friendship = Math.max(0, this.friendship - 1); }
-    lossIgnored() { this.friendship = Math.max(0, this.friendship - 2); }
-    lossToolUsed() { this.friendship = Math.max(0, this.friendship - 3); }
+    lossRude() { this.friendship = Math.max(0, this.friendship - 3); }
+    lossIgnored() { this.friendship = Math.max(0, this.friendship - 6); }
+    lossToolUsed() { this.friendship = Math.max(0, this.friendship - 9); }
 
     serialize() {
         return {
@@ -235,10 +235,11 @@ function onNpcNewDay() {
     for (const npc of npcs) {
         npc.daysOnIsland++;
         npc.dailyTalked = false;
-        // Build shack on first night if homeless
-        if (!npc.hasHome) buildNpcShack(npc);
-        // Departure check
-        if (npc.friendship < 3) {
+        // Departure check — homeless neighbors leave after 14 days without shelter
+        if (!npc.hasHome && npc.daysOnIsland >= 14) {
+            npc.isPresent = false;
+            notify(npc.name + ' gave up waiting for a home and left the island...');
+        } else if (npc.friendship < 90) {
             npc.departureCounter++;
             if (npc.departureCounter >= 10) {
                 npc.isPresent = false;
@@ -295,19 +296,28 @@ function drawFriendsTab(x, y, w, h) {
         textSize(9);
         text(npc.name, x + 22, rowY);
 
-        // Friendship hearts (0-10)
+        // Friendship hearts (0-10 display, 300 max)
         fill(120);
         textSize(7);
         let hearts = '';
+        const filledHearts = Math.floor(npc.friendship / 30);
         for (let i = 0; i < 10; i++) {
-            hearts += i < Math.floor(npc.friendship) ? '\u2665' : '\u2661';
+            hearts += i < filledHearts ? '\u2665' : '\u2661';
         }
-        fill(npc.friendship >= 10 ? '#FFD700' : npc.friendship >= 3 ? '#E91E63' : '#888');
+        fill(npc.friendship >= 300 ? '#FFD700' : npc.friendship >= 90 ? '#E91E63' : '#888');
         text(hearts, x + 22, rowY + 10);
 
         fill(100);
         textSize(6);
-        text('Day ' + npc.daysOnIsland + (npc.hasHome ? '  Has shack' : '  Homeless'), x + 22, rowY + 20);
+        let shelterLabel = npc.hasHome ? '  Has shack' : '  Homeless';
+        if (!npc.hasHome && npc.daysOnIsland >= 3) {
+            const daysLeft = 14 - npc.daysOnIsland;
+            shelterLabel = daysLeft > 0
+                ? '  Needs shelter! (' + daysLeft + 'd left)'
+                : '  Leaving soon!';
+            fill('#FF8A80');
+        }
+        text('Day ' + npc.daysOnIsland + shelterLabel, x + 22, rowY + 20);
 
         rowY += 28;
         if (rowY > y + h - 20) break;
