@@ -320,8 +320,23 @@ const BUILDING_TIERS = {
     // act as the entrance. interiorW/interiorFloorRows = interior size (floor rows
     // are in addition to INTERIOR_WALL_HEIGHT wall rows on top).
     shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 5, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x80 sprite
-    house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 }   // 64x64 sprite
+    house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 },   // 64x64 sprite
+    // --- Underground city buildings (PLACEHOLDERS) ---
+    // No sprites yet: Building.draw falls back to a colored block tinted by
+    // `color`. Same footprint/interior as the shack. Rename/reskin later.
+    ug_shop:    { spriteKey: 'sprites.ug_shop',    name: 'General Store', color: '#7E5A9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_inn:     { spriteKey: 'sprites.ug_inn',     name: 'Inn',           color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_forge:   { spriteKey: 'sprites.ug_forge',   name: 'Forge',         color: '#9B5A5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_library: { spriteKey: 'sprites.ug_library', name: 'Library',       color: '#5A9B6E', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_market:  { spriteKey: 'sprites.ug_market',  name: 'Market',        color: '#9B8B5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_temple:  { spriteKey: 'sprites.ug_temple',  name: 'Temple',        color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_tavern:  { spriteKey: 'sprites.ug_tavern',  name: 'Tavern',        color: '#9B6E5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_guild:   { spriteKey: 'sprites.ug_guild',   name: 'Guild Hall',    color: '#6E5A9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 }
 };
+
+// The eight possible underground buildings; 3 are placed at city creation.
+const UNDERGROUND_BUILDING_TYPES = ['ug_shop', 'ug_inn', 'ug_forge', 'ug_library', 'ug_market', 'ug_temple', 'ug_tavern', 'ug_guild'];
+const UNDERGROUND_BUILDINGS_AT_CREATION = 3;
 
 // Interior wall height (top wall area for decoration)
 const INTERIOR_WALL_HEIGHT = 2;
@@ -445,11 +460,27 @@ class Building {
         if (spr) {
             image(spr, screenX, screenY);
         } else {
-            // Fallback: brown rectangle
-            fill('#8B4513');
-            noStroke();
+            // Fallback: a colored block (tier `color`, else brown) with a doorway
+            // and a name label so placeholder buildings are distinguishable.
+            const def = BUILDING_TIERS[this.type] || {};
             const ts = this.tileSize;
-            rect(screenX, screenY, ts.w * CONFIG.TILE_SIZE, ts.h * CONFIG.TILE_SIZE);
+            const w = ts.w * CONFIG.TILE_SIZE, h = ts.h * CONFIG.TILE_SIZE;
+            noStroke();
+            fill(def.color || '#8B4513');
+            rect(screenX, screenY, w, h);
+            // Roof band + dark doorway at bottom-center.
+            fill(0, 0, 0, 40);
+            rect(screenX, screenY, w, CONFIG.TILE_SIZE);
+            fill('#241C16');
+            const doorTiles = (def.doorWidth || 1) * CONFIG.TILE_SIZE;
+            rect(screenX + (w - doorTiles) / 2, screenY + h - CONFIG.TILE_SIZE * 1.5, doorTiles, CONFIG.TILE_SIZE * 1.5);
+            if (def.name) {
+                fill(255);
+                textSize(8);
+                textAlign(CENTER, CENTER);
+                text(def.name, screenX + w / 2, screenY + h / 2 - 4);
+                textAlign(LEFT, BASELINE);
+            }
         }
     }
 
@@ -3782,6 +3813,16 @@ const UNDERGROUND_FOUNDATIONS = [
     { x: 12, y: 50 }, { x: 30, y: 50 }, { x: 48, y: 50 }, { x: 66, y: 50 },
 ];
 
+// Return a shuffled copy of an array (Fisher-Yates, using p5's random()).
+function shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = floor(random(i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 class World {
     constructor(kind = 'island', id = null) {
         this.kind = kind;          // 'island' | 'underground' (drives generation)
@@ -3794,7 +3835,9 @@ class World {
         this.entities = null;      // parked per-map entity globals (see parkActiveMap)
 
         if (kind === 'underground') this.generateUnderground();
-        else this.generateWorld();
+        else if (kind === 'island') this.generateWorld();
+        // Other kinds (e.g. 'blank' when rebuilding a map from a save) skip
+        // generation; the caller fills in tiles/entities.
     }
 
     // The underground city: a fixed cavern (rock border, stone floor) with eight
@@ -3831,6 +3874,33 @@ class World {
             target: { map: 'island', x: ISLAND_CAVE_ENTRY.x, y: ISLAND_CAVE_ENTRY.y, facing: 'down',
                       label: 'You climb back to the surface.' }
         };
+
+        // Place a random 3 of the 8 possible buildings on 3 of the 8 foundations.
+        // The rest are added later via quests. Buildings live on this map's parked
+        // entity list so they appear when the player travels here.
+        const types = shuffled(UNDERGROUND_BUILDING_TYPES).slice(0, UNDERGROUND_BUILDINGS_AT_CREATION);
+        const pads = shuffled(UNDERGROUND_FOUNDATIONS.map((_, i) => i)).slice(0, UNDERGROUND_BUILDINGS_AT_CREATION);
+        const placed = [];
+        for (let i = 0; i < types.length; i++) {
+            const b = this.placeBuildingOnFoundation(types[i], pads[i]);
+            if (b) placed.push(b);
+        }
+        this.entities = { buildings: placed };
+    }
+
+    // Build a placeholder building centered on foundation pad #padIndex. The
+    // door faces down onto open foundation; no terrain clearing (it sits on the
+    // stone pad). Returns the Building, or null if the pad is invalid.
+    placeBuildingOnFoundation(type, padIndex) {
+        const pad = UNDERGROUND_FOUNDATIONS[padIndex];
+        if (!pad) return null;
+        const def = BUILDING_TIERS[type] || {};
+        const bw = def.w || 6, bh = def.h || 4;
+        const gx = pad.x + Math.floor((UNDERGROUND_PAD_W - bw) / 2);
+        const gy = pad.y; // top-aligned, leaving foundation below the door
+        const b = new Building(type, gx, gy, null);
+        b.padIndex = padIndex;
+        return b;
     }
 
     generateWorld() {

@@ -174,9 +174,9 @@ function serializeGame() {
     // in so the entity-global serialization below captures the island, never the
     // transient map. No frame renders between the swaps, so it's invisible.
     const activeMap = (typeof currentMapId !== 'undefined') ? currentMapId : 'island';
+    if (typeof parkActiveMap === 'function') parkActiveMap(); // snapshot active entities
     let swappedOut = null;
     if (activeMap !== 'island' && typeof maps !== 'undefined' && maps.island) {
-        parkActiveMap();
         swappedOut = activeMap;
         currentMapId = 'island';
         world = maps.island;
@@ -203,9 +203,25 @@ function serializeGame() {
         hogPoopTiles: hogPoopTiles.slice(),
         gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {}
     };
+    // Persist any non-island maps (e.g. the underground city) so their layout
+    // and placed buildings are stable across save/load. Entities were parked at
+    // the top, so each map's `entities` holds its current buildings.
+    data.extraMaps = {};
+    if (typeof maps !== 'undefined') {
+        for (const id in maps) {
+            if (id === 'island') continue;
+            const m = maps[id];
+            const ents = m.entities || {};
+            data.extraMaps[id] = {
+                kind: m.kind,
+                day: m.day, season: m.season, timeMinutes: m.timeMinutes,
+                tiles: m.tiles,
+                buildings: (ents.buildings || []).map(b => b.serialize())
+            };
+        }
+    }
     // Restore the map the player was actually standing in.
     if (swappedOut) {
-        parkActiveMap();
         currentMapId = swappedOut;
         world = maps[swappedOut];
         loadMapEntities(world);
@@ -219,9 +235,21 @@ function deserializeGame(data) {
 
     world = new World('island', 'island');
     world.deserialize(data.world);
-    // Reset the map registry to just the island; other maps regenerate on entry.
+    // Reset the map registry to just the island, then restore any saved extra
+    // maps (e.g. the underground city) so their layout/buildings are preserved.
     maps = { island: world };
     currentMapId = 'island';
+    if (data.extraMaps) {
+        for (const id in data.extraMaps) {
+            const md = data.extraMaps[id];
+            const m = new World('blank', id);   // 'blank' skips generation
+            m.kind = md.kind || id;
+            m.tiles = md.tiles;
+            m.day = md.day; m.season = md.season; m.timeMinutes = md.timeMinutes;
+            m.entities = { buildings: (md.buildings || []).map(bd => Building.deserialize(bd)) };
+            maps[id] = m;
+        }
+    }
 
     inventory = new Inventory();
     if (data.inventory) inventory.deserialize(data.inventory);
