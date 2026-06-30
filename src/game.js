@@ -35,7 +35,13 @@ const CONFIG = {
 // closest whole-tile step to +10%). The grass interior is unchanged (still starts at
 // edge 11), so all of the added land becomes beach: the beach ring thickens from 3 to 5.
 const ISLAND = { SEA_MARGIN: 6, BEACH_THICKNESS: 5 };
-const INLAND_TREE_BEACH_BUFFER = 5;
+// Non-beach decorations (trees, rocks, weeds, flowers, bird poop) must keep at
+// least this many tiles of clearance from the beach, so they never render across
+// the grass/sand seam where the edge tiles can't blend them.
+const NONBEACH_BEACH_BUFFER = 10;
+// Beach decorations (palms, banana trees) sit within this many tiles of the
+// water — the outer edge of the beach — and away from the grass line.
+const BEACH_FEATURE_WATER_DIST = 2;
 function islandZone(x, y) {
     const edge = Math.min(x, CONFIG.WORLD_WIDTH - 1 - x, y, CONFIG.WORLD_HEIGHT - 1 - y);
     if (edge < ISLAND.SEA_MARGIN) return 'sea';
@@ -43,16 +49,19 @@ function islandZone(x, y) {
     return 'grass';
 }
 
-function isNearBeach(x, y, radius) {
+// True if any tile of `zone` lies within `radius` (Chebyshev) of (x, y).
+function isNearZone(x, y, radius, zone) {
     for (let dx = -radius; dx <= radius; dx++) {
         for (let dy = -radius; dy <= radius; dy++) {
             const nx = x + dx, ny = y + dy;
             if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
-            if (islandZone(nx, ny) === 'beach') return true;
+            if (islandZone(nx, ny) === zone) return true;
         }
     }
     return false;
 }
+function isNearBeach(x, y, radius) { return isNearZone(x, y, radius, 'beach'); }
+function isNearSea(x, y, radius)   { return isNearZone(x, y, radius, 'sea'); }
 
 // Sprite registry - holds loaded p5.Image objects, null if not loaded
 const SPRITES = {};
@@ -3002,6 +3011,7 @@ function spawnBirdPoop(targetCount) {
         const y = floor(random(CONFIG.WORLD_HEIGHT));
         const tile = world.tiles[x][y];
         if (!tile || tile.type !== 'grass') continue;
+        if (isNearBeach(x, y, NONBEACH_BEACH_BUFFER)) continue; // non-beach item: stay inland
         if (isSolidTile(x, y)) continue;
         if (buildingAt(x, y)) continue;
         if (x === px && y === py) continue;
@@ -3558,7 +3568,13 @@ class Player {
 // carving rounded corners. "Height" is water (0) < beach (1) < land (2). A
 // higher tile that meets lower terrain on two sides of a corner gets that corner
 // rounded off with the lower terrain's color. Collision is unaffected.
-let ROUND_TERRAIN = true;
+//
+// DISABLED: the sea↔beach transition is now drawn by the waves.png corner/shore
+// sprites and the beach↔grass transition by the beach_edge.png overlay. Beach
+// borders every terrain boundary, so this geometric rounding only fought those
+// custom tiles — leaving artifacts at the sand corners. Off means plain, full
+// beach tiles in the corners, which is what the custom edge tiles expect.
+let ROUND_TERRAIN = false;
 
 // Approximate palette used to carve corners (close to the tile sprites).
 const TERRAIN_EDGE_COLORS = { 0: '#4A90C8', 1: '#F4E4BC', 2: '#7CB342' };
@@ -3706,12 +3722,13 @@ class World {
 
                 // Only decorate grass interior; skip sea and (mostly-empty) beach.
                 if (islandZone(tx, ty) !== 'grass') continue;
+                // These are all non-beach decorations, so keep them well inland of
+                // the beach line (NONBEACH_BEACH_BUFFER) to avoid grass/sand seams.
+                if (isNearBeach(tx, ty, NONBEACH_BEACH_BUFFER)) continue;
                 // Interior - 1 decoration per cell, ~80% chance (some cells stay empty)
                 if (random() < 0.8) {
                     const type = random(decorations);
-                    if (type === 'tree' || type === 'fir_tree') {
-                        if (!isNearBeach(tx, ty, INLAND_TREE_BEACH_BUFFER)) this.placeTree(tx, ty, type);
-                    }
+                    if (type === 'tree' || type === 'fir_tree') this.placeTree(tx, ty, type);
                     else if (type === 'rock') this.tiles[tx][ty] = { type: 'rock', variant: floor(random(2)) };
                     else if (type === 'shiny_rock') this.tiles[tx][ty] = { type: 'shiny_rock', variant: 0 };
                     else if (type === 'weeds') this.tiles[tx][ty] = { type: 'weeds', variant: floor(random(2)) };
@@ -3728,6 +3745,7 @@ class World {
             const rx = 15 + floor(random(70));
             const ry = 15 + floor(random(70));
             if (islandZone(rx, ry) !== 'grass') continue; // interior only
+            if (isNearBeach(rx, ry, NONBEACH_BEACH_BUFFER)) continue; // keep clear of the beach
             if (this.tiles[rx][ry].type !== 'grass') continue; // only on open grass
             // Rosebushes are 1-tall, solid, harvested (destroyed) for a rose.
             this.tiles[rx][ry] = { type: 'rosebush', variant: 0 };
@@ -3742,6 +3760,7 @@ class World {
             const tx2 = 15 + floor(random(70));
             const ty2 = 15 + floor(random(70));
             if (islandZone(tx2, ty2) !== 'grass') continue; // interior only
+            if (isNearBeach(tx2, ty2, NONBEACH_BEACH_BUFFER)) continue; // keep clear of the beach
             if (this.tiles[tx2][ty2].type !== 'grass') continue; // only on open grass
             this.tiles[tx2][ty2] = { type: 'tulip', variant: floor(random(2)) };
             tulipsPlaced++;
@@ -3756,6 +3775,9 @@ class World {
             const by = floor(random(CONFIG.WORLD_HEIGHT));
             if (islandZone(bx, by) !== 'beach') continue;
             if (this.tiles[bx][by].type !== 'beach') continue;
+            // Beach features hug the water — only the outer couple of beach tiles,
+            // never up against the grass line.
+            if (!isNearSea(bx, by, BEACH_FEATURE_WATER_DIST)) continue;
             const treeType = random() < 0.5 ? 'banana_tree' : 'palm_tree';
             const before = this.tiles[bx][by].type;
             const beachTreeSpacing = 10;
