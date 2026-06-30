@@ -7,7 +7,7 @@ Toast Toss Tournament          | Yes      | Implemented
 Garden Day                     | Yes      | Implemented
 Tinfoil Crown Parade           | No       | No specific code found
 Spoon Appreciation Day         | No       | No specific code found
-Mismatched Sock March          | No       | No specific code found
+Ab Appreciation Day            | Yes      | Yogatron NPC gives Protein Shakes
 Talk Like a Boat Day           | No       | No specific code found
 Left-Handed High-Fives         | No       | No specific code found
 Invisible Ladder Week-start    | No       | No specific code found

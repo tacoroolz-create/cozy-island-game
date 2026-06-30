@@ -36,7 +36,7 @@ const HOLIDAYS = [
     { name: 'Garden Day',             desc: 'A day for the player and neighbors to start gardens. Hoes have unlimited durability and everyone has dirt on their mind.' },
     { name: 'Tinfoil Crown Parade',   desc: 'Whoever crafts the shiniest foil crown becomes honorary mayor until sunset.' },
     { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
-    { name: 'Mismatched Sock March',  desc: 'Islanders march in pairs wearing deliberately mismatched socks.' },
+    { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
     { name: 'Talk Like a Boat Day',  desc: 'Everyone creaks gently and refers to themselves as "the vessel".' },
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
     { name: 'Invisible Ladder Week-start', desc: 'Residents pretend to climb invisible ladders for the first hour after sunrise.' },
@@ -127,6 +127,9 @@ function onNewDay() {
                 // Give the player a starter seed pack for the community planting day.
                 inventory.addItem('seed', 3);
                 notify('Garden Day seed pack: +3 seeds! Grab a hoe and join the fun.', 3500);
+            }
+            if (holiday.name === 'Ab Appreciation Day') {
+                spawnYogatron();
             }
         }
     } else if (isSeasonStart) {

@@ -49,7 +49,7 @@ class Hog {
         const TS = CONFIG.TILE_SIZE;
         // hoggy.png is a 2-frame sheet (two 32×32 frames). The frames alternate slowly
         // to read as breathing. He's drawn slightly larger than a tile, bottom-aligned.
-        const spr = SPRITES['sprites.hoggy'];
+        const spr = SPRITES['sprites.hog'];
         if (spr) {
             const frame = Math.floor(this.frameTimer / 650) % 2;  // ~0.65s per breath frame
             const fw = 32, fh = 32;          // source frame size in the sheet

@@ -25,18 +25,52 @@ const CONFIG = {
     DAY_LENGTH_MINUTES: 30
 };
 
+// Island shape: the island is a centered rectangle. Tiles within SEA_MARGIN of the
+// world edge are open ocean; the next BEACH_THICKNESS ring is sandy beach; everything
+// inside that is grass. "Edge distance" is measured to the nearest world edge, so the
+// coastline is a clean rectangle rather than a circle.
+//
+// The land is a square of side (WORLD_WIDTH - 2*SEA_MARGIN). Dropping SEA_MARGIN from 8
+// to 6 grows that side from 84 to 88 tiles — land area 7056 -> 7744, about +9.75% (the
+// closest whole-tile step to +10%). The grass interior is unchanged (still starts at
+// edge 11), so all of the added land becomes beach: the beach ring thickens from 3 to 5.
+const ISLAND = { SEA_MARGIN: 6, BEACH_THICKNESS: 5 };
+const INLAND_TREE_BEACH_BUFFER = 5;
+function islandZone(x, y) {
+    const edge = Math.min(x, CONFIG.WORLD_WIDTH - 1 - x, y, CONFIG.WORLD_HEIGHT - 1 - y);
+    if (edge < ISLAND.SEA_MARGIN) return 'sea';
+    if (edge < ISLAND.SEA_MARGIN + ISLAND.BEACH_THICKNESS) return 'beach';
+    return 'grass';
+}
+
+function isNearBeach(x, y, radius) {
+    for (let dx = -radius; dx <= radius; dx++) {
+        for (let dy = -radius; dy <= radius; dy++) {
+            const nx = x + dx, ny = y + dy;
+            if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
+            if (islandZone(nx, ny) === 'beach') return true;
+        }
+    }
+    return false;
+}
+
 // Sprite registry - holds loaded p5.Image objects, null if not loaded
 const SPRITES = {};
 const SPRITE_DEFS = {
     'tiles.grass':            'assets/tiles/grass.png',
     'tiles.beach':            'assets/tiles/beach.png',
+    'tiles.beach_edge':       'assets/tiles/beach_edge.png',
     'tiles.water':            'assets/tiles/water.png',
     'tiles.tree':             'assets/tiles/tree.png',
+    'tiles.fir_tree':         'assets/tiles/fir_tree.png',
+    'tiles.banana_tree':      'assets/tiles/banana_tree.png',
+    'tiles.palm_tree':        'assets/tiles/palm_tree.png',
     'tiles.rock':             'assets/tiles/rock.png',
     'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
     'tiles.weeds':            'assets/tiles/weeds.png',
     'tiles.bird_poop':        'assets/tiles/bird_poop.png',
     'tiles.rosebush':         'assets/tiles/rosebush.png',
+    'tiles.tulip':            'assets/tiles/tulip.png',
     'tiles.bed_blue':         'assets/tiles/bed_blue.png',
     'tiles.bed_orange':       'assets/tiles/bed_orange.png',
     'tiles.bed_red':          'assets/tiles/bed_red.png',
@@ -118,10 +152,12 @@ const SPRITE_DEFS = {
     'items.seashell':         'assets/sprites/seashell.png',
     'items.turtle_egg':       'assets/sprites/turtle_egg.png',
     'items.stale_toast':      'assets/sprites/stale_toast.png',
+    'items.protein_shake':    'assets/sprites/protein_shake.png',
     'sprites.shack':          'assets/sprites/shack.png',
     'sprites.house':          'assets/sprites/house.png',
     'sprites.bird':           'assets/sprites/animals/bird.png',
     'sprites.bird2':          'assets/sprites/animals/bird2.png',
+    'sprites.crab':           'assets/sprites/animals/crab.png',
     'sprites.butterfly':      'assets/sprites/butterfly.png',
     'sprites.cicada':         'assets/sprites/cicada.png',
     'items.cicada_shell':     'assets/sprites/cicada_shell.png',
@@ -129,7 +165,6 @@ const SPRITE_DEFS = {
     'tiles.poop':             'assets/sprites/poop.png',
     'tiles.waves':            'assets/sprites/waves.png',
     'tiles.pond':             'assets/sprites/pond.png',
-    'sprites.hoggy':          'assets/sprites/hoggy.png',
 };
 
 // Global game state
@@ -156,8 +191,18 @@ let slotSelectIndex = 0;      // highlighted row in the slot picker (0..2 = slot
 let nameEntryText = '';       // current text in the name-entry field
 let nameEntrySlot = 0;        // slot being named
 
-// Tiles that block player movement by default.
-const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'rock', 'shiny_rock', 'rosebush']);
+let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
+const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
+const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush']);
+
+// Tiles whose sprite is wider/taller than a single tile. These are drawn in a
+// deferred pass after all base terrain so the next column's base can't clip the
+// sprite's overflow. Maps tile type → sprite key.
+const TALL_SPRITE_TILES = {
+    tree: 'tiles.tree', fir_tree: 'tiles.fir_tree',
+    banana_tree: 'tiles.banana_tree', palm_tree: 'tiles.palm_tree',
+    rosebush: 'tiles.rosebush'
+};
 
 // Helper: check if a tile is solid. Individual tiles can override with a `solid` property.
 // Animals also block movement (solid obstacles).
@@ -179,6 +224,7 @@ let waterFrame = 0;
 const ITEMS = {
     log:         { name: 'Log',         category: 'material', maxStack: 99, color: '#8B4513', desc: 'A sturdy piece of wood you found near a tree.' },
     stick:       { name: 'Stick',       category: 'material', maxStack: 99, color: '#A0826D', desc: 'A flexible piece of wood you found near a tree.' },
+    pinecone:    { name: 'Pinecone',    category: 'material', maxStack: 99, color: '#8D6E63', desc: 'A woody cone that fell from a fir tree.' },
     fiber:       { name: 'Fiber',       category: 'material', maxStack: 99, color: '#558B2F', desc: 'Long strips of plant fiber that grow from the dirt.' },
     stone:       { name: 'Stone',       category: 'material', maxStack: 99, color: '#9E9E9E', desc: 'A block of stone you chipped off of a boulder.' },
     magnet:      { name: 'Magnet',      category: 'material', maxStack: 99, color: '#607D8B', desc: 'A magic rock you chipped off of a shiny rock.' },
@@ -187,8 +233,11 @@ const ITEMS = {
     rose_seed:   { name: 'Rose Seed',   category: 'material', maxStack: 99, color: '#E53935', desc: 'A red rose seed.' },
     tulip_bulb:  { name: 'Tulip Bulb',  category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A white tulip bulb.' },
     bird_poop:   { name: 'Bird Poop',   category: 'material', maxStack: 99, color: '#E0E0E0', desc: 'May contain seeds.' },
+    rose:        { name: 'Rose',        category: 'gift',     maxStack: 99, color: '#E53935', desc: 'A freshly picked red rose.' },
+    tulip:       { name: 'Tulip',       category: 'gift',     maxStack: 99, color: '#F5F5F5', desc: 'A freshly picked tulip.' },
     thatch:      { name: 'Thatch',      category: 'block',    maxStack: 99, color: '#D4A76A', desc: 'Building material.' },
     banana:      { name: 'Banana',      category: 'gift',     maxStack: 99, color: '#FFD93D', desc: 'Tasty beach fruit.' },
+    palm_frond:  { name: 'Palm Frond',  category: 'material', maxStack: 99, color: '#4CAF50', desc: 'A broad leaf from a palm tree.' },
     bean:        { name: 'Bean',        category: 'gift',     maxStack: 99, color: '#D4A76A', desc: 'An edible seed you can eat or plant.' },
     berry:       { name: 'Berry',       category: 'gift',     maxStack: 99, color: '#C62828', desc: 'A sweet gift from the garden.' },
     gettin_stick:{ name: "Gettin' Stick", category: 'tool', maxStack: 1, color: '#D4A76A', desc: 'A stick with a magnet. Pulls treasure from the water!', durability: 3 },
@@ -205,6 +254,7 @@ const ITEMS = {
     seashell:    { name: 'Seashell',    category: 'gift',     maxStack: 20, color: '#FFE4E1', desc: 'A polished shell from a grateful crab.' },
     turtle_egg:  { name: 'Turtle Egg',  category: 'gift',     maxStack: 10, color: '#E8DCC5', desc: 'A smooth, patterned egg left behind by a nesting sea turtle.' },
     stale_toast: { name: 'Stale Toast', category: 'tool',     maxStack: 10, color: '#D2B48C', desc: 'A hardened piece of toast perfect for throwing at targets.' },
+    protein_shake: { name: 'Protein Shake', category: 'gift', maxStack: 20, color: '#E1C699', desc: 'A creamy shake from Yogatron. Tastes like encouragement and biceps.' },
     cicada_shell:{ name: 'Cicada Shell',category: 'material', maxStack: 99, color: '#B8A070', desc: 'A translucent shell left behind by a summer cicada. Useful in magic tricks.' },
 
     // ===== CONSUMABLES (cooked foods — great gifts for neighbors) =====
@@ -441,12 +491,22 @@ function buildingAt(x, y) {
 // ===== HARVEST DEFINITIONS =====
 // Each harvestable tile type: what it drops, respawn time (game hours), tool needed (null = bare hands)
 const HARVEST_TYPES = {
-    tree:        { drops: [{id:'log', count:2, chance:1.0}, {id:'berry', count:2, chance:1.0}, {id:'stick', count:1, chance:0.5}], respawnHours: 12, tool: null, name: 'Tree' },
-    rock:        { drops: [{id:'stone', count:2, chance:1.0}], respawnHours: 24, tool: null, name: 'Rock' },
-    shiny_rock:  { drops: [{id:'stone', count:1, chance:1.0}, {id:'magnet', count:1, chance:0.8}, {id:'crystal', count:1, chance:0.4}], respawnHours: 24, tool: null, name: 'Shiny Rock' },
+    // Trees, rocks and shiny rocks each provide ONE randomly chosen drop per day,
+    // with a random quantity of 1-3 of that item (pickOne + randomQty). The drop's
+    // `chance` acts as a relative weight for which item is selected.
+    tree:        { drops: [{id:'log', chance:1.0}, {id:'berry', chance:1.0}, {id:'stick', chance:0.5}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Oak Tree' },
+    fir_tree:    { drops: [{id:'log', chance:1.0}, {id:'pinecone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Fir Tree' },
+    // Beach-only trees, same daily pickOne + 1-3 quantity rules.
+    banana_tree: { drops: [{id:'banana', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Banana Tree' },
+    palm_tree:   { drops: [{id:'fiber', chance:1.0}, {id:'palm_frond', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Palm Tree' },
+    rock:        { drops: [{id:'stone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Rock' },
+    shiny_rock:  { drops: [{id:'stone', chance:1.0}, {id:'magnet', chance:0.8}, {id:'crystal', chance:0.4}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Shiny Rock' },
     weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
-    bird_poop:   { drops: [{id:'seed', count:1, chance:1.0}, {id:'rose_seed', count:1, chance:0.5}, {id:'tulip_bulb', count:1, chance:0.5}], disappears: true, name: 'Bird Poop' },
-    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' },
+    // Bird poop gives exactly 1 of a single randomly chosen seed type, then disappears.
+    bird_poop:   { drops: [{id:'seed', chance:1.0}, {id:'rose_seed', chance:1.0}, {id:'tulip_bulb', chance:1.0}], pickOne: true, disappears: true, name: 'Bird Poop' },
+    // Rosebushes and tulips are destructible pickups: harvest yields 1 rose/tulip and removes the plant.
+    rosebush:    { drops: [{id:'rose', count:1, chance:1.0}], pickOne: true, disappears: true, name: 'Rose Bush' },
+    tulip:       { drops: [{id:'tulip', count:1, chance:1.0}], pickOne: true, disappears: true, name: 'Tulip' },
     toast_target:{ drops: [], disappears: true, tool: 'stale_toast', name: 'Toast Target' }
     // Note: flower, tulip, and water pond decorations have been removed from world generation.
 };
@@ -489,7 +549,7 @@ function drawNotifications() {
 
 // Bump this whenever sprite art is updated so browsers re-fetch images instead
 // of serving stale cached copies (images aren't covered by the index.html ?v=).
-const ASSET_VERSION = '20260628';
+const ASSET_VERSION = '20260636';
 
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
@@ -503,6 +563,9 @@ function preload() {
 }
 
 function setup() {
+    // Install dialogue overrides now that every script (incl. dialogue.js) has loaded.
+    installYogatronDialogueHooks();
+
     const canvas = createCanvas(CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
     canvas.parent('game-container');
     pixelDensity(1);
@@ -831,6 +894,10 @@ function drawGame() {    // Handle continuous movement
     // Draw notifications on top
     drawNotifications();
 
+    // ===== YOGATRON: Ab Appreciation Day visitor =====
+    updateYogatron(deltaTime);
+    drawYogatron();
+
     // Draw fairy overlay (from magic system)
     if (typeof drawFairyOverlay === 'function') drawFairyOverlay();
 
@@ -845,6 +912,269 @@ function drawGame() {    // Handle continuous movement
 
     // Auto-save
     if (typeof autoSave === 'function') autoSave();
+}
+
+// ===== YOGATRON (Ab Appreciation Day) =====
+function spawnYogatron() {
+    if (yogatron && yogatron.isPresent) return;
+    if (typeof world === 'undefined' || !world) return;
+    const holiday = getCurrentHoliday();
+    if (!holiday || holiday.name !== 'Ab Appreciation Day') return;
+
+    // Find a clear tile near the player on grass.
+    let sx = player ? player.x : 50;
+    let sy = player ? player.y : 50;
+    let bestX = -1, bestY = -1;
+    for (let r = 2; r <= 8; r++) {
+        for (let a = 0; a < 8; a++) {
+            const rad = a * PI / 4;
+            const tx = Math.round(sx + r * Math.cos(rad));
+            const ty = Math.round(sy + r * Math.sin(rad));
+            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+            if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
+            if (world.tiles[tx][ty].type !== 'grass') continue;
+            if (isSolidTile(tx, ty)) continue;
+            if (buildingAt(tx, ty)) continue;
+            if (typeof npcAt === 'function' && npcAt(tx, ty)) continue;
+            bestX = tx; bestY = ty;
+            break;
+        }
+        if (bestX >= 0) break;
+    }
+    if (bestX < 0) { bestX = sx; bestY = sy; }
+
+    yogatron = {
+        name: 'Yogatron',
+        species: 'Fitness Robot',
+        color: '#FF6F00',
+        gridX: bestX,
+        gridY: bestY,
+        facing: 'down',
+        isPresent: true,
+        gaveShake: false,
+        animFrame: 0,
+        lastMoveAt: 0,
+        dialogue: {
+            start: {
+                text: 'Greetings, flex-friend! I am Yogatron, and today we celebrate the mighty abdominal. Have you stretched yet?',
+                choices: [
+                    { text: 'I want a protein shake!', next: 'shake', friendshipDelta: 0 },
+                    { text: 'How do I celebrate this holiday?', next: 'about', friendshipDelta: 0 },
+                    { text: 'Maybe later.', next: null, friendshipDelta: 0 }
+                ]
+            },
+            shake: {
+                text: '',
+                choices: [
+                    { text: 'Thanks!', next: null, friendshipDelta: 1 }
+                ]
+            },
+            about: {
+                text: 'On Ab Appreciation Day, every crunch counts! Do a little stretch, strike a heroic pose, and remember: your core is your friend.',
+                choices: [
+                    { text: 'I will flex with purpose.', next: 'shake', friendshipDelta: 1 },
+                    { text: 'I need that shake now.', next: 'shake', friendshipDelta: 0 },
+                    { text: 'Goodbye!', next: null, friendshipDelta: 0 }
+                ]
+            }
+        }
+    };
+    // The 'shake' node text is set when the player chooses it so it can reflect whether
+    // they have already received one today.
+    notify('Yogatron has arrived for Ab Appreciation Day!', 4000);
+}
+
+function despawnYogatron() {
+    if (!yogatron) return;
+    yogatron.isPresent = false;
+    yogatron = null;
+}
+
+function updateYogatron(dt) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    // If it's not the day, make sure Yogatron is gone.
+    if (!holiday || holiday.name !== 'Ab Appreciation Day') {
+        if (yogatron && yogatron.isPresent) despawnYogatron();
+        return;
+    }
+    // If the holiday is active but no Yogatron yet, spawn him.
+    if (!yogatron || !yogatron.isPresent) {
+        spawnYogatron();
+    }
+    if (!yogatron || !dt) return;
+
+    // Gentle wander.
+    if (Math.random() < 0.005) {
+        const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+        const d = dirs[Math.floor(Math.random()*4)];
+        const nx = yogatron.gridX + d[0];
+        const ny = yogatron.gridY + d[1];
+        if (nx >= 0 && nx < CONFIG.WORLD_WIDTH && ny >= 0 && ny < CONFIG.WORLD_HEIGHT) {
+            if (!isSolidTile(nx, ny) && !buildingAt(nx, ny) && !(typeof npcAt === 'function' && npcAt(nx, ny))) {
+                yogatron.gridX = nx;
+                yogatron.gridY = ny;
+                yogatron.facing = d[0] > 0 ? 'right' : d[0] < 0 ? 'left' : d[1] > 0 ? 'down' : 'up';
+                yogatron.lastMoveAt = millis();
+            }
+        }
+    }
+}
+
+function drawYogatron() {
+    if (!yogatron || !yogatron.isPresent) return;
+    const sx = yogatron.gridX * CONFIG.TILE_SIZE - cameraX;
+    const sy = yogatron.gridY * CONFIG.TILE_SIZE - cameraY;
+    const TS = CONFIG.TILE_SIZE;
+    // Animated bob for that cheerful fitness vibe.
+    const moving = (millis() - (yogatron.lastMoveAt || 0)) < 300;
+    const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
+    // Draw a friendly orange robot-ish sprite (fallback).
+    const spriteKey = 'sprites.yogatron';
+    const spr = SPRITES[spriteKey] || null;
+    if (!drawCharacterSprite(spr, sx, sy - TS + bob, yogatron.facing, moving)) {
+        fill('#FF6F00');
+        noStroke();
+        rect(sx, sy - TS + bob, TS, TS * 2);
+        fill('#FFFFFF');
+        rect(sx + 3, sy - TS + 4 + bob, 3, 3);
+        rect(sx + 10, sy - TS + 4 + bob, 3, 3);
+        // A tiny flexed arm.
+        fill('#FFB74D');
+        rect(sx - 2, sy - TS + 10 + bob, 2, 6);
+        rect(sx + TS, sy - TS + 10 + bob, 2, 6);
+    }
+    // Name tag
+    const halfW = CONFIG.CANVAS_WIDTH / 2;
+    const halfH = CONFIG.CANVAS_HEIGHT / 2;
+    if (Math.abs(sx - halfW) < halfW && Math.abs(sy - halfH) < halfH) {
+        fill(0, 0, 0, 150);
+        textAlign(CENTER, BOTTOM);
+        textSize(7);
+        textFont('Courier New');
+        const nw = textWidth('Yogatron') + 4;
+        rect(sx + TS / 2 - nw / 2, sy - TS - 12, nw, 9);
+        fill(255);
+        text('Yogatron', sx + TS / 2, sy - TS - 3);
+    }
+}
+
+function isFacingYogatron() {
+    if (!yogatron || !yogatron.isPresent || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    return (facing.x === yogatron.gridX && facing.y === yogatron.gridY) ||
+           (facing.x === yogatron.gridX && facing.y === yogatron.gridY - 1);
+}
+
+function tryTalkToYogatron() {
+    if (!yogatron || !yogatron.isPresent) return false;
+    if (!isFacingYogatron()) return false;
+    openYogatronDialogue();
+    return true;
+}
+
+function openYogatronDialogue() {
+    if (!yogatron || !yogatron.isPresent) return;
+    // Clone the dialogue tree so mutations don't persist across conversations.
+    const tree = JSON.parse(JSON.stringify(yogatron.dialogue));
+    // Shake node: give one protein shake per visit/day.
+    if (!yogatron.gaveShake) {
+        tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+        tree.shake.choices = [
+            { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
+        ];
+    } else {
+        tree.shake.text = 'I already handed you today\'s shake, friend. One per abdominal day is the rule!';
+        tree.shake.choices = [
+            { text: 'Fair enough.', next: null, friendshipDelta: 0 }
+        ];
+    }
+
+    dialogueState.active = true;
+    dialogueState.npc = yogatron;
+    dialogueState.currentNode = 'start';
+    dialogueState.textRevealed = 0;
+    dialogueState.selectedChoice = 0;
+    dialogueState.choicesVisible = false;
+    dialogueState.advancedMenu = false;
+    dialogueState._yogatronTree = tree;
+    gameState = STATE.DIALOGUE;
+}
+
+// ===== Yogatron dialogue overrides =====
+// These wrap functions defined in dialogue.js. dialogue.js loads AFTER game.js, so we
+// must NOT touch those identifiers at game.js load time (doing so throws a ReferenceError
+// that halts the rest of this file). Instead we capture the originals and install the
+// wrappers from setup(), which runs once every script has finished loading.
+let _originalGetDialogueTree = null;
+let _originalSelectDialogueChoice = null;
+let _originalCloseDialogue = null;
+let _yogatronHooksInstalled = false;
+
+function installYogatronDialogueHooks() {
+    if (_yogatronHooksInstalled) return;
+    if (typeof getDialogueTree !== 'function' || typeof selectDialogueChoice !== 'function' || typeof closeDialogue !== 'function') return;
+    _yogatronHooksInstalled = true;
+
+    _originalGetDialogueTree = getDialogueTree;
+    getDialogueTree = function() {
+        if (dialogueState.npc && dialogueState.npc.name === 'Yogatron') {
+            return dialogueState._yogatronTree;
+        }
+        return _originalGetDialogueTree();
+    };
+
+    // ===== OVERRIDE selectDialogueChoice for Yogatron shake action =====
+    // Note: dialogue.js defines selectDialogueChoice. game.js installs this wrapper
+    // from setup() after all scripts have loaded (see installYogatronDialogueHooks).
+    _originalSelectDialogueChoice = selectDialogueChoice;
+    selectDialogueChoice = _yogatronSelectDialogueChoice;
+    _originalCloseDialogue = closeDialogue;
+    closeDialogue = function() {
+        if (dialogueState.npc && dialogueState.npc.name === 'Yogatron') {
+            dialogueState._yogatronTree = null;
+        }
+        _originalCloseDialogue();
+    };
+}
+
+function _yogatronSelectDialogueChoice(i) {
+    const npc = dialogueState.npc;
+    if (npc && npc.name === 'Yogatron') {
+        const tree = dialogueState._yogatronTree;
+        const node = tree ? tree[dialogueState.currentNode] : null;
+        if (!node || !node.choices[i]) return;
+        const choice = node.choices[i];
+        if (choice.action === 'shake' && !npc.gaveShake && typeof inventory !== 'undefined') {
+            inventory.addItem('protein_shake', 1);
+            npc.gaveShake = true;
+            notify('Yogatron gave you a Protein Shake!');
+        }
+        if (choice.next === null) {
+            closeDialogue();
+        } else {
+            // If going back to shake after about, re-evaluate text based on gaveShake.
+            if (choice.next === 'shake') {
+                if (!npc.gaveShake) {
+                    tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+                    tree.shake.choices = [
+                        { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
+                    ];
+                } else {
+                    tree.shake.text = 'I already handed you today\'s shake, friend. One per abdominal day is the rule!';
+                    tree.shake.choices = [
+                        { text: 'Fair enough.', next: null, friendshipDelta: 0 }
+                    ];
+                }
+            }
+            dialogueState.currentNode = choice.next;
+            dialogueState.textRevealed = 0;
+            dialogueState.selectedChoice = 0;
+            dialogueState.choicesVisible = false;
+        }
+        return;
+    }
+    _originalSelectDialogueChoice(i);
 }
 
 function drawDayNightOverlay() {
@@ -1547,6 +1877,8 @@ function mousePressed() {
                 return;
             }
         }
+        // Yogatron holiday interaction (before harvest)
+        if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -2350,7 +2682,9 @@ function keyPressed() {
                     return false;
                 }
             }
-            // Toast Toss interaction (only on holiday, before normal harvest)
+            // Yogatron holiday interaction (before harvest)
+            if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return false;
+            // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
             if (typeof tryTillSoil === 'function' && tryTillSoil()) return false;
@@ -2557,10 +2891,26 @@ function tryHarvest() {
 
     // Harvest! Roll drops
     const gotItems = [];
-    for (const drop of harvestDef.drops) {
-        if (random() <= drop.chance) {
-            inventory.addItem(drop.id, drop.count);
-            gotItems.push(drop.count + 'x ' + ITEMS[drop.id].name);
+    if (harvestDef.pickOne) {
+        // Choose a single drop, weighted by each drop's `chance`.
+        const drops = harvestDef.drops;
+        if (drops.length > 0) {
+            let total = 0;
+            for (const d of drops) total += (d.chance || 1);
+            let r = random() * total;
+            let chosen = drops[drops.length - 1];
+            for (const d of drops) { r -= (d.chance || 1); if (r <= 0) { chosen = d; break; } }
+            // randomQty: roll 1-3 of the chosen item; otherwise use its fixed count (default 1).
+            const qty = harvestDef.randomQty ? (1 + floor(random(3))) : (chosen.count || 1);
+            inventory.addItem(chosen.id, qty);
+            gotItems.push(qty + 'x ' + ITEMS[chosen.id].name);
+        }
+    } else {
+        for (const drop of harvestDef.drops) {
+            if (random() <= drop.chance) {
+                inventory.addItem(drop.id, drop.count);
+                gotItems.push(drop.count + 'x ' + ITEMS[drop.id].name);
+            }
         }
     }
 
@@ -3219,7 +3569,10 @@ const TERRAIN_EDGE_COLORS = { 0: '#4A90C8', 1: '#F4E4BC', 2: '#7CB342' };
 function terrainLevel(tile) {
     if (!tile) return 2;
     if (tile.type === 'sea' || tile.type === 'water' || tile.type === 'pond_water') return 0;
-    if (tile.type === 'beach') return 1;
+    // Beach itself, plus decorations that sit ON the beach, are all beach-level. Without
+    // this the rounding pass treats a beach tree as a raised "land" bump and paints green
+    // grass globs into the sand around its base.
+    if (tile.type === 'beach' || tile.type === 'banana_tree' || tile.type === 'palm_tree' || tile.type === 'toast_target') return 1;
     return 2;
 }
 
@@ -3276,6 +3629,37 @@ function drawCornerFill(sx, sy, TS, hx, vy, r, col) {
     endShape(CLOSE);
 }
 
+// Beach-edge fringe: drawn OVER a grass tile that borders beach, so sand creeps
+// onto the grass edge facing the beach. Uses beach_edge.png (2 cols × 4 rows of
+// 16×16 cells). Each cell's sand fills the side toward the beach:
+//   row0 East(0,0)/West(16,0)  row1 North(0,16)/South(16,16)
+//   row2 NW(0,32)/NE(16,32)    row3 SW(0,48)/SE(16,48)
+// Cells are named for where the LAND (grass) sits, so e.g. the "East" cell has its
+// sand on the WEST — used when the beach is to the west of this grass tile.
+// Correction by charles: corner tile coordinates
+function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
+    const edge = SPRITES['tiles.beach_edge'];
+    if (!edge) return;
+    function isBeach(dx, dy) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) return false;
+        const t = world.tiles[nx][ny];
+        return !!t && t.type === 'beach';
+    }
+    const bN = isBeach(0, -1), bS = isBeach(0, 1), bE = isBeach(1, 0), bW = isBeach(-1, 0);
+    if (!(bN || bS || bE || bW)) return;
+    let sx2, sy2;
+    if (bN && bE)      { sx2 = 0; sy2 = 48; } // beach to N+E -> sand fills NE corner
+    else if (bN && bW) { sx2 = 16;  sy2 = 48; } // N+W -> NW
+    else if (bS && bE) { sx2 = 0; sy2 = 32; } // S+E -> SE
+    else if (bS && bW) { sx2 = 16;  sy2 = 32; } // S+W -> SW
+    else if (bW)       { sx2 = 0;  sy2 = 0;  } // beach W -> sand on W ("East" cell)
+    else if (bE)       { sx2 = 16; sy2 = 0;  } // beach E -> sand on E ("West" cell)
+    else if (bN)       { sx2 = 16; sy2 = 16; } // beach N -> sand on N ("South" cell)
+    else               { sx2 = 0;  sy2 = 16; } // beach S -> sand on S ("North" cell)
+    image(edge, screenX, screenY, TS, TS, sx2, sy2, 16, 16);
+}
+
 // World class
 class World {
     constructor() {
@@ -3296,25 +3680,22 @@ class World {
         for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
             this.tiles[x] = [];
             for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
-                const d = dist(x, y, centerX, centerY);
-                if (d > 42) {
+                const zone = islandZone(x, y);
+                if (zone === 'sea') {
                     this.tiles[x][y] = { type: 'sea', variant: floor(random(3)), oceanFeature: random() < 0.02 ? floor(random(5)) : -1 };
-                } else if (d > 38) {
+                } else if (zone === 'beach') {
                     this.tiles[x][y] = { type: 'beach', variant: floor(random(3)) };
                 } else {
                     this.tiles[x][y] = { type: 'grass', variant: floor(random(3)) };
                 }
             }
         }
-
-        // Smooth the coastline: remove lone 1-tile extrusions/notches so the
-        // island reads as natural curves instead of rasterized jaggies.
-        this.smoothTerrain(2);
+        // The island is a clean rectangle, so no coastline smoothing is needed.
 
         // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
         const CELL = 10;
-        const decorations = ['tree', 'tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
+        const decorations = ['tree', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
 
         for (let cx = 0; cx < CONFIG.WORLD_WIDTH; cx += CELL) {
             for (let cy = 0; cy < CONFIG.WORLD_HEIGHT; cy += CELL) {
@@ -3323,16 +3704,14 @@ class World {
                 const ty = cy + floor(random(CELL));
                 if (tx >= CONFIG.WORLD_WIDTH || ty >= CONFIG.WORLD_HEIGHT) continue;
 
-                const d = dist(tx, ty, centerX, centerY);
-                if (d > 42) continue;          // skip sea
-                if (d > 38) {
-                    // Beach zone - mostly empty for now.
-                    continue;
-                }
+                // Only decorate grass interior; skip sea and (mostly-empty) beach.
+                if (islandZone(tx, ty) !== 'grass') continue;
                 // Interior - 1 decoration per cell, ~80% chance (some cells stay empty)
                 if (random() < 0.8) {
                     const type = random(decorations);
-                    if (type === 'tree') this.placeTree(tx, ty, 'tree');
+                    if (type === 'tree' || type === 'fir_tree') {
+                        if (!isNearBeach(tx, ty, INLAND_TREE_BEACH_BUFFER)) this.placeTree(tx, ty, type);
+                    }
                     else if (type === 'rock') this.tiles[tx][ty] = { type: 'rock', variant: floor(random(2)) };
                     else if (type === 'shiny_rock') this.tiles[tx][ty] = { type: 'shiny_rock', variant: 0 };
                     else if (type === 'weeds') this.tiles[tx][ty] = { type: 'weeds', variant: floor(random(2)) };
@@ -3348,16 +3727,60 @@ class World {
             attempts++;
             const rx = 15 + floor(random(70));
             const ry = 15 + floor(random(70));
-            const d = dist(rx, ry, centerX, centerY);
-            if (d > 38) continue; // interior only
+            if (islandZone(rx, ry) !== 'grass') continue; // interior only
             if (this.tiles[rx][ry].type !== 'grass') continue; // only on open grass
-            // Rosebushes are 1-tall, solid, harvested for seeds.
+            // Rosebushes are 1-tall, solid, harvested (destroyed) for a rose.
             this.tiles[rx][ry] = { type: 'rosebush', variant: 0 };
             rosebushesPlaced++;
         }
 
-        // Place a pond near-center, slightly above. Shore ring (pond_shore) surrounds
-        // a 4×4 interior of animated pond_water. Total footprint: 6×6 tiles.
+        // Place a handful of tulips on the island interior (destructible pickups, like rosebushes).
+        let tulipsPlaced = 0;
+        let tulipAttempts = 0;
+        while (tulipsPlaced < 4 && tulipAttempts < 300) {
+            tulipAttempts++;
+            const tx2 = 15 + floor(random(70));
+            const ty2 = 15 + floor(random(70));
+            if (islandZone(tx2, ty2) !== 'grass') continue; // interior only
+            if (this.tiles[tx2][ty2].type !== 'grass') continue; // only on open grass
+            this.tiles[tx2][ty2] = { type: 'tulip', variant: floor(random(2)) };
+            tulipsPlaced++;
+        }
+
+        // Scatter banana and palm trees around the beach ring.
+        let beachTreesPlaced = 0;
+        let beachTreeAttempts = 0;
+        while (beachTreesPlaced < 14 && beachTreeAttempts < 600) {
+            beachTreeAttempts++;
+            const bx = floor(random(CONFIG.WORLD_WIDTH));
+            const by = floor(random(CONFIG.WORLD_HEIGHT));
+            if (islandZone(bx, by) !== 'beach') continue;
+            if (this.tiles[bx][by].type !== 'beach') continue;
+            const treeType = random() < 0.5 ? 'banana_tree' : 'palm_tree';
+            const before = this.tiles[bx][by].type;
+            const beachTreeSpacing = 10;
+            const beachTreePositions = []
+            let tooClose = false;
+            for (const pos of beachTreePositions) {
+                const dx = bx - pos.x;
+                const dy = by - pos.y;
+                if (Math.sqrt(dx * dx + dy * dy) < beachTreeSpacing) {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (tooClose) continue;
+            this.placeTree(bx, by, treeType);
+            if (this.tiles[bx][by].type !== before) beachTreesPlaced++;
+            if (this.tiles[bx][by].type !== before) {
+                beachTreesPlaced++;
+                beachTreePositions.push({ x: bx, y: by });
+            }
+        }
+
+        // Place a pond near-center, slightly above. The entire pond — water and banks —
+        // is a single 96×96 (6×6 tile) image drawn from the top-left tile (pondOrigin).
+        // Collision: the 1-tile bank ring is walkable; the inner 4×4 water is solid.
         const pondX = floor(centerX) - 3;
         const pondY = floor(centerY) - 11;
         const PW = 6, PH = 6;
@@ -3365,28 +3788,8 @@ class World {
             for (let py = 0; py < PH; py++) {
                 const tx = pondX + px, ty = pondY + py;
                 if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-                const isTopEdge    = py === 0;
-                const isBottomEdge = py === PH - 1;
-                const isLeftEdge   = px === 0;
-                const isRightEdge  = px === PW - 1;
-                const isCorner = (isLeftEdge || isRightEdge) && (isTopEdge || isBottomEdge);
-                if (isCorner) {
-                    // cornerType: 0=NW, 1=NE, 2=SW, 3=SE
-                    const cornerType = (isBottomEdge ? 2 : 0) + (isRightEdge ? 1 : 0);
-                    this.tiles[tx][ty] = { type: 'pond_shore', corner: true, cornerType, variant: floor(random(8)), solid: false };
-                } else if (isTopEdge || isBottomEdge || isLeftEdge || isRightEdge) {
-                    // dir: 0=N (land north), 1=E (land east), 2=S (land south), 3=W (land west)
-                    let dir;
-                    if (isTopEdge) dir = 0;
-                    else if (isBottomEdge) dir = 2;
-                    else if (isLeftEdge) dir = 3;
-                    else dir = 1;
-                    this.tiles[tx][ty] = { type: 'pond_shore', corner: false, dir, variant: floor(random(8)), solid: false };
-                } else {
-                    // The whole 4×4 interior is covered by one pond.png image, drawn from
-                    // the top-left interior tile (px===1, py===1).
-                    this.tiles[tx][ty] = { type: 'pond_water', pondOrigin: (px === 1 && py === 1) };
-                }
+                const isBank = px === 0 || px === PW - 1 || py === 0 || py === PH - 1;
+                this.tiles[tx][ty] = { type: 'pond', pondOrigin: (px === 0 && py === 0), solid: !isBank };
             }
         }
 
@@ -3434,31 +3837,37 @@ class World {
 
     // Place a 2-tall tree: solid trunk at (x,y) and solid canopy at (x,y-1).
     placeTree(x, y, type = 'tree') {
-        if (this.tiles[x][y].type !== 'grass') return;
+        // Oak and fir trees stand on grass; banana/palm trees stand on the beach.
+        const baseNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : 'beach';
+        if (this.tiles[x][y].type !== baseNeeded) return;
         const topY = y - 1;
         if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return;
         const topTile = this.tiles[x][topY];
-        if (!topTile || topTile.type !== 'grass') return;
-        // Ensure the top spot hasn't already been claimed by another decoration.
+        const topNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : null;
+        // Inland trees must stay fully on grass; beach trees can extend over grass or beach.
+        if (!topTile || (topNeeded ? topTile.type !== topNeeded : (topTile.type !== 'grass' && topTile.type !== 'beach'))) return;
         if (topTile.solid === true || topTile.isTreeTop === true) return;
 
-        this.tiles[x][y] = { type: 'tree', variant: floor(random(3)), solid: true };
-        this.tiles[x][topY] = { type: 'tree', variant: floor(random(3)), isTreeTop: true, solid: true };
+        this.tiles[x][y] = { type, variant: floor(random(3)), solid: true };
+        this.tiles[x][topY] = { type, variant: floor(random(3)), isTreeTop: true, solid: true };
     }
     
     draw() {
         push();
         translate(-cameraX, -cameraY);
         
-        // Draw visible tiles only (with padding for camera movement)
-        const startTileX = floor(cameraX / CONFIG.TILE_SIZE);
-        const startTileY = floor(cameraY / CONFIG.TILE_SIZE);
-        const endTileX = startTileX + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + 2;
-        const endTileY = startTileY + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + 2;
-        
+        // Draw visible tiles only. MARGIN extends the range so multi-tile sprites drawn
+        // from an off-screen top-left origin (e.g. the 6×6 pond) still render, and trees
+        // whose trunk sits just below the view still poke their canopy in.
+        const MARGIN = 6;
+        const x0 = max(0, floor(cameraX / CONFIG.TILE_SIZE) - MARGIN);
+        const y0 = max(0, floor(cameraY / CONFIG.TILE_SIZE) - MARGIN);
+        const x1 = min(CONFIG.WORLD_WIDTH, floor(cameraX / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + MARGIN);
+        const y1 = min(CONFIG.WORLD_HEIGHT, floor(cameraY / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + MARGIN);
+
         // Pass 1: draw base terrain and solid tile bottoms.
-        for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
-            for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
                 this.drawTile(x, y, this.tiles[x][y]);
             }
         }
@@ -3466,10 +3875,26 @@ class World {
         // Pass 2: soften terrain boundaries by rounding outer corners. Each wedge
         // stays inside its own tile, so this never paints over trees/buildings.
         if (ROUND_TERRAIN) {
-            for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
-                for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
+            for (let x = x0; x < x1; x++) {
+                for (let y = y0; y < y1; y++) {
                     this.drawTerrainCornerRounding(x, y);
                 }
+            }
+        }
+
+        // Pass 3: large ground overlays, drawn after all base tiles so transparent
+        // sprites are not covered by later grass tiles.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                this.drawPondOverlay(x, y, this.tiles[x][y]);
+            }
+        }
+
+        // Pass 4: tall decorations (trees, rosebushes) whose sprites overflow their
+        // tile. Drawn last so neighbouring tiles' base terrain can't clip them.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                this.drawTallDecoration(x, y, this.tiles[x][y]);
             }
         }
 
@@ -3490,6 +3915,38 @@ class World {
             if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
             if (typeof onHogNewDay === 'function') onHogNewDay();
         }
+    }
+
+    drawPondOverlay(x, y, tile) {
+        if (!tile || tile.type !== 'pond' || !tile.pondOrigin) return;
+        const spr = SPRITES['tiles.pond'];
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+        if (spr) {
+            image(spr, screenX, screenY, TS * 6, TS * 6);
+        } else {
+            fill('#4A90C8');
+            rect(screenX, screenY, TS * 6, TS * 6);
+        }
+    }
+
+    // Draw an oversized decoration sprite (tree/rosebush) centered on its tile and
+    // extending upward. Only the trunk/base tile draws; tree-top tiles are skipped.
+    drawTallDecoration(x, y, tile) {
+        if (!tile) return;
+        const key = TALL_SPRITE_TILES[tile.type];
+        if (!key || tile.isTreeTop) return;
+        const spr = SPRITES[key];
+        if (!spr) return;
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+        if (tile.depleted) tint(160, 160, 160);
+        const offsetX = screenX - (spr.width - TS) / 2;
+        const offsetY = screenY - (spr.height - TS);
+        image(spr, offsetX, offsetY);
+        noTint();
     }
 
     // Pass 2: draw tree canopy tops as part of the base world pass.
@@ -3589,6 +4046,14 @@ class World {
                     const southLand = isLandType(seaNeighborType(0, 1));
                     const westLand  = isLandType(seaNeighborType(-1, 0));
                     const eastLand  = isLandType(seaNeighborType(1, 0));
+                    // Diagonal land neighbours — used to catch convex (outer) coast corners,
+                    // where only the diagonal tile is land (e.g. the sea tile just off an
+                    // island corner) and the two straight shores should meet.
+                    const dNE = isLandType(seaNeighborType(1, -1));
+                    const dNW = isLandType(seaNeighborType(-1, -1));
+                    const dSE = isLandType(seaNeighborType(1, 1));
+                    const dSW = isLandType(seaNeighborType(-1, 1));
+                    const anyOrthoLand = northLand || southLand || eastLand || westLand;
                     const shoreFrame = floor(frameCount / 8) % 8;
 
                     function drawRotatedSprite(srcX, srcY, angle) {
@@ -3605,9 +4070,16 @@ class World {
                     const se = southLand && eastLand;
 
                     if (nw || ne || sw || se) {
-                        // Animated corner (col 1). Native land is SE, so rotate from there:
+                        // Concave (inner) corner — land on two adjacent orthogonal sides.
+                        // Native land is SE, so rotate from there:
                         //   land SE = 0, land SW = +90° CW, land NW = 180°, land NE = -90°.
                         const angle = se ? 0 : sw ? HALF_PI : nw ? PI : -HALF_PI;
+                        drawRotatedSprite(16, shoreFrame * TS, angle);
+                    } else if (!anyOrthoLand && (dNE || dNW || dSE || dSW)) {
+                        // Convex (outer) corner — only a diagonal neighbour is land, so this
+                        // is the tile just off an island corner where the two straight shores
+                        // meet. Reuse the corner sprite, oriented toward the diagonal land.
+                        const angle = dSE ? 0 : dSW ? HALF_PI : dNW ? PI : -HALF_PI;
                         drawRotatedSprite(16, shoreFrame * TS, angle);
                     } else if (northLand || southLand || westLand || eastLand) {
                         // Animated straight shore (col 0). Native land is East, so rotate from there:
@@ -3666,24 +4138,23 @@ class World {
                         rect(screenX + 11, screenY + 5, 2, 4);
                     }
                 }
+                // Beach-edge overlay: a grass tile bordering beach draws a sand fringe
+                // (beach_edge.png) over the grass, on the side(s) facing the beach.
+                drawBeachEdgeOverlay(x, y, screenX, screenY, TS);
                 break;
             }
-            case 'tree': {
+            case 'tree':
+            case 'fir_tree':
+            case 'banana_tree':
+            case 'palm_tree': {
                 const isTop = tile.isTreeTop;
-                // Draw the correct base terrain under the tile.
-                drawBase('grass');
-                // Both trunk and top tiles draw their own half of the 16x32 sprite.
-                const spr = SPRITES['tiles.tree'];
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    if (isTop) {
-                        image(spr, screenX, screenY, TS, TS, 0, 0, spr.width, TS);
-                    } else {
-                        const sy = spr.height - TS;
-                        image(spr, screenX, screenY, TS, TS, 0, sy, spr.width, TS);
-                    }
-                    noTint();
-                } else {
+                // Oak/fir grow on grass; banana/palm grow on the beach.
+                drawBase((tile.type === 'tree' || tile.type === 'fir_tree') ? 'grass' : 'beach');
+                // The actual 32x48 sprite is wider/taller than its tile, so it is drawn in
+                // a deferred pass (drawTallDecoration) AFTER all base terrain — otherwise the
+                // next column's base would clip the sprite's right edge. Here we only draw a
+                // vector fallback for when the sprite image failed to load.
+                if (!SPRITES[TALL_SPRITE_TILES[tile.type]]) {
                     if (isTop) {
                         fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                         ellipse(screenX + 8, screenY + 12, 12, 12);
@@ -3794,16 +4265,11 @@ class World {
                 break;
             }
             case 'rosebush': {
-                // 32x32 sprite - draw grass base, then rosebush centered extending upward
+                // 32x32 sprite, wider than its tile - draw grass base here; the sprite
+                // itself is drawn in the deferred drawTallDecoration pass (see tree case)
+                // so the neighbouring tile's base can't clip its right edge.
                 drawBase('grass');
-                const spr = SPRITES['tiles.rosebush'];
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    const offsetX = screenX - (spr.width - TS) / 2;
-                    const offsetY = screenY - (spr.height - TS);
-                    image(spr, offsetX, offsetY);
-                    noTint();
-                } else {
+                if (!SPRITES['tiles.rosebush']) {
                     fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                     ellipse(screenX + 8, screenY + 8, 14, 12);
                     fill(tile.depleted ? '#AAA' : '#E53935');
@@ -3825,57 +4291,25 @@ class World {
                 }
                 break;
             }
+            case 'pond': {
+                // The pond sprite is drawn later as one large overlay from pondOrigin.
+                // This pass only provides grass underneath the transparent PNG.
+                drawBase('grass');
+                break;
+            }
             case 'pond_water': {
-                // The 4×4 pond interior is one big pond.png image, drawn once from the
-                // top-left interior tile (pondOrigin). Other interior tiles draw nothing
-                // since they're covered by that image.
+                // Legacy pond (pre single-image): a 4×4 interior image from its origin.
                 if (tile.pondOrigin) {
                     const spr = SPRITES['tiles.pond'];
-                    if (spr) {
-                        image(spr, screenX, screenY, TS * 4, TS * 4);
-                    } else {
-                        fill('#4A90C8');
-                        rect(screenX, screenY, TS * 4, TS * 4);
-                    }
-                } else if (!SPRITES['tiles.pond']) {
-                    fill('#4A90C8');
-                    rect(screenX, screenY, TS, TS);
+                    if (spr) image(spr, screenX, screenY, TS * 4, TS * 4);
+                    else { fill('#4A90C8'); rect(screenX, screenY, TS * 4, TS * 4); }
                 }
                 break;
             }
             case 'pond_shore': {
-                // Pond bank — grass base with a STILL pond shore overlay. Unlike the
-                // ocean, the pond shore does not animate; col 3 holds 8 still variants
-                // and each tile keeps a fixed one (tile.variant) for natural variety.
+                // Legacy bank tile (pre single-image pond). Newer ponds bake banks into
+                // the pond image, so just show grass under any leftover shore tiles.
                 drawBase('grass');
-                const spr = SPRITES['tiles.waves'];
-                if (spr) {
-                    const row = (tile.variant != null ? tile.variant : 0) % 8;
-                    function drawPondShore(srcX, angle) {
-                        push();
-                        translate(screenX + TS / 2, screenY + TS / 2);
-                        rotate(angle);
-                        image(spr, -TS / 2, -TS / 2, TS, TS, srcX, row * TS, TS, TS);
-                        pop();
-                    }
-                    if (tile.corner) {
-                        // The sheet has no grass corner piece, so reuse the straight pond
-                        // shore (col 3, grass/stone material) oriented to the corner's
-                        // vertical land side. cornerType 0=NW,1=NE = grass to the north;
-                        // 2=SW,3=SE = grass to the south. Native shore land is East:
-                        //   land N = -90°, land S = +90°.
-                        const ct = tile.cornerType || 0;
-                        const cornerAngle = (ct === 0 || ct === 1) ? -HALF_PI : HALF_PI;
-                        drawPondShore(48, cornerAngle);
-                    } else {
-                        // Still straight pond shore (col 3, native grass/land East).
-                        // dir: 0=land-N, 1=land-E, 2=land-S, 3=land-W. Rotate from native East:
-                        //   land E = 0, land S = +90°, land W = 180°, land N = -90°.
-                        const dir = tile.dir || 0;
-                        const angle = dir === 1 ? 0 : dir === 2 ? HALF_PI : dir === 3 ? PI : -HALF_PI;
-                        drawPondShore(48, angle);
-                    }
-                }
                 break;
             }
             case 'toast_target': {
@@ -3950,8 +4384,9 @@ class World {
                 if (tile.type === 'tree' && tile.isTreeTop) {
                     tile.solid = true;
                 }
-                // v5 saves may still have removed flower/tulip/water decorations.
-                if (tile.type === 'flower' || tile.type === 'tulip' || tile.type === 'water') {
+                // v5 saves may still have removed flower/water decorations.
+                // (Tulips are now valid harvestable content again.)
+                if (tile.type === 'flower' || tile.type === 'water') {
                     this.tiles[x][y] = { type: 'grass', variant: 0 };
                 }
             }

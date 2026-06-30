@@ -186,13 +186,15 @@ function checkArrivals() {
     if (!next) return;
 
     const npc = new NPC(next.def, next.index);
-    // Spawn at random shoreline position
-    const angle = Math.random() * Math.PI * 2;
-    const r = 39; // beach ring
-    npc.gridX = Math.round(50 + r * Math.cos(angle));
-    npc.gridY = Math.round(50 + r * Math.sin(angle));
-    npc.gridX = constrain(npc.gridX, 5, 95);
-    npc.gridY = constrain(npc.gridY, 5, 95);
+    // Spawn at a random spot along the rectangular beach ring (just inside the sand).
+    const inset = (typeof ISLAND !== 'undefined') ? ISLAND.SEA_MARGIN + 1 : 9;
+    const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
+    const lo = inset, hiX = W - 1 - inset, hiY = H - 1 - inset;
+    const side = Math.floor(Math.random() * 4); // 0=top,1=bottom,2=left,3=right
+    if (side === 0)      { npc.gridX = lo + Math.floor(Math.random() * (hiX - lo)); npc.gridY = lo; }
+    else if (side === 1) { npc.gridX = lo + Math.floor(Math.random() * (hiX - lo)); npc.gridY = hiY; }
+    else if (side === 2) { npc.gridX = lo; npc.gridY = lo + Math.floor(Math.random() * (hiY - lo)); }
+    else                 { npc.gridX = hiX; npc.gridY = lo + Math.floor(Math.random() * (hiY - lo)); }
     npcs.push(npc);
     notify(npc.name + ' arrived on the island!');
 }
