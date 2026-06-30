@@ -182,6 +182,7 @@ let player = null;
 let world = null;            // the ACTIVE map (one of `maps`)
 let maps = {};               // id -> World instance (e.g. 'island', 'underground')
 let currentMapId = 'island'; // which map `world` currently points at
+let debugMode = false;       // dev overlay + cheats (toggle with backtick `)
 let cameraX = 0;
 let cameraY = 0;
 
@@ -944,6 +945,9 @@ function drawGame() {    // Handle continuous movement
 
     // Draw notifications on top
     drawNotifications();
+
+    // Debug overlay (coords, time, hotkeys)
+    drawDebugOverlay();
 
     // ===== YOGATRON: Ab Appreciation Day visitor =====
     updateYogatron(deltaTime);
@@ -1918,6 +1922,12 @@ function mousePressed() {
         // Clicking the on-screen hotbar selects that slot (universal).
         const hb = getHotbarSlotAtMouse();
         if (hb >= 0) { hotbarSlot = hb; return; }
+        // Debug: click anywhere else to teleport the player there.
+        if (debugMode) {
+            const TS = CONFIG.TILE_SIZE;
+            debugTeleport(Math.floor((mouseX + cameraX) / TS), Math.floor((mouseY + cameraY) / TS));
+            return;
+        }
         // Try entering building first
         if (tryEnterBuilding()) return;
         // Check NPC talk, then harvest
@@ -2267,6 +2277,91 @@ function checkPortalUnderfoot() {
     if (dest.label) notify(dest.label);
 }
 
+// ===== DEBUG MODE =====
+// Dev cheats + an info overlay, gated behind `debugMode`. Toggle with backtick.
+//   `  toggle debug      T  +1 hour      Y  skip to next day (sunrise)
+//   H  refresh harvest   click  teleport player to the clicked tile
+function toggleDebugMode() {
+    debugMode = !debugMode;
+    notify('Debug mode ' + (debugMode ? 'ON' : 'OFF'));
+}
+
+function debugSkipHour() {
+    if (!world) return;
+    world.timeMinutes += 60;
+    while (world.timeMinutes >= 24 * 60) {
+        world.timeMinutes -= 24 * 60;
+        world.day++;
+        if (typeof onNewDay === 'function') onNewDay();
+    }
+    notify('Debug: time ' + (typeof getTimeString === 'function' ? getTimeString() : world.timeMinutes));
+}
+
+function debugSkipDay() {
+    if (!world) return;
+    world.day++;
+    world.timeMinutes = 6 * 60; // sunrise
+    if (typeof onNewDay === 'function') onNewDay();
+    if (typeof refreshHarvestables === 'function') refreshHarvestables();
+    if (typeof spawnBirdPoop === 'function') spawnBirdPoop(3 + floor(random(3)));
+    notify('Debug: skipped to Day ' + world.day);
+}
+
+function debugRefreshHarvest() {
+    if (typeof refreshHarvestables === 'function') refreshHarvestables();
+    if (typeof checkRespawns === 'function') checkRespawns();
+    notify('Debug: harvestables refreshed');
+}
+
+function debugTeleport(tx, ty) {
+    if (!world || !player) return;
+    player.x = constrain(tx, 0, CONFIG.WORLD_WIDTH - 1);
+    player.y = constrain(ty, 0, CONFIG.WORLD_HEIGHT - 1);
+    updateCamera();
+    notify('Debug: teleported to ' + player.x + ',' + player.y);
+}
+
+// Debug hotkeys. Returns true if the key was consumed. Only called in PLAYING
+// and INSIDE states so it never eats menu/dialogue/name-entry input.
+function handleDebugKey(kc, k) {
+    if (kc === 192) { toggleDebugMode(); return true; } // backtick `
+    if (!debugMode) return false;
+    if (k === 't' || k === 'T') { debugSkipHour(); return true; }
+    if (k === 'y' || k === 'Y') { debugSkipDay(); return true; }
+    if (k === 'h' || k === 'H') { debugRefreshHarvest(); return true; }
+    return false;
+}
+
+// Top-left info panel: map, player & mouse tile, day/time, and the hotkey legend.
+function drawDebugOverlay() {
+    if (!debugMode) return;
+    push();
+    const TS = CONFIG.TILE_SIZE;
+    const playing = (gameState === STATE.PLAYING);
+    const lines = [
+        'DEBUG  (` to toggle)',
+        'map: ' + currentMapId,
+        'player: ' + (player ? player.x + ',' + player.y : '?'),
+    ];
+    if (playing) {
+        lines.push('mouse: ' + Math.floor((mouseX + cameraX) / TS) + ',' + Math.floor((mouseY + cameraY) / TS));
+    }
+    lines.push('day ' + (world ? world.day : '?') + '   ' + (typeof getTimeString === 'function' ? getTimeString() : ''));
+    lines.push('T:+1h  Y:+1day  H:harvest');
+    if (playing) lines.push('click: teleport');
+
+    textSize(10);
+    textAlign(LEFT, TOP);
+    const w = 200, h = lines.length * 13 + 8;
+    const x = 6, y = 40;
+    noStroke();
+    fill(0, 0, 0, 180);
+    rect(x, y, w, h);
+    fill('#7CFC8A');
+    for (let i = 0; i < lines.length; i++) text(lines[i], x + 6, y + 5 + i * 13);
+    pop();
+}
+
 // ===== SLEEPING =====
 // Night is defined as 8 PM (20:00) to 6 AM (06:00).
 function isNightTime() {
@@ -2419,6 +2514,9 @@ function drawInterior() {
         world.day++;
     }
     if (deltaTime) updateNotifications(deltaTime);
+
+    // Debug overlay (coords, time, hotkeys)
+    drawDebugOverlay();
 }
 
 function drawInteriorTile(tile, sx, sy, TS) {
@@ -2738,6 +2836,11 @@ function tryPickupHomeInside(tx, ty) {
 }
 
 function keyPressed() {
+    // ===== DEBUG HOTKEYS (only while playing/inside, so menus/typing are safe) =====
+    if (gameState === STATE.PLAYING || gameState === STATE.INSIDE) {
+        if (handleDebugKey(keyCode, key)) return false;
+    }
+
     // ===== SHACK PICKER =====
     if (gameState === 'shackPicker' && shackPicker) {
         const nbrs = shackPicker.neighbors;
