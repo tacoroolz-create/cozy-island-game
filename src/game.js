@@ -589,9 +589,14 @@ function drawNotifications() {
     }
 }
 
-// Bump this whenever sprite art is updated so browsers re-fetch images instead
-// of serving stale cached copies (images aren't covered by the index.html ?v=).
-const ASSET_VERSION = '20260636';
+// DEV TOGGLE: while iterating on art, leave this true so every image is
+// re-fetched on each page load (a fresh timestamp per load defeats the cache).
+// Set it to false for release so sprites cache normally — and then bump
+// ASSET_VERSION whenever you change art.
+const DEV_REFRESH_ASSETS = true;
+// Cache-buster appended to every image URL in preload(). With the dev toggle on
+// it's unique per load; off, it's the fixed version string below.
+const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260722';
 
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
