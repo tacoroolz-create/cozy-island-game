@@ -169,9 +169,23 @@ const MIGRATIONS = [
 ];
 
 function serializeGame() {
-    return {
+    // Persistence currently tracks the island map. If the player is standing in
+    // another map (e.g. the underground city), momentarily swap the island back
+    // in so the entity-global serialization below captures the island, never the
+    // transient map. No frame renders between the swaps, so it's invisible.
+    const activeMap = (typeof currentMapId !== 'undefined') ? currentMapId : 'island';
+    let swappedOut = null;
+    if (activeMap !== 'island' && typeof maps !== 'undefined' && maps.island) {
+        parkActiveMap();
+        swappedOut = activeMap;
+        currentMapId = 'island';
+        world = maps.island;
+        loadMapEntities(world);
+    }
+    const data = {
         version: SAVE_VERSION,
         timestamp: Date.now(),
+        currentMapId: activeMap,
         player: player.serialize(),
         world: world.serialize(),
         inventory: inventory.serialize(),
@@ -189,14 +203,25 @@ function serializeGame() {
         hogPoopTiles: hogPoopTiles.slice(),
         gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {}
     };
+    // Restore the map the player was actually standing in.
+    if (swappedOut) {
+        parkActiveMap();
+        currentMapId = swappedOut;
+        world = maps[swappedOut];
+        loadMapEntities(world);
+    }
+    return data;
 }
 
 function deserializeGame(data) {
     player = new Player(data.player.x, data.player.y);
     player.deserialize(data.player);
 
-    world = new World();
+    world = new World('island', 'island');
     world.deserialize(data.world);
+    // Reset the map registry to just the island; other maps regenerate on entry.
+    maps = { island: world };
+    currentMapId = 'island';
 
     inventory = new Inventory();
     if (data.inventory) inventory.deserialize(data.inventory);

@@ -179,7 +179,9 @@ const SPRITE_DEFS = {
 // Global game state
 let gameState = STATE.START;
 let player = null;
-let world = null;
+let world = null;            // the ACTIVE map (one of `maps`)
+let maps = {};               // id -> World instance (e.g. 'island', 'underground')
+let currentMapId = 'island'; // which map `world` currently points at
 let cameraX = 0;
 let cameraY = 0;
 
@@ -580,8 +582,10 @@ function setup() {
     pixelDensity(1);
     noSmooth();
 
-    // Initialize world
-    world = new World();
+    // Initialize world (the island is the starting map)
+    world = new World('island', 'island');
+    maps = { island: world };
+    currentMapId = 'island';
 
     // Initialize player at center of island
     player = new Player(50, 50);
@@ -823,6 +827,8 @@ function handleMovement() {
     if (moved) {
         updateCamera();
         lastMoveTime = now;
+        // Stepping onto a portal tile carries the player to another map.
+        checkPortalUnderfoot();
     }
 }
 
@@ -2143,6 +2149,88 @@ function placePlayerAtShackEntrance() {
     updateCamera();
 }
 
+// ===== WORLDS (multiple maps) =====
+// The whole game runs off a single active map (`world`). To support several
+// large locations we keep N World instances in `maps` and swap which one is
+// active. Per-map entities (buildings, NPCs, animals, hog) live in shared
+// globals while their map is active; on travel we "park" the active map's
+// entities onto its World instance and load the destination's.
+//
+// Each entry: [getter, setter, freshValue]. Getters/setters reference the
+// shared cross-file globals so parking/loading just moves array references.
+const MAP_ENTITY_FIELDS = [
+    ['buildings',    () => buildings,    v => { buildings = v; },    () => []],
+    ['npcs',         () => npcs,         v => { npcs = v; },         () => []],
+    ['npcQueue',     () => npcQueue,     v => { npcQueue = v; },     () => []],
+    ['hog',          () => hog,          v => { hog = v; },          () => null],
+    ['hogPoopTiles', () => hogPoopTiles, v => { hogPoopTiles = v; }, () => []],
+    ['birds',        () => birds,        v => { birds = v; },        () => []],
+    ['crabs',        () => crabs,        v => { crabs = v; },        () => []],
+    ['turtles',      () => turtles,      v => { turtles = v; },      () => []],
+    ['seagulls',     () => seagulls,     v => { seagulls = v; },     () => []],
+    ['butterflies',  () => butterflies,  v => { butterflies = v; },  () => []],
+    ['cicadas',      () => cicadas,      v => { cicadas = v; },      () => []],
+    ['groundLoot',   () => groundLoot,   v => { groundLoot = v; },   () => []],
+];
+
+// Snapshot the active map's entity globals onto its World instance.
+function parkActiveMap() {
+    const m = maps[currentMapId];
+    if (!m) return;
+    m.entities = m.entities || {};
+    for (const [name, get] of MAP_ENTITY_FIELDS) {
+        try { m.entities[name] = get(); } catch (e) { /* global not yet defined */ }
+    }
+}
+
+// Load a map's parked entities into the shared globals (fresh empties if none).
+function loadMapEntities(m) {
+    const parked = m.entities || {};
+    for (const [name, , set, fresh] of MAP_ENTITY_FIELDS) {
+        try { set(parked[name] !== undefined ? parked[name] : fresh()); } catch (e) { /* ignore */ }
+    }
+}
+
+// Ensure a map exists, generating it on first visit.
+function getOrCreateMap(id) {
+    if (!maps[id]) maps[id] = new World(id === 'island' ? 'island' : id, id);
+    return maps[id];
+}
+
+// Move the player to another map. (x, y, facing) is the arrival spot — place the
+// player ADJACENT to the destination portal so they don't immediately re-trigger.
+function travelTo(targetId, x, y, facing) {
+    if (!world) return;
+    parkActiveMap();
+    const dest = getOrCreateMap(targetId);
+    // Carry the world clock across so time is continuous between maps.
+    dest.day = world.day;
+    dest.season = world.season;
+    dest.timeMinutes = world.timeMinutes;
+    currentMapId = targetId;
+    world = dest;
+    loadMapEntities(dest);
+    insideBuilding = null;
+    if (typeof x === 'number') player.x = x;
+    if (typeof y === 'number') player.y = y;
+    if (facing) player.facing = facing;
+    gameState = STATE.PLAYING;
+    if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
+    updateCamera();
+}
+
+// If the player is standing on a portal tile, travel through it. Called after
+// each overworld step.
+function checkPortalUnderfoot() {
+    if (!world || !player) return;
+    const col = world.tiles[player.x];
+    const tile = col ? col[player.y] : null;
+    if (!tile || tile.type !== 'portal' || !tile.target) return;
+    const dest = tile.target;
+    travelTo(dest.map, dest.x, dest.y, dest.facing || 'down');
+    if (dest.label) notify(dest.label);
+}
+
 // ===== SLEEPING =====
 // Night is defined as 8 PM (20:00) to 6 AM (06:00).
 function isNightTime() {
@@ -3162,7 +3250,9 @@ function loadGameFromSlot(slot) {
 }
 
 function startNewGame() {
-    world = new World();
+    world = new World('island', 'island');
+    maps = { island: world };
+    currentMapId = 'island';
     player = new Player(50, 50);
     inventory = new Inventory();
     buildings = [];
@@ -3677,17 +3767,72 @@ function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
 }
 
 // World class
+// Shared portal coordinates so the two ends of each link agree. Arrival points
+// sit one tile clear of the portal so the player doesn't immediately re-trigger.
+const ISLAND_CAVE_PORTAL = { x: 48, y: 50 };   // cave-mouth tile on the island
+const ISLAND_CAVE_ENTRY  = { x: 48, y: 52 };   // where you surface, below the mouth
+const UNDERGROUND_PORTAL = { x: 50, y: 8 };    // stairs-up tile in the city
+const UNDERGROUND_ENTRY  = { x: 50, y: 11 };   // where you arrive, below the stairs
+
+// Eight foundation pads where underground buildings can stand (2 rows x 4 cols).
+// Each pad is PAD_W x PAD_H tiles; (x,y) is its top-left corner.
+const UNDERGROUND_PAD_W = 8, UNDERGROUND_PAD_H = 6;
+const UNDERGROUND_FOUNDATIONS = [
+    { x: 12, y: 26 }, { x: 30, y: 26 }, { x: 48, y: 26 }, { x: 66, y: 26 },
+    { x: 12, y: 50 }, { x: 30, y: 50 }, { x: 48, y: 50 }, { x: 66, y: 50 },
+];
+
 class World {
-    constructor() {
+    constructor(kind = 'island', id = null) {
+        this.kind = kind;          // 'island' | 'underground' (drives generation)
+        this.id = id || kind;      // registry key in `maps`
         this.tiles = [];
         this.day = 1;
         this.season = 'Sweet';
         this.timeMinutes = 8 * 60; // Start at 8 AM
         this.showSaveIndicator = false;
-        
-        this.generateWorld();
+        this.entities = null;      // parked per-map entity globals (see parkActiveMap)
+
+        if (kind === 'underground') this.generateUnderground();
+        else this.generateWorld();
     }
-    
+
+    // The underground city: a fixed cavern (rock border, stone floor) with eight
+    // foundation pads and a stairs-up portal. Buildings on the pads are placed
+    // separately (3 of 8 at creation), not here.
+    generateUnderground() {
+        const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
+        const BORDER = 4; // thickness of the surrounding rock wall
+        for (let x = 0; x < W; x++) {
+            this.tiles[x] = [];
+            for (let y = 0; y < H; y++) {
+                const edge = Math.min(x, W - 1 - x, y, H - 1 - y);
+                if (edge < BORDER) {
+                    this.tiles[x][y] = { type: 'cave_wall', variant: floor(random(3)), solid: true };
+                } else {
+                    this.tiles[x][y] = { type: 'cave_floor', variant: floor(random(4)) };
+                }
+            }
+        }
+        // Lay the eight foundation pads.
+        for (const pad of UNDERGROUND_FOUNDATIONS) {
+            for (let dx = 0; dx < UNDERGROUND_PAD_W; dx++) {
+                for (let dy = 0; dy < UNDERGROUND_PAD_H; dy++) {
+                    const tx = pad.x + dx, ty = pad.y + dy;
+                    if (tx < 0 || tx >= W || ty < 0 || ty >= H) continue;
+                    this.tiles[tx][ty] = { type: 'foundation', variant: 0 };
+                }
+            }
+        }
+        // Stairs back up to the surface.
+        const p = UNDERGROUND_PORTAL;
+        this.tiles[p.x][p.y] = {
+            type: 'portal', variant: 0,
+            target: { map: 'island', x: ISLAND_CAVE_ENTRY.x, y: ISLAND_CAVE_ENTRY.y, facing: 'down',
+                      label: 'You climb back to the surface.' }
+        };
+    }
+
     generateWorld() {
         const centerX = CONFIG.WORLD_WIDTH / 2;
         const centerY = CONFIG.WORLD_HEIGHT / 2;
@@ -3817,6 +3962,22 @@ class World {
 
         // Seed the world with an initial set of bird poop.
         spawnBirdPoop(3 + floor(random(3)));
+
+        // Cave mouth: a portal down to the underground city. Placed last and the
+        // surrounding tiles cleared so no decoration covers it.
+        const cp = ISLAND_CAVE_PORTAL;
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 2; dy++) {
+                const tx = cp.x + dx, ty = cp.y + dy;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                this.tiles[tx][ty] = { type: 'grass', variant: floor(random(3)) };
+            }
+        }
+        this.tiles[cp.x][cp.y] = {
+            type: 'portal', variant: 0,
+            target: { map: 'underground', x: UNDERGROUND_ENTRY.x, y: UNDERGROUND_ENTRY.y, facing: 'down',
+                      label: 'You descend into the underground city...' }
+        };
     }
 
     // Smooth the base terrain (sea/beach/grass) by removing lone 1-tile
@@ -4043,6 +4204,51 @@ class World {
         }
 
         switch(tile.type) {
+            case 'cave_floor': {
+                // Stone floor with a little speckle so it isn't flat.
+                fill('#4A4640');
+                rect(screenX, screenY, TS, TS);
+                noStroke();
+                fill('#544F48');
+                if (tile.variant === 1) rect(screenX + 3, screenY + 9, 3, 2);
+                else if (tile.variant === 2) rect(screenX + 10, screenY + 4, 2, 3);
+                else if (tile.variant === 3) { rect(screenX + 6, screenY + 6, 2, 2); rect(screenX + 11, screenY + 11, 2, 2); }
+                break;
+            }
+            case 'cave_wall': {
+                // Dark rock with a lighter top bevel for a bit of depth.
+                fill('#2A2622');
+                rect(screenX, screenY, TS, TS);
+                noStroke();
+                fill('#3A352F');
+                rect(screenX, screenY, TS, 3);
+                fill('#211D19');
+                rect(screenX, screenY + TS - 2, TS, 2);
+                break;
+            }
+            case 'foundation': {
+                // Pale flagstone pad where a building can be raised.
+                fill('#6E6358');
+                rect(screenX, screenY, TS, TS);
+                noFill();
+                stroke('#564C43');
+                strokeWeight(1);
+                rect(screenX + 0.5, screenY + 0.5, TS - 1, TS - 1);
+                noStroke();
+                break;
+            }
+            case 'portal': {
+                // Glowing stairwell: dark opening with a warm pulsing core.
+                fill('#1C1A26');
+                rect(screenX, screenY, TS, TS);
+                noStroke();
+                const pulse = 140 + 80 * Math.sin(frameCount / 18);
+                fill(255, 210, 120, pulse);
+                rect(screenX + 3, screenY + 3, TS - 6, TS - 6);
+                fill(255, 235, 180, pulse);
+                rect(screenX + 5, screenY + 5, TS - 10, TS - 10);
+                break;
+            }
             case 'sea': {
                 const spr = SPRITES['tiles.waves'];
                 if (spr) {
