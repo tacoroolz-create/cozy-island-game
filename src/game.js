@@ -1707,6 +1707,14 @@ function drawSettingsTab(x, y, w, h) {
     text('Controls: [TBD]', x, y + 98);
     text('Mute: [TBD]', x, y + 110);
 
+    // Debug Mode toggle (also togglable with the backtick key).
+    fill(debugMode ? '#7CFC8A' : '#9E9E9E');
+    textSize(9);
+    text((debugMode ? '■' : '□') + ' Debug Mode: ' + (debugMode ? 'ON' : 'OFF'), x, y + 130);
+    fill(120);
+    textSize(7);
+    text('(cheats + coord overlay; key: `)', x, y + 142);
+
     fill(255, 255, 100);
     textSize(8);
     text('Press S to save · click a row above to act', x, y + h - 14);
@@ -2071,6 +2079,13 @@ function mousePressed() {
                 saveAndQuit();
                 return;
             }
+            // "Debug Mode" toggle row at y + 130
+            const dbgY = contentY + 130;
+            if (mouseY >= dbgY - 4 && mouseY < dbgY + 11 &&
+                mouseX >= sx && mouseX < sx + 200) {
+                toggleDebugMode();
+                return;
+            }
         }
 
         return;
@@ -2321,6 +2336,59 @@ function debugTeleport(tx, ty) {
     notify('Debug: teleported to ' + player.x + ',' + player.y);
 }
 
+// First walkable tile in a ring around (x, y): not solid, no building, no NPC.
+function firstWalkableNear(x, y) {
+    const rings = [
+        [0, -1], [1, 0], [0, 1], [-1, 0],
+        [1, -1], [1, 1], [-1, 1], [-1, -1],
+        [0, -2], [2, 0], [0, 2], [-2, 0],
+    ];
+    for (const [dx, dy] of rings) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
+        if (isSolidTile(nx, ny)) continue;
+        if (typeof buildingAt === 'function' && buildingAt(nx, ny)) continue;
+        if (typeof npcAt === 'function' && npcAt(nx, ny)) continue;
+        return { x: nx, y: ny };
+    }
+    return null;
+}
+
+// Spawn a roster neighbour next to the player. Prefers an unused NPC_DEFS entry
+// (so dialogue keys line up); falls back to a random one if all are present.
+function debugSpawnNPC() {
+    if (!world || !player || typeof NPC_DEFS === 'undefined' || typeof NPC === 'undefined') {
+        notify('Debug: NPC system unavailable');
+        return;
+    }
+    let index = NPC_DEFS.findIndex((d, i) => !npcs.some(n => n.id === i));
+    if (index < 0) index = floor(random(NPC_DEFS.length));
+    const npc = new NPC(NPC_DEFS[index], index);
+    const spot = firstWalkableNear(player.x, player.y) || { x: player.x, y: player.y };
+    npc.gridX = spot.x;
+    npc.gridY = spot.y;
+    npc.isPresent = true;
+    npcs.push(npc);
+    notify('Debug: spawned ' + npc.name + ' the ' + npc.species);
+}
+
+// Give an item to the inventory. Prompts for "itemId [count]" (count defaults 1).
+function debugGiveItem() {
+    if (typeof inventory === 'undefined' || !inventory) { notify('Debug: no inventory'); return; }
+    const ids = Object.keys(ITEMS);
+    const raw = (typeof window !== 'undefined' && window.prompt)
+        ? window.prompt('Give item — "itemId [count]"\n(see console for the full list)', 'log 10')
+        : null;
+    if (ids && console) console.log('[debug] valid item ids:', ids.join(', '));
+    if (!raw) return;
+    const parts = raw.trim().split(/\s+/);
+    const id = parts[0];
+    const count = Math.max(1, parseInt(parts[1], 10) || 1);
+    if (!ITEMS[id]) { notify('Debug: unknown item "' + id + '"'); return; }
+    inventory.addItem(id, count);
+    notify('Debug: +' + count + ' ' + (ITEMS[id].name || id));
+}
+
 // Debug hotkeys. Returns true if the key was consumed. Only called in PLAYING
 // and INSIDE states so it never eats menu/dialogue/name-entry input.
 function handleDebugKey(kc, k) {
@@ -2329,6 +2397,8 @@ function handleDebugKey(kc, k) {
     if (k === 't' || k === 'T') { debugSkipHour(); return true; }
     if (k === 'y' || k === 'Y') { debugSkipDay(); return true; }
     if (k === 'h' || k === 'H') { debugRefreshHarvest(); return true; }
+    if (k === 'n' || k === 'N') { debugSpawnNPC(); return true; }
+    if (k === 'g' || k === 'G') { debugGiveItem(); return true; }
     return false;
 }
 
@@ -2347,12 +2417,14 @@ function drawDebugOverlay() {
         lines.push('mouse: ' + Math.floor((mouseX + cameraX) / TS) + ',' + Math.floor((mouseY + cameraY) / TS));
     }
     lines.push('day ' + (world ? world.day : '?') + '   ' + (typeof getTimeString === 'function' ? getTimeString() : ''));
+    lines.push('npcs: ' + (typeof npcs !== 'undefined' && npcs ? npcs.length : 0));
     lines.push('T:+1h  Y:+1day  H:harvest');
+    lines.push('N:npc  G:give-item');
     if (playing) lines.push('click: teleport');
 
     textSize(10);
     textAlign(LEFT, TOP);
-    const w = 200, h = lines.length * 13 + 8;
+    const w = 210, h = lines.length * 13 + 8;
     const x = 6, y = 40;
     noStroke();
     fill(0, 0, 0, 180);
