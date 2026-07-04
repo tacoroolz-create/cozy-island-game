@@ -61,6 +61,16 @@ const NPC_DEFS = [
     { name: 'Vex', personality: 'custom', species: 'Robot (Steampunk)', color: '#220158' },
 ];
 
+// Mubaba: the underground city's magic merchant (July3rdReview C4). Not part
+// of the island neighbor roster — he lives on the underground map, keyed by
+// the string id 'mubaba', and never wanders, arrives, or departs. He'll trade
+// goods / check accomplishments to teach magic tricks (content TBD).
+// First sprite at the new 2x5 character scale (32x80 px).
+const MUBABA_DEF = {
+    name: 'Mubaba', personality: 'custom', species: 'Magic Merchant',
+    color: '#8a5ac2', wTiles: 2, hTiles: 5, stationary: true, hasHome: true
+};
+
 let npcs = [];
 
 class NPC {
@@ -72,10 +82,15 @@ class NPC {
         this.color = def.color;
         this.gridX = 50;
         this.gridY = 50;
+        // Footprint in tiles, bottom-anchored at (gridX, gridY). Default is the
+        // classic 1x2; big characters (e.g. Mubaba at 2x5) override via def.
+        this.wTiles = def.wTiles || 1;
+        this.hTiles = def.hTiles || 2;
+        this.stationary = !!def.stationary;
         this.facing = 'down';
         this.friendship = 0;
         this.isPresent = true;
-        this.hasHome = false;
+        this.hasHome = !!def.hasHome;
         this.hutX = 0;
         this.hutY = 0;
         this.dailyTalked = false;
@@ -86,6 +101,7 @@ class NPC {
     }
 
     update(dt, gameTime) {
+        if (this.stationary) return; // shopkeepers stay put
         // Simple wander behavior — move randomly within home radius
         if (Math.random() < 0.005) {
             const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
@@ -105,17 +121,26 @@ class NPC {
 
     draw() {
         if (!this.isPresent) return;
-        // NPCs are 1 tile wide, 2 tiles tall, drawn bottom-anchored at (gridX, gridY).
-        const sx = this.gridX * CONFIG.TILE_SIZE - cameraX;
-        const sy = this.gridY * CONFIG.TILE_SIZE - cameraY;
+        // NPCs draw bottom-anchored at (gridX, gridY); footprint from wTiles/hTiles.
+        const TS = CONFIG.TILE_SIZE;
+        const w = this.wTiles * TS;
+        const h = this.hTiles * TS;
+        const sx = this.gridX * TS - cameraX;
+        const sy = this.gridY * TS - cameraY;
+        const topY = sy + TS - h; // screen y of the sprite's top edge
         // Use per-NPC sprite if available, otherwise fall back to colored rectangle.
         const spriteKey = 'sprites.' + this.name.toLowerCase();
         const spr = SPRITES[spriteKey] || null;
         const moving = (millis() - (this.lastMoveAt || 0)) < 300;
-        if (!drawCharacterSprite(spr, sx, sy - CONFIG.TILE_SIZE, this.facing, moving)) {
+        if (spr && (this.wTiles > 1 || this.hTiles > 2)) {
+            // Big new-scale character: a single still frame drawn at natural
+            // tile size with bob + flip (un-flipped art faces left).
+            const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
+            drawSpriteMaybeFlipped(spr, sx, topY + bob, w, h, this.facing === 'right');
+        } else if (!drawCharacterSprite(spr, sx, sy - TS, this.facing, moving)) {
             fill(this.color);
             noStroke();
-            rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+            rect(sx, topY, w, h);
         }
         // Name tag above head
         const halfW = CONFIG.CANVAS_WIDTH / 2;
@@ -126,9 +151,9 @@ class NPC {
             textSize(7);
             textFont('Courier New');
             const nw = textWidth(this.name) + 4;
-            rect(sx + CONFIG.TILE_SIZE / 2 - nw / 2, sy - CONFIG.TILE_SIZE - 12, nw, 9);
+            rect(sx + w / 2 - nw / 2, topY - 12, nw, 9);
             fill(255);
-            text(this.name, sx + CONFIG.TILE_SIZE / 2, sy - CONFIG.TILE_SIZE - 3);
+            text(this.name, sx + w / 2, topY - 3);
         }
     }
 
@@ -158,7 +183,8 @@ class NPC {
     }
 
     static deserialize(data) {
-        const def = NPC_DEFS[data.id] || { name: data.name, personality: data.personality, color: data.color };
+        const def = (data.id === 'mubaba') ? MUBABA_DEF
+            : NPC_DEFS[data.id] || { name: data.name, personality: data.personality, color: data.color };
         const npc = new NPC(def, data.id);
         npc.gridX = data.gridX; npc.gridY = data.gridY;
         npc.facing = data.facing || 'down';

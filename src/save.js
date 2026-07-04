@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 11;
+const SAVE_VERSION = 12;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -215,6 +215,23 @@ const MIGRATIONS = [
             }
         }
         return data;
+    },
+    // v11 -> v12: Mubaba the magic merchant now lives in the underground city
+    // (spawned at city generation). Saves whose underground already exists
+    // predate him, so stamp his record in.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.npcs = ug.npcs || [];
+            if (!ug.npcs.some(n => n && n.id === 'mubaba')) {
+                ug.npcs.push({
+                    id: 'mubaba', name: 'Mubaba',
+                    gridX: MUBABA_SPAWN.x, gridY: MUBABA_SPAWN.y,
+                    facing: 'left', isPresent: true, hasHome: true
+                });
+            }
+        }
+        return data;
     }
     // Future migrations go here
 ];
@@ -267,7 +284,8 @@ function serializeGame() {
                 kind: m.kind,
                 day: m.day, season: m.season, timeMinutes: m.timeMinutes,
                 tiles: m.tiles,
-                buildings: (ents.buildings || []).map(b => b.serialize())
+                buildings: (ents.buildings || []).map(b => b.serialize()),
+                npcs: (ents.npcs || []).map(n => n.serialize())
             };
         }
     }
@@ -297,7 +315,10 @@ function deserializeGame(data) {
             m.kind = md.kind || id;
             m.tiles = md.tiles;
             m.day = md.day; m.season = md.season; m.timeMinutes = md.timeMinutes;
-            m.entities = { buildings: (md.buildings || []).map(bd => Building.deserialize(bd)) };
+            m.entities = {
+                buildings: (md.buildings || []).map(bd => Building.deserialize(bd)),
+                npcs: (md.npcs || []).map(nd => NPC.deserialize(nd))
+            };
             maps[id] = m;
         }
     }

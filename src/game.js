@@ -96,6 +96,7 @@ const SPRITE_DEFS = {
     'tiles.sprout':           'assets/tiles/sprout.png',
     'tiles.soil':             'assets/tiles/soil.png',
     'sprites.player':         'assets/sprites/orb.png',
+    'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
     'sprites.brass':          'assets/sprites/brass.png',
@@ -4125,6 +4126,11 @@ const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as t
 const UNDERGROUND_POND_ORIGIN = { x: 17, y: 11 }; // top-left of the 6x6 underground pond
 const UNDERGROUND_POND_LANDING = { x: 19, y: 13 }; // inner water tile, used as the island pond's warp target
 
+// Where Mubaba the magic merchant stands: on the cave floor just east of the
+// underground pond, so arrivals walk right into him. He moves in front of his
+// own building once that exists (July3rdReview C4).
+const MUBABA_SPAWN = { x: 26, y: 14 };
+
 // The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
 // Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
 // and guests "arrive" by boat and appear on the beach tile just east of the
@@ -4210,7 +4216,12 @@ class World {
             const b = this.placeBuildingOnFoundation(types[i], pads[i]);
             if (b) placed.push(b);
         }
-        this.entities = { buildings: placed };
+        // Mubaba the magic merchant greets arrivals by the pond.
+        const mubaba = new NPC(MUBABA_DEF, 'mubaba');
+        mubaba.gridX = MUBABA_SPAWN.x;
+        mubaba.gridY = MUBABA_SPAWN.y;
+        mubaba.facing = 'left';
+        this.entities = { buildings: placed, npcs: [mubaba] };
     }
 
     // Build a placeholder building centered on foundation pad #padIndex. The

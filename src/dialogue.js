@@ -763,26 +763,30 @@ function handleDialogueKey(keyCode, key) {
 }
 
 // Check if player is facing an NPC
-// NPCs are 1 wide, 2 tall, so we check both the tile at feet level and head level.
+// Checks the NPC's full standing footprint: wTiles wide, hTiles tall,
+// bottom-anchored at (gridX, gridY). Default 1x2 matches the old feet+head check.
 function npcAtFacing() {
     const facing = player.getFacingTile();
     if (!facing) return null;
     for (const npc of npcs) {
         if (!npc.isPresent) continue;
-        // Feet tile
-        if (npc.gridX === facing.x && npc.gridY === facing.y) return npc;
-        // Head tile (one tile above feet)
-        if (npc.gridX === facing.x && npc.gridY - 1 === facing.y) return npc;
+        const w = npc.wTiles || 1;
+        const h = npc.hTiles || 2;
+        if (facing.x >= npc.gridX && facing.x < npc.gridX + w &&
+            facing.y <= npc.gridY && facing.y > npc.gridY - h) return npc;
     }
     return null;
 }
 
-// Check if any NPC occupies a given world tile (feet or head).
+// Check if any NPC occupies a given world tile (full standing footprint).
 function npcAt(x, y) {
     if (!npcs) return false;
     for (const npc of npcs) {
         if (!npc.isPresent) continue;
-        if (npc.gridX === x && (npc.gridY === y || npc.gridY - 1 === y)) return true;
+        const w = npc.wTiles || 1;
+        const h = npc.hTiles || 2;
+        if (x >= npc.gridX && x < npc.gridX + w &&
+            y <= npc.gridY && y > npc.gridY - h) return true;
     }
     return false;
 }
