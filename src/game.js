@@ -4744,7 +4744,9 @@ class World {
                         return t ? t.type : 'sea';
                     }
                     function isLandType(type) {
-                        return type !== 'sea' && type !== 'pond_water' && type !== 'pond_shore';
+                        // The dock is a structure OVER water — sea beside it must not
+                        // grow a sandy shoreline.
+                        return type !== 'sea' && type !== 'pond_water' && type !== 'pond_shore' && type !== 'dock';
                     }
                     const northLand = isLandType(seaNeighborType(0, -1));
                     const southLand = isLandType(seaNeighborType(0, 1));
@@ -5008,7 +5010,16 @@ class World {
                 // The dock sprite is drawn later as one large overlay from dockOrigin.
                 // This pass only provides sand/water underneath the transparent PNG.
                 if (islandZone(x, y) === 'beach') drawBase('beach');
-                else { fill('#4A90C8'); noStroke(); rect(screenX, screenY, TS, TS); }
+                else {
+                    // Same animated open-water frames as the surrounding sea, so the
+                    // water under the dock doesn't read as a flat blue rectangle.
+                    const seaSpr = SPRITES['tiles.sea_overworld'];
+                    if (seaSpr) {
+                        const frames = Math.max(1, Math.floor(seaSpr.width / TS));
+                        const oceanFrame = floor(frameCount / 8) % frames;
+                        image(seaSpr, screenX, screenY, TS, TS, oceanFrame * TS, 0, TS, TS);
+                    } else { fill('#4A90C8'); noStroke(); rect(screenX, screenY, TS, TS); }
+                }
                 break;
             }
             case 'pond_water': {
