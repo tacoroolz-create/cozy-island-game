@@ -403,9 +403,14 @@ function giveGift(npc) {
 }
 
 function startMinigame(npc) {
-    // Placeholder — will hook into games.js when available
-    notify('Games coming soon! For now, just chatting.');
-    closeDialogue();
+    // Pick a game via the existing advanced-menu UI, then hand off to games.js.
+    dialogueState.advancedSelected = 0;
+    dialogueState.advancedOptions = [
+        { text: 'Tic-Tac-Toe', action: () => { closeDialogue(); startMinigameVs(npc, 'tictactoe'); } },
+        { text: 'Rhythm Game', action: () => { closeDialogue(); startMinigameVs(npc, 'rhythm'); } },
+        { text: 'Cancel', action: () => { closeDialogue(); } }
+    ];
+    dialogueState.advancedMenu = true;
 }
 
 function closeDialogue() {

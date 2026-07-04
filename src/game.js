@@ -1733,11 +1733,12 @@ function drawSettingsTab(x, y, w, h) {
     fill('#FF8A80');
     text('▶ Save and Quit to Menu', x, y + 66);
 
-    fill(120);
-    textSize(8);
-    text('Volume: [TBD]', x, y + 86);
-    text('Controls: [TBD]', x, y + 98);
-    text('Mute: [TBD]', x, y + 110);
+    fill('#82B1FF');
+    textSize(9);
+    text('▶ Music Volume: ' + Math.round(audioManager.musicVolume * 100) + '% (click to cycle)', x, y + 86);
+    text('▶ SFX Volume: ' + Math.round(audioManager.sfxVolume * 100) + '% (click to cycle)', x, y + 98);
+    fill(audioManager.muted ? '#FF8A80' : '#82B1FF');
+    text('▶ Mute: ' + (audioManager.muted ? 'ON' : 'OFF'), x, y + 110);
 
     // Debug Mode toggle (also togglable with the backtick key).
     fill(debugMode ? '#7CFC8A' : '#9E9E9E');
@@ -2111,6 +2112,27 @@ function mousePressed() {
                 saveAndQuit();
                 return;
             }
+            // Audio rows at y + 86 / 98 / 110. Volume rows cycle 0→25→50→75→100→0.
+            const cycleVol = v => (Math.round(v * 4) + 1) % 5 / 4;
+            const musY = contentY + 86;
+            if (mouseY >= musY - 4 && mouseY < musY + 11 &&
+                mouseX >= sx && mouseX < sx + 220) {
+                audioManager.setMusicVolume(cycleVol(audioManager.musicVolume));
+                return;
+            }
+            const sfxY = contentY + 98;
+            if (mouseY >= sfxY - 4 && mouseY < sfxY + 11 &&
+                mouseX >= sx && mouseX < sx + 220) {
+                audioManager.setSFXVolume(cycleVol(audioManager.sfxVolume));
+                audioManager.playSFX('chirp'); // preview the new level
+                return;
+            }
+            const muteY = contentY + 110;
+            if (mouseY >= muteY - 4 && mouseY < muteY + 11 &&
+                mouseX >= sx && mouseX < sx + 200) {
+                audioManager.toggleMute();
+                return;
+            }
             // "Debug Mode" toggle row at y + 130
             const dbgY = contentY + 130;
             if (mouseY >= dbgY - 4 && mouseY < dbgY + 11 &&
@@ -2308,6 +2330,7 @@ function travelTo(targetId, x, y, facing) {
     if (facing) player.facing = facing;
     gameState = STATE.PLAYING;
     if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
+    if (typeof audioManager !== 'undefined') audioManager.updateMapMusic(targetId);
     updateCamera();
 }
 
