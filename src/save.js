@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 10;
+const SAVE_VERSION = 11;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -189,6 +189,27 @@ const MIGRATIONS = [
                         if (tiles[x][y] && tiles[x][y].type === 'portal') {
                             tiles[x][y] = { type: 'cave_floor', variant: 0 };
                         }
+                    }
+                }
+            }
+        }
+        return data;
+    },
+    // v10 -> v11: earlier dock-placement iterations left stray 'sea' tiles on
+    // the beach/grass around the west pier. The coastline is a pure function of
+    // islandZone(x, y), so any sea tile outside the sea ring is bad data —
+    // restore it to its zone's base terrain.
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    const tile = tiles[x][y];
+                    if (!tile || tile.type !== 'sea') continue;
+                    const zone = islandZone(x, y);
+                    if (zone !== 'sea') {
+                        tiles[x][y] = { type: zone === 'beach' ? 'beach' : 'grass', variant: 0 };
                     }
                 }
             }
