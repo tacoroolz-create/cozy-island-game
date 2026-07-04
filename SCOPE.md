@@ -39,19 +39,21 @@ These specifics override any assumptions — all agents must follow these:
 
 ## 0. Project Architecture Overview
 
-### Current State
-- **Single-page web app** using p5.js (CDN, v1.9.0)
-- No build step — plain HTML/CSS/JS served directly
-- `index.html` → loads p5.js + `src/game.js`
-- `src/game.js` — single file containing: state machine, Player class, World class, UI rendering, input handler, save/load
-- Canvas: 480×272, tile: 16px, world: 100×100 (currently with sea ring)
-- Camera follows player, clamped to world bounds
-- States: START menu, SETTINGS, PLAYING, PAUSED
-- Player moves on grid with WASD/arrows (continuous, 120ms cooldown)
-- World: simple island (grass interior, sand beach, water ring)
-- Has basic day/night overlay and time system (30 min = 24 hrs — **already matches spec**)
-- Has basic save/load via localStorage
-- No assets folder, no sprite sheets, no audio — all rendering is colored rectangles
+### Current State (updated July 3, 2026 — see July3rdReview.txt for the full audit)
+- **Single-page web app** using p5.js (CDN, v1.9.0), no build step; 16 modules under `src/`
+- Most of Tasks 1–16 below are implemented: world gen, player, inventory/crafting,
+  day/night + seasons + holidays, NPCs (57 defs, arrivals, shacks, friendship),
+  full hand-written dialogue, gettin' stick with timed reel, gardening, harvesting,
+  animals + hog, buildings/interiors, minigames, magic tricks, versioned saves
+  with autosave, music + procedural SFX
+- Multi-map "worlds" system: island + underground city (3 of 8 buildings placed,
+  placeholder identities)
+- Remaining gaps tracked in July3rdReview.txt: magic teaching hook (K3),
+  underground identities/quests (C2/K4), multi-tile sprite engine per
+  SpriteUpdate.txt (C1/K5), 24 unimplemented holidays (C3/K6), axe/pickaxe
+  mechanics (K7), Cosmos NPC (C6/K8)
+- This document's task breakdown below is kept for reference but predates most
+  of the implementation — trust the code and July3rdReview.txt over it
 
 ### Target File Structure
 
