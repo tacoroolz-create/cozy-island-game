@@ -70,10 +70,20 @@ const SPRITE_DEFS = {
     'tiles.beach':            'assets/tiles/beach.png',
     'tiles.beach_edge':       'assets/tiles/beach_edge.png',
     'tiles.water':            'assets/tiles/water.png',
-    'tiles.tree':             'assets/tiles/tree.png',
-    'tiles.fir_tree':         'assets/tiles/fir_tree.png',
     'tiles.banana_tree':      'assets/tiles/banana_tree.png',
     'tiles.palm_tree':        'assets/tiles/palm_tree.png',
+    'tiles.tree_trunk_overworld': 'assets/tiles/tree_trunk_overworld.png',
+    'tiles.tree_top_basic':   'assets/tiles/tree_top_basic.png',
+    'tiles.tree_top_cool':    'assets/tiles/tree_top_cool.png',
+    'tiles.tree_top_yeesh':   'assets/tiles/tree_top_yeesh.png',
+    // Staged for the not-yet-built underworld/stars zones (see worlds-system memory).
+    'tiles.tree_full_underground': 'assets/tiles/tree_full_underground.png',
+    'tiles.tree_full_stars':  'assets/tiles/tree_full_stars.png',
+    'tiles.grass_cool':       'assets/tiles/grass_cool.png',
+    'tiles.grass_yeesh':      'assets/tiles/grass_yeesh.png',
+    'tiles.grass_underworld': 'assets/tiles/grass_underworld.png',
+    'tiles.grass_stars':      'assets/tiles/grass_stars.png',
+    'tiles.sea_overworld':    'assets/tiles/sea_overworld.png',
     'tiles.rock':             'assets/tiles/rock.png',
     'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
     'tiles.weeds':            'assets/tiles/weeds.png',
@@ -174,6 +184,7 @@ const SPRITE_DEFS = {
     'tiles.poop':             'assets/sprites/poop.png',
     'tiles.waves':            'assets/sprites/waves.png',
     'tiles.pond':             'assets/sprites/pond.png',
+    'tiles.dock':             'assets/tiles/dock.png',
 };
 
 // Global game state
@@ -192,6 +203,10 @@ let selectedMenuOption = 1; // Default-highlight "Load" on the start menu
 // Movement cooldown for grid-based movement (ms)
 let lastMoveTime = 0;
 const MOVE_COOLDOWN = 120;
+
+// Active pond-warp fall/bounce sequence (see startPondWarp/updateWarpAnim), or
+// null when idle. Blocks movement input while set.
+let warpAnim = null;
 const startMenuOptions = ['New Game', 'Load Game', 'Settings'];
 const settingsMenuOptions = ['Back'];
 
@@ -211,10 +226,22 @@ const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'b
 // deferred pass after all base terrain so the next column's base can't clip the
 // sprite's overflow. Maps tile type → sprite key.
 const TALL_SPRITE_TILES = {
-    tree: 'tiles.tree', fir_tree: 'tiles.fir_tree',
+    tree: 'tiles.tree_trunk_overworld', fir_tree: 'tiles.tree_trunk_overworld',
     banana_tree: 'tiles.banana_tree', palm_tree: 'tiles.palm_tree',
     rosebush: 'tiles.rosebush'
 };
+
+// Overworld grass/tree-top swap by season (Sweet & Saucy share the default look).
+function seasonalGrassKey() {
+    if (world.season === 'Cool') return 'tiles.grass_cool';
+    if (world.season === 'Yeesh') return 'tiles.grass_yeesh';
+    return 'tiles.grass';
+}
+function seasonalTreeTopKey() {
+    if (world.season === 'Cool') return 'tiles.tree_top_cool';
+    if (world.season === 'Yeesh') return 'tiles.tree_top_yeesh';
+    return 'tiles.tree_top_basic';
+}
 
 // Helper: check if a tile is solid. Individual tiles can override with a `solid` property.
 // Animals also block movement (solid obstacles).
@@ -597,7 +624,7 @@ function drawNotifications() {
 const DEV_REFRESH_ASSETS = true;
 // Cache-buster appended to every image URL in preload(). With the dev toggle on
 // it's unique per load; off, it's the fixed version string below.
-const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260722';
+const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260703';
 
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
@@ -840,7 +867,7 @@ function formatSaveTime(ts) {
 }
 
 function handleMovement() {
-    if (gameState !== STATE.PLAYING || !player) return;
+    if (gameState !== STATE.PLAYING || !player || warpAnim) return;
     
     const now = millis();
     if (now - lastMoveTime < MOVE_COOLDOWN) return;
@@ -916,6 +943,7 @@ function drawGame() {    // Handle continuous movement
 
     // Update notifications
     if (deltaTime) updateNotifications(deltaTime);
+    updateWarpAnim();
 
     // Draw world
     world.draw();
@@ -936,6 +964,10 @@ function drawGame() {    // Handle continuous movement
 
     // Draw player
     player.draw();
+
+    // Redraw tree canopy the player is standing under so foliage occludes
+    // them (see World.drawTreeCanopyOverPlayer()).
+    if (world) world.drawTreeCanopyOverPlayer();
 
     // Day/night overlay
     drawDayNightOverlay();
@@ -2222,7 +2254,6 @@ function placePlayerAtShackEntrance() {
 const MAP_ENTITY_FIELDS = [
     ['buildings',    () => buildings,    v => { buildings = v; },    () => []],
     ['npcs',         () => npcs,         v => { npcs = v; },         () => []],
-    ['npcQueue',     () => npcQueue,     v => { npcQueue = v; },     () => []],
     ['hog',          () => hog,          v => { hog = v; },          () => null],
     ['hogPoopTiles', () => hogPoopTiles, v => { hogPoopTiles = v; }, () => []],
     ['birds',        () => birds,        v => { birds = v; },        () => []],
@@ -2286,10 +2317,90 @@ function checkPortalUnderfoot() {
     if (!world || !player) return;
     const col = world.tiles[player.x];
     const tile = col ? col[player.y] : null;
-    if (!tile || tile.type !== 'portal' || !tile.target) return;
+    if (!tile || !tile.target) return;
     const dest = tile.target;
+    if (tile.type === 'pond') {
+        startPondWarp(dest);
+    } else {
+        travelTo(dest.map, dest.x, dest.y, dest.facing || 'down');
+        if (dest.label) notify(dest.label);
+    }
+}
+
+// Find a clear (non-solid, no building, dry) tile near (sx, sy), searching
+// outward in rings. Excludes pond/portal tiles so a warp doesn't bounce the
+// player straight into another warp. Falls back to (sx, sy) itself if nothing
+// is found within range.
+function findOpenTileNear(sx, sy) {
+    for (let r = 1; r <= 8; r++) {
+        for (let a = 0; a < 8; a++) {
+            const rad = a * PI / 4;
+            const tx = Math.round(sx + r * Math.cos(rad));
+            const ty = Math.round(sy + r * Math.sin(rad));
+            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+            const tile = world.tiles[tx] ? world.tiles[tx][ty] : null;
+            if (!tile || tile.target || tile.type === 'pond') continue;
+            if (isSolidTile(tx, ty)) continue;
+            if (buildingAt(tx, ty)) continue;
+            return { x: tx, y: ty };
+        }
+    }
+    return { x: sx, y: sy };
+}
+
+const WARP_FALL_MS = 400;      // fall-from-offscreen duration
+const WARP_BOUNCE_MS = 250;    // hop-to-a-clear-tile duration
+const WARP_BOUNCE_HEIGHT = 10; // px, arc peak during the bounce-out hop
+
+// Warp through a pond: travel instantly (as with any portal), then play a
+// fall-from-offscreen + bounce-to-a-clear-tile sequence before returning
+// control to the player. See updateWarpAnim() and the `warpAnim` guard in
+// handleMovement().
+function startPondWarp(dest) {
     travelTo(dest.map, dest.x, dest.y, dest.facing || 'down');
-    if (dest.label) notify(dest.label);
+    const open = findOpenTileNear(player.x, player.y);
+    warpAnim = {
+        phase: 'falling',
+        startTime: millis(),
+        bounceX: open.x,
+        bounceY: open.y
+    };
+    player.fallOffsetY = -CONFIG.CANVAS_HEIGHT;
+}
+
+// Advances the active pond-warp animation, if any. Called once per frame from
+// drawGame(). Clears `warpAnim` (re-enabling movement) when the sequence ends.
+function updateWarpAnim() {
+    if (!warpAnim || !player) return;
+    const elapsed = millis() - warpAnim.startTime;
+
+    if (warpAnim.phase === 'falling') {
+        const t = Math.min(1, elapsed / WARP_FALL_MS);
+        const ease = 1 - (1 - t) * (1 - t); // ease-out
+        player.fallOffsetY = -CONFIG.CANVAS_HEIGHT * (1 - ease);
+        if (t >= 1) {
+            player.fallOffsetY = 0;
+            warpAnim.phase = 'bouncing';
+            warpAnim.startTime = millis();
+            warpAnim.fromX = player.x;
+            warpAnim.fromY = player.y;
+        }
+        return;
+    }
+
+    // 'bouncing': hop from the landing tile to a clear tile nearby.
+    const t = Math.min(1, elapsed / WARP_BOUNCE_MS);
+    const arc = Math.sin(t * PI) * WARP_BOUNCE_HEIGHT;
+    player.hopOffsetX = (warpAnim.bounceX - warpAnim.fromX) * CONFIG.TILE_SIZE * t;
+    player.hopOffsetY = (warpAnim.bounceY - warpAnim.fromY) * CONFIG.TILE_SIZE * t - arc;
+    if (t >= 1) {
+        player.x = warpAnim.bounceX;
+        player.y = warpAnim.bounceY;
+        player.hopOffsetX = 0;
+        player.hopOffsetY = 0;
+        warpAnim = null;
+        updateCamera();
+    }
 }
 
 // ===== DEBUG MODE =====
@@ -2476,6 +2587,7 @@ function trySleep() {
     // Skip to next day 6:00 AM
     world.day++;
     world.timeMinutes = 6 * 60;
+    if (typeof onNewDay === 'function') onNewDay();
     notify("You slept until morning. Day " + world.day + " begins!");
 
     // Refresh harvestables and spawn new bird poop at sunrise
@@ -2584,6 +2696,7 @@ function drawInterior() {
     if (world.timeMinutes >= 24 * 60) {
         world.timeMinutes = 0;
         world.day++;
+        if (typeof onNewDay === 'function') onNewDay();
     }
     if (deltaTime) updateNotifications(deltaTime);
 
@@ -3791,6 +3904,10 @@ class Player {
         this.y = y;
         this.size = CONFIG.TILE_SIZE;
         this.facing = 'down';
+        // Pixel offsets applied during a pond-warp fall/bounce (see updateWarpAnim()).
+        this.fallOffsetY = 0;
+        this.hopOffsetX = 0;
+        this.hopOffsetY = 0;
     }
     
     move(dx, dy) {
@@ -3831,8 +3948,8 @@ class Player {
     }
     
     draw() {
-        const screenX = this.x * CONFIG.TILE_SIZE - cameraX;
-        const screenY = this.y * CONFIG.TILE_SIZE - cameraY;
+        const screenX = this.x * CONFIG.TILE_SIZE - cameraX + this.hopOffsetX;
+        const screenY = this.y * CONFIG.TILE_SIZE - cameraY + this.fallOffsetY + this.hopOffsetY;
 
         const spr = SPRITES['sprites.player'];
         // Player is 1 tile wide, 2 tiles tall (drawn bottom-anchored).
@@ -3978,12 +4095,20 @@ function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
 }
 
 // World class
-// Shared portal coordinates so the two ends of each link agree. Arrival points
-// sit one tile clear of the portal so the player doesn't immediately re-trigger.
-const ISLAND_CAVE_PORTAL = { x: 48, y: 50 };   // cave-mouth tile on the island
-const ISLAND_CAVE_ENTRY  = { x: 48, y: 52 };   // where you surface, below the mouth
-const UNDERGROUND_PORTAL = { x: 50, y: 8 };    // stairs-up tile in the city
-const UNDERGROUND_ENTRY  = { x: 50, y: 11 };   // where you arrive, below the stairs
+// Route between the two maps: stepping into either pond's
+// water warps you to the other (see World.placePond(), checkPortalUnderfoot()).
+const ISLAND_POND_ORIGIN      = { x: 47, y: 39 }; // top-left of the 6x6 island pond
+const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as the underground pond's warp target
+const UNDERGROUND_POND_ORIGIN = { x: 17, y: 11 }; // top-left of the 6x6 underground pond
+const UNDERGROUND_POND_LANDING = { x: 19, y: 13 }; // inner water tile, used as the island pond's warp target
+
+// The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
+// Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
+// and guests "arrive" by boat and appear on the beach tile just east of the
+// dock's landward end (see checkArrivals() in entities.js).
+const ISLAND_DOCK_ORIGIN  = { x: 0, y: 48 };
+const ISLAND_DOCK_W = 8, ISLAND_DOCK_H = 4;
+const ISLAND_DOCK_ARRIVAL = { x: ISLAND_DOCK_ORIGIN.x + ISLAND_DOCK_W, y: ISLAND_DOCK_ORIGIN.y + 2 };
 
 // Eight foundation pads where underground buildings can stand (2 rows x 4 cols).
 // Each pad is PAD_W x PAD_H tiles; (x,y) is its top-left corner.
@@ -4021,8 +4146,8 @@ class World {
     }
 
     // The underground city: a fixed cavern (rock border, stone floor) with eight
-    // foundation pads and a stairs-up portal. Buildings on the pads are placed
-    // separately (3 of 8 at creation), not here.
+    // foundation pads. Buildings on the pads are placed separately (3 of 8 at
+    // creation), not here.
     generateUnderground() {
         const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
         const BORDER = 4; // thickness of the surrounding rock wall
@@ -4047,13 +4172,10 @@ class World {
                 }
             }
         }
-        // Stairs back up to the surface.
-        const p = UNDERGROUND_PORTAL;
-        this.tiles[p.x][p.y] = {
-            type: 'portal', variant: 0,
-            target: { map: 'island', x: ISLAND_CAVE_ENTRY.x, y: ISLAND_CAVE_ENTRY.y, facing: 'down',
-                      label: 'You climb back to the surface.' }
-        };
+        // Animated route back to the surface: a pond mirroring the one up on
+        // the island.
+        this.placePond(UNDERGROUND_POND_ORIGIN.x, UNDERGROUND_POND_ORIGIN.y, 'island',
+                       ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
 
         // Place a random 3 of the 8 possible buildings on 3 of the 8 foundations.
         // The rest are added later via quests. Buildings live on this map's parked
@@ -4083,6 +4205,39 @@ class World {
         return b;
     }
 
+    // Lay a 6x6 pond at (originX, originY) (top-left corner): a 1-tile
+    // walkable bank ring around a 4x4 water interior. Stepping into the water
+    // warps to (targetMap, targetX, targetY) via the tile's `target` field
+    // (see checkPortalUnderfoot()/startPondWarp()).
+    placePond(originX, originY, targetMap, targetX, targetY, facing) {
+        const PW = 6, PH = 6;
+        for (let px = 0; px < PW; px++) {
+            for (let py = 0; py < PH; py++) {
+                const tx = originX + px, ty = originY + py;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                const isBank = px === 0 || px === PW - 1 || py === 0 || py === PH - 1;
+                const tile = { type: 'pond', pondOrigin: (px === 0 && py === 0), solid: false };
+                if (!isBank) {
+                    tile.target = { map: targetMap, x: targetX, y: targetY, facing: facing || 'down' };
+                }
+                this.tiles[tx][ty] = tile;
+            }
+        }
+    }
+
+    // Lay the west-beach dock at (originX, originY) (top-left corner): an
+    // ISLAND_DOCK_W x ISLAND_DOCK_H solid pier, drawn as one image (see
+    // drawDockOverlay()). Blocks movement like a rock/tree.
+    placeDock(originX, originY) {
+        for (let px = 0; px < ISLAND_DOCK_W; px++) {
+            for (let py = 0; py < ISLAND_DOCK_H; py++) {
+                const tx = originX + px, ty = originY + py;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: true };
+            }
+        }
+    }
+
     generateWorld() {
         const centerX = CONFIG.WORLD_WIDTH / 2;
         const centerY = CONFIG.WORLD_HEIGHT / 2;
@@ -4093,7 +4248,7 @@ class World {
             for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
                 const zone = islandZone(x, y);
                 if (zone === 'sea') {
-                    this.tiles[x][y] = { type: 'sea', variant: floor(random(3)), oceanFeature: random() < 0.02 ? floor(random(5)) : -1 };
+                    this.tiles[x][y] = { type: 'sea', variant: floor(random(3)) };
                 } else if (zone === 'beach') {
                     this.tiles[x][y] = { type: 'beach', variant: floor(random(3)) };
                 } else {
@@ -4197,37 +4352,16 @@ class World {
 
         // Place a pond near-center, slightly above. The entire pond — water and banks —
         // is a single 96×96 (6×6 tile) image drawn from the top-left tile (pondOrigin).
-        // Collision: the 1-tile bank ring is walkable; the inner 4×4 water is solid.
-        const pondX = floor(centerX) - 3;
-        const pondY = floor(centerY) - 11;
-        const PW = 6, PH = 6;
-        for (let px = 0; px < PW; px++) {
-            for (let py = 0; py < PH; py++) {
-                const tx = pondX + px, ty = pondY + py;
-                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-                const isBank = px === 0 || px === PW - 1 || py === 0 || py === PH - 1;
-                this.tiles[tx][ty] = { type: 'pond', pondOrigin: (px === 0 && py === 0), solid: !isBank };
-            }
-        }
+        // Both the bank ring and the water are walkable; stepping into the water warps
+        // to the underground pond (see placePond()/checkPortalUnderfoot()).
+        this.placePond(ISLAND_POND_ORIGIN.x, ISLAND_POND_ORIGIN.y, 'underground',
+                       UNDERGROUND_POND_LANDING.x, UNDERGROUND_POND_LANDING.y, 'down');
+
+        // Place the arrivals dock on the west beach.
+        this.placeDock(ISLAND_DOCK_ORIGIN.x, ISLAND_DOCK_ORIGIN.y);
 
         // Seed the world with an initial set of bird poop.
         spawnBirdPoop(3 + floor(random(3)));
-
-        // Cave mouth: a portal down to the underground city. Placed last and the
-        // surrounding tiles cleared so no decoration covers it.
-        const cp = ISLAND_CAVE_PORTAL;
-        for (let dx = -1; dx <= 1; dx++) {
-            for (let dy = -1; dy <= 2; dy++) {
-                const tx = cp.x + dx, ty = cp.y + dy;
-                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-                this.tiles[tx][ty] = { type: 'grass', variant: floor(random(3)) };
-            }
-        }
-        this.tiles[cp.x][cp.y] = {
-            type: 'portal', variant: 0,
-            target: { map: 'underground', x: UNDERGROUND_ENTRY.x, y: UNDERGROUND_ENTRY.y, facing: 'down',
-                      label: 'You descend into the underground city...' }
-        };
     }
 
     // Smooth the base terrain (sea/beach/grass) by removing lone 1-tile
@@ -4281,8 +4415,11 @@ class World {
         if (!topTile || (topNeeded ? topTile.type !== topNeeded : (topTile.type !== 'grass' && topTile.type !== 'beach'))) return;
         if (topTile.solid === true || topTile.isTreeTop === true) return;
 
+        // The trunk tile blocks movement; the canopy tile above it does not, so the
+        // player can walk under the overworld tree-top sprite (see drawTallDecoration).
+        const topSolid = (type === 'tree' || type === 'fir_tree') ? false : true;
         this.tiles[x][y] = { type, variant: floor(random(3)), solid: true };
-        this.tiles[x][topY] = { type, variant: floor(random(3)), isTreeTop: true, solid: true };
+        this.tiles[x][topY] = { type, variant: floor(random(3)), isTreeTop: true, solid: topSolid };
     }
     
     draw() {
@@ -4320,6 +4457,7 @@ class World {
         for (let x = x0; x < x1; x++) {
             for (let y = y0; y < y1; y++) {
                 this.drawPondOverlay(x, y, this.tiles[x][y]);
+                this.drawDockOverlay(x, y, this.tiles[x][y]);
             }
         }
 
@@ -4341,6 +4479,8 @@ class World {
         if (this.timeMinutes >= 24 * 60) {
             this.timeMinutes = 0;
             this.day++;
+            // Calendar tick: holidays, seasons, NPC arrivals/departures, gardens.
+            if (typeof onNewDay === 'function') onNewDay();
             // Sunrise: refresh harvestables and spawn new bird poop.
             refreshHarvestables();
             spawnBirdPoop(3 + floor(random(3)));
@@ -4364,17 +4504,94 @@ class World {
         }
     }
 
-    // Draw an oversized decoration sprite (tree/rosebush) centered on its tile and
-    // extending upward. Only the trunk/base tile draws; tree-top tiles are skipped.
-    drawTallDecoration(x, y, tile) {
-        if (!tile) return;
-        const key = TALL_SPRITE_TILES[tile.type];
-        if (!key || tile.isTreeTop) return;
-        const spr = SPRITES[key];
-        if (!spr) return;
+    drawDockOverlay(x, y, tile) {
+        if (!tile || tile.type !== 'dock' || !tile.dockOrigin) return;
+        const spr = SPRITES['tiles.dock'];
         const TS = CONFIG.TILE_SIZE;
         const screenX = x * TS;
         const screenY = y * TS;
+        const w = TS * ISLAND_DOCK_W, h = TS * ISLAND_DOCK_H;
+        if (spr) {
+            image(spr, screenX, screenY, w, h);
+        } else {
+            fill('#8B6914');
+            rect(screenX, screenY, w, h);
+        }
+    }
+
+    // Oak/fir canopy tiles are deliberately walkable (see placeTree()) so the
+    // player can stand under the foliage. drawTallDecoration() draws the whole
+    // tree before the player, so redraw the canopy on top of the player when
+    // it visually overlaps them, or it'd look like they're floating in front
+    // of the leaves instead of hidden beneath them.
+    //
+    // The canopy sprite is 2 tiles wide, centered on its 1-tile trunk column
+    // (half a tile bleeds into each side neighbor) and 2 tiles tall above the
+    // trunk row. So overlap can't be checked against a single tile — it's a
+    // real pixel bounding-box test against every trunk within reach.
+    drawTreeCanopyOverPlayer() {
+        if (!player) return;
+        const TS = CONFIG.TILE_SIZE;
+        const trunk = SPRITES['tiles.tree_trunk_overworld'];
+        const top = SPRITES[seasonalTreeTopKey()];
+        if (!trunk || !top) return;
+
+        const pScreenX = player.x * TS - cameraX;
+        const pScreenY = player.y * TS - cameraY;
+        const pLeft = pScreenX, pRight = pScreenX + TS;
+        const pTop = pScreenY - TS, pBottom = pScreenY + TS;
+
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = 1; dy <= 2; dy++) {
+                const tx = player.x + dx, ty = player.y + dy;
+                const col = this.tiles[tx];
+                const tile = col ? col[ty] : null;
+                if (!tile || tile.isTreeTop) continue;
+                if (tile.type !== 'tree' && tile.type !== 'fir_tree') continue;
+
+                const screenX = tx * TS - cameraX;
+                const screenY = ty * TS - cameraY;
+                const offsetX = screenX - (trunk.width - TS) / 2;
+                const offsetY = screenY - (trunk.height - TS);
+                const cLeft = offsetX, cRight = offsetX + top.width;
+                const cTop = offsetY, cBottom = offsetY + top.height;
+
+                const overlaps = pLeft < cRight && pRight > cLeft && pTop < cBottom && pBottom > cTop;
+                if (!overlaps) continue;
+
+                if (tile.depleted) tint(160, 160, 160);
+                image(top, offsetX, offsetY, top.width, top.height);
+                noTint();
+            }
+        }
+    }
+
+    // Draw an oversized decoration sprite (tree/rosebush) centered on its tile and
+    // extending upward. Only the trunk/base tile draws; tree-top tiles are skipped.
+    drawTallDecoration(x, y, tile) {
+        if (!tile || tile.isTreeTop) return;
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+
+        // Oak/fir share one overworld trunk; only the canopy on top varies by season.
+        if (tile.type === 'tree' || tile.type === 'fir_tree') {
+            const trunk = SPRITES['tiles.tree_trunk_overworld'];
+            if (!trunk) return;
+            const offsetX = screenX - (trunk.width - TS) / 2;
+            const offsetY = screenY - (trunk.height - TS);
+            if (tile.depleted) tint(160, 160, 160);
+            image(trunk, offsetX, offsetY);
+            const top = SPRITES[seasonalTreeTopKey()];
+            if (top) image(top, offsetX, offsetY, top.width, top.height);
+            noTint();
+            return;
+        }
+
+        const key = TALL_SPRITE_TILES[tile.type];
+        if (!key) return;
+        const spr = SPRITES[key];
+        if (!spr) return;
         if (tile.depleted) tint(160, 160, 160);
         const offsetX = screenX - (spr.width - TS) / 2;
         const offsetY = screenY - (spr.height - TS);
@@ -4425,7 +4642,7 @@ class World {
         // image (32×32 tiles); we sample the sub-region at the tile's world position so
         // the texture tiles seamlessly across the island instead of repeating per tile.
         function drawGrass() {
-            const g = SPRITES['tiles.grass'];
+            const g = SPRITES[seasonalGrassKey()] || SPRITES['tiles.grass'];
             if (g) {
                 const cols = Math.max(1, Math.floor(g.width / TS));
                 const rows = Math.max(1, Math.floor(g.height / TS));
@@ -4487,18 +4704,6 @@ class World {
                 noStroke();
                 break;
             }
-            case 'portal': {
-                // Glowing stairwell: dark opening with a warm pulsing core.
-                fill('#1C1A26');
-                rect(screenX, screenY, TS, TS);
-                noStroke();
-                const pulse = 140 + 80 * Math.sin(frameCount / 18);
-                fill(255, 210, 120, pulse);
-                rect(screenX + 3, screenY + 3, TS - 6, TS - 6);
-                fill(255, 235, 180, pulse);
-                rect(screenX + 5, screenY + 5, TS - 10, TS - 10);
-                break;
-            }
             case 'sea': {
                 const spr = SPRITES['tiles.waves'];
                 if (spr) {
@@ -4507,9 +4712,7 @@ class World {
                     //                 has land to the EAST (sand on the right, water on the left).
                     //   col 1 (x=16): corner — 8 animation frames. Native orientation has land in
                     //                 the SOUTH-EAST (sand bottom-right, water wrapping the NW).
-                    //   col 2 (x=32): ocean — rows 0-4 are occasional features (sparkles, big rock,
-                    //                 small rocks, jellyfish, ripple), rows 5-7 are the plain
-                    //                 looping water animation.
+                    //   col 2 (x=32): ocean — rows 5-7 are the plain looping water animation.
                     //   col 3 (x=48): pond shore — 8 animation frames (grass/stone bank).
                     function seaNeighborType(dx, dy) {
                         const nx = x + dx, ny = y + dy;
@@ -4565,10 +4768,13 @@ class World {
                         const angle = eastLand ? 0 : southLand ? HALF_PI : westLand ? PI : -HALF_PI;
                         drawRotatedSprite(0, shoreFrame * TS, angle);
                     } else {
-                        // Plain ocean (col 2). Features live in rows 0-4; the plain looping
-                        // water is rows 5-7.
-                        if (tile.oceanFeature >= 0) {
-                            image(spr, screenX, screenY, TS, TS, 32, tile.oceanFeature * TS, TS, TS);
+                        // Plain looping open-water animation: sea_overworld.png, frames laid out
+                        // left-to-right from x=0, each a 16x16 tile.
+                        const seaSpr = SPRITES['tiles.sea_overworld'];
+                        if (seaSpr) {
+                            const frames = Math.max(1, Math.floor(seaSpr.width / TS));
+                            const oceanFrame = floor(frameCount / 8) % frames;
+                            image(seaSpr, screenX, screenY, TS, TS, oceanFrame * TS, 0, TS, TS);
                         } else {
                             const oceanFrame = floor(frameCount / 8) % 3;
                             image(spr, screenX, screenY, TS, TS, 32, (5 + oceanFrame) * TS, TS, TS);
@@ -4775,6 +4981,13 @@ class World {
                 drawBase('grass');
                 break;
             }
+            case 'dock': {
+                // The dock sprite is drawn later as one large overlay from dockOrigin.
+                // This pass only provides sand/water underneath the transparent PNG.
+                if (islandZone(x, y) === 'beach') drawBase('beach');
+                else { fill('#4A90C8'); noStroke(); rect(screenX, screenY, TS, TS); }
+                break;
+            }
             case 'pond_water': {
                 // Legacy pond (pre single-image): a 4×4 interior image from its origin.
                 if (tile.pondOrigin) {
@@ -4849,18 +5062,18 @@ class World {
                                 type: 'tree',
                                 variant: tile.variant || 0,
                                 isTreeTop: true,
-                                solid: true,
+                                solid: false,
                                 depleted: tile.depleted || false,
                                 respawnAt: tile.respawnAt || null
                             };
                         } else if (topTile && topTile.isTreeTop) {
-                            topTile.solid = true;
+                            topTile.solid = false;
                         }
                     }
                 }
-                // Ensure any existing tree top tile is solid in old saves.
+                // Canopy tiles are passable (see placeTree) so the player can walk under them.
                 if (tile.type === 'tree' && tile.isTreeTop) {
-                    tile.solid = true;
+                    tile.solid = false;
                 }
                 // v5 saves may still have removed flower/water decorations.
                 // (Tulips are now valid harvestable content again.)

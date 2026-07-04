@@ -136,6 +136,10 @@ function onNewDay() {
         notify('Holiday! ' + world.season + ' season begins!', 4000);
     }
 
+    // Daily systems that hang off the calendar.
+    if (typeof onNpcNewDay === 'function') onNpcNewDay();
+    if (typeof onGardenNewDay === 'function') onGardenNewDay();
+
     // Dispatch to registered callbacks
     for (const cb of newDayCallbacks) {
         try { cb(); } catch(e) {}

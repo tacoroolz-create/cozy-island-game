@@ -195,46 +195,7 @@ function onGardenNewDay() {
     }
 }
 
-// Register the new-day callback. We detect a new day by watching world.day
-// increase inside World.prototype.draw (where it wraps past 24h).
-let _lastKnownDay = null;
-let _newDayHooked = false;
-function registerNewDay() {
-    if (_newDayHooked) return;
-    _newDayHooked = true;
-
-    if (typeof window.World === 'undefined') {
-        // World class not defined yet; retry.
-        _newDayHooked = false;
-        setTimeout(registerNewDay, 0);
-        return;
-    }
-
-    // Wrap World.prototype.draw so we observe day rollover and dispatch to daycycle.
-    const proto = window.World.prototype;
-    const origDraw = proto.draw;
-    proto.draw = function () {
-        const before = this.day;
-        origDraw.apply(this, arguments);
-        const after = this.day;
-        // On the very first frame, _lastKnownDay is null -> seed it, don't fire.
-        if (_lastKnownDay === null) {
-            _lastKnownDay = after;
-            return;
-        }
-        if (after !== _lastKnownDay) {
-            _lastKnownDay = after;
-            // ponytail: dispatch to central daycycle hook; avoid shadowing onNewDay
-            if (typeof onNewDay === 'function') onNewDay();
-            if (typeof onGardenNewDay === 'function') onGardenNewDay();
-        }
-    };
-}
-
-// Kick off registration once scripts have loaded.
-(function bootGardening() {
-    registerNewDay();
-})();
+// onGardenNewDay is dispatched from onNewDay() in daycycle.js.
 
 // ===== DRAWING =====
 // Draws small colored circles for each visible plant, sized/color by stage.

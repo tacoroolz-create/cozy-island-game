@@ -62,7 +62,6 @@ const NPC_DEFS = [
 ];
 
 let npcs = [];
-let npcQueue = []; // remaining NPCs to arrive
 
 class NPC {
     constructor(def, index) {
@@ -174,28 +173,37 @@ class NPC {
     }
 }
 
-// Check for new NPC arrivals — called on new day
-function checkArrivals() {
-    if (npcs.length >= NPC_DEFS.length) return;
-    if (npcQueue.length === 0) {
-        // Fill queue with unused defs
-        npcQueue = NPC_DEFS.map((d, i) => ({def: d, index: i}))
-            .filter(d => !npcs.some(n => n.id === d.index));
-    }
-    const next = npcQueue.shift();
-    if (!next) return;
+// Neighbor population rules: a new neighbor arrives every ARRIVAL_INTERVAL_DAYS
+// until MAX_NEIGHBORS live on the island; a neighbor still homeless after
+// HOMELESS_DEPARTURE_DAYS departs (and becomes eligible to return later).
+const MAX_NEIGHBORS = 9;
+const ARRIVAL_INTERVAL_DAYS = 3;
+const HOMELESS_DEPARTURE_DAYS = 14;
 
-    const npc = new NPC(next.def, next.index);
-    // Spawn at a random spot along the rectangular beach ring (just inside the sand).
-    const inset = (typeof ISLAND !== 'undefined') ? ISLAND.SEA_MARGIN + 1 : 9;
-    const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
-    const lo = inset, hiX = W - 1 - inset, hiY = H - 1 - inset;
-    const side = Math.floor(Math.random() * 4); // 0=top,1=bottom,2=left,3=right
-    if (side === 0)      { npc.gridX = lo + Math.floor(Math.random() * (hiX - lo)); npc.gridY = lo; }
-    else if (side === 1) { npc.gridX = lo + Math.floor(Math.random() * (hiX - lo)); npc.gridY = hiY; }
-    else if (side === 2) { npc.gridX = lo; npc.gridY = lo + Math.floor(Math.random() * (hiY - lo)); }
-    else                 { npc.gridX = hiX; npc.gridY = lo + Math.floor(Math.random() * (hiY - lo)); }
-    npcs.push(npc);
+// Bring one new neighbor to the beach: a random pull from the defs not
+// currently present on the island. Called on new day (every 3rd) and at game start.
+function checkArrivals() {
+    if (npcs.filter(n => n.isPresent).length >= MAX_NEIGHBORS) return;
+    const candidates = NPC_DEFS.map((d, i) => i)
+        .filter(i => !npcs.some(n => n.id === i && n.isPresent));
+    if (candidates.length === 0) return;
+    const id = candidates[Math.floor(Math.random() * candidates.length)];
+
+    // A returning neighbor reuses their record, keeping friendship history.
+    let npc = npcs.find(n => n.id === id);
+    if (npc) {
+        npc.isPresent = true;
+        npc.daysOnIsland = 0;
+        npc.departureCounter = 0;
+        npc.dailyTalked = false;
+    } else {
+        npc = new NPC(NPC_DEFS[id], id);
+        npcs.push(npc);
+    }
+    // Arrive by boat at the end of the west-beach dock.
+    const arrival = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    npc.gridX = arrival.x;
+    npc.gridY = arrival.y;
     notify(npc.name + ' arrived on the island!');
 }
 
@@ -234,25 +242,21 @@ function buildNpcShack(npc) {
 
 // Called on new day for all NPCs
 function onNpcNewDay() {
+    // The npcs global holds the *active* map's list (see MAP_ENTITY_FIELDS);
+    // neighbors live on the island, so skip the tick while underground.
+    if (typeof currentMapId !== 'undefined' && currentMapId !== 'island') return;
     for (const npc of npcs) {
+        if (!npc.isPresent) continue;
         npc.daysOnIsland++;
         npc.dailyTalked = false;
         // Departure check — homeless neighbors leave after 14 days without shelter
-        if (!npc.hasHome && npc.daysOnIsland >= 14) {
+        if (!npc.hasHome && npc.daysOnIsland >= HOMELESS_DEPARTURE_DAYS) {
             npc.isPresent = false;
             notify(npc.name + ' gave up waiting for a home and left the island...');
-        } else if (npc.friendship < 90) {
-            npc.departureCounter++;
-            if (npc.departureCounter >= 10) {
-                npc.isPresent = false;
-                notify(npc.name + ' left the island...');
-            }
-        } else {
-            npc.departureCounter = 0;
         }
     }
-    // Check for new arrivals (at least 1 per season)
-    checkArrivals();
+    // A new neighbor ferries in every 3rd day until the island holds 9.
+    if (world.day % ARRIVAL_INTERVAL_DAYS === 0) checkArrivals();
 }
 
 function drawEntities() {

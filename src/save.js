@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 9;
+const SAVE_VERSION = 10;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -163,6 +163,36 @@ const MIGRATIONS = [
     // v8 -> v9: garden plots are now persisted
     function(data) {
         if (!data.gardenPlots) data.gardenPlots = {};
+        return data;
+    },
+    // v9 -> v10: removed the old cave-mouth/stairs-up 'portal' tiles now that
+    // the pond is the only route between island and underground.
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    if (tiles[x][y] && tiles[x][y].type === 'portal') {
+                        tiles[x][y] = { type: 'grass', variant: 0 };
+                    }
+                }
+            }
+        }
+        if (data.extraMaps) {
+            for (const id in data.extraMaps) {
+                const tiles = data.extraMaps[id].tiles;
+                if (!tiles) continue;
+                for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                    if (!tiles[x]) continue;
+                    for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                        if (tiles[x][y] && tiles[x][y].type === 'portal') {
+                            tiles[x][y] = { type: 'cave_floor', variant: 0 };
+                        }
+                    }
+                }
+            }
+        }
         return data;
     }
     // Future migrations go here
