@@ -1,0 +1,135 @@
+Cozy Island Game — Deep Plan Review (July 3)
+=============================================
+
+Sources reviewed: all 16 src/ modules, SCOPE.md, PROJECT.md, SpriteUpdate.txt,
+June27review.txt, holiday_status.txt, asset folders.
+
+HEADLINE FINDINGS
+-----------------
+
+The game is much further along than SCOPE.md suggests. World gen, multi-map
+travel (island <-> underground), 57 NPCs with arrivals/shacks/friendship,
+hand-written branching dialogue for the entire roster, inventory/crafting with
+readable ingredients, gettin' stick with timed reel, gardening, animals
+(birds/crabs/seagulls/turtles/cicadas/butterflies), the hog, versioned saves
+with autosave, canvas CSS scaling — all done. Several June 27 review items are
+already fixed.
+
+But three finished systems are unreachable by the player:
+
+1. MINIGAMES ARE DEAD CODE. TicTacToe and RhythmGame are fully built in
+   games.js, but the "Challenge to Game" button hits a placeholder at
+   src/dialogue.js:405 that says "Games coming soon!" — one wiring fix away
+   from a whole feature.
+
+2. MAGIC IS UNLEARNABLE. magic.js has 5 working tricks, but learnMagic() is
+   never called anywhere. No NPC teaches anything, so the Magic tab stays
+   empty forever.
+
+3. THE MUSIC ISN'T IN THE GAME. underWorld.wav is composed, but audio.js is a
+   no-op stub and assets/audio/ is empty.
+
+Also: Cosmos has full written dialogue but is missing from NPC_DEFS and has no
+sprite — he can never spawn.
+
+
+WHAT CHARLES DOES (creative)
+----------------------------
+Ordered so the things blocking coding work come first.
+
+C1. Answer the SpriteUpdate.txt open questions (Section 12).
+    Blocks the entire sprite-rebuild engine work. Specifically: final size
+    palette, player/NPC scale (stay 1x2 or grow?), building sizes, Y-sort vs.
+    strict passes, and what harvesting a big tree does (remove / stump /
+    debris). Just edit the checkboxes in that file.
+
+C2. Underground city identities.
+    The 8 buildings (shop, inn, forge, library, market, temple, tavern, guild)
+    are labeled colored blocks. For each: a name, who runs it (existing NPC or
+    new character?), a line or two of interior flavor, and — for the 5 locked
+    pads — what quest/task unlocks each one. Pure lore work.
+
+C3. Pick and design the next holidays.
+    24 of 29 holidays have names but no event (see holiday_status.txt). Pick
+    the next 3-5 and write a paragraph each: what happens, what the player
+    does, what they get. (Tinfoil Crown Parade and Pinecone Prom are begging.)
+
+C4. Assign magic teachers.
+    Decide which 5 NPCs teach the 5 tricks (Vanish, Movable Feature, Summon
+    Fairy, Time Warp, Season Shift), at what friendship level, and write the
+    short teaching dialogue for each. Currently teachers are placeholder
+    indexes 0-4.
+
+C5. More music + an SFX wishlist.
+    underWorld.wav covers the underground. The island needs at least one
+    overworld loop (seasonal variants later). Also list the ~8 sounds wanted
+    first (harvest, craft, reel-pull, door, dialogue blip, holiday fanfare...).
+
+C6. Cosmos.
+    He has dialogue but no character. Write his CharacterDraft entry and draw
+    his sprite, or cut him.
+
+C7. New-scale sprites (ongoing, after C1).
+    Already started (TreeFull, treeTop variants, Boulder, dock, seasonal
+    grasses). Once C1 locks the size palette, big-ticket items: buildings at
+    the new scale (player shack, the 8 underground buildings), and eventually
+    player/NPCs if they grow.
+
+C8. Treasure purpose.
+    Treasure items currently do nothing after you pull them. Decide the
+    fantasy: sell them? Display shelf in the shack? Museum in the underground?
+    One sentence determines the system to build.
+
+
+WHAT CLAUDE DOES (coding)
+-------------------------
+Ordered by value-per-effort — the first three unlock finished content.
+
+K1. Wire minigames.
+    Replace the dialogue.js:405 placeholder with the existing
+    startMinigameVs(). Smallest fix, whole feature.
+
+K2. Wire audio.
+    Real loadSound/loop in audio.js, move underWorld.wav into assets/audio/,
+    play it in the underground map, hook the volume/mute settings that already
+    exist in the Settings tab. (Island track slots in when C5 delivers.)
+
+K3. Wire magic teaching.
+    Friendship-threshold dialogue hook -> learnMagic(). Cleanest to wait for
+    C4's teacher assignments.
+
+K4. Underground polish.
+    Kill the day/night darkness overlay underground (replace with fixed cave
+    ambiance), and build the unlock system for the 5 empty foundation pads
+    (blocked on C2 for what the quests are; mechanism can be built first).
+
+K5. Multi-tile sprite engine (SpriteUpdate.txt Section 11).
+    Registry, footprint placement, solid-row collision, canopy draw pass, save
+    migration, CSV-translator stamp mode. Biggest single job. Blocked on C1.
+
+K6. Holiday event framework + next events.
+    The 5 existing holidays are each bespoke code. Extract the common pattern
+    (spawn visitor / scatter items / talk-to-everyone counter) so each new
+    holiday from C3 is cheap to add.
+
+K7. Tool cleanup.
+    Hoe works (tilling). Axe and pickaxe have recipes but no mechanic — either
+    give them harvesting bonuses or hide the recipes until they do something.
+    (Vote: pickaxe = bonus stone/crystal from rocks, axe = bonus logs.)
+
+K8. Add Cosmos to NPC_DEFS + sprite copy once C6 exists.
+
+K9. Housekeeping pass.
+    Commit the large uncommitted pile (sprite work, dock, sea, debug tools,
+    underWorld files) in sensible chunks. Move loose root files
+    (underWorld.wav, .ceol, shack.pxs) into folders. Update SCOPE.md's
+    "Current State" section, which is far out of date.
+
+
+SUGGESTED SEQUENCING
+--------------------
+Week 1: Charles does C1 + C4; Claude does K1, K2, K9 immediately (no
+        dependencies), then K3.
+Week 2: Charles does C2 + C3; Claude does K5 (the big engine job) while
+        Charles draws C7.
+After:  K4 + K6 land the C2/C3 content; C5/C8 slot in whenever ready.
