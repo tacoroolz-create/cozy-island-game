@@ -393,6 +393,10 @@ const ITEMS = {
     metal_rod:   { name: 'Metal Rod',   category: 'treasure', maxStack: 99, color: '#78909C', desc: 'A bent metal rod. Could be useful.' },
     old_radio:   { name: 'Old Radio',   category: 'treasure', maxStack: 99, color: '#8D6E63', desc: 'A waterlogged transistor radio. Static only... for now.' },
     gold_coin:   { name: 'Gold Coin',   category: 'treasure', maxStack: 99, color: '#FFD700', desc: 'An ancient gold coin pulled from the deep.' },
+    // Mubaba's World Domination quest (see Mubabas Quests.txt). Stardew is
+    // bottled in the Stars world (once it exists); IOUs await the economy.
+    stardew:     { name: 'Bottle of Stardew', category: 'treasure', maxStack: 9, color: '#9FD8FF', desc: 'Dew gathered from star grass at dawn. Faintly humming.' },
+    iou:         { name: 'IOU',         category: 'treasure', maxStack: 99, color: '#F5F0DC', desc: 'A promise of future payment. Legally binding? Unclear.' },
     feather:     { name: 'Feather',     category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A soft feather left behind by a bird.' },
     seashell:    { name: 'Seashell',    category: 'gift',     maxStack: 20, color: '#FFE4E1', desc: 'A polished shell from a grateful crab.' },
     turtle_egg:  { name: 'Turtle Egg',  category: 'gift',     maxStack: 10, color: '#E8DCC5', desc: 'A smooth, patterned egg left behind by a nesting sea turtle.' },
@@ -3808,7 +3812,7 @@ function startNewGame() {
     spawnPlayerShack();
     npcs = [];
     knownMagic = [];
-    magicFlags = { mubabaQuest: false };
+    magicFlags = { mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 };
     birds = [];
     crabs = [];
     groundLoot = [];

@@ -383,7 +383,7 @@ function deserializeGame(data) {
     }
 
     knownMagic = data.knownMagic || [];
-    magicFlags = Object.assign({ mubabaQuest: false }, data.magicFlags || {});
+    magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
 
     birds = [];
     crabs = [];

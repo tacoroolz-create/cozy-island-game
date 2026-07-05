@@ -318,7 +318,7 @@ function generateDialogue(personality, name) {
 function openDialogue(npc) {
     if (!npc || !npc.isPresent) return;
 
-    // Mubaba gets his own menu (Talk / Learn Magic) — see magic.js.
+    // Mubaba gets his quest-driven conversation (see magic.js).
     if (npc.id === 'mubaba' && typeof openMubabaMenu === 'function') {
         openMubabaMenu(npc);
         return;
@@ -679,6 +679,12 @@ function selectDialogueChoice(i) {
     const choice = node.choices[i];
     if (choice.friendshipDelta) {
         dialogueState.npc.friendship = Math.min(300, dialogueState.npc.friendship + choice.friendshipDelta * 3);
+    }
+    // Quest hooks (Mubaba etc.): run the choice's side effect. If it opened a
+    // menu or closed the dialogue itself, don't also advance/close here.
+    if (choice.action) {
+        choice.action();
+        if (dialogueState.advancedMenu || !dialogueState.active) return;
     }
     if (choice.next === null) {
         closeDialogue();
