@@ -608,14 +608,11 @@ function drawDialogueScreen() {
     rect(8, panelY + 8, 24, 24);
     noStroke();
 
-    // Name + species subtitle
+    // Name
     fill(255, 255, 200);
     textAlign(LEFT, TOP);
     textSize(14);
     text(dialogueState.npc.name, textX, panelY + 6);
-    fill(180);
-    textSize(8);
-    text(dialogueState.npc.species || '', textX + textWidth(dialogueState.npc.name) + 8, panelY + 10);
 
     // Body text (typewriter) \u2014 drawn line-by-line with our own wrapping so it
     // exactly matches the measured height and is never clipped by the choices.
