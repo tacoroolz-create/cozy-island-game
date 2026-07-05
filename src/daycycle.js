@@ -33,10 +33,10 @@ const HOLIDAYS = [
     { name: 'Compliment a Crab Day',  desc: 'Beach crabs receive one mandatory sincere compliment before noon.' },
     { name: 'Talk Like an Eagle Day', desc: 'All islanders must begin every sentence with a mighty "Kyaaaaa!"' },
     { name: 'Toast Toss Tournament',  desc: 'Beach targets appear and islanders throw stale toast for prizes.' },
-    { name: 'Silent Shouting Day',    desc: 'Residents mouth their excitement very widely but make no sound.' },
+    { name: 'Garden Day',             desc: 'A day for the player and neighbors to start gardens. Hoes have unlimited durability and everyone has dirt on their mind.' },
     { name: 'Tinfoil Crown Parade',   desc: 'Whoever crafts the shiniest foil crown becomes honorary mayor until sunset.' },
     { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
-    { name: 'Mismatched Sock March',  desc: 'Islanders march in pairs wearing deliberately mismatched socks.' },
+    { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
     { name: 'Talk Like a Boat Day',  desc: 'Everyone creaks gently and refers to themselves as "the vessel".' },
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
     { name: 'Invisible Ladder Week-start', desc: 'Residents pretend to climb invisible ladders for the first hour after sunrise.' },
@@ -123,10 +123,22 @@ function onNewDay() {
                     notify('You received 5 Stale Toast for the tournament!', 3000);
                 }
             }
+            if (holiday.name === 'Garden Day' && typeof inventory !== 'undefined') {
+                // Give the player a starter seed pack for the community planting day.
+                inventory.addItem('seed', 3);
+                notify('Garden Day seed pack: +3 seeds! Grab a hoe and join the fun.', 3500);
+            }
+            if (holiday.name === 'Ab Appreciation Day') {
+                spawnYogatron();
+            }
         }
     } else if (isSeasonStart) {
         notify('Holiday! ' + world.season + ' season begins!', 4000);
     }
+
+    // Daily systems that hang off the calendar.
+    if (typeof onNpcNewDay === 'function') onNpcNewDay();
+    if (typeof onGardenNewDay === 'function') onGardenNewDay();
 
     // Dispatch to registered callbacks
     for (const cb of newDayCallbacks) {

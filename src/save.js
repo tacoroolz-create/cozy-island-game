@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 9;
+const SAVE_VERSION = 13;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -164,20 +164,125 @@ const MIGRATIONS = [
     function(data) {
         if (!data.gardenPlots) data.gardenPlots = {};
         return data;
+    },
+    // v9 -> v10: removed the old cave-mouth/stairs-up 'portal' tiles now that
+    // the pond is the only route between island and underground.
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    if (tiles[x][y] && tiles[x][y].type === 'portal') {
+                        tiles[x][y] = { type: 'grass', variant: 0 };
+                    }
+                }
+            }
+        }
+        if (data.extraMaps) {
+            for (const id in data.extraMaps) {
+                const tiles = data.extraMaps[id].tiles;
+                if (!tiles) continue;
+                for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                    if (!tiles[x]) continue;
+                    for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                        if (tiles[x][y] && tiles[x][y].type === 'portal') {
+                            tiles[x][y] = { type: 'cave_floor', variant: 0 };
+                        }
+                    }
+                }
+            }
+        }
+        return data;
+    },
+    // v10 -> v11: earlier dock-placement iterations left stray 'sea' tiles on
+    // the beach/grass around the west pier. The coastline is a pure function of
+    // islandZone(x, y), so any sea tile outside the sea ring is bad data —
+    // restore it to its zone's base terrain.
+    function(data) {
+        if (data.world && data.world.tiles) {
+            const tiles = data.world.tiles;
+            for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+                if (!tiles[x]) continue;
+                for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                    const tile = tiles[x][y];
+                    if (!tile || tile.type !== 'sea') continue;
+                    const zone = islandZone(x, y);
+                    if (zone !== 'sea') {
+                        tiles[x][y] = { type: zone === 'beach' ? 'beach' : 'grass', variant: 0 };
+                    }
+                }
+            }
+        }
+        return data;
+    },
+    // v11 -> v12: Mubaba the magic merchant now lives in the underground city
+    // (spawned at city generation). Saves whose underground already exists
+    // predate him, so stamp his record in.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.npcs = ug.npcs || [];
+            if (!ug.npcs.some(n => n && n.id === 'mubaba')) {
+                ug.npcs.push({
+                    id: 'mubaba', name: 'Mubaba',
+                    gridX: MUBABA_SPAWN.x, gridY: MUBABA_SPAWN.y,
+                    facing: 'left', isPresent: true, hasHome: true
+                });
+            }
+        }
+        return data;
+    },
+    // v12 -> v13: underground buildings got real identities (underWorldBldgs).
+    // The random placeholder trio is replaced by the fixed starters (Mubaba's
+    // Fortress + Electric Temple), and Mubaba moved inside his fortress.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
+            for (const n of (ug.npcs || [])) {
+                if (n && n.id === 'mubaba') n.isPresent = false;
+            }
+        }
+        return data;
     }
     // Future migrations go here
 ];
 
 function serializeGame() {
-    return {
+    // Persistence currently tracks the island map. If the player is standing in
+    // another map (e.g. the underground city), momentarily swap the island back
+    // in so the entity-global serialization below captures the island, never the
+    // transient map. No frame renders between the swaps, so it's invisible.
+    const activeMap = (typeof currentMapId !== 'undefined') ? currentMapId : 'island';
+    if (typeof parkActiveMap === 'function') parkActiveMap(); // snapshot active entities
+    let swappedOut = null;
+    if (activeMap !== 'island' && typeof maps !== 'undefined' && maps.island) {
+        swappedOut = activeMap;
+        currentMapId = 'island';
+        world = maps.island;
+        loadMapEntities(world);
+    }
+    const data = {
         version: SAVE_VERSION,
         timestamp: Date.now(),
+        currentMapId: activeMap,
         player: player.serialize(),
         world: world.serialize(),
         inventory: inventory.serialize(),
         buildings: buildings.map(b => b.serialize()),
         npcs: npcs.map(n => n.serialize()),
         knownMagic: knownMagic || [],
+        magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
         crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
         turtles: turtles.map(t => ({ type: t.type, gridX: t.gridX, gridY: t.gridY, variant: t.variant })),
@@ -189,14 +294,57 @@ function serializeGame() {
         hogPoopTiles: hogPoopTiles.slice(),
         gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {}
     };
+    // Persist any non-island maps (e.g. the underground city) so their layout
+    // and placed buildings are stable across save/load. Entities were parked at
+    // the top, so each map's `entities` holds its current buildings.
+    data.extraMaps = {};
+    if (typeof maps !== 'undefined') {
+        for (const id in maps) {
+            if (id === 'island') continue;
+            const m = maps[id];
+            const ents = m.entities || {};
+            data.extraMaps[id] = {
+                kind: m.kind,
+                day: m.day, season: m.season, timeMinutes: m.timeMinutes,
+                tiles: m.tiles,
+                buildings: (ents.buildings || []).map(b => b.serialize()),
+                npcs: (ents.npcs || []).map(n => n.serialize())
+            };
+        }
+    }
+    // Restore the map the player was actually standing in.
+    if (swappedOut) {
+        currentMapId = swappedOut;
+        world = maps[swappedOut];
+        loadMapEntities(world);
+    }
+    return data;
 }
 
 function deserializeGame(data) {
     player = new Player(data.player.x, data.player.y);
     player.deserialize(data.player);
 
-    world = new World();
+    world = new World('island', 'island');
     world.deserialize(data.world);
+    // Reset the map registry to just the island, then restore any saved extra
+    // maps (e.g. the underground city) so their layout/buildings are preserved.
+    maps = { island: world };
+    currentMapId = 'island';
+    if (data.extraMaps) {
+        for (const id in data.extraMaps) {
+            const md = data.extraMaps[id];
+            const m = new World('blank', id);   // 'blank' skips generation
+            m.kind = md.kind || id;
+            m.tiles = md.tiles;
+            m.day = md.day; m.season = md.season; m.timeMinutes = md.timeMinutes;
+            m.entities = {
+                buildings: (md.buildings || []).map(bd => Building.deserialize(bd)),
+                npcs: (md.npcs || []).map(nd => NPC.deserialize(nd))
+            };
+            maps[id] = m;
+        }
+    }
 
     inventory = new Inventory();
     if (data.inventory) inventory.deserialize(data.inventory);
@@ -216,6 +364,7 @@ function deserializeGame(data) {
     }
 
     knownMagic = data.knownMagic || [];
+    magicFlags = Object.assign({ mubabaQuest: false }, data.magicFlags || {});
 
     birds = [];
     crabs = [];

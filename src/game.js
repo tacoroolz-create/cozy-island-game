@@ -25,23 +25,83 @@ const CONFIG = {
     DAY_LENGTH_MINUTES: 30
 };
 
+// Island shape: the island is a centered rectangle. Tiles within SEA_MARGIN of the
+// world edge are open ocean; the next BEACH_THICKNESS ring is sandy beach; everything
+// inside that is grass. "Edge distance" is measured to the nearest world edge, so the
+// coastline is a clean rectangle rather than a circle.
+//
+// The land is a square of side (WORLD_WIDTH - 2*SEA_MARGIN). Dropping SEA_MARGIN from 8
+// to 6 grows that side from 84 to 88 tiles — land area 7056 -> 7744, about +9.75% (the
+// closest whole-tile step to +10%). The grass interior is unchanged (still starts at
+// edge 11), so all of the added land becomes beach: the beach ring thickens from 3 to 5.
+const ISLAND = { SEA_MARGIN: 6, BEACH_THICKNESS: 5 };
+// Non-beach decorations (trees, rocks, weeds, flowers, bird poop) must keep at
+// least this many tiles of clearance from the beach, so they never render across
+// the grass/sand seam where the edge tiles can't blend them.
+const NONBEACH_BEACH_BUFFER = 10;
+// Beach decorations (palms, banana trees) sit within this many tiles of the
+// water — the outer edge of the beach — and away from the grass line.
+const BEACH_FEATURE_WATER_DIST = 2;
+function islandZone(x, y) {
+    const edge = Math.min(x, CONFIG.WORLD_WIDTH - 1 - x, y, CONFIG.WORLD_HEIGHT - 1 - y);
+    if (edge < ISLAND.SEA_MARGIN) return 'sea';
+    if (edge < ISLAND.SEA_MARGIN + ISLAND.BEACH_THICKNESS) return 'beach';
+    return 'grass';
+}
+
+// True if any tile of `zone` lies within `radius` (Chebyshev) of (x, y).
+function isNearZone(x, y, radius, zone) {
+    for (let dx = -radius; dx <= radius; dx++) {
+        for (let dy = -radius; dy <= radius; dy++) {
+            const nx = x + dx, ny = y + dy;
+            if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
+            if (islandZone(nx, ny) === zone) return true;
+        }
+    }
+    return false;
+}
+function isNearBeach(x, y, radius) { return isNearZone(x, y, radius, 'beach'); }
+function isNearSea(x, y, radius)   { return isNearZone(x, y, radius, 'sea'); }
+
 // Sprite registry - holds loaded p5.Image objects, null if not loaded
 const SPRITES = {};
 const SPRITE_DEFS = {
     'tiles.grass':            'assets/tiles/grass.png',
     'tiles.beach':            'assets/tiles/beach.png',
+    'tiles.beach_edge':       'assets/tiles/beach_edge.png',
     'tiles.water':            'assets/tiles/water.png',
-    'tiles.tree':             'assets/tiles/tree.png',
+    'tiles.banana_tree':      'assets/tiles/banana_tree.png',
+    'tiles.palm_tree':        'assets/tiles/palm_tree.png',
+    'tiles.tree_trunk_overworld': 'assets/tiles/tree_trunk_overworld.png',
+    'tiles.tree_top_basic':   'assets/tiles/tree_top_basic.png',
+    'tiles.tree_top_cool':    'assets/tiles/tree_top_cool.png',
+    'tiles.tree_top_yeesh':   'assets/tiles/tree_top_yeesh.png',
+    // Staged for the not-yet-built underworld/stars zones (see worlds-system memory).
+    'tiles.tree_full_underground': 'assets/tiles/tree_full_underground.png',
+    'tiles.tree_full_stars':  'assets/tiles/tree_full_stars.png',
+    'tiles.grass_cool':       'assets/tiles/grass_cool.png',
+    'tiles.grass_yeesh':      'assets/tiles/grass_yeesh.png',
+    'tiles.grass_underworld': 'assets/tiles/grass_underworld.png',
+    'tiles.grass_stars':      'assets/tiles/grass_stars.png',
+    'tiles.sea_overworld':    'assets/tiles/sea_overworld.png',
     'tiles.rock':             'assets/tiles/rock.png',
     'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
     'tiles.weeds':            'assets/tiles/weeds.png',
     'tiles.bird_poop':        'assets/tiles/bird_poop.png',
     'tiles.rosebush':         'assets/tiles/rosebush.png',
+    'tiles.tulip':            'assets/tiles/tulip.png',
     'tiles.bed_blue':         'assets/tiles/bed_blue.png',
     'tiles.bed_orange':       'assets/tiles/bed_orange.png',
     'tiles.bed_red':          'assets/tiles/bed_red.png',
     'tiles.sprout':           'assets/tiles/sprout.png',
-    'sprites.player':         'assets/sprites/player.png',
+    'tiles.soil':             'assets/tiles/soil.png',
+    'sprites.player':         'assets/sprites/orb.png',
+    'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
+    // Underground building art + fortress scene props — files don't exist yet;
+    // the error callback nulls them and colored fallbacks draw instead.
+    'sprites.ug_mubaba_fortress': 'assets/sprites/buildings/mubaba_fortress.png',
+    'sprites.ug_electric_temple': 'assets/sprites/buildings/electric_temple.png',
+    'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
     'sprites.brass':          'assets/sprites/brass.png',
@@ -117,21 +177,29 @@ const SPRITE_DEFS = {
     'items.seashell':         'assets/sprites/seashell.png',
     'items.turtle_egg':       'assets/sprites/turtle_egg.png',
     'items.stale_toast':      'assets/sprites/stale_toast.png',
+    'items.protein_shake':    'assets/sprites/protein_shake.png',
     'sprites.shack':          'assets/sprites/shack.png',
     'sprites.house':          'assets/sprites/house.png',
     'sprites.bird':           'assets/sprites/animals/bird.png',
     'sprites.bird2':          'assets/sprites/animals/bird2.png',
+    'sprites.crab':           'assets/sprites/animals/crab.png',
     'sprites.butterfly':      'assets/sprites/butterfly.png',
     'sprites.cicada':         'assets/sprites/cicada.png',
     'items.cicada_shell':     'assets/sprites/cicada_shell.png',
     'sprites.hog':            'assets/sprites/hog.png',
     'tiles.poop':             'assets/sprites/poop.png',
+    'tiles.waves':            'assets/sprites/waves.png',
+    'tiles.pond':             'assets/sprites/pond.png',
+    'tiles.dock':             'assets/tiles/dock.png',
 };
 
 // Global game state
 let gameState = STATE.START;
 let player = null;
-let world = null;
+let world = null;            // the ACTIVE map (one of `maps`)
+let maps = {};               // id -> World instance (e.g. 'island', 'underground')
+let currentMapId = 'island'; // which map `world` currently points at
+let debugMode = false;       // dev overlay + cheats (toggle with backtick `)
 let cameraX = 0;
 let cameraY = 0;
 
@@ -141,6 +209,10 @@ let selectedMenuOption = 1; // Default-highlight "Load" on the start menu
 // Movement cooldown for grid-based movement (ms)
 let lastMoveTime = 0;
 const MOVE_COOLDOWN = 120;
+
+// Active pond-warp fall/bounce sequence (see startPondWarp/updateWarpAnim), or
+// null when idle. Blocks movement input while set.
+let warpAnim = null;
 const startMenuOptions = ['New Game', 'Load Game', 'Settings'];
 const settingsMenuOptions = ['Back'];
 
@@ -152,8 +224,96 @@ let slotSelectIndex = 0;      // highlighted row in the slot picker (0..2 = slot
 let nameEntryText = '';       // current text in the name-entry field
 let nameEntrySlot = 0;        // slot being named
 
-// Tiles that block player movement by default.
-const TILE_SOLID = new Set(['sea', 'water', 'tree', 'rock', 'shiny_rock', 'rosebush']);
+let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
+const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
+const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush']);
+
+// Tiles whose sprite is wider/taller than a single tile. These are drawn in a
+// deferred pass after all base terrain so the next column's base can't clip the
+// sprite's overflow. Maps tile type → sprite key.
+const TALL_SPRITE_TILES = {
+    tree: 'tiles.tree_trunk_overworld', fir_tree: 'tiles.tree_trunk_overworld',
+    banana_tree: 'tiles.banana_tree', palm_tree: 'tiles.palm_tree',
+    rosebush: 'tiles.rosebush'
+};
+
+// ===== DYNAMIC SUN SHADOWS (overworld) =====
+// Fake-but-convincing cast shadows: each caster's sprite is baked once into a
+// black silhouette, then stamped flipped/sheared/squashed onto a per-frame
+// offscreen layer that's composited in one pass (so overlapping shadows don't
+// double-darken). Direction and length track the day clock: long shadows
+// pointing west at dawn, a small puddle at solar noon, long east at dusk.
+// ponytail: the constants ARE the look — tune them by eye in-browser.
+const SHADOW_SUNRISE = 330, SHADOW_SUNSET = 1170; // minutes; matches the dawn/dusk overlay window
+const SHADOW_MAX_SHEAR = 2.2;    // sideways lean at dawn/dusk (x object height)
+const SHADOW_MIN_STRETCH = 0.22; // shadow drop at noon (x object height)
+const SHADOW_MAX_STRETCH = 0.72; // shadow drop at dawn/dusk
+const SHADOW_ALPHA = 52;         // layer opacity at full sun
+
+let _shadowLayer = null;
+const _shadowSilhouettes = {};
+
+// Where the sun is right now: null when it's down, else { shear, stretch, alpha }.
+function sunShadowParams() {
+    const t = world.timeMinutes;
+    if (t <= SHADOW_SUNRISE || t >= SHADOW_SUNSET) return null;
+    const d = ((t - SHADOW_SUNRISE) / (SHADOW_SUNSET - SHADOW_SUNRISE)) * 2 - 1; // -1 dawn .. +1 dusk
+    const edge = Math.min(1, (t - SHADOW_SUNRISE) / 45, (SHADOW_SUNSET - t) / 45); // soft in/out
+    return {
+        // Negated because the stamp shears against the silhouette's upward
+        // (negative-y) axis: dawn sun in the east throws shadows west.
+        shear: -SHADOW_MAX_SHEAR * d,
+        stretch: SHADOW_MIN_STRETCH + (SHADOW_MAX_STRETCH - SHADOW_MIN_STRETCH) * Math.abs(d),
+        alpha: SHADOW_ALPHA * edge
+    };
+}
+
+// Bake (and cache) a pure-black copy of one or more sprites stacked at a
+// shared top-left origin (how tree trunk + canopy are drawn). srcRect trims
+// animated sheets to their first frame.
+function shadowSilhouette(key, imgs, srcRect) {
+    if (_shadowSilhouettes[key]) return _shadowSilhouettes[key];
+    for (const im of imgs) if (!im || !im.width) return null; // not loaded yet; retry next frame
+    const w = srcRect ? srcRect.w : Math.max(...imgs.map(i => i.width));
+    const h = srcRect ? srcRect.h : Math.max(...imgs.map(i => i.height));
+    const g = createGraphics(w, h);
+    g.pixelDensity(1);
+    for (const im of imgs) {
+        if (srcRect) g.image(im, 0, 0, w, h, srcRect.x, srcRect.y, w, h);
+        else g.image(im, 0, 0);
+    }
+    g.drawingContext.globalCompositeOperation = 'source-in';
+    g.noStroke();
+    g.fill(0);
+    g.rect(0, 0, w, h);
+    g.drawingContext.globalCompositeOperation = 'source-over';
+    _shadowSilhouettes[key] = g;
+    return g;
+}
+
+// Stamp one silhouette onto the shadow layer. (footX, footY) is the caster's
+// ground-contact point in screen pixels; groundY is that line's y within the
+// silhouette image.
+function stampShadow(layer, sil, footX, footY, groundY, p) {
+    layer.push();
+    layer.translate(footX, footY);
+    layer.scale(1, -p.stretch);                // flip downward + set length
+    layer.applyMatrix(1, 0, p.shear, 1, 0, 0); // lean toward/away from the sun
+    layer.image(sil, -sil.width / 2, -groundY);
+    layer.pop();
+}
+
+// Overworld grass/tree-top swap by season (Sweet & Saucy share the default look).
+function seasonalGrassKey() {
+    if (world.season === 'Cool') return 'tiles.grass_cool';
+    if (world.season === 'Yeesh') return 'tiles.grass_yeesh';
+    return 'tiles.grass';
+}
+function seasonalTreeTopKey() {
+    if (world.season === 'Cool') return 'tiles.tree_top_cool';
+    if (world.season === 'Yeesh') return 'tiles.tree_top_yeesh';
+    return 'tiles.tree_top_basic';
+}
 
 // Helper: check if a tile is solid. Individual tiles can override with a `solid` property.
 // Animals also block movement (solid obstacles).
@@ -175,6 +335,7 @@ let waterFrame = 0;
 const ITEMS = {
     log:         { name: 'Log',         category: 'material', maxStack: 99, color: '#8B4513', desc: 'A sturdy piece of wood you found near a tree.' },
     stick:       { name: 'Stick',       category: 'material', maxStack: 99, color: '#A0826D', desc: 'A flexible piece of wood you found near a tree.' },
+    pinecone:    { name: 'Pinecone',    category: 'material', maxStack: 99, color: '#8D6E63', desc: 'A woody cone that fell from a fir tree.' },
     fiber:       { name: 'Fiber',       category: 'material', maxStack: 99, color: '#558B2F', desc: 'Long strips of plant fiber that grow from the dirt.' },
     stone:       { name: 'Stone',       category: 'material', maxStack: 99, color: '#9E9E9E', desc: 'A block of stone you chipped off of a boulder.' },
     magnet:      { name: 'Magnet',      category: 'material', maxStack: 99, color: '#607D8B', desc: 'A magic rock you chipped off of a shiny rock.' },
@@ -183,8 +344,11 @@ const ITEMS = {
     rose_seed:   { name: 'Rose Seed',   category: 'material', maxStack: 99, color: '#E53935', desc: 'A red rose seed.' },
     tulip_bulb:  { name: 'Tulip Bulb',  category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A white tulip bulb.' },
     bird_poop:   { name: 'Bird Poop',   category: 'material', maxStack: 99, color: '#E0E0E0', desc: 'May contain seeds.' },
+    rose:        { name: 'Rose',        category: 'gift',     maxStack: 99, color: '#E53935', desc: 'A freshly picked red rose.' },
+    tulip:       { name: 'Tulip',       category: 'gift',     maxStack: 99, color: '#F5F5F5', desc: 'A freshly picked tulip.' },
     thatch:      { name: 'Thatch',      category: 'block',    maxStack: 99, color: '#D4A76A', desc: 'Building material.' },
     banana:      { name: 'Banana',      category: 'gift',     maxStack: 99, color: '#FFD93D', desc: 'Tasty beach fruit.' },
+    palm_frond:  { name: 'Palm Frond',  category: 'material', maxStack: 99, color: '#4CAF50', desc: 'A broad leaf from a palm tree.' },
     bean:        { name: 'Bean',        category: 'gift',     maxStack: 99, color: '#D4A76A', desc: 'An edible seed you can eat or plant.' },
     berry:       { name: 'Berry',       category: 'gift',     maxStack: 99, color: '#C62828', desc: 'A sweet gift from the garden.' },
     gettin_stick:{ name: "Gettin' Stick", category: 'tool', maxStack: 1, color: '#D4A76A', desc: 'A stick with a magnet. Pulls treasure from the water!', durability: 3 },
@@ -201,6 +365,7 @@ const ITEMS = {
     seashell:    { name: 'Seashell',    category: 'gift',     maxStack: 20, color: '#FFE4E1', desc: 'A polished shell from a grateful crab.' },
     turtle_egg:  { name: 'Turtle Egg',  category: 'gift',     maxStack: 10, color: '#E8DCC5', desc: 'A smooth, patterned egg left behind by a nesting sea turtle.' },
     stale_toast: { name: 'Stale Toast', category: 'tool',     maxStack: 10, color: '#D2B48C', desc: 'A hardened piece of toast perfect for throwing at targets.' },
+    protein_shake: { name: 'Protein Shake', category: 'gift', maxStack: 20, color: '#E1C699', desc: 'A creamy shake from Yogatron. Tastes like encouragement and biceps.' },
     cicada_shell:{ name: 'Cicada Shell',category: 'material', maxStack: 99, color: '#B8A070', desc: 'A translucent shell left behind by a summer cicada. Useful in magic tricks.' },
 
     // ===== CONSUMABLES (cooked foods — great gifts for neighbors) =====
@@ -235,6 +400,16 @@ const ITEMS = {
     wall_shelf:   { name: 'Wall Shelf',    category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A floating shelf for trinkets.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
     round_rug:    { name: 'Round Rug',     category: 'block', maxStack: 99, color: '#E57373', desc: 'A soft round rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
     runner_rug:   { name: 'Runner Rug',    category: 'block', maxStack: 99, color: '#64B5F6', desc: 'A long runner rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+
+    // Outdoor placeable — equip and click an open area outside to build a neighbor's shack
+    neighbor_shack: { name: "Neighbor's Shack", category: 'block', maxStack: 1, color: '#8B6914', desc: 'A cozy little shack for a neighbor. Place it outside on open ground.', outdoor: { type: 'shack' } },
+
+    // Trees scooped up by the Tree Move magic trick (magic.js). Equip and click
+    // open ground to replant via World.placeTree (grass or beach per type).
+    potted_tree:        { name: 'Potted Tree',        category: 'block', maxStack: 10, color: '#2E7D32', desc: 'A whole tree, magically to-go. Replant on open grass.', outdoor: { tree: 'tree' } },
+    potted_fir_tree:    { name: 'Potted Fir',         category: 'block', maxStack: 10, color: '#1B5E20', desc: 'A fir tree in a very big pot. Replant on open grass.', outdoor: { tree: 'fir_tree' } },
+    potted_banana_tree: { name: 'Potted Banana Tree', category: 'block', maxStack: 10, color: '#F9A825', desc: 'A banana tree, roots and all. Replant on open beach.', outdoor: { tree: 'banana_tree' } },
+    potted_palm_tree:   { name: 'Potted Palm',        category: 'block', maxStack: 10, color: '#66BB6A', desc: 'A palm tree to-go. Replant on open beach.', outdoor: { tree: 'palm_tree' } },
 };
 
 // ===== INVENTORY =====
@@ -252,8 +427,29 @@ const BUILDING_TIERS = {
     // act as the entrance. interiorW/interiorFloorRows = interior size (floor rows
     // are in addition to INTERIOR_WALL_HEIGHT wall rows on top).
     shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 5, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x80 sprite
-    house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 }   // 64x64 sprite
+    house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 },   // 64x64 sprite
+    // --- Underground city buildings (PLACEHOLDERS) ---
+    // No sprites yet: Building.draw falls back to a colored block tinted by
+    // `color`. Same footprint/interior as the shack. Rename/reskin later.
+    ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 }
 };
+
+// The eight underground building identities (see underWorldBldgs.rtf).
+const UNDERGROUND_BUILDING_TYPES = ['ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin', 'ug_inner_temple', 'ug_electric_temple', 'ug_black_goddess', 'ug_stimmy_tims', 'ug_bottomless_pit'];
+// Fixed at city creation — randomization retired. The two designed buildings
+// stand now for verification; Charles's planned starter set (Mubaba's /
+// Recycle Bin / Stimmy Tim's, in a set order) replaces this list later.
+const UNDERGROUND_STARTING_BUILDINGS = [
+    { type: 'ug_mubaba_fortress', padIndex: 1 },
+    { type: 'ug_electric_temple', padIndex: 2 }
+];
 
 // Interior wall height (top wall area for decoration)
 const INTERIOR_WALL_HEIGHT = 2;
@@ -294,8 +490,9 @@ class Building {
             for (let y = 0; y < this.interiorH; y++) {
                 if (y < INTERIOR_WALL_HEIGHT) {
                     this.interiorTiles[x][y] = { type: 'wall', variant: 0 };
-                } else if (x === 0 && y === INTERIOR_WALL_HEIGHT) {
-                    // Bed on the left, against the back wall
+                } else if (x === 0 && y === INTERIOR_WALL_HEIGHT && !String(this.type).startsWith('ug_')) {
+                    // Bed on the left, against the back wall (homes only — the
+                    // underground establishments don't sleep)
                     this.interiorTiles[x][y] = { type: 'bed', variant: bedVariant };
                 } else {
                     this.interiorTiles[x][y] = { type: 'grass', variant: floor(Math.random() * 3) };
@@ -377,11 +574,27 @@ class Building {
         if (spr) {
             image(spr, screenX, screenY);
         } else {
-            // Fallback: brown rectangle
-            fill('#8B4513');
-            noStroke();
+            // Fallback: a colored block (tier `color`, else brown) with a doorway
+            // and a name label so placeholder buildings are distinguishable.
+            const def = BUILDING_TIERS[this.type] || {};
             const ts = this.tileSize;
-            rect(screenX, screenY, ts.w * CONFIG.TILE_SIZE, ts.h * CONFIG.TILE_SIZE);
+            const w = ts.w * CONFIG.TILE_SIZE, h = ts.h * CONFIG.TILE_SIZE;
+            noStroke();
+            fill(def.color || '#8B4513');
+            rect(screenX, screenY, w, h);
+            // Roof band + dark doorway at bottom-center.
+            fill(0, 0, 0, 40);
+            rect(screenX, screenY, w, CONFIG.TILE_SIZE);
+            fill('#241C16');
+            const doorTiles = (def.doorWidth || 1) * CONFIG.TILE_SIZE;
+            rect(screenX + (w - doorTiles) / 2, screenY + h - CONFIG.TILE_SIZE * 1.5, doorTiles, CONFIG.TILE_SIZE * 1.5);
+            if (def.name) {
+                fill(255);
+                textSize(8);
+                textAlign(CENTER, CENTER);
+                text(def.name, screenX + w / 2, screenY + h / 2 - 4);
+                textAlign(LEFT, BASELINE);
+            }
         }
     }
 
@@ -434,12 +647,22 @@ function buildingAt(x, y) {
 // ===== HARVEST DEFINITIONS =====
 // Each harvestable tile type: what it drops, respawn time (game hours), tool needed (null = bare hands)
 const HARVEST_TYPES = {
-    tree:        { drops: [{id:'log', count:2, chance:1.0}, {id:'berry', count:2, chance:1.0}, {id:'stick', count:1, chance:0.5}], respawnHours: 12, tool: null, name: 'Tree' },
-    rock:        { drops: [{id:'stone', count:2, chance:1.0}], respawnHours: 24, tool: null, name: 'Rock' },
-    shiny_rock:  { drops: [{id:'stone', count:1, chance:1.0}, {id:'magnet', count:1, chance:0.8}, {id:'crystal', count:1, chance:0.4}], respawnHours: 24, tool: null, name: 'Shiny Rock' },
+    // Trees, rocks and shiny rocks each provide ONE randomly chosen drop per day,
+    // with a random quantity of 1-3 of that item (pickOne + randomQty). The drop's
+    // `chance` acts as a relative weight for which item is selected.
+    tree:        { drops: [{id:'log', chance:1.0}, {id:'berry', chance:1.0}, {id:'stick', chance:0.5}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Oak Tree' },
+    fir_tree:    { drops: [{id:'log', chance:1.0}, {id:'pinecone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Fir Tree' },
+    // Beach-only trees, same daily pickOne + 1-3 quantity rules.
+    banana_tree: { drops: [{id:'banana', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Banana Tree' },
+    palm_tree:   { drops: [{id:'fiber', chance:1.0}, {id:'palm_frond', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Palm Tree' },
+    rock:        { drops: [{id:'stone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Rock' },
+    shiny_rock:  { drops: [{id:'stone', chance:1.0}, {id:'magnet', chance:0.8}, {id:'crystal', chance:0.4}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Shiny Rock' },
     weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
-    bird_poop:   { drops: [{id:'seed', count:1, chance:1.0}, {id:'rose_seed', count:1, chance:0.5}, {id:'tulip_bulb', count:1, chance:0.5}], disappears: true, name: 'Bird Poop' },
-    rosebush:    { drops: [{id:'rose_seed', count:1, chance:1.0}], respawnHours: 12, tool: null, name: 'Rose Bush' },
+    // Bird poop gives exactly 1 of a single randomly chosen seed type, then disappears.
+    bird_poop:   { drops: [{id:'seed', chance:1.0}, {id:'rose_seed', chance:1.0}, {id:'tulip_bulb', chance:1.0}], pickOne: true, disappears: true, name: 'Bird Poop' },
+    // Rosebushes and tulips are destructible pickups: harvest yields 1 rose/tulip and removes the plant.
+    rosebush:    { drops: [{id:'rose', count:1, chance:1.0}], pickOne: true, disappears: true, name: 'Rose Bush' },
+    tulip:       { drops: [{id:'tulip', count:1, chance:1.0}], pickOne: true, disappears: true, name: 'Tulip' },
     toast_target:{ drops: [], disappears: true, tool: 'stale_toast', name: 'Toast Target' }
     // Note: flower, tulip, and water pond decorations have been removed from world generation.
 };
@@ -466,23 +689,28 @@ function updateNotifications(dt) {
 }
 
 function drawNotifications() {
+    textSize(10);
+    textFont('Courier New');
+    textAlign(LEFT, CENTER);
     for (const n of notifications) {
         const alpha = n.life < 500 ? map(n.life, 0, 500, 0, 255) : 255;
-        fill(0, 0, 0, alpha * 0.7);
         noStroke();
+        fill(0, 0, 0, alpha * 0.7);
         const tw = textWidth(n.text) + 10;
         rect(8, n.y, tw, 12);
         fill(255, 255, 200, alpha);
-        textAlign(LEFT, CENTER);
-        textSize(10);
-        textFont('Courier New');
         text(n.text, 13, n.y + 6);
     }
 }
 
-// Bump this whenever sprite art is updated so browsers re-fetch images instead
-// of serving stale cached copies (images aren't covered by the index.html ?v=).
-const ASSET_VERSION = '20260628';
+// DEV TOGGLE: while iterating on art, leave this true so every image is
+// re-fetched on each page load (a fresh timestamp per load defeats the cache).
+// Set it to false for release so sprites cache normally — and then bump
+// ASSET_VERSION whenever you change art.
+const DEV_REFRESH_ASSETS = true;
+// Cache-buster appended to every image URL in preload(). With the dev toggle on
+// it's unique per load; off, it's the fixed version string below.
+const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260703';
 
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
@@ -496,13 +724,18 @@ function preload() {
 }
 
 function setup() {
+    // Install dialogue overrides now that every script (incl. dialogue.js) has loaded.
+    installYogatronDialogueHooks();
+
     const canvas = createCanvas(CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
     canvas.parent('game-container');
     pixelDensity(1);
     noSmooth();
 
-    // Initialize world
-    world = new World();
+    // Initialize world (the island is the starting map)
+    world = new World('island', 'island');
+    maps = { island: world };
+    currentMapId = 'island';
 
     // Initialize player at center of island
     player = new Player(50, 50);
@@ -549,13 +782,19 @@ function draw() {
             drawPauseMenu();
             break;
         default:
-            // States added by other modules (dialogue, minigame)
+            // States added by other modules (dialogue, minigame, shackPicker)
             if (gameState === 'dialogue') {
-                drawGame();
+                // Dialogue can happen inside a building (Electric Temple) or in
+                // Mubaba's fortress scene, which paints over the backdrop.
+                if (insideBuilding) drawInterior(); else drawGame();
+                if (typeof drawFortressScene === 'function') drawFortressScene();
                 drawDialogueScreen();
             } else if (gameState === 'minigame') {
                 drawGame();
                 drawMinigame();
+            } else if (gameState === 'shackPicker') {
+                drawGame();
+                drawShackPicker();
             }
             break;
     }
@@ -717,7 +956,7 @@ function formatSaveTime(ts) {
 }
 
 function handleMovement() {
-    if (gameState !== STATE.PLAYING || !player) return;
+    if (gameState !== STATE.PLAYING || !player || warpAnim) return;
     
     const now = millis();
     if (now - lastMoveTime < MOVE_COOLDOWN) return;
@@ -741,6 +980,8 @@ function handleMovement() {
     if (moved) {
         updateCamera();
         lastMoveTime = now;
+        // Stepping onto a portal tile carries the player to another map.
+        checkPortalUnderfoot();
     }
 }
 
@@ -774,6 +1015,11 @@ function handleInteriorMovement() {
             lastMoveTime = now;
             return;
         }
+        // Taira blocks her spot in the Electric Temple
+        if (b.type === 'ug_electric_temple' && newX === TEMPLE_TAIRA_POS.x && newY === TEMPLE_TAIRA_POS.y) {
+            lastMoveTime = now;
+            return;
+        }
         // Track facing
         if (dx !== 0) player.facing = dx > 0 ? 'right' : 'left';
         if (dy !== 0) player.facing = dy > 0 ? 'down' : 'up';
@@ -791,6 +1037,7 @@ function drawGame() {    // Handle continuous movement
 
     // Update notifications
     if (deltaTime) updateNotifications(deltaTime);
+    updateWarpAnim();
 
     // Draw world
     world.draw();
@@ -812,6 +1059,10 @@ function drawGame() {    // Handle continuous movement
     // Draw player
     player.draw();
 
+    // Redraw tree canopy the player is standing under so foliage occludes
+    // them (see World.drawTreeCanopyOverPlayer()).
+    if (world) world.drawTreeCanopyOverPlayer();
+
     // Day/night overlay
     drawDayNightOverlay();
 
@@ -821,20 +1072,286 @@ function drawGame() {    // Handle continuous movement
     // Draw notifications on top
     drawNotifications();
 
-    // Draw fairy overlay (from magic system)
-    if (typeof drawFairyOverlay === 'function') drawFairyOverlay();
+    // Debug overlay (coords, time, hotkeys)
+    drawDebugOverlay();
+
+    // ===== YOGATRON: Ab Appreciation Day visitor =====
+    updateYogatron(deltaTime);
+    drawYogatron();
 
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
     if (typeof updateHog === 'function') updateHog(deltaTime);
     if (typeof checkAnimalSunEvents === 'function') checkAnimalSunEvents();
-    if (typeof updateFairies === 'function') updateFairies(deltaTime);
     if (typeof updateDialogue === 'function') updateDialogue(deltaTime);
     if (typeof updateMinigame === 'function' && gameState === 'minigame') updateMinigame(deltaTime);
 
     // Auto-save
     if (typeof autoSave === 'function') autoSave();
+}
+
+// ===== YOGATRON (Ab Appreciation Day) =====
+function spawnYogatron() {
+    if (yogatron && yogatron.isPresent) return;
+    if (typeof world === 'undefined' || !world) return;
+    const holiday = getCurrentHoliday();
+    if (!holiday || holiday.name !== 'Ab Appreciation Day') return;
+
+    // Find a clear tile near the player on grass.
+    let sx = player ? player.x : 50;
+    let sy = player ? player.y : 50;
+    let bestX = -1, bestY = -1;
+    for (let r = 2; r <= 8; r++) {
+        for (let a = 0; a < 8; a++) {
+            const rad = a * PI / 4;
+            const tx = Math.round(sx + r * Math.cos(rad));
+            const ty = Math.round(sy + r * Math.sin(rad));
+            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+            if (!world.tiles[tx] || !world.tiles[tx][ty]) continue;
+            if (world.tiles[tx][ty].type !== 'grass') continue;
+            if (isSolidTile(tx, ty)) continue;
+            if (buildingAt(tx, ty)) continue;
+            if (typeof npcAt === 'function' && npcAt(tx, ty)) continue;
+            bestX = tx; bestY = ty;
+            break;
+        }
+        if (bestX >= 0) break;
+    }
+    if (bestX < 0) { bestX = sx; bestY = sy; }
+
+    yogatron = {
+        name: 'Yogatron',
+        species: 'Fitness Robot',
+        color: '#FF6F00',
+        gridX: bestX,
+        gridY: bestY,
+        facing: 'down',
+        isPresent: true,
+        gaveShake: false,
+        animFrame: 0,
+        lastMoveAt: 0,
+        dialogue: {
+            start: {
+                text: 'Greetings, flex-friend! I am Yogatron, and today we celebrate the mighty abdominal. Have you stretched yet?',
+                choices: [
+                    { text: 'I want a protein shake!', next: 'shake', friendshipDelta: 0 },
+                    { text: 'How do I celebrate this holiday?', next: 'about', friendshipDelta: 0 },
+                    { text: 'Maybe later.', next: null, friendshipDelta: 0 }
+                ]
+            },
+            shake: {
+                text: '',
+                choices: [
+                    { text: 'Thanks!', next: null, friendshipDelta: 1 }
+                ]
+            },
+            about: {
+                text: 'On Ab Appreciation Day, every crunch counts! Do a little stretch, strike a heroic pose, and remember: your core is your friend.',
+                choices: [
+                    { text: 'I will flex with purpose.', next: 'shake', friendshipDelta: 1 },
+                    { text: 'I need that shake now.', next: 'shake', friendshipDelta: 0 },
+                    { text: 'Goodbye!', next: null, friendshipDelta: 0 }
+                ]
+            }
+        }
+    };
+    // The 'shake' node text is set when the player chooses it so it can reflect whether
+    // they have already received one today.
+    notify('Yogatron has arrived for Ab Appreciation Day!', 4000);
+}
+
+function despawnYogatron() {
+    if (!yogatron) return;
+    yogatron.isPresent = false;
+    yogatron = null;
+}
+
+function updateYogatron(dt) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    // If it's not the day, make sure Yogatron is gone.
+    if (!holiday || holiday.name !== 'Ab Appreciation Day') {
+        if (yogatron && yogatron.isPresent) despawnYogatron();
+        return;
+    }
+    // If the holiday is active but no Yogatron yet, spawn him.
+    if (!yogatron || !yogatron.isPresent) {
+        spawnYogatron();
+    }
+    if (!yogatron || !dt) return;
+
+    // Gentle wander.
+    if (Math.random() < 0.005) {
+        const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+        const d = dirs[Math.floor(Math.random()*4)];
+        const nx = yogatron.gridX + d[0];
+        const ny = yogatron.gridY + d[1];
+        if (nx >= 0 && nx < CONFIG.WORLD_WIDTH && ny >= 0 && ny < CONFIG.WORLD_HEIGHT) {
+            if (!isSolidTile(nx, ny) && !buildingAt(nx, ny) && !(typeof npcAt === 'function' && npcAt(nx, ny))) {
+                yogatron.gridX = nx;
+                yogatron.gridY = ny;
+                yogatron.facing = d[0] > 0 ? 'right' : d[0] < 0 ? 'left' : d[1] > 0 ? 'down' : 'up';
+                yogatron.lastMoveAt = millis();
+            }
+        }
+    }
+}
+
+function drawYogatron() {
+    if (!yogatron || !yogatron.isPresent) return;
+    const sx = yogatron.gridX * CONFIG.TILE_SIZE - cameraX;
+    const sy = yogatron.gridY * CONFIG.TILE_SIZE - cameraY;
+    const TS = CONFIG.TILE_SIZE;
+    // Animated bob for that cheerful fitness vibe.
+    const moving = (millis() - (yogatron.lastMoveAt || 0)) < 300;
+    const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
+    // Draw a friendly orange robot-ish sprite (fallback).
+    const spriteKey = 'sprites.yogatron';
+    const spr = SPRITES[spriteKey] || null;
+    if (!drawCharacterSprite(spr, sx, sy - TS + bob, yogatron.facing, moving)) {
+        fill('#FF6F00');
+        noStroke();
+        rect(sx, sy - TS + bob, TS, TS * 2);
+        fill('#FFFFFF');
+        rect(sx + 3, sy - TS + 4 + bob, 3, 3);
+        rect(sx + 10, sy - TS + 4 + bob, 3, 3);
+        // A tiny flexed arm.
+        fill('#FFB74D');
+        rect(sx - 2, sy - TS + 10 + bob, 2, 6);
+        rect(sx + TS, sy - TS + 10 + bob, 2, 6);
+    }
+    // Name tag
+    const halfW = CONFIG.CANVAS_WIDTH / 2;
+    const halfH = CONFIG.CANVAS_HEIGHT / 2;
+    if (Math.abs(sx - halfW) < halfW && Math.abs(sy - halfH) < halfH) {
+        fill(0, 0, 0, 150);
+        textAlign(CENTER, BOTTOM);
+        textSize(7);
+        textFont('Courier New');
+        const nw = textWidth('Yogatron') + 4;
+        rect(sx + TS / 2 - nw / 2, sy - TS - 12, nw, 9);
+        fill(255);
+        text('Yogatron', sx + TS / 2, sy - TS - 3);
+    }
+}
+
+function isFacingYogatron() {
+    if (!yogatron || !yogatron.isPresent || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    return (facing.x === yogatron.gridX && facing.y === yogatron.gridY) ||
+           (facing.x === yogatron.gridX && facing.y === yogatron.gridY - 1);
+}
+
+function tryTalkToYogatron() {
+    if (!yogatron || !yogatron.isPresent) return false;
+    if (!isFacingYogatron()) return false;
+    openYogatronDialogue();
+    return true;
+}
+
+function openYogatronDialogue() {
+    if (!yogatron || !yogatron.isPresent) return;
+    // Clone the dialogue tree so mutations don't persist across conversations.
+    const tree = JSON.parse(JSON.stringify(yogatron.dialogue));
+    // Shake node: give one protein shake per visit/day.
+    if (!yogatron.gaveShake) {
+        tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+        tree.shake.choices = [
+            { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
+        ];
+    } else {
+        tree.shake.text = 'I already handed you today\'s shake, friend. One per abdominal day is the rule!';
+        tree.shake.choices = [
+            { text: 'Fair enough.', next: null, friendshipDelta: 0 }
+        ];
+    }
+
+    dialogueState.active = true;
+    dialogueState.npc = yogatron;
+    dialogueState.currentNode = 'start';
+    dialogueState.textRevealed = 0;
+    dialogueState.selectedChoice = 0;
+    dialogueState.choicesVisible = false;
+    dialogueState.advancedMenu = false;
+    dialogueState._yogatronTree = tree;
+    gameState = STATE.DIALOGUE;
+}
+
+// ===== Yogatron dialogue overrides =====
+// These wrap functions defined in dialogue.js. dialogue.js loads AFTER game.js, so we
+// must NOT touch those identifiers at game.js load time (doing so throws a ReferenceError
+// that halts the rest of this file). Instead we capture the originals and install the
+// wrappers from setup(), which runs once every script has finished loading.
+let _originalGetDialogueTree = null;
+let _originalSelectDialogueChoice = null;
+let _originalCloseDialogue = null;
+let _yogatronHooksInstalled = false;
+
+function installYogatronDialogueHooks() {
+    if (_yogatronHooksInstalled) return;
+    if (typeof getDialogueTree !== 'function' || typeof selectDialogueChoice !== 'function' || typeof closeDialogue !== 'function') return;
+    _yogatronHooksInstalled = true;
+
+    _originalGetDialogueTree = getDialogueTree;
+    getDialogueTree = function() {
+        if (dialogueState.npc && dialogueState.npc.name === 'Yogatron') {
+            return dialogueState._yogatronTree;
+        }
+        return _originalGetDialogueTree();
+    };
+
+    // ===== OVERRIDE selectDialogueChoice for Yogatron shake action =====
+    // Note: dialogue.js defines selectDialogueChoice. game.js installs this wrapper
+    // from setup() after all scripts have loaded (see installYogatronDialogueHooks).
+    _originalSelectDialogueChoice = selectDialogueChoice;
+    selectDialogueChoice = _yogatronSelectDialogueChoice;
+    _originalCloseDialogue = closeDialogue;
+    closeDialogue = function() {
+        if (dialogueState.npc && dialogueState.npc.name === 'Yogatron') {
+            dialogueState._yogatronTree = null;
+        }
+        _originalCloseDialogue();
+    };
+}
+
+function _yogatronSelectDialogueChoice(i) {
+    const npc = dialogueState.npc;
+    if (npc && npc.name === 'Yogatron') {
+        const tree = dialogueState._yogatronTree;
+        const node = tree ? tree[dialogueState.currentNode] : null;
+        if (!node || !node.choices[i]) return;
+        const choice = node.choices[i];
+        if (choice.action === 'shake' && !npc.gaveShake && typeof inventory !== 'undefined') {
+            inventory.addItem('protein_shake', 1);
+            npc.gaveShake = true;
+            notify('Yogatron gave you a Protein Shake!');
+        }
+        if (choice.next === null) {
+            closeDialogue();
+        } else {
+            // If going back to shake after about, re-evaluate text based on gaveShake.
+            if (choice.next === 'shake') {
+                if (!npc.gaveShake) {
+                    tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+                    tree.shake.choices = [
+                        { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
+                    ];
+                } else {
+                    tree.shake.text = 'I already handed you today\'s shake, friend. One per abdominal day is the rule!';
+                    tree.shake.choices = [
+                        { text: 'Fair enough.', next: null, friendshipDelta: 0 }
+                    ];
+                }
+            }
+            dialogueState.currentNode = choice.next;
+            dialogueState.textRevealed = 0;
+            dialogueState.selectedChoice = 0;
+            dialogueState.choicesVisible = false;
+        }
+        return;
+    }
+    _originalSelectDialogueChoice(i);
 }
 
 function drawDayNightOverlay() {
@@ -949,6 +1466,22 @@ function drawHotbar() {
         textFont('Courier New');
         text(i + 1, x + 1, y + 1);
     }
+}
+
+// Which on-screen hotbar slot is under the mouse (0-7), or -1. Uses the same
+// geometry as drawHotbar so clicking the bar selects a slot on any screen.
+function getHotbarSlotAtMouse() {
+    const slotSize = 20;
+    const gap = 2;
+    const totalW = 8 * slotSize + 7 * gap;
+    const startX = (width - totalW) / 2;
+    const y = height - slotSize - 4;
+    if (mouseY < y || mouseY >= y + slotSize) return -1;
+    for (let i = 0; i < 8; i++) {
+        const x = startX + i * (slotSize + gap);
+        if (mouseX >= x && mouseX < x + slotSize) return i;
+    }
+    return -1;
 }
 
 function drawItemIcon(itemId, x, y, size) {
@@ -1097,7 +1630,15 @@ function drawMenuScreen() {
 
     const pSpr = SPRITES['sprites.player'];
     if (pSpr) {
-        image(pSpr, px + 2, py + 2, portraitSize - 4, portraitSize - 4);
+        // Draw a single (animated) frame, aspect-correct, centered in the box.
+        // Works for both a 16x32 still and a multi-frame horizontal strip.
+        const cols = Math.max(1, Math.floor(pSpr.width / CHAR_FW));
+        const frame = Math.floor(millis() / WALK_FRAME_MS) % cols;
+        const boxW = portraitSize - 4, boxH = portraitSize - 4;
+        const scale = Math.min(boxW / CHAR_FW, boxH / CHAR_FH);
+        const dw = CHAR_FW * scale, dh = CHAR_FH * scale;
+        const ox = px + 2 + (boxW - dw) / 2, oy = py + 2 + (boxH - dh) / 2;
+        image(pSpr, ox, oy, dw, dh, frame * CHAR_FW, 0, CHAR_FW, CHAR_FH);
     } else {
         fill(0, 100, 255);
         rect(px + 2, py + 2, portraitSize - 4, portraitSize - 4);
@@ -1282,11 +1823,20 @@ function drawSettingsTab(x, y, w, h) {
     fill('#FF8A80');
     text('▶ Save and Quit to Menu', x, y + 66);
 
+    fill('#82B1FF');
+    textSize(9);
+    text('▶ Music Volume: ' + Math.round(audioManager.musicVolume * 100) + '% (click to cycle)', x, y + 86);
+    text('▶ SFX Volume: ' + Math.round(audioManager.sfxVolume * 100) + '% (click to cycle)', x, y + 98);
+    fill(audioManager.muted ? '#FF8A80' : '#82B1FF');
+    text('▶ Mute: ' + (audioManager.muted ? 'ON' : 'OFF'), x, y + 110);
+
+    // Debug Mode toggle (also togglable with the backtick key).
+    fill(debugMode ? '#7CFC8A' : '#9E9E9E');
+    textSize(9);
+    text((debugMode ? '■' : '□') + ' Debug Mode: ' + (debugMode ? 'ON' : 'OFF'), x, y + 130);
     fill(120);
-    textSize(8);
-    text('Volume: [TBD]', x, y + 86);
-    text('Controls: [TBD]', x, y + 98);
-    text('Mute: [TBD]', x, y + 110);
+    textSize(7);
+    text('(cheats + coord overlay; key: `)', x, y + 142);
 
     fill(255, 255, 100);
     textSize(8);
@@ -1398,8 +1948,10 @@ function getInventorySlotRect(slotIndex) {
     const row = Math.floor(slotInCat / cols);
     const col = slotInCat % cols;
 
-    // Each category section: 2 rows of slots + 6px spacing
-    const catSectionH = 2 * (slotSize + gap) + 6;
+    // Each category section spans: label (12) + 2 rows of slots + 6px spacing.
+    // This must match the stride used in drawInventoryTab, which advances
+    // sectionY by catY(+12 label) + 2 rows + 6 between sections.
+    const catSectionH = 12 + 2 * (slotSize + gap) + 6;
     const slotY = catY + row * (slotSize + gap) + catIdx * catSectionH;
 
     return { x: leftX + 4 + col * (slotSize + gap), y: slotY, w: slotSize, h: slotSize };
@@ -1424,6 +1976,39 @@ function getSlotAtMouse() {
 }
 
 function mousePressed() {
+    // ===== SHACK PICKER =====
+    if (gameState === 'shackPicker' && shackPicker) {
+        const nbrs = shackPicker.neighbors;
+        const rowH = 24;
+        const panelW = 220;
+        const panelH = 32 + nbrs.length * rowH + 28;
+        const px = (width - panelW) / 2;
+        const py = (height - panelH) / 2;
+        // Check row clicks.
+        for (let i = 0; i < nbrs.length; i++) {
+            const ry = py + 32 + i * rowH;
+            if (mouseX >= px + 6 && mouseX < px + panelW - 6 && mouseY >= ry && mouseY < ry + rowH - 2) {
+                if (shackPicker.selected === i) {
+                    confirmShackPicker();
+                } else {
+                    shackPicker.selected = i;
+                }
+                return;
+            }
+        }
+        // Confirm button area.
+        if (mouseY >= py + panelH - 26 && mouseY < py + panelH - 2 &&
+            mouseX >= px && mouseX < px + panelW) {
+            confirmShackPicker();
+            return;
+        }
+        // Click outside panel = cancel.
+        if (mouseX < px || mouseX > px + panelW || mouseY < py || mouseY > py + panelH) {
+            cancelShackPicker();
+        }
+        return;
+    }
+
     // ===== DIALOGUE: click to advance text / pick a response =====
     if (gameState === 'dialogue') {
         if (typeof handleDialogueClick === 'function') handleDialogueClick(mouseX, mouseY);
@@ -1465,6 +2050,15 @@ function mousePressed() {
 
     // ===== PLAYING: click to interact (same as Enter) =====
     if (gameState === STATE.PLAYING) {
+        // Clicking the on-screen hotbar selects that slot (universal).
+        const hb = getHotbarSlotAtMouse();
+        if (hb >= 0) { hotbarSlot = hb; return; }
+        // Debug: click anywhere else to teleport the player there.
+        if (debugMode) {
+            const TS = CONFIG.TILE_SIZE;
+            debugTeleport(Math.floor((mouseX + cameraX) / TS), Math.floor((mouseY + cameraY) / TS));
+            return;
+        }
         // Try entering building first
         if (tryEnterBuilding()) return;
         // Check NPC talk, then harvest
@@ -1475,8 +2069,25 @@ function mousePressed() {
                 return;
             }
         }
+        // Yogatron holiday interaction (before harvest)
+        if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
+        // Garden Day: till facing grass with hoe (swallows if tilled)
+        if (typeof tryTillSoil === 'function' && tryTillSoil()) return;
+        // Place an outdoor item (neighbor's shack, potted tree) on open ground.
+        {
+            const active = inventory.getActiveItem();
+            if (active && ITEMS[active.id] && ITEMS[active.id].outdoor) {
+                const outdoor = ITEMS[active.id].outdoor;
+                const TS = CONFIG.TILE_SIZE;
+                const tx = Math.floor((mouseX + cameraX) / TS);
+                const ty = Math.floor((mouseY + cameraY) / TS);
+                if (outdoor.tree) {
+                    if (tryPlaceMovedTree(tx, ty, outdoor.tree, active.id)) return;
+                } else if (tryPlaceNeighborShack(tx, ty, outdoor.type)) return;
+            }
+        }
         // Use the selected hotbar item on a clicked adjacent tile (e.g. plant a seed).
         if (typeof tryUseActiveItemAt === 'function') {
             const TS = CONFIG.TILE_SIZE;
@@ -1492,8 +2103,17 @@ function mousePressed() {
 
     // ===== INSIDE: click to interact (place/pick up furniture, sleep, exit) =====
     if (gameState === STATE.INSIDE) {
-        // Furniture/decoration placement & pickup on the clicked interior tile.
+        // Clicking the on-screen hotbar selects that slot (universal).
+        const hb = getHotbarSlotAtMouse();
+        if (hb >= 0) { hotbarSlot = hb; return; }
         const it = getInteriorTileAtMouse();
+        // Electric Temple: clicking Taira (body or head tile) talks to her.
+        if (it && insideBuilding && insideBuilding.type === 'ug_electric_temple' &&
+            it.x === TEMPLE_TAIRA_POS.x && (it.y === TEMPLE_TAIRA_POS.y || it.y === TEMPLE_TAIRA_POS.y - 1)) {
+            const t = templeTaira();
+            if (t && typeof openDialogue === 'function') { openDialogue(t); return; }
+        }
+        // Furniture/decoration placement & pickup on the clicked interior tile.
         if (it) {
             const active = inventory.getActiveItem();
             // Holding a placeable home item -> try to place it.
@@ -1533,26 +2153,32 @@ function mousePressed() {
             }
         }
 
-        // --- Inventory tab: click-to-swap + click hotbar to select ---
+        // --- Inventory tab: click-to-swap (works into the hotbar too) ---
         if (menuTab === 0) {
             const slot = getSlotAtMouse();
             if (slot >= 0) {
-                // If it's a hotbar slot, just select it as active
-                if (slot < INV_HOTBAR_SIZE) {
-                    hotbarSlot = slot;
-                    invSelectedSlot = slot;
-                    return;
-                }
-                // Otherwise do click-to-swap
                 if (mouseSelectedSlot === null) {
-                    mouseSelectedSlot = slot;
-                    invSelectedSlot = slot;
+                    // Nothing picked up yet: clicking the hotbar selects it as
+                    // active; clicking a category slot picks it up to move.
+                    if (slot < INV_HOTBAR_SIZE) {
+                        hotbarSlot = slot;
+                        invSelectedSlot = slot;
+                    } else {
+                        mouseSelectedSlot = slot;
+                        invSelectedSlot = slot;
+                    }
                 } else if (mouseSelectedSlot === slot) {
+                    // Clicked the same slot again: cancel the pickup.
                     mouseSelectedSlot = null;
                 } else {
+                    // Pending pickup: move/swap into the clicked slot — including
+                    // a hotbar slot, so crafted items can be equipped by clicking.
                     inventory.swapSlots(mouseSelectedSlot, slot);
-                    const fromName = inventory.slots[slot] ? ITEMS[inventory.slots[slot].id].name : 'empty';
-                    notify('Swapped: ' + fromName);
+                    const movedName = inventory.slots[slot] ? ITEMS[inventory.slots[slot].id].name : 'item';
+                    notify(slot < INV_HOTBAR_SIZE
+                        ? 'Moved ' + movedName + ' to hotbar slot ' + (slot + 1)
+                        : 'Swapped: ' + movedName);
+                    if (slot < INV_HOTBAR_SIZE) hotbarSlot = slot;
                     mouseSelectedSlot = null;
                     invSelectedSlot = slot;
                 }
@@ -1583,6 +2209,34 @@ function mousePressed() {
             if (mouseY >= quitY - 4 && mouseY < quitY + 11 &&
                 mouseX >= sx && mouseX < sx + 220) {
                 saveAndQuit();
+                return;
+            }
+            // Audio rows at y + 86 / 98 / 110. Volume rows cycle 0→25→50→75→100→0.
+            const cycleVol = v => (Math.round(v * 4) + 1) % 5 / 4;
+            const musY = contentY + 86;
+            if (mouseY >= musY - 4 && mouseY < musY + 11 &&
+                mouseX >= sx && mouseX < sx + 220) {
+                audioManager.setMusicVolume(cycleVol(audioManager.musicVolume));
+                return;
+            }
+            const sfxY = contentY + 98;
+            if (mouseY >= sfxY - 4 && mouseY < sfxY + 11 &&
+                mouseX >= sx && mouseX < sx + 220) {
+                audioManager.setSFXVolume(cycleVol(audioManager.sfxVolume));
+                audioManager.playSFX('chirp'); // preview the new level
+                return;
+            }
+            const muteY = contentY + 110;
+            if (mouseY >= muteY - 4 && mouseY < muteY + 11 &&
+                mouseX >= sx && mouseX < sx + 200) {
+                audioManager.toggleMute();
+                return;
+            }
+            // "Debug Mode" toggle row at y + 130
+            const dbgY = contentY + 130;
+            if (mouseY >= dbgY - 4 && mouseY < dbgY + 11 &&
+                mouseX >= sx && mouseX < sx + 200) {
+                toggleDebugMode();
                 return;
             }
         }
@@ -1623,6 +2277,13 @@ function tryEnterBuilding() {
         return false;
     }
 
+    // Mubaba's Fortress has no walkable interior: the door opens straight into
+    // an audience with Mubaba (black scene, magic circle — see magic.js).
+    if (b.type === 'ug_mubaba_fortress' && typeof enterMubabaFortress === 'function') {
+        enterMubabaFortress();
+        return true;
+    }
+
     // Save player position (standing outside, facing the door)
     savedPlayerX = player.x;
     savedPlayerY = player.y;
@@ -1637,6 +2298,34 @@ function tryEnterBuilding() {
     gameState = STATE.INSIDE;
     notify("Entered " + (BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type));
     return true;
+}
+
+// ===== THE ELECTRIC TEMPLE =====
+// A single room holding Taira, the mac. The back wall will eventually be
+// MarcOS (future NPC) who opens the portal to the Stars world.
+// ponytail: transient NPC instance — temple friendship doesn't persist across
+// reloads; merge with the island roster record if that ever matters.
+const TEMPLE_TAIRA_ID = 14; // NPC_DEFS index for Taira
+const TEMPLE_TAIRA_POS = { x: 3, y: INTERIOR_WALL_HEIGHT }; // back-center of the room
+let _templeTaira = null;
+function templeTaira() {
+    if (!_templeTaira && typeof NPC !== 'undefined') {
+        _templeTaira = new NPC(NPC_DEFS[TEMPLE_TAIRA_ID], TEMPLE_TAIRA_ID);
+    }
+    return _templeTaira;
+}
+
+function tryTalkToTempleTaira() {
+    if (!insideBuilding || insideBuilding.type !== 'ug_electric_temple') return false;
+    let dx = 0, dy = 0;
+    if (player.facing === 'up') dy = -1;
+    else if (player.facing === 'down') dy = 1;
+    else if (player.facing === 'left') dx = -1;
+    else dx = 1;
+    if (player.x + dx !== TEMPLE_TAIRA_POS.x || player.y + dy !== TEMPLE_TAIRA_POS.y) return false;
+    const t = templeTaira();
+    if (t && typeof openDialogue === 'function') { openDialogue(t); return true; }
+    return false;
 }
 
 function tryExitBuilding() {
@@ -1709,6 +2398,310 @@ function placePlayerAtShackEntrance() {
     updateCamera();
 }
 
+// ===== WORLDS (multiple maps) =====
+// The whole game runs off a single active map (`world`). To support several
+// large locations we keep N World instances in `maps` and swap which one is
+// active. Per-map entities (buildings, NPCs, animals, hog) live in shared
+// globals while their map is active; on travel we "park" the active map's
+// entities onto its World instance and load the destination's.
+//
+// Each entry: [getter, setter, freshValue]. Getters/setters reference the
+// shared cross-file globals so parking/loading just moves array references.
+const MAP_ENTITY_FIELDS = [
+    ['buildings',    () => buildings,    v => { buildings = v; },    () => []],
+    ['npcs',         () => npcs,         v => { npcs = v; },         () => []],
+    ['hog',          () => hog,          v => { hog = v; },          () => null],
+    ['hogPoopTiles', () => hogPoopTiles, v => { hogPoopTiles = v; }, () => []],
+    ['birds',        () => birds,        v => { birds = v; },        () => []],
+    ['crabs',        () => crabs,        v => { crabs = v; },        () => []],
+    ['turtles',      () => turtles,      v => { turtles = v; },      () => []],
+    ['seagulls',     () => seagulls,     v => { seagulls = v; },     () => []],
+    ['butterflies',  () => butterflies,  v => { butterflies = v; },  () => []],
+    ['cicadas',      () => cicadas,      v => { cicadas = v; },      () => []],
+    ['groundLoot',   () => groundLoot,   v => { groundLoot = v; },   () => []],
+];
+
+// Snapshot the active map's entity globals onto its World instance.
+function parkActiveMap() {
+    const m = maps[currentMapId];
+    if (!m) return;
+    m.entities = m.entities || {};
+    for (const [name, get] of MAP_ENTITY_FIELDS) {
+        try { m.entities[name] = get(); } catch (e) { /* global not yet defined */ }
+    }
+}
+
+// Load a map's parked entities into the shared globals (fresh empties if none).
+function loadMapEntities(m) {
+    const parked = m.entities || {};
+    for (const [name, , set, fresh] of MAP_ENTITY_FIELDS) {
+        try { set(parked[name] !== undefined ? parked[name] : fresh()); } catch (e) { /* ignore */ }
+    }
+}
+
+// Ensure a map exists, generating it on first visit.
+function getOrCreateMap(id) {
+    if (!maps[id]) maps[id] = new World(id === 'island' ? 'island' : id, id);
+    return maps[id];
+}
+
+// Move the player to another map. (x, y, facing) is the arrival spot — place the
+// player ADJACENT to the destination portal so they don't immediately re-trigger.
+function travelTo(targetId, x, y, facing) {
+    if (!world) return;
+    parkActiveMap();
+    const dest = getOrCreateMap(targetId);
+    // Carry the world clock across so time is continuous between maps.
+    dest.day = world.day;
+    dest.season = world.season;
+    dest.timeMinutes = world.timeMinutes;
+    currentMapId = targetId;
+    world = dest;
+    loadMapEntities(dest);
+    insideBuilding = null;
+    if (typeof x === 'number') player.x = x;
+    if (typeof y === 'number') player.y = y;
+    if (facing) player.facing = facing;
+    gameState = STATE.PLAYING;
+    if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
+    if (typeof audioManager !== 'undefined') audioManager.updateMapMusic(targetId);
+    updateCamera();
+}
+
+// If the player is standing on a portal tile, travel through it. Called after
+// each overworld step.
+function checkPortalUnderfoot() {
+    if (!world || !player) return;
+    const col = world.tiles[player.x];
+    const tile = col ? col[player.y] : null;
+    if (!tile || !tile.target) return;
+    const dest = tile.target;
+    if (tile.type === 'pond') {
+        startPondWarp(dest);
+    } else {
+        travelTo(dest.map, dest.x, dest.y, dest.facing || 'down');
+        if (dest.label) notify(dest.label);
+    }
+}
+
+// Find a clear (non-solid, no building, dry) tile near (sx, sy), searching
+// outward in rings. Excludes pond/portal tiles so a warp doesn't bounce the
+// player straight into another warp. Falls back to (sx, sy) itself if nothing
+// is found within range.
+function findOpenTileNear(sx, sy) {
+    for (let r = 1; r <= 8; r++) {
+        for (let a = 0; a < 8; a++) {
+            const rad = a * PI / 4;
+            const tx = Math.round(sx + r * Math.cos(rad));
+            const ty = Math.round(sy + r * Math.sin(rad));
+            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+            const tile = world.tiles[tx] ? world.tiles[tx][ty] : null;
+            if (!tile || tile.target || tile.type === 'pond') continue;
+            if (isSolidTile(tx, ty)) continue;
+            if (buildingAt(tx, ty)) continue;
+            return { x: tx, y: ty };
+        }
+    }
+    return { x: sx, y: sy };
+}
+
+const WARP_FALL_MS = 400;      // fall-from-offscreen duration
+const WARP_BOUNCE_MS = 250;    // hop-to-a-clear-tile duration
+const WARP_BOUNCE_HEIGHT = 10; // px, arc peak during the bounce-out hop
+
+// Warp through a pond: travel instantly (as with any portal), then play a
+// fall-from-offscreen + bounce-to-a-clear-tile sequence before returning
+// control to the player. See updateWarpAnim() and the `warpAnim` guard in
+// handleMovement().
+function startPondWarp(dest) {
+    travelTo(dest.map, dest.x, dest.y, dest.facing || 'down');
+    const open = findOpenTileNear(player.x, player.y);
+    warpAnim = {
+        phase: 'falling',
+        startTime: millis(),
+        bounceX: open.x,
+        bounceY: open.y
+    };
+    player.fallOffsetY = -CONFIG.CANVAS_HEIGHT;
+}
+
+// Advances the active pond-warp animation, if any. Called once per frame from
+// drawGame(). Clears `warpAnim` (re-enabling movement) when the sequence ends.
+function updateWarpAnim() {
+    if (!warpAnim || !player) return;
+    const elapsed = millis() - warpAnim.startTime;
+
+    if (warpAnim.phase === 'falling') {
+        const t = Math.min(1, elapsed / WARP_FALL_MS);
+        const ease = 1 - (1 - t) * (1 - t); // ease-out
+        player.fallOffsetY = -CONFIG.CANVAS_HEIGHT * (1 - ease);
+        if (t >= 1) {
+            player.fallOffsetY = 0;
+            warpAnim.phase = 'bouncing';
+            warpAnim.startTime = millis();
+            warpAnim.fromX = player.x;
+            warpAnim.fromY = player.y;
+        }
+        return;
+    }
+
+    // 'bouncing': hop from the landing tile to a clear tile nearby.
+    const t = Math.min(1, elapsed / WARP_BOUNCE_MS);
+    const arc = Math.sin(t * PI) * WARP_BOUNCE_HEIGHT;
+    player.hopOffsetX = (warpAnim.bounceX - warpAnim.fromX) * CONFIG.TILE_SIZE * t;
+    player.hopOffsetY = (warpAnim.bounceY - warpAnim.fromY) * CONFIG.TILE_SIZE * t - arc;
+    if (t >= 1) {
+        player.x = warpAnim.bounceX;
+        player.y = warpAnim.bounceY;
+        player.hopOffsetX = 0;
+        player.hopOffsetY = 0;
+        warpAnim = null;
+        updateCamera();
+    }
+}
+
+// ===== DEBUG MODE =====
+// Dev cheats + an info overlay, gated behind `debugMode`. Toggle with backtick.
+//   `  toggle debug      T  +1 hour      Y  skip to next day (sunrise)
+//   H  refresh harvest   click  teleport player to the clicked tile
+function toggleDebugMode() {
+    debugMode = !debugMode;
+    notify('Debug mode ' + (debugMode ? 'ON' : 'OFF'));
+}
+
+function debugSkipHour() {
+    if (!world) return;
+    world.timeMinutes += 60;
+    while (world.timeMinutes >= 24 * 60) {
+        world.timeMinutes -= 24 * 60;
+        world.day++;
+        if (typeof onNewDay === 'function') onNewDay();
+    }
+    notify('Debug: time ' + (typeof getTimeString === 'function' ? getTimeString() : world.timeMinutes));
+}
+
+function debugSkipDay() {
+    if (!world) return;
+    world.day++;
+    world.timeMinutes = 6 * 60; // sunrise
+    if (typeof onNewDay === 'function') onNewDay();
+    if (typeof refreshHarvestables === 'function') refreshHarvestables();
+    if (typeof spawnBirdPoop === 'function') spawnBirdPoop(3 + floor(random(3)));
+    notify('Debug: skipped to Day ' + world.day);
+}
+
+function debugRefreshHarvest() {
+    if (typeof refreshHarvestables === 'function') refreshHarvestables();
+    if (typeof checkRespawns === 'function') checkRespawns();
+    notify('Debug: harvestables refreshed');
+}
+
+function debugTeleport(tx, ty) {
+    if (!world || !player) return;
+    player.x = constrain(tx, 0, CONFIG.WORLD_WIDTH - 1);
+    player.y = constrain(ty, 0, CONFIG.WORLD_HEIGHT - 1);
+    updateCamera();
+    notify('Debug: teleported to ' + player.x + ',' + player.y);
+}
+
+// First walkable tile in a ring around (x, y): not solid, no building, no NPC.
+function firstWalkableNear(x, y) {
+    const rings = [
+        [0, -1], [1, 0], [0, 1], [-1, 0],
+        [1, -1], [1, 1], [-1, 1], [-1, -1],
+        [0, -2], [2, 0], [0, 2], [-2, 0],
+    ];
+    for (const [dx, dy] of rings) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
+        if (isSolidTile(nx, ny)) continue;
+        if (typeof buildingAt === 'function' && buildingAt(nx, ny)) continue;
+        if (typeof npcAt === 'function' && npcAt(nx, ny)) continue;
+        return { x: nx, y: ny };
+    }
+    return null;
+}
+
+// Spawn a roster neighbour next to the player. Prefers an unused NPC_DEFS entry
+// (so dialogue keys line up); falls back to a random one if all are present.
+function debugSpawnNPC() {
+    if (!world || !player || typeof NPC_DEFS === 'undefined' || typeof NPC === 'undefined') {
+        notify('Debug: NPC system unavailable');
+        return;
+    }
+    let index = NPC_DEFS.findIndex((d, i) => !npcs.some(n => n.id === i));
+    if (index < 0) index = floor(random(NPC_DEFS.length));
+    const npc = new NPC(NPC_DEFS[index], index);
+    const spot = firstWalkableNear(player.x, player.y) || { x: player.x, y: player.y };
+    npc.gridX = spot.x;
+    npc.gridY = spot.y;
+    npc.isPresent = true;
+    npcs.push(npc);
+    notify('Debug: spawned ' + npc.name + ' the ' + npc.species);
+}
+
+// Give an item to the inventory. Prompts for "itemId [count]" (count defaults 1).
+function debugGiveItem() {
+    if (typeof inventory === 'undefined' || !inventory) { notify('Debug: no inventory'); return; }
+    const ids = Object.keys(ITEMS);
+    const raw = (typeof window !== 'undefined' && window.prompt)
+        ? window.prompt('Give item — "itemId [count]"\n(see console for the full list)', 'log 10')
+        : null;
+    if (ids && console) console.log('[debug] valid item ids:', ids.join(', '));
+    if (!raw) return;
+    const parts = raw.trim().split(/\s+/);
+    const id = parts[0];
+    const count = Math.max(1, parseInt(parts[1], 10) || 1);
+    if (!ITEMS[id]) { notify('Debug: unknown item "' + id + '"'); return; }
+    inventory.addItem(id, count);
+    notify('Debug: +' + count + ' ' + (ITEMS[id].name || id));
+}
+
+// Debug hotkeys. Returns true if the key was consumed. Only called in PLAYING
+// and INSIDE states so it never eats menu/dialogue/name-entry input.
+function handleDebugKey(kc, k) {
+    if (kc === 192) { toggleDebugMode(); return true; } // backtick `
+    if (!debugMode) return false;
+    if (k === 't' || k === 'T') { debugSkipHour(); return true; }
+    if (k === 'y' || k === 'Y') { debugSkipDay(); return true; }
+    if (k === 'h' || k === 'H') { debugRefreshHarvest(); return true; }
+    if (k === 'n' || k === 'N') { debugSpawnNPC(); return true; }
+    if (k === 'g' || k === 'G') { debugGiveItem(); return true; }
+    return false;
+}
+
+// Top-left info panel: map, player & mouse tile, day/time, and the hotkey legend.
+function drawDebugOverlay() {
+    if (!debugMode) return;
+    push();
+    const TS = CONFIG.TILE_SIZE;
+    const playing = (gameState === STATE.PLAYING);
+    const lines = [
+        'DEBUG  (` to toggle)',
+        'map: ' + currentMapId,
+        'player: ' + (player ? player.x + ',' + player.y : '?'),
+    ];
+    if (playing) {
+        lines.push('mouse: ' + Math.floor((mouseX + cameraX) / TS) + ',' + Math.floor((mouseY + cameraY) / TS));
+    }
+    lines.push('day ' + (world ? world.day : '?') + '   ' + (typeof getTimeString === 'function' ? getTimeString() : ''));
+    lines.push('npcs: ' + (typeof npcs !== 'undefined' && npcs ? npcs.length : 0));
+    lines.push('T:+1h  Y:+1day  H:harvest');
+    lines.push('N:npc  G:give-item');
+    if (playing) lines.push('click: teleport');
+
+    textSize(10);
+    textAlign(LEFT, TOP);
+    const w = 210, h = lines.length * 13 + 8;
+    const x = 6, y = 40;
+    noStroke();
+    fill(0, 0, 0, 180);
+    rect(x, y, w, h);
+    fill('#7CFC8A');
+    for (let i = 0; i < lines.length; i++) text(lines[i], x + 6, y + 5 + i * 13);
+    pop();
+}
+
 // ===== SLEEPING =====
 // Night is defined as 8 PM (20:00) to 6 AM (06:00).
 function isNightTime() {
@@ -1751,9 +2744,11 @@ function trySleep() {
     // Skip to next day 6:00 AM
     world.day++;
     world.timeMinutes = 6 * 60;
+    if (typeof onNewDay === 'function') onNewDay();
     notify("You slept until morning. Day " + world.day + " begins!");
 
-    // Spawn new bird poop at sunrise
+    // Refresh harvestables and spawn new bird poop at sunrise
+    refreshHarvestables();
     spawnBirdPoop(3 + floor(random(3)));
 
     // Wake up just outside the bed
@@ -1816,6 +2811,23 @@ function drawInterior() {
     textFont('Courier New');
     text('EXIT', doorX + TS / 2, doorY - 1);
 
+    // The Electric Temple's resident mac, against the back wall.
+    if (b.type === 'ug_electric_temple') {
+        const tSpr = SPRITES['sprites.taira'];
+        const tx = offsetX + TEMPLE_TAIRA_POS.x * TS;
+        const ty = offsetY + TEMPLE_TAIRA_POS.y * TS;
+        if (!drawCharacterSprite(tSpr, tx, ty - TS, 'down', false)) {
+            fill(NPC_DEFS[TEMPLE_TAIRA_ID].color);
+            noStroke();
+            rect(tx, ty - TS, TS, TS * 2);
+        }
+        fill(255, 255, 200);
+        textAlign(CENTER, BOTTOM);
+        textSize(7);
+        textFont('Courier New');
+        text('Taira', tx + TS / 2, ty - TS - 2);
+    }
+
     // Draw player — 2 tiles tall, bottom-anchored at player tile.
     // The top half peeks above the bottom wall row when on the top floor tile.
     const px = offsetX + player.x * TS;
@@ -1838,11 +2850,14 @@ function drawInterior() {
     text(BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type, 8, 28);
     text(b.interiorW + 'x' + (b.interiorH - INTERIOR_WALL_HEIGHT) + ' space', 8, 38);
 
-    // Hint
+    // Hint (above the hotbar)
     fill(150);
     textAlign(CENTER, BOTTOM);
     textSize(8);
-    text('Enter: exit  ·  E: menu', width / 2, height - 4);
+    text('Enter: exit  ·  E: menu', width / 2, height - 28);
+
+    // Hotbar is universal — show it inside buildings too.
+    drawHotbar();
 
     // Notifications still draw
     drawNotifications();
@@ -1855,8 +2870,12 @@ function drawInterior() {
     if (world.timeMinutes >= 24 * 60) {
         world.timeMinutes = 0;
         world.day++;
+        if (typeof onNewDay === 'function') onNewDay();
     }
     if (deltaTime) updateNotifications(deltaTime);
+
+    // Debug overlay (coords, time, hotkeys)
+    drawDebugOverlay();
 }
 
 function drawInteriorTile(tile, sx, sy, TS) {
@@ -1876,20 +2895,34 @@ function drawInteriorTile(tile, sx, sy, TS) {
     } else if (tile.type === 'home') {
         // Floor base, then the placed furniture / floor decoration on top.
         const grassSpr = SPRITES['tiles.grass'];
-        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); noStroke(); rect(sx, sy, TS, TS); }
+        // grass.png is a large texture; sample one tile-sized patch instead of squashing it.
+        if (grassSpr) { image(grassSpr, sx, sy, TS, TS, 0, 0, TS, TS); } else { fill('#7CB342'); noStroke(); rect(sx, sy, TS, TS); }
         drawHomeItem(tile.item, sx, sy, TS);
     } else if (tile.type === 'grass') {
         const spr = SPRITES['tiles.grass'];
         if (spr) {
-            image(spr, sx, sy, TS, TS);
+            image(spr, sx, sy, TS, TS, 0, 0, TS, TS);
         } else {
             fill('#7CB342');
             rect(sx, sy, TS, TS);
         }
+    } else if (tile.type === 'soil') {
+        // Soil (tilled grass) - prefer sprite, fallback to dark brown with tilling texture
+        const spr = SPRITES['tiles.soil'];
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            fill('#5D4037');
+            rect(sx, sy, TS, TS);
+            fill('#4E342E');
+            ellipse(sx + TS/2, sy + TS/2, TS - 4, TS - 4);
+            fill('#6D4C41');
+            rect(sx + 2, sy + TS/2 - 1, TS - 4, 1);
+        }
     } else if (tile.type === 'bed') {
         // Grass base first so no dark gaps around the sprite
         const grassSpr = SPRITES['tiles.grass'];
-        if (grassSpr) { image(grassSpr, sx, sy, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
+        if (grassSpr) { image(grassSpr, sx, sy, TS, TS, 0, 0, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
         const spr = SPRITES['tiles.' + tile.variant];
         if (spr) {
             // Bed sprite is 16x32 (2 tiles tall). Bottom-anchored so the base sits
@@ -1973,6 +3006,157 @@ function getInteriorTileAtMouse() {
     return { x: tx, y: ty };
 }
 
+// ===== NEIGHBOR SHACK PICKER =====
+// Pending placement: set when the player clicks a valid spot; cleared on confirm/cancel.
+let shackPicker = null; // { tx, ty, type, neighbors: [npc,...], selected: 0 }
+
+// Try to place a neighbor's shack at the clicked overworld tile.
+// Validates the footprint then opens a neighbor-selection picker.
+// Replant a potted tree item (from the Tree Move trick) at (tx, ty). Always
+// returns true so the click is swallowed whether or not placement succeeded.
+function tryPlaceMovedTree(tx, ty, treeType, itemId) {
+    if (tx < 1 || tx > CONFIG.WORLD_WIDTH - 2 || ty < 1 || ty > CONFIG.WORLD_HEIGHT - 2) return true;
+    if (world.placeTree(tx, ty, treeType)) {
+        inventory.removeItem(itemId, 1);
+        notify('Replanted the ' + (ITEMS[itemId] ? ITEMS[itemId].name.toLowerCase() : 'tree') + '!');
+    } else {
+        const spot = (treeType === 'tree' || treeType === 'fir_tree') ? 'grass' : 'beach';
+        notify('Needs a clear ' + spot + ' tile with room above it.');
+    }
+    return true;
+}
+
+function tryPlaceNeighborShack(tx, ty, type) {
+    type = type || 'shack';
+    const dims = BUILDING_TIERS[type] || BUILDING_TIERS.shack;
+
+    const homeless = (typeof npcs !== 'undefined' ? npcs : [])
+        .filter(n => n.isPresent && !n.hasHome);
+    if (homeless.length === 0) {
+        notify("No homeless neighbors to build for right now.");
+        return true;
+    }
+
+    // Validate footprint.
+    let clear = true;
+    for (let dx = 0; dx < dims.w && clear; dx++) {
+        for (let dy = 0; dy < dims.h && clear; dy++) {
+            const cx = tx + dx, cy = ty + dy;
+            if (cx < 1 || cx > CONFIG.WORLD_WIDTH - 2 || cy < 1 || cy > CONFIG.WORLD_HEIGHT - 2) { clear = false; break; }
+            const tile = world.tiles[cx] && world.tiles[cx][cy];
+            if (!tile || tile.type === 'sea' || tile.type === 'beach' || tile.type === 'water') { clear = false; break; }
+            if (TILE_SOLID.has(tile.type)) { clear = false; break; }
+            if (buildingAt(cx, cy)) { clear = false; break; }
+        }
+    }
+    if (!clear) {
+        notify("Can't place a shack there — clear some space first.");
+        return true;
+    }
+
+    shackPicker = { tx, ty, type, neighbors: homeless, selected: 0 };
+    gameState = 'shackPicker';
+    return true;
+}
+
+// Confirm the picker selection and actually build the shack.
+function confirmShackPicker() {
+    if (!shackPicker) return;
+    const npc = shackPicker.neighbors[shackPicker.selected];
+    if (!npc) return;
+    const b = new Building(shackPicker.type, shackPicker.tx, shackPicker.ty, npc.id);
+    buildings.push(b);
+    npc.hasHome = true;
+    npc.hutX = shackPicker.tx;
+    npc.hutY = shackPicker.ty;
+    clearBuildingFootprint(b);
+    inventory.removeItem(inventory.getActiveItem().id, 1);
+    notify("Built a shack for " + npc.name + "!");
+    shackPicker = null;
+    gameState = STATE.PLAYING;
+}
+
+function cancelShackPicker() {
+    shackPicker = null;
+    gameState = STATE.PLAYING;
+}
+
+// Draw the neighbor picker overlay (called from the draw loop).
+function drawShackPicker() {
+    if (!shackPicker) return;
+
+    // Dim the background.
+    fill(0, 0, 0, 140);
+    noStroke();
+    rect(0, 0, width, height);
+
+    const nbrs = shackPicker.neighbors;
+    const rowH = 24;
+    const panelW = 220;
+    const panelH = 32 + nbrs.length * rowH + 28;
+    const px = (width - panelW) / 2;
+    const py = (height - panelH) / 2;
+
+    // Panel background.
+    fill(28, 22, 36, 240);
+    stroke('#6A5ACD');
+    strokeWeight(1);
+    rect(px, py, panelW, panelH, 4);
+    noStroke();
+
+    fill(220, 210, 255);
+    textAlign(LEFT, TOP);
+    textSize(10);
+    textFont('Courier New');
+    text("Build shack for whom?", px + 10, py + 8);
+
+    fill(140);
+    textSize(7);
+    text("↑↓ select   ⏎ confirm   Esc cancel", px + 10, py + 20);
+
+    for (let i = 0; i < nbrs.length; i++) {
+        const npc = nbrs[i];
+        const ry = py + 32 + i * rowH;
+        const sel = i === shackPicker.selected;
+
+        fill(sel ? 60 : 34, sel ? 50 : 28, sel ? 80 : 40, 220);
+        noStroke();
+        rect(px + 6, ry, panelW - 12, rowH - 2, 2);
+
+        fill(sel ? '#B98DFF' : '#5A4A8A');
+        rect(px + 6, ry, 2, rowH - 2);
+
+        if (sel) {
+            stroke('#B6A6E0'); strokeWeight(1); noFill();
+            rect(px + 6, ry, panelW - 12, rowH - 2, 2); noStroke();
+        }
+
+        // Colored dot for NPC.
+        fill(npc.color || '#AAA');
+        noStroke();
+        ellipse(px + 20, ry + (rowH - 2) / 2, 8, 8);
+
+        fill(sel ? 255 : 190, sel ? 255 : 190, sel ? 255 : 200);
+        textAlign(LEFT, CENTER);
+        textSize(9);
+        textFont('Courier New');
+        text(npc.name, px + 28, ry + (rowH - 2) / 2);
+
+        fill(sel ? 180 : 110);
+        textSize(7);
+        const daysLeft = 14 - npc.daysOnIsland;
+        text('Day ' + npc.daysOnIsland + (daysLeft > 0 ? '  (' + daysLeft + 'd left)' : '  leaving soon!'),
+             px + 28, ry + (rowH - 2) / 2 + 8);
+    }
+
+    // Confirm button hint at bottom.
+    fill('#7CB342');
+    textAlign(CENTER, CENTER);
+    textSize(9);
+    textFont('Courier New');
+    text('[ Confirm ]', px + panelW / 2, py + panelH - 14);
+}
+
 // Try to place the equipped home item on the clicked interior tile.
 // Returns true if a placement happened (or was attempted with feedback).
 function tryPlaceHomeItemInside(tx, ty) {
@@ -2025,6 +3209,26 @@ function tryPickupHomeInside(tx, ty) {
 }
 
 function keyPressed() {
+    // ===== DEBUG HOTKEYS (only while playing/inside, so menus/typing are safe) =====
+    if (gameState === STATE.PLAYING || gameState === STATE.INSIDE) {
+        if (handleDebugKey(keyCode, key)) return false;
+    }
+
+    // ===== SHACK PICKER =====
+    if (gameState === 'shackPicker' && shackPicker) {
+        const nbrs = shackPicker.neighbors;
+        if (keyCode === UP_ARROW) {
+            shackPicker.selected = (shackPicker.selected - 1 + nbrs.length) % nbrs.length;
+        } else if (keyCode === DOWN_ARROW) {
+            shackPicker.selected = (shackPicker.selected + 1) % nbrs.length;
+        } else if (keyCode === ENTER || keyCode === RETURN) {
+            confirmShackPicker();
+        } else if (keyCode === ESCAPE) {
+            cancelShackPicker();
+        }
+        return false;
+    }
+
     if (gameState === STATE.START) {
         // --- Name-entry sub-screen: capture typed characters ---
         if (startView === 'name') {
@@ -2076,6 +3280,9 @@ function keyPressed() {
             menuTab = 0;
             invSelectedSlot = 0;
             return false;
+        } else if (key === 'm' || key === 'M') {
+            if (typeof openMagicCastMenu === 'function') openMagicCastMenu();
+            return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Check if facing a building - enter it
             if (tryEnterBuilding()) return false;
@@ -2087,8 +3294,12 @@ function keyPressed() {
                     return false;
                 }
             }
-            // Toast Toss interaction (only on holiday, before normal harvest)
+            // Yogatron holiday interaction (before harvest)
+            if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return false;
+            // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
+            // Garden Day: till soil with hoe before trying other interactions
+            if (typeof tryTillSoil === 'function' && tryTillSoil()) return false;
             // Otherwise try harvest (gettin/gardening handled by their own key wrappers)
             tryHarvest();
             return false;
@@ -2110,6 +3321,8 @@ function keyPressed() {
             invSelectedSlot = 0;
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
+            // Electric Temple: talk to Taira when facing her spot.
+            if (tryTalkToTempleTaira()) return false;
             // Try to sleep in the bed (only at night), otherwise exit building
             if (trySleep()) return false;
             tryExitBuilding();
@@ -2193,6 +3406,50 @@ function updateCamera() {
     cameraY = constrain(cameraY, 0, CONFIG.WORLD_HEIGHT * CONFIG.TILE_SIZE - CONFIG.CANVAS_HEIGHT);
 }
 
+// ===== TILLING / GARDEN DAY HELPERS =====
+// Returns true if the active tool should not lose durability today (Garden Day = hoe)
+function isUnbreakableToolToday(toolId) {
+    if (toolId !== 'hoe') return false;
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    return !!(holiday && holiday.name === 'Garden Day');
+}
+
+// Try to till the grass tile the player is facing with an equipped hoe.
+// Returns true if a tile was tilled (swallowing the interaction event).
+function tryTillSoil() {
+    if (!player || !inventory) return false;
+    const active = inventory.getActiveItem();
+    if (!active || active.id !== 'hoe') return false;
+
+    const facing = player.getFacingTile ? player.getFacingTile() : null;
+    if (!facing || !facing.tile) return false;
+    if (facing.tile.type !== 'grass') {
+        // Not grass - maybe already soil. Give a small hint without swallowing.
+        if (facing.tile.type === 'soil') {
+            notify('Already tilled! Plant a seed here.');
+        }
+        return false;
+    }
+    // Don't till onto solid/building/animal tiles (grass can be there only if not solid anyway)
+    if (typeof isSolidTile === 'function' && isSolidTile(facing.x, facing.y)) return false;
+    if (typeof buildingAt === 'function' && buildingAt(facing.x, facing.y)) return false;
+
+    facing.tile.type = 'soil';
+    facing.tile.variant = 0;
+    notify('Tilled the soil!');
+
+    // On Garden Day, hoes never break. Otherwise consume 1 durability.
+    if (!isUnbreakableToolToday('hoe')) {
+        if (typeof active.durability !== 'number') active.durability = ITEMS[active.id].durability || 3;
+        active.durability -= 1;
+        if (active.durability <= 0) {
+            notify('Your hoe broke!');
+            inventory.removeItem('hoe', 1);
+        }
+    }
+    return true;
+}
+
 // ===== HARVESTING =====
 function tryHarvest() {
     // Check all 4 adjacent tiles (up/down/left/right) for harvestable items
@@ -2248,10 +3505,26 @@ function tryHarvest() {
 
     // Harvest! Roll drops
     const gotItems = [];
-    for (const drop of harvestDef.drops) {
-        if (random() <= drop.chance) {
-            inventory.addItem(drop.id, drop.count);
-            gotItems.push(drop.count + 'x ' + ITEMS[drop.id].name);
+    if (harvestDef.pickOne) {
+        // Choose a single drop, weighted by each drop's `chance`.
+        const drops = harvestDef.drops;
+        if (drops.length > 0) {
+            let total = 0;
+            for (const d of drops) total += (d.chance || 1);
+            let r = random() * total;
+            let chosen = drops[drops.length - 1];
+            for (const d of drops) { r -= (d.chance || 1); if (r <= 0) { chosen = d; break; } }
+            // randomQty: roll 1-3 of the chosen item; otherwise use its fixed count (default 1).
+            const qty = harvestDef.randomQty ? (1 + floor(random(3))) : (chosen.count || 1);
+            inventory.addItem(chosen.id, qty);
+            gotItems.push(qty + 'x ' + ITEMS[chosen.id].name);
+        }
+    } else {
+        for (const drop of harvestDef.drops) {
+            if (random() <= drop.chance) {
+                inventory.addItem(drop.id, drop.count);
+                gotItems.push(drop.count + 'x ' + ITEMS[drop.id].name);
+            }
         }
     }
 
@@ -2265,11 +3538,16 @@ function tryHarvest() {
     if (harvestDef.tool) {
         const active = inventory.getActiveItem();
         if (active && active.id === harvestDef.tool) {
-            if (typeof active.durability !== 'number') active.durability = ITEMS[active.id].durability || 3;
-            active.durability -= 1;
-            if (active.durability <= 0) {
-                notify('Your ' + ITEMS[active.id].name + ' broke!');
-                inventory.removeItem(active.id, 1);
+            // Garden Day: hoes are unbreakable.
+            if (isUnbreakableToolToday(active.id)) {
+                notify("Your hoe feels strangely sturdy today. Garden Day magic!");
+            } else {
+                if (typeof active.durability !== 'number') active.durability = ITEMS[active.id].durability || 3;
+                active.durability -= 1;
+                if (active.durability <= 0) {
+                    notify('Your ' + ITEMS[active.id].name + ' broke!');
+                    inventory.removeItem(active.id, 1);
+                }
             }
         }
     }
@@ -2311,6 +3589,20 @@ function checkRespawns() {
     }
 }
 
+// Refresh all depleted harvestable tiles across the whole world (called at 6 AM each day).
+function refreshHarvestables() {
+    if (!world) return;
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const tile = world.tiles[x][y];
+            if (tile.depleted) {
+                tile.depleted = false;
+                tile.respawnAt = null;
+            }
+        }
+    }
+}
+
 // Spawn new bird poop on random grass tiles at the start of each day.
 function spawnBirdPoop(targetCount) {
     if (!world) return;
@@ -2324,6 +3616,7 @@ function spawnBirdPoop(targetCount) {
         const y = floor(random(CONFIG.WORLD_HEIGHT));
         const tile = world.tiles[x][y];
         if (!tile || tile.type !== 'grass') continue;
+        if (isNearBeach(x, y, NONBEACH_BEACH_BUFFER)) continue; // non-beach item: stay inland
         if (isSolidTile(x, y)) continue;
         if (buildingAt(x, y)) continue;
         if (x === px && y === py) continue;
@@ -2474,14 +3767,16 @@ function loadGameFromSlot(slot) {
 }
 
 function startNewGame() {
-    world = new World();
+    world = new World('island', 'island');
+    maps = { island: world };
+    currentMapId = 'island';
     player = new Player(50, 50);
     inventory = new Inventory();
     buildings = [];
     spawnPlayerShack();
     npcs = [];
     knownMagic = [];
-    fairyEntities = [];
+    magicFlags = { mubabaQuest: false };
     birds = [];
     crabs = [];
     groundLoot = [];
@@ -2764,6 +4059,17 @@ function drawCharacterSprite(spr, dx, dy, facing, moving) {
         return true;
     }
 
+    // Single-row horizontal strip -> a looping one-direction animation (e.g. the
+    // orb player sprite). Always cycles through every frame regardless of
+    // movement; bobs while moving; never flips (only one direction exists).
+    if (rows === 1 && cols > 1) {
+        const frame = phase % cols;
+        const bob = moving ? BOB_PATTERN[phase % BOB_PATTERN.length] : 0;
+        drawSpriteMaybeFlipped(spr, dx, dy + bob, drawW, drawH, false,
+            frame * CHAR_FW, 0, CHAR_FW, CHAR_FH);
+        return true;
+    }
+
     // Sprite sheet -> choose row by facing, column by walk frame.
     // Convention: side-row art faces LEFT, so mirror when facing right.
     let row = 0, flip = false;
@@ -2791,6 +4097,10 @@ class Player {
         this.y = y;
         this.size = CONFIG.TILE_SIZE;
         this.facing = 'down';
+        // Pixel offsets applied during a pond-warp fall/bounce (see updateWarpAnim()).
+        this.fallOffsetY = 0;
+        this.hopOffsetX = 0;
+        this.hopOffsetY = 0;
     }
     
     move(dx, dy) {
@@ -2831,8 +4141,8 @@ class Player {
     }
     
     draw() {
-        const screenX = this.x * CONFIG.TILE_SIZE - cameraX;
-        const screenY = this.y * CONFIG.TILE_SIZE - cameraY;
+        const screenX = this.x * CONFIG.TILE_SIZE - cameraX + this.hopOffsetX;
+        const screenY = this.y * CONFIG.TILE_SIZE - cameraY + this.fallOffsetY + this.hopOffsetY;
 
         const spr = SPRITES['sprites.player'];
         // Player is 1 tile wide, 2 tiles tall (drawn bottom-anchored).
@@ -2869,7 +4179,13 @@ class Player {
 // carving rounded corners. "Height" is water (0) < beach (1) < land (2). A
 // higher tile that meets lower terrain on two sides of a corner gets that corner
 // rounded off with the lower terrain's color. Collision is unaffected.
-let ROUND_TERRAIN = true;
+//
+// DISABLED: the sea↔beach transition is now drawn by the waves.png corner/shore
+// sprites and the beach↔grass transition by the beach_edge.png overlay. Beach
+// borders every terrain boundary, so this geometric rounding only fought those
+// custom tiles — leaving artifacts at the sand corners. Off means plain, full
+// beach tiles in the corners, which is what the custom edge tiles expect.
+let ROUND_TERRAIN = false;
 
 // Approximate palette used to carve corners (close to the tile sprites).
 const TERRAIN_EDGE_COLORS = { 0: '#4A90C8', 1: '#F4E4BC', 2: '#7CB342' };
@@ -2879,8 +4195,11 @@ const TERRAIN_EDGE_COLORS = { 0: '#4A90C8', 1: '#F4E4BC', 2: '#7CB342' };
 // Off-map neighbors are treated as land so the rectangular world border isn't carved.
 function terrainLevel(tile) {
     if (!tile) return 2;
-    if (tile.type === 'sea' || tile.type === 'water') return 0;
-    if (tile.type === 'beach') return 1;
+    if (tile.type === 'sea' || tile.type === 'water' || tile.type === 'pond_water') return 0;
+    // Beach itself, plus decorations that sit ON the beach, are all beach-level. Without
+    // this the rounding pass treats a beach tree as a raised "land" bump and paints green
+    // grass globs into the sand around its base.
+    if (tile.type === 'beach' || tile.type === 'banana_tree' || tile.type === 'palm_tree' || tile.type === 'toast_target') return 1;
     return 2;
 }
 
@@ -2937,18 +4256,198 @@ function drawCornerFill(sx, sy, TS, hx, vy, r, col) {
     endShape(CLOSE);
 }
 
+// Beach-edge fringe: drawn OVER a grass tile that borders beach, so sand creeps
+// onto the grass edge facing the beach. Uses beach_edge.png (2 cols × 4 rows of
+// 16×16 cells). Each cell's sand fills the side toward the beach:
+//   row0 East(0,0)/West(16,0)  row1 North(0,16)/South(16,16)
+//   row2 NW(0,32)/NE(16,32)    row3 SW(0,48)/SE(16,48)
+// Cells are named for where the LAND (grass) sits, so e.g. the "East" cell has its
+// sand on the WEST — used when the beach is to the west of this grass tile.
+// Correction by charles: corner tile coordinates
+function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
+    const edge = SPRITES['tiles.beach_edge'];
+    if (!edge) return;
+    function isBeach(dx, dy) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) return false;
+        const t = world.tiles[nx][ny];
+        return !!t && t.type === 'beach';
+    }
+    const bN = isBeach(0, -1), bS = isBeach(0, 1), bE = isBeach(1, 0), bW = isBeach(-1, 0);
+    if (!(bN || bS || bE || bW)) return;
+    let sx2, sy2;
+    if (bN && bE)      { sx2 = 0; sy2 = 48; } // beach to N+E -> sand fills NE corner
+    else if (bN && bW) { sx2 = 16;  sy2 = 48; } // N+W -> NW
+    else if (bS && bE) { sx2 = 0; sy2 = 32; } // S+E -> SE
+    else if (bS && bW) { sx2 = 16;  sy2 = 32; } // S+W -> SW
+    else if (bW)       { sx2 = 0;  sy2 = 0;  } // beach W -> sand on W ("East" cell)
+    else if (bE)       { sx2 = 16; sy2 = 0;  } // beach E -> sand on E ("West" cell)
+    else if (bN)       { sx2 = 16; sy2 = 16; } // beach N -> sand on N ("South" cell)
+    else               { sx2 = 0;  sy2 = 16; } // beach S -> sand on S ("North" cell)
+    image(edge, screenX, screenY, TS, TS, sx2, sy2, 16, 16);
+}
+
 // World class
+// Route between the two maps: stepping into either pond's
+// water warps you to the other (see World.placePond(), checkPortalUnderfoot()).
+const ISLAND_POND_ORIGIN      = { x: 47, y: 39 }; // top-left of the 6x6 island pond
+const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as the underground pond's warp target
+const UNDERGROUND_POND_ORIGIN = { x: 17, y: 11 }; // top-left of the 6x6 underground pond
+const UNDERGROUND_POND_LANDING = { x: 19, y: 13 }; // inner water tile, used as the island pond's warp target
+
+// Where Mubaba the magic merchant stands: on the cave floor just east of the
+// underground pond, so arrivals walk right into him. He moves in front of his
+// own building once that exists (July3rdReview C4).
+const MUBABA_SPAWN = { x: 26, y: 14 };
+
+// Where the Teleport trick (magic.js) drops the player: one tile clear of
+// each map's pond, so it never lands on a warp tile.
+const TELEPORT_LANDINGS = {
+    island:      { x: 50, y: 45, facing: 'down' },
+    underground: { x: 20, y: 17, facing: 'down' }
+};
+
+// The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
+// Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
+// and guests "arrive" by boat and appear on the beach tile just east of the
+// dock's landward end (see checkArrivals() in entities.js).
+const ISLAND_DOCK_ORIGIN  = { x: 0, y: 48 };
+const ISLAND_DOCK_W = 8, ISLAND_DOCK_H = 4;
+const ISLAND_DOCK_ARRIVAL = { x: ISLAND_DOCK_ORIGIN.x + ISLAND_DOCK_W, y: ISLAND_DOCK_ORIGIN.y + 2 };
+
+// Eight foundation pads where underground buildings can stand (2 rows x 4 cols).
+// Each pad is PAD_W x PAD_H tiles; (x,y) is its top-left corner.
+const UNDERGROUND_PAD_W = 8, UNDERGROUND_PAD_H = 6;
+const UNDERGROUND_FOUNDATIONS = [
+    { x: 12, y: 26 }, { x: 30, y: 26 }, { x: 48, y: 26 }, { x: 66, y: 26 },
+    { x: 12, y: 50 }, { x: 30, y: 50 }, { x: 48, y: 50 }, { x: 66, y: 50 },
+];
+
+// Return a shuffled copy of an array (Fisher-Yates, using p5's random()).
+function shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = floor(random(i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 class World {
-    constructor() {
+    constructor(kind = 'island', id = null) {
+        this.kind = kind;          // 'island' | 'underground' (drives generation)
+        this.id = id || kind;      // registry key in `maps`
         this.tiles = [];
         this.day = 1;
         this.season = 'Sweet';
         this.timeMinutes = 8 * 60; // Start at 8 AM
         this.showSaveIndicator = false;
-        
-        this.generateWorld();
+        this.entities = null;      // parked per-map entity globals (see parkActiveMap)
+
+        if (kind === 'underground') this.generateUnderground();
+        else if (kind === 'island') this.generateWorld();
+        // Other kinds (e.g. 'blank' when rebuilding a map from a save) skip
+        // generation; the caller fills in tiles/entities.
     }
-    
+
+    // The underground city: a fixed cavern (rock border, stone floor) with eight
+    // foundation pads. Buildings on the pads are placed separately (3 of 8 at
+    // creation), not here.
+    generateUnderground() {
+        const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
+        const BORDER = 4; // thickness of the surrounding rock wall
+        for (let x = 0; x < W; x++) {
+            this.tiles[x] = [];
+            for (let y = 0; y < H; y++) {
+                const edge = Math.min(x, W - 1 - x, y, H - 1 - y);
+                if (edge < BORDER) {
+                    this.tiles[x][y] = { type: 'cave_wall', variant: floor(random(3)), solid: true };
+                } else {
+                    this.tiles[x][y] = { type: 'cave_floor', variant: floor(random(4)) };
+                }
+            }
+        }
+        // Lay the eight foundation pads.
+        for (const pad of UNDERGROUND_FOUNDATIONS) {
+            for (let dx = 0; dx < UNDERGROUND_PAD_W; dx++) {
+                for (let dy = 0; dy < UNDERGROUND_PAD_H; dy++) {
+                    const tx = pad.x + dx, ty = pad.y + dy;
+                    if (tx < 0 || tx >= W || ty < 0 || ty >= H) continue;
+                    this.tiles[tx][ty] = { type: 'foundation', variant: 0 };
+                }
+            }
+        }
+        // Animated route back to the surface: a pond mirroring the one up on
+        // the island.
+        this.placePond(UNDERGROUND_POND_ORIGIN.x, UNDERGROUND_POND_ORIGIN.y, 'island',
+                       ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
+
+        // Place the fixed starting buildings. The remaining pads fill in later
+        // via quests. Buildings live on this map's parked entity list so they
+        // appear when the player travels here.
+        const placed = [];
+        for (const s of UNDERGROUND_STARTING_BUILDINGS) {
+            const b = this.placeBuildingOnFoundation(s.type, s.padIndex);
+            if (b) placed.push(b);
+        }
+        // Mubaba awaits inside his fortress (isPresent false keeps him off the
+        // map; entering the fortress talks to this record — see magic.js).
+        const mubaba = new NPC(MUBABA_DEF, 'mubaba');
+        mubaba.gridX = MUBABA_SPAWN.x;
+        mubaba.gridY = MUBABA_SPAWN.y;
+        mubaba.facing = 'left';
+        mubaba.isPresent = false;
+        this.entities = { buildings: placed, npcs: [mubaba] };
+    }
+
+    // Build a placeholder building centered on foundation pad #padIndex. The
+    // door faces down onto open foundation; no terrain clearing (it sits on the
+    // stone pad). Returns the Building, or null if the pad is invalid.
+    placeBuildingOnFoundation(type, padIndex) {
+        const pad = UNDERGROUND_FOUNDATIONS[padIndex];
+        if (!pad) return null;
+        const def = BUILDING_TIERS[type] || {};
+        const bw = def.w || 6, bh = def.h || 4;
+        const gx = pad.x + Math.floor((UNDERGROUND_PAD_W - bw) / 2);
+        const gy = pad.y; // top-aligned, leaving foundation below the door
+        const b = new Building(type, gx, gy, null);
+        b.padIndex = padIndex;
+        return b;
+    }
+
+    // Lay a 6x6 pond at (originX, originY) (top-left corner): a 1-tile
+    // walkable bank ring around a 4x4 water interior. Stepping into the water
+    // warps to (targetMap, targetX, targetY) via the tile's `target` field
+    // (see checkPortalUnderfoot()/startPondWarp()).
+    placePond(originX, originY, targetMap, targetX, targetY, facing) {
+        const PW = 6, PH = 6;
+        for (let px = 0; px < PW; px++) {
+            for (let py = 0; py < PH; py++) {
+                const tx = originX + px, ty = originY + py;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                const isBank = px === 0 || px === PW - 1 || py === 0 || py === PH - 1;
+                const tile = { type: 'pond', pondOrigin: (px === 0 && py === 0), solid: false };
+                if (!isBank) {
+                    tile.target = { map: targetMap, x: targetX, y: targetY, facing: facing || 'down' };
+                }
+                this.tiles[tx][ty] = tile;
+            }
+        }
+    }
+
+    // Lay the west-beach dock at (originX, originY) (top-left corner): an
+    // ISLAND_DOCK_W x ISLAND_DOCK_H solid pier, drawn as one image (see
+    // drawDockOverlay()). Blocks movement like a rock/tree.
+    placeDock(originX, originY) {
+        for (let px = 0; px < ISLAND_DOCK_W; px++) {
+            for (let py = 0; py < ISLAND_DOCK_H; py++) {
+                const tx = originX + px, ty = originY + py;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: true };
+            }
+        }
+    }
+
     generateWorld() {
         const centerX = CONFIG.WORLD_WIDTH / 2;
         const centerY = CONFIG.WORLD_HEIGHT / 2;
@@ -2957,25 +4456,22 @@ class World {
         for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
             this.tiles[x] = [];
             for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
-                const d = dist(x, y, centerX, centerY);
-                if (d > 42) {
+                const zone = islandZone(x, y);
+                if (zone === 'sea') {
                     this.tiles[x][y] = { type: 'sea', variant: floor(random(3)) };
-                } else if (d > 38) {
+                } else if (zone === 'beach') {
                     this.tiles[x][y] = { type: 'beach', variant: floor(random(3)) };
                 } else {
                     this.tiles[x][y] = { type: 'grass', variant: floor(random(3)) };
                 }
             }
         }
-
-        // Smooth the coastline: remove lone 1-tile extrusions/notches so the
-        // island reads as natural curves instead of rasterized jaggies.
-        this.smoothTerrain(2);
+        // The island is a clean rectangle, so no coastline smoothing is needed.
 
         // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
         const CELL = 10;
-        const decorations = ['tree', 'tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
+        const decorations = ['tree', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
 
         for (let cx = 0; cx < CONFIG.WORLD_WIDTH; cx += CELL) {
             for (let cy = 0; cy < CONFIG.WORLD_HEIGHT; cy += CELL) {
@@ -2984,16 +4480,15 @@ class World {
                 const ty = cy + floor(random(CELL));
                 if (tx >= CONFIG.WORLD_WIDTH || ty >= CONFIG.WORLD_HEIGHT) continue;
 
-                const d = dist(tx, ty, centerX, centerY);
-                if (d > 42) continue;          // skip sea
-                if (d > 38) {
-                    // Beach zone - mostly empty for now.
-                    continue;
-                }
+                // Only decorate grass interior; skip sea and (mostly-empty) beach.
+                if (islandZone(tx, ty) !== 'grass') continue;
+                // These are all non-beach decorations, so keep them well inland of
+                // the beach line (NONBEACH_BEACH_BUFFER) to avoid grass/sand seams.
+                if (isNearBeach(tx, ty, NONBEACH_BEACH_BUFFER)) continue;
                 // Interior - 1 decoration per cell, ~80% chance (some cells stay empty)
                 if (random() < 0.8) {
                     const type = random(decorations);
-                    if (type === 'tree') this.placeTree(tx, ty, 'tree');
+                    if (type === 'tree' || type === 'fir_tree') this.placeTree(tx, ty, type);
                     else if (type === 'rock') this.tiles[tx][ty] = { type: 'rock', variant: floor(random(2)) };
                     else if (type === 'shiny_rock') this.tiles[tx][ty] = { type: 'shiny_rock', variant: 0 };
                     else if (type === 'weeds') this.tiles[tx][ty] = { type: 'weeds', variant: floor(random(2)) };
@@ -3009,13 +4504,71 @@ class World {
             attempts++;
             const rx = 15 + floor(random(70));
             const ry = 15 + floor(random(70));
-            const d = dist(rx, ry, centerX, centerY);
-            if (d > 38) continue; // interior only
+            if (islandZone(rx, ry) !== 'grass') continue; // interior only
+            if (isNearBeach(rx, ry, NONBEACH_BEACH_BUFFER)) continue; // keep clear of the beach
             if (this.tiles[rx][ry].type !== 'grass') continue; // only on open grass
-            // Rosebushes are 1-tall, solid, harvested for seeds.
+            // Rosebushes are 1-tall, solid, harvested (destroyed) for a rose.
             this.tiles[rx][ry] = { type: 'rosebush', variant: 0 };
             rosebushesPlaced++;
         }
+
+        // Place a handful of tulips on the island interior (destructible pickups, like rosebushes).
+        let tulipsPlaced = 0;
+        let tulipAttempts = 0;
+        while (tulipsPlaced < 4 && tulipAttempts < 300) {
+            tulipAttempts++;
+            const tx2 = 15 + floor(random(70));
+            const ty2 = 15 + floor(random(70));
+            if (islandZone(tx2, ty2) !== 'grass') continue; // interior only
+            if (isNearBeach(tx2, ty2, NONBEACH_BEACH_BUFFER)) continue; // keep clear of the beach
+            if (this.tiles[tx2][ty2].type !== 'grass') continue; // only on open grass
+            this.tiles[tx2][ty2] = { type: 'tulip', variant: floor(random(2)) };
+            tulipsPlaced++;
+        }
+
+        // Scatter banana and palm trees around the beach ring.
+        let beachTreesPlaced = 0;
+        let beachTreeAttempts = 0;
+        while (beachTreesPlaced < 14 && beachTreeAttempts < 600) {
+            beachTreeAttempts++;
+            const bx = floor(random(CONFIG.WORLD_WIDTH));
+            const by = floor(random(CONFIG.WORLD_HEIGHT));
+            if (islandZone(bx, by) !== 'beach') continue;
+            if (this.tiles[bx][by].type !== 'beach') continue;
+            // Beach features hug the water — only the outer couple of beach tiles,
+            // never up against the grass line.
+            if (!isNearSea(bx, by, BEACH_FEATURE_WATER_DIST)) continue;
+            const treeType = random() < 0.5 ? 'banana_tree' : 'palm_tree';
+            const before = this.tiles[bx][by].type;
+            const beachTreeSpacing = 10;
+            const beachTreePositions = []
+            let tooClose = false;
+            for (const pos of beachTreePositions) {
+                const dx = bx - pos.x;
+                const dy = by - pos.y;
+                if (Math.sqrt(dx * dx + dy * dy) < beachTreeSpacing) {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (tooClose) continue;
+            this.placeTree(bx, by, treeType);
+            if (this.tiles[bx][by].type !== before) beachTreesPlaced++;
+            if (this.tiles[bx][by].type !== before) {
+                beachTreesPlaced++;
+                beachTreePositions.push({ x: bx, y: by });
+            }
+        }
+
+        // Place a pond near-center, slightly above. The entire pond — water and banks —
+        // is a single 96×96 (6×6 tile) image drawn from the top-left tile (pondOrigin).
+        // Both the bank ring and the water are walkable; stepping into the water warps
+        // to the underground pond (see placePond()/checkPortalUnderfoot()).
+        this.placePond(ISLAND_POND_ORIGIN.x, ISLAND_POND_ORIGIN.y, 'underground',
+                       UNDERGROUND_POND_LANDING.x, UNDERGROUND_POND_LANDING.y, 'down');
+
+        // Place the arrivals dock on the west beach.
+        this.placeDock(ISLAND_DOCK_ORIGIN.x, ISLAND_DOCK_ORIGIN.y);
 
         // Seed the world with an initial set of bird poop.
         spawnBirdPoop(3 + floor(random(3)));
@@ -3061,31 +4614,41 @@ class World {
 
     // Place a 2-tall tree: solid trunk at (x,y) and solid canopy at (x,y-1).
     placeTree(x, y, type = 'tree') {
-        if (this.tiles[x][y].type !== 'grass') return;
+        // Oak and fir trees stand on grass; banana/palm trees stand on the beach.
+        const baseNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : 'beach';
+        if (this.tiles[x][y].type !== baseNeeded) return false;
         const topY = y - 1;
-        if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return;
+        if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return false;
         const topTile = this.tiles[x][topY];
-        if (!topTile || topTile.type !== 'grass') return;
-        // Ensure the top spot hasn't already been claimed by another decoration.
-        if (topTile.solid === true || topTile.isTreeTop === true) return;
+        const topNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : null;
+        // Inland trees must stay fully on grass; beach trees can extend over grass or beach.
+        if (!topTile || (topNeeded ? topTile.type !== topNeeded : (topTile.type !== 'grass' && topTile.type !== 'beach'))) return false;
+        if (topTile.solid === true || topTile.isTreeTop === true) return false;
 
-        this.tiles[x][y] = { type: 'tree', variant: floor(random(3)), solid: true };
-        this.tiles[x][topY] = { type: 'tree', variant: floor(random(3)), isTreeTop: true, solid: true };
+        // The trunk tile blocks movement; the canopy tile above it does not, so the
+        // player can walk under the overworld tree-top sprite (see drawTallDecoration).
+        const topSolid = (type === 'tree' || type === 'fir_tree') ? false : true;
+        this.tiles[x][y] = { type, variant: floor(random(3)), solid: true };
+        this.tiles[x][topY] = { type, variant: floor(random(3)), isTreeTop: true, solid: topSolid };
+        return true;
     }
     
     draw() {
         push();
         translate(-cameraX, -cameraY);
         
-        // Draw visible tiles only (with padding for camera movement)
-        const startTileX = floor(cameraX / CONFIG.TILE_SIZE);
-        const startTileY = floor(cameraY / CONFIG.TILE_SIZE);
-        const endTileX = startTileX + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + 2;
-        const endTileY = startTileY + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + 2;
-        
+        // Draw visible tiles only. MARGIN extends the range so multi-tile sprites drawn
+        // from an off-screen top-left origin (e.g. the 6×6 pond) still render, and trees
+        // whose trunk sits just below the view still poke their canopy in.
+        const MARGIN = 6;
+        const x0 = max(0, floor(cameraX / CONFIG.TILE_SIZE) - MARGIN);
+        const y0 = max(0, floor(cameraY / CONFIG.TILE_SIZE) - MARGIN);
+        const x1 = min(CONFIG.WORLD_WIDTH, floor(cameraX / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + MARGIN);
+        const y1 = min(CONFIG.WORLD_HEIGHT, floor(cameraY / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + MARGIN);
+
         // Pass 1: draw base terrain and solid tile bottoms.
-        for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
-            for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
                 this.drawTile(x, y, this.tiles[x][y]);
             }
         }
@@ -3093,10 +4656,31 @@ class World {
         // Pass 2: soften terrain boundaries by rounding outer corners. Each wedge
         // stays inside its own tile, so this never paints over trees/buildings.
         if (ROUND_TERRAIN) {
-            for (let x = max(0, startTileX); x < min(CONFIG.WORLD_WIDTH, endTileX); x++) {
-                for (let y = max(0, startTileY); y < min(CONFIG.WORLD_HEIGHT, endTileY); y++) {
+            for (let x = x0; x < x1; x++) {
+                for (let y = y0; y < y1; y++) {
                     this.drawTerrainCornerRounding(x, y);
                 }
+            }
+        }
+
+        // Pass 3: large ground overlays, drawn after all base tiles so transparent
+        // sprites are not covered by later grass tiles.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                this.drawPondOverlay(x, y, this.tiles[x][y]);
+                this.drawDockOverlay(x, y, this.tiles[x][y]);
+            }
+        }
+
+        // Pass 3.5: sun shadows on the ground — beneath flora (pass 4) and the
+        // actors drawn later in drawGame().
+        this.drawSunShadows(x0, y0, x1, y1);
+
+        // Pass 4: tall decorations (trees, rosebushes) whose sprites overflow their
+        // tile. Drawn last so neighbouring tiles' base terrain can't clip them.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                this.drawTallDecoration(x, y, this.tiles[x][y]);
             }
         }
 
@@ -3110,12 +4694,185 @@ class World {
         if (this.timeMinutes >= 24 * 60) {
             this.timeMinutes = 0;
             this.day++;
-            // Sunrise: new bird poop appears across the island.
+            // Calendar tick: holidays, seasons, NPC arrivals/departures, gardens.
+            if (typeof onNewDay === 'function') onNewDay();
+            // Sunrise: refresh harvestables and spawn new bird poop.
+            refreshHarvestables();
             spawnBirdPoop(3 + floor(random(3)));
             // Sunrise: animals spawn (handled by checkAnimalSunEvents too, but ensure on wrap)
             if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
             if (typeof onHogNewDay === 'function') onHogNewDay();
         }
+    }
+
+    drawPondOverlay(x, y, tile) {
+        if (!tile || tile.type !== 'pond' || !tile.pondOrigin) return;
+        const spr = SPRITES['tiles.pond'];
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+        if (spr) {
+            image(spr, screenX, screenY, TS * 6, TS * 6);
+        } else {
+            fill('#4A90C8');
+            rect(screenX, screenY, TS * 6, TS * 6);
+        }
+    }
+
+    drawDockOverlay(x, y, tile) {
+        if (!tile || tile.type !== 'dock' || !tile.dockOrigin) return;
+        const spr = SPRITES['tiles.dock'];
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+        const w = TS * ISLAND_DOCK_W, h = TS * ISLAND_DOCK_H;
+        if (spr) {
+            image(spr, screenX, screenY, w, h);
+        } else {
+            fill('#8B6914');
+            rect(screenX, screenY, w, h);
+        }
+    }
+
+    // Oak/fir canopy tiles are deliberately walkable (see placeTree()) so the
+    // player can stand under the foliage. drawTallDecoration() draws the whole
+    // tree before the player, so redraw the canopy on top of the player when
+    // it visually overlaps them, or it'd look like they're floating in front
+    // of the leaves instead of hidden beneath them.
+    //
+    // The canopy sprite is 2 tiles wide, centered on its 1-tile trunk column
+    // (half a tile bleeds into each side neighbor) and 2 tiles tall above the
+    // trunk row. So overlap can't be checked against a single tile — it's a
+    // real pixel bounding-box test against every trunk within reach.
+    drawTreeCanopyOverPlayer() {
+        if (!player) return;
+        const TS = CONFIG.TILE_SIZE;
+        const trunk = SPRITES['tiles.tree_trunk_overworld'];
+        const top = SPRITES[seasonalTreeTopKey()];
+        if (!trunk || !top) return;
+
+        const pScreenX = player.x * TS - cameraX;
+        const pScreenY = player.y * TS - cameraY;
+        const pLeft = pScreenX, pRight = pScreenX + TS;
+        const pTop = pScreenY - TS, pBottom = pScreenY + TS;
+
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = 1; dy <= 2; dy++) {
+                const tx = player.x + dx, ty = player.y + dy;
+                const col = this.tiles[tx];
+                const tile = col ? col[ty] : null;
+                if (!tile || tile.isTreeTop) continue;
+                if (tile.type !== 'tree' && tile.type !== 'fir_tree') continue;
+
+                const screenX = tx * TS - cameraX;
+                const screenY = ty * TS - cameraY;
+                const offsetX = screenX - (trunk.width - TS) / 2;
+                const offsetY = screenY - (trunk.height - TS);
+                const cLeft = offsetX, cRight = offsetX + top.width;
+                const cTop = offsetY, cBottom = offsetY + top.height;
+
+                const overlaps = pLeft < cRight && pRight > cLeft && pTop < cBottom && pBottom > cTop;
+                if (!overlaps) continue;
+
+                if (tile.depleted) tint(160, 160, 160);
+                image(top, offsetX, offsetY, top.width, top.height);
+                noTint();
+            }
+        }
+    }
+
+    // Draw an oversized decoration sprite (tree/rosebush) centered on its tile and
+    // extending upward. Only the trunk/base tile draws; tree-top tiles are skipped.
+    drawTallDecoration(x, y, tile) {
+        if (!tile || tile.isTreeTop) return;
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+
+        // Oak/fir share one overworld trunk; only the canopy on top varies by season.
+        if (tile.type === 'tree' || tile.type === 'fir_tree') {
+            const trunk = SPRITES['tiles.tree_trunk_overworld'];
+            if (!trunk) return;
+            const offsetX = screenX - (trunk.width - TS) / 2;
+            const offsetY = screenY - (trunk.height - TS);
+            if (tile.depleted) tint(160, 160, 160);
+            image(trunk, offsetX, offsetY);
+            const top = SPRITES[seasonalTreeTopKey()];
+            if (top) image(top, offsetX, offsetY, top.width, top.height);
+            noTint();
+            return;
+        }
+
+        const key = TALL_SPRITE_TILES[tile.type];
+        if (!key) return;
+        const spr = SPRITES[key];
+        if (!spr) return;
+        if (tile.depleted) tint(160, 160, 160);
+        const offsetX = screenX - (spr.width - TS) / 2;
+        const offsetY = screenY - (spr.height - TS);
+        image(spr, offsetX, offsetY);
+        noTint();
+    }
+
+    // Dynamic sun shadows for everything visible: tall flora (same sprites
+    // drawTallDecoration uses), the player, and NPCs. Stamped to an offscreen
+    // layer, then composited once at the sun's current strength.
+    drawSunShadows(x0, y0, x1, y1) {
+        if (this.kind !== 'island') return; // no sun underground
+        const p = sunShadowParams();
+        if (!p) return;
+        const TS = CONFIG.TILE_SIZE;
+        if (!_shadowLayer) {
+            _shadowLayer = createGraphics(width, height);
+            _shadowLayer.pixelDensity(1);
+        }
+        const L = _shadowLayer;
+        L.clear();
+
+        // Tall flora. Oak/fir composite the shared trunk with the seasonal canopy.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                const tile = this.tiles[x][y];
+                if (!tile || tile.isTreeTop || !TALL_SPRITE_TILES[tile.type]) continue;
+                let sil;
+                if (tile.type === 'tree' || tile.type === 'fir_tree') {
+                    const topKey = seasonalTreeTopKey();
+                    sil = shadowSilhouette('tree|' + topKey,
+                        [SPRITES['tiles.tree_trunk_overworld'], SPRITES[topKey]]);
+                } else {
+                    const sprKey = TALL_SPRITE_TILES[tile.type];
+                    sil = shadowSilhouette(sprKey, [SPRITES[sprKey]]);
+                }
+                if (!sil) continue;
+                stampShadow(L, sil, x * TS + TS / 2 - cameraX, y * TS + TS - cameraY, sil.height, p);
+            }
+        }
+
+        // Actors (a frozen first frame is plenty for a shadow).
+        const charRect = (spr) => ({ x: 0, y: 0, w: Math.min(CHAR_FW, spr.width), h: Math.min(CHAR_FH, spr.height) });
+        const pSpr = SPRITES['sprites.player'];
+        if (pSpr && pSpr.width) {
+            const sil = shadowSilhouette('actor|player', [pSpr], charRect(pSpr));
+            if (sil) stampShadow(L, sil, player.x * TS + TS / 2 - cameraX, player.y * TS + TS - cameraY, sil.height, p);
+        }
+        if (typeof npcs !== 'undefined') {
+            for (const npc of npcs) {
+                if (!npc.isPresent) continue;
+                const spr = SPRITES['sprites.' + npc.name.toLowerCase()];
+                if (!spr || !spr.width) continue;
+                const big = (npc.wTiles || 1) > 1 || (npc.hTiles || 2) > 2;
+                const sil = shadowSilhouette('actor|' + npc.name, [spr], big ? undefined : charRect(spr));
+                if (!sil) continue;
+                const w = (npc.wTiles || 1) * TS;
+                stampShadow(L, sil, npc.gridX * TS + w / 2 - cameraX, npc.gridY * TS + TS - cameraY, sil.height, p);
+            }
+        }
+
+        // Single composite. translate(-camera) is active, so (cameraX, cameraY)
+        // lands at the screen origin.
+        drawingContext.globalAlpha = p.alpha / 255;
+        image(L, cameraX, cameraY);
+        drawingContext.globalAlpha = 1;
     }
 
     // Pass 2: draw tree canopy tops as part of the base world pass.
@@ -3157,8 +4914,26 @@ class World {
         const screenY = y * CONFIG.TILE_SIZE;
         const TS = CONFIG.TILE_SIZE;
 
+        // Helper: draw the grass texture for tile (x,y). grass.png is one big 512×512
+        // image (32×32 tiles); we sample the sub-region at the tile's world position so
+        // the texture tiles seamlessly across the island instead of repeating per tile.
+        function drawGrass() {
+            const g = SPRITES[seasonalGrassKey()] || SPRITES['tiles.grass'];
+            if (g) {
+                const cols = Math.max(1, Math.floor(g.width / TS));
+                const rows = Math.max(1, Math.floor(g.height / TS));
+                const srcX = (((x % cols) + cols) % cols) * TS;
+                const srcY = (((y % rows) + rows) % rows) * TS;
+                image(g, screenX, screenY, TS, TS, srcX, srcY, TS, TS);
+            } else {
+                fill('#7CB342');
+                rect(screenX, screenY, TS, TS);
+            }
+        }
+
         // Helper: draw a base terrain tile (grass or beach) under decorations
         function drawBase(baseType) {
+            if (baseType === 'grass') { drawGrass(); return; }
             const baseSpr = SPRITES['tiles.' + baseType];
             if (baseSpr) {
                 image(baseSpr, screenX, screenY, TS, TS);
@@ -3172,20 +4947,125 @@ class World {
         }
 
         switch(tile.type) {
+            case 'cave_floor': {
+                // Stone floor with a little speckle so it isn't flat.
+                fill('#4A4640');
+                rect(screenX, screenY, TS, TS);
+                noStroke();
+                fill('#544F48');
+                if (tile.variant === 1) rect(screenX + 3, screenY + 9, 3, 2);
+                else if (tile.variant === 2) rect(screenX + 10, screenY + 4, 2, 3);
+                else if (tile.variant === 3) { rect(screenX + 6, screenY + 6, 2, 2); rect(screenX + 11, screenY + 11, 2, 2); }
+                break;
+            }
+            case 'cave_wall': {
+                // Dark rock with a lighter top bevel for a bit of depth.
+                fill('#2A2622');
+                rect(screenX, screenY, TS, TS);
+                noStroke();
+                fill('#3A352F');
+                rect(screenX, screenY, TS, 3);
+                fill('#211D19');
+                rect(screenX, screenY + TS - 2, TS, 2);
+                break;
+            }
+            case 'foundation': {
+                // Pale flagstone pad where a building can be raised.
+                fill('#6E6358');
+                rect(screenX, screenY, TS, TS);
+                noFill();
+                stroke('#564C43');
+                strokeWeight(1);
+                rect(screenX + 0.5, screenY + 0.5, TS - 1, TS - 1);
+                noStroke();
+                break;
+            }
             case 'sea': {
-                const spr = SPRITES['tiles.water'];
+                const spr = SPRITES['tiles.waves'];
                 if (spr) {
-                    // Single 16x16 sprite - draw whole thing, no frame slicing
-                    image(spr, screenX, screenY, TS, TS);
+                    // waves.png layout (64×128, 16×16 tiles, 4 cols × 8 rows):
+                    //   col 0 (x=0):  straight shore — 8 animation frames. Native orientation
+                    //                 has land to the EAST (sand on the right, water on the left).
+                    //   col 1 (x=16): corner — 8 animation frames. Native orientation has land in
+                    //                 the SOUTH-EAST (sand bottom-right, water wrapping the NW).
+                    //   col 2 (x=32): ocean — rows 5-7 are the plain looping water animation.
+                    //   col 3 (x=48): pond shore — 8 animation frames (grass/stone bank).
+                    function seaNeighborType(dx, dy) {
+                        const nx = x + dx, ny = y + dy;
+                        if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) return 'sea';
+                        const t = world.tiles[nx][ny];
+                        return t ? t.type : 'sea';
+                    }
+                    function isLandType(type) {
+                        // The dock is a structure OVER water — sea beside it must not
+                        // grow a sandy shoreline.
+                        return type !== 'sea' && type !== 'pond_water' && type !== 'pond_shore' && type !== 'dock';
+                    }
+                    const northLand = isLandType(seaNeighborType(0, -1));
+                    const southLand = isLandType(seaNeighborType(0, 1));
+                    const westLand  = isLandType(seaNeighborType(-1, 0));
+                    const eastLand  = isLandType(seaNeighborType(1, 0));
+                    // Diagonal land neighbours — used to catch convex (outer) coast corners,
+                    // where only the diagonal tile is land (e.g. the sea tile just off an
+                    // island corner) and the two straight shores should meet.
+                    const dNE = isLandType(seaNeighborType(1, -1));
+                    const dNW = isLandType(seaNeighborType(-1, -1));
+                    const dSE = isLandType(seaNeighborType(1, 1));
+                    const dSW = isLandType(seaNeighborType(-1, 1));
+                    const anyOrthoLand = northLand || southLand || eastLand || westLand;
+                    const shoreFrame = floor(frameCount / 8) % 8;
+
+                    function drawRotatedSprite(srcX, srcY, angle) {
+                        push();
+                        translate(screenX + TS / 2, screenY + TS / 2);
+                        rotate(angle);
+                        image(spr, -TS / 2, -TS / 2, TS, TS, srcX, srcY, TS, TS);
+                        pop();
+                    }
+
+                    const nw = northLand && westLand;
+                    const ne = northLand && eastLand;
+                    const sw = southLand && westLand;
+                    const se = southLand && eastLand;
+
+                    if (nw || ne || sw || se) {
+                        // Concave (inner) corner — land on two adjacent orthogonal sides.
+                        // Native land is SE, so rotate from there:
+                        //   land SE = 0, land SW = +90° CW, land NW = 180°, land NE = -90°.
+                        const angle = se ? 0 : sw ? HALF_PI : nw ? PI : -HALF_PI;
+                        drawRotatedSprite(16, shoreFrame * TS, angle);
+                    } else if (!anyOrthoLand && (dNE || dNW || dSE || dSW)) {
+                        // Convex (outer) corner — only a diagonal neighbour is land, so this
+                        // is the tile just off an island corner where the two straight shores
+                        // meet. Reuse the corner sprite, oriented toward the diagonal land.
+                        const angle = dSE ? 0 : dSW ? HALF_PI : dNW ? PI : -HALF_PI;
+                        drawRotatedSprite(16, shoreFrame * TS, angle);
+                    } else if (northLand || southLand || westLand || eastLand) {
+                        // Animated straight shore (col 0). Native land is East, so rotate from there:
+                        //   land E = 0, land S = +90° CW, land W = 180°, land N = -90°.
+                        const angle = eastLand ? 0 : southLand ? HALF_PI : westLand ? PI : -HALF_PI;
+                        drawRotatedSprite(0, shoreFrame * TS, angle);
+                    } else {
+                        // Plain looping open-water animation: sea_overworld.png, frames laid out
+                        // left-to-right from x=0, each a 16x16 tile.
+                        const seaSpr = SPRITES['tiles.sea_overworld'];
+                        if (seaSpr) {
+                            const frames = Math.max(1, Math.floor(seaSpr.width / TS));
+                            const oceanFrame = floor(frameCount / 8) % frames;
+                            image(seaSpr, screenX, screenY, TS, TS, oceanFrame * TS, 0, TS, TS);
+                        } else {
+                            const oceanFrame = floor(frameCount / 8) % 3;
+                            image(spr, screenX, screenY, TS, TS, 32, (5 + oceanFrame) * TS, TS, TS);
+                        }
+                    }
                 } else {
-                    fill('#4A90C8');
-                    rect(screenX, screenY, TS, TS);
-                    if (tile.variant === 1) {
-                        fill('#6BB6FF');
-                        rect(screenX + 3, screenY + 3, 6, 2);
-                    } else if (tile.variant === 2) {
-                        fill('#6BB6FF');
-                        rect(screenX + 5, screenY + 8, 6, 2);
+                    // Fallback to solid color or old sprite
+                    const fallback = SPRITES['tiles.water'];
+                    if (fallback) {
+                        image(fallback, screenX, screenY, TS, TS);
+                    } else {
+                        fill('#4A90C8');
+                        rect(screenX, screenY, TS, TS);
                     }
                 }
                 break;
@@ -3209,12 +5089,8 @@ class World {
                 break;
             }
             case 'grass': {
-                const spr = SPRITES['tiles.grass'];
-                if (spr) {
-                    image(spr, screenX, screenY, TS, TS);
-                } else {
-                    fill('#7CB342');
-                    rect(screenX, screenY, TS, TS);
+                drawGrass();
+                if (!SPRITES['tiles.grass']) {
                     fill('#8BC34A');
                     if (tile.variant === 1) {
                         rect(screenX + 4, screenY + 4, 2, 4);
@@ -3224,24 +5100,23 @@ class World {
                         rect(screenX + 11, screenY + 5, 2, 4);
                     }
                 }
+                // Beach-edge overlay: a grass tile bordering beach draws a sand fringe
+                // (beach_edge.png) over the grass, on the side(s) facing the beach.
+                drawBeachEdgeOverlay(x, y, screenX, screenY, TS);
                 break;
             }
-            case 'tree': {
+            case 'tree':
+            case 'fir_tree':
+            case 'banana_tree':
+            case 'palm_tree': {
                 const isTop = tile.isTreeTop;
-                // Draw the correct base terrain under the tile.
-                drawBase('grass');
-                // Both trunk and top tiles draw their own half of the 16x32 sprite.
-                const spr = SPRITES['tiles.tree'];
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    if (isTop) {
-                        image(spr, screenX, screenY, TS, TS, 0, 0, spr.width, TS);
-                    } else {
-                        const sy = spr.height - TS;
-                        image(spr, screenX, screenY, TS, TS, 0, sy, spr.width, TS);
-                    }
-                    noTint();
-                } else {
+                // Oak/fir grow on grass; banana/palm grow on the beach.
+                drawBase((tile.type === 'tree' || tile.type === 'fir_tree') ? 'grass' : 'beach');
+                // The actual 32x48 sprite is wider/taller than its tile, so it is drawn in
+                // a deferred pass (drawTallDecoration) AFTER all base terrain — otherwise the
+                // next column's base would clip the sprite's right edge. Here we only draw a
+                // vector fallback for when the sprite image failed to load.
+                if (!SPRITES[TALL_SPRITE_TILES[tile.type]]) {
                     if (isTop) {
                         fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                         ellipse(screenX + 8, screenY + 12, 12, 12);
@@ -3352,16 +5227,11 @@ class World {
                 break;
             }
             case 'rosebush': {
-                // 32x32 sprite - draw grass base, then rosebush centered extending upward
+                // 32x32 sprite, wider than its tile - draw grass base here; the sprite
+                // itself is drawn in the deferred drawTallDecoration pass (see tree case)
+                // so the neighbouring tile's base can't clip its right edge.
                 drawBase('grass');
-                const spr = SPRITES['tiles.rosebush'];
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    const offsetX = screenX - (spr.width - TS) / 2;
-                    const offsetY = screenY - (spr.height - TS);
-                    image(spr, offsetX, offsetY);
-                    noTint();
-                } else {
+                if (!SPRITES['tiles.rosebush']) {
                     fill(tile.depleted ? '#7A9E7A' : '#2E7D32');
                     ellipse(screenX + 8, screenY + 8, 14, 12);
                     fill(tile.depleted ? '#AAA' : '#E53935');
@@ -3372,7 +5242,7 @@ class World {
                 break;
             }
             case 'water': {
-                // Small pond - draw grass base, then water sprite on top
+                // Legacy small pond tile — draw grass base, then water sprite on top
                 drawBase('grass');
                 const spr = SPRITES['tiles.water'];
                 if (spr) {
@@ -3381,6 +5251,43 @@ class World {
                     fill('#4A90C8');
                     ellipse(screenX + 8, screenY + 8, 14, 12);
                 }
+                break;
+            }
+            case 'pond': {
+                // The pond sprite is drawn later as one large overlay from pondOrigin.
+                // This pass only provides grass underneath the transparent PNG.
+                drawBase('grass');
+                break;
+            }
+            case 'dock': {
+                // The dock sprite is drawn later as one large overlay from dockOrigin.
+                // This pass only provides sand/water underneath the transparent PNG.
+                if (islandZone(x, y) === 'beach') drawBase('beach');
+                else {
+                    // Same animated open-water frames as the surrounding sea, so the
+                    // water under the dock doesn't read as a flat blue rectangle.
+                    const seaSpr = SPRITES['tiles.sea_overworld'];
+                    if (seaSpr) {
+                        const frames = Math.max(1, Math.floor(seaSpr.width / TS));
+                        const oceanFrame = floor(frameCount / 8) % frames;
+                        image(seaSpr, screenX, screenY, TS, TS, oceanFrame * TS, 0, TS, TS);
+                    } else { fill('#4A90C8'); noStroke(); rect(screenX, screenY, TS, TS); }
+                }
+                break;
+            }
+            case 'pond_water': {
+                // Legacy pond (pre single-image): a 4×4 interior image from its origin.
+                if (tile.pondOrigin) {
+                    const spr = SPRITES['tiles.pond'];
+                    if (spr) image(spr, screenX, screenY, TS * 4, TS * 4);
+                    else { fill('#4A90C8'); rect(screenX, screenY, TS * 4, TS * 4); }
+                }
+                break;
+            }
+            case 'pond_shore': {
+                // Legacy bank tile (pre single-image pond). Newer ponds bake banks into
+                // the pond image, so just show grass under any leftover shore tiles.
+                drawBase('grass');
                 break;
             }
             case 'toast_target': {
@@ -3442,21 +5349,22 @@ class World {
                                 type: 'tree',
                                 variant: tile.variant || 0,
                                 isTreeTop: true,
-                                solid: true,
+                                solid: false,
                                 depleted: tile.depleted || false,
                                 respawnAt: tile.respawnAt || null
                             };
                         } else if (topTile && topTile.isTreeTop) {
-                            topTile.solid = true;
+                            topTile.solid = false;
                         }
                     }
                 }
-                // Ensure any existing tree top tile is solid in old saves.
+                // Canopy tiles are passable (see placeTree) so the player can walk under them.
                 if (tile.type === 'tree' && tile.isTreeTop) {
-                    tile.solid = true;
+                    tile.solid = false;
                 }
-                // v5 saves may still have removed flower/tulip/water decorations.
-                if (tile.type === 'flower' || tile.type === 'tulip' || tile.type === 'water') {
+                // v5 saves may still have removed flower/water decorations.
+                // (Tulips are now valid harvestable content again.)
+                if (tile.type === 'flower' || tile.type === 'water') {
                     this.tiles[x][y] = { type: 'grass', variant: 0 };
                 }
             }

@@ -8,7 +8,7 @@ Documents all sprite sheets and individual sprites used in the game.
 assets/
   sprites/         — character sprites, items, effects
     player.png     — 16×16 player character
-    nppcs/         — NPC sprite sheets (future)
+    npcs/          — NPC sprites (mubaba.png — 32×80, first 2×5 new-scale character)
     portraits/     — NPC dialogue portraits (future)
     buildings/     — building overworld sprites (future)
     animals/       — animal sprites (future)

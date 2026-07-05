@@ -61,8 +61,17 @@ const NPC_DEFS = [
     { name: 'Vex', personality: 'custom', species: 'Robot (Steampunk)', color: '#220158' },
 ];
 
+// Mubaba: the underground city's magic merchant (July3rdReview C4). Not part
+// of the island neighbor roster — he lives on the underground map, keyed by
+// the string id 'mubaba', and never wanders, arrives, or departs. He'll trade
+// goods / check accomplishments to teach magic tricks (content TBD).
+// First sprite at the new 2x5 character scale (32x80 px).
+const MUBABA_DEF = {
+    name: 'Mubaba', personality: 'custom', species: 'Magic Merchant',
+    color: '#8a5ac2', wTiles: 2, hTiles: 5, stationary: true, hasHome: true
+};
+
 let npcs = [];
-let npcQueue = []; // remaining NPCs to arrive
 
 class NPC {
     constructor(def, index) {
@@ -73,10 +82,15 @@ class NPC {
         this.color = def.color;
         this.gridX = 50;
         this.gridY = 50;
+        // Footprint in tiles, bottom-anchored at (gridX, gridY). Default is the
+        // classic 1x2; big characters (e.g. Mubaba at 2x5) override via def.
+        this.wTiles = def.wTiles || 1;
+        this.hTiles = def.hTiles || 2;
+        this.stationary = !!def.stationary;
         this.facing = 'down';
         this.friendship = 0;
         this.isPresent = true;
-        this.hasHome = false;
+        this.hasHome = !!def.hasHome;
         this.hutX = 0;
         this.hutY = 0;
         this.dailyTalked = false;
@@ -87,6 +101,7 @@ class NPC {
     }
 
     update(dt, gameTime) {
+        if (this.stationary) return; // shopkeepers stay put
         // Simple wander behavior — move randomly within home radius
         if (Math.random() < 0.005) {
             const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
@@ -106,17 +121,26 @@ class NPC {
 
     draw() {
         if (!this.isPresent) return;
-        // NPCs are 1 tile wide, 2 tiles tall, drawn bottom-anchored at (gridX, gridY).
-        const sx = this.gridX * CONFIG.TILE_SIZE - cameraX;
-        const sy = this.gridY * CONFIG.TILE_SIZE - cameraY;
+        // NPCs draw bottom-anchored at (gridX, gridY); footprint from wTiles/hTiles.
+        const TS = CONFIG.TILE_SIZE;
+        const w = this.wTiles * TS;
+        const h = this.hTiles * TS;
+        const sx = this.gridX * TS - cameraX;
+        const sy = this.gridY * TS - cameraY;
+        const topY = sy + TS - h; // screen y of the sprite's top edge
         // Use per-NPC sprite if available, otherwise fall back to colored rectangle.
         const spriteKey = 'sprites.' + this.name.toLowerCase();
         const spr = SPRITES[spriteKey] || null;
         const moving = (millis() - (this.lastMoveAt || 0)) < 300;
-        if (!drawCharacterSprite(spr, sx, sy - CONFIG.TILE_SIZE, this.facing, moving)) {
+        if (spr && (this.wTiles > 1 || this.hTiles > 2)) {
+            // Big new-scale character: a single still frame drawn at natural
+            // tile size with bob + flip (un-flipped art faces left).
+            const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
+            drawSpriteMaybeFlipped(spr, sx, topY + bob, w, h, this.facing === 'right');
+        } else if (!drawCharacterSprite(spr, sx, sy - TS, this.facing, moving)) {
             fill(this.color);
             noStroke();
-            rect(sx, sy - CONFIG.TILE_SIZE, CONFIG.TILE_SIZE, CONFIG.TILE_SIZE * 2);
+            rect(sx, topY, w, h);
         }
         // Name tag above head
         const halfW = CONFIG.CANVAS_WIDTH / 2;
@@ -127,26 +151,26 @@ class NPC {
             textSize(7);
             textFont('Courier New');
             const nw = textWidth(this.name) + 4;
-            rect(sx + CONFIG.TILE_SIZE / 2 - nw / 2, sy - CONFIG.TILE_SIZE - 12, nw, 9);
+            rect(sx + w / 2 - nw / 2, topY - 12, nw, 9);
             fill(255);
-            text(this.name, sx + CONFIG.TILE_SIZE / 2, sy - CONFIG.TILE_SIZE - 3);
+            text(this.name, sx + w / 2, topY - 3);
         }
     }
 
     gainTalk() {
         if (!this.dailyTalked) {
-            this.friendship = Math.min(10, this.friendship + 1);
+            this.friendship = Math.min(300, this.friendship + 3);
             this.dailyTalked = true;
         }
     }
 
     gainGift(value) {
-        this.friendship = Math.min(10, this.friendship + value);
+        this.friendship = Math.min(300, this.friendship + value);
     }
 
-    lossRude() { this.friendship = Math.max(0, this.friendship - 1); }
-    lossIgnored() { this.friendship = Math.max(0, this.friendship - 2); }
-    lossToolUsed() { this.friendship = Math.max(0, this.friendship - 3); }
+    lossRude() { this.friendship = Math.max(0, this.friendship - 3); }
+    lossIgnored() { this.friendship = Math.max(0, this.friendship - 6); }
+    lossToolUsed() { this.friendship = Math.max(0, this.friendship - 9); }
 
     serialize() {
         return {
@@ -159,7 +183,8 @@ class NPC {
     }
 
     static deserialize(data) {
-        const def = NPC_DEFS[data.id] || { name: data.name, personality: data.personality, color: data.color };
+        const def = (data.id === 'mubaba') ? MUBABA_DEF
+            : NPC_DEFS[data.id] || { name: data.name, personality: data.personality, color: data.color };
         const npc = new NPC(def, data.id);
         npc.gridX = data.gridX; npc.gridY = data.gridY;
         npc.facing = data.facing || 'down';
@@ -174,26 +199,37 @@ class NPC {
     }
 }
 
-// Check for new NPC arrivals — called on new day
-function checkArrivals() {
-    if (npcs.length >= NPC_DEFS.length) return;
-    if (npcQueue.length === 0) {
-        // Fill queue with unused defs
-        npcQueue = NPC_DEFS.map((d, i) => ({def: d, index: i}))
-            .filter(d => !npcs.some(n => n.id === d.index));
-    }
-    const next = npcQueue.shift();
-    if (!next) return;
+// Neighbor population rules: a new neighbor arrives every ARRIVAL_INTERVAL_DAYS
+// until MAX_NEIGHBORS live on the island; a neighbor still homeless after
+// HOMELESS_DEPARTURE_DAYS departs (and becomes eligible to return later).
+const MAX_NEIGHBORS = 9;
+const ARRIVAL_INTERVAL_DAYS = 3;
+const HOMELESS_DEPARTURE_DAYS = 14;
 
-    const npc = new NPC(next.def, next.index);
-    // Spawn at random shoreline position
-    const angle = Math.random() * Math.PI * 2;
-    const r = 39; // beach ring
-    npc.gridX = Math.round(50 + r * Math.cos(angle));
-    npc.gridY = Math.round(50 + r * Math.sin(angle));
-    npc.gridX = constrain(npc.gridX, 5, 95);
-    npc.gridY = constrain(npc.gridY, 5, 95);
-    npcs.push(npc);
+// Bring one new neighbor to the beach: a random pull from the defs not
+// currently present on the island. Called on new day (every 3rd) and at game start.
+function checkArrivals() {
+    if (npcs.filter(n => n.isPresent).length >= MAX_NEIGHBORS) return;
+    const candidates = NPC_DEFS.map((d, i) => i)
+        .filter(i => !npcs.some(n => n.id === i && n.isPresent));
+    if (candidates.length === 0) return;
+    const id = candidates[Math.floor(Math.random() * candidates.length)];
+
+    // A returning neighbor reuses their record, keeping friendship history.
+    let npc = npcs.find(n => n.id === id);
+    if (npc) {
+        npc.isPresent = true;
+        npc.daysOnIsland = 0;
+        npc.departureCounter = 0;
+        npc.dailyTalked = false;
+    } else {
+        npc = new NPC(NPC_DEFS[id], id);
+        npcs.push(npc);
+    }
+    // Arrive by boat at the end of the west-beach dock.
+    const arrival = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    npc.gridX = arrival.x;
+    npc.gridY = arrival.y;
     notify(npc.name + ' arrived on the island!');
 }
 
@@ -232,24 +268,21 @@ function buildNpcShack(npc) {
 
 // Called on new day for all NPCs
 function onNpcNewDay() {
+    // The npcs global holds the *active* map's list (see MAP_ENTITY_FIELDS);
+    // neighbors live on the island, so skip the tick while underground.
+    if (typeof currentMapId !== 'undefined' && currentMapId !== 'island') return;
     for (const npc of npcs) {
+        if (!npc.isPresent) continue;
         npc.daysOnIsland++;
         npc.dailyTalked = false;
-        // Build shack on first night if homeless
-        if (!npc.hasHome) buildNpcShack(npc);
-        // Departure check
-        if (npc.friendship < 3) {
-            npc.departureCounter++;
-            if (npc.departureCounter >= 10) {
-                npc.isPresent = false;
-                notify(npc.name + ' left the island...');
-            }
-        } else {
-            npc.departureCounter = 0;
+        // Departure check — homeless neighbors leave after 14 days without shelter
+        if (!npc.hasHome && npc.daysOnIsland >= HOMELESS_DEPARTURE_DAYS) {
+            npc.isPresent = false;
+            notify(npc.name + ' gave up waiting for a home and left the island...');
         }
     }
-    // Check for new arrivals (at least 1 per season)
-    checkArrivals();
+    // A new neighbor ferries in every 3rd day until the island holds 9.
+    if (world.day % ARRIVAL_INTERVAL_DAYS === 0) checkArrivals();
 }
 
 function drawEntities() {
@@ -295,19 +328,28 @@ function drawFriendsTab(x, y, w, h) {
         textSize(9);
         text(npc.name, x + 22, rowY);
 
-        // Friendship hearts (0-10)
+        // Friendship hearts (0-10 display, 300 max)
         fill(120);
         textSize(7);
         let hearts = '';
+        const filledHearts = Math.floor(npc.friendship / 30);
         for (let i = 0; i < 10; i++) {
-            hearts += i < Math.floor(npc.friendship) ? '\u2665' : '\u2661';
+            hearts += i < filledHearts ? '\u2665' : '\u2661';
         }
-        fill(npc.friendship >= 10 ? '#FFD700' : npc.friendship >= 3 ? '#E91E63' : '#888');
+        fill(npc.friendship >= 300 ? '#FFD700' : npc.friendship >= 90 ? '#E91E63' : '#888');
         text(hearts, x + 22, rowY + 10);
 
         fill(100);
         textSize(6);
-        text('Day ' + npc.daysOnIsland + (npc.hasHome ? '  Has shack' : '  Homeless'), x + 22, rowY + 20);
+        let shelterLabel = npc.hasHome ? '  Has shack' : '  Homeless';
+        if (!npc.hasHome && npc.daysOnIsland >= 3) {
+            const daysLeft = 14 - npc.daysOnIsland;
+            shelterLabel = daysLeft > 0
+                ? '  Needs shelter! (' + daysLeft + 'd left)'
+                : '  Leaving soon!';
+            fill('#FF8A80');
+        }
+        text('Day ' + npc.daysOnIsland + shelterLabel, x + 22, rowY + 20);
 
         rowY += 28;
         if (rowY > y + h - 20) break;
