@@ -245,6 +245,7 @@ const TALL_SPRITE_TILES = {
 const ANIMATED_SPRITES = {
     // 'tiles.palm_tree':            { frames: 4, frameMs: 200 },
     // 'sprites.ug_electric_temple': { frames: 2, frameMs: 400 },
+    'sprites.ug_mubaba_fortress': { frames: 3, frameMs: 300 },
 };
 
 // Current frame of a (possibly animated) structure sprite: {img, sx, w, h}.
@@ -462,7 +463,7 @@ const BUILDING_TIERS = {
     // --- Underground city buildings (PLACEHOLDERS) ---
     // No sprites yet: Building.draw falls back to a colored block tinted by
     // `color`. Same footprint/interior as the shack. Rename/reskin later.
-    ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
@@ -741,7 +742,7 @@ function drawNotifications() {
 const DEV_REFRESH_ASSETS = true;
 // Cache-buster appended to every image URL in preload(). With the dev toggle on
 // it's unique per load; off, it's the fixed version string below.
-const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260703';
+const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260705';
 
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
