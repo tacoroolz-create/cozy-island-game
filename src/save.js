@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 13;
+const SAVE_VERSION = 14;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -252,6 +252,25 @@ const MIGRATIONS = [
             for (const n of (ug.npcs || [])) {
                 if (n && n.id === 'mubaba') n.isPresent = false;
             }
+        }
+        return data;
+    },
+    // v13 -> v14: Mubaba's Fortress grew from the 6x4 placeholder to its real
+    // 8x8 sprite. Re-stamp the underground starters so saved positions match
+    // the new footprints (same placement math as world generation).
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
         }
         return data;
     }
