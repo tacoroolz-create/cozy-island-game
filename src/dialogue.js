@@ -423,7 +423,9 @@ function closeDialogue() {
     dialogueState.active = false;
     dialogueState.npc = null;
     dialogueState.advancedMenu = false;
-    gameState = STATE.PLAYING;
+    if (typeof clearFortressScene === 'function') clearFortressScene();
+    // Return to the interior if the conversation happened inside a building.
+    gameState = (typeof insideBuilding !== 'undefined' && insideBuilding) ? STATE.INSIDE : STATE.PLAYING;
 }
 
 function getNodeText(node) {

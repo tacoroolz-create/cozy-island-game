@@ -97,6 +97,11 @@ const SPRITE_DEFS = {
     'tiles.soil':             'assets/tiles/soil.png',
     'sprites.player':         'assets/sprites/orb.png',
     'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
+    // Underground building art + fortress scene props — files don't exist yet;
+    // the error callback nulls them and colored fallbacks draw instead.
+    'sprites.ug_mubaba_fortress': 'assets/sprites/buildings/mubaba_fortress.png',
+    'sprites.ug_electric_temple': 'assets/sprites/buildings/electric_temple.png',
+    'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
     'sprites.brass':          'assets/sprites/brass.png',
@@ -360,19 +365,25 @@ const BUILDING_TIERS = {
     // --- Underground city buildings (PLACEHOLDERS) ---
     // No sprites yet: Building.draw falls back to a colored block tinted by
     // `color`. Same footprint/interior as the shack. Rename/reskin later.
-    ug_shop:    { spriteKey: 'sprites.ug_shop',    name: 'General Store', color: '#7E5A9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_inn:     { spriteKey: 'sprites.ug_inn',     name: 'Inn',           color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_forge:   { spriteKey: 'sprites.ug_forge',   name: 'Forge',         color: '#9B5A5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_library: { spriteKey: 'sprites.ug_library', name: 'Library',       color: '#5A9B6E', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_market:  { spriteKey: 'sprites.ug_market',  name: 'Market',        color: '#9B8B5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_temple:  { spriteKey: 'sprites.ug_temple',  name: 'Temple',        color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_tavern:  { spriteKey: 'sprites.ug_tavern',  name: 'Tavern',        color: '#9B6E5A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_guild:   { spriteKey: 'sprites.ug_guild',   name: 'Guild Hall',    color: '#6E5A9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 }
+    ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 }
 };
 
-// The eight possible underground buildings; 3 are placed at city creation.
-const UNDERGROUND_BUILDING_TYPES = ['ug_shop', 'ug_inn', 'ug_forge', 'ug_library', 'ug_market', 'ug_temple', 'ug_tavern', 'ug_guild'];
-const UNDERGROUND_BUILDINGS_AT_CREATION = 3;
+// The eight underground building identities (see underWorldBldgs.rtf).
+const UNDERGROUND_BUILDING_TYPES = ['ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin', 'ug_inner_temple', 'ug_electric_temple', 'ug_black_goddess', 'ug_stimmy_tims', 'ug_bottomless_pit'];
+// Fixed at city creation — randomization retired. The two designed buildings
+// stand now for verification; Charles's planned starter set (Mubaba's /
+// Recycle Bin / Stimmy Tim's, in a set order) replaces this list later.
+const UNDERGROUND_STARTING_BUILDINGS = [
+    { type: 'ug_mubaba_fortress', padIndex: 1 },
+    { type: 'ug_electric_temple', padIndex: 2 }
+];
 
 // Interior wall height (top wall area for decoration)
 const INTERIOR_WALL_HEIGHT = 2;
@@ -413,8 +424,9 @@ class Building {
             for (let y = 0; y < this.interiorH; y++) {
                 if (y < INTERIOR_WALL_HEIGHT) {
                     this.interiorTiles[x][y] = { type: 'wall', variant: 0 };
-                } else if (x === 0 && y === INTERIOR_WALL_HEIGHT) {
-                    // Bed on the left, against the back wall
+                } else if (x === 0 && y === INTERIOR_WALL_HEIGHT && !String(this.type).startsWith('ug_')) {
+                    // Bed on the left, against the back wall (homes only — the
+                    // underground establishments don't sleep)
                     this.interiorTiles[x][y] = { type: 'bed', variant: bedVariant };
                 } else {
                     this.interiorTiles[x][y] = { type: 'grass', variant: floor(Math.random() * 3) };
@@ -706,7 +718,10 @@ function draw() {
         default:
             // States added by other modules (dialogue, minigame, shackPicker)
             if (gameState === 'dialogue') {
-                drawGame();
+                // Dialogue can happen inside a building (Electric Temple) or in
+                // Mubaba's fortress scene, which paints over the backdrop.
+                if (insideBuilding) drawInterior(); else drawGame();
+                if (typeof drawFortressScene === 'function') drawFortressScene();
                 drawDialogueScreen();
             } else if (gameState === 'minigame') {
                 drawGame();
@@ -931,6 +946,11 @@ function handleInteriorMovement() {
         // Walls, beds, and solid furniture block movement
         const tile = b.interiorTiles[newX][newY];
         if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile)) {
+            lastMoveTime = now;
+            return;
+        }
+        // Taira blocks her spot in the Electric Temple
+        if (b.type === 'ug_electric_temple' && newX === TEMPLE_TAIRA_POS.x && newY === TEMPLE_TAIRA_POS.y) {
             lastMoveTime = now;
             return;
         }
@@ -2020,8 +2040,14 @@ function mousePressed() {
         // Clicking the on-screen hotbar selects that slot (universal).
         const hb = getHotbarSlotAtMouse();
         if (hb >= 0) { hotbarSlot = hb; return; }
-        // Furniture/decoration placement & pickup on the clicked interior tile.
         const it = getInteriorTileAtMouse();
+        // Electric Temple: clicking Taira (body or head tile) talks to her.
+        if (it && insideBuilding && insideBuilding.type === 'ug_electric_temple' &&
+            it.x === TEMPLE_TAIRA_POS.x && (it.y === TEMPLE_TAIRA_POS.y || it.y === TEMPLE_TAIRA_POS.y - 1)) {
+            const t = templeTaira();
+            if (t && typeof openDialogue === 'function') { openDialogue(t); return; }
+        }
+        // Furniture/decoration placement & pickup on the clicked interior tile.
         if (it) {
             const active = inventory.getActiveItem();
             // Holding a placeable home item -> try to place it.
@@ -2185,6 +2211,13 @@ function tryEnterBuilding() {
         return false;
     }
 
+    // Mubaba's Fortress has no walkable interior: the door opens straight into
+    // an audience with Mubaba (black scene, magic circle — see magic.js).
+    if (b.type === 'ug_mubaba_fortress' && typeof enterMubabaFortress === 'function') {
+        enterMubabaFortress();
+        return true;
+    }
+
     // Save player position (standing outside, facing the door)
     savedPlayerX = player.x;
     savedPlayerY = player.y;
@@ -2199,6 +2232,34 @@ function tryEnterBuilding() {
     gameState = STATE.INSIDE;
     notify("Entered " + (BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type));
     return true;
+}
+
+// ===== THE ELECTRIC TEMPLE =====
+// A single room holding Taira, the mac. The back wall will eventually be
+// MarcOS (future NPC) who opens the portal to the Stars world.
+// ponytail: transient NPC instance — temple friendship doesn't persist across
+// reloads; merge with the island roster record if that ever matters.
+const TEMPLE_TAIRA_ID = 14; // NPC_DEFS index for Taira
+const TEMPLE_TAIRA_POS = { x: 3, y: INTERIOR_WALL_HEIGHT }; // back-center of the room
+let _templeTaira = null;
+function templeTaira() {
+    if (!_templeTaira && typeof NPC !== 'undefined') {
+        _templeTaira = new NPC(NPC_DEFS[TEMPLE_TAIRA_ID], TEMPLE_TAIRA_ID);
+    }
+    return _templeTaira;
+}
+
+function tryTalkToTempleTaira() {
+    if (!insideBuilding || insideBuilding.type !== 'ug_electric_temple') return false;
+    let dx = 0, dy = 0;
+    if (player.facing === 'up') dy = -1;
+    else if (player.facing === 'down') dy = 1;
+    else if (player.facing === 'left') dx = -1;
+    else dx = 1;
+    if (player.x + dx !== TEMPLE_TAIRA_POS.x || player.y + dy !== TEMPLE_TAIRA_POS.y) return false;
+    const t = templeTaira();
+    if (t && typeof openDialogue === 'function') { openDialogue(t); return true; }
+    return false;
 }
 
 function tryExitBuilding() {
@@ -2683,6 +2744,23 @@ function drawInterior() {
     textSize(7);
     textFont('Courier New');
     text('EXIT', doorX + TS / 2, doorY - 1);
+
+    // The Electric Temple's resident mac, against the back wall.
+    if (b.type === 'ug_electric_temple') {
+        const tSpr = SPRITES['sprites.taira'];
+        const tx = offsetX + TEMPLE_TAIRA_POS.x * TS;
+        const ty = offsetY + TEMPLE_TAIRA_POS.y * TS;
+        if (!drawCharacterSprite(tSpr, tx, ty - TS, 'down', false)) {
+            fill(NPC_DEFS[TEMPLE_TAIRA_ID].color);
+            noStroke();
+            rect(tx, ty - TS, TS, TS * 2);
+        }
+        fill(255, 255, 200);
+        textAlign(CENTER, BOTTOM);
+        textSize(7);
+        textFont('Courier New');
+        text('Taira', tx + TS / 2, ty - TS - 2);
+    }
 
     // Draw player — 2 tiles tall, bottom-anchored at player tile.
     // The top half peeks above the bottom wall row when on the top floor tile.
@@ -3177,6 +3255,8 @@ function keyPressed() {
             invSelectedSlot = 0;
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
+            // Electric Temple: talk to Taira when facing her spot.
+            if (tryTalkToTempleTaira()) return false;
             // Try to sleep in the bed (only at night), otherwise exit building
             if (trySleep()) return false;
             tryExitBuilding();
@@ -4236,21 +4316,21 @@ class World {
         this.placePond(UNDERGROUND_POND_ORIGIN.x, UNDERGROUND_POND_ORIGIN.y, 'island',
                        ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
 
-        // Place a random 3 of the 8 possible buildings on 3 of the 8 foundations.
-        // The rest are added later via quests. Buildings live on this map's parked
-        // entity list so they appear when the player travels here.
-        const types = shuffled(UNDERGROUND_BUILDING_TYPES).slice(0, UNDERGROUND_BUILDINGS_AT_CREATION);
-        const pads = shuffled(UNDERGROUND_FOUNDATIONS.map((_, i) => i)).slice(0, UNDERGROUND_BUILDINGS_AT_CREATION);
+        // Place the fixed starting buildings. The remaining pads fill in later
+        // via quests. Buildings live on this map's parked entity list so they
+        // appear when the player travels here.
         const placed = [];
-        for (let i = 0; i < types.length; i++) {
-            const b = this.placeBuildingOnFoundation(types[i], pads[i]);
+        for (const s of UNDERGROUND_STARTING_BUILDINGS) {
+            const b = this.placeBuildingOnFoundation(s.type, s.padIndex);
             if (b) placed.push(b);
         }
-        // Mubaba the magic merchant greets arrivals by the pond.
+        // Mubaba awaits inside his fortress (isPresent false keeps him off the
+        // map; entering the fortress talks to this record — see magic.js).
         const mubaba = new NPC(MUBABA_DEF, 'mubaba');
         mubaba.gridX = MUBABA_SPAWN.x;
         mubaba.gridY = MUBABA_SPAWN.y;
         mubaba.facing = 'left';
+        mubaba.isPresent = false;
         this.entities = { buildings: placed, npcs: [mubaba] };
     }
 

@@ -270,6 +270,60 @@ function openTransmuteTargetMenu(trick, srcId) {
     openMagicMenu('...into 3 of', opts);
 }
 
+// ===== MUBABA'S FORTRESS =====
+// The fortress door opens straight into an audience with Mubaba: black scene,
+// mubaba.png over a magic circle, player unseen. Entered from tryEnterBuilding;
+// drawn by drawFortressScene during the dialogue state.
+let fortressSceneActive = false;
+
+// Called by closeDialogue() so leaving any fortress conversation drops the scene.
+function clearFortressScene() { fortressSceneActive = false; }
+
+function enterMubabaFortress() {
+    let m = npcs.find(n => n.id === 'mubaba');
+    if (!m) { m = new NPC(MUBABA_DEF, 'mubaba'); m.isPresent = false; npcs.push(m); } // safety net
+    fortressSceneActive = true;
+    openMubabaMenu(m);
+}
+
+function drawFortressScene() {
+    if (!fortressSceneActive) return;
+    background(0);
+    const sceneH = height - 120; // the dialogue panel covers the bottom
+    const cx = width / 2;
+    const feetY = Math.floor(sceneH * 0.85);
+    // Magic circle: sprite when Charles provides one, drawn rings until then.
+    const circle = SPRITES['sprites.magic_circle'];
+    if (circle) {
+        image(circle, cx - 90, feetY - 34, 180, 68);
+    } else {
+        noFill();
+        stroke(140, 60, 220);
+        strokeWeight(2);
+        ellipse(cx, feetY, 170, 56);
+        stroke(190, 120, 255);
+        strokeWeight(1);
+        ellipse(cx, feetY, 130, 42);
+        noStroke();
+        fill(220, 170, 255);
+        for (let i = 0; i < 8; i++) { // slowly orbiting rune dots
+            const a = frameCount * 0.01 + i * PI / 4;
+            ellipse(cx + Math.cos(a) * 75, feetY + Math.sin(a) * 24, 4, 4);
+        }
+    }
+    // Mubaba, large, hovering gently over the circle.
+    const spr = SPRITES['sprites.mubaba'];
+    const bob = Math.sin(frameCount * 0.04) * 4;
+    if (spr) {
+        const mw = 64, mh = 160; // 2x the 32x80 sprite
+        image(spr, cx - mw / 2, feetY - mh + 6 + bob, mw, mh);
+    } else {
+        fill('#8a5ac2');
+        noStroke();
+        rect(cx - 24, feetY - 120 + bob, 48, 116);
+    }
+}
+
 // Teleport: hop to the other world, landing one tile clear of its pond.
 function castTeleport(trick) {
     const dest = (currentMapId === 'underground') ? 'island' : 'underground';

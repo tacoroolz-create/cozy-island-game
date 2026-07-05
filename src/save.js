@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 12;
+const SAVE_VERSION = 13;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -229,6 +229,28 @@ const MIGRATIONS = [
                     gridX: MUBABA_SPAWN.x, gridY: MUBABA_SPAWN.y,
                     facing: 'left', isPresent: true, hasHome: true
                 });
+            }
+        }
+        return data;
+    },
+    // v12 -> v13: underground buildings got real identities (underWorldBldgs).
+    // The random placeholder trio is replaced by the fixed starters (Mubaba's
+    // Fortress + Electric Temple), and Mubaba moved inside his fortress.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
+            for (const n of (ug.npcs || [])) {
+                if (n && n.id === 'mubaba') n.isPresent = false;
             }
         }
         return data;
