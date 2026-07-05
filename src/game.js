@@ -237,6 +237,72 @@ const TALL_SPRITE_TILES = {
     rosebush: 'tiles.rosebush'
 };
 
+// ===== DYNAMIC SUN SHADOWS (overworld) =====
+// Fake-but-convincing cast shadows: each caster's sprite is baked once into a
+// black silhouette, then stamped flipped/sheared/squashed onto a per-frame
+// offscreen layer that's composited in one pass (so overlapping shadows don't
+// double-darken). Direction and length track the day clock: long shadows
+// pointing west at dawn, a small puddle at solar noon, long east at dusk.
+// ponytail: the constants ARE the look — tune them by eye in-browser.
+const SHADOW_SUNRISE = 330, SHADOW_SUNSET = 1170; // minutes; matches the dawn/dusk overlay window
+const SHADOW_MAX_SHEAR = 2.2;    // sideways lean at dawn/dusk (x object height)
+const SHADOW_MIN_STRETCH = 0.22; // shadow drop at noon (x object height)
+const SHADOW_MAX_STRETCH = 0.72; // shadow drop at dawn/dusk
+const SHADOW_ALPHA = 52;         // layer opacity at full sun
+
+let _shadowLayer = null;
+const _shadowSilhouettes = {};
+
+// Where the sun is right now: null when it's down, else { shear, stretch, alpha }.
+function sunShadowParams() {
+    const t = world.timeMinutes;
+    if (t <= SHADOW_SUNRISE || t >= SHADOW_SUNSET) return null;
+    const d = ((t - SHADOW_SUNRISE) / (SHADOW_SUNSET - SHADOW_SUNRISE)) * 2 - 1; // -1 dawn .. +1 dusk
+    const edge = Math.min(1, (t - SHADOW_SUNRISE) / 45, (SHADOW_SUNSET - t) / 45); // soft in/out
+    return {
+        // Negated because the stamp shears against the silhouette's upward
+        // (negative-y) axis: dawn sun in the east throws shadows west.
+        shear: -SHADOW_MAX_SHEAR * d,
+        stretch: SHADOW_MIN_STRETCH + (SHADOW_MAX_STRETCH - SHADOW_MIN_STRETCH) * Math.abs(d),
+        alpha: SHADOW_ALPHA * edge
+    };
+}
+
+// Bake (and cache) a pure-black copy of one or more sprites stacked at a
+// shared top-left origin (how tree trunk + canopy are drawn). srcRect trims
+// animated sheets to their first frame.
+function shadowSilhouette(key, imgs, srcRect) {
+    if (_shadowSilhouettes[key]) return _shadowSilhouettes[key];
+    for (const im of imgs) if (!im || !im.width) return null; // not loaded yet; retry next frame
+    const w = srcRect ? srcRect.w : Math.max(...imgs.map(i => i.width));
+    const h = srcRect ? srcRect.h : Math.max(...imgs.map(i => i.height));
+    const g = createGraphics(w, h);
+    g.pixelDensity(1);
+    for (const im of imgs) {
+        if (srcRect) g.image(im, 0, 0, w, h, srcRect.x, srcRect.y, w, h);
+        else g.image(im, 0, 0);
+    }
+    g.drawingContext.globalCompositeOperation = 'source-in';
+    g.noStroke();
+    g.fill(0);
+    g.rect(0, 0, w, h);
+    g.drawingContext.globalCompositeOperation = 'source-over';
+    _shadowSilhouettes[key] = g;
+    return g;
+}
+
+// Stamp one silhouette onto the shadow layer. (footX, footY) is the caster's
+// ground-contact point in screen pixels; groundY is that line's y within the
+// silhouette image.
+function stampShadow(layer, sil, footX, footY, groundY, p) {
+    layer.push();
+    layer.translate(footX, footY);
+    layer.scale(1, -p.stretch);                // flip downward + set length
+    layer.applyMatrix(1, 0, p.shear, 1, 0, 0); // lean toward/away from the sun
+    layer.image(sil, -sil.width / 2, -groundY);
+    layer.pop();
+}
+
 // Overworld grass/tree-top swap by season (Sweet & Saucy share the default look).
 function seasonalGrassKey() {
     if (world.season === 'Cool') return 'tiles.grass_cool';
@@ -4606,6 +4672,10 @@ class World {
             }
         }
 
+        // Pass 3.5: sun shadows on the ground — beneath flora (pass 4) and the
+        // actors drawn later in drawGame().
+        this.drawSunShadows(x0, y0, x1, y1);
+
         // Pass 4: tall decorations (trees, rosebushes) whose sprites overflow their
         // tile. Drawn last so neighbouring tiles' base terrain can't clip them.
         for (let x = x0; x < x1; x++) {
@@ -4742,6 +4812,67 @@ class World {
         const offsetY = screenY - (spr.height - TS);
         image(spr, offsetX, offsetY);
         noTint();
+    }
+
+    // Dynamic sun shadows for everything visible: tall flora (same sprites
+    // drawTallDecoration uses), the player, and NPCs. Stamped to an offscreen
+    // layer, then composited once at the sun's current strength.
+    drawSunShadows(x0, y0, x1, y1) {
+        if (this.kind !== 'island') return; // no sun underground
+        const p = sunShadowParams();
+        if (!p) return;
+        const TS = CONFIG.TILE_SIZE;
+        if (!_shadowLayer) {
+            _shadowLayer = createGraphics(width, height);
+            _shadowLayer.pixelDensity(1);
+        }
+        const L = _shadowLayer;
+        L.clear();
+
+        // Tall flora. Oak/fir composite the shared trunk with the seasonal canopy.
+        for (let x = x0; x < x1; x++) {
+            for (let y = y0; y < y1; y++) {
+                const tile = this.tiles[x][y];
+                if (!tile || tile.isTreeTop || !TALL_SPRITE_TILES[tile.type]) continue;
+                let sil;
+                if (tile.type === 'tree' || tile.type === 'fir_tree') {
+                    const topKey = seasonalTreeTopKey();
+                    sil = shadowSilhouette('tree|' + topKey,
+                        [SPRITES['tiles.tree_trunk_overworld'], SPRITES[topKey]]);
+                } else {
+                    const sprKey = TALL_SPRITE_TILES[tile.type];
+                    sil = shadowSilhouette(sprKey, [SPRITES[sprKey]]);
+                }
+                if (!sil) continue;
+                stampShadow(L, sil, x * TS + TS / 2 - cameraX, y * TS + TS - cameraY, sil.height, p);
+            }
+        }
+
+        // Actors (a frozen first frame is plenty for a shadow).
+        const charRect = (spr) => ({ x: 0, y: 0, w: Math.min(CHAR_FW, spr.width), h: Math.min(CHAR_FH, spr.height) });
+        const pSpr = SPRITES['sprites.player'];
+        if (pSpr && pSpr.width) {
+            const sil = shadowSilhouette('actor|player', [pSpr], charRect(pSpr));
+            if (sil) stampShadow(L, sil, player.x * TS + TS / 2 - cameraX, player.y * TS + TS - cameraY, sil.height, p);
+        }
+        if (typeof npcs !== 'undefined') {
+            for (const npc of npcs) {
+                if (!npc.isPresent) continue;
+                const spr = SPRITES['sprites.' + npc.name.toLowerCase()];
+                if (!spr || !spr.width) continue;
+                const big = (npc.wTiles || 1) > 1 || (npc.hTiles || 2) > 2;
+                const sil = shadowSilhouette('actor|' + npc.name, [spr], big ? undefined : charRect(spr));
+                if (!sil) continue;
+                const w = (npc.wTiles || 1) * TS;
+                stampShadow(L, sil, npc.gridX * TS + w / 2 - cameraX, npc.gridY * TS + TS - cameraY, sil.height, p);
+            }
+        }
+
+        // Single composite. translate(-camera) is active, so (cameraX, cameraY)
+        // lands at the screen origin.
+        drawingContext.globalAlpha = p.alpha / 255;
+        image(L, cameraX, cameraY);
+        drawingContext.globalAlpha = 1;
     }
 
     // Pass 2: draw tree canopy tops as part of the base world pass.
