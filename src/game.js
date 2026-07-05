@@ -237,6 +237,37 @@ const TALL_SPRITE_TILES = {
     rosebush: 'tiles.rosebush'
 };
 
+// ===== ANIMATED SPRITE STRIPS =====
+// Any sprite key listed here is a horizontal strip of `frames` equal cells;
+// cell width is image.width / frames, derived per file — so structures of any
+// size animate independently and resizing one can never affect another.
+// Draw to the sheet spec in SpriteUpdate.txt section 14, then register here.
+const ANIMATED_SPRITES = {
+    // 'tiles.palm_tree':            { frames: 4, frameMs: 200 },
+    // 'sprites.ug_electric_temple': { frames: 2, frameMs: 400 },
+};
+
+// Current frame of a (possibly animated) structure sprite: {img, sx, w, h}.
+// Whole image for stills; cycles by wall clock for registered strips.
+function structureFrame(key) {
+    const img = SPRITES[key];
+    if (!img || !img.width) return null;
+    const anim = ANIMATED_SPRITES[key];
+    if (!anim) return { img, sx: 0, w: img.width, h: img.height };
+    const w = Math.floor(img.width / anim.frames);
+    const frame = Math.floor(millis() / (anim.frameMs || 200)) % anim.frames;
+    return { img, sx: frame * w, w, h: img.height };
+}
+
+// Frame 0 of a sprite as a silhouette/static source: {img, sx, sy, w, h}.
+function structureFrame0(key) {
+    const img = SPRITES[key];
+    if (!img || !img.width) return null;
+    const anim = ANIMATED_SPRITES[key];
+    const w = anim ? Math.floor(img.width / anim.frames) : img.width;
+    return { img, sx: 0, sy: 0, w, h: img.height };
+}
+
 // ===== DYNAMIC SUN SHADOWS (overworld) =====
 // Fake-but-convincing cast shadows: each caster's sprite is baked once into a
 // black silhouette, then stamped flipped/sheared/squashed onto a per-frame
@@ -268,19 +299,19 @@ function sunShadowParams() {
     };
 }
 
-// Bake (and cache) a pure-black copy of one or more sprites stacked at a
-// shared top-left origin (how tree trunk + canopy are drawn). srcRect trims
-// animated sheets to their first frame.
-function shadowSilhouette(key, imgs, srcRect) {
+// Bake (and cache) a pure-black copy of one or more sprite sources stacked at
+// a shared top-left origin (how tree trunk + canopy are drawn). Each source is
+// {img, sx, sy, w, h} — see structureFrame0() — so animated strips bake only
+// their first frame.
+function shadowSilhouette(key, sources) {
     if (_shadowSilhouettes[key]) return _shadowSilhouettes[key];
-    for (const im of imgs) if (!im || !im.width) return null; // not loaded yet; retry next frame
-    const w = srcRect ? srcRect.w : Math.max(...imgs.map(i => i.width));
-    const h = srcRect ? srcRect.h : Math.max(...imgs.map(i => i.height));
+    for (const s of sources) if (!s || !s.img || !s.img.width) return null; // not loaded yet; retry next frame
+    const w = Math.max(...sources.map(s => s.w));
+    const h = Math.max(...sources.map(s => s.h));
     const g = createGraphics(w, h);
     g.pixelDensity(1);
-    for (const im of imgs) {
-        if (srcRect) g.image(im, 0, 0, w, h, srcRect.x, srcRect.y, w, h);
-        else g.image(im, 0, 0);
+    for (const s of sources) {
+        g.image(s.img, 0, 0, s.w, s.h, s.sx || 0, s.sy || 0, s.w, s.h);
     }
     g.drawingContext.globalCompositeOperation = 'source-in';
     g.noStroke();
@@ -568,11 +599,11 @@ class Building {
     }
 
     draw() {
-        const spr = SPRITES[this.spriteKey];
+        const f = structureFrame(this.spriteKey);
         const screenX = this.gridX * CONFIG.TILE_SIZE - cameraX;
         const screenY = this.gridY * CONFIG.TILE_SIZE - cameraY;
-        if (spr) {
-            image(spr, screenX, screenY);
+        if (f) {
+            image(f.img, screenX, screenY, f.w, f.h, f.sx, 0, f.w, f.h);
         } else {
             // Fallback: a colored block (tier `color`, else brown) with a doorway
             // and a name label so placeholder buildings are distinguishable.
@@ -4791,26 +4822,26 @@ class World {
 
         // Oak/fir share one overworld trunk; only the canopy on top varies by season.
         if (tile.type === 'tree' || tile.type === 'fir_tree') {
-            const trunk = SPRITES['tiles.tree_trunk_overworld'];
+            const trunk = structureFrame('tiles.tree_trunk_overworld');
             if (!trunk) return;
-            const offsetX = screenX - (trunk.width - TS) / 2;
-            const offsetY = screenY - (trunk.height - TS);
+            const offsetX = screenX - (trunk.w - TS) / 2;
+            const offsetY = screenY - (trunk.h - TS);
             if (tile.depleted) tint(160, 160, 160);
-            image(trunk, offsetX, offsetY);
-            const top = SPRITES[seasonalTreeTopKey()];
-            if (top) image(top, offsetX, offsetY, top.width, top.height);
+            image(trunk.img, offsetX, offsetY, trunk.w, trunk.h, trunk.sx, 0, trunk.w, trunk.h);
+            const top = structureFrame(seasonalTreeTopKey());
+            if (top) image(top.img, offsetX, offsetY, top.w, top.h, top.sx, 0, top.w, top.h);
             noTint();
             return;
         }
 
         const key = TALL_SPRITE_TILES[tile.type];
         if (!key) return;
-        const spr = SPRITES[key];
-        if (!spr) return;
+        const f = structureFrame(key);
+        if (!f) return;
         if (tile.depleted) tint(160, 160, 160);
-        const offsetX = screenX - (spr.width - TS) / 2;
-        const offsetY = screenY - (spr.height - TS);
-        image(spr, offsetX, offsetY);
+        const offsetX = screenX - (f.w - TS) / 2;
+        const offsetY = screenY - (f.h - TS);
+        image(f.img, offsetX, offsetY, f.w, f.h, f.sx, 0, f.w, f.h);
         noTint();
     }
 
@@ -4838,10 +4869,10 @@ class World {
                 if (tile.type === 'tree' || tile.type === 'fir_tree') {
                     const topKey = seasonalTreeTopKey();
                     sil = shadowSilhouette('tree|' + topKey,
-                        [SPRITES['tiles.tree_trunk_overworld'], SPRITES[topKey]]);
+                        [structureFrame0('tiles.tree_trunk_overworld'), structureFrame0(topKey)]);
                 } else {
                     const sprKey = TALL_SPRITE_TILES[tile.type];
-                    sil = shadowSilhouette(sprKey, [SPRITES[sprKey]]);
+                    sil = shadowSilhouette(sprKey, [structureFrame0(sprKey)]);
                 }
                 if (!sil) continue;
                 stampShadow(L, sil, x * TS + TS / 2 - cameraX, y * TS + TS - cameraY, sil.height, p);
@@ -4849,10 +4880,11 @@ class World {
         }
 
         // Actors (a frozen first frame is plenty for a shadow).
-        const charRect = (spr) => ({ x: 0, y: 0, w: Math.min(CHAR_FW, spr.width), h: Math.min(CHAR_FH, spr.height) });
+        const charSource = (spr) => ({ img: spr, sx: 0, sy: 0, w: Math.min(CHAR_FW, spr.width), h: Math.min(CHAR_FH, spr.height) });
+        const wholeSource = (spr) => ({ img: spr, sx: 0, sy: 0, w: spr.width, h: spr.height });
         const pSpr = SPRITES['sprites.player'];
         if (pSpr && pSpr.width) {
-            const sil = shadowSilhouette('actor|player', [pSpr], charRect(pSpr));
+            const sil = shadowSilhouette('actor|player', [charSource(pSpr)]);
             if (sil) stampShadow(L, sil, player.x * TS + TS / 2 - cameraX, player.y * TS + TS - cameraY, sil.height, p);
         }
         if (typeof npcs !== 'undefined') {
@@ -4861,7 +4893,7 @@ class World {
                 const spr = SPRITES['sprites.' + npc.name.toLowerCase()];
                 if (!spr || !spr.width) continue;
                 const big = (npc.wTiles || 1) > 1 || (npc.hTiles || 2) > 2;
-                const sil = shadowSilhouette('actor|' + npc.name, [spr], big ? undefined : charRect(spr));
+                const sil = shadowSilhouette('actor|' + npc.name, [big ? wholeSource(spr) : charSource(spr)]);
                 if (!sil) continue;
                 const w = (npc.wTiles || 1) * TS;
                 stampShadow(L, sil, npc.gridX * TS + w / 2 - cameraX, npc.gridY * TS + TS - cameraY, sil.height, p);

@@ -16,25 +16,32 @@ code. Engine update suggestions live at the bottom.
 2. Standard Sprite Size Palette
 -------------------------------
 Use a small fixed set of allowed sizes. Every new sprite must fit one of these.
-Edit the dimensions below if you want a different scale.
+Edit the dimensions below if you want a different scale. Adjusted by Charles 7/3/2026
 
   size      | name        | typical use
   ----------+-------------+-------------------------------------------
   1 x 1     | standard    | ground tiles, small rocks, flowers, items
-  1 x 2     | tall        | player, NPCs, old small trees, lampposts
+  1 x 2     | short       | small NPCs
+  2 x 5     | tall        | player, NPCs, old small trees, lampposts
   2 x 2     | wide        | bushes, small boulders, tables, crates
-  2 x 3     | building_s  | small sheds, stalls, large rocks
-  2 x 4     | tree_m      | medium trees, totems, small monuments
-  2 x 6     | tree_l      | large / "real scale" trees, towers
-  3 x 3     | landmark_s  | small statues, fountains, wells
-  3 x 5     | landmark_m  | large statues, big buildings, special trees
+  4 x 6     | building_s  | small sheds, stalls, large rocks
+  8 x 8     | building_m  | homes, shops
+  8 x 12    | building_l  | temples, castles, etc.
+  4 x 10    | tree_m      | medium trees, totems, small monuments
+  6 x 12    | tree_l      | large / "real scale" trees, towers
+  3 x 5     | landmark_s  | small statues, fountains, wells
+  10 x 10   | landmark_m  | large statues, big buildings, special trees
 
 Current proposal for most trees and the player:
-  - Player / NPCs: 1 x 2
-  - Small trees / old trees: 1 x 2
-  - Medium trees: 2 x 4
-  - Large trees: 2 x 6
-  - Buildings: 2 x 3 or 3 x 5 depending on type
+  - Small NPCs: 1 x 2
+  - Player / most NPCs / old small trees / lampposts: 2 x 5
+  - Bushes, small boulders, tables, crates: 2 x 2
+  - Small sheds, stalls, large rocks: 4 x 6
+  - Homes, shops: 8 x 8
+  - Medium trees, totems, small monuments: 4 x 10
+  - Large / "real scale" trees, towers: 6 x 12
+  - Small statues, fountains, wells: 3 x 5
+  - Large statues, big buildings, special trees: 10 x 10
 
 Modify this section freely until the scale looks right in Pixsplat.
 
@@ -44,16 +51,14 @@ Modify this section freely until the scale looks right in Pixsplat.
 Every multi-tile sprite is anchored at the BOTTOM-LEFT tile.
 All code references (x, y) point to that bottom-left tile.
 
-Example for a 2 x 6 tree:
+Example for a 2 x 5 tree:
 
         +----+----+
-        | c0 | c1 |  y - 5  (top canopy)
+        | c0 | c1 |  y - 4  (top canopy)
         +----+----+
-        | c2 | c3 |  y - 4
+        | c2 | c3 |  y - 3
         +----+----+
-        | c4 | c5 |  y - 3
-        +----+----+
-        | c6 | c7 |  y - 2
+        | c4 | c5 |  y - 2
         +----+----+
         | t0 | t1 |  y - 1  (trunk)
         +----+----+
@@ -103,16 +108,16 @@ Use this pattern for every source sprite in the Sprites/ folder:
 Examples:
   - tiles_grass_1x1_01.png
   - tiles_beach_1x1_01.png
-  - trees_oak_2x6_01.png
-  - trees_oak_2x6_02.png
-  - trees_fir_2x4_01.png
+  - trees_oak_6x12_01.png
+  - trees_oak_6x12_02.png
+  - trees_fir_4x10_01.png
   - trees_palm_2x5_01.png
-  - player_mira_1x2_01.png
+  - player_mira_2x5_01.png
   - npc_luna_1x2_01.png
   - rocks_small_1x1_01.png
   - rocks_large_2x2_01.png
-  - buildings_shack_2x3_01.png
-  - buildings_house_3x5_01.png
+  - buildings_shack_4x6_01.png
+  - buildings_house_8x8_01.png
 
 Runtime copies (in assets/tiles/ and assets/sprites/) keep the same name but
 lowercase with underscores, matching the current project workflow.
@@ -124,16 +129,16 @@ The code will maintain a registry like this:
 
   MULTI_TILE_SPRITES = {
     'trees_oak': {
-      file: 'assets/tiles/trees_oak_2x6_01.png',
-      size: [2, 6],          // [width_in_tiles, height_in_tiles]
+      file: 'assets/tiles/trees_oak_2x5_01.png',
+      size: [2, 5],          // [width_in_tiles, height_in_tiles]
       anchor: 'bottom-left', // convention above
       solidRows: [0],        // 0-based from bottom; row 0 = anchor row
       parts: [               // each tile part knows its source pixel rect
-        { part: 't0', sx:  0, sy: 80, w: 16, h: 16 },  // anchor left
-        { part: 't1', sx: 16, sy: 80, w: 16, h: 16 },  // anchor right
+        { part: 't0', sx:  0, sy: 64, w: 16, h: 16 },  // anchor left
+        { part: 't1', sx: 16, sy: 64, w: 16, h: 16 },  // anchor right
         { part: 'c0', sx:  0, sy:  0, w: 16, h: 16 },
         { part: 'c1', sx: 16, sy:  0, w: 16, h: 16 },
-        // ... etc for all 12 tiles
+        // ... etc for all 10 tiles
       ]
     }
   };
@@ -148,7 +153,7 @@ Each placed tile object will store:
     anchorY: ay
   };
 
-For a 2 x 6 tree the engine places 12 tile objects total.
+For a 2 x 5 tree the engine places 10 tile objects total.
 
 
 7. Tile Type Categories
@@ -177,7 +182,7 @@ Rules per category:
     - May be multi-tile (walls, cliffs).
 
   FLORA
-    - Usually 2 x 4, 2 x 5, or 2 x 6.
+    - Usually 2 x 5, 4 x 10, or 6 x 12.
     - Bottom row solid.
     - Upper rows passable, drawn in a deferred canopy pass.
     - Harvestable flora must expose an anchor for harvest logic.
@@ -188,12 +193,13 @@ Rules per category:
     - Drawn in base pass unless it needs to overhang.
 
   BUILDING
-    - 2 x 3, 2 x 4, or 3 x 5.
+    - 4 x 6 or 8 x 8.
     - Solid footprint as large as the visible base.
     - Door / interact tile marked separately.
 
   ACTOR
-    - 1 x 2 for player and NPCs.
+    - 1 x 2 for small NPCs.
+    - 2 x 5 for player and most NPCs.
     - Solid as an obstacle to other actors (via animalAt-style checks).
     - Animated via directional sprite sheets or frame sequences.
 
@@ -247,8 +253,8 @@ When these sprites replace old ones, saves with old tile types must convert.
   grass           ->  tiles_grass_1x1
   beach           ->  tiles_beach_1x1
   sea             ->  tiles_sea_1x1
-  tree            ->  trees_oak_2x6_01 (or chosen replacement)
-  fir_tree        ->  trees_fir_2x4_01
+  tree            ->  trees_oak_6x12_01 (or chosen replacement)
+  fir_tree        ->  trees_fir_4x10_01
   rock            ->  rocks_small_1x1_01
   shiny_rock      ->  rocks_shiny_1x1_01
   weeds           ->  flora_weeds_1x1_01
@@ -277,7 +283,7 @@ When you hand this file back for coding, expect changes in these areas:
 
   C. World generation
       - Placement helpers must check every tile the sprite will occupy.
-      - Must pick a clear 2 x N or 3 x N rectangle before placing a tree.
+      - Must pick a clear rectangle matching the sprite's palette size before placing it.
       - Must stamp all parts with correct part names and anchor references.
 
   D. isSolidTile(x, y)
@@ -302,7 +308,8 @@ When you hand this file back for coding, expect changes in these areas:
       - Bed / shack art may need to grow to match the new exterior scale.
 
   I. Player and NPCs
-      - Player sprite may need to scale up to match bigger trees.
+      - Player and most NPCs use 2 x 5.
+      - Small NPCs use 1 x 2.
       - NPC drawing and collision need the same multi-tile treatment as actors.
 
   J. Save/load
@@ -325,12 +332,12 @@ When you hand this file back for coding, expect changes in these areas:
 12. Open Questions (answer before coding)
 -----------------------------------------
   [X] Finalize size palette - confirm dimensions above.
-  [] Player/NPC scale - stay at 1 x 2 or grow to match trees?
-  [ ] Building sizes - 2 x 3, 2 x 4, or 3 x 5?
+  [2x5] Player/NPC scale - 2 x 5 for player and most NPCs; 1 x 2 for small NPCs.
+  [4x6 / 8x8 / 10x10] Building sizes - 4 x 6 for shacks/stalls, 8 x 8 for homes/shops, 10 x 10 for big/special buildings.
   [no] Keep old sprites as fallback? (Recommended: no, full replacement.)
   [strict passes] Draw order - strict passes, or Y-sorted?
   [Only darken sprite] Harvest behavior - remove whole tree, convert to stump, or leave debris?
-  [ ] Should the CSV translator auto-stamp multi-tile footprints?
+  [yes] Should the CSV translator auto-stamp multi-tile footprints?
 
 
 13. Quick Checklist Before Drawing a Sprite
@@ -344,7 +351,51 @@ When you hand this file back for coding, expect changes in these areas:
   [ ] Have you updated this SpriteUpdate.txt if you changed any rules?
 
 
+14. Sprite Sheet Format (matches the engine as of 2026-07-05)
+-------------------------------------------------------------
+Character scale decision (supersedes the 2x5 player/NPC line in Section 2):
+roster neighbors and the player stay 1x2 (16x32). The 2x5+ sizes are reserved
+for landmark characters (Mubaba, MarcOS, gods, holiday visitors). Dialogue
+portraits (64x64, assets/sprites/portraits/) fill the detail gap.
+
+CHARACTER SHEETS — strict 16x32 grid, top-left origin, NO gutters
+  - Sheet dimensions must be exact multiples: width = 16 x frames,
+    height = 32 x rows. A single stray pixel column shifts every cut.
+  - Empty space INSIDE a cell is fine. Transparent background. Feet on the
+    bottom edge, horizontally centered, same baseline in every frame.
+  - Column 0 is the standing pose; all columns cycle while walking (150 ms
+    per frame). 2-4 walk frames is plenty.
+  - Row layouts the engine understands:
+      single 16x32       one still, FACING LEFT (engine bobs + mirrors)
+      1 row x N cols     looping one-direction animation, never mirrored
+      3 rows x N cols    row 0 down, row 1 up, row 2 LEFT (mirrored for right)
+      4 rows x N cols    down / left / right / up, no mirroring — use for
+                         asymmetric characters (readable text will not flip)
+  - Landmark characters (2x5 = 32x80 etc.): single still only for now,
+    facing left. Ask for engine work before drawing an animated one.
+
+STRUCTURE STRIPS (trees, monuments, buildings) — tight, no padding
+  - One file per object per animation. Frames left to right in a horizontal
+    strip. Every cell exactly the same size, sized to the LARGEST frame.
+  - No gutters between frames: the engine slices at width / frame-count.
+    (Padding is pointless here — the renderer never smooths, so frames
+    cannot bleed into each other. Use a guide grid while drawing instead.)
+  - Anchor: bottom-center of the cell = the base/trunk, identical in every
+    frame, or the structure will appear to shudder.
+  - Frame 0 = the at-rest pose (a strip degrades gracefully to a still).
+  - Sizes are per-file: the engine derives cell width from the file itself,
+    so differently-sized buildings/monuments animate independently and
+    resizing one never affects another.
+  - To turn a strip on: add one line to ANIMATED_SPRITES in src/game.js,
+    e.g.  'tiles.palm_tree': { frames: 4, frameMs: 200 },
+    Shadows automatically cast from frame 0.
+
+
 Revision history
 ----------------
 Created: 2026-06-30
 Purpose: planning document for full sprite rebuild at larger, consistent scale.
+Revised: 2026-07-03 - size palette kept as revised by Charles; remaining sections corrected to match.
+Revised: 2026-07-05 - Section 14 added: sheet formats for characters and
+animated structure strips; character scale locked to 1x2 roster + landmark
+2x5+ (option C), portraits planned.
