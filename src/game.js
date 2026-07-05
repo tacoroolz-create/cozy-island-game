@@ -332,6 +332,13 @@ const ITEMS = {
 
     // Outdoor placeable — equip and click an open area outside to build a neighbor's shack
     neighbor_shack: { name: "Neighbor's Shack", category: 'block', maxStack: 1, color: '#8B6914', desc: 'A cozy little shack for a neighbor. Place it outside on open ground.', outdoor: { type: 'shack' } },
+
+    // Trees scooped up by the Tree Move magic trick (magic.js). Equip and click
+    // open ground to replant via World.placeTree (grass or beach per type).
+    potted_tree:        { name: 'Potted Tree',        category: 'block', maxStack: 10, color: '#2E7D32', desc: 'A whole tree, magically to-go. Replant on open grass.', outdoor: { tree: 'tree' } },
+    potted_fir_tree:    { name: 'Potted Fir',         category: 'block', maxStack: 10, color: '#1B5E20', desc: 'A fir tree in a very big pot. Replant on open grass.', outdoor: { tree: 'fir_tree' } },
+    potted_banana_tree: { name: 'Potted Banana Tree', category: 'block', maxStack: 10, color: '#F9A825', desc: 'A banana tree, roots and all. Replant on open beach.', outdoor: { tree: 'banana_tree' } },
+    potted_palm_tree:   { name: 'Potted Palm',        category: 'block', maxStack: 10, color: '#66BB6A', desc: 'A palm tree to-go. Replant on open beach.', outdoor: { tree: 'palm_tree' } },
 };
 
 // ===== INVENTORY =====
@@ -986,15 +993,11 @@ function drawGame() {    // Handle continuous movement
     updateYogatron(deltaTime);
     drawYogatron();
 
-    // Draw fairy overlay (from magic system)
-    if (typeof drawFairyOverlay === 'function') drawFairyOverlay();
-
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
     if (typeof updateHog === 'function') updateHog(deltaTime);
     if (typeof checkAnimalSunEvents === 'function') checkAnimalSunEvents();
-    if (typeof updateFairies === 'function') updateFairies(deltaTime);
     if (typeof updateDialogue === 'function') updateDialogue(deltaTime);
     if (typeof updateMinigame === 'function' && gameState === 'minigame') updateMinigame(deltaTime);
 
@@ -1986,14 +1989,17 @@ function mousePressed() {
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
         if (typeof tryTillSoil === 'function' && tryTillSoil()) return;
-        // Place a neighbor's shack (outdoor item) anywhere on open ground.
+        // Place an outdoor item (neighbor's shack, potted tree) on open ground.
         {
             const active = inventory.getActiveItem();
             if (active && ITEMS[active.id] && ITEMS[active.id].outdoor) {
+                const outdoor = ITEMS[active.id].outdoor;
                 const TS = CONFIG.TILE_SIZE;
                 const tx = Math.floor((mouseX + cameraX) / TS);
                 const ty = Math.floor((mouseY + cameraY) / TS);
-                if (tryPlaceNeighborShack(tx, ty, ITEMS[active.id].outdoor.type)) return;
+                if (outdoor.tree) {
+                    if (tryPlaceMovedTree(tx, ty, outdoor.tree, active.id)) return;
+                } else if (tryPlaceNeighborShack(tx, ty, outdoor.type)) return;
             }
         }
         // Use the selected hotbar item on a clicked adjacent tile (e.g. plant a seed).
@@ -2862,6 +2868,20 @@ let shackPicker = null; // { tx, ty, type, neighbors: [npc,...], selected: 0 }
 
 // Try to place a neighbor's shack at the clicked overworld tile.
 // Validates the footprint then opens a neighbor-selection picker.
+// Replant a potted tree item (from the Tree Move trick) at (tx, ty). Always
+// returns true so the click is swallowed whether or not placement succeeded.
+function tryPlaceMovedTree(tx, ty, treeType, itemId) {
+    if (tx < 1 || tx > CONFIG.WORLD_WIDTH - 2 || ty < 1 || ty > CONFIG.WORLD_HEIGHT - 2) return true;
+    if (world.placeTree(tx, ty, treeType)) {
+        inventory.removeItem(itemId, 1);
+        notify('Replanted the ' + (ITEMS[itemId] ? ITEMS[itemId].name.toLowerCase() : 'tree') + '!');
+    } else {
+        const spot = (treeType === 'tree' || treeType === 'fir_tree') ? 'grass' : 'beach';
+        notify('Needs a clear ' + spot + ' tile with room above it.');
+    }
+    return true;
+}
+
 function tryPlaceNeighborShack(tx, ty, type) {
     type = type || 'shack';
     const dims = BUILDING_TIERS[type] || BUILDING_TIERS.shack;
@@ -3115,6 +3135,9 @@ function keyPressed() {
             gameState = STATE.MENU;
             menuTab = 0;
             invSelectedSlot = 0;
+            return false;
+        } else if (key === 'm' || key === 'M') {
+            if (typeof openMagicCastMenu === 'function') openMagicCastMenu();
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Check if facing a building - enter it
@@ -3607,7 +3630,7 @@ function startNewGame() {
     spawnPlayerShack();
     npcs = [];
     knownMagic = [];
-    fairyEntities = [];
+    magicFlags = { mubabaQuest: false };
     birds = [];
     crabs = [];
     groundLoot = [];
@@ -4131,6 +4154,13 @@ const UNDERGROUND_POND_LANDING = { x: 19, y: 13 }; // inner water tile, used as 
 // own building once that exists (July3rdReview C4).
 const MUBABA_SPAWN = { x: 26, y: 14 };
 
+// Where the Teleport trick (magic.js) drops the player: one tile clear of
+// each map's pond, so it never lands on a warp tile.
+const TELEPORT_LANDINGS = {
+    island:      { x: 50, y: 45, facing: 'down' },
+    underground: { x: 20, y: 17, facing: 'down' }
+};
+
 // The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
 // Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
 // and guests "arrive" by boat and appear on the beach tile just east of the
@@ -4440,20 +4470,21 @@ class World {
     placeTree(x, y, type = 'tree') {
         // Oak and fir trees stand on grass; banana/palm trees stand on the beach.
         const baseNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : 'beach';
-        if (this.tiles[x][y].type !== baseNeeded) return;
+        if (this.tiles[x][y].type !== baseNeeded) return false;
         const topY = y - 1;
-        if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return;
+        if (topY < 0 || topY >= CONFIG.WORLD_HEIGHT) return false;
         const topTile = this.tiles[x][topY];
         const topNeeded = (type === 'tree' || type === 'fir_tree') ? 'grass' : null;
         // Inland trees must stay fully on grass; beach trees can extend over grass or beach.
-        if (!topTile || (topNeeded ? topTile.type !== topNeeded : (topTile.type !== 'grass' && topTile.type !== 'beach'))) return;
-        if (topTile.solid === true || topTile.isTreeTop === true) return;
+        if (!topTile || (topNeeded ? topTile.type !== topNeeded : (topTile.type !== 'grass' && topTile.type !== 'beach'))) return false;
+        if (topTile.solid === true || topTile.isTreeTop === true) return false;
 
         // The trunk tile blocks movement; the canopy tile above it does not, so the
         // player can walk under the overworld tree-top sprite (see drawTallDecoration).
         const topSolid = (type === 'tree' || type === 'fir_tree') ? false : true;
         this.tiles[x][y] = { type, variant: floor(random(3)), solid: true };
         this.tiles[x][topY] = { type, variant: floor(random(3)), isTreeTop: true, solid: topSolid };
+        return true;
     }
     
     draw() {

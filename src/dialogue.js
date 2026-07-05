@@ -318,6 +318,12 @@ function generateDialogue(personality, name) {
 function openDialogue(npc) {
     if (!npc || !npc.isPresent) return;
 
+    // Mubaba gets his own menu (Talk / Learn Magic) — see magic.js.
+    if (npc.id === 'mubaba' && typeof openMubabaMenu === 'function') {
+        openMubabaMenu(npc);
+        return;
+    }
+
     // If a poop tile is nearby, the NPC may comment on the smell.
     let stinkPrefix = '';
     if (typeof isNearPoop === 'function' && isNearPoop(npc.gridX, npc.gridY, 3)) {
@@ -517,12 +523,19 @@ function drawDialogueScreen() {
         textAlign(LEFT, TOP);
         textSize(10);
         textFont('Courier New');
-        text(dialogueState.npc.name, 8, panelY + 6);
+        // Magic menus (magic.js) run without an NPC and set a title instead.
+        text(dialogueState.npc ? dialogueState.npc.name : (dialogueState.menuTitle || ''), 8, panelY + 6);
 
+        // Long option lists (e.g. transmute pickers) scroll: show a window of
+        // rows centered on the selection.
+        const maxRows = 6;
+        const total = dialogueState.advancedOptions.length;
+        const startRow = Math.max(0, Math.min(dialogueState.advancedSelected - 2, total - maxRows));
         dialogueState._advRects = [];
-        for (let i = 0; i < dialogueState.advancedOptions.length; i++) {
+        for (let vi = 0; vi < Math.min(maxRows, total); vi++) {
+            const i = startRow + vi;
             const opt = dialogueState.advancedOptions[i];
-            const oy = panelY + 22 + i * 14;
+            const oy = panelY + 22 + vi * 14;
             // Hover-to-highlight (only while the mouse is actually moving, so a
             // resting cursor doesn't fight keyboard navigation).
             if (mouseMovedRecently() && mouseX >= 8 && mouseX <= width - 8 && mouseY >= oy - 2 && mouseY < oy + 12) {
@@ -537,6 +550,8 @@ function drawDialogueScreen() {
             }
             dialogueState._advRects.push({ x: 8, y: oy - 2, w: width - 16, h: 14, index: i });
         }
+        if (startRow > 0) { fill(150); text('▲', width - 16, panelY + 22); }
+        if (startRow + maxRows < total) { fill(150); text('▼', width - 16, panelY + 22 + (maxRows - 1) * 14); }
         fill(120);
         textAlign(RIGHT, BOTTOM);
         textSize(7);

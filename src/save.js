@@ -260,6 +260,7 @@ function serializeGame() {
         buildings: buildings.map(b => b.serialize()),
         npcs: npcs.map(n => n.serialize()),
         knownMagic: knownMagic || [],
+        magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
         crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
         turtles: turtles.map(t => ({ type: t.type, gridX: t.gridX, gridY: t.gridY, variant: t.variant })),
@@ -341,6 +342,7 @@ function deserializeGame(data) {
     }
 
     knownMagic = data.knownMagic || [];
+    magicFlags = Object.assign({ mubabaQuest: false }, data.magicFlags || {});
 
     birds = [];
     crabs = [];
