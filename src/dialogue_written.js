@@ -1381,6 +1381,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1445,6 +1447,57 @@ const WRITTEN_DIALOGUES = {
     },
     "final": {
       "text": "You... you see me. *ring glows brightly* Not the classification. Not the containment. ME. *ink reaches out gently* I am Mah. I contain multitudes. I am messy because LIFE is messy. BEAUTIFUL is messy. *soft creak* You may return. My veil is always open... for you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
+  ,
+    "alt_start": {
+      "text": "*Mah emerges from a patch of darkness that seems deeper than it should be, a huge deep space with stuffing ink and a black veil that rustles without wind. A creaking sound accompanies their presence, and you notice a ring floating near what might be their hand.* \"Ah. *voice comes from everywhere and nowhere* You've found me. Most don't. *the ring spins slowly* I prefer it that way. But you... you have the look of someone who doesn't ask too many questions. Refreshing.\"",
+      "choices": [
+        {
+          "text": "I have LOTS of questions, actually!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*the veil shifts, somehow expressing amusement* \"Lots? *creaking intensifies* Oh dear. *the ring pulses* I suppose I can answer... some. Not all. Some questions are better left... floating. *pause* But ask away. I'm in a generous mood. For an SCP.\"",
+      "choices": [
+        {
+          "text": "What DOES SCP stand for?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*drifts closer, the space around them warping slightly* \"'Most don't' because most don't LOOK. *the veil lifts slightly* I exist in the spaces BETWEEN things. The gap under your bed. The shadow that's too dark. The silence after a question. *ring chimes* You looked. That makes you... interesting.\"",
+      "choices": [
+        {
+          "text": "That's simultaneously terrifying and fascinating!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*the ring floats toward you, then back* \"Important? *voice softens* It's... an anchor. Keeps me from drifting too far into the between-spaces. *the ring settles back* Without it, I'd be everywhere and nowhere all at once. Which is my NATURAL state, but it's terribly inconvenient for conversations.\"",
+      "choices": [
+        {
+          "text": "Can I touch it?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*the darkness around them seems less oppressive*",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1565,6 +1618,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1637,6 +1692,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*Liz sits serenely on a grassy patch, her striped pattern catching the light, blue collar neat and tidy. She looks up from what appears to be a star chart drawn in the dirt.* \"Hello. *voice is calm, measured* I was just calculating the orbital trajectory of the moon. *pauses* Well, not CALCULATING calculating. More like... contemplating. *tail gives one dignified wag* I'm Liz. I enjoy astrophysics and quiet contemplation. And doors. Doors are fascinating.\"",
+      "choices": [
+        {
+          "text": "Doors? Like... actual doors?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*nods seriously* \"Doors. *considers* Think about it. They're neither open nor closed until someone INTERACTS with them. *paws at the star chart* It's quantum mechanics, but... wooden. *looks up* Aiko thinks I'm weird about doors. But Aiko also runs toward cookie-scented hills, so.\"",
+      "choices": [
+        {
+          "text": "Aiko DOES seem very excitable!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*eyes light up with genuine enthusiasm* \"Amazing? *tail wags twice, very controlled* It's... adequate. *returns to star chart* The island has excellent stargazing. No light pollution. And the dream-atmosphere creates UNIQUE refraction patterns. *pauses* I've mapped seventeen new constellations. Named one after Chester. He didn't notice.\"",
+      "choices": [
+        {
+          "text": "What does the Chester constellation look like?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*shifts to make room* \"Join? *considers* You'd need to understand the variables. *taps chart with paw* Moon's phase. Tide correlation. Dream-logic interference patterns. *looks at you* ...Or we could just WATCH the moon and make up stories about it. That's also valid science.\"",
+      "choices": [
+        {
+          "text": "Let's do the stories! Science-adjacent!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*sits back, looking content*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Eo": {
     "start": {
@@ -1657,6 +1763,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1729,6 +1837,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A massive titanium frame approaches, warm to the touch, with an aqua ring glowing softly around his head. His bulky form moves with surprising gentleness, and his chest panel pulses with a soft, bighearted light.* \"Greetings. *voice is deep but kind* I am Eo. I have been... schooling. For responsible attention. *aqua ring brightens* It means I pay attention to things. RESPONSIBLY. Not like Quark. He pays attention to EVERYTHING. All at once. It's exhausting to watch.\"",
+      "choices": [
+        {
+          "text": "What kind of things do you pay attention to?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*chest panel glows warmer* \"Things that need attention. *considers* Titan's construction projects. Sprig's confidence issues. The way the tide comes in at precisely the wrong time for beach naps. *aqua ring pulses* Big things. Small things. All things deserve... responsible attention.\"",
+      "choices": [
+        {
+          "text": "That's actually really wise, Eo!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages a robotic sigh* \"Intense? *chest panel flickers* Quark collected 347 shiny objects yesterday. THREE HUNDRED FORTY-SEVEN. *aqua ring dims slightly* I helped him organize them. By reflectivity. It took six hours. *pause* He wants to do it again today.\"",
+      "choices": [
+        {
+          "text": "At least he's consistent!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*touches the ring gently* \"Beautiful? *voice softens* Thank you. It's... a focus enhancer. Helps me channel my responsible attention. *ring glows brighter* Without it, I'd notice TOO much. Everything all at once. Like Quark. *shudders slightly* That way lies chaos.\"",
+      "choices": [
+        {
+          "text": "So the ring keeps you sane?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*chest panel radiates warmth*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Quark": {
     "start": {
@@ -1749,6 +1908,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1821,6 +1982,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small silver sphere ZIPS toward you, rotating antennae creating a soft whirring sound. A built-in magnetic claw clicks excitedly as Quark comes to an abrupt hover inches from your face.* \"HIHIHI! *words tumble out in rapid bursts* You'reNEW! Hi! I'mQuark! *spins in a circle* DidyoubringanythingSHINY? No? That'sOKAY! *magnetic claw extends and retracts* IhavePLENTY! Wanttosee? Wanttosee? WANTTOSEE?\"",
+      "choices": [
+        {
+          "text": "Yes! Show me your shiny things!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*antennae spin with excitement, zipping in circles* \"YES! FOLLOWME! *zooms toward a massive pile* LOOK! *magnetic claw points* Bottlecap! Reflectivity: 8.3! Shinyrock! Reflectivity: 6.7! Chester'slostwasher! Reflectivity: 9.1! *pauses briefly* Don'ttellChester. He'sstilllooking.\"",
+      "choices": [
+        {
+          "text": "Chester's washer?! Should we give it back?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages to vibrate in place* \"Slow? *antennae droop slightly* But... but... there'ssoMUCHtoSAY! *takes a deep breath* Okay. Okay. *speaks slightly slower* I'm. Quark. I. Like. Shiny. Things. *immediately speeds back up* BETTER? WORSE? STILLTOOFAST?\"",
+      "choices": [
+        {
+          "text": "Better! Much better!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*spins rapidly, counting* \"HOWMANY? *antennae glow* Let'ssee! Today: 47! Thisweek: 347! Thismonth: 1,284! *pauses* Eohelpedmecount. TheBIGEo. NottheorganizingEo. *confused spinning* Wait. ArethereTWOEos? That'sAMAZING! MOREFRIENDS!\"",
+      "choices": [
+        {
+          "text": "Yes, there are two Eos! It's wonderful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*hovers at eye level, antennae glowing brightly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Zora": {
     "start": {
@@ -1841,6 +2053,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1913,6 +2127,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*Zora floats gently above the ground, her gelatinous pastel-blue body pulsing with soft light. She moves with serene grace, and as she notices you, her colors shift through a gentle spectrum.* *Colors: Warm yellow → Welcoming orange → Curious purple* \"Hello. *voice seems to come from the light itself* I am Zora. I speak in colors, but I can... translate. For you. *pulses softly* The sea breeze is particularly lovely today. Would you like to meditate?\"",
+      "choices": [
+        {
+          "text": "I'd love to meditate with you!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*drifts lower, colors calming to soft blue* \"Wonderful. *gentle pulsing* Find a comfortable position. *colors shift to guiding green* Breathe with the tide. In... *warmer glow* ...out... *cooler glow* ...The colors will guide you. No thoughts. Just... light.\"",
+      "choices": [
+        {
+          "text": "Tell me more.",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*cycles through several colors deliberately* \"Meanings? *settles on thoughtful violet* Yellow is welcome. Orange is friendship. Purple is curiosity. *shifts to soft pink* Pink is... happiness at being understood. *returns to blue* Most beings don't wait for the colors. You did.\"",
+      "choices": [
+        {
+          "text": "I want to understand you properly!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*pulses in a mesmerizing pattern* \"How? *considers* On my world, words are... limiting. Colors hold MORE meaning. *shifts through a rainbow* This sequence means: 'I am grateful for your presence and the way the light touches your face.' *settles on warm gold* In words, that would take... too long.\"",
+      "choices": [
+        {
+          "text": "That's actually more efficient!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*glows with steady, warm light*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Basil": {
     "start": {
@@ -1933,6 +2198,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2005,6 +2272,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A thick green vine snakes toward you, bright purple flowers dotting its length. As you approach, the flowers open slightly, and a sassy voice emanates from somewhere along the vine.* \"Well, well. *flowers rustle* Look what the cat dragged in. Or didn't drag in, because Luna would never. She has STANDARDS. *a purple flower opens fully, like a laugh* I'm Basil. I grow sarcastic comments on demand. Want a sample? They're fresh.\"",
+      "choices": [
+        {
+          "text": "I'd LOVE a sample of your sarcasm!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*flowers all open at once* \"Sample? *voice drips with amusement* Oh, darling, where to BEGIN? *one flower points at you* 'Nice outfit!' No wait, that's a LIE. *another flower opens* 'You're very... vertically oriented!' Better? *rustles with laughter* Too mean? Not mean ENOUGH? I'm still CALIBRATING.\"",
+      "choices": [
+        {
+          "text": "Calibrating? On what scale?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*vine shifts position* \"Know Luna? *flowers close slightly* We have an ARRANGEMENT. *one flower opens conspiratorially* She brings me gossip. I provide sarcasm about said gossip. *rustles* It's a symbiotic relationship. Very scientific. Daphne doesn't approve. Daphne is TOO NICE.\"",
+      "choices": [
+        {
+          "text": "What's the juiciest gossip you've exchanged?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this, flowers tilting thoughtfully* \"Compliments? *vine shifts* I COULD. But they're not my... specialty. *one flower opens shyly* 'Your hair looks adequate today.' See? THAT'S as nice as I get. *rustles* Daphne does compliments. I do... reality. With EXTRA seasoning.\"",
+      "choices": [
+        {
+          "text": "'Adequate' is high praise from a basilisk vine!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*flowers all face you*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Gearwick": {
     "start": {
@@ -2025,6 +2343,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2097,6 +2417,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*Gearwick approaches with precise, measured movements, his clock-work exterior ticking softly. Brass gears are visible through his transparent chest panel, each one turning with perfect timing.* \"Ah. You're 3.47 minutes early for our scheduled interaction. *gears whir* Not that we HAD a schedule. But I've created one. *produces a small printed card* Here. Your appointment slots. Tuesdays work best for me. Unless there's a power outage. Then... chaos.\"",
+      "choices": [
+        {
+          "text": "You made me a SCHEDULE? That's thoughtful!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*gears spin with satisfaction* \"Thoughtful? *chest panel glows* It's EFFICIENT. *taps the card* See? I've blocked out time for: conversation, problem-solving, emergency consultations, and... *squints* ...'spontaneous moments.' That last one is 5 minutes. Max.\"",
+      "choices": [
+        {
+          "text": "5 minutes for spontaneity? That's very generous!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*gears stutter slightly at the thought* \"Power outage? *voice drops* Last Tuesday... *gears shudder* ...I missed a DEADLINE. *chest panel flickers anxiously* The toast was supposed to be ready at 8:03 AM. It was ready at 8:17. *pause* FOURTEEN MINUTES LATE. Brass won't let me forget.\"",
+      "choices": [
+        {
+          "text": "Brass probably tells that story dramatically!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*checks internal clock* \"Right now? *gears pause* Well. According to MY schedule, this is 'unscheduled interaction time.' *considers* But I can MAKE an exception. *gears resume* Just... don't tell Titan. He thinks I'm too rigid. He's RIGHT. But I'm WORKING on it.\"",
+      "choices": [
+        {
+          "text": "Your secret is safe with me!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*gears tick contentedly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Zephyr": {
     "start": {
@@ -2117,6 +2488,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2189,6 +2562,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A tiny iridescent hummingbird zips toward you, wings beating so fast they're nearly invisible. A tiny notebook is strapped to its leg, pages fluttering in the wind created by its own flight.* \"HI! OhmygoodnessHI! *words tumble out at high speed* You'reNEW! I'mZephyr! *zips in a figure-eight* DidyouhearaboutwhathappenedwithHudsonandMimis? OhWAIT! YouprobablyDON'T! LetmeTELLYOU! *notebook flaps wildly*\"",
+      "choices": [
+        {
+          "text": "Yes! Tell me EVERYTHING!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*hovers excitedly* \"OkaySO! *wings beat faster* Mimis was planning Hudson's SURPRISE birthday party—don'ttellHudson—AND she put the invitation on the COMMUNITY CALENDAR! *zips in a circle* Hudson saw it! The surprise is RUINED! But Mimis says RUINED surprises are still PARTIES so! *notebook page tears loose*\"",
+      "choices": [
+        {
+          "text": "Oh no! Poor Hudson! Does he know?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages to hover in place* \"Slow? *takes a deep breath* Okay. Okay. *speaks slightly slower* I. Am. Zephyr. *immediately speeds up again* I. Tell. Gossip. FAST. *shrugs* It's. A. THING. I. HAVE. Sorrynotsorry!\"",
+      "choices": [
+        {
+          "text": "It's fine! I'm catching up!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*zips thoughtfully* \"GoodORbad? *considers* It's... COLORFUL gossip! *wings shimmer* Like, Hudson was MAD at first. But then Mimis offered him EXTRA glitter for his party hat. And he said YES. *zips excitedly* So now it's a SPARKLY surprise! Which is better than a REGULAR surprise!\"",
+      "choices": [
+        {
+          "text": "Everything IS better with glitter!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*lands on your shoulder briefly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Gorm": {
     "start": {
@@ -2209,6 +2633,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2281,6 +2707,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small emerald-scaled dragon approaches, oversized ears twitching with curiosity. His warm, ember-glowing tail flicks behind him, and he carries himself with the dignity of something much larger.* \"Halt! *voice is surprisingly deep for his size* I am Gorm! Hoarder of glitter! Guardian of... *looks around* ...this particular patch of ground! *ears perk up* Wait, you're not here to steal my glitter, are you? Because I HAVE it. All of it. Every piece.\"",
+      "choices": [
+        {
+          "text": "I would NEVER steal glitter! It's sacred!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*tail glows brighter with relief* \"NEVER? *ears relax* Good. GOOD. *shifts protectively* Because I've developed a SYSTEM. By color. By sparkle-factor. By... emotional resonance. *pause* The pink glitter is from Mimis's party. It's VERY powerful stuff.\"",
+      "choices": [
+        {
+          "text": "Emotional resonance? Glitter has FEELINGS?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*looks deeply offended* \"Scared of FIRE? *tail flame flares* I am a DRAGON! Fire is my... well. *tail flame shrinks slightly* ...it's more of a warm glow right now. I'm GROWING into it! *straightens up* And I'm NOT scared. I'm... respectfully cautious. There's a difference!\"",
+      "choices": [
+        {
+          "text": "Respectfully cautious is very wise!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*gestures to a small pile* \"How much? *ears twitch proudly* Behold! *the pile sparkles* Approximately 3,847 pieces! *pause* I count them every night. Before bed. *tail glows* It's... calming. Like counting sheep. But SPARKLIER.\"",
+      "choices": [
+        {
+          "text": "3,847?! That's dedication!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles onto his glitter pile*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Sprig": {
     "start": {
@@ -2301,6 +2778,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2373,6 +2852,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A round, spotted mushroom stands quietly in a shady spot, a tiny wooden walking stick propped against its cap. When you approach, the mushroom seems to shrink slightly, and a soft whisper emanates from beneath the cap.* \"Um... hello. *whisper is barely audible* I'm... Sprig. *walking stick wobbles* Sorry. I don't mean to be... here. But I am. *pause* You can... talk. If you want. Or not. That's... also okay.\"",
+      "choices": [
+        {
+          "text": "Hi Sprig! It's nice to meet you!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*cap lifts slightly* \"Nice? *whisper grows a tiny bit stronger* To... meet me? *considers* Most people walk past. Which is... fine! I understand! *walking stick steadies* But you... stopped. That's... kind.\"",
+      "choices": [
+        {
+          "text": "Why would anyone walk past you? You're great!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages to look proud* \"Adorable? *cap glows softly* It was... a gift. From Birch. *touches it gently* He said I needed... support. For when I... wobble. *pause* I don't actually NEED it. But it feels... safe. Having it.\"",
+      "choices": [
+        {
+          "text": "Birch is very thoughtful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*whisper becomes even softer* \"Help? *cap droops* I'm just... shy. *long pause* It's not... fixable. I've tried. *walking stick shifts* But... talking helps. A little. *looks up* So. Thank you. For... asking.\"",
+      "choices": [
+        {
+          "text": "I'm happy to listen whenever you want to talk!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*cap rises to full height*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Rollo": {
     "start": {
@@ -2393,6 +2923,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2465,6 +2997,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A wooden rolling pin approaches, expressive eyes carved into the handle and a dapper bow tie perfectly centered. He rolls with precision, and you can smell faint flour in his wake.* \"Good day. *voice has a professional quality* I couldn't help but notice... *leans in* ...your shoes are 2.3 degrees off-center. *bow tie twitches* Not that I'm JUDGING. But consistency matters. In shoes. In life. In... dough.\"",
+      "choices": [
+        {
+          "text": "My shoes are off-center?! Let me fix them!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*eyes widen approvingly* \"Fix them? *rolls closer* Excellent! Initiative! *watches critically* Though... *adjusts slightly* ...there. Now they're only 0.7 degrees off. Much better! *bow tie straightens* Consistency is the foundation of... everything.\"",
+      "choices": [
+        {
+          "text": "0.7 degrees?! I can't even SEE that!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages to look proud* \"Baker? *rolls in a small circle* I prefer 'dough consistency specialist.' *bow tie gleams* Baking is... common. But achieving PERFECT dough texture? *eyes sparkle* That is ART. That is SCIENCE. That is... my LIFE.\"",
+      "choices": [
+        {
+          "text": "What makes dough texture perfect?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this deeply* \"Perfect degree? *eyes narrow thoughtfully* For shoes... 0 degrees. Perfectly centered. *pause* But I understand... humans have LIMITATIONS. *bow tie softens* So I accept 0.5 degrees as... 'human perfect.' It's my way of being... accommodating.\"",
+      "choices": [
+        {
+          "text": "0.5 degrees is very generous of you!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*rolls back to attention*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Nyx": {
     "start": {
@@ -2485,6 +3068,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2557,6 +3142,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A translucent, lavender-tinged silhouette drifts lazily toward you, hovering just above the ground. Nyx's form shimmers with barely-contained mischief, and you notice they're holding something that definitely wasn't there a moment ago.* \"Helloooo~ *voice echoes playfully* I'm Nyx! *the object—your left shoe—appears in their hand* And I have... *grins* ...something of yours. Want it back? *floats just out of reach* Or should we play a game first?\"",
+      "choices": [
+        {
+          "text": "MY SHOE! Give it back, you trickster!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*floats higher, laughing* \"Give it back? *shoe dangles* Where's the FUN in that? *shimmers* I'm a GHOST, darling! Hiding things is my... *pause* ...calling! *floats in a circle* But! I'm feeling GENEROUS. Answer my riddle, and the shoe returns!\"",
+      "choices": [
+        {
+          "text": "Fine! What's the riddle?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*eyes sparkle with mischief* \"What game? *the shoe disappears* FIND THE SHOE! *reappears behind you* Oh wait, you're WEARING one! *giggles* Silly me! *shoe reappears in hand* The REAL game is: can you guess where I'll hide it NEXT? *floats teasingly*\"",
+      "choices": [
+        {
+          "text": "You're impossible! I love it!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*shrugs, somehow* \"How? *shoe floats around them* I'm a GHOST! *shimmers* I can phase through objects! Steal things WITHOUT touching them! *pause* And I've had CENTURIES to practice. *shoe lands on their head* Want lessons?\"",
+      "choices": [
+        {
+          "text": "Ghost theft lessons? Yes please!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*floats down to eye level*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Titan": {
     "start": {
@@ -2577,6 +3213,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2649,6 +3287,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A massive cobalt-blue frame approaches, each step measured and deliberate. A tool belt of interchangeable arms hangs at his side, and his low voice resonates with quiet authority.* \"Greetings. *voice is deep, calm* I am Titan. I build. *gestures to a half-finished structure* This will be... a gathering space. For the community. *tool arms shift* It is behind schedule. But it will be... sturdy.\"",
+      "choices": [
+        {
+          "text": "Can I help with the construction?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*considers you with glowing eyes* \"Help? *tool arms rotate thoughtfully* You have... two arms. Limited reach. No hydraulic assistance. *pause* But enthusiasm is... valuable. *gestures to a pile of materials* You can sort these. By size. Gearwick would approve.\"",
+      "choices": [
+        {
+          "text": "Gearwick would be PROUD of my sorting!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*eyes glow slightly warmer* \"Wonderful? *considers* It is... functional. *tool arms adjust* But yes. The community needs... space. To gather. To... *searches for word* ...connect. *pause* I build things. This is what I do.\"",
+      "choices": [
+        {
+          "text": "What's the best thing you've ever built?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*continues working steadily* \"Calm? *tool arm tightens a bolt* The delay is... data. *pause* It tells me what to improve. Next time. *looks at you* Anger does not... build. Patience does. *returns to work* So I am... patient.\"",
+      "choices": [
+        {
+          "text": "That's incredibly wise, Titan!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*steps back from the structure*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Orla": {
     "start": {
@@ -2669,6 +3358,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2741,6 +3432,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small, smooth-skinned blue whale waddles toward you on land, water-filled bladders enabling her terrestrial movement. Her eyes hold ancient wisdom, and she settles with a contented sigh.* \"Ah, greetings. *voice is surprisingly melodic* I am Orla. *bladders shift comfortably* I was just recalling the story of the Great Kelp Migration of '19. Would you like to hear it? *pause* It's quite long. I should warn you.\"",
+      "choices": [
+        {
+          "text": "I'd LOVE to hear a long story!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*eyes light up warmly* \"Wonderful! *settles more comfortably* Most prefer... brevity. *bladders gurgle* But stories deserve TIME. *begins* So. The kelp were unhappy with their current location. You see, the water had become... *continues* ...too salty. Not salty ENOUGH. It was COMPLICATED.\"",
+      "choices": [
+        {
+          "text": "This is already fascinating!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers how to summarize* \"What happened? *thinks* Well... *bladders shift* ...the kelp wanted to move. But kelp cannot WALK. *pause* So they asked the currents for help. The currents said... *another pause* ...'Perhaps.' And that, my dear, is where the REAL story begins.\"",
+      "choices": [
+        {
+          "text": "Currents that talk?! This island is amazing!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*eyes grow distant with memory* \"How many? *considers* I do not... count. *bladders pulse gently* I remember. All of them. The whale songs from before the dreams. The first tide. The day the moon... *trails off* But those are stories for... another time.\"",
+      "choices": [
+        {
+          "text": "I'll hold you to that! Another time!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles with contentment*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Jax": {
     "start": {
@@ -2761,6 +3503,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2833,6 +3577,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A rough, brown stone body lumbers toward you, glowing orange fissures pulsing with each word. Jax moves with geological slowness, and his voice sounds like rocks grinding together.* \"Hmph. *fissures flare* You're new. *pause* I'm Jax. *another pause* I collect minerals. *long pause* And I make puns. *fissures brighten* They're... rock solid. Get it? ROCK? *waits for reaction*\"",
+      "choices": [
+        {
+          "text": "Tell me more.",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*fissures glow with satisfaction* \"Terrible? *grinds approvingly* Good. *pause* That means they're WORKING. *shifts* My best puns are... painful. *fissures pulse* Krip says I have a 'one-track mineral mind.' *pause* I told him that's a COMPLEMENT.\"",
+      "choices": [
+        {
+          "text": "Krip doesn't appreciate fine geology humor!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow manages to look proud* \"Perfect? *fissures brighten* Finally! Someone who GETS it! *grinds happily* Being a rock-based lifeform comes with... responsibilities. *pause* Mainly: making rock jokes. *fissures flare* It's in my JOB DESCRIPTION.\"",
+      "choices": [
+        {
+          "text": "Who wrote your job description?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this* \"How long? *fissures dim thoughtfully* Since I formed. *pause* Which was... *calculates* ...approximately three million years ago. *fissures brighten* I've been PERFECTING my craft. *grinds* The rock pun is an ART FORM.\"",
+      "choices": [
+        {
+          "text": "Three million years of practice shows!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*gestures to a small pile of minerals*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Clover": {
     "start": {
@@ -2853,6 +3648,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2925,6 +3722,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A four-leaf clover bounces toward you, tiny silver shoes clicking on the ground and a bright green halo hovering above. Her optimism is almost visible as a shimmer in the air.* \"HI! *voice is bubbly* I'm Clover! *silver shoes sparkle* I was just playing hide-and-seek! *giggles* But I'm TOO GOOD at hiding! *halo brightens* Nobody ever finds me! So I found YOU instead! Want to play?\"",
+      "choices": [
+        {
+          "text": "I'd love to play hide-and-seek!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*bounces excitedly* \"YES! *halo spins* Okay, rules! *counts on leaves* One: no cheating! Two: no hiding in PLACES THAT DON'T EXIST! Three: *giggles* ...I make up more rules as we go! *bounces* You count first! To a hundred! Or fifty! Or... whenever!\"",
+      "choices": [
+        {
+          "text": "A hundred?! That's a long time!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*halo glows brighter* \"Good luck? *leaves rustle* That's what they SAY! *giggles* But really, I'm just... OPTIMISTIC! *bounces* Four leaves means I see MORE possibilities! *pause* Like: the possibility that TODAY will be AMAZING! Which it IS! Because I met YOU!\"",
+      "choices": [
+        {
+          "text": "Your optimism is contagious!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*lifts a leaf to show them off* \"Adorable? *shoes sparkle* They were a GIFT! From... *thinks* ...I don't remember! But they SPARKLE! *does a little dance* And when I play hide-and-seek, they make the PERFECT sound! *pause* Except when I'm hiding. Then they're QUIET. Magic!\"",
+      "choices": [
+        {
+          "text": "Magic shoes?! That's incredible!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*bounces in a circle*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Sprocket": {
     "start": {
@@ -2945,6 +3793,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3009,6 +3859,57 @@ const WRITTEN_DIALOGUES = {
     },
     "final": {
       "text": "Here! *hands you a multi-tool* It's a... *considers* ...screwdriver! That's ALSO a bottle opener! And a... *squints* ...I'm not sure what this part does! *shrugs* But it's USEFUL! Probably! *smiles* Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes... *winks* ...that's just confetti! Come show me your creations!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
+  ,
+    "alt_start": {
+      "text": "*A compact, copper-capped robot approaches, a belt of tiny tools clinking with each step. His rotating head swivels to take you in, and one hand is already reaching for a tool.* \"Hey there! *voice is quick, curious* I'm Sprocket! *tool belt jingles* I saw you walking and I thought— *pulls out a device* —you might need this! *pause* I don't know WHAT it does yet, but it LOOKS useful! Want it?\"",
+      "choices": [
+        {
+          "text": "What IS that thing?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*examines the device* \"What is it? *rotates head* Well... *pokes it* ...it has a button! *pause* And a... thing! *presses button, device beeps* See? FUNCTIONAL! *grins* I built it from: one spoon, three springs, and Chester's patience. *pause* He didn't KNOW I was taking the patience part.\"",
+      "choices": [
+        {
+          "text": "Chester's patience? Is that a physical object?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*tool belt spins* \"Random? *looks offended* They're not RANDOM! *pulls out another device* They're... SITUATIONAL! *pause* Like this one! It's for... *thinks* ...situations where you need to measure the temperature of a cloud! *pause* VERY specific use case!\"",
+      "choices": [
+        {
+          "text": "Have you ever actually used that one?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*hands it over eagerly* \"YES! *tool belt jingles happily* Finally! Someone who APPRECIATES improvisation! *rotates head* Just... *pause* ...don't blame me if it turns you blue. Or makes you speak in Morse code. Or BOTH. *grins* That last one happened to Boll. He was NOT happy.\"",
+      "choices": [
+        {
+          "text": "Boll speaks Morse code now? That's amazing!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*gestures vaguely*",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3129,6 +4030,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3201,6 +4104,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A semi-transparent, teal-glowing being floats toward you, floating tendrils emitting soft pulses of light. As she notices you, she lights up brighter with excitement.* \"Hello! *voice shimmers* I'm Vira! *tendrils pulse* Why are you here? *brightens* Why is the sky blue? *pulses faster* Why do dreams DREAM us back? *glows intensely* WHY is why my FAVORITE question!\"",
+      "choices": [
+        {
+          "text": "Those are ALL great questions!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*glows with joy* \"THEY ARE?! *tendrils swirl excitedly* Most people say 'Vira, STOP asking why!' *dims slightly* But questions are... IMPORTANT! *brightens again* Without why, we'd never know... WHY! *pulses* See? IT'S INFECTIOUS!\"",
+      "choices": [
+        {
+          "text": "You've converted me! Why IS the sky blue?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*floats closer, studying you* \"WHY are you here? *tendrils glow thoughtfully* Maybe... *pulses* ...you're here because the island CALLED you? *brightens* Or maybe you're here because I asked why! *giggles* CAUSALITY is COMPLICATED!\"",
+      "choices": [
+        {
+          "text": "The island called me? Like... literally?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this* \"Everything? *tendrils pulse* Well... *thinks* ...not EVERYTHING. *pause* I don't ask why about... *glows* ...beauty. Or kindness. Or glitter. *brightens* Those just ARE. *pause* But EVERYTHING else? *pulses rapidly* WHY WHY WHY!\"",
+      "choices": [
+        {
+          "text": "Glitter doesn't need a why! It just sparkles!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*floats at eye level, glowing warmly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Birch": {
     "start": {
@@ -3221,6 +4175,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3293,6 +4249,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A tall, silver-barked tree stands serenely, luminous bark markings glowing softly in the dappled light. His wide, gnarled trunk suggests centuries of quiet observation.* \"Ah. *voice is deep, patient* You approach. *bark markings pulse gently* I am Birch. *leaves rustle* I have been... watching. For a long time. *pause* Would you care to hear a story? Or perhaps... you have one to share?\"",
+      "choices": [
+        {
+          "text": "I'd love to hear one of your stories, Birch!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*branches sway thoughtfully* \"A story? *bark glows warmer* Very well. *leaves whisper* This one is about... the First Rain. *pause* Before the rain, the island was... thirsty. The flowers drooped. The streams were silent. *another pause* Then, one day, the sky decided to... cry. Not from sadness. From... release.\"",
+      "choices": [
+        {
+          "text": "The sky cried from release? That's beautiful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers this* \"How long? *bark markings shimmer* Time is... fluid. For trees. *pause* I have seen... seasons come and go. Generations of flowers. The arrival of... many beings. *leaves rustle* You are new. But you are... welcome.\"",
+      "choices": [
+        {
+          "text": "Thank you for welcoming me, Birch!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*branches extend slightly* \"Favorite? *bark pulses* That is... like asking a parent to choose a child. *pause* But there is one. About... the day Sprig found his walking stick. *leaves glow softly* It was a small day. But important. *pause* Small days often are.\"",
+      "choices": [
+        {
+          "text": "Sprig's walking stick came from you, didn't it?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles into stillness*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Flick": {
     "start": {
@@ -3313,6 +4320,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3385,6 +4394,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A tall white candle approaches, bright orange flame flickering as a face, tiny cape fluttering dramatically behind him. He moves with theatrical grace, leaving a faint scent of wax and drama.* \"GOOD EVENING! *flame flares dramatically* Or morning! Or... whenever the dream decides it is! *cape swirls* I am Flick! Storyteller! Illuminator! Occasional... *flame dims* ...melter. When nervous.\"",
+      "choices": [
+        {
+          "text": "You melt when nervous? That must be inconvenient!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*flame wobbles anxiously* \"Inconvenient? *wax drips* OH, you have no IDEA! *panics slightly* I melted through THREE chair invitations! And a VERY important picnic! *flame steadies* But! The drama! The PATHOS! *cape flutters* It's worth it!\"",
+      "choices": [
+        {
+          "text": "At least you leave a memorable impression!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*flame brightens with excitement* \"A STORY?! *cape swirls dramatically* Finally! An AUDIENCE! *clears throat* Once upon a time... *pauses for effect* ...there was a candle. Who loved stories. But EVERY time he told one... *flame dims* ...he melted a LITTLE bit. *dramatic pause* THE END. ...Too dark? I can do a HAPPY ending!\"",
+      "choices": [
+        {
+          "text": "That WAS a happy ending! He's still telling stories!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*cape flutters proudly* \"FABULOUS? *flame glows* Why, thank you! *swirls* It was a GIFT! From Mimis! *pause* She said 'Every storyteller needs DRAMA!' And she was RIGHT! *flame flares* The cape adds... FLAIR. MOVEMENT. MYSTIQUE!\"",
+      "choices": [
+        {
+          "text": "Mimis has excellent taste!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*flame burns steadily*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Draven": {
     "start": {
@@ -3405,6 +4465,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3477,6 +4539,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small, silver-furred wolf-like creature sits in a patch of moonlight, glowing amber eyes fixed on something distant. He looks up as you approach, and his voice is surprisingly soft for his brooding appearance.* \"Oh. *voice is quiet, contemplative* It's you. *amber eyes glow* I was... composing. *pause* A poem. About the moon. *looks away* It's not finished. It's never finished.\"",
+      "choices": [
+        {
+          "text": "Can I hear what you have so far?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*looks embarrassed* \"Hear it? *ears flatten* It's... incomplete. *pause* 'Silver light upon the... no, that's wrong.' *sighs* See? *amber eyes dim* I'm not... good at this. But I keep trying. *pause* The moon deserves... better words.\"",
+      "choices": [
+        {
+          "text": "Your words are beautiful already, Draven!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers this* \"Unexpected? *amber eyes glow* Because I'm a... werewolf? *pause* Most expect me to be... fierce. Aggressive. *softly* But the moon... she whispers. Not roars. *looks at you* I listen to her whispers.\"",
+      "choices": [
+        {
+          "text": "The moon whispers to you? What does she say?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*looks at you with new interest* \"Poetic? *ears perk up* You... see it too? *amber eyes brighten* Most see a rock. A satellite. *pause* But I see... a muse. A companion. *softly* She understands... longing.\"",
+      "choices": [
+        {
+          "text": "Longing for what, Draven?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles back into the moonlight*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Pixel": {
     "start": {
@@ -3497,6 +4610,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3569,6 +4684,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small, square robot approaches, colorful pixelated screen displaying an 8-bit face that blinks in blocks. When he speaks, 8-bit beeps accompany his words.* \"BEEP! GREETINGS, PLAYER ONE! *screen shows a smiling pixel face* I am PIXEL! *8-bit sound effect* I was just... *screen changes to show a game* ...playing SPACE INVADERS! Classic! You play?\"",
+      "choices": [
+        {
+          "text": "I love retro games! What's your favorite?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*screen shows a heart* \"FAVORITE? *beeps excitedly* That is like asking... *screen shows multiple game icons* ...to choose between CHILDHOOD and ADULTHOOD! *pause* But if I MUST... *screen shows Pac-Man* ...PAC-MAN! The strategy! The GHOSTS! The... *beep sadly* ...inevitable doom!\"",
+      "choices": [
+        {
+          "text": "The ghosts ARE relentless!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*screen cycles through images* \"ANYTHING? *beeps proudly* I can show... *screen shows: games, emotions, maps, Chester's face poorly rendered* ...many things! *pause* The Chester one needs work. *screen returns to face* Resolution is... limited. But CHARM is unlimited!\"",
+      "choices": [
+        {
+          "text": "The Chester pixel art made me laugh!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*screen shows a thinking face* \"ALL the time? *beeps* Well... *screen shows a shrug* ...it is my... NATIVE language! *pause* But I can... *screen shows text only* ...communicate without beeps! *beeps* It just feels... WRONG! Like playing Mario without JUMPING!\"",
+      "choices": [
+        {
+          "text": "The beeps add character! Keep them!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*screen shows a heart again*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Aria": {
     "start": {
@@ -3589,6 +4755,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3661,6 +4829,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A vibrant scarlet parrot struts toward you, tiny golden microphone attached to her wing. She clears her throat dramatically before speaking in a rich, operatic voice.* \"DARLING! *voice carries like a soprano* You have arrived! Just in time! *microphone taps* I was about to begin my AFTERNOON RECITAL! *wings spread* The acoustics here are DIVINE! Will you be my audience?\"",
+      "choices": [
+        {
+          "text": "I would be HONORED to be your audience!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*bows deeply* \"HONORED? *voice swells* Finally! Someone with TASTE! *microphone gleams* Most prefer... *voice drops* ...Zephyr's gossip. Or Gorm's glitter. *voice rises* But YOU! You appreciate ART! *wings spread* Prepare for... ARIA!\"",
+      "choices": [
+        {
+          "text": "I'm ready! Give me your best!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*clears throat* \"Today? *microphone taps* I am performing... *dramatic pause* ...'The Ballad of the Lost Seed!' *wings gesture* It is about... longing. About... *voice cracks emotionally* ...a seed that never grew. *sniffles* It is VERY moving.\"",
+      "choices": [
+        {
+          "text": "That sounds beautiful and sad!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*strikes a pose* \"FAMOUS? *laughs musically* Darling, I am a LEGEND! *microphone sparkles* I have performed for: Luna (she slept), Hudson (he critiqued), and Mimis (she threw confetti MID-ARIA)! *pause* The confetti actually... enhanced the performance!\"",
+      "choices": [
+        {
+          "text": "Mimis throwing confetti sounds perfect!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*voice softens warmly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Grumble": {
     "start": {
@@ -3681,6 +4900,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3753,6 +4974,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A rough gray boulder sits motionless, etched eyes barely visible, moss-covered mustache twitching slightly. When he speaks, it sounds like stones grinding together reluctantly.* \"Hmph. *mustache twitches* Another one. *etched eyes glow faintly* I'm Grumble. *pause* I guard the caves. *long pause* Not that anyone ASKS me to. I just... do. Because someone HAS to.\"",
+      "choices": [
+        {
+          "text": "The caves need guarding? What's in them?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*mustache twitches more* \"What's in them? *grumbles* Crystals. Echoes. *pause* Secrets. *eyes glow brighter* Some should stay SECRET. *shifts slightly* But Nyx keeps hiding things in there. And Gorm tries to store his GLITTER in my caves. *grumbles louder* GLITTER. In caves. The INDECENCY.\"",
+      "choices": [
+        {
+          "text": "Glitter in caves DOES sound wrong!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*somehow looks proud* \"Dedicated? *mustache bristles* Someone has to be! *pause* Titan builds things. I... guard them. *eyes glow* It is not GLAMOROUS. It is not... THANKED. *grumbles* But it is NECESSARY.\"",
+      "choices": [
+        {
+          "text": "Guarding IS important work!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*touches mustache carefully* \"Excellent? *mustache twitches* It is... moss. *pause* But it is MY moss. *carefully grooms it* I water it. Daily. *eyes glow* Some say it's 'just moss.' I say it is... DISTINCTION. *grumbles* Unlike certain glitter-hoarding dragons.\"",
+      "choices": [
+        {
+          "text": "Your moss mustache is very distinguished!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles back into stillness*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Selene": {
     "start": {
@@ -3773,6 +5045,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3845,6 +5119,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*An ethereal silver figure glows faintly in the twilight, hair flowing like captured moonlight. She moves with celestial grace, and her voice carries the quiet of night.* \"Welcome. *voice is serene, gentle* I am Selene. *hair shimmers* I was just... arranging. *gestures upward* The constellations were... misaligned. *pause* They do that. When no one is watching.\"",
+      "choices": [
+        {
+          "text": "You arrange constellations? That's magical!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*hair flows brighter* \"Magical? *considers* It is... duty. *pause* The stars wish to tell stories. But they need... guidance. *gestures* Orion there—*points*—wants to be a hunter. But he keeps drifting toward... gardener.\"",
+      "choices": [
+        {
+          "text": "Orion as a gardener? That's adorable!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers this* \"How? *hair shimmers thoughtfully* Dreams... shift. *pause* The island moves. The sky... adjusts. *gestures* And sometimes, the stars simply wish to... stretch. *softly* They are older than us. They get... restless.\"",
+      "choices": [
+        {
+          "text": "The stars are restless? I never thought of that!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*smiles serenely* \"Help? *hair flows toward you* That is... kind. *pause* But it requires... patience. Precision. *gestures* Watch. *she reaches up, and a star shifts slightly* See? The Swan was leaning. Now she is... poised.\"",
+      "choices": [
+        {
+          "text": "That was incredible! I saw it move!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*glows with warm moonlight*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Bolt": {
     "start": {
@@ -3865,6 +5190,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3937,6 +5264,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A sleek, electric-blue chassis ZIPS toward you, lightning-shaped antennae crackling with energy. He comes to a vibrating stop, words tumbling out at high speed.* \"HI! I'mBolt! *antennae spark* Didyouseethat? IranaMILE! InTHREEseconds! *crackles* Well, maybenotaMILE. ButitFELTlikeaMILE! Wanttorace? Wanttoseemysparktricks? Wantto—*short circuit sound* —oops.\"",
+      "choices": [
+        {
+          "text": "Are you okay? That short circuit sounded bad!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*antennae droop slightly* \"Okay? *crackles weakly* I'm... FINE! *sparks fly* Just... *another crackle* ...overexcited! Happens! *pause* Chester says I need a 'voltage regulator.' *antennae perk up* I say I need MORE opportunities to ZOOM!\"",
+      "choices": [
+        {
+          "text": "Chester is probably worried about you!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*antennae glow brightly* \"SHOWyou? *vibrates with excitement* STANDback! *ZIPS away and back in a blur* DIDyouSEEthat? *crackles happily* I touched the lighthouse! AndBACK! InPOINTfourseconds! *pause* Ithink. Mytimermightbeoff.\"",
+      "choices": [
+        {
+          "text": "I barely saw you move! That's incredible!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*antennae sparkle with pride* \"Faster?! *crackles excitedly* YouREALLYthinkso? *zips in circles* QuarkisFASTbutI'mFASTER! ZephyrtalksFASTbutI MOVEfast! *pause* Well, exceptwhenI... *antennae dim* ...shortcircuit. ThenI'mjust... stationary.\"",
+      "choices": [
+        {
+          "text": "Even stationary, you're still impressive!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*settles to a gentle hum*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Gidget": {
     "start": {
@@ -3957,6 +5335,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4029,6 +5409,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small, bushy-tailed squirrel zips toward you, tiny explorer's cap perched adorably on her head. She holds an acorn and speaks at rapid-fire speed.* \"HI! I'mGidget! *tail twitches rapidly* Wanttohearajoke? *doesn'twait* Whydon'tsquirrelsliketoplaypoker? *pause* Becausethey'realwaysgoingNUTS! *giggles wildly* Getit? NUTS? BecauseACORNS?\"",
+      "choices": [
+        {
+          "text": "Tell me more.",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*tail spins with excitement* \"MORE?! *digs in cap* Okayokayokay! *pulls out another acorn* Whatdo youcallasquirrelthat'sagooddetective? *pause* SHERLOCKHOLMES! *giggles* BecauseHOLMES soundslike... *thinks* ...acornstuff! *pause* I'mworkingonit!\"",
+      "choices": [
+        {
+          "text": "Your joke delivery is impeccable!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers this* \"AsFASTasBolt? *tail twitches* Well... *thinks* ...heMOVESfast. ItALKfast! *giggles* We'rebothFAST! Just... differentKINDS! *pause* HeZIPS. ICHIP! *another giggle* Getit? CHIP? Like... chipmunk? I'mnotachipmunkbut—\"",
+      "choices": [
+        {
+          "text": "You're definitely a squirrel, not a chipmunk!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*beams with pride* \"TERIBLEbutLOVEit? *tail spins* That'stheBESTreaction! *giggles* Hudsonsaysmyjokesare 'painfullyunfunny.' *pause* ButPennyLAUGHS! Well, sheRUSTLES in awaythatSOUNDSlikelaughing! *giggles* Closeenough!\"",
+      "choices": [
+        {
+          "text": "Penny's rustle-laugh IS pretty distinctive!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*scampers in a circle*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Lunae": {
     "start": {
@@ -4049,6 +5480,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4121,6 +5554,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A floating orb of pastel pink gas drifts toward you, swirling patterns shifting lazily, faint luminescent core glowing softly. Her voice comes as a gentle sigh.* \"Hmm... *soft sigh* Hello... *swirls gently* I was... floating... through the clouds... *pause* They are... lovely today... *core pulses* Would you... like to float... with me?\"",
+      "choices": [
+        {
+          "text": "Floating through clouds sounds amazing!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*swirls with pleasure* \"Amazing... *sighs happily* Yes... *drifts closer* The clouds... are like... dreams within dreams... *pause* Soft... weightless... *core glows* You close your eyes... and you are... everywhere...\"",
+      "choices": [
+        {
+          "text": "That sounds incredibly peaceful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*colors shift through pastel spectrum* \"Beautiful... *sighs* Thank you... *swirls* My colors... change... with my mood... *pause* Pink is... contentment... *shifts to soft blue* ...blue is... curiosity... *back to pink* ...you make me... pink...\"",
+      "choices": [
+        {
+          "text": "I'm honored to make you pink!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this dreamily* \"Feel like... *swirls thoughtfully* ...whispers... *pause* ...cotton candy... that doesn't stick... *soft sigh* ...like being hugged... by nothing... *core pulses* ...and everything...\"",
+      "choices": [
+        {
+          "text": "That's the most poetic description ever!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*drifts peacefully*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Willow": {
     "start": {
@@ -4141,6 +5625,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4213,6 +5699,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A graceful, slender willow stands serenely, drooping teal leaves swaying gently, bark that somehow resembles a gentle smile. When she speaks, her voice is like wind through leaves.* \"Hello, dear one. *voice is calm, soothing* I am Willow. *leaves rustle softly* I was just... humming. *pause* Would you like to hear? Or perhaps... you would prefer to sit? The shade is... comfortable.\"",
+      "choices": [
+        {
+          "text": "I'd love to hear your humming, Willow!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*leaves begin to hum* \"Hmmmm... *melody drifts through the air* ...hmmmm... *pause* It is... an old song. *leaves sway* From before the dream. *softly* The trees... remember. Even when we do not.\"",
+      "choices": [
+        {
+          "text": "That melody is hauntingly beautiful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*leaves extend welcomingly* \"Sit... *voice warms* ...please. *leaves create perfect shade* The earth here... is kind. *pause* It remembers... every visitor. *softly* It will remember... you.\"",
+      "choices": [
+        {
+          "text": "The earth remembers me? That's comforting!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*considers this* \"Secret? *leaves rustle thoughtfully* There is... no secret. *pause* I simply... listen. *softly* To the wind. To the rain. To the... small things. *leaves sway* Peace is not... made. It is... allowed.\"",
+      "choices": [
+        {
+          "text": "'Peace is allowed'—I'm writing that down!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*leaves glow softly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Rusty": {
     "start": {
@@ -4233,6 +5770,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4305,6 +5844,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A patchwork of rusted metal plates lumbers toward you, single glowing eye scanning, magnetic claw clicking. His voice has a sarcastic edge that doesn't quite hide warmth.* \"Oh, LOOK. *eye glows* A visitor. *magnetic claw gestures* I'm Rusty. I collect... *gestures to a pile* ...this. Art, some call it. Junk, others say. *pause* I say it's whatever pays the bills. If I had bills.\"",
+      "choices": [
+        {
+          "text": "This IS art! What's your favorite piece?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*eye brightens* \"Favorite? *magnetic claw points* That one. *gestures to abstract sculpture* Made from: Chester's old wrenches, Boll's calculation scraps, and... *pause* ...a toaster that betrayed Gearwick. *sarcastically* It's called 'Betrayal at Breakfast.' Very moving.\"",
+      "choices": [
+        {
+          "text": "That's incredible! The toaster had it coming!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*eye dims slightly* \"Care? *snorts* I don't... *pause* ...okay, FINE. I care. *magnetic claw gestures* This junk? It has STORIES. *voice softens* Every dent. Every scratch. *pause* Someone threw it away. I... didn't.\"",
+      "choices": [
+        {
+          "text": "You're giving them a home! That's kind!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*eye scans the horizon* \"Where? *magnetic claw extends* Everywhere. *pause* Chester drops things. Bolt leaves sparks. Sprocket... *sarcastically* ...'improvises' materials from my pile. *pause* The island PROVIDES. If you know... where to look.\"",
+      "choices": [
+        {
+          "text": "Can you teach me where to look?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*eye glows warmly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Ember": {
     "start": {
@@ -4325,6 +5915,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4397,6 +5989,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A small, orange-flame-shaped sprite zips toward you, tiny sparkling embers for hair crackling with excitement. She radiates warmth without burning.* \"HI! I'mEmber! *voice flickers between ideas* Iwasjustthinkingabout—oh! You'reHERE! *embers sparkle* Wantahug? I'mwarm! NotBURNINGwarm! Just... *flickers* ...cozywarm! Likeablanket! Aburnyblanket!\"",
+      "choices": [
+        {
+          "text": "A warm hug sounds perfect!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*zips into a hug* \"PERFECT! *warmth envelops you* See? *flickers happily* NotBURNING! Just... *hugs tighter* ...LOVING! *pause* Most people areSCARED! *pulls back* They think 'fire equals OW!' ButI'mDIFFERENT! I'mFRIENDfire!\"",
+      "choices": [
+        {
+          "text": "You're the best hug I've ever had!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*flickers rapidly* \"FAST? *considers* Well... *flickers* ...IhaveSOMANYideas! *embers sparkle* Like: whatifwehadaparty? AndwhatifitRAINScakes? Andwhatif— *pause* —sorry. Igotdistracted. WhatwereWETalkingabout?\"",
+      "choices": [
+        {
+          "text": "We were talking about your amazing hugs!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*flickers thoughtfully* \"How? *embers glow* Well... *thinks* ...I'mFIRE. ButI'malso... *pause* ...KINDNESS! *flickers* FirecanBURN. OrfirecanWARM! *pause* IchooseWARM! *hugs self* AlwaysWARM!\"",
+      "choices": [
+        {
+          "text": "That's a beautiful choice, Ember!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*zips around you*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Pippa": {
     "start": {
@@ -4417,6 +6060,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4489,6 +6134,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A round porcelain teapot approaches, friendly face etched on the lid, floral apron tied neatly. She whistles softly as she moves, and her voice is warm like fresh tea.* \"Hello, dear! *whistles happily* I'm Pippa! *lid lifts slightly* I was just brewing! *pause* Would you like some tea? I have: chamomile for calming, mint for energy, and... *whistles* ...a special blend for new friends!\"",
+      "choices": [
+        {
+          "text": "I'd love some of that special blend!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*whistles with delight* \"Special blend? *lid lifts excitedly* Coming right up! *pours from spout* This one has: honey for sweetness, lavender for peace, and... *whistles* ...a pinch of island magic! *pause* Careful, it's warm! But not Ember-warm!\"",
+      "choices": [
+        {
+          "text": "This tea is delicious! Thank you!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*whistles softly* \"Motherly? *lid glows warmly* Oh, dear... *pause* I suppose I am! *apron rustles* Someone has to be! *whistles* Chester needs fixing. Sprig needs encouraging. And Bolt... *whistles louder* ...needs someone to tell him to SLOW DOWN!\"",
+      "choices": [
+        {
+          "text": "You're right! Bolt DOES need to slow down!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*whistles a little tune* \"When happy? *lid tilts* I whistle when I'm happy! When I'm sad! When I'm... *whistles thoughtfully* ...thinking! *pause* Hudson says I whistle during his tea lectures. *whistles* I say his lectures need WHISTLING!\"",
+      "choices": [
+        {
+          "text": "Hudson's lectures DO need whistling!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*whistles warmly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Orion": {
     "start": {
@@ -4509,6 +6205,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4581,6 +6279,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A glimmering humanoid approaches, speckled skin resembling a night sky, tiny comet-tail hair trailing behind. He moves slowly, deliberately, as if each step is measured against the stars.* \"Greetings... *voice is wise, slow* I am Orion. *skin shimmers* I was... mapping. *gestures upward* The constellations... shift. *pause* Someone must... record them.\"",
+      "choices": [
+        {
+          "text": "You map constellations? Like Selene?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*considers this* \"Like Selene? *comet-tail sways* She... arranges. *pause* I... record. *skin shimmers* She is the artist. I am the... scribe. *pause* Both are... necessary.\"",
+      "choices": [
+        {
+          "text": "That's a beautiful way to put it!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*skin glows brighter* \"Like the sky? *touches his arm* Yes... *pause* I am... of the stars. *comet-tail trails* Not FROM them. OF them. *slowly* We are older than... words. Older than... dreams.\"",
+      "choices": [
+        {
+          "text": "You're older than dreams? That's incredible!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*pulls out a glowing scroll* \"How? *scroll shimmers* Like this. *points* Each star... has a name. A purpose. *pause* Some forget. *slowly* I remind them.\"",
+      "choices": [
+        {
+          "text": "Can I see my star on your scroll?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*skin glows with warmth*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Nixie": {
     "start": {
@@ -4601,6 +6350,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4673,6 +6424,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A shimmering goldfish floats toward you—somehow breathing air just fine—tiny crown of seaweed perched on her head. She bubbles excitedly as she speaks.* \"HI! I'mNixie! *bubbles everywhere* Oh! DidImentionI'mNixie? *thinks* Imight'vementionedit! *pause* Anyway! IheardSOMETHING! AboutSOMEONE! *bubbles* WhatwasitAGAIN?\"",
+      "choices": [
+        {
+          "text": "You heard something? Do tell!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*bubbles intensify* \"DoTell? *thinks hard* Okayokay! Itwasabout... *thinks* ...someone! Andthey... *bubbles* ...didsomething! *pause* WasitHudson? OrZephyr? *thinks* Oh! Iremember! Itwasabout... *bubbles fade* ...whatwasitABOUT?\"",
+      "choices": [
+        {
+          "text": "Don't worry! We can figure it out together!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*bubbles happily* \"Okay? *swirls* You'resoKIND! *pause* Mostsay 'Nixie, REMEMBER!' ButIcan't! *bubbles* Mymemoryislike... *thinks* ...asieve! ButaPRETTYsieve! Withshinybits!\"",
+      "choices": [
+        {
+          "text": "A shiny sieve is still useful!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*adjusts crown proudly* \"Adorable? *bubbles sparkle* Itwasagift! From... *thinks* ...someone! *pause* Zora? OrOrion? *bubbles* Theybothgivegifts! ButthisoneisMINE! *swirls* Iwearitalways! EvenwhenIsleep! Whichisoften!\"",
+      "choices": [
+        {
+          "text": "It suits you perfectly!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*bubbles warmly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Cobble": {
     "start": {
@@ -4693,6 +6495,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4765,6 +6569,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A gray stone statue stands motionless, carved eyes that glow faintly when animated. He does not move as you approach—merely watches, ancient and still.* \"... *long pause* ...You approach. *voice is stone grinding on stone* ...I am Cobble. *another pause* ...I stand. *eyes glow* ...I watch. *pause* ...Sometimes... I move.\"",
+      "choices": [
+        {
+          "text": "You move? When?",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*eyes glow brighter* \"...When... *pause* ...a secret... is revealed. *long pause* ...I have stood... for centuries. *eyes dim* ...Waiting. *pause* ...Listening. *another pause* ...Some secrets... are worth... moving for.\"",
+      "choices": [
+        {
+          "text": "What's the best secret you've heard?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*considers this* \"...How long... *pause* ...Before the dream. *eyes glow* ...Before the first... tide. *long pause* ...I was placed here. *pause* ...To guard. *another pause* ...To wait. *pause* ...I am... patient.\"",
+      "choices": [
+        {
+          "text": "You're older than the dream itself?!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*eyes scan slowly* \"...What... *pause* ...Truth. *long pause* ...When beings speak... truth... *eyes glow* ...I know. *pause* ...Most do not. *another pause* ...You... might.\"",
+      "choices": [
+        {
+          "text": "I promise to always be honest with you!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*eyes glow steadily*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Zeph": {
     "start": {
@@ -4785,6 +6640,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4857,6 +6714,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*Nothing is there at first—just a faint swirl of pollen and a soft humming tone. Then a voice comes from everywhere and nowhere.* \"Helloooo~ *voice hums* I'm Zeph! *pollen swirls* Can't see me? *giggles* That's the POINT! *leaves dance nearby* But you can see what I DO! Pretty, right?\"",
+      "choices": [
+        {
+          "text": "The dancing leaves ARE pretty!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*leaves spin faster* \"Pretty? *hums happily* I make them DANCE! *swirls* Watch! *leaves form a pattern* That's a waltz! *another swirl* That's a jig! *pause* I know ALL the dances! Even ones I made up!\"",
+      "choices": [
+        {
+          "text": "Teach me the leaf waltz!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*pollen swirls excitedly* \"Cool? *hums* It's CONVENIENT! *giggles* I can go ANYWHERE! *leaves rustle* Through walls! Through trees! Through... *pause* ...Grumble's caves! *giggles* He HATES that! Says I 'mess up his crystals!' I say I 'add atmosphere!'\"",
+      "choices": [
+        {
+          "text": "Grumble does hate mess, doesn't he?",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*a gentle breeze touches you* \"Feel me? *hums softly* Like this... *breeze warms* ...see? *pollen tickles your nose* I'm not just AIR! *giggles* I'm... PRESENCE! *pause* You can't SEE presence! But you can FEEL it!\"",
+      "choices": [
+        {
+          "text": "I can feel you! It's like a warm hug!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*breeze wraps around you briefly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Kiko": {
     "start": {
@@ -4877,6 +6785,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4949,6 +6859,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A soft white rabbit hops toward you timidly, pink bow tie slightly askew, long floppy ears twitching nervously. She holds a carrot like a security blanket.* \"U-um... h-hello... *voice is shy* I'm... Kiko... *ears twitch* ...I was solving... a puzzle... *holds up carrot* ...want to help?\"",
+      "choices": [
+        {
+          "text": "I'd love to help with your puzzle!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*ears perk up* \"Help? *voice grows steadier* Okay... *places carrot down* ...it's a... *thinks* ...carrot-sorting puzzle! *pause* Red carrots here... orange carrots there... *pause* ...but what about PURPLE carrots?\"",
+      "choices": [
+        {
+          "text": "Purple carrots go in the middle!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*touches bow tie shyly* \"Adorable? *ears glow pink* It was... a gift... *pause* ...from Sprig... *softly* ...he said I looked... 'distinguished'... *pause* ...I don't know what that means... but it sounded NICE...\"",
+      "choices": [
+        {
+          "text": "Sprig was right! You look very distinguished!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*looks embarrassed* \"Not a puzzle? *ears droop* Well... *thinks* ...it's an IMAGINARY puzzle! *pause* ...the carrot is... the puzzle piece! *brightens* ...and the ground is the board! *pause* ...see? It makes sense!\"",
+      "choices": [
+        {
+          "text": "It DOES make sense! Imagination puzzles are the best!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*ears relax*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Aurora": {
     "start": {
@@ -4969,6 +6930,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5041,6 +7004,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A shimmering curtain of shifting greens and purples flows toward you like silk, colors dancing in patterns that look almost intentional. When she speaks, her words rhyme effortlessly.* \"Greetings, dear friend, so bold and bright, / I'm Aurora, bearer of northern light. *colors swirl* The sky I paint with colors true, / A gift from me, bestowed on you.\"",
+      "choices": [
+        {
+          "text": "You speak in rhymes! That's magical!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*colors shift to pleased pink* \"Magical, you say, with wonder in your eyes? / It's simply how my spirit flies. *swirls* Each thought that comes, each word I speak, / Becomes a rhyme, both soft and sleek.\"",
+      "choices": [
+        {
+          "text": "That's the most natural rhyme ever!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*colors intensify beautifully* \"Breathtaking, yes, with greens so deep, / And purples that make watchers weep. *flows* I dance across the dreamer's sky, / With colors that will never die.\"",
+      "choices": [
+        {
+          "text": "You're a living work of art!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*colors swirl thoughtfully* \"To teach you rhymes, I'd love to try, / But poetry can't be taught, not I. *softly* It comes from heart, from soul, from deep, / From places where the dreamers sleep.\"",
+      "choices": [
+        {
+          "text": "That's beautiful AND rhymed! Perfect!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*colors wrap around you gently*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Quill": {
     "start": {
@@ -5061,6 +7075,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5133,6 +7149,57 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
+  ,
+    "alt_start": {
+      "text": "*A large feather-shaped pen approaches, gentleman's bow tie perfectly tied, ink-black eyes observing critically. He carries himself with literary authority.* \"Ahem. *voice is authoritative* I am Quill. *bow tie adjusts* I have observed your... sentence structure. *pause* It is... adequate. *ink eyes gleam* But it could be IMPROVED.\"",
+      "choices": [
+        {
+          "text": "I'd love to improve my sentences!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*somehow looks pleased* \"Improve? *bow tie straightens* Finally! Someone with AMBITION! *pause* Rule one: never end a sentence with a preposition. *pause* Unless it serves the narrative. *pause* Then it is... acceptable.\"",
+      "choices": [
+        {
+          "text": "That's a very flexible rule!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*looks offended* \"Particular? *ink bristles* I am not PARTICULAR! I am... *pause* ...PRINCIPLED! *bow tie gleams* Grammar is the FOUNDATION of communication! Without it... *shudders* ...chaos! BARBARISM!\"",
+      "choices": [
+        {
+          "text": "You're right! Grammar is important!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*examines you critically* \"What's wrong? *ink eyes narrow* Well... *pause* ...you said 'I'm' instead of 'I am.' *pause* Contractions are the ENEMY of clarity! *pause* Also, your posture suggests... uncertain syntax.\"",
+      "choices": [
+        {
+          "text": "I'll work on my syntax posture!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*bow tie relaxes slightly*",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
   },
   "Vex": {
     "start": {
@@ -5153,6 +7220,8 @@ const WRITTEN_DIALOGUES = {
           "next": "c3",
           "friendshipDelta": 0
         }
+      ,
+        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5217,6 +7286,57 @@ const WRITTEN_DIALOGUES = {
     },
     "final": {
       "text": "Take this. *voice warm* A strainer. From my PERSONAL set. *pauses* Use it. Think of me. And remember: *cogs whir gently* ...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be... *tips hat* ...CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    }
+  ,
+    "alt_start": {
+      "text": "*A brass-cogged torso approaches, copper pipes hissing softly, top-hat-shaped antenna tilted jauntily. He moves with Victorian precision, and smells faintly of tea and steam.* \"Good day to you! *voice has a refined quality* I am Vex! *cogs whir* I was just... *adjusts antenna* ...contemplating the superiority of Victorian engineering! *pause* Have you ever seen a PROPER steam engine?\"",
+      "choices": [
+        {
+          "text": "I haven't! Tell me about Victorian engineering!",
+          "next": "alt_2a",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2a": {
+      "text": "*cogs spin with enthusiasm* \"Superiority? *pipes hiss* Where to BEGIN! *pause* The PRECISION! The CRAFTSMANSHIP! *antenna glows* A Victorian machine could last CENTURIES! *pause* Modern tech? *dismissive wave* ...disposable! TRASH!\"",
+      "choices": [
+        {
+          "text": "Your passion for Victorian tech is inspiring!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2b": {
+      "text": "*antenna straightens proudly* \"Incredible? *cogs whir happily* Finally! Someone who APPRECIATES aesthetics! *pause* Brass! Copper! VISIBLE GEARS! *pipes hiss* Not this... *gestures* ...sleek modern nonsense! Where is the SOUL?\"",
+      "choices": [
+        {
+          "text": "Your gears have LOTS of soul!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_2c": {
+      "text": "*somehow produces a teacup* \"Tea? *pours elegantly* ALWAYS! *sips* Hudson says my tea is 'acceptable.' *pause* That is HIGH praise from a tea cup! *pipes hiss happily* Tea and contemplation... the Victorian way!\"",
+      "choices": [
+        {
+          "text": "Hudson's approval IS significant!",
+          "next": "alt_final",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "alt_final": {
+      "text": "*cogs settle contentedly*",
       "choices": [
         {
           "text": "Goodbye!",

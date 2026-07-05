@@ -85,7 +85,15 @@ const RECIPES = [
     { output: 'round_rug', cat: 'home', sub: 'decoration', name: 'Round Rug', desc: 'A soft round floor rug.',
         inputs: [ { id: 'fiber', count: 3 } ] },
     { output: 'runner_rug', cat: 'home', sub: 'decoration', name: 'Runner Rug', desc: 'A long floor runner.',
-        inputs: [ { id: 'fiber', count: 4 } ] }
+        inputs: [ { id: 'fiber', count: 4 } ] },
+
+    // --- ISLAND BUILDING ---
+    {
+        output: 'neighbor_shack', cat: 'island',
+        name: "Neighbor's Shack",
+        desc: 'A small shelter for a homeless neighbor. Equip it and click outside to place.',
+        inputs: [ { id: 'log', count: 15 }, { id: 'stone', count: 10 }, { id: 'fiber', count: 8 } ]
+    }
 ];
 
 // ===== REMODEL RECIPES (Expansion — only available when inside a building) =====
@@ -119,7 +127,8 @@ const CRAFT_CATEGORIES = [
         { id: 'expansion',  name: 'Expansion' },
         { id: 'furniture',  name: 'Furniture' },
         { id: 'decoration', name: 'Decoration' }
-    ] }
+    ] },
+    { id: 'island',       name: 'Island Building' }
 ];
 
 // Get the active recipe list — regular + remodel (only when inside a building).

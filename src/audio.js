@@ -1,11 +1,23 @@
 // ===== AUDIO MANAGER =====
-// Placeholder audio system — no-op until sound files are added
+// Music via looping HTML5 Audio elements; SFX procedurally generated below.
+
+// Track name -> file. Add new songs here (source lives in Music/, runtime copy
+// in assets/audio/music/).
+const MUSIC_TRACKS = {
+    underworld: 'assets/audio/music/underworld.wav'
+};
+
+// Map id -> track name. Maps without an entry are silent (island theme TBD).
+const MAP_MUSIC = {
+    underground: 'underworld'
+};
 
 let audioManager = {
     musicVolume: 0.5,
     sfxVolume: 0.7,
     muted: false,
     currentTrack: null,
+    musicEl: null,
     audioCtx: null,
 
     init: function() {
@@ -24,12 +36,33 @@ let audioManager = {
     },
 
     playMusic: function(trackName) {
-        if (this.muted) return;
+        if (this.currentTrack === trackName) return;
+        this.stopMusic();
         this.currentTrack = trackName;
+        const src = MUSIC_TRACKS[trackName];
+        if (!src) return;
+        const el = new Audio(src);
+        el.loop = true;
+        el.volume = this.musicVolume;
+        this.musicEl = el;
+        // play() can reject before the first user gesture; music will start on
+        // the next map travel (always keyboard-triggered), so ignore it.
+        if (!this.muted) el.play().catch(() => {});
     },
 
     stopMusic: function() {
+        if (this.musicEl) {
+            this.musicEl.pause();
+            this.musicEl = null;
+        }
         this.currentTrack = null;
+    },
+
+    // Play whatever the given map should sound like. Called on map travel.
+    updateMapMusic: function(mapId) {
+        const track = MAP_MUSIC[mapId];
+        if (track) this.playMusic(track);
+        else this.stopMusic();
     },
 
     // Play a procedurally generated sound effect.
@@ -99,7 +132,8 @@ let audioManager = {
     },
 
     setMusicVolume: function(v) {
-        this.musicVolume = constrain(v, 0, 1);
+        this.musicVolume = Math.max(0, Math.min(1, v));
+        if (this.musicEl) this.musicEl.volume = this.musicVolume;
         this.saveSettings();
     },
 
@@ -110,6 +144,10 @@ let audioManager = {
 
     toggleMute: function() {
         this.muted = !this.muted;
+        if (this.musicEl) {
+            if (this.muted) this.musicEl.pause();
+            else this.musicEl.play().catch(() => {});
+        }
         this.saveSettings();
         return this.muted;
     },

@@ -1,0 +1,350 @@
+Cozy Island Game - Sprite Update Rules
+======================================
+
+This file is a planning document for rebuilding Cozy Island Game's sprites at a
+consistent, larger scale. Update the dimensions in this file before handing it to
+code. Engine update suggestions live at the bottom.
+
+
+1. Tile Grid (unchanged)
+------------------------
+- Keep the existing 16 x 16 tile grid.
+- Sprites may visually span multiple tiles, but movement and collision stay
+  tile-based.
+
+
+2. Standard Sprite Size Palette
+-------------------------------
+Use a small fixed set of allowed sizes. Every new sprite must fit one of these.
+Edit the dimensions below if you want a different scale.
+
+  size      | name        | typical use
+  ----------+-------------+-------------------------------------------
+  1 x 1     | standard    | ground tiles, small rocks, flowers, items
+  1 x 2     | tall        | player, NPCs, old small trees, lampposts
+  2 x 2     | wide        | bushes, small boulders, tables, crates
+  2 x 3     | building_s  | small sheds, stalls, large rocks
+  2 x 4     | tree_m      | medium trees, totems, small monuments
+  2 x 6     | tree_l      | large / "real scale" trees, towers
+  3 x 3     | landmark_s  | small statues, fountains, wells
+  3 x 5     | landmark_m  | large statues, big buildings, special trees
+
+Current proposal for most trees and the player:
+  - Player / NPCs: 1 x 2
+  - Small trees / old trees: 1 x 2
+  - Medium trees: 2 x 4
+  - Large trees: 2 x 6
+  - Buildings: 2 x 3 or 3 x 5 depending on type
+
+Modify this section freely until the scale looks right in Pixsplat.
+
+
+3. Anchor Point Convention
+--------------------------
+Every multi-tile sprite is anchored at the BOTTOM-LEFT tile.
+All code references (x, y) point to that bottom-left tile.
+
+Example for a 2 x 6 tree:
+
+        +----+----+
+        | c0 | c1 |  y - 5  (top canopy)
+        +----+----+
+        | c2 | c3 |  y - 4
+        +----+----+
+        | c4 | c5 |  y - 3
+        +----+----+
+        | c6 | c7 |  y - 2
+        +----+----+
+        | t0 | t1 |  y - 1  (trunk)
+        +----+----+
+        | T0 | T1 |  y      <- anchor row (bottom)
+        +----+----+
+          x    x+1
+
+Important: the anchor is always the lowest-leftmost tile of the sprite, even
+for objects that visually extend downward (e.g., roots can be drawn into the
+anchor tile's art, but logically the object sits at y).
+
+
+4. Breakpoint Rules
+-------------------
+Use these rules when drawing any multi-tile sprite.
+
+  a. Bottom row (anchor row)
+     - Usually SOLID.
+     - Represents the trunk, base, feet, or foundation.
+     - Blocks player and NPC movement.
+
+  b. Upper rows
+     - Usually PASSABLE.
+     - Represents canopy, decoration, overhang, roof, etc.
+     - Player and NPCs can walk behind these tiles.
+
+  c. Single-tile-wide sprites (1 x N)
+     - Anchor tile is solid if the object is a tree/structure.
+     - Upper tiles are passable.
+
+  d. Two-tile-wide sprites (2 x N)
+     - Both bottom tiles are solid.
+     - All upper tiles are passable.
+     - If one bottom tile is water/edge/etc., do not place the sprite there.
+
+  e. Never place gameplay-critical detail exactly on a horizontal breakpoint
+     unless the whole sprite is drawn as one image in a single draw call.
+     If you do draw it as one image, write that exception in the registry.
+
+
+5. File Naming Convention
+-------------------------
+Use this pattern for every source sprite in the Sprites/ folder:
+
+  <category>_<name>_<size>[_<variant>].png
+
+Examples:
+  - tiles_grass_1x1_01.png
+  - tiles_beach_1x1_01.png
+  - trees_oak_2x6_01.png
+  - trees_oak_2x6_02.png
+  - trees_fir_2x4_01.png
+  - trees_palm_2x5_01.png
+  - player_mira_1x2_01.png
+  - npc_luna_1x2_01.png
+  - rocks_small_1x1_01.png
+  - rocks_large_2x2_01.png
+  - buildings_shack_2x3_01.png
+  - buildings_house_3x5_01.png
+
+Runtime copies (in assets/tiles/ and assets/sprites/) keep the same name but
+lowercase with underscores, matching the current project workflow.
+
+
+6. Sprite Registry Layout
+-------------------------
+The code will maintain a registry like this:
+
+  MULTI_TILE_SPRITES = {
+    'trees_oak': {
+      file: 'assets/tiles/trees_oak_2x6_01.png',
+      size: [2, 6],          // [width_in_tiles, height_in_tiles]
+      anchor: 'bottom-left', // convention above
+      solidRows: [0],        // 0-based from bottom; row 0 = anchor row
+      parts: [               // each tile part knows its source pixel rect
+        { part: 't0', sx:  0, sy: 80, w: 16, h: 16 },  // anchor left
+        { part: 't1', sx: 16, sy: 80, w: 16, h: 16 },  // anchor right
+        { part: 'c0', sx:  0, sy:  0, w: 16, h: 16 },
+        { part: 'c1', sx: 16, sy:  0, w: 16, h: 16 },
+        // ... etc for all 12 tiles
+      ]
+    }
+  };
+
+Each placed tile object will store:
+
+  world.tiles[x][y] = {
+    type: 'trees_oak',
+    part: 't0',          // which sub-rectangle this tile represents
+    solid: true,         // from the registry's solidRows
+    anchorX: ax,         // for fast lookup of the whole sprite
+    anchorY: ay
+  };
+
+For a 2 x 6 tree the engine places 12 tile objects total.
+
+
+7. Tile Type Categories
+-----------------------
+Group sprites by category so the engine can handle them consistently.
+
+  TERRAIN     - ground tiles (grass, beach, water, cave_floor, etc.)
+  STRUCTURE   - walls, cliffs, cave_walls, fences
+  FLORA       - trees, bushes, flowers, weeds
+  DECORATION  - small visual-only objects (rocks, shells, signs)
+  BUILDING    - houses, shacks, stalls
+  ACTOR       - player, NPCs, animals
+  ITEM        - inventory icons
+  FX          - effects, particles, animated overlays
+
+Rules per category:
+
+  TERRAIN
+    - Always 1 x 1.
+    - May be animated (water, lava, waves) via frame variants.
+    - Never solid unless it represents a wall.
+
+  STRUCTURE
+    - Usually 1 x 1 or 2 x 2.
+    - Solid by default.
+    - May be multi-tile (walls, cliffs).
+
+  FLORA
+    - Usually 2 x 4, 2 x 5, or 2 x 6.
+    - Bottom row solid.
+    - Upper rows passable, drawn in a deferred canopy pass.
+    - Harvestable flora must expose an anchor for harvest logic.
+
+  DECORATION
+    - Usually 1 x 1 or 2 x 2.
+    - Passable by default.
+    - Drawn in base pass unless it needs to overhang.
+
+  BUILDING
+    - 2 x 3, 2 x 4, or 3 x 5.
+    - Solid footprint as large as the visible base.
+    - Door / interact tile marked separately.
+
+  ACTOR
+    - 1 x 2 for player and NPCs.
+    - Solid as an obstacle to other actors (via animalAt-style checks).
+    - Animated via directional sprite sheets or frame sequences.
+
+  ITEM
+    - 1 x 1.
+    - Passable, drawn in inventory / on ground.
+
+  FX
+    - 1 x 1 or small overlays.
+    - Passable, drawn last.
+
+
+8. Animated Tile Rules
+----------------------
+For terrain / water / lava / crystals:
+
+  a. Use a numbered PNG sequence, not GIFs.
+     Example: water_1x1_01_0.png, water_1x1_01_1.png, water_1x1_01_2.png
+
+  b. Store the number of frames in the registry:
+     'water_1x1': { file: 'water_1x1_01', frames: 4 }
+
+  c. Per-tile phase offset prevents lockstep animation:
+     world.tiles[x][y] = { type: 'water_1x1', variant: 0, animOffset: floor(random(4)) };
+
+  d. For multi-tile animated objects (e.g. a 2 x 2 glowing crystal), either
+     - animate every tile in sync, or
+     - use a single 32 x 32 sprite sheet with frames laid out horizontally.
+
+
+9. Drawing Order Passes
+-----------------------
+Proposed render order once multi-tile sprites exist:
+
+  Pass 1: TERRAIN + STRUCTURE base tiles
+  Pass 2: DECORATION base tiles
+  Pass 3: FLORA trunks / solid base rows
+  Pass 4: ACTORS (player, NPCs, animals)
+  Pass 5: FLORA canopies / upper rows
+  Pass 6: FX and overlays
+
+For truly seamless "walk behind" effects, consider sorting passes 3-5 by Y
+position instead of strict tile row order.
+
+
+10. Migration Plan (save compatibility)
+--------------------------------------
+When these sprites replace old ones, saves with old tile types must convert.
+
+  Old type        ->  New type
+  grass           ->  tiles_grass_1x1
+  beach           ->  tiles_beach_1x1
+  sea             ->  tiles_sea_1x1
+  tree            ->  trees_oak_2x6_01 (or chosen replacement)
+  fir_tree        ->  trees_fir_2x4_01
+  rock            ->  rocks_small_1x1_01
+  shiny_rock      ->  rocks_shiny_1x1_01
+  weeds           ->  flora_weeds_1x1_01
+  rosebush        ->  flora_rosebush_2x2_01
+  etc.
+
+For old 1 x 2 trees, the migration must replace both the trunk tile and the
+isTreeTop tile with the new multi-tile layout.
+
+Bumping SAVE_VERSION and adding a migration is mandatory before players can
+load old saves.
+
+
+11. Engine Area Updates Needed
+------------------------------
+When you hand this file back for coding, expect changes in these areas:
+
+  A. SPRITE_DEFS / preload
+      - Add multi-tile sprite entries.
+      - Add frame sequences for animated tiles.
+      - Keep error callbacks on every loadImage() to avoid preload hangs.
+
+  B. MULTI_TILE_SPRITES registry (new)
+      - Maps tile type -> file, size, anchor, solidRows, parts list.
+      - Used by drawing, collision, placement, and harvest.
+
+  C. World generation
+      - Placement helpers must check every tile the sprite will occupy.
+      - Must pick a clear 2 x N or 3 x N rectangle before placing a tree.
+      - Must stamp all parts with correct part names and anchor references.
+
+  D. isSolidTile(x, y)
+      - Must read the tile's stored solid flag or look it up via part registry.
+      - Must respect multi-tile solid footprints.
+
+  E. drawTile()
+      - Must look up the part's source pixel rect and blit the correct slice.
+      - Must handle missing sprites gracefully (colored placeholder).
+
+  F. New canopy / deferred draw pass
+      - Draw upper rows of flora after actors.
+      - Sort by Y if overlapping canopies look wrong.
+
+  G. tryHarvest()
+      - Must find the anchor tile from any part of the multi-tile sprite.
+      - Must remove or convert all parts when harvested.
+      - Must respawn all parts together after respawn timer.
+
+  H. Building interiors
+      - Furniture sizes must follow the same size palette.
+      - Bed / shack art may need to grow to match the new exterior scale.
+
+  I. Player and NPCs
+      - Player sprite may need to scale up to match bigger trees.
+      - NPC drawing and collision need the same multi-tile treatment as actors.
+
+  J. Save/load
+      - Save all parts and anchors.
+      - Migration must convert old saves to new tile types.
+      - Consider storing a list of placed multi-tile objects separately so saves
+        can reconstruct cleanly.
+
+  K. CSV tilemap translator
+      - Legend entries may reference multi-tile types.
+      - The translator must either place the full footprint from one CSV char
+        or require the map author to place every part manually.
+      - Recommend a single-char "stamp" mode that expands to the full footprint.
+
+  L. Camera / viewport
+      - Larger sprites may reveal edge cases where objects pop in/out.
+      - Padding the visible area by one extra tile on every side helps.
+
+
+12. Open Questions (answer before coding)
+-----------------------------------------
+  [X] Finalize size palette - confirm dimensions above.
+  [] Player/NPC scale - stay at 1 x 2 or grow to match trees?
+  [ ] Building sizes - 2 x 3, 2 x 4, or 3 x 5?
+  [no] Keep old sprites as fallback? (Recommended: no, full replacement.)
+  [strict passes] Draw order - strict passes, or Y-sorted?
+  [Only darken sprite] Harvest behavior - remove whole tree, convert to stump, or leave debris?
+  [ ] Should the CSV translator auto-stamp multi-tile footprints?
+
+
+13. Quick Checklist Before Drawing a Sprite
+-------------------------------------------
+  [ ] Does it match one of the allowed sizes?
+  [ ] Is the anchor at the bottom-left?
+  [ ] Is the bottom row visually solid and free of overhanging detail?
+  [ ] Is the upper area clearly passable / decorative?
+  [ ] Does the filename follow <category>_<name>_<size>[_<variant>].png?
+  [ ] Is the PNG saved in the Sprites/ folder (mixed case) for later copy/rename?
+  [ ] Have you updated this SpriteUpdate.txt if you changed any rules?
+
+
+Revision history
+----------------
+Created: 2026-06-30
+Purpose: planning document for full sprite rebuild at larger, consistent scale.

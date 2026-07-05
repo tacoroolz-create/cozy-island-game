@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cozy Island Game 🏝️</title>
+    <!--
+      Global error logging. Registered FIRST so it catches errors thrown while any
+      later <script> (engine.js, game.js, dialogue.js, ...) is loading — exactly the
+      kind of failure that otherwise shows up as a silent blank screen.
+
+      Where the output lands:
+        1. The browser DevTools Console (open with F12 / Cmd-Opt-J) — full message + stack.
+        2. A red banner overlaid on the page itself, so a blank screen still tells you
+           what broke without needing to open DevTools.
+    -->
+    <script>
+    (function () {
+        function showBanner(text) {
+            var box = document.getElementById('error-banner');
+            if (!box) {
+                box = document.createElement('div');
+                box.id = 'error-banner';
+                box.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;' +
+                    'background:#b00020;color:#fff;font:12px/1.4 monospace;padding:8px 12px;' +
+                    'white-space:pre-wrap;max-height:50vh;overflow:auto;box-shadow:0 2px 6px rgba(0,0,0,.4)';
+                (document.body || document.documentElement).appendChild(box);
+            }
+            box.textContent = '⚠ Game error (see console for full details):\n' + text;
+        }
+        window.addEventListener('error', function (e) {
+            var where = (e.filename || '?') + ':' + (e.lineno || '?') + ':' + (e.colno || '?');
+            var msg = (e.message || 'Unknown error') + '\n  at ' + where;
+            console.error('[GAME ERROR]', e.message, 'at', where, e.error || '');
+            showBanner(msg);
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+            var reason = (e.reason && (e.reason.stack || e.reason.message)) || String(e.reason);
+            console.error('[GAME ERROR] Unhandled promise rejection:', reason);
+            showBanner('Unhandled promise rejection:\n' + reason);
+        });
+    })();
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <style>
         body {
@@ -41,26 +78,26 @@
 <body>
     <div id="game-container"></div>
     <!-- Core game -->
-    <script src="src/engine.js?v=20260706"></script>
-    <script src="src/game.js?v=20260706"></script>
+    <script src="src/engine.js?v=20260717"></script>
+    <script src="src/game.js?v=20260728"></script>
     <!-- Daycycle system -->
-    <script src="src/daycycle.js?v=20260706"></script>
+    <script src="src/daycycle.js?v=20260723"></script>
     <!-- UI helpers -->
-    <script src="src/ui.js?v=20260706"></script>
+    <script src="src/ui.js?v=20260717"></script>
     <!-- Gameplay systems -->
-    <script src="src/crafting.js?v=20260706"></script>
-    <script src="src/gardening.js?v=20260706"></script>
-    <script src="src/gettin.js?v=20260706"></script>
+    <script src="src/crafting.js?v=20260717"></script>
+    <script src="src/gardening.js?v=20260723"></script>
+    <script src="src/gettin.js?v=20260717"></script>
     <!-- Social systems -->
-    <script src="src/entities.js?v=20260706"></script>
-    <script src="src/animals.js?v=20260706"></script>
-    <script src="src/dialogue_written.js?v=20260706"></script>
-    <script src="src/dialogue.js?v=20260706"></script>
-    <script src="src/magic.js?v=20260706"></script>
+    <script src="src/entities.js?v=20260725"></script>
+    <script src="src/animals.js?v=20260717"></script>
+    <script src="src/dialogue_written.js?v=20260717"></script>
+    <script src="src/dialogue.js?v=20260727"></script>
+    <script src="src/magic.js?v=20260727"></script>
     <!-- Misc systems -->
-    <script src="src/save.js?v=20260706"></script>
-    <script src="src/audio.js?v=20260706"></script>
-    <script src="src/hog.js?v=20260706"></script>
-    <script src="src/games.js?v=20260706"></script>
+    <script src="src/save.js?v=20260727"></script>
+    <script src="src/audio.js?v=20260723"></script>
+    <script src="src/hog.js?v=20260717"></script>
+    <script src="src/games.js?v=20260717"></script>
 </body>
 </html>
