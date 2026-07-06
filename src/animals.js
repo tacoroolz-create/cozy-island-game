@@ -512,6 +512,7 @@ function updateAnimals(dt) {
     for (const turtle of turtles) turtle.update(dt, world.timeMinutes);
     for (const butterfly of butterflies) butterfly.update(dt, world.timeMinutes);
     for (const cicada of cicadas) cicada.update(dt, world.timeMinutes);
+    updateSnakes(dt);
 
     // Ambient sounds
     if (audioManager && !audioManager.muted) {
@@ -572,7 +573,129 @@ function drawAnimals() {
     for (const turtle of turtles) turtle.draw();
     for (const butterfly of butterflies) butterfly.draw();
     for (const cicada of cicadas) cicada.draw();
+    drawSnakes();
     drawGroundLoot();
+}
+
+// ===== SNAKE RUN DAY =====
+// Holiday-only snakes. Each one hides inside an object (tree, rock, building),
+// then darts fast in a straight line to another object, drawn as a squiggly
+// green line. Touching one mid-dart shakes loose a small resource gift.
+let snakes = [];
+let snakeObjects = null; // cached dart anchor points for the day
+const SNAKE_COUNT = 8;
+const SNAKE_SPEED = 7; // tiles per second
+const SNAKE_GIFTS = ['fiber', 'feather', 'seed', 'stick', 'stone'];
+
+function snakeObjectTiles() {
+    const objs = [];
+    const kinds = new Set(['tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock']);
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (t && kinds.has(t.type) && !t.isTreeTop) objs.push({ x, y });
+        }
+    }
+    if (typeof buildings !== 'undefined') {
+        for (const b of buildings) objs.push({ x: b.gridX, y: b.gridY });
+    }
+    return objs;
+}
+
+function spawnSnakes() {
+    snakeObjects = snakeObjectTiles(); // ponytail: cached all day; a chopped tree just means one empty dart spot
+    if (snakeObjects.length < 2) return;
+    for (let i = 0; i < SNAKE_COUNT; i++) {
+        const home = snakeObjects[floor(random(snakeObjects.length))];
+        snakes.push({
+            x: home.x, y: home.y,           // current position (float tile coords)
+            x0: home.x, y0: home.y,          // dart start
+            tx: home.x, ty: home.y,          // dart end
+            darting: false,
+            dartT: 0, dartDur: 1,
+            hideTimer: 500 + random(3500),   // ms hiding before the next dart
+            phase: random(1000),             // squiggle animation offset
+            gave: false                      // one gift per dart
+        });
+    }
+    notify("It's Snake Run Day! Snakes are darting between the island's trees and rocks.", 4000);
+}
+
+function updateSnakes(dt) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Snake Run Day') {
+        if (snakes.length) { snakes = []; snakeObjects = null; }
+        return;
+    }
+    if (snakes.length === 0 && world) spawnSnakes();
+
+    for (const s of snakes) {
+        s.phase += dt;
+
+        if (!s.darting) {
+            s.hideTimer -= dt;
+            if (s.hideTimer > 0) continue;
+            // Pick a new object to run to, preferring mid-range darts.
+            let dest = null;
+            for (let tries = 0; tries < 10 && !dest; tries++) {
+                const cand = snakeObjects[floor(random(snakeObjects.length))];
+                const d = Math.max(Math.abs(cand.x - s.x), Math.abs(cand.y - s.y));
+                if (d >= 3 && d <= 12) dest = cand;
+            }
+            if (!dest) { s.hideTimer = 1000; continue; }
+            s.x0 = s.x; s.y0 = s.y;
+            s.tx = dest.x; s.ty = dest.y;
+            s.dartT = 0;
+            s.dartDur = Math.hypot(dest.x - s.x, dest.y - s.y) / SNAKE_SPEED;
+            s.darting = true;
+            s.gave = false;
+            continue;
+        }
+
+        // Mid-dart: slide along the straight line between the two objects.
+        s.dartT += dt / 1000;
+        const t = Math.min(s.dartT / s.dartDur, 1);
+        s.x = lerp(s.x0, s.tx, t);
+        s.y = lerp(s.y0, s.ty, t);
+
+        // Caught! Player touched the running snake.
+        if (!s.gave && player && Math.abs(s.x - player.x) < 0.6 && Math.abs(s.y - player.y) < 0.6) {
+            s.gave = true;
+            const gift = SNAKE_GIFTS[floor(random(SNAKE_GIFTS.length))];
+            inventory.addItem(gift, 1);
+            notify('You caught a snake! It wriggles free, leaving you a ' + (ITEMS[gift] ? ITEMS[gift].name : gift) + '.');
+        }
+
+        if (t >= 1) {
+            s.darting = false;
+            s.hideTimer = 800 + random(4000);
+        }
+    }
+}
+
+function drawSnakes() {
+    if (snakes.length === 0) return;
+    const TS = CONFIG.TILE_SIZE;
+    for (const s of snakes) {
+        if (!s.darting) continue; // hidden inside an object
+        const cx = s.x * TS + TS / 2 - cameraX;
+        const cy = s.y * TS + TS / 2 - cameraY;
+        // Unit vector along the dart, and its perpendicular for the wiggle.
+        const dx = s.tx - s.x0, dy = s.ty - s.y0;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len, uy = dy / len;
+        stroke('#2E7D32');
+        strokeWeight(3);
+        noFill();
+        beginShape();
+        for (let i = 0; i <= 8; i++) {
+            const along = (i / 8 - 0.5) * TS;                       // one tile long
+            const wig = Math.sin(s.phase * 0.03 + i * 1.3) * 3;     // squiggle
+            vertex(cx + ux * along - uy * wig, cy + uy * along + ux * wig);
+        }
+        endShape();
+        noStroke();
+    }
 }
 
 function despawnButterflies() {
