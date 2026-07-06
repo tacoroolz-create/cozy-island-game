@@ -12,8 +12,12 @@ const STATE = {
 // DIALOGUE and MINIGAME states added by dialogue.js and games.js if not present
 
 // Menu tabs
-const MENU_TABS = ['Inventory', 'Crafting', 'Treasure', 'Gardening', 'Magic', 'Friends', 'Settings'];
+const MENU_TABS = ['Inventory', 'Crafting', 'Treasure', 'Gardening', 'Magic', 'Friends', 'Almanac', 'Settings'];
 let menuTab = 0;
+
+// The player character is always called "Dreamer" wherever a name is needed
+// (house labels, menus, generated dialogue).
+const PLAYER_NAME = 'Dreamer';
 
 // Game configuration
 const CONFIG = {
@@ -631,7 +635,7 @@ class Building {
                 fill(255);
                 textSize(8);
                 textAlign(CENTER, CENTER);
-                text(def.name, screenX + w / 2, screenY + h / 2 - 4);
+                text(buildingDisplayName(this), screenX + w / 2, screenY + h / 2 - 4);
                 textAlign(LEFT, BASELINE);
             }
         }
@@ -1626,7 +1630,7 @@ function drawMenuScreen() {
             fill(150);
         }
         textAlign(CENTER, CENTER);
-        textSize(8);
+        textSize(7);
         textFont('Courier New');
         text(MENU_TABS[i], tx + tabW / 2, leftY + tabH / 2);
     }
@@ -1654,7 +1658,10 @@ function drawMenuScreen() {
         case 5:
             if (typeof drawFriendsTab === 'function') drawFriendsTab(leftX + 4, contentY, leftW - 8, contentH);
             break;
-        case 6: drawSettingsTab(leftX + 4, contentY, leftW - 8, contentH); break;
+        case 6:
+            if (typeof drawAlmanacTab === 'function') drawAlmanacTab(leftX + 4, contentY, leftW - 8, contentH);
+            break;
+        case 7: drawSettingsTab(leftX + 4, contentY, leftW - 8, contentH); break;
     }
 
     // ===== DRAW RIGHT PANEL =====
@@ -1695,7 +1702,7 @@ function drawMenuScreen() {
     textAlign(CENTER, TOP);
     textSize(10);
     textFont('Courier New');
-    text('Player', rightX + rightW / 2, py + portraitSize + 4);
+    text(PLAYER_NAME, rightX + rightW / 2, py + portraitSize + 4);
 
     fill(200);
     textSize(8);
@@ -2248,7 +2255,7 @@ function mousePressed() {
         }
 
         // --- Settings tab: clickable action rows ---
-        if (menuTab === 6) {
+        if (menuTab === 7) {
             const contentY = leftY + tabH + 4;
             const sx = leftX + 4;
             // "▶ Save Game" row at y + 50
@@ -2351,8 +2358,19 @@ function tryEnterBuilding() {
     player.facing = 'up';
     insideBuilding = b;
     gameState = STATE.INSIDE;
-    notify("Entered " + (BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type));
+    notify("Entered " + buildingDisplayName(b));
     return true;
+}
+
+// "Dreamer's Shack", "Rusty's Shack" — owner name + tier for owned homes,
+// plain tier name for everything else (temples, shops, etc.).
+function buildingDisplayName(b) {
+    const tierName = BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type;
+    if (b.owner === 'player') return PLAYER_NAME + "'s " + tierName;
+    if (typeof b.owner === 'number' && typeof NPC_DEFS !== 'undefined' && NPC_DEFS[b.owner]) {
+        return NPC_DEFS[b.owner].name + "'s " + tierName;
+    }
+    return tierName;
 }
 
 // ===== THE ELECTRIC TEMPLE =====
@@ -3455,7 +3473,7 @@ function keyPressed() {
             }
             return false;
         } else if (key === 's' || key === 'S') {
-            if (menuTab === 6) saveGame();
+            if (menuTab === 7) saveGame();
             return false;
         }
         return false;
