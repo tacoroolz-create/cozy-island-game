@@ -104,6 +104,9 @@ function onNewDay() {
     const isSeasonStart = (day > 1) && ((day - 1) % SEASON_LENGTH === 0);
     const isFestival = isHolidayDay(day);
 
+    // Yesterday's tournament target comes down with the sunrise.
+    if (typeof clearToastTargets === 'function') clearToastTargets();
+
     if (isSeasonStart) {
         const nextSeason = SEASONS[seasonIdx % SEASONS.length];
         if (nextSeason !== world.season) {
@@ -117,7 +120,7 @@ function onNewDay() {
         if (holiday) {
             notify('Holiday! Today is ' + holiday.name + '!', 4000);
             if (holiday.name === 'Toast Toss Tournament' && typeof spawnToastTargets === 'function') {
-                spawnToastTargets(4 + Math.floor(Math.random() * 3));
+                spawnToastTargets();
                 if (typeof inventory !== 'undefined') {
                     inventory.addItem('stale_toast', 5);
                     notify('You received 5 Stale Toast for the tournament!', 3000);
