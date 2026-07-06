@@ -287,7 +287,8 @@ function onNpcNewDay() {
 
 function drawEntities() {
     for (const npc of npcs) {
-        npc.draw();
+        if (typeof withBackflip === 'function') withBackflip(npc, () => npc.draw(), true);
+        else npc.draw();
     }
 }
 

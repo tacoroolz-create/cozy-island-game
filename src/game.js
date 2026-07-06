@@ -1099,6 +1099,9 @@ function drawGame() {    // Handle continuous movement
     updateToastProjectile(deltaTime);
     drawToastProjectile();
 
+    // Backflip Day animation timers
+    updateBackflips(deltaTime);
+
     // Redraw tree canopy the player is standing under so foliage occludes
     // them (see World.drawTreeCanopyOverPlayer()).
     if (world) world.drawTreeCanopyOverPlayer();
@@ -3529,6 +3532,15 @@ function tryHarvest() {
     const tile = bestTile;
     const harvestDef = bestInfo.def;
 
+    // Backflip Day: the harvest target flips even if the harvest itself fails.
+    {
+        const TS = CONFIG.TILE_SIZE;
+        const tall = (typeof TALL_SPRITE_TILES !== 'undefined') && TALL_SPRITE_TILES[tile.type];
+        triggerBackflip('tile:' + bestInfo.x + ',' + bestInfo.y,
+            (bestInfo.x + 0.5) * TS,
+            tall ? (bestInfo.y - 0.5) * TS : (bestInfo.y + 0.5) * TS);
+    }
+
     // Check tool requirement (null = bare hands OK)
     if (harvestDef.tool) {
         const active = inventory.getActiveItem();
@@ -3773,6 +3785,40 @@ function updateToastProjectile(dt) {
     } else {
         notify('So close! The toast bounces off the target. (-1 toast)');
     }
+}
+
+// ===== BACKFLIP DAY =====
+// On the holiday, anything the player interacts with does one full backflip.
+let backflips = []; // { key, px, py, t, dur } — pivot px/py in world pixels
+function isBackflipDay() {
+    const h = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    return !!h && h.name === 'Backflip Day';
+}
+// key: 'tile:x,y' string for tiles, or the entity object itself for NPCs/animals.
+function triggerBackflip(key, px, py) {
+    if (!isBackflipDay()) return;
+    if (backflips.some(b => b.key === key)) return; // already mid-flip
+    backflips.push({ key, px, py, t: 0, dur: 700 });
+}
+function updateBackflips(dt) {
+    if (backflips.length === 0) return;
+    for (const b of backflips) b.t += dt;
+    backflips = backflips.filter(b => b.t < b.dur);
+}
+// Run drawFn rotated one full turn around the flip pivot. applyCamera=true for
+// callers drawing in screen space (NPCs/animals); tile passes are already
+// camera-translated so they pass false.
+function withBackflip(key, drawFn, applyCamera) {
+    const b = backflips.length ? backflips.find(b => b.key === key) : null;
+    if (!b) { drawFn(); return; }
+    const px = applyCamera ? b.px - cameraX : b.px;
+    const py = applyCamera ? b.py - cameraY : b.py;
+    push();
+    translate(px, py);
+    rotate(-(b.t / b.dur) * TWO_PI); // backwards rotation = backflip
+    translate(-px, -py);
+    drawFn();
+    pop();
 }
 
 function drawToastProjectile() {
@@ -4770,7 +4816,8 @@ class World {
         // tile. Drawn last so neighbouring tiles' base terrain can't clip them.
         for (let x = x0; x < x1; x++) {
             for (let y = y0; y < y1; y++) {
-                this.drawTallDecoration(x, y, this.tiles[x][y]);
+                // Backflip Day: rotate a flipping tree/bush around its pivot.
+                withBackflip('tile:' + x + ',' + y, () => this.drawTallDecoration(x, y, this.tiles[x][y]));
             }
         }
 
@@ -5219,9 +5266,11 @@ class World {
                 break;
             }
             case 'rock': {
-                // Draw grass base first, then rock sprite on top
+                // Draw grass base first, then rock sprite on top (sprite alone
+                // rotates on Backflip Day so the grass stays put).
                 drawBase('grass');
                 const spr = SPRITES['tiles.rock'];
+                withBackflip('tile:' + x + ',' + y, () => {
                 if (spr) {
                     if (tile.depleted) tint(160, 160, 160);
                     const offsetX = screenX - (spr.width - TS) / 2;
@@ -5234,12 +5283,15 @@ class World {
                     fill(tile.depleted ? '#AAA' : '#BDBDBD');
                     ellipse(screenX + 6, screenY + 8, 4, 3);
                 }
+                });
                 break;
             }
             case 'shiny_rock': {
                 // Draw grass base first, then shiny rock sprite on top
                 drawBase('grass');
-                const spr = SPRITES['tiles.shiny_rock'];
+                const sprShiny = SPRITES['tiles.shiny_rock'];
+                withBackflip('tile:' + x + ',' + y, () => {
+                const spr = sprShiny;
                 if (spr) {
                     if (tile.depleted) tint(160, 160, 160);
                     image(spr, screenX, screenY, TS, TS);
@@ -5255,6 +5307,7 @@ class World {
                         rect(sx + 2, sy + 2, 1, 1);
                     }
                 }
+                });
                 break;
             }
             case 'weeds': {

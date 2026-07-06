@@ -37,7 +37,7 @@ const HOLIDAYS = [
     { name: 'Snake Run Day',          desc: 'A holiday for snakes! They dart between trees, rocks, and buildings all day. Catch one for a small gift.' },
     { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
     { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
-    { name: 'Talk Like a Boat Day',  desc: 'Everyone creaks gently and refers to themselves as "the vessel".' },
+    { name: 'Backflip Day',          desc: 'Interact with anyone or anything — neighbors, animals, even trees and stones — and they celebrate with a backflip.' },
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
     { name: 'Invisible Ladder Week-start', desc: 'Residents pretend to climb invisible ladders for the first hour after sunrise.' },
     { name: 'Pinecone Prom',          desc: 'Formal attire and slow dances with whichever pinecone accepts you.' },

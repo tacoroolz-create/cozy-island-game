@@ -567,12 +567,16 @@ function drawGroundLoot() {
 }
 
 function drawAnimals() {
-    for (const bird of birds) bird.draw();
-    for (const gull of seagulls) gull.draw();
-    for (const crab of crabs) crab.draw();
-    for (const turtle of turtles) turtle.draw();
-    for (const butterfly of butterflies) butterfly.draw();
-    for (const cicada of cicadas) cicada.draw();
+    // Backflip Day: an interacted-with animal draws mid-rotation.
+    const flip = (typeof withBackflip === 'function')
+        ? (a) => withBackflip(a, () => a.draw(), true)
+        : (a) => a.draw();
+    for (const bird of birds) flip(bird);
+    for (const gull of seagulls) flip(gull);
+    for (const crab of crabs) flip(crab);
+    for (const turtle of turtles) flip(turtle);
+    for (const butterfly of butterflies) flip(butterfly);
+    for (const cicada of cicadas) flip(cicada);
     drawSnakes();
     drawGroundLoot();
 }
@@ -776,6 +780,10 @@ function checkAnimalSunEvents() {
         if (typeof gameState !== 'undefined' && gameState === STATE.PLAYING &&
             (keyCode === ENTER || keyCode === RETURN)) {
             const animal = animalAtFacing();
+            if (animal && typeof triggerBackflip === 'function') {
+                const TS = CONFIG.TILE_SIZE;
+                triggerBackflip(animal, (animal.gridX + 0.5) * TS, (animal.gridY + 0.5) * TS);
+            }
             if (animal && animal.type === 'bird') {
                 if (animal.feed()) return false;
             } else if (animal && animal.type === 'crab') {
@@ -799,6 +807,10 @@ function checkAnimalSunEvents() {
     window.mousePressed = function () {
         if (typeof gameState !== 'undefined' && gameState === STATE.PLAYING) {
             const animal = animalAtFacing();
+            if (animal && typeof triggerBackflip === 'function') {
+                const TS = CONFIG.TILE_SIZE;
+                triggerBackflip(animal, (animal.gridX + 0.5) * TS, (animal.gridY + 0.5) * TS);
+            }
             if (animal && animal.type === 'bird') {
                 if (animal.feed()) return;
             } else if (animal && animal.type === 'crab') {
