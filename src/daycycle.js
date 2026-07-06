@@ -39,7 +39,7 @@ const HOLIDAYS = [
     { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
     { name: 'Backflip Day',          desc: 'Interact with anyone or anything — neighbors, animals, even trees and stones — and they celebrate with a backflip.' },
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
-    { name: 'Invisible Ladder Week-start', desc: 'Residents pretend to climb invisible ladders for the first hour after sunrise.' },
+    { name: 'Clean Your Room Day',    desc: 'No going outside until you tidy up: move or put away one piece of furniture or decor.' },
     { name: 'Pinecone Prom',          desc: 'Formal attire and slow dances with whichever pinecone accepts you.' },
     { name: 'Gargle-the-News Hour',   desc: 'Morning gossip is delivered entirely through gargled humming.' },
     { name: 'Reverse Burglary',       desc: 'People sneak into each other\'s homes and leave nice gifts.' },
@@ -106,6 +106,8 @@ function onNewDay() {
 
     // Yesterday's tournament target comes down with the sunrise.
     if (typeof clearToastTargets === 'function') clearToastTargets();
+    // Clean Your Room Day: reset yesterday's chore, lock the door if it's today.
+    if (typeof onCleanRoomNewDay === 'function') onCleanRoomNewDay();
 
     if (isSeasonStart) {
         const nextSeason = SEASONS[seasonIdx % SEASONS.length];
