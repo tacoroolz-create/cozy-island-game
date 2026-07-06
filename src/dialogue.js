@@ -318,6 +318,13 @@ function generateDialogue(personality, name) {
 function openDialogue(npc) {
     if (!npc || !npc.isPresent) return;
 
+    // Backflip Day: greeting a neighbor makes them backflip.
+    if (typeof triggerBackflip === 'function') {
+        const TS = CONFIG.TILE_SIZE;
+        const wT = npc.wTiles || 1, hT = npc.hTiles || 2;
+        triggerBackflip(npc, (npc.gridX + wT / 2) * TS, (npc.gridY + 1 - hT / 2) * TS);
+    }
+
     // Mubaba gets his quest-driven conversation (see magic.js).
     if (npc.id === 'mubaba' && typeof openMubabaMenu === 'function') {
         openMubabaMenu(npc);
