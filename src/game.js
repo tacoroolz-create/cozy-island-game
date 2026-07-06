@@ -474,7 +474,10 @@ const BUILDING_TIERS = {
     ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 }
+    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    // Player-built second shelter from Castle of Sticks Day. Placeholder
+    // colored-block fallback until twig tower art lands.
+    twig_tower:         { spriteKey: 'sprites.twig_tower',         name: 'Twig Tower',          color: '#9A7B4F', w: 4, h: 5, doorWidth: 1, interiorW: 5, interiorFloorRows: 3 }
 };
 
 // The eight underground building identities (see underWorldBldgs.rtf).
@@ -2118,6 +2121,15 @@ function mousePressed() {
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
         if (typeof tryTillSoil === 'function' && tryTillSoil()) return;
+        // Dig a Hole Day: pickaxe the ground / deepen the hole
+        if (typeof tryDigHole === 'function' && tryDigHole()) return;
+        // Castle of Sticks Day: raise a twig tower on the clicked spot (sticks equipped)
+        {
+            const TS = CONFIG.TILE_SIZE;
+            const tx = Math.floor((mouseX + cameraX) / TS);
+            const ty = Math.floor((mouseY + cameraY) / TS);
+            if (tryBuildTwigTower(tx, ty)) return;
+        }
         // Place an outdoor item (neighbor's shack, potted tree) on open ground.
         {
             const active = inventory.getActiveItem();
@@ -3075,6 +3087,21 @@ function tryPlaceMovedTree(tx, ty, treeType, itemId) {
     return true;
 }
 
+// True if a dims.w × dims.h building footprint fits on buildable land at (tx, ty).
+function isFootprintClear(tx, ty, dims) {
+    for (let dx = 0; dx < dims.w; dx++) {
+        for (let dy = 0; dy < dims.h; dy++) {
+            const cx = tx + dx, cy = ty + dy;
+            if (cx < 1 || cx > CONFIG.WORLD_WIDTH - 2 || cy < 1 || cy > CONFIG.WORLD_HEIGHT - 2) return false;
+            const tile = world.tiles[cx] && world.tiles[cx][cy];
+            if (!tile || tile.type === 'sea' || tile.type === 'beach' || tile.type === 'water') return false;
+            if (TILE_SOLID.has(tile.type)) return false;
+            if (buildingAt(cx, cy)) return false;
+        }
+    }
+    return true;
+}
+
 function tryPlaceNeighborShack(tx, ty, type) {
     type = type || 'shack';
     const dims = BUILDING_TIERS[type] || BUILDING_TIERS.shack;
@@ -3086,19 +3113,7 @@ function tryPlaceNeighborShack(tx, ty, type) {
         return true;
     }
 
-    // Validate footprint.
-    let clear = true;
-    for (let dx = 0; dx < dims.w && clear; dx++) {
-        for (let dy = 0; dy < dims.h && clear; dy++) {
-            const cx = tx + dx, cy = ty + dy;
-            if (cx < 1 || cx > CONFIG.WORLD_WIDTH - 2 || cy < 1 || cy > CONFIG.WORLD_HEIGHT - 2) { clear = false; break; }
-            const tile = world.tiles[cx] && world.tiles[cx][cy];
-            if (!tile || tile.type === 'sea' || tile.type === 'beach' || tile.type === 'water') { clear = false; break; }
-            if (TILE_SOLID.has(tile.type)) { clear = false; break; }
-            if (buildingAt(cx, cy)) { clear = false; break; }
-        }
-    }
-    if (!clear) {
+    if (!isFootprintClear(tx, ty, dims)) {
         notify("Can't place a shack there — clear some space first.");
         return true;
     }
@@ -3335,6 +3350,10 @@ function keyPressed() {
         } else if (key === 'm' || key === 'M') {
             if (typeof openMagicCastMenu === 'function') openMagicCastMenu();
             return false;
+        } else if (key === 'p' || key === 'P') {
+            // Name the Island Day: propose a name for a vote.
+            if (typeof tryProposeIslandName === 'function') tryProposeIslandName();
+            return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Check if facing a building - enter it
             if (tryEnterBuilding()) return false;
@@ -3352,6 +3371,8 @@ function keyPressed() {
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
             if (typeof tryTillSoil === 'function' && tryTillSoil()) return false;
+            // Dig a Hole Day: pickaxe the facing ground / deepen the hole
+            if (typeof tryDigHole === 'function' && tryDigHole()) return false;
             // Otherwise try harvest (gettin/gardening handled by their own key wrappers)
             tryHarvest();
             return false;
@@ -3796,6 +3817,136 @@ function updateToastProjectile(dt) {
     }
 }
 
+// ===== DIG A HOLE DAY =====
+// One communal hole. Each Dig a Hole Day (~once a year) the player can deepen
+// it once with a pickaxe; at depth 5 — the fifth year — it opens into a portal.
+// Hole state lives on the tile (depth, lastDugDay) so it rides along in saves.
+const HOLE_PORTAL_DEPTH = 5;
+
+function findDugHole() {
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (t && t.type === 'dug_hole') return { x, y, tile: t };
+        }
+    }
+    return null;
+}
+
+function tryDigHole() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Dig a Hole Day') return false;
+
+    const facing = player.getFacingTile ? player.getFacingTile() : null;
+    if (!facing || !facing.tile) return false;
+    const t = facing.tile;
+    const isHole = t.type === 'dug_hole';
+    const isDiggable = (t.type === 'grass' || t.type === 'beach') && !buildingAt(facing.x, facing.y);
+    if (!isHole && !isDiggable) return false;
+
+    if (isHole && t.depth >= HOLE_PORTAL_DEPTH) {
+        notify('The portal hums softly. Whatever lies beyond is still taking shape...');
+        return true;
+    }
+
+    const active = inventory.getActiveItem();
+    if (!active || active.id !== 'pickaxe') {
+        if (isHole) { notify('Equip your pickaxe to dig the hole deeper!'); return true; }
+        return false;
+    }
+
+    if (isHole) {
+        if (t.lastDugDay === world.day) {
+            notify('You already dug today. The hole rests until next Dig a Hole Day.');
+            return true;
+        }
+        t.depth = (t.depth || 1) + 1;
+        t.lastDugDay = world.day;
+        if (t.depth >= HOLE_PORTAL_DEPTH) {
+            notify('The hole breaks through! A shimmering portal swirls at the bottom!', 6000);
+        } else {
+            notify('You dig the hole deeper. Depth: ' + t.depth + '. Same time next year?', 4000);
+        }
+        return true;
+    }
+
+    // Starting a fresh hole — but the island only gets one.
+    const hole = findDugHole();
+    if (hole) {
+        notify('The island already has its hole (over at ' + hole.x + ', ' + hole.y + '). Tradition demands you deepen that one.');
+        return true;
+    }
+    world.tiles[facing.x][facing.y] = { type: 'dug_hole', depth: 1, lastDugDay: world.day, solid: true };
+    notify('You start a hole. It is a fine hole. Come back next Dig a Hole Day!', 4500);
+    return true;
+}
+
+// ===== NAME THE ISLAND DAY =====
+// ponytail: ballot is transient — a reload mid-vote scraps it; the passed name
+// itself is saved on the world.
+let islandVote = null; // { name, yes, no, voted:Set of npc ids }
+
+function tryProposeIslandName() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Name the Island Day') return false;
+    const name = (window.prompt('Propose a name for the island:') || '').trim().slice(0, 24);
+    if (!name) return true;
+    islandVote = { name, yes: 0, no: 0, voted: new Set() };
+    notify('Proposal: "' + name + '"! Go ask the neighbors to vote on it.', 4500);
+    return true;
+}
+
+// Called from openDialogue: a greeted neighbor casts their vote.
+function castIslandVote(npc) {
+    if (!islandVote || islandVote.voted.has(npc.id)) return;
+    islandVote.voted.add(npc.id);
+    const yes = Math.random() < 0.5;
+    if (yes) islandVote.yes++; else islandVote.no++;
+    const present = (typeof npcs !== 'undefined') ? npcs.filter(n => n.isPresent).length : 1;
+    const majority = Math.floor(present / 2) + 1;
+    notify(npc.name + ' votes ' + (yes ? 'YES' : 'NO') + ' on "' + islandVote.name + '"! (' +
+        islandVote.yes + ' yes / ' + islandVote.no + ' no, ' + majority + ' to decide)', 4000);
+    if (islandVote.yes >= majority) {
+        world.islandName = islandVote.name;
+        notify('The vote passes! This island shall henceforth be known as ' + islandVote.name + '!', 6000);
+        islandVote = null;
+    } else if (islandVote.no >= majority) {
+        notify('The vote fails. "' + islandVote.name + '" is rejected. Press P to propose another!', 5000);
+        islandVote = null;
+    }
+}
+
+// ===== CASTLE OF STICKS DAY =====
+// 100 sticks + a click on open ground = a twig tower: a player-owned second
+// shelter with a normal decorate-able interior. Placeholder colored-block
+// sprite until real art lands.
+function tryBuildTwigTower(tx, ty) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Castle of Sticks Day') return false;
+    const active = inventory.getActiveItem();
+    if (!active || active.id !== 'stick') return false;
+
+    if (buildings.some(b => b.type === 'twig_tower')) {
+        notify('Your twig tower already stands proud. One castle per island.');
+        return true;
+    }
+    if (!inventory.hasItem('stick', 100)) {
+        notify('A twig tower takes 100 sticks. You have ' + inventory.countItem('stick') + '.');
+        return true;
+    }
+    const dims = BUILDING_TIERS.twig_tower;
+    if (!isFootprintClear(tx, ty, dims)) {
+        notify("Can't raise the tower there — clear some open ground first.");
+        return true;
+    }
+    const b = new Building('twig_tower', tx, ty, 'player');
+    buildings.push(b);
+    clearBuildingFootprint(b);
+    inventory.removeItem('stick', 100);
+    notify('You lash 100 sticks into a mighty Twig Tower! Step inside and decorate it.', 5500);
+    return true;
+}
+
 // ===== CLEAN YOUR ROOM DAY =====
 // Waking up at home on the holiday locks the front door until the player
 // moves or removes one furnishing. ponytail: not saved — reloading skips the chore.
@@ -3805,7 +3956,7 @@ function onCleanRoomNewDay() {
     roomCleanDebt = false;
     const h = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
     if (!h || h.name !== 'Clean Your Room Day') return;
-    if (!insideBuilding || insideBuilding.owner) return; // only when waking in your own house
+    if (!insideBuilding || insideBuilding.owner !== 'player') return; // only when waking in your own home
     // Softlock guard: nothing placed and nothing placeable = room already spotless.
     if (!roomHasSomethingToTidy(insideBuilding)) {
         notify("Clean Your Room Day! Your room is already spotless. Enjoy the day off.", 4000);
@@ -5354,6 +5505,30 @@ class World {
                 });
                 break;
             }
+            case 'dug_hole': {
+                // Dig a Hole Day: deeper = wider and darker; depth 5 is a portal.
+                drawBase('grass');
+                const depth = tile.depth || 1;
+                noStroke();
+                if (depth >= HOLE_PORTAL_DEPTH) {
+                    fill('#1A0533');
+                    ellipse(screenX + TS / 2, screenY + TS / 2, TS - 2, TS - 4);
+                    const pulse = Math.sin(frameCount * 0.15) * 2;
+                    noFill();
+                    stroke('#B368FF');
+                    strokeWeight(1);
+                    ellipse(screenX + TS / 2, screenY + TS / 2, TS - 6 - pulse, TS - 8 - pulse);
+                    ellipse(screenX + TS / 2, screenY + TS / 2, (TS - 6 - pulse) / 2, (TS - 8 - pulse) / 2);
+                    noStroke();
+                } else {
+                    const w = 5 + depth * 2;
+                    fill('#5D4037');
+                    ellipse(screenX + TS / 2, screenY + TS / 2, w + 2, w * 0.75 + 2);
+                    fill(lerpColor(color('#4E342E'), color('#000000'), depth / HOLE_PORTAL_DEPTH));
+                    ellipse(screenX + TS / 2, screenY + TS / 2, w, w * 0.75);
+                }
+                break;
+            }
             case 'weeds': {
                 // Draw grass base first, then weeds sprite on top
                 drawBase('grass');
@@ -5513,14 +5688,16 @@ class World {
             day: this.day,
             season: this.season,
             timeMinutes: this.timeMinutes,
+            islandName: this.islandName || '',
             tiles: this.tiles
         };
     }
-    
+
     deserialize(data) {
         this.day = data.day;
         this.season = data.season;
         this.timeMinutes = data.timeMinutes;
+        this.islandName = data.islandName || '';
         this.tiles = data.tiles;
         // Tree migration: ensure all tree tiles (trunk and top) are solid 2-tall stacks.
         for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {

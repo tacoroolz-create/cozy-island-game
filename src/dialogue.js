@@ -325,6 +325,9 @@ function openDialogue(npc) {
         triggerBackflip(npc, (npc.gridX + wT / 2) * TS, (npc.gridY + 1 - hT / 2) * TS);
     }
 
+    // Name the Island Day: a greeted neighbor casts their vote on the proposal.
+    if (typeof castIslandVote === 'function') castIslandVote(npc);
+
     // Mubaba gets his quest-driven conversation (see magic.js).
     if (npc.id === 'mubaba' && typeof openMubabaMenu === 'function') {
         openMubabaMenu(npc);
@@ -366,6 +369,10 @@ function openDialogue(npc) {
         const holidayPrefix = getHolidayGreetingPrefix(npc.name);
         if (holidayPrefix) {
             tree.start.text = holidayPrefix + tree.start.text;
+        }
+        // Once the island has a voted-in name, neighbors drop it now and then.
+        if (world && world.islandName && Math.random() < 0.3) {
+            tree.start.text = 'Another fine day on ' + world.islandName + '! ' + tree.start.text;
         }
     }
 }

@@ -41,11 +41,11 @@ const HOLIDAYS = [
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
     { name: 'Clean Your Room Day',    desc: 'No going outside until you tidy up: move or put away one piece of furniture or decor.' },
     { name: 'Pinecone Prom',          desc: 'Formal attire and slow dances with whichever pinecone accepts you.' },
-    { name: 'Gargle-the-News Hour',   desc: 'Morning gossip is delivered entirely through gargled humming.' },
+    { name: 'Dig a Hole Day',         desc: 'Pick a spot and dig it with a pickaxe. Year after year the hole grows deeper... toward somewhere new.' },
     { name: 'Reverse Burglary',       desc: 'People sneak into each other\'s homes and leave nice gifts.' },
-    { name: 'Suspicious Pebble Day',  desc: 'Every resident must carry a pebble and regard it with faint concern.' },
+    { name: 'Name the Island Day',    desc: 'Propose a name for the island (press P) and canvass the neighbors for votes. Majority rules!' },
     { name: 'Mandatory Nap Interlude', desc: 'Between noon and one, the island collectively naps wherever they stand.' },
-    { name: 'Bucket on the Head Eve', desc: 'Buckets are worn as hats; the bucketless are politely pitied.' },
+    { name: 'Castle of Sticks Day',   desc: 'Gather 100 sticks and raise a twig tower — a second little home to decorate.' },
     { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
     { name: 'Pet Rock Adoption Fair', desc: 'Every rock is named and given a tiny paper collar.' },
     { name: 'Opposite Compliment Day', desc: 'Praise is delivered as insults that are clearly meant warmly.' },
@@ -136,6 +136,15 @@ function onNewDay() {
             if (holiday.name === 'Ab Appreciation Day') {
                 spawnYogatron();
             }
+            if (holiday.name === 'Dig a Hole Day') {
+                notify('Grab your pickaxe, face some open ground, and press Enter to dig!', 4500);
+            }
+            if (holiday.name === 'Name the Island Day') {
+                notify('Press P to propose a new name for the island!', 4500);
+            }
+            if (holiday.name === 'Castle of Sticks Day') {
+                notify('100 sticks = one twig tower. Equip sticks and click open ground to build!', 4500);
+            }
         }
     } else if (isSeasonStart) {
         notify('Holiday! ' + world.season + ' season begins!', 4000);
@@ -163,6 +172,7 @@ function onNewSeason() {
 function getDateString() {
     const holiday = getCurrentHoliday();
     let s = 'Day ' + world.day + ' - ' + world.season + ' Season';
+    if (world.islandName) s = world.islandName + ' - ' + s;
     if (holiday) s += ' - ' + holiday.name;
     return s;
 }
