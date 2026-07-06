@@ -226,7 +226,7 @@ let nameEntrySlot = 0;        // slot being named
 
 let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
 const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
-const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush']);
+const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
 // deferred pass after all base terrain so the next column's base can't clip the
@@ -1094,6 +1094,10 @@ function drawGame() {    // Handle continuous movement
 
     // Draw player
     player.draw();
+
+    // Toast Toss projectile (flies above the player)
+    updateToastProjectile(deltaTime);
+    drawToastProjectile();
 
     // Redraw tree canopy the player is standing under so foliage occludes
     // them (see World.drawTreeCanopyOverPlayer()).
@@ -3664,14 +3668,13 @@ function spawnBirdPoop(targetCount) {
     }
 }
 
-// Spawn Toast Toss Tournament targets on beach tiles.
-function spawnToastTargets(targetCount) {
+// Spawn the single Toast Toss Tournament target on a beach tile.
+function spawnToastTargets() {
     if (!world) return;
     let attempts = 0;
-    let spawned = 0;
     const px = player ? player.x : -1;
     const py = player ? player.y : -1;
-    while (spawned < targetCount && attempts < 500) {
+    while (attempts < 500) {
         attempts++;
         const x = floor(random(CONFIG.WORLD_WIDTH));
         const y = floor(random(CONFIG.WORLD_HEIGHT));
@@ -3680,61 +3683,112 @@ function spawnToastTargets(targetCount) {
         if (isSolidTile(x, y)) continue;
         if (buildingAt(x, y)) continue;
         if (x === px && y === py) continue;
-        world.tiles[x][y] = { type: 'toast_target', variant: floor(random(3)) };
-        spawned++;
-    }
-    if (spawned > 0) {
-        notify(spawned + ' toast targets appeared on the beach!');
+        world.tiles[x][y] = { type: 'toast_target', variant: 0 };
+        notify('A toast target appeared on the beach!');
+        return;
     }
 }
+
+// Sweep the tournament target away (called when a new day starts).
+function clearToastTargets() {
+    if (!world) return;
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (t && t.type === 'toast_target') { t.type = 'beach'; t.variant = 0; }
+        }
+    }
+    toastProjectile = null;
+}
+
+// ===== TOAST THROWING =====
+// One toast in flight at a time: {x0,y0,x1,y1,t,dur,hit}. Tile coords; t/dur in seconds.
+let toastProjectile = null;
+const TOAST_RANGE = 5;
 
 function tryToastToss() {
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
     if (!holiday || holiday.name !== 'Toast Toss Tournament') return false;
 
-    const facing = player.getFacingTile ? player.getFacingTile() : null;
-    if (!facing || !facing.tile) return false;
-    if (facing.tile.type !== 'toast_target') return false;
-
     const active = inventory.getActiveItem();
     if (!active || active.id !== 'stale_toast') {
-        notify('Equip some Stale Toast to join the tournament!');
+        // Only hint if they're clearly trying to interact with the target.
+        const facing = player.getFacingTile ? player.getFacingTile() : null;
+        if (facing && facing.tile && facing.tile.type === 'toast_target') {
+            notify('Equip some Stale Toast to join the tournament!');
+            return true;
+        }
         return false;
     }
+    if (toastProjectile) return true; // one toast in the air at a time
 
-    // Score based on distance from target center - represented by variant.
-    const variant = facing.tile.variant || 0;
-    const scoreRoll = random();
-    let prize = null;
-    let prizeCount = 1;
-    let message = '';
+    // Trace the throw line along the facing direction, up to TOAST_RANGE tiles.
+    let dx = 0, dy = 0;
+    if (player.facing === 'up') dy = -1;
+    else if (player.facing === 'down') dy = 1;
+    else if (player.facing === 'left') dx = -1;
+    else dx = 1;
 
-    if (variant === 0 && scoreRoll < 0.7) {
-        prize = 'gold_coin';
-        prizeCount = 1 + floor(random(2));
-        message = 'Bullseye! The toast lands square in the target. You win ' + prizeCount + ' Gold Coin' + (prizeCount > 1 ? 's' : '') + '!';
-    } else if (scoreRoll < 0.5) {
-        prize = 'banana';
-        prizeCount = 1 + floor(random(2));
-        message = 'Nice toss! The toast clips the rim. You win ' + prizeCount + ' Banana' + (prizeCount > 1 ? 's' : '') + '!';
-    } else {
-        message = 'Splat! The toast misses entirely. The target just stares back.';
+    let lx = player.x, ly = player.y, hit = false;
+    for (let i = 1; i <= TOAST_RANGE; i++) {
+        const tx = player.x + dx * i;
+        const ty = player.y + dy * i;
+        if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) break;
+        lx = tx; ly = ty;
+        const tile = world.tiles[tx][ty];
+        if (tile && tile.type === 'toast_target') { hit = true; break; }
     }
+    if (lx === player.x && ly === player.y) return false; // facing the world edge
 
     inventory.removeItem('stale_toast', 1);
-    if (prize) {
-        inventory.addItem(prize, prizeCount);
-        notify(message + ' (-1 toast)');
-    } else {
-        notify(message + ' (-1 toast)');
-    }
-
-    // Target disappears after being hit.
-    facing.tile.type = 'beach';
-    facing.tile.variant = 0;
-    facing.tile.depleted = false;
-    facing.tile.respawnAt = null;
+    const dist = Math.max(Math.abs(lx - player.x), Math.abs(ly - player.y));
+    // ponytail: "physics" = straight tile path + parabolic arc; toast sails over obstacles
+    toastProjectile = { x0: player.x, y0: player.y, x1: lx, y1: ly, t: 0, dur: 0.15 + 0.08 * dist, hit };
     return true;
+}
+
+function updateToastProjectile(dt) {
+    if (!toastProjectile) return;
+    toastProjectile.t += dt / 1000;
+    if (toastProjectile.t < toastProjectile.dur) return;
+    const p = toastProjectile;
+    toastProjectile = null;
+
+    const tile = world.tiles[p.x1] && world.tiles[p.x1][p.y1];
+    if (!p.hit || !tile || tile.type !== 'toast_target') {
+        notify('Splat! The toast lands in the sand. (-1 toast)');
+        return;
+    }
+    // Closer throws score better. The target stays up all day for more throws.
+    const dist = Math.max(Math.abs(p.x1 - p.x0), Math.abs(p.y1 - p.y0));
+    const roll = random();
+    if (roll < 0.85 - 0.1 * dist) {
+        const n = 1 + floor(random(2));
+        inventory.addItem('gold_coin', n);
+        notify('Bullseye! You win ' + n + ' Gold Coin' + (n > 1 ? 's' : '') + '! (-1 toast)');
+    } else if (roll < 0.9) {
+        const n = 1 + floor(random(2));
+        inventory.addItem('banana', n);
+        notify('Nice toss! The toast clips the rim. You win ' + n + ' Banana' + (n > 1 ? 's' : '') + '! (-1 toast)');
+    } else {
+        notify('So close! The toast bounces off the target. (-1 toast)');
+    }
+}
+
+function drawToastProjectile() {
+    if (!toastProjectile) return;
+    const p = toastProjectile;
+    const TS = CONFIG.TILE_SIZE;
+    const t = Math.min(p.t / p.dur, 1);
+    const x = lerp(p.x0, p.x1, t) * TS + TS / 2 - cameraX;
+    const y = lerp(p.y0, p.y1, t) * TS + TS / 2 - cameraY - 4 * 24 * t * (1 - t); // parabolic arc, 24px peak
+    const spr = SPRITES['items.stale_toast'];
+    push();
+    translate(x, y);
+    rotate(t * TWO_PI * 2); // toast tumbles in flight
+    if (spr) image(spr, -8, -8, 16, 16);
+    else { fill('#D2B48C'); noStroke(); rect(-6, -6, 12, 12); }
+    pop();
 }
 
 function handleStartMenuSelection() {
