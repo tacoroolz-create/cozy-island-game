@@ -2378,6 +2378,12 @@ function tryExitBuilding() {
     // Only exit if player is standing on the interior door tile
     if (player.x !== intDoor.x || player.y !== intDoor.y) return false;
 
+    // Clean Your Room Day: the door refuses to open until the room's been tidied.
+    if (roomCleanDebt) {
+        notify("It's Clean Your Room Day! Move or put away a furnishing before heading out.");
+        return true;
+    }
+
     // Place the player on the clear standing tile just outside this building's door.
     const spot = findExteriorStandingTile(b);
     player.x = spot.x;
@@ -3226,6 +3232,7 @@ function tryPlaceHomeItemInside(tx, ty) {
     }
     inventory.removeItem(active.id, 1);
     notify('Placed ' + item.name + '.');
+    roomCleaned();
     return true;
 }
 
@@ -3239,6 +3246,7 @@ function tryPickupHomeInside(tx, ty) {
         b.interiorTiles[tx][ty] = { type: 'grass', variant: floor(Math.random() * 3) };
         inventory.addItem(id, 1);
         notify('Picked up ' + (ITEMS[id] ? ITEMS[id].name : id) + '.');
+        roomCleaned();
         return true;
     }
     if (tile.type === 'wall' && tile.deco) {
@@ -3246,6 +3254,7 @@ function tryPickupHomeInside(tx, ty) {
         delete tile.deco;
         inventory.addItem(id, 1);
         notify('Took down ' + (ITEMS[id] ? ITEMS[id].name : id) + '.');
+        roomCleaned();
         return true;
     }
     return false;
@@ -3785,6 +3794,41 @@ function updateToastProjectile(dt) {
     } else {
         notify('So close! The toast bounces off the target. (-1 toast)');
     }
+}
+
+// ===== CLEAN YOUR ROOM DAY =====
+// Waking up at home on the holiday locks the front door until the player
+// moves or removes one furnishing. ponytail: not saved — reloading skips the chore.
+let roomCleanDebt = false;
+
+function onCleanRoomNewDay() {
+    roomCleanDebt = false;
+    const h = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!h || h.name !== 'Clean Your Room Day') return;
+    if (!insideBuilding || insideBuilding.owner) return; // only when waking in your own house
+    // Softlock guard: nothing placed and nothing placeable = room already spotless.
+    if (!roomHasSomethingToTidy(insideBuilding)) {
+        notify("Clean Your Room Day! Your room is already spotless. Enjoy the day off.", 4000);
+        return;
+    }
+    roomCleanDebt = true;
+    notify('Clean Your Room Day: tidy up — move or put away one furnishing — before you go outside!', 4500);
+}
+
+function roomHasSomethingToTidy(b) {
+    for (let x = 0; x < b.interiorW; x++) {
+        for (let y = 0; y < b.interiorH; y++) {
+            const t = b.interiorTiles[x][y];
+            if (t && (t.type === 'home' || (t.type === 'wall' && t.deco))) return true;
+        }
+    }
+    return inventory.slots.some(s => s && ITEMS[s.id] && ITEMS[s.id].home);
+}
+
+function roomCleaned() {
+    if (!roomCleanDebt) return;
+    roomCleanDebt = false;
+    notify('The room looks better already. Now you may go outside!', 3500);
 }
 
 // ===== BACKFLIP DAY =====
