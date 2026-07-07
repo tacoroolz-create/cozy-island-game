@@ -2954,7 +2954,9 @@ function drawInterior() {
     // Update time inside (same as outside)
     if (deltaTime) {
         const gameMinutesPerRealMin = (24 * 60) / CONFIG.DAY_LENGTH_MINUTES;
+        const prevMinutes = world.timeMinutes;
         world.timeMinutes += gameMinutesPerRealMin * (deltaTime / 60000);
+        freezeAtLateNight(world, prevMinutes);
     }
     if (world.timeMinutes >= 24 * 60) {
         world.timeMinutes = 0;
@@ -5050,7 +5052,9 @@ class World {
         // Update time (30 real minutes = 24 game hours)
         if (deltaTime) {
             const gameMinutesPerRealMin = (24 * 60) / CONFIG.DAY_LENGTH_MINUTES;
+            const prevMinutes = this.timeMinutes;
             this.timeMinutes += gameMinutesPerRealMin * (deltaTime / 60000);
+            freezeAtLateNight(this, prevMinutes);
         }
         if (this.timeMinutes >= 24 * 60) {
             this.timeMinutes = 0;
