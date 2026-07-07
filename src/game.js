@@ -1091,6 +1091,7 @@ function drawGame() {    // Handle continuous movement
     }
 
     // Draw NPCs
+    if (typeof drawCutouts === 'function') drawCutouts();
     if (typeof drawEntities === 'function') drawEntities();
 
     // Draw animals (birds/crabs)
@@ -1306,7 +1307,7 @@ function openYogatronDialogue() {
     const tree = JSON.parse(JSON.stringify(yogatron.dialogue));
     // Shake node: give one protein shake per visit/day.
     if (!yogatron.gaveShake) {
-        tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+        tree.shake.text = 'One shake, coming right up! Drink deep and flex proud!';
         tree.shake.choices = [
             { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
         ];
@@ -1383,7 +1384,7 @@ function _yogatronSelectDialogueChoice(i) {
             // If going back to shake after about, re-evaluate text based on gaveShake.
             if (choice.next === 'shake') {
                 if (!npc.gaveShake) {
-                    tree.shake.text = 'One shake, coming right up! *blender noises* Drink deep and flex proud!';
+                    tree.shake.text = 'One shake, coming right up! Drink deep and flex proud!';
                     tree.shake.choices = [
                         { text: 'Thanks!', next: null, friendshipDelta: 1, action: 'shake' }
                     ];
@@ -2147,8 +2148,17 @@ function mousePressed() {
                 const ty = Math.floor((mouseY + cameraY) / TS);
                 if (outdoor.tree) {
                     if (tryPlaceMovedTree(tx, ty, outdoor.tree, active.id)) return;
+                } else if (outdoor.cutout) {
+                    if (tryPlaceCutout(tx, ty, outdoor.cutout, active.id)) return;
                 } else if (tryPlaceNeighborShack(tx, ty, outdoor.type)) return;
             }
+        }
+        // Click a placed cardboard cutout up close to pick it back up (quests.js).
+        if (typeof tryPickupCutoutAt === 'function') {
+            const TS = CONFIG.TILE_SIZE;
+            const tx = Math.floor((mouseX + cameraX) / TS);
+            const ty = Math.floor((mouseY + cameraY) / TS);
+            if (tryPickupCutoutAt(tx, ty)) return;
         }
         // Use the selected hotbar item on a clicked adjacent tile (e.g. plant a seed).
         if (typeof tryUseActiveItemAt === 'function') {
@@ -4130,6 +4140,7 @@ function startNewGame() {
     crabs = [];
     groundLoot = [];
     _lastAnimalHour = null;
+    if (typeof questLoad === 'function') questLoad(null); // fresh quest state
     // Spawn first neighbor
     checkArrivals();
     // Spawn initial animals at the start of the day

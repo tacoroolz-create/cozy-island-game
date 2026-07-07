@@ -338,7 +338,7 @@ function openDialogue(npc) {
     let stinkPrefix = '';
     if (typeof isNearPoop === 'function' && isNearPoop(npc.gridX, npc.gridY, 3)) {
         const stinks = [
-            '*sniff sniff* Something stinks... ',
+            'Something stinks... ',
             'Phew, do you smell that? ',
             'There is an unmistakable funk in the air... ',
             'Something around here smells suspiciously hog-like... '
@@ -354,6 +354,23 @@ function openDialogue(npc) {
     dialogueState.choicesVisible = false;
     dialogueState.advancedMenu = false;
     gameState = STATE.DIALOGUE;
+
+    // Pick a fresh conversation each chat: small talk usually, the full
+    // hand-written tree occasionally (dialogue_smalltalk.js). Must run before
+    // gainTalk so "first meeting" (friendship 0) still gets the intro tree.
+    if (typeof chooseConversationTree === 'function') {
+        npc._dialogueTree = chooseConversationTree(npc);
+    }
+    // Quest hooks: offers, fetch turn-ins, parcel deliveries (quests.js).
+    if (typeof injectQuestDialogue === 'function') {
+        injectQuestDialogue(npc, npc._dialogueTree);
+    }
+    // A neighbor standing near their own cardboard cutout notices it.
+    if (typeof ownCutoutNear === 'function' && npc._dialogueTree && npc._dialogueTree.start && ownCutoutNear(npc)) {
+        const cc = (typeof CUTOUT_COMMENTS !== 'undefined' && CUTOUT_COMMENTS[npc.name])
+            || "Woah! What the heck is that?! Is that... ME?";
+        npc._dialogueTree.start.text = cc + ' ' + npc._dialogueTree.start.text;
+    }
 
     // Apply talk friendship gain (once per day)
     npc.gainTalk();

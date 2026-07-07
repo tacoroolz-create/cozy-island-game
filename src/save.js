@@ -302,6 +302,7 @@ function serializeGame() {
         npcs: npcs.map(n => n.serialize()),
         knownMagic: knownMagic || [],
         magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
+        quests: (typeof questSerialize === 'function') ? questSerialize() : null,
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
         crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
         turtles: turtles.map(t => ({ type: t.type, gridX: t.gridX, gridY: t.gridY, variant: t.variant })),
@@ -384,6 +385,7 @@ function deserializeGame(data) {
 
     knownMagic = data.knownMagic || [];
     magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
+    if (typeof questLoad === 'function') questLoad(data.quests); // defaults cover old saves
 
     birds = [];
     crabs = [];
