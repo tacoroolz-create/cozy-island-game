@@ -23,6 +23,19 @@ function updateTime(dt) {
     }
 }
 
+// The clock freezes at 2 AM until the player sleeps (sleeping sets it to 6 AM,
+// which is past the freeze point, so the clamp only re-arms after midnight).
+const LATE_NIGHT_FREEZE_MIN = 2 * 60;
+function freezeAtLateNight(w, prevMinutes) {
+    if (prevMinutes <= LATE_NIGHT_FREEZE_MIN && w.timeMinutes > LATE_NIGHT_FREEZE_MIN) {
+        w.timeMinutes = LATE_NIGHT_FREEZE_MIN;
+        // Fires exactly once: after clamping, prevMinutes === the freeze point.
+        if (prevMinutes < LATE_NIGHT_FREEZE_MIN) {
+            notify("It's really late. You should probably rest.", 4000);
+        }
+    }
+}
+
 // ===== NONSENSICAL ISLAND HOLIDAYS =====
 // One unique community event every 6 days (day 1, 7, 13, 19 ...).
 // Year = SEASON_LENGTH * 4 = 160 days, so 160 / 6 = ~27 events.
