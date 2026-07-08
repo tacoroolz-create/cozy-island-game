@@ -101,10 +101,11 @@ const SPRITE_DEFS = {
     'tiles.soil':             'assets/tiles/soil.png',
     'sprites.player':         'assets/sprites/orb.png',
     'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
-    // Underground building art + fortress scene props — files don't exist yet;
-    // the error callback nulls them and colored fallbacks draw instead.
+    // Underground building art + fortress scene props. Missing files hit the
+    // error callback, get nulled, and colored fallbacks draw instead.
     'sprites.ug_mubaba_fortress': 'assets/sprites/buildings/mubaba_fortress.png',
     'sprites.ug_electric_temple': 'assets/sprites/buildings/electric_temple.png',
+    'sprites.ug_gettin':          'assets/sprites/buildings/gettin_place.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
@@ -248,8 +249,8 @@ const TALL_SPRITE_TILES = {
 // Draw to the sheet spec in SpriteUpdate.txt section 14, then register here.
 const ANIMATED_SPRITES = {
     // 'tiles.palm_tree':            { frames: 4, frameMs: 200 },
-    // 'sprites.ug_electric_temple': { frames: 2, frameMs: 400 },
-    'sprites.ug_mubaba_fortress': { frames: 3, frameMs: 300 },
+    'sprites.ug_electric_temple': { frames: 2, frameMs: 400 },
+    'sprites.ug_mubaba_fortress': { frames: 2, frameMs: 400 },
 };
 
 // Current frame of a (possibly animated) structure sprite: {img, sx, w, h}.
@@ -468,14 +469,14 @@ const BUILDING_TIERS = {
     // are in addition to INTERIOR_WALL_HEIGHT wall rows on top).
     shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 5, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x80 sprite
     house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 },   // 64x64 sprite
-    // --- Underground city buildings (PLACEHOLDERS) ---
-    // No sprites yet: Building.draw falls back to a colored block tinted by
-    // `color`. Same footprint/interior as the shack. Rename/reskin later.
+    // --- Underground city buildings ---
+    // Types without sprite files yet: Building.draw falls back to a colored
+    // block tinted by `color`. Reskin as art lands.
     ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
@@ -486,12 +487,12 @@ const BUILDING_TIERS = {
 
 // The eight underground building identities (see underWorldBldgs.rtf).
 const UNDERGROUND_BUILDING_TYPES = ['ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin', 'ug_inner_temple', 'ug_electric_temple', 'ug_black_goddess', 'ug_stimmy_tims', 'ug_bottomless_pit'];
-// Fixed at city creation — randomization retired. The two designed buildings
-// stand now for verification; Charles's planned starter set (Mubaba's /
-// Recycle Bin / Stimmy Tim's, in a set order) replaces this list later.
+// Fixed at city creation — randomization retired. The three buildings with
+// finished art stand now; the remaining pads fill in as more art lands.
 const UNDERGROUND_STARTING_BUILDINGS = [
     { type: 'ug_mubaba_fortress', padIndex: 1 },
-    { type: 'ug_electric_temple', padIndex: 2 }
+    { type: 'ug_electric_temple', padIndex: 2 },
+    { type: 'ug_gettin',          padIndex: 3 }
 ];
 
 // Interior wall height (top wall area for decoration)
