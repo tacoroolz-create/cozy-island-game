@@ -2113,6 +2113,19 @@ function mousePressed() {
             debugTeleport(Math.floor((mouseX + cameraX) / TS), Math.floor((mouseY + cameraY) / TS));
             return;
         }
+        // Turn toward the clicked tile first, so facing-based interactions
+        // (doors, NPCs, tilling...) work no matter which way we were looking.
+        {
+            const TS = CONFIG.TILE_SIZE;
+            const tx = Math.floor((mouseX + cameraX) / TS);
+            const ty = Math.floor((mouseY + cameraY) / TS);
+            const dx = tx - player.x, dy = ty - player.y;
+            if (dx !== 0 || dy !== 0) {
+                player.facing = Math.abs(dx) > Math.abs(dy)
+                    ? (dx > 0 ? 'right' : 'left')
+                    : (dy > 0 ? 'down' : 'up');
+            }
+        }
         // Try entering building first
         if (tryEnterBuilding()) return;
         // Check NPC talk, then harvest
@@ -2179,6 +2192,16 @@ function mousePressed() {
         const hb = getHotbarSlotAtMouse();
         if (hb >= 0) { hotbarSlot = hb; return; }
         const it = getInteriorTileAtMouse();
+        // Turn toward the clicked tile so facing-based interactions (bed, door)
+        // work no matter which way we were looking.
+        if (it) {
+            const dx = it.x - player.x, dy = it.y - player.y;
+            if (dx !== 0 || dy !== 0) {
+                player.facing = Math.abs(dx) > Math.abs(dy)
+                    ? (dx > 0 ? 'right' : 'left')
+                    : (dy > 0 ? 'down' : 'up');
+            }
+        }
         // Electric Temple: clicking Taira (body or head tile) talks to her.
         if (it && insideBuilding && insideBuilding.type === 'ug_electric_temple' &&
             it.x === TEMPLE_TAIRA_POS.x && (it.y === TEMPLE_TAIRA_POS.y || it.y === TEMPLE_TAIRA_POS.y - 1)) {
