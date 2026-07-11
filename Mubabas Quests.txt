@@ -1,0 +1,77 @@
+Mubaba Dialogue
+
+Mubaba:
+I AM MUBABA, WIZARD OF SHADOW AND STRIFE! Manipulator of magical monsters and men alike! The dwarves know me as Bjorn M'gorn, the elves know me as Lan’key Musafa, and to the humans I am known only as terror! A simple greeting, you say? Such paltry words for one who will command the very essence of this world – nay, all of existence, once my glorious empire is fully realized!
+
+Player:
+-Option 1: Woah. Okay. Well, I don't really have a name and all that... 
+--Mubaba: No name?! What a strange creature you are... hm... yes, this is most interesting. Or... Do you deceive me?! Aye, I see through your trickery! Away, ye nameless ghoul! (The conversation ends and the player is warped back outside.)
+-Option 2: Neat. Can I help?
+--Mubaba: Yes...YES! An eager servant, a confidant and boon companion. This is what I need. I have many needs, new friend. Alas, I cannot leave my fortress. What with all of these machinations and magical whirligigs thrumming... imagine if one were to fly out the window and alert the outside of my plans? A disaster, to say the least. Yes, you can help. Here is what I need. (This closes this conversation forever and causes interacting with Mubaba to bring them to the "quests" list that allows them to learn magic. They are brought to this table following this interaction.)
+
+Mubaba's Quests: This is a list of the requirements to learn "magic tricks". The multi-step quest detailed in the Mubaba file appears after all other quests are complete, and reads as "World Domination"
+
+Quest 1: Research the life on the surface
+Mubaba: I believe I may be able bend the surface world to my will if I can control their flora. To do this, I will need to understand the magical essence of the plant life. Bring me 10 logs, 10 pinecones, and 10 bananas. I believe I can distill these into a plant mind control ritual!
+[If player does not have the right inventory, returns to quest list. If he does, leads to second interaction]
+Mubaba: Huzzah! This is exactly what I needed. Now, allow me to place them in the circle. The body of the tree, to teach me their strength. The seed of the tree, to teach me their future. The fruit of the tree, to show me their gifts. Flizardo Requinta Bistoffa! 
+[A puff of green smoke rises up from Mubaba's feet and the screen shakes.]
+Mubaba: Blast these infernal pinecones and their poppy popping! The spell seems to have missed me... where did it go?
+[The player gains the "Tree Move" magic trick. Screen reads "The magic seems to have seeped into you. You can move trees now!"]
+
+Quest 2: Raising the Golem
+Mubaba: Perhaps I am over complicating this... no empire was ever built without good old fashioned warcraft! I will build an army, not of men, but of animate refuse! Let their wasteful ways be their very downfall! Bring me 50 units of something from the surface. Anything. Make sure it's all the same thing for aesthetics, of course.
+[if player does not have the right inventory, returns to quest list. If he does, lead to second interaction]
+Mubaba: Huzzah! This will do nicely. Stand back, for the golems shall thirst for blood with their first breath! Jalipa Pintoofa Shin Gotaram!
+[A puff of grey smoke rises up from Mubaba's feet and the screen shakes.]
+Mubaba: Gah! I can't work in these conditions! This place is a mess! Where are my golems? Confound it, the spell didn't work!
+[The player gains the "Transmute" magic trick. Screen reads "The magic seems to have seeped into you. You can magically manipulate items now!]
+
+Quest 3: Manipulate Time and Space
+Mubaba: If they are too old to fight, the armies of the world will kneel to me in surrender! However, it will take some time to learn how to manipulate... erm... time. 
+[if player has not yet reached the 1 year mark, returns to quest list. If he does, lead to second interaction]
+Mubaba: We have done it! I have the secret incantation to control time! Bingabong Boothie Piddle Paddle!
+[A puff of red smoke rises up from Mubaba's feet and the screen shakes.]
+Mubaba: It is done! I think... Hm... Maybe this watch is broken.
+[The player gains the "Time Warp" and "Season Shift" magic tricks. Screen reads "The magic seems to have seeped into you. You can fast forward through time now!"]
+
+Quest 4: No Kings
+Mubaba: I don't know why I didn't think of this sooner! If I banish the Kings and Emperors of the world, the people will naturally looks for the wisest and most regal man in the lands to lead them! That's me, by the way. Yes, fine, you are impressive as well. We need more energy from the surface to fuel this spell... at least 9 intelligent beings whose souls I can harness. Perhaps you could... make friends?
+[if player does not have 9 neighbors with shelters, returns to quest list. If he does, lead to second interaction]
+Mubaba: At last! My most powerful incantation yet! By drawing from the power of those on the surface we shall unfurl a great incantation... underground! Here, I mean. Shabbo Shabbo Binkley Tazani Horrem Dastalik!
+[A puff of blue smoke rises up from Mubaba's feet and the screen shakes.]
+Mubaba: At last! I shall... I will... hm... I don't feel any different.
+[The player gains the "Banish" magic trick. Screen reads "The magic seems to have seeped into you. You can magically banish neighbors now!]
+
+
+[When all 4 of these quests have been completed in any order, the next conversation with Mubaba starts fresh with new dialogue leading to the Ultimate Quest]
+
+Quest 5: World Domination
+Step 1
+Mubaba: Ah! My friend! Such good fortune to have an audience for my inevitable rise to greatness! Never mind the failures of the past, we are striving! We are moving into the future! Nothing will stop us! Or... will it? Hm... something tells me that someone is plotting against me... Go forth, my minion! Eject the Usurper!
+[Screen reads "Mubaba thinks someone is up to... yes good? Up to something. He's probably just being his crazy self. You could probably banish anyone and he'd believe it was the right person." Then the dialogue ends and the player is back outside. After banishing any neighbor, the player can return to Mubaba.]
+Step 2
+Mubaba: The usurper has been annihilated! Rejoice! Excellent work, my friend. Now, to blend the elixir. Ice water from hell, a cactus grown from snow, a Barbara Streisand cassette tape, and a bottle of Stardew... Wait, where did I put the Stardew?! Blast!
+[Screen reads "He probably never had it. Oh well, let's go get it for him. We can use a glass bottle from the sea and fill it with the dew from the grass in the Stars. We'd better be there early in the morning though, the grass up there doesn't stay wet for long." Then the dialogue ends and the player is back outside. After finding a glass bottle with the gettin' stick, traveling to the Stars through the Electric Temple, and filling the bottle with Dew from the Star grass during the 6 AM hour, the player can return to Mubaba.]
+Step 3
+Mubaba: There it is! I knew I didn't misplace it! Now that all of the ingredients are compiled, only one thing remains... I... am STARVING. I wouldn't normally ask this but you know... rent is due... Can I borrow 10 IOUs?
+Option 1: Sure. 
+Mubaba: Hah! Sucker! After I finish this spell, you'll never see me again! Never loan a wizard money!
+[A puff of yellow smoke rises up from Mubaba's feet and the screen shakes.]
+Mubaba: What... I'm still here? I uh... I'll get this back to you soon.
+[The player gains the Teleport magic trick. Screen reads "The magic seems to have seeped into you. You can Teleport now!"]
+Option 2: No way! 
+Mubaba: No?! What manner of friend are you? Begone!
+[Dialogue ends and player is back outside]
+
+After the quests are all complete, Mubaba becomes a purely conversational character.
+
+
+All conversations begin:
+Mubaba:
+I AM MUBABA, WIZARD OF SHADOW AND STRIFE! Manipulator of magical monsters and men alike! The dwarves know me as Bjorn M'gorn, the elves know me as Lan’key Musafa, and to the humans I am known only as terror! A simple greeting, you say? Such paltry words for one who will command the very essence of this world – nay, all of existence, once my glorious empire is fully realized!
+
+Player:
+-Option 1: Yeah, good luck with that. [Dialogue ends and player goes back outside]
+-Option 2: Hey buddy, do you have that 10 you owe me?
+--Mubaba: Yes, yes of course... I... um... You know what? It's in the chest. I'm just a little wary of exposing the location of my secret chest. I'll have it out for you next time.
