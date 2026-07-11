@@ -55,7 +55,7 @@ const HOLIDAYS = [
     { name: 'Clean Your Room Day',    desc: 'No going outside until you tidy up: move or put away one piece of furniture or decor.' },
     { name: 'Day of the Island God',  desc: 'The Island God rises on the east beach. Animal life doubles in its honor.' },
     { name: 'Dig a Hole Day',         desc: 'Pick a spot and dig it with a pickaxe. Year after year the hole grows deeper... toward somewhere new.' },
-    { name: 'Reverse Burglary',       desc: 'People sneak into each other\'s homes and leave nice gifts.' },
+    { name: 'Lost Mail Day',          desc: 'Crates of undelivered letters wash up on the beach. Deliver each to the neighbor it was meant for.' },
     { name: 'Name the Island Day',    desc: 'Propose a name for the island (press P) and canvass the neighbors for votes. Majority rules!' },
     { name: 'Mandatory Nap Interlude', desc: 'Between noon and one, the island collectively naps wherever they stand.' },
     { name: 'Castle of Sticks Day',   desc: 'Gather 100 sticks and raise a twig tower — a second little home to decorate.' },

@@ -515,6 +515,7 @@ function getHogHolidayMood() {
     if (name === "Hoggy's Birthday") return { emote: 'heart', note: 'It is ' + hog.name + "'s Birthday! He sits proudly by his picnic blanket, waiting for gifts." };
     if (name === 'Turtle Crossing Guard Day') return { emote: 'guard', note: hog.name + ' stands watch by the crossing, chest puffed out importantly.' };
     if (name === 'The Returning Bird') return { emote: 'sky', note: hog.name + ' cranes his neck skyward, watching for the bird.' };
+    if (name === 'Lost Mail Day') return { emote: 'letter', note: hog.name + ' noses at a sealed letter, hoping it is for him.' };
     return null;
 }
 
