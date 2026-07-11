@@ -10,7 +10,8 @@ HEADLINE
 Nearly everything from the July 3rd review landed: minigames wired, magic
 learnable from Mubaba (6 tricks), daily neighbor quests with cardboard-cutout
 rewards, Mubaba's quest chain, underground identities (underWorldBldgs.rtf),
-3 of 8 underground buildings standing with real art, 11 of 29 holidays,
+5 of 8 underground buildings standing with real art (as of today), 11 of
+29 holidays,
 Dreamer's Almanac, multi-slot saves, underground music, sun shadows,
 click-to-face.
 
@@ -120,9 +121,9 @@ Charles:  finish stars.ceol -> wav; pick next 3-4 holidays; decide
           Cosmos (write or cut); sketch the 5 pad-unlock quests (what
           task opens each building); SFX wishlist beyond the default 8.
 
-Claude:   1. Land hog/save/dialogue work on main (W4)          [today]
-          2. Wire Black Goddess + Inner Temple (W2 first half)  [today]
-          3. SFX pass (W3 second half)                          [today]
+Claude:   1. Land hog/save/dialogue work on main (W4)           DONE July 10
+          2. Wire Black Goddess + Inner Temple (W2 first half)  DONE July 10
+          3. SFX pass (W3 second half)                          DONE July 10
           4. Recycle Bin + IOU selling (W1 phase 1)
           5. Stimmy Tim's shop + morning neighbors (W1 phase 2)
           6. Pad-unlock quest mechanism (K4, needs Charles's quests)
