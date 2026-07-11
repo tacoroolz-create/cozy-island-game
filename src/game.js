@@ -113,6 +113,7 @@ const SPRITE_DEFS = {
     'sprites.ug_stimmy_tims':     'assets/sprites/buildings/stimmy_tims.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.turtle':         'assets/sprites/turtle.png',
+    'sprites.island_god':     'assets/sprites/island_god.png',
     'sprites.seagull':        'assets/sprites/seagull.png',
     'items.log':              'assets/sprites/log.png',
     'items.stone':            'assets/sprites/stone.png',
@@ -179,6 +180,7 @@ let nameEntrySlot = 0;        // slot being named
 
 let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
 const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
+let islandGod = null; // static giant turtle visitor for Day of the Island God
 const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
@@ -1089,6 +1091,10 @@ function drawGame() {    // Handle continuous movement
     updateYogatron(deltaTime);
     drawYogatron();
 
+    // ===== ISLAND GOD: Day of the Island God visitor =====
+    updateIslandGod();
+    drawIslandGod();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -1362,6 +1368,89 @@ function _yogatronSelectDialogueChoice(i) {
         return;
     }
     _originalSelectDialogueChoice(i);
+}
+
+// ===== ISLAND GOD (Day of the Island God) =====
+// A static, non-moving, non-speaking giant turtle. Interacting with it just
+// shows one-off flavor text — no dialogue tree needed for a statue.
+const ISLAND_GOD_LINES = [
+    'You gaze upon the Island God. Something in your chest goes very quiet.',
+    'The Island God does not move. You feel, somehow, seen.',
+    'You stare at the ancient shell. A gull lands on it and immediately regrets it.',
+    'The Island God says nothing. You bow anyway. It felt right.'
+];
+
+function findEastBeachTile() {
+    for (let x = CONFIG.WORLD_WIDTH - 1; x >= 0; x--) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (!t || t.type !== 'beach') continue;
+            if (isSolidTile(x, y) || buildingAt(x, y)) continue;
+            if (typeof npcAt === 'function' && npcAt(x, y)) continue;
+            return { x, y };
+        }
+    }
+    return null;
+}
+
+function spawnIslandGod() {
+    if (islandGod && islandGod.isPresent) return;
+    if (typeof world === 'undefined' || !world) return;
+    const holiday = getCurrentHoliday();
+    if (!holiday || holiday.name !== 'Day of the Island God') return;
+
+    const spot = findEastBeachTile();
+    if (!spot) return;
+
+    islandGod = { gridX: spot.x, gridY: spot.y, isPresent: true };
+    notify('The Island God has risen on the east beach.', 4000);
+}
+
+function despawnIslandGod() {
+    if (!islandGod) return;
+    islandGod.isPresent = false;
+    islandGod = null;
+}
+
+function updateIslandGod() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Day of the Island God') {
+        if (islandGod && islandGod.isPresent) despawnIslandGod();
+        return;
+    }
+    if (!islandGod || !islandGod.isPresent) spawnIslandGod();
+}
+
+function drawIslandGod() {
+    if (!islandGod || !islandGod.isPresent) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = islandGod.gridX * TS - cameraX;
+    const sy = islandGod.gridY * TS - cameraY;
+    const SPAN = TS * 3; // looms three tiles wide/tall
+    const spr = SPRITES['sprites.island_god'];
+    if (spr) {
+        image(spr, sx - SPAN / 3, sy - SPAN + TS, SPAN, SPAN);
+    } else {
+        noStroke();
+        fill('#2E8B57');
+        ellipse(sx + TS / 2, sy + TS / 2, SPAN * 0.7, SPAN * 0.5);
+        fill('#1B5E3F');
+        ellipse(sx + TS / 2, sy + TS / 2 - SPAN * 0.08, SPAN * 0.45, SPAN * 0.32);
+    }
+}
+
+function isFacingIslandGod() {
+    if (!islandGod || !islandGod.isPresent || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    return facing.x === islandGod.gridX && facing.y === islandGod.gridY;
+}
+
+function tryTalkToIslandGod() {
+    if (!islandGod || !islandGod.isPresent) return false;
+    if (!isFacingIslandGod()) return false;
+    notify(ISLAND_GOD_LINES[Math.floor(Math.random() * ISLAND_GOD_LINES.length)], 4000);
+    return true;
 }
 
 function drawDayNightOverlay() {
@@ -2097,6 +2186,8 @@ function mousePressed() {
         }
         // Yogatron holiday interaction (before harvest)
         if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return;
+        // Island God holiday interaction (before harvest)
+        if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -3357,6 +3448,8 @@ function keyPressed() {
             }
             // Yogatron holiday interaction (before harvest)
             if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return false;
+            // Island God holiday interaction (before harvest)
+            if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

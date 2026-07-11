@@ -721,13 +721,15 @@ function onAnimalNewDay() {
     // Clear seasonal animals and respawn based on current season
     butterflies = [];
     cicadas = [];
-    // Spawn fresh animals
-    spawnBirds(2 + floor(random(3)));
-    spawnCrabs(2 + floor(random(3)));
-    spawnSeagulls(2 + floor(random(3)));
-    spawnTurtles(1 + floor(random(2)));
+    // Spawn fresh animals. Day of the Island God doubles every count in its honor.
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    const godMult = (holiday && holiday.name === 'Day of the Island God') ? 2 : 1;
+    spawnBirds(godMult * (2 + floor(random(3))));
+    spawnCrabs(godMult * (2 + floor(random(3))));
+    spawnSeagulls(godMult * (2 + floor(random(3))));
+    spawnTurtles(godMult * (1 + floor(random(2))));
     spawnButterflies();
-    spawnCicadas(2 + floor(random(3)));
+    spawnCicadas(godMult * (2 + floor(random(3))));
     // Seagulls sometimes drop extra feathers after circling down
     if (seagulls.length > 0) setTimeout(dropSeagullFeathers, 1000);
 }
