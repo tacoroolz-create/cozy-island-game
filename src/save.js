@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 18;
+const SAVE_VERSION = 19;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -322,6 +322,24 @@ const MIGRATIONS = [
     },
     // v17 -> v18: the Recycle Bin opens for business (6 of 8 pads built).
     // Same re-stamp.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
+        }
+        return data;
+    },
+    // v18 -> v19: Stimmy Tim's opens (7 of 8 pads built). Same re-stamp; the
+    // fresh Building objects get the cafe interior from initInterior.
     function(data) {
         const ug = data.extraMaps && data.extraMaps.underground;
         if (ug) {
