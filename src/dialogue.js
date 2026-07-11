@@ -63,6 +63,32 @@ function getHolidayGreetingPrefix(name) {
                 "I saw someone talking to a bird like it owed them money. Sweet, honestly."
             ];
         }
+    } else if (holiday.name === 'Well-Wishing Garden') {
+        const garden = (typeof wellWishGarden !== 'undefined') ? wellWishGarden : null;
+        const spot = garden ? garden.spots.find(s => s.npcName === name) : null;
+        if (spot && spot.filled && !spot.thanked) {
+            spot.thanked = true;
+            if (typeof npcs !== 'undefined') {
+                const npc = npcs.find(n => n.name === name);
+                if (npc && typeof npc.gainGift === 'function') npc.gainGift(3);
+            }
+            comments = [
+                "A flower by my door? Did you... wish me well? Thank you, I think.",
+                "There's a flower on my step. I have questions. I also have gratitude.",
+                "Someone left me a flower. I'm choosing to believe it means something nice."
+            ];
+        } else if (spot && spot.filled) {
+            comments = [
+                "That flower's still there. I check on it more than I'd like to admit.",
+                "My well-wishing flower is holding up nicely, thank you for asking."
+            ];
+        } else {
+            comments = [
+                "A gardener's going around encouraging well-wishes today. Very sweet, very odd.",
+                "I heard someone's leaving flowers at doors today. Mine's still empty. No pressure.",
+                "Today's about silent well-wishes, apparently. I could use one."
+            ];
+        }
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,

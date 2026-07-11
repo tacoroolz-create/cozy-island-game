@@ -1101,6 +1101,14 @@ function drawGame() {    // Handle continuous movement
     updateLostMail();
     drawLostMail();
 
+    // ===== WELL-WISHING GARDEN: gardener + door flowers =====
+    updateWellWishGarden();
+    drawWellWishGarden();
+
+    // ===== THE PETAL PATH MAKER: path-artist + anchor petals =====
+    updatePetalPath();
+    drawPetalPath();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -1592,6 +1600,285 @@ function tryDeliverLostMailLetter(npc) {
     } else {
         const line = LOST_MAIL_MISMATCH_LINES[Math.floor(Math.random() * LOST_MAIL_MISMATCH_LINES.length)];
         notify(npc.name + line, 4000);
+    }
+    return true;
+}
+
+// ===== OUTDOOR DECOR (shared by Well-Wishing Garden & The Petal Path Maker) =====
+// A temporary flower placed at a specific outdoor tile for the rest of the
+// holiday, purely decorative. Distinct from the real `outdoor:`-tagged ITEMS
+// (potted trees/shacks, see tryPlaceMovedTree/tryPlaceNeighborShack above)
+// which permanently mutate the map — these never touch world.tiles and just
+// vanish when the holiday ends, same as islandGod/lostMail.
+function drawFlowerDecor(x, y) {
+    const TS = CONFIG.TILE_SIZE;
+    const sx = x * TS - cameraX, sy = y * TS - cameraY;
+    const spr = SPRITES['sprites.flower'];
+    if (spr) {
+        image(spr, sx, sy, TS, TS);
+    } else {
+        noStroke();
+        fill('#F06292');
+        ellipse(sx + TS / 2, sy + TS / 2, TS * 0.5, TS * 0.5);
+        fill('#FFEB3B');
+        ellipse(sx + TS / 2, sy + TS / 2, TS * 0.18, TS * 0.18);
+    }
+}
+
+// Radial search for a clear grass/beach tile near (cx, cy), r stepping from minR to maxR.
+function findClearGroundNear(cx, cy, minR, maxR) {
+    for (let r = minR; r <= maxR; r++) {
+        for (let a = 0; a < 8; a++) {
+            const rad = a * Math.PI / 4;
+            const tx = Math.round(cx + r * Math.cos(rad));
+            const ty = Math.round(cy + r * Math.sin(rad));
+            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+            const t = world.tiles[tx] && world.tiles[tx][ty];
+            if (!t || (t.type !== 'grass' && t.type !== 'beach')) continue;
+            if (isSolidTile(tx, ty) || buildingAt(tx, ty)) continue;
+            if (typeof npcAt === 'function' && npcAt(tx, ty)) continue;
+            return { x: tx, y: ty };
+        }
+    }
+    return null;
+}
+
+// ===== WELL-WISHING GARDEN =====
+// A visiting gardener hands the player one potted flower a day (temporary
+// held item, same pattern as Lost Mail Day's letters). Plant it at any
+// neighbor's front-door tile, precomputed once per morning from that
+// neighbor's home Building via findExteriorStandingTile(). The thank-you
+// reaction lives in dialogue.js's getHolidayGreetingPrefix, same hook point
+// as Hoggy's Birthday / Turtle Crossing Guard Day.
+let wellWishGardener = null; // { x, y }
+let wellWishGarden = null; // { day, spots:[{npcId,npcName,x,y,filled,thanked}], gaveFlowerToday }
+let heldWellWishFlower = false;
+
+function buildWellWishSpots() {
+    const spots = [];
+    if (typeof buildings === 'undefined' || typeof npcs === 'undefined') return spots;
+    for (const npc of npcs) {
+        if (!npc.isPresent || !npc.hasHome) continue;
+        const b = buildings.find(bl => bl.owner === npc.id);
+        if (!b) continue;
+        const tile = findExteriorStandingTile(b);
+        if (!tile) continue;
+        spots.push({ npcId: npc.id, npcName: npc.name, x: tile.x, y: tile.y, filled: false, thanked: false });
+    }
+    return spots;
+}
+
+function spawnWellWishGarden() {
+    if (!world || typeof npcs === 'undefined') return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    wellWishGardener = findClearGroundNear(dock.x, dock.y, 1, 10);
+    wellWishGarden = { day: world.day, spots: buildWellWishSpots(), gaveFlowerToday: false };
+    heldWellWishFlower = false;
+    notify('A traveling gardener has set up near the dock with a cart of potted flowers.', 4500);
+}
+
+function updateWellWishGarden() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Well-Wishing Garden') {
+        if (wellWishGarden) { wellWishGarden = null; wellWishGardener = null; heldWellWishFlower = false; }
+        return;
+    }
+    if (!world) return;
+    if (!wellWishGarden || wellWishGarden.day !== world.day) spawnWellWishGarden();
+}
+
+function drawWellWishGarden() {
+    if (!wellWishGarden) return;
+    const TS = CONFIG.TILE_SIZE;
+    if (wellWishGardener) {
+        const sx = wellWishGardener.x * TS - cameraX, sy = wellWishGardener.y * TS - cameraY;
+        noStroke();
+        fill('#8D6E63');
+        rect(sx, sy + TS * 0.3, TS, TS * 0.7, 2);
+        fill('#F06292');
+        ellipse(sx + TS * 0.3, sy + TS * 0.25, TS * 0.3, TS * 0.3);
+        fill('#FFEB3B');
+        ellipse(sx + TS * 0.7, sy + TS * 0.25, TS * 0.3, TS * 0.3);
+    }
+    for (const spot of wellWishGarden.spots) {
+        if (spot.filled) drawFlowerDecor(spot.x, spot.y);
+    }
+}
+
+function isFacingWellWishGardener() {
+    if (!wellWishGardener || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === wellWishGardener.x && facing.y === wellWishGardener.y;
+}
+
+function tryTalkToWellWishGardener() {
+    if (!wellWishGarden || !isFacingWellWishGardener()) return false;
+    if (heldWellWishFlower) {
+        notify('"You\'re already holding one of my well-wishing flowers!"', 3500);
+    } else if (wellWishGarden.gaveFlowerToday) {
+        notify('"I\'m fresh out for today, come back tomorrow for more flowers to wish with."', 4000);
+    } else {
+        heldWellWishFlower = true;
+        wellWishGarden.gaveFlowerToday = true;
+        notify('The gardener hands you a potted flower. "Plant it near someone\'s door as a silent well-wish."', 4500);
+    }
+    return true;
+}
+
+// Placing the flower at a facing tile (tried before harvest, not tied to an NPC).
+function tryPlaceWellWishFlower() {
+    if (!wellWishGarden || !heldWellWishFlower || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    const spot = wellWishGarden.spots.find(s => s.x === facing.x && s.y === facing.y);
+    if (!spot) return false;
+    if (spot.filled) {
+        notify("There's already a flower there.", 3000);
+    } else {
+        spot.filled = true;
+        heldWellWishFlower = false;
+        notify('You planted the flower by the door as a silent well-wish.', 3500);
+    }
+    return true;
+}
+
+// ===== THE PETAL PATH MAKER =====
+// A visiting path-artist hands out petals (temporary held item) to connect
+// the dock to the player's home with a line of anchor tiles, interpolated
+// between the two landmarks and snapped to clear ground. Neighbors trickle
+// in petals of their own over the day; once every anchor is filled the path
+// "completes" and standing on it near a neighbor triggers a one-time comment
+// + small friendship boost.
+const PETAL_PATH_ANCHOR_COUNT = 5;
+let petalPathArtist = null; // { x, y }
+let petalPath = null; // { day, anchors:[{x,y,filled}], nextNeighborFillAt, walkedWith:Set<npcId> }
+let heldPetal = false;
+const PETAL_PATH_WALK_LINES = [
+    'Ooh, follow the pink! They hop along the petals beside you.',
+    'This path smells incredible, they say, walking a few steps with you.',
+    'I helped plant one of these, they say, pointing proudly at a petal.'
+];
+
+function findPetalPathAnchors() {
+    if (!world) return null;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const home = (typeof getPlayerShack === 'function') ? getPlayerShack() : null;
+    const end = home ? findExteriorStandingTile(home)
+        : findClearGroundNear(Math.floor(CONFIG.WORLD_WIDTH / 2), Math.floor(CONFIG.WORLD_HEIGHT / 2), 0, 20);
+    if (!end) return null;
+    const anchors = [];
+    for (let i = 1; i <= PETAL_PATH_ANCHOR_COUNT; i++) {
+        const t = i / (PETAL_PATH_ANCHOR_COUNT + 1);
+        const ix = Math.round(dock.x + (end.x - dock.x) * t);
+        const iy = Math.round(dock.y + (end.y - dock.y) * t);
+        const spot = findClearGroundNear(ix, iy, 0, 6);
+        if (spot && !anchors.some(a => a.x === spot.x && a.y === spot.y)) {
+            anchors.push({ x: spot.x, y: spot.y, filled: false });
+        }
+    }
+    return anchors.length >= 3 ? anchors : null;
+}
+
+function spawnPetalPath() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const anchors = findPetalPathAnchors();
+    if (!anchors) return;
+    petalPathArtist = findClearGroundNear(dock.x, dock.y, 1, 10);
+    petalPath = { day: world.day, anchors, nextNeighborFillAt: millis() + 15000, walkedWith: new Set() };
+    heldPetal = false;
+    notify('A traveling path-artist wants to connect the dock to your doorstep with flower petals.', 4500);
+}
+
+function updatePetalPath() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'The Petal Path Maker') {
+        if (petalPath) { petalPath = null; petalPathArtist = null; heldPetal = false; }
+        return;
+    }
+    if (!world) return;
+    if (!petalPath || petalPath.day !== world.day) { spawnPetalPath(); if (!petalPath) return; }
+
+    // Neighbors periodically drop a petal of their own on an open anchor.
+    if (millis() >= petalPath.nextNeighborFillAt) {
+        petalPath.nextNeighborFillAt = millis() + 15000 + Math.random() * 10000;
+        const open = petalPath.anchors.filter(a => !a.filled);
+        if (open.length > 0 && typeof npcs !== 'undefined' && npcs.length > 0) {
+            const anchor = open[Math.floor(Math.random() * open.length)];
+            anchor.filled = true;
+            const npc = npcs[Math.floor(Math.random() * npcs.length)];
+            notify(npc.name + ' added a petal to the path.', 3500);
+        }
+    }
+
+    // Walking the completed path next to a neighbor: one-time comment + boost.
+    if (player && petalPath.anchors.length > 0 && petalPath.anchors.every(a => a.filled)) {
+        const onPath = petalPath.anchors.some(a => a.x === player.x && a.y === player.y);
+        if (onPath && typeof npcs !== 'undefined') {
+            for (const npc of npcs) {
+                if (!npc.isPresent || petalPath.walkedWith.has(npc.id)) continue;
+                if (Math.abs(npc.gridX - player.x) <= 1 && Math.abs(npc.gridY - player.y) <= 1) {
+                    petalPath.walkedWith.add(npc.id);
+                    const line = PETAL_PATH_WALK_LINES[Math.floor(Math.random() * PETAL_PATH_WALK_LINES.length)];
+                    notify(npc.name + ': "' + line + '"', 4000);
+                    if (typeof npc.gainGift === 'function') npc.gainGift(2);
+                }
+            }
+        }
+    }
+}
+
+function drawPetalPath() {
+    if (!petalPath) return;
+    const TS = CONFIG.TILE_SIZE;
+    if (petalPathArtist) {
+        const sx = petalPathArtist.x * TS - cameraX, sy = petalPathArtist.y * TS - cameraY;
+        noStroke();
+        fill('#AD1457');
+        ellipse(sx + TS / 2, sy + TS / 2, TS * 0.7, TS * 0.7);
+        fill('#F8BBD0');
+        ellipse(sx + TS / 2, sy + TS * 0.3, TS * 0.35, TS * 0.35);
+    }
+    for (const anchor of petalPath.anchors) {
+        if (anchor.filled) drawFlowerDecor(anchor.x, anchor.y);
+    }
+}
+
+function isFacingPetalPathArtist() {
+    if (!petalPathArtist || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === petalPathArtist.x && facing.y === petalPathArtist.y;
+}
+
+function tryTalkToPetalPathArtist() {
+    if (!petalPath || !isFacingPetalPathArtist()) return false;
+    if (petalPath.anchors.every(a => a.filled)) {
+        notify('"The path is finished! Look at it glow." The path-artist beams.', 4000);
+    } else if (heldPetal) {
+        notify('"You\'re already holding a petal, go place it on the path!"', 3500);
+    } else {
+        heldPetal = true;
+        notify('The path-artist hands you a petal. "Drop it anywhere along the path between the dock and your door."', 4500);
+    }
+    return true;
+}
+
+// Placing a petal at a facing anchor tile (tried before harvest, not tied to an NPC).
+function tryPlacePetal() {
+    if (!petalPath || !heldPetal || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    const anchor = petalPath.anchors.find(a => a.x === facing.x && a.y === facing.y);
+    if (!anchor) return false;
+    if (anchor.filled) {
+        notify('That spot already has a petal.', 3000);
+    } else {
+        anchor.filled = true;
+        heldPetal = false;
+        notify('You laid a petal along the path.', 3500);
+        if (petalPath.anchors.every(a => a.filled)) {
+            notify('The petal path is complete! It glows faintly in the afternoon light.', 4500);
+        }
     }
     return true;
 }
@@ -2336,6 +2623,12 @@ function mousePressed() {
         if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return;
         // Lost Mail Day: pick up a letter off the beach (before harvest)
         if (typeof tryTalkToLostMail === 'function' && tryTalkToLostMail()) return;
+        // Well-Wishing Garden: talk to the gardener, then plant the flower at a door
+        if (typeof tryTalkToWellWishGardener === 'function' && tryTalkToWellWishGardener()) return;
+        if (typeof tryPlaceWellWishFlower === 'function' && tryPlaceWellWishFlower()) return;
+        // The Petal Path Maker: talk to the path-artist, then lay petals at anchors
+        if (typeof tryTalkToPetalPathArtist === 'function' && tryTalkToPetalPathArtist()) return;
+        if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -3603,6 +3896,12 @@ function keyPressed() {
             if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return false;
             // Lost Mail Day: pick up a letter off the beach (before harvest)
             if (typeof tryTalkToLostMail === 'function' && tryTalkToLostMail()) return false;
+            // Well-Wishing Garden: talk to the gardener, then plant the flower at a door
+            if (typeof tryTalkToWellWishGardener === 'function' && tryTalkToWellWishGardener()) return false;
+            if (typeof tryPlaceWellWishFlower === 'function' && tryPlaceWellWishFlower()) return false;
+            // The Petal Path Maker: talk to the path-artist, then lay petals at anchors
+            if (typeof tryTalkToPetalPathArtist === 'function' && tryTalkToPetalPathArtist()) return false;
+            if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

@@ -19,11 +19,11 @@ The Flealess Market            | No       | Outline in Holidays/FlealessMarket.m
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
 Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
 Memory Lantern Night           | No       | Outline in Holidays/MemoryLanternNight.md
-Well-Wishing Garden            | No       | Outline in Holidays/WellWishingGarden.md
+Well-Wishing Garden            | Yes      | Implemented (gardener hands out flowers, plant near a neighbor's door)
 Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
 The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
 The Returning Bird             | Yes      | Bird hops between 3 stops; a random neighbor swears it's an old friend
-The Petal Path Maker           | No       | Outline in Holidays/PetalPathMaker.md
+The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors fill anchor spots between dock and home)
 The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
 Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
@@ -122,6 +122,51 @@ also skipped a custom dialogue.js getHolidayGreetingPrefix bank, following
 the precedent set by Island God/Dig a Hole Day/Castle of Sticks Day, whose
 holidays are similarly "static prop" rather than "everyone's talking about
 it" — the generic holiday-name fallback already covers it.)
+
+(July 11: Built the shared outdoor decor primitive that was blocking both
+Well-Wishing Garden and The Petal Path Maker, then implemented both.
+`findClearGroundNear(cx, cy, minR, maxR)` and `drawFlowerDecor(x, y)` in
+src/game.js are the reusable pieces — a radial rejection-sampled search for a
+clear grass/beach tile, and a flower sprite/fallback-shape draw call. Neither
+touches world.tiles or the real furniture/outdoor-item system
+(ITEMS[id].outdoor, used for potted trees and neighbor shacks); these are
+purely visual, held only in per-holiday JS state, and vanish the moment the
+holiday ends (same lifecycle as islandGod/lostMail/turtleCrossing).
+
+Well-Wishing Garden: array slot 19 (was "Opposite Compliment Day") renamed.
+A static gardener (wellWishGardener) spawns near the dock; interacting hands
+the player one held flower per day (heldWellWishFlower, same "temporary held
+item, no inventory slot" pattern as Lost Mail Day's letters). Door-standing
+spots for every housed neighbor are precomputed each morning
+(buildWellWishSpots(), using each neighbor's home Building +
+findExteriorStandingTile() — the same helper hog.js already uses for
+Hoggy's tier-4 morning greet). Facing a spot while holding the flower plants
+it (tryPlaceWellWishFlower); the thank-you reaction lives in dialogue.js's
+getHolidayGreetingPrefix (same hook as Hoggy's Birthday/Turtle Crossing),
+firing gainGift(3) once per neighbor the first time they're greeted after
+their door is decorated.
+
+The Petal Path Maker: array slot 23 (was "Humming in Unison Hour") renamed.
+A path-artist (petalPathArtist) spawns near the dock and hands out held
+petals (heldPetal). 5 anchor tiles are interpolated between the dock and the
+player's own home door (findPetalPathAnchors(), via getPlayerShack() +
+findExteriorStandingTile()) and snapped to clear ground. Neighbors trickle in
+petals of their own on open anchors every 15-25s (updatePetalPath()); once
+every anchor is filled, standing on the path within 1 tile of a neighbor
+triggers a one-time "follow the pink" comment + gainGift(2) per neighbor
+(walkedWith Set, keyed by npc.id).
+
+Both: Hoggy gets a mood in getHogHolidayMood() (hog.js). No new sprites —
+both fall back to drawFlowerDecor's colored-ellipse flower. Skipped: the
+outline's named neighbors (Zora/Gearwick/Nix for the garden, Daphne/Krip/
+Penny for the path) don't exist in the actual 32-NPC roster, same gap as
+Turtle Crossing Guard Day/The Returning Bird/Lost Mail Day — reactions are
+generic instead. Also skipped: Well-Wishing Garden's "perpetual blessing
+seed" optional upgrade, and giving the path-artist its own friendship stat
+for the outline's "boost the path-artist" reward — visiting one-day NPCs
+like Yogatron/the gardener/the path-artist don't have a friendship system in
+this codebase at all, so that reward has no target to attach to; not worth
+inventing one for a single cosmetic line.)
 
 ---
 
