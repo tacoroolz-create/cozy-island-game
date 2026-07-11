@@ -63,7 +63,7 @@ const HOLIDAYS = [
     { name: 'Memory Lantern Night',   desc: 'At dusk, a lantern-lighter lines the shore with paper lanterns full of neighbors\' memories.' },
     { name: 'Well-Wishing Garden',    desc: 'A visiting gardener hands out potted flowers to plant near a neighbor\'s door as a silent well-wish.' },
     { name: 'Turtle Crossing Guard Day', desc: 'A wave of turtles crawls across the island. Stand near one to help it cross safely.' },
-    { name: 'Door-Holding Olympics',  desc: 'Politeness is scored by how long someone holds a door open.' },
+    { name: 'The Picnic Reset',       desc: 'A visiting organizer arranges every neighbor into one long communal picnic line.' },
     { name: 'The Returning Bird',     desc: 'A migrating bird returns, and one neighbor is convinced they are old friends.' },
     { name: 'The Petal Path Maker',   desc: 'A visiting path-artist connects the dock to your door with flower petals. Help fill it in.' },
     { name: 'Cloud-Naming Congress',  desc: 'Residents vote on official names for every cloud in the sky.' },
@@ -172,6 +172,9 @@ function onNewDay() {
             }
             if (holiday.name === 'Memory Lantern Night') {
                 notify('Wait for dusk — a lantern-lighter will line the shore with memories tonight.', 4500);
+            }
+            if (holiday.name === 'The Picnic Reset' && typeof spawnPicnicReset === 'function') {
+                spawnPicnicReset();
             }
         }
     } else if (isSeasonStart) {

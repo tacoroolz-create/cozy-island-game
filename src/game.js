@@ -1113,6 +1113,10 @@ function drawGame() {    // Handle continuous movement
     updateMemoryLanternNight();
     drawMemoryLanternNight();
 
+    // ===== THE PICNIC RESET: organizer + neighbor picnic line =====
+    updatePicnicReset();
+    drawPicnicReset();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2029,6 +2033,173 @@ function tryTalkToLanternLighter() {
     return true;
 }
 
+// ===== THE PICNIC RESET =====
+// A visiting organizer temporarily arranges neighbor pairs along a line of
+// blanket/bench props for one day. No real furniture is touched — the real
+// outdoor-item system (ITEMS[id].outdoor) is permanent and mutates
+// world.tiles, so this reuses the "hijack npc.stationary + snap position"
+// trick from The Returning Bird instead, for a handful of neighbors at once.
+// Original positions are saved and restored the moment the holiday ends.
+const PICNIC_BANTER_PAIRS = [
+    { line1: 'I think the potato salad is staring at me.', line2: "That's because you're staring at it first." },
+    { line1: 'Pass the dream-bread?', line2: "There is no bread. We're just being polite." },
+    { line1: 'This blanket has more personality than half the neighbors.', line2: 'Rude. Accurate, but rude.' },
+    { line1: 'I saved you the shady seat.', line2: 'You saved yourself the shady seat and gave me the sun.' },
+    { line1: 'Is this a lecture about ants now?', line2: "It's always a lecture about ants." }
+];
+const PICNIC_ORGANIZER_LINES = [
+    'One long picnic for everyone — walk up next to any pair and listen in!',
+    'I moved every bench and blanket into a single line. Took all morning.',
+    'Sit anywhere you like. Everything goes back exactly where it belongs tonight.'
+];
+let picnicReset = null; // { day, seats:[{x,y}], pairs:[{seatA,seatB,npcAId,npcBId,line1,line2,thanked}], organizer:{x,y}, saved:[{npcId,gridX,gridY,stationary}], sitCount, titleGiven }
+
+function findPicnicLineSpots(count) {
+    let bestY = -1, bestStart = -1, bestLen = 0;
+    for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+        let curStart = -1, curLen = 0;
+        for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+            const t = world.tiles[x] && world.tiles[x][y];
+            const clear = t && t.type === 'grass' && !isSolidTile(x, y) && !buildingAt(x, y);
+            if (clear) {
+                if (curStart < 0) curStart = x;
+                curLen++;
+                if (curLen > bestLen) { bestLen = curLen; bestStart = curStart; bestY = y; }
+            } else {
+                curStart = -1; curLen = 0;
+            }
+        }
+    }
+    if (bestLen < count) return null;
+    const spots = [];
+    for (let i = 0; i < count; i++) {
+        const t = (i + 1) / (count + 1);
+        spots.push({ x: Math.round(bestStart + (bestLen - 1) * t), y: bestY });
+    }
+    return spots;
+}
+
+function spawnPicnicReset() {
+    if (!world || typeof npcs === 'undefined') return;
+    const present = npcs.filter(n => n.isPresent);
+    const pairCount = Math.min(3, Math.floor(present.length / 2));
+    if (pairCount < 1) return;
+    const seatCount = pairCount * 2;
+    const seats = findPicnicLineSpots(seatCount);
+    if (!seats) return;
+
+    const pool = present.slice();
+    const chosen = [];
+    for (let i = 0; i < seatCount; i++) {
+        chosen.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    }
+    const saved = chosen.map(npc => ({ npcId: npc.id, gridX: npc.gridX, gridY: npc.gridY, stationary: npc.stationary }));
+
+    const banterPool = PICNIC_BANTER_PAIRS.slice();
+    const pairs = [];
+    for (let i = 0; i < pairCount; i++) {
+        const npcA = chosen[i * 2], npcB = chosen[i * 2 + 1];
+        const seatA = seats[i * 2], seatB = seats[i * 2 + 1];
+        npcA.stationary = true; npcA.gridX = seatA.x; npcA.gridY = seatA.y;
+        npcB.stationary = true; npcB.gridX = seatB.x; npcB.gridY = seatB.y;
+        const banter = banterPool.length ? banterPool.splice(Math.floor(Math.random() * banterPool.length), 1)[0] : PICNIC_BANTER_PAIRS[0];
+        pairs.push({ seatA, seatB, npcAId: npcA.id, npcBId: npcB.id, line1: banter.line1, line2: banter.line2, thanked: false });
+    }
+
+    const organizer = findClearGroundNear(seats[0].x, seats[0].y, 1, 6) || { x: seats[0].x, y: Math.max(0, seats[0].y - 1) };
+    picnicReset = { day: world.day, seats, pairs, organizer, saved, sitCount: 0, titleGiven: false };
+    notify('A visiting organizer has arranged the neighbors into one long picnic line. Walk up to any pair and listen in!', 4500);
+}
+
+function restorePicnicNeighbors() {
+    if (!picnicReset || typeof npcs === 'undefined') return;
+    for (const s of picnicReset.saved) {
+        const npc = npcs.find(n => n.id === s.npcId);
+        if (npc) { npc.gridX = s.gridX; npc.gridY = s.gridY; npc.stationary = s.stationary; }
+    }
+}
+
+function updatePicnicReset() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'The Picnic Reset') {
+        if (picnicReset) { restorePicnicNeighbors(); picnicReset = null; }
+        return;
+    }
+    if (!world) return;
+    if (!picnicReset || picnicReset.day !== world.day) {
+        if (picnicReset) restorePicnicNeighbors();
+        spawnPicnicReset();
+    }
+}
+
+function drawPicnicReset() {
+    if (!picnicReset) return;
+    const TS = CONFIG.TILE_SIZE;
+    if (picnicReset.organizer) {
+        const sx = picnicReset.organizer.x * TS - cameraX, sy = picnicReset.organizer.y * TS - cameraY;
+        noStroke();
+        fill('#6D4C41');
+        rect(sx + TS * 0.3, sy + TS * 0.25, TS * 0.4, TS * 0.75);
+        fill('#FFCC80');
+        ellipse(sx + TS / 2, sy + TS * 0.2, TS * 0.4, TS * 0.4);
+    }
+    for (let i = 0; i < picnicReset.seats.length; i += 2) {
+        const a = picnicReset.seats[i], b = picnicReset.seats[i + 1];
+        if (!a || !b) continue;
+        const sx = Math.min(a.x, b.x) * TS - cameraX, sy = a.y * TS - cameraY;
+        const w = (Math.abs(a.x - b.x) + 1) * TS;
+        noStroke();
+        fill(i % 4 === 0 ? '#EF5350' : '#42A5F5');
+        rect(sx + 2, sy + TS * 0.35, w - 4, TS * 0.5, 2);
+        stroke(255, 255, 255, 160);
+        strokeWeight(1);
+        for (let gx = sx + 2; gx < sx + w - 2; gx += 6) line(gx, sy + TS * 0.35, gx, sy + TS * 0.85);
+        noStroke();
+    }
+}
+
+function isFacingPicnicOrganizer() {
+    if (!picnicReset || !picnicReset.organizer || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === picnicReset.organizer.x && facing.y === picnicReset.organizer.y;
+}
+
+function tryTalkToPicnicOrganizer() {
+    if (!picnicReset || !isFacingPicnicOrganizer()) return false;
+    notify(PICNIC_ORGANIZER_LINES[Math.floor(Math.random() * PICNIC_ORGANIZER_LINES.length)], 4000);
+    return true;
+}
+
+function findFacingPicnicPair() {
+    if (!picnicReset || !player) return null;
+    const facing = player.getFacingTile();
+    if (!facing) return null;
+    return picnicReset.pairs.find(p =>
+        (facing.x === p.seatA.x && facing.y === p.seatA.y) || (facing.x === p.seatB.x && facing.y === p.seatB.y)
+    ) || null;
+}
+
+function tryListenToPicnicPair() {
+    if (!picnicReset) return false;
+    const pair = findFacingPicnicPair();
+    if (!pair) return false;
+    const npcA = npcs.find(n => n.id === pair.npcAId);
+    const npcB = npcs.find(n => n.id === pair.npcBId);
+    const nameA = npcA ? npcA.name : 'Someone', nameB = npcB ? npcB.name : 'Someone else';
+    notify(nameA + ': "' + pair.line1 + '" ' + nameB + ': "' + pair.line2 + '"', 5500);
+    if (!pair.thanked) {
+        pair.thanked = true;
+        if (npcA && typeof npcA.gainGift === 'function') npcA.gainGift(2);
+        if (npcB && typeof npcB.gainGift === 'function') npcB.gainGift(2);
+        picnicReset.sitCount++;
+        if (!picnicReset.titleGiven && picnicReset.sitCount >= 3) {
+            picnicReset.titleGiven = true;
+            notify('The organizer beams at you. "Three different pairs today? You\'ve earned it — Picnic Napper."', 4500);
+        }
+    }
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -2777,6 +2948,9 @@ function mousePressed() {
         if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return;
         // Memory Lantern Night: talk to the lantern-lighter for a lantern of your own
         if (typeof tryTalkToLanternLighter === 'function' && tryTalkToLanternLighter()) return;
+        // The Picnic Reset: talk to the organizer, or listen in on a seated pair
+        if (typeof tryTalkToPicnicOrganizer === 'function' && tryTalkToPicnicOrganizer()) return;
+        if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4052,6 +4226,9 @@ function keyPressed() {
             if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return false;
             // Memory Lantern Night: talk to the lantern-lighter for a lantern of your own
             if (typeof tryTalkToLanternLighter === 'function' && tryTalkToLanternLighter()) return false;
+            // The Picnic Reset: talk to the organizer, or listen in on a seated pair
+            if (typeof tryTalkToPicnicOrganizer === 'function' && tryTalkToPicnicOrganizer()) return false;
+            if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
