@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 16;
+const SAVE_VERSION = 17;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -299,6 +299,24 @@ const MIGRATIONS = [
             if (typeof data.hog.homeX !== 'number') data.hog.homeX = data.hog.gridX;
             if (typeof data.hog.homeY !== 'number') data.hog.homeY = data.hog.gridY;
             if (typeof data.hog.facing !== 'string') data.hog.facing = 'right';
+        }
+        return data;
+    },
+    // v16 -> v17: The Inner Temple and The Black Goddess joined the underground
+    // starters (5 of 8 pads built). Re-stamp from UNDERGROUND_STARTING_BUILDINGS.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
         }
         return data;
     }
