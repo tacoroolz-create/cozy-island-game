@@ -236,6 +236,7 @@ function craftRecipe(recipe) {
     // Remodel recipes modify the building directly.
     if (recipe.isRemodel) {
         if (recipe.action) recipe.action(insideBuilding);
+        audioManager.playSFX('craft');
         notify("Remodeled: " + recipe.name + "!");
         return true;
     }
@@ -243,6 +244,7 @@ function craftRecipe(recipe) {
     // Grant the output item.
     const ok = inventory.addItem(recipe.output, 1);
     if (ok) {
+        audioManager.playSFX('craft');
         notify("Crafted: " + ITEMS[recipe.output].name + "!");
     } else {
         // Roll back inputs if the inventory was full.

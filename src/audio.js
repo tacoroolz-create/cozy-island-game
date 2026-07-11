@@ -65,8 +65,48 @@ let audioManager = {
         else this.stopMusic();
     },
 
+    // Short white-noise burst through a lowpass — water, dirt, rustles.
+    playNoise: function(ctx, when, dur, cutoffHz, peakGain) {
+        const len = Math.ceil(ctx.sampleRate * dur);
+        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = cutoffHz;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0, when);
+        gain.gain.linearRampToValueAtTime(peakGain, when + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, when + dur);
+        src.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        src.start(when);
+        src.stop(when + dur);
+    },
+
+    // One short enveloped oscillator note — building block for the tonal SFX.
+    playTone: function(ctx, when, dur, type, f0, f1, peakGain) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(f0, when);
+        if (f1 && f1 !== f0) osc.frequency.exponentialRampToValueAtTime(f1, when + dur * 0.8);
+        gain.gain.setValueAtTime(0, when);
+        gain.gain.linearRampToValueAtTime(peakGain, when + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.001, when + dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(when);
+        osc.stop(when + dur + 0.01);
+    },
+
     // Play a procedurally generated sound effect.
-    // Types supported: 'chirp' (bird), 'cicada' (buzzy), 'oink' (hog).
+    // Ambient: 'chirp' (bird), 'cicada' (buzzy), 'oink' (hog).
+    // Feedback: 'harvest', 'craft', 'splash', 'chime', 'door', 'blip',
+    //           'plant', 'click'.
     playSFX: function(sfxName, volumeScale = 1) {
         if (this.muted) return;
         const ctx = this.ensureCtx();
@@ -128,6 +168,33 @@ let audioManager = {
                 osc.stop(now + 0.36);
                 break;
             }
+            case 'harvest': // quick pluck as resources come loose
+                this.playTone(ctx, now, 0.12, 'triangle', 420, 180, 0.10 * master);
+                break;
+            case 'craft': // two-tap workbench tink
+                this.playTone(ctx, now, 0.07, 'square', 520, 520, 0.05 * master);
+                this.playTone(ctx, now + 0.09, 0.09, 'square', 780, 780, 0.05 * master);
+                break;
+            case 'splash': // the gettin' line hits something
+                this.playNoise(ctx, now, 0.28, 900, 0.14 * master);
+                this.playTone(ctx, now, 0.10, 'sine', 300, 130, 0.06 * master);
+                break;
+            case 'chime': // quest complete — little ascending sparkle
+                this.playTone(ctx, now, 0.18, 'sine', 660, 660, 0.08 * master);
+                this.playTone(ctx, now + 0.12, 0.30, 'sine', 880, 880, 0.08 * master);
+                break;
+            case 'door': // soft thud crossing a threshold
+                this.playTone(ctx, now, 0.14, 'sine', 150, 85, 0.14 * master);
+                break;
+            case 'blip': // a neighbor starts talking
+                this.playTone(ctx, now, 0.05, 'sine', 750, 900, 0.06 * master);
+                break;
+            case 'plant': // seed patted into soil
+                this.playNoise(ctx, now, 0.09, 400, 0.10 * master);
+                break;
+            case 'click': // UI tick
+                this.playTone(ctx, now, 0.03, 'square', 1100, 1100, 0.03 * master);
+                break;
         }
     },
 

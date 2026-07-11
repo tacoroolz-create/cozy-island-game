@@ -179,6 +179,7 @@ function updateCasting(dt) {
         if (Math.random() < p) {
             castState.state = CAST_STATES.PULLED;
             castState.reelMs = 0;
+            audioManager.playSFX('splash');
             notify("! ! Pull !");
         }
         return;

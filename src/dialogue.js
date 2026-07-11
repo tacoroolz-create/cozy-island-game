@@ -318,6 +318,8 @@ function generateDialogue(personality, name) {
 function openDialogue(npc) {
     if (!npc || !npc.isPresent) return;
 
+    audioManager.playSFX('blip');
+
     // Backflip Day: greeting a neighbor makes them backflip.
     if (typeof triggerBackflip === 'function') {
         const TS = CONFIG.TILE_SIZE;

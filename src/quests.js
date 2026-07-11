@@ -114,6 +114,7 @@ function acceptQuest(npc, tree) {
 }
 
 function completeQuest(giverName) {
+    audioManager.playSFX('chime');
     delete questState.active[giverName];
     questState.completed[giverName] = (questState.completed[giverName] || 0) + 1;
     const giver = npcs.find(n => n.name === giverName);
