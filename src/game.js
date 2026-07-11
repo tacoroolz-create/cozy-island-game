@@ -82,6 +82,7 @@ const SPRITE_DEFS = {
     'tiles.tree_top_yeesh':   'assets/tiles/tree_top_yeesh.png',
     // Staged for the not-yet-built underworld/stars zones (see worlds-system memory).
     'tiles.tree_full_underground': 'assets/tiles/tree_full_underground.png',
+    'tiles.boulder':          'assets/tiles/boulder.png',
     'tiles.tree_full_stars':  'assets/tiles/tree_full_stars.png',
     'tiles.grass_cool':       'assets/tiles/grass_cool.png',
     'tiles.grass_yeesh':      'assets/tiles/grass_yeesh.png',
@@ -111,63 +112,6 @@ const SPRITE_DEFS = {
     'sprites.ug_recycle_bin':     'assets/sprites/buildings/recycle_bin.png',
     'sprites.ug_stimmy_tims':     'assets/sprites/buildings/stimmy_tims.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
-    'sprites.mira':           'assets/sprites/mira.png',
-    'sprites.luna':           'assets/sprites/luna.png',
-    'sprites.brass':          'assets/sprites/brass.png',
-    'sprites.krip':           'assets/sprites/krip.png',
-    'sprites.penny':          'assets/sprites/penny.png',
-    'sprites.mimis':          'assets/sprites/mimis.png',
-    'sprites.hudson':         'assets/sprites/hudson.png',
-    'sprites.cort':           'assets/sprites/cort.png',
-    'sprites.aiko':           'assets/sprites/aiko.png',
-    'sprites.ihor':           'assets/sprites/ihor.png',
-    'sprites.psy':            'assets/sprites/psy.png',
-    'sprites.boll':           'assets/sprites/boll.png',
-    'sprites.taira':          'assets/sprites/taira.png',
-    'sprites.mah':            'assets/sprites/mah.png',
-    'sprites.liz':            'assets/sprites/liz.png',
-    'sprites.eo':             'assets/sprites/eo.png',
-    'sprites.quark':          'assets/sprites/quark.png',
-    'sprites.zora':           'assets/sprites/zora.png',
-    'sprites.basil':          'assets/sprites/basil.png',
-    'sprites.gearwick':       'assets/sprites/gearwick.png',
-    'sprites.zephyr':         'assets/sprites/zephyr.png',
-    'sprites.gorm':           'assets/sprites/gorm.png',
-    'sprites.sprig':          'assets/sprites/sprig.png',
-    'sprites.rollo':          'assets/sprites/rollo.png',
-    'sprites.nyx':            'assets/sprites/nyx.png',
-    'sprites.titan':          'assets/sprites/titan.png',
-    'sprites.orla':           'assets/sprites/orla.png',
-    'sprites.jax':            'assets/sprites/jax.png',
-    'sprites.clover':         'assets/sprites/clover.png',
-    'sprites.sprocket':       'assets/sprites/sprocket.png',
-    'sprites.luna-2':         'assets/sprites/luna-2.png',
-    'sprites.vira':           'assets/sprites/vira.png',
-    'sprites.birch':          'assets/sprites/birch.png',
-    'sprites.flick':          'assets/sprites/flick.png',
-    'sprites.draven':         'assets/sprites/draven.png',
-    'sprites.pixel':          'assets/sprites/pixel.png',
-    'sprites.aria':           'assets/sprites/aria.png',
-    'sprites.grumble':        'assets/sprites/grumble.png',
-    'sprites.selene':         'assets/sprites/selene.png',
-    'sprites.bolt':           'assets/sprites/bolt.png',
-    'sprites.gidget':         'assets/sprites/gidget.png',
-    'sprites.lunae':          'assets/sprites/lunae.png',
-    'sprites.willow':         'assets/sprites/willow.png',
-    'sprites.rusty':          'assets/sprites/rusty.png',
-    'sprites.ember':          'assets/sprites/ember.png',
-    'sprites.pippa':          'assets/sprites/pippa.png',
-    'sprites.orion':          'assets/sprites/orion.png',
-    'sprites.nixie':          'assets/sprites/nixie.png',
-    'sprites.cobble':         'assets/sprites/cobble.png',
-    'sprites.zeph':           'assets/sprites/zeph.png',
-    'sprites.kiko':           'assets/sprites/kiko.png',
-    'sprites.aurora':         'assets/sprites/aurora.png',
-    'sprites.quill':          'assets/sprites/quill.png',
-    'sprites.vex':            'assets/sprites/vex.png',
-    'sprites.daphne':         'assets/sprites/daphne.png',
-    'sprites.chester':        'assets/sprites/chester.png',
-    'sprites.vega':           'assets/sprites/vega.png',
     'sprites.turtle':         'assets/sprites/turtle.png',
     'sprites.seagull':        'assets/sprites/seagull.png',
     'items.log':              'assets/sprites/log.png',
@@ -346,6 +290,7 @@ function stampShadow(layer, sil, footX, footY, groundY, p) {
 
 // Overworld grass/tree-top swap by season (Sweet & Saucy share the default look).
 function seasonalGrassKey() {
+    if (currentMapId === 'underground') return 'tiles.grass_underworld';
     if (world.season === 'Cool') return 'tiles.grass_cool';
     if (world.season === 'Yeesh') return 'tiles.grass_yeesh';
     return 'tiles.grass';
@@ -1074,11 +1019,6 @@ function handleInteriorMovement() {
         if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile) ||
             (typeof isSolidCafeTile === 'function' && isSolidCafeTile(tile)) ||
             (typeof isSolidClubTile === 'function' && isSolidClubTile(tile))) {
-            lastMoveTime = now;
-            return;
-        }
-        // Taira blocks her spot in the Electric Temple
-        if (b.type === 'ug_electric_temple' && newX === TEMPLE_TAIRA_POS.x && newY === TEMPLE_TAIRA_POS.y) {
             lastMoveTime = now;
             return;
         }
@@ -2221,12 +2161,6 @@ function mousePressed() {
                     : (dy > 0 ? 'down' : 'up');
             }
         }
-        // Electric Temple: clicking Taira (body or head tile) talks to her.
-        if (it && insideBuilding && insideBuilding.type === 'ug_electric_temple' &&
-            it.x === TEMPLE_TAIRA_POS.x && (it.y === TEMPLE_TAIRA_POS.y || it.y === TEMPLE_TAIRA_POS.y - 1)) {
-            const t = templeTaira();
-            if (t && typeof openDialogue === 'function') { openDialogue(t); return; }
-        }
         // Furniture/decoration placement & pickup on the clicked interior tile.
         if (it) {
             const active = inventory.getActiveItem();
@@ -2435,32 +2369,8 @@ function buildingDisplayName(b) {
 }
 
 // ===== THE ELECTRIC TEMPLE =====
-// A single room holding Taira, the mac. The back wall will eventually be
-// MarcOS (future NPC) who opens the portal to the Stars world.
-// ponytail: transient NPC instance — temple friendship doesn't persist across
-// reloads; merge with the island roster record if that ever matters.
-const TEMPLE_TAIRA_ID = 14; // NPC_DEFS index for Taira
-const TEMPLE_TAIRA_POS = { x: 3, y: INTERIOR_WALL_HEIGHT }; // back-center of the room
-let _templeTaira = null;
-function templeTaira() {
-    if (!_templeTaira && typeof NPC !== 'undefined') {
-        _templeTaira = new NPC(NPC_DEFS[TEMPLE_TAIRA_ID], TEMPLE_TAIRA_ID);
-    }
-    return _templeTaira;
-}
-
-function tryTalkToTempleTaira() {
-    if (!insideBuilding || insideBuilding.type !== 'ug_electric_temple') return false;
-    let dx = 0, dy = 0;
-    if (player.facing === 'up') dy = -1;
-    else if (player.facing === 'down') dy = 1;
-    else if (player.facing === 'left') dx = -1;
-    else dx = 1;
-    if (player.x + dx !== TEMPLE_TAIRA_POS.x || player.y + dy !== TEMPLE_TAIRA_POS.y) return false;
-    const t = templeTaira();
-    if (t && typeof openDialogue === 'function') { openDialogue(t); return true; }
-    return false;
-}
+// Taira (its old resident mac) left with the neighbor-roster rewrite; the room
+// stands empty until MarcOS (future NPC) opens the portal to the Stars world.
 
 function tryExitBuilding() {
     if (!insideBuilding) return false;
@@ -2957,22 +2867,8 @@ function drawInterior() {
         drawClubOverlay(b, offsetX, offsetY, TS);
     }
 
-    // The Electric Temple's resident mac, against the back wall.
-    if (b.type === 'ug_electric_temple') {
-        const tSpr = SPRITES['sprites.taira'];
-        const tx = offsetX + TEMPLE_TAIRA_POS.x * TS;
-        const ty = offsetY + TEMPLE_TAIRA_POS.y * TS;
-        if (!drawCharacterSprite(tSpr, tx, ty - TS, 'down', false)) {
-            fill(NPC_DEFS[TEMPLE_TAIRA_ID].color);
-            noStroke();
-            rect(tx, ty - TS, TS, TS * 2);
-        }
-        fill(255, 255, 200);
-        textAlign(CENTER, BOTTOM);
-        textSize(7);
-        textFont('Courier New');
-        text('Taira', tx + TS / 2, ty - TS - 2);
-    }
+    // The Electric Temple interior currently has no fixed resident NPC.
+    // (The old temple resident was retired with the neighbor rewrite.)
 
     // Draw player — 2 tiles tall, bottom-anchored at player tile.
     // The top half peeks above the bottom wall row when on the top floor tile.
@@ -3489,8 +3385,6 @@ function keyPressed() {
             audioManager.playSFX('click');
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
-            // Electric Temple: talk to Taira when facing her spot.
-            if (tryTalkToTempleTaira()) return false;
             // Stimmy Tim's: facing the counter opens the shop.
             if (typeof tryUseCafeCounter === 'function' && tryUseCafeCounter()) return false;
             // The Black Goddess: facing the DJ booth offers a dance-off.
@@ -4724,13 +4618,27 @@ function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
 // water warps you to the other (see World.placePond(), checkPortalUnderfoot()).
 const ISLAND_POND_ORIGIN      = { x: 47, y: 39 }; // top-left of the 6x6 island pond
 const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as the underground pond's warp target
-const UNDERGROUND_POND_ORIGIN = { x: 17, y: 11 }; // top-left of the 6x6 underground pond
-const UNDERGROUND_POND_LANDING = { x: 19, y: 13 }; // inner water tile, used as the island pond's warp target
+const UNDERGROUND_POND_ORIGIN = { x: 85, y: 48 }; // top-left of the 6x6 underground pond (east cap of the strip)
+const UNDERGROUND_POND_LANDING = { x: 87, y: 50 }; // inner water tile, used as the island pond's warp target
 
-// Where Mubaba the magic merchant stands: on the cave floor just east of the
-// underground pond, so arrivals walk right into him. He moves in front of his
-// own building once that exists (July3rdReview C4).
-const MUBABA_SPAWN = { x: 26, y: 14 };
+// Mubaba waits inside his fortress (isPresent stays false, so this is never
+// drawn — see generateUnderground()/magic.js). Kept roughly at the fortress
+// footprint for tidiness.
+const MUBABA_SPAWN = { x: 58, y: 46 };
+
+// The underground city is one straight east–west strip: the surface pond
+// (entrance/exit) caps the far east, then eight buildings run west, all fronting
+// a single grass path. Everything else is a solid wall of underground trees and
+// boulders, so the only movable space is the path itself.
+const UNDERGROUND_STRIP = [
+    // West -> East (x increasing). The pond sits just east of 'ug_recycle_bin'.
+    'ug_bottomless_pit', 'ug_inner_temple', 'ug_stimmy_tims', 'ug_black_goddess',
+    'ug_electric_temple', 'ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin'
+];
+const UG_STRIP_START_X = 7;        // west-most building's left edge
+const UG_STRIP_GAP = 2;            // wall tiles between adjacent buildings
+const UG_DOOR_ROW = 50;            // every building's bottom (door) row; enter from the row below
+const UG_PATH_ROWS = [51, 52, 53]; // grass path in front of the doors
 
 // Where the Teleport trick (magic.js) drops the player: one tile clear of
 // each map's pond, so it never lands on a warp tile.
@@ -4782,52 +4690,56 @@ class World {
         // generation; the caller fills in tiles/entities.
     }
 
-    // The underground city: a fixed cavern (rock border, stone floor) with eight
-    // foundation pads. Buildings on the pads are placed separately (3 of 8 at
-    // creation), not here.
+    // The underground city: one straight east–west strip. A solid wall of
+    // underground trees and boulders fills the whole cavern; the buildings and
+    // a single grass path carve the only movable space out of it. Building order
+    // and the east-capping pond are defined by UNDERGROUND_STRIP / UG_* consts.
     generateUnderground() {
         const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
-        const BORDER = 4; // thickness of the surrounding rock wall
+        // Solid wall everywhere; variant scatters trees/boulders (see drawTile).
         for (let x = 0; x < W; x++) {
             this.tiles[x] = [];
             for (let y = 0; y < H; y++) {
-                const edge = Math.min(x, W - 1 - x, y, H - 1 - y);
-                if (edge < BORDER) {
-                    this.tiles[x][y] = { type: 'cave_wall', variant: floor(random(3)), solid: true };
-                } else {
-                    this.tiles[x][y] = { type: 'cave_floor', variant: floor(random(4)) };
-                }
+                this.tiles[x][y] = { type: 'ug_wall', variant: floor(random(10)), solid: true };
             }
         }
-        // Lay the eight foundation pads.
-        for (const pad of UNDERGROUND_FOUNDATIONS) {
-            for (let dx = 0; dx < UNDERGROUND_PAD_W; dx++) {
-                for (let dy = 0; dy < UNDERGROUND_PAD_H; dy++) {
-                    const tx = pad.x + dx, ty = pad.y + dy;
-                    if (tx < 0 || tx >= W || ty < 0 || ty >= H) continue;
-                    this.tiles[tx][ty] = { type: 'foundation', variant: 0 };
-                }
-            }
+
+        // Place the eight buildings left-to-right, bottom-aligned on the door row.
+        const placed = [];
+        let x = UG_STRIP_START_X;
+        for (const type of UNDERGROUND_STRIP) {
+            const def = BUILDING_TIERS[type] || {};
+            const bw = def.w || 6, bh = def.h || 4;
+            const gy = UG_DOOR_ROW - bh + 1; // bottom edge lands on UG_DOOR_ROW
+            placed.push(new Building(type, x, gy, null));
+            x += bw + UG_STRIP_GAP;
         }
-        // Animated route back to the surface: a pond mirroring the one up on
-        // the island.
+
+        // Carve the grass path in front of the doors, from the west end up to
+        // (but not into) the pond that caps the east end.
+        const pathEndX = UNDERGROUND_POND_ORIGIN.x - 1;
+        for (let px = UG_STRIP_START_X - 1; px <= pathEndX; px++) {
+            if (px < 0 || px >= W) continue;
+            for (const py of UG_PATH_ROWS) this.tiles[px][py] = { type: 'grass', variant: 0 };
+        }
+        // Keep tall trees off the wall row directly south of the path so nothing
+        // overhangs the walkway (trees are drawn bottom-anchored, 3 tiles tall).
+        const southRow = UG_PATH_ROWS[UG_PATH_ROWS.length - 1] + 1;
+        for (let px = 0; px < W; px++) {
+            const t = this.tiles[px][southRow];
+            if (t && t.type === 'ug_wall') t.variant = 3 + floor(random(7)); // boulder/plain only
+        }
+
+        // Animated route back to the surface: a pond mirroring the island one.
         this.placePond(UNDERGROUND_POND_ORIGIN.x, UNDERGROUND_POND_ORIGIN.y, 'island',
                        ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
 
-        // Place the fixed starting buildings. The remaining pads fill in later
-        // via quests. Buildings live on this map's parked entity list so they
-        // appear when the player travels here.
-        const placed = [];
-        for (const s of UNDERGROUND_STARTING_BUILDINGS) {
-            const b = this.placeBuildingOnFoundation(s.type, s.padIndex);
-            if (b) placed.push(b);
-        }
         // Mubaba awaits inside his fortress (isPresent false keeps him off the
         // map; entering the fortress talks to this record — see magic.js).
         const mubaba = new NPC(MUBABA_DEF, 'mubaba');
         mubaba.gridX = MUBABA_SPAWN.x;
         mubaba.gridY = MUBABA_SPAWN.y;
-        mubaba.facing = 'left';
+        mubaba.facing = 'down';
         mubaba.isPresent = false;
         this.entities = { buildings: placed, npcs: [mubaba] };
     }
@@ -5414,6 +5326,26 @@ class World {
                 strokeWeight(1);
                 rect(screenX + 0.5, screenY + 0.5, TS - 1, TS - 1);
                 noStroke();
+                break;
+            }
+            case 'ug_wall': {
+                // The underground strip's boxing wall: a dark cavern base with
+                // scattered underground trees and boulders (variant 0-9). Big
+                // sprites are bottom-anchored and allowed to overlap into a
+                // dense thicket. variant >= 6 stays plain rock for breathing room.
+                noStroke();
+                fill('#1E1A17');
+                rect(screenX, screenY, TS, TS);
+                const v = tile.variant;
+                if (v < 3) {
+                    const spr = SPRITES['tiles.tree_full_underground']; // 32x48
+                    if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
+                    else { fill('#22331F'); rect(screenX + 3, screenY, TS - 6, TS); }
+                } else if (v < 6) {
+                    const spr = SPRITES['tiles.boulder']; // 32x32
+                    if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
+                    else { fill('#3A352F'); ellipse(screenX + TS / 2, screenY + TS / 2, TS, TS * 0.8); }
+                }
                 break;
             }
             case 'sea': {
