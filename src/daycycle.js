@@ -53,7 +53,7 @@ const HOLIDAYS = [
     { name: 'Backflip Day',          desc: 'Interact with anyone or anything — neighbors, animals, even trees and stones — and they celebrate with a backflip.' },
     { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
     { name: 'Clean Your Room Day',    desc: 'No going outside until you tidy up: move or put away one piece of furniture or decor.' },
-    { name: 'Pinecone Prom',          desc: 'Formal attire and slow dances with whichever pinecone accepts you.' },
+    { name: 'Day of the Island God',  desc: 'The Island God rises on the east beach. Animal life doubles in its honor.' },
     { name: 'Dig a Hole Day',         desc: 'Pick a spot and dig it with a pickaxe. Year after year the hole grows deeper... toward somewhere new.' },
     { name: 'Reverse Burglary',       desc: 'People sneak into each other\'s homes and leave nice gifts.' },
     { name: 'Name the Island Day',    desc: 'Propose a name for the island (press P) and canvass the neighbors for votes. Majority rules!' },
@@ -148,6 +148,9 @@ function onNewDay() {
             }
             if (holiday.name === 'Ab Appreciation Day') {
                 spawnYogatron();
+            }
+            if (holiday.name === 'Day of the Island God' && typeof spawnIslandGod === 'function') {
+                spawnIslandGod();
             }
             if (holiday.name === 'Dig a Hole Day') {
                 notify('Grab your pickaxe, face some open ground, and press Enter to dig!', 4500);

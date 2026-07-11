@@ -1,30 +1,30 @@
 Holiday Name                  | Runnable? | Notes
 ------------------------------------------------------------
-Backwards Hats Day             | No       | No specific code found
+Backwards Hats Day             | No       | No specific code found (reserved)
 Compliment a Crab Day          | Yes      | Implemented
 Talk Like an Eagle Day         | Yes      | Implemented
 Toast Toss Tournament          | Yes      | Implemented
 Garden Day                     | Yes      | Implemented
 Snake Run Day                  | Yes      | Implemented (snakes dart, catch for a gift)
-Spoon Appreciation Day         | No       | No specific code found
+Tourist Time!                  | No       | Outline in Holidays/TouristTime.md
 Ab Appreciation Day            | Yes      | Yogatron NPC gives Protein Shakes
 Backflip Day                   | Yes      | Implemented (everything backflips on interact)
-Left-Handed High-Fives         | No       | No specific code found
+Hoggy's Birthday               | No       | Outline in Holidays/HoggyBirthday.md
 Clean Your Room Day            | Yes      | Implemented (door locked until tidied)
-Pinecone Prom                  | No       | Hog reaction only
+Day of the Island God          | Yes      | Giant turtle on east beach, doubled animal spawns
 Dig a Hole Day                 | Yes      | Implemented (multi-year hole -> portal at depth 5)
-Reverse Burglary               | No       | No specific code found
+Lost Mail Day                  | No       | Outline in Holidays/LostMailDay.md
 Name the Island Day            | Yes      | Implemented (propose + canvass votes)
-Mandatory Nap Interlude        | No       | No specific code found
+The Flealess Market            | No       | Outline in Holidays/FlealessMarket.md
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
-Lawn Mumble Day                | No       | No specific code found
-Pet Rock Adoption Fair         | No       | Hog reaction only
-Opposite Compliment Day        | No       | No specific code found
-One Big Scarf Festival         | No       | No specific code found
-Door-Holding Olympics          | No       | No specific code found
-Fruit Apology Day              | No       | No specific code found
-Humming in Unison Hour         | No       | No specific code found
-Cloud-Naming Congress          | No       | No specific code found
+Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
+Memory Lantern Night           | No       | Outline in Holidays/MemoryLanternNight.md
+Well-Wishing Garden            | No       | Outline in Holidays/WellWishingGarden.md
+Turtle Crossing Guard Day      | No       | Outline in Holidays/TurtleCrossingGuardDay.md
+The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
+The Returning Bird             | No       | Outline in Holidays/ReturningBird.md
+The Petal Path Maker           | No       | Outline in Holidays/PetalPathMaker.md
+The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
 Tied-Shoe Celebration          | No       | No specific code found
 The Great Blink-Off            | No       | No specific code found
 Jellybean Council              | No       | No specific code found
@@ -33,3 +33,16 @@ Hat-Stacking Jubilee           | No       | No specific code found
 (Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
 11 of 29 named days have real events; "Hog reaction only" means the hog
 notices the day but no event exists yet.)
+
+(July 11: Replaced 13 unimplemented holiday placeholders with new outlines.
+All outline files live in Holidays/*.md: TouristTime, HoggyBirthday,
+DayOfTheIslandGod, LostMailDay, FlealessMarket, FamiliarSeller,
+MemoryLanternNight, WellWishingGarden, TurtleCrossingGuardDay, PicnicReset,
+ReturningBird, PetalPathMaker, TimeCapsuleDay.)
+
+(July 11: Implemented Day of the Island God. Giant turtle (islandGod in
+game.js) spawns on the easternmost beach tile, static and non-moving;
+interact for random flavor text. Animal spawn counts double for the day
+(animals.js onAnimalNewDay). Hoggy has a reverence reaction. Uses
+sprites.island_god (assets/sprites/island_god.png, not yet added — falls
+back to a colored turtle shape) for the giant turtle sprite.)

@@ -499,7 +499,7 @@ function getHogHolidayMood() {
     if (name === 'Ab Appreciation Day') return { emote: 'flex', note: hog.name + ' strikes a tiny flexing pose.' };
     if (name === 'Compliment a Crab Day') return { emote: 'nice', note: hog.name + ' oinks politely in the direction of any crabs.' };
     if (name === 'Snake Run Day') return { emote: 'snake', note: hog.name + ' snorts at the snakes racing past.' };
-    if (name === 'Pinecone Prom') return { emote: 'dance', note: hog.name + ' shuffles in a slow circle with a pinecone.' };
+    if (name === 'Day of the Island God') return { emote: 'awe', note: hog.name + ' stares east, utterly starstruck.' };
     if (name === 'Pet Rock Adoption Fair') return { emote: 'rock', note: hog.name + ' nudges a nearby rock, considering adoption.' };
     return null;
 }
