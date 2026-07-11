@@ -1,0 +1,714 @@
+═══════════════════════════════════════════════════════════════
+NPCConvo4.txt - Cozy Island Game NPC Conversations (Batch 3)
+Animals 17-24: Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Hiya, Dreamer! The grass is extra soft today, did you notice? I hopped on three extra-soft spots and each one felt like a little cloud under my paws. Want to know where they are?"
+
+PLAYER CHOICES:
+[1] "Please tell me your soft-spot map."
+[2] "I want to find my own soft spots."
+[3] "Hop cloud sounds delightful."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "Soft-spot map! Okay. Spot one is near the big tree with the twisty trunk. Spot two is by the wildflowers that smell like honey. Spot three is... right here. Because you're here."
+
+PLAYER CHOICES:
+[1] "Right here is the best spot."
+[2] "Twisty trunk tree is landmark material."
+[3] "Honey flowers sound worth the visit."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "Find your own? Yes! The best soft spots choose you, not the other way around. You just hop around until one spot makes your feet say 'ahh.' That's your spot."
+
+PLAYER CHOICES:
+[1] "My feet will tell me. Got it."
+[2] "Do humans hop for soft spots?"
+[3] "I hope my spot is near yours."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Hop cloud! That's exactly what it feels like. Boing, boing, little cloud boing. If clouds were grassy and bouncy, that's the sound they'd make."
+
+PLAYER CHOICES:
+[1] "Boing is a good sound."
+[2] "Clouds should be bouncy."
+[3] "I'll practice my hop cloud technique."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "The best spot because friends make everything softer. Even hard ground feels okay when a friend is nearby. That's rabbit science."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "Landmark material! Big and twisty and impossible to miss. I use it for navigation. 'Hop past twisty trunk, turn left at the nice smell.'"
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "Worth the visit and worth the sniff. I try to visit them every morning. They make my nose happy, and a happy nose leads to a happy day."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Your feet will tell you. Listen carefully. They say things like 'this grass is nice' or 'let's sit here' or 'we found it!' Feet are chatty if you let them be."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "Humans can hop too! I've seen it. Well, sort of. You do a different kind of hop. Slower. But still valid. All hopping counts."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "Near mine? I hope so too! Then we can share soft spots and compare notes. 'This one is a four-paw soft.' 'This one is more of a three-and-a-half.'"
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Boing is my favorite sound. It's friendly and round and full of hope. Every boing is a tiny promise that the next hop will also be good."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "Clouds should absolutely be bouncy. Imagine bouncing from cloud to cloud. The birds would be so impressed. Even the seagulls would have to admit it's cool."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Practice makes perfect! Start small. A little hop, then a bigger hop, then a hop where you land exactly where you meant to. That's master level."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Oh. You. I was just sunbathing. Not waiting for anyone. The sun happens to be here, and I happen to like it. That's all the explanation you need."
+
+PLAYER CHOICES:
+[1] "Enjoy your sunbathing."
+[2] "You picked a good sunny spot."
+[3] "I didn't ask for an explanation."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "I will enjoy it. Very much. Possibly for hours. You don't have to stay and watch, but if you did, it wouldn't ruin anything. Not that I care."
+
+PLAYER CHOICES:
+[1] "I'll stay for a minute, if that's okay."
+[2] "I have things to do, so I'll leave you to it."
+[3] "Watching cats sunbathe is relaxing."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "A good sunny spot? Obviously. I have excellent spot-selection skills. It's one of my many talents, along with ignoring people and looking mysterious."
+
+PLAYER CHOICES:
+[1] "Mysterious suits you."
+[2] "Spot selection is underrated."
+[3] "Ignoring people is also a talent."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Didn't ask? Hmph. I was simply being thorough. Some people demand explanations. Not you, apparently. Fine. I respect that. Slightly."
+
+PLAYER CHOICES:
+[1] "Thoroughness is a good quality."
+[2] "Slightly respected is still respected."
+[3] "I'll keep not demanding things."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "A minute is acceptable. Long enough to appreciate the sun, short enough that I don't have to think of more things to pretend not to care about."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Things to do. Of course. Busy Dreamer, running around the island. I'll still be here. The sun will still be here. No need to rush back."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Relaxing? I'm glad my lounging provides entertainment. Very glad. Not glad enough to move, obviously, but still. It's something."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Suits me? I know. Black fur, sunny spot, aloof expression. It's a complete aesthetic. I worked very hard on it by doing almost nothing."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "Underrated. Most creatures just fall onto any warm surface. I choose. I evaluate. I claim. It's practically architecture."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "A talent and a lifestyle choice. I ignore when I want to, which is often. It keeps the world from getting too familiar. Familiarity is exhausting."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Good quality? Fine. I'll accept that. But don't go around complimenting me too much. I have a reputation to maintain."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "Slightly respected is still respected. That's the most sensible thing you've said. I'll remember it. Probably. If it suits me."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Keep not demanding things. That's a peaceful way to live. I might even stop pretending to be annoyed. Eventually. In stages."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"The horizon is gray today, Dreamer. I approve. Too much color tires the soul. Do you ever come to the edge of the island just to watch the world grow dim?"
+
+PLAYER CHOICES:
+[1] "I like the dim moments."
+[2] "Color doesn't tire me, but gray has its place."
+[3] "I usually come here for the sound of the waves."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Dim moments are honest. They don't pretend everything is bright and simple. They let you be tired without making you feel bad about it."
+
+PLAYER CHOICES:
+[1] "Honest light is refreshing."
+[2] "It's okay to be tired sometimes."
+[3] "Dim suits your feathers."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "Color doesn't tire you? Perhaps you are stronger than I am. Gray has its place, yes. At the end of bright days, before the night decides what it wants to be."
+
+PLAYER CHOICES:
+[1] "Gray is the in-between place."
+[2] "Night is still deciding, I think."
+[3] "Maybe I'm just used to color."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "The sound of the waves. Yes. They don't ask anything of you. They just arrive and leave, arrive and leave. Reliable. Melancholy. Perfect."
+
+PLAYER CHOICES:
+[1] "Reliable things are comforting."
+[2] "Melancholy can be beautiful."
+[3] "I like that the waves don't need anything."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Refreshing, like cold water on tired wings. Honest light doesn't flatter. It simply shows what is. I find that more beautiful than flattery."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "Tired sometimes. More than sometimes, for some of us. The island doesn't rush. It lets you be tired. That is a rare kindness."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "My feathers? Yes. Black and glossy and slightly dramatic. Dim light makes them look deeper, like little pools of night. I appreciate the effect."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "In-between. Neither bright nor dark. Neither loud nor silent. A place to pause before committing to a mood. Gray is wise."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "Still deciding. Night takes its time. It tries on stars, adjusts the moon, considers how much shadow to use. Fashionable darkness is not rushed."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "Used to color. Then gray must feel like a guest. A quiet guest who doesn't stay long. Appreciate it while it visits, then return to your bright life."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Comforting. The waves ask nothing, the trees stay put, the rocks endure. The island is full of things that simply continue. That is enough."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "Beautiful. Melancholy has depth. It is not sad; it is saturated. Full of feeling. Like the sea when the sky is heavy and the water holds its breath."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "Need nothing. That is their gift. They give rhythm without asking for applause. I try to be like the waves sometimes. Just arrive, observe, depart."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer. I was just observing the local cloud migration patterns. Did you know that clouds tend to drift toward the beach in the late afternoon? Fascinating, isn't it?"
+
+PLAYER CHOICES:
+[1] "I did not know that. Tell me more."
+[2] "Why do they drift toward the beach?"
+[3] "I mostly notice clouds by shape, not direction."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Excellent. Cloud migration is an underappreciated science. They begin near the trees at midday, gather above the grass by afternoon, and conclude at the beach by sunset. Very orderly."
+
+PLAYER CHOICES:
+[1] "Clouds have a daily schedule."
+[2] "Who taught them to be so orderly?"
+[3] "I should start a cloud journal."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "A fine question. My hypothesis is that clouds enjoy the view of the water. The horizon gives them a sense of destination. Everyone needs a destination, even vapor."
+
+PLAYER CHOICES:
+[1] "Even vapor needs purpose."
+[2] "The horizon is a good destination."
+[3] "Do clouds have preferences?"
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "Shapes are valid too. Cumulus, stratocumulus, the occasional confused sheep. But direction adds narrative. A cloud without direction is just a shape. A cloud with direction is a journey."
+
+PLAYER CHOICES:
+[1] "I like the idea of cloud journeys."
+[2] "Confused sheep clouds are my favorite."
+[3] "Direction gives things meaning."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "A schedule. Indeed. If only more island phenomena were so punctual. The crabs, for example, operate on a system I have yet to decode."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "Who taught them? Perhaps the dream itself. The island has an internal logic. We observe it, document it, and occasionally nod respectfully at it."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "A cloud journal! An excellent idea. Date, time, shape, direction, mood. Clouds do have moods, you know. Today's cumulus seems cheerful."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Purpose, yes. Even vapor benefits from intention. Without purpose, a cloud might drift into a tree and feel embarrassed. No one wants an embarrassed cloud."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "A good destination. Always out of reach, yet always visible. The horizon is the original goal. Every creature on this island looks toward it eventually."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "Preferences? Difficult to measure. But I believe some clouds prefer morning light, while others enjoy the drama of dusk. Personality is not limited to solids."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Cloud journeys. Small voyages across an endless sky. They travel without luggage, without maps, and without complaint. An elegant mode of transportation."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "Confused sheep clouds. A classic. They fluff up, look around, and slowly forget what they were doing. I find them relatable and scientifically charming."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "Meaning, yes. Direction transforms observation into story. A drifting cloud becomes a wanderer. A still cloud becomes a guardian. Context changes everything."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"Greetings, Dreamer. I have been standing on one leg, considering the tide. The tide does not hurry. It knows when to come and when to leave. There is wisdom in that."
+
+PLAYER CHOICES:
+[1] "The tide is a good teacher."
+[2] "Standing on one leg looks peaceful."
+[3] "Do you think the tide ever gets tired?"
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "A good teacher, yes, but a quiet one. It does not lecture. It simply shows, again and again, that everything returns in its own time."
+
+PLAYER CHOICES:
+[1] "Returning in its own time is comforting."
+[2] "I need a teacher that doesn't lecture."
+[3] "The tide is patient with us."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "Peaceful, once you find the balance. At first, the leg wobbles. The mind protests. But eventually, stillness becomes possible. Then it becomes preferable."
+
+PLAYER CHOICES:
+[1] "Stillness becoming preferable is a journey."
+[2] "I wobble too much for one leg."
+[3] "Balance is worth practicing."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "Tired? The tide is more like breathing than working. In, out, in, out. It does not tire because it does not strive. It simply moves."
+
+PLAYER CHOICES:
+[1] "Moving without striving sounds free."
+[2] "I strive too much sometimes."
+[3] "The tide is like the island breathing."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Comforting. Nothing is truly lost. The water leaves, but it returns. The sun sets, but it rises. The island keeps its promises."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "A teacher that does not lecture. Yes. The tide shows rather than tells. The sand is wet, then dry, then wet again. That is the whole lesson."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "Patient with us. Very patient. We run across the beach, build things, disturb the sand. The tide waits, then smooths everything over."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "A journey from wobble to stillness. Each day, a little less protest. Each day, a little more trust in the leg, in the ground, in yourself."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "Wobbling is part of it. The wobble teaches you where your center is. Without wobble, there is no discovery of balance. Be kind to your wobble."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "Worth practicing. Even a few moments of balance can steady the whole day. You do not need to stand on one leg. You can balance in any stillness."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "Free. The tide does not push, it does not pull. It responds. It follows a larger rhythm. That is a freedom greater than choice."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "Striving is human. But not every moment needs effort. Sometimes the best action is to breathe with the water and let the day move you."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "The island breathing. Yes. Inhale the morning, exhale the evening. The tide is one breath. We are all inside it. That is not loneliness. That is belonging."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Halt, Dreamer! I mean, hello. I mean, halt and hello. I am on patrol near the picnic blanket, protecting it from suspicious breezes. State your business. Nicely, please."
+
+PLAYER CHOICES:
+[1] "I come in peace and also friendship."
+[2] "What counts as a suspicious breeze?"
+[3] "Your patrol seems very important."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Peace and friendship! Excellent business. Those are my favorite kinds. Much better than 'I am just walking.' Walking is fine, but friendship has more paperwork."
+
+PLAYER CHOICES:
+[1] "I have no paperwork, but I have good intentions."
+[2] "Friendship paperwork sounds official."
+[3] "Walking is better with friends anyway."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "Suspicious breezes? The kind that ruffle the blanket without permission. Or carry leaves in a sneaky manner. Or smell like they've been up to something."
+
+PLAYER CHOICES:
+[1] "Sneaky leaves are a real threat."
+[2] "Blanket permission is important."
+[3] "How do you question a breeze?"
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "Important? Oh, yes. The picnic blanket represents honor, rest, and possibly crumbs. A squire must defend all three with great enthusiasm."
+
+PLAYER CHOICES:
+[1] "Honor and crumbs are both worth defending."
+[2] "Rest needs protection too."
+[3] "You seem like an excellent squire."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Good intentions are better than paperwork. I will accept them as official documentation. You may now proceed as a friend. Welcome, friend!"
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Very official! Each friend gets a little invisible scroll. 'Let it be known that Dreamer is a friend of the blanket and the squire.' Signed, me."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "Better with friends! A patrol is lonely work, even when the breeze is well-behaved. I would welcome company on my rounds. Duties are lighter with two."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "A real threat! Leaves can be very sneaky. One moment the blanket is smooth, the next moment there are leaves pretending they belong there. Not on my watch!"
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "Permission matters. One does not simply ruffle a blanket. There are protocols. Ruffle requests must be submitted in triplicate. The breeze has not submitted."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Question a breeze? Mostly I bark at it and see if it looks guilty. Breezes are hard to read, but a good squire trusts his nose. And his ears. And his cape."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Honor and crumbs! The twin pillars of squiredom. Without honor, there is no duty. Without crumbs, there is no snack. Both sustain the noble heart."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "Rest needs protection! The world is full of creatures who would disturb a nap. I stand guard so that rest may happen in peace. It is sacred work."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "Excellent? You really think so? That might be the nicest thing a non-blanket has said to me all day. I shall try to be even more excellent tomorrow."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh. H-hi, Dreamer. I was just going for a walk. Very slowly. I like slow walks because everything looks different when you take your time."
+
+PLAYER CHOICES:
+[1] "Slow walks show you small things."
+[2] "What have you seen on your slow walks?"
+[3] "I don't mind walking slowly with you."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Small things. Yes. Like the way a pebble... I mean, a rock, shines when it's wet. Or how a little flower bends toward the light. Tiny worlds everywhere."
+
+PLAYER CHOICES:
+[1] "Tiny worlds are easy to miss if you rush."
+[2] "Wet rocks do shine nicely."
+[3] "Flowers reaching for light is a little hope."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "I've seen beetles carrying leaves bigger than themselves. I've seen water leave patterns in the sand. I've seen my own shadow move very, very slowly."
+
+PLAYER CHOICES:
+[1] "Beetles are stronger than they look."
+[2] "Water patterns in sand are like drawings."
+[3] "A slow shadow is good company."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "With me? Slowly? That would be nice. You don't have to, though. I know humans prefer walking with more... bounce. I don't bounce. I just... proceed."
+
+PLAYER CHOICES:
+[1] "Proceeding is a valid way to travel."
+[2] "I can leave my bounce at home."
+[3] "Slow company is good company."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "Easy to miss. That's why I go slow. The island has so many little kindnesses hidden in plain sight. You just have to be moving at the right speed."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Nicely. A wet rock looks almost like a gem for a moment. Then the sun dries it, and it goes back to being ordinary. But I remember the shine."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "A little hope. That's exactly it. Reaching, reaching, always toward the light. I think flowers understand something simple and important."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Stronger than they look. All small things are. They carry what seems too big, but they do it anyway. I admire that very much."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Drawings that only last until the next wave. Temporary art. I think that's beautiful. It means the beach is always making something new."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "Good company. My shadow never rushes me. It follows at exactly my speed. It's patient. I try to be patient with myself the same way."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "Valid way to travel. I'm glad someone thinks so. Slow travel is not less travel. It's just travel that notices more."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "Leave your bounce at home. Hehe. That's a funny image. A little bounce waiting by the door. Don't worry, bounce. We'll come back for you."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "Slow company is good. It doesn't make you feel slow. It makes you feel like your speed is the right speed. I like that feeling."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Good morning, good afternoon, good everything, Dreamer! I just flew over the whole island and let me tell you, it looks wonderful from up there. Like a cozy little map with trees for trees!"
+
+PLAYER CHOICES:
+[1] "Flying over the island sounds amazing."
+[2] "Trees for trees is accurate."
+[3] "What's the best thing you saw from up there?"
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Amazing! The wind holds you up, the world gets tiny, and you can see where the grass meets the sand and the sand meets the water. It's like the island is showing off its edges."
+
+PLAYER CHOICES:
+[1] "Edges are where the interesting things happen."
+[2] "I wish I could see from above."
+[3] "The island does have nice edges."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "Accurate! I could have said 'trees for resting' or 'trees for climbing' or 'trees for looking nice,' but 'trees for trees' felt most honest. Trees being trees is enough."
+
+PLAYER CHOICES:
+[1] "Trees being trees is perfect."
+[2] "Honest descriptions are the best."
+[3] "What are rocks for, then?"
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "Best thing? Hmm. The wild hog was taking a nap in a sunny spot, and his ears looked very peaceful. Also, the beach had little wave-lines like frosting. It was hard to choose."
+
+PLAYER CHOICES:
+[1] "Peaceful hog ears sound great."
+[2] "Wave-lines like frosting! I love that."
+[3] "Everything sounds good from above."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Interesting things! Where grass turns to sand, where water turns to sky, where day turns to night. Edges are where two worlds shake hands."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "You can see from above in your own way. Climb a hill, stand on a rock, or just imagine really hard. Imagination is almost like flying, except less wind."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "Nice edges! Soft edges, curvy edges, splashy edges. The island is good at not being too sharp. It knows how to blend things together."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Perfect! A tree doesn't need a job to deserve to exist. It just stands there, being tree-ish, and that's a whole career right there."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Best descriptions. No fancy words needed. Just say what you see. 'Tree is tree.' 'Rock is rock.' 'Sky is being blue today.' Perfect communication."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Rocks? Rocks are for sitting on, for looking at, and for wondering how long they've been there. They're the island's quiet furniture. Very polite."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "Great! He was all curled up and his ears had little sun spots on them. I wanted to sing him a lullaby, but I didn't want to wake him up."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Frosting! White and swirly and temporary. The ocean keeps decorating the beach and then smoothing it flat again. It's very generous with its art."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "Everything is good from above! Even the things that look messy up close look like part of a pattern from far away. Distance is very forgiving."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH 3
+8 animal neighbors written (Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny)
+Next: Monsters batch (Fluffernox, Grumble, Vesper, Gizmo, Ommmm, Lord Roar, Snug, Gigglegrow)
+═══════════════════════════════════════════════════════════════

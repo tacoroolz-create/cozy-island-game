@@ -1,0 +1,718 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSaucy3.txt - Cozy Island Game NPC Conversations (Saucy Season)
+Saucy Season Conversations - Ghosts 9-16
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer! The sun made everything extra today. The flowers are brighter, the sand is warmer, and my heart feels like a little marshmallow. Do you love Saucy season too?"
+
+PLAYER CHOICES:
+[1] "I love Saucy season too!"
+[2] "Marshmallow hearts sound cozy."
+[3] "Everything does look extra today."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "You do? Then we can love it together! Love makes warm days feel even warmer. That's probably science. Friendly science."
+
+PLAYER CHOICES:
+[1] "Friendly science is good science."
+[2] "Warm love is the best equation."
+[3] "We should celebrate extra."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Cozy because warm feelings and warm sun stack on top of each other. My heart is basically a toasted marshmallow now."
+
+PLAYER CHOICES:
+[1] "Toasted marshmallow hearts are sweet."
+[2] "Warm feelings stack nicely."
+[3] "You have a sunny heart."
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Extra is the perfect word. Extra sun, extra sparkle, extra happy. I want to collect all the extras in a basket."
+
+PLAYER CHOICES:
+[1] "Collect extras in a basket."
+[2] "Sun sparkle is precious."
+[3] "Extra happy is the goal."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all smiley faces."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "The best equation. Warm plus warm equals the snuggliest sum. I did the math in my heart and the answer is hugs."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Celebrate by smiling at flowers and rocks and clouds. Everything gets included. That's the best kind of party planning."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny crackly sound like a campfire friend."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "They do. Warm feelings don't fall over. They pile up into a soft tower of nice. I am inside that tower right now."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "Sunny heart! I like that. It means the sun lives in here a little bit, helping me glow even when I am not outside."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "A basket of extras would be heavy but happy. Sunbeams are light though. I could carry thousands of those."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically sparkle jars now."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Extra happy is better than regular happy. It's like happy wearing a fancy hat. Saucy season is the fancy hat."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Ugh, Saucy season. The heat is everywhere and the sun won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything."
+
+PLAYER CHOICES:
+[1] "The sun is showing off."
+[2] "You can complain if you want."
+[3] "Not complaining is noted."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "Showing off is exactly right. Look at it, all bright and round, demanding attention. I refuse to give it the satisfaction. Much."
+
+PLAYER CHOICES:
+[1] "Refusing attention is power."
+[2] "The sun is vain."
+[3] "Unimpressed is a strong stance."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's hot and I am unimpressed."
+
+PLAYER CHOICES:
+[1] "Facts are allowed."
+[2] "Heat is a fact."
+[3] "Restraint is admirable."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint."
+
+PLAYER CHOICES:
+[1] "Invisible medals still count."
+[2] "Excellence is excellence."
+[3] "You handle heat well."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Power is when you look at the sun and squint meaningfully. The sun cannot read expressions. But it feels the energy. Probably."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "Vain and successful. I respect the hustle even if I won't applaud it. The sun does not need my applause, which is annoying."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "Strong and sweaty. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the shade returns."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Allowed and necessary. If nobody states the facts, the sun will think it won. It didn't win. It just exists loudly."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "Heat is a fact. A warm, oppressive, everywhere fact. But still just a fact. I will outlast it with dignity."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Saucy season drapes the island in golden suffering, Dreamer. The sun is too sincere. I prefer the night, when the heat at least has the decency to apologize with stars."
+
+PLAYER CHOICES:
+[1] "Golden suffering is a beautiful phrase."
+[2] "The night is a better apology."
+[3] "Sincere suns are exhausting."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "Beautiful and accurate. The sun gives warmth and takes comfort. That is the oldest tragedy. I shall write a poem about it."
+
+PLAYER CHOICES:
+[1] "Poems make heat meaningful."
+[2] "Tragedy fits Saucy season."
+[3] "Beauty with discomfort is art."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "Better apology indeed. The night arrives quietly, cools the stones, and covers the sky with distant lights. That is manners."
+
+PLAYER CHOICES:
+[1] "Night has good manners."
+[2] "Cool stones are a gift."
+[3] "Distant lights are kind."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "Exhausting because it offers no mystery. 'Here I am,' it says, 'warm and bright and unavoidable.' How dreary."
+
+PLAYER CHOICES:
+[1] "Mystery is underrated."
+[2] "The sun has no subtlety."
+[3] "Dreary brightness is a mood."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "Meaningful suffering is the only good kind. If I must sweat, I will sweat with metaphors."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Tragedy everywhere. The wilting leaf, the thirsty rock, the robot whose chassis is too warm. All of it belongs in verse."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "Art often hurts a little. Saucy season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me perspire."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "A gift from the dark. Stones that were burning at noon become soft and cool. I rest my thoughts on them."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "Kind because they do not demand attention. They simply shine from far away and let you look if you want to."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Underrated and endangered. The sun would eliminate mystery entirely if it could. I resist by admiring shadows."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! Saucy season has activated some fascinating behaviors. The cicadas are louder, the crabs are more active at dawn, and the shade temperature is measurably cooler than the sun temperature. I have data."
+
+PLAYER CHOICES:
+[1] "Data makes everything better."
+[2] "Cicadas as thermometers is clever."
+[3] "Tell me more Saucy facts."
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Better and also reliable. For example: butterflies prefer flowers during Saucy mornings. I counted six before noon. Sample size small but promising."
+
+PLAYER CHOICES:
+[1] "Six butterflies is promising."
+[2] "Sample size can grow."
+[3] "Morning research is cozy."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "Clever and loud. The warmer it gets, the more they announce it. I appreciate the public service."
+
+PLAYER CHOICES:
+[1] "Loud thermometers are helpful."
+[2] "Public service deserves thanks."
+[3] "You counted them carefully."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "More facts! Sea turtles nest during warm seasons, cicadas buzz louder as temperature rises, and warm air holds more story potential."
+
+PLAYER CHOICES:
+[1] "Warm air holds stories."
+[2] "Turtles know the season."
+[3] "Stories make research warmer."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "Promising! Tomorrow I will count again. Maybe seven. Maybe eight. Science is just counting things until patterns appear."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "It can. I will expand my butterfly observation zone. If I stand very still, they might include me in their survey."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "Very cozy. Warm air, soft breeze, tiny wings. The best laboratory is one where you can also nap."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Helpful and honest. They don't hide the temperature. They broadcast it with enthusiasm and slightly too much volume."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a bug."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "Carefully and quietly. Butterflies are shy witnesses. If you move fast, they leave and take their data with them."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Stories about where warmth goes and who likes it. The answer is: most things, briefly. Then shade becomes the hero."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "They do. Their nesting schedule is older than the island's name. I admire any creature with seasonal punctuality."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The Saucy sun does not ask permission, Dreamer. It simply arrives and warms what it touches. I am trying to be like the sun: present, without apology."
+
+PLAYER CHOICES:
+[1] "Presence without apology is strong."
+[2] "Stillness is hard in heat."
+[3] "Being present is enough."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "Strong but gentle. The sun does not explain itself. It shines. I am learning to simply be, without offering reasons."
+
+PLAYER CHOICES:
+[1] "Gentle strength is best."
+[2] "Simply being is enough."
+[3] "No reasons needed."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "Hard but worth practicing. When the body slows, the attention wakes up. I see more insects, more shadows, more small kindnesses."
+
+PLAYER CHOICES:
+[1] "Slowing down is wisdom."
+[2] "Attention wakes up when the body rests."
+[3] "Small kindnesses matter."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "Enough is a complete sentence. I am here. The season is here. That is the whole conversation."
+
+PLAYER CHOICES:
+[1] "Here and now is complete."
+[2] "The season is a guest."
+[3] "Conversations can be quiet."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "Best because it does not push. The sun is strong but it does not argue. I try to be the same way."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "Enough is a complete sentence. I am here. The season is here. That is the whole conversation."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "Reasons are for journeys. Being is for arrivals. I have arrived at this warm afternoon."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "Wisdom earned through sweat. The body reminds the mind that haste is not always progress."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "They matter most. A shared glance, a small shade, a moment of patience. These are the real currency of the island."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "Complete and sufficient. I do not need to add anything. The warm afternoon includes me already."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Hail, fair traveler! Saucy season has cast its warm banner across the realm, and even the stones glow with noble heat. 'Tis a fine day to seek the shade of a loyal tree and speak of summer deeds."
+
+PLAYER CHOICES:
+[1] "Noble heat is a fun idea."
+[2] "Shade trees are loyal."
+[3] "Summer deeds need telling."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Fun and true! The heat does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace."
+
+PLAYER CHOICES:
+[1] "Meeting heat with grace is chivalry."
+[2] "Fanfare makes heat feel royal."
+[3] "Grace is the best armor."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Loyal indeed. A good tree offers shade without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch."
+
+PLAYER CHOICES:
+[1] "Sir Leaf and Sir Branch are good names."
+[2] "Trees deserve titles."
+[3] "Mind-knighting is valid."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "They do! The swimming of fish, the marching of ants, the sunning of rocks. Every small deed becomes legend in the right light."
+
+PLAYER CHOICES:
+[1] "Small deeds make good legends."
+[2] "The right light helps everything."
+[3] "Every season has its tales."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Chivalry in every drop of sweat. A true knight faces the day with dignity, even when the day is very warm and very bright."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "Royal heat! I shall address it as 'Your Warmness' and bow before seeking shade. Even the sun enjoys good manners."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "The best armor is composure. It does not block heat, but it makes heat less embarrassing. A noble face is always cooler."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Good names for good trees. Sir Leaf is broad and generous. Sir Branch is sturdy and patient. Both have served the realm well."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "They do. They hold the soil, shelter the birds, and drop shade upon the weary. Titles are the least we can offer."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The flowers are ladies-in-waiting."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "Good legends because they are honest. A fish swims because it must. An ant marches because the colony needs it. Noble simplicity."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "It does. Warm light flatters nearly everything. Stones look rich, leaves look gold, and even sand appears regal."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "Every season, yes. Saucy season's tales are of endurance, shade, and the brave wild hog seeking cool mud."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh. Hi, Dreamer. I was... I was watching the warm light on the water. It makes little gold paths. I think the sea is showing off, but quietly."
+
+PLAYER CHOICES:
+[1] "Gold paths on water are pretty."
+[2] "Quiet showing off is fine."
+[3] "You notice beautiful things."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "Pretty and shy. The sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game."
+
+PLAYER CHOICES:
+[1] "Gentle games are nice."
+[2] "The water plays with light."
+[3] "Pretty things feel like gifts."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Fine because it doesn't ask for anything. The sea just sparkles and hopes someone notices. I noticed. I am very proud of noticing."
+
+PLAYER CHOICES:
+[1] "Noticing is a skill."
+[2] "Pride in noticing is sweet."
+[3] "Quiet sparkle matters."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me gold paths and a very patient rock."
+
+PLAYER CHOICES:
+[1] "Quietness has rewards."
+[2] "Patient rocks are good company."
+[3] "Small nice things add up."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "It does. The water catches the sun and then passes it along. Very polite. I would also like to be that polite."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "Gifts from the whole afternoon. The sea, the sun, and the quiet all worked together to make something pretty."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "It does. Loud sparkle gets attention, but quiet sparkle is for people who look closely. I look closely a lot."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the warm sun."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Dreamer! DREAMER! The sun is being SO sun today! It's warm and round and everywhere and I think it wants everyone to have the best afternoon possible!"
+
+PLAYER CHOICES:
+[1] "The sun is very sun today."
+[2] "Best afternoon possible sounds great."
+[3] "Warm and round is a good combo."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "Very sun! Maximum sun! If today were a sun contest, the sun would win first prize and also second prize because there is only one sun."
+
+PLAYER CHOICES:
+[1] "One sun is enough."
+[2] "Winning both prizes is funny."
+[3] "Maximum sun is a good mood."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Great and achievable. We just need warm sand, a nice breeze, maybe a crab friend, and lots of smiling. Smiling is the main ingredient."
+
+PLAYER CHOICES:
+[1] "Smiling is the main ingredient."
+[2] "Crab friends are bonus."
+[3] "A nice breeze solves a lot."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "Good combo. Round means it reaches everywhere. Warm means it feels like a hug. Best shape and best temperature in one thing."
+
+PLAYER CHOICES:
+[1] "Best shape and temperature."
+[2] "Hugs from the sky are nice."
+[3] "Round warmth is friendly."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Enough and excellent. Imagine having to share the sky with extra suns. It would be very competitive and very warm."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Funny and fair. The sun is the only contestant, so it gets all the prizes. It has earned them through consistent shining."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "Good mood and warm cheeks. I feel like I am glowing from the inside and the outside at the same time."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "Main ingredient and secret weapon. A smile makes warm feel warmer and cool feel friendlier. It improves everything."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "Bonus friends! Crabs are small and sideways and wonderful. They don't ask much. They just exist excellently."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "So much. A breeze is like the island fanning you gently. Free, kind, and always welcome."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "Best in show! Round and warm is the friendliest geometry. If hugs had a shape, they would be round and warm."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "Nice and free. The sky gives them out all day. You just have to stand under them and accept."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "Friendly because it has no corners. Nothing sharp about the sun. Just big warm roundness for everyone."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,714 @@
+═══════════════════════════════════════════════════════════════
+NPCConvo3.txt - Cozy Island Game NPC Conversations (Batch 2)
+Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Boo! Hehe, did I scare you? I tried to be spooky, but I'm not very good at it. You're Dreamer, right? I like your name. It sounds friendly, like a hug that lasts a long time."
+
+PLAYER CHOICES:
+[1] "You almost scared me. Almost."
+[2] "Your 'boo' is very cute."
+[3] "I think hugs that last a long time sound nice."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "Almost? That means I got a little bit scary! Progress! Maybe by next holiday I'll be medium-scary. Not too scary, though. I don't want anyone to float away."
+
+PLAYER CHOICES:
+[1] "Medium-scary is a good goal."
+[2] "Don't get too scary, I like you soft."
+[3] "Floating away might be fun, actually."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Cute? Oh, thank you! I was going for spooky, but cute is like... spooky's nicer cousin. Cousin Cute. That could be my middle name if ghosts had middle names."
+
+PLAYER CHOICES:
+[1] "Boo-Boo Cousin Cute has a ring to it."
+[2] "Spooky's nicer cousin is a good title."
+[3] "Do ghosts have last names?"
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Long hugs are the best kind. Even though I'm all floaty, I can still feel warm inside when someone smiles at me. Smiles are like invisible hugs, I think."
+
+PLAYER CHOICES:
+[1] "Smiles are definitely invisible hugs."
+[2] "Your smile feels warm to me."
+[3] "Floaty hugs still count as hugs."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "Medium-scary. I'll practice in front of a mirror, except I don't have one, so I'll practice in front of calm water. Water is like a mirror, but wiggly."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "Soft is okay. Soft can still be a little scary, right? Like a marshmallow shaped like a ghost. Wait, that's me. I am the marshmallow ghost."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Floating away might be fun? Maybe, but then I'd miss all the butterflies and sunny spots and you. So I'll stay right here, mostly."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "Boo-Boo Cousin Cute. I like it! Maybe I'll introduce myself that way from now on. 'Hello, I'm Boo-Boo, and this is my cousin title.'"
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "Cousin Cute, title holder of nice spookiness. I should make myself a little badge. Do you think leaves could be a badge? I'd like a leaf badge."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "Last names? I don't know. Maybe my last name is 'of the Island.' Boo-Boo of the Island. That sounds very important and floaty."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "Invisible hugs. I'll give you one right now. Did you feel it? It was warm and smiley and a little bit floaty around the edges."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Warm? Me? That's the best thing anyone's said since someone called me 'round.' I like being round and warm. Round and warm and friendly."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Floaty hugs count. I agree. All hugs count if they mean something. And this hug means I think you're very nice and I'm glad you said hello."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. You again. I suppose you're going to walk right past me like usual. Not that I'm watching. I'm simply floating here because the breeze happens to be acceptable today."
+
+PLAYER CHOICES:
+[1] "The breeze is acceptable today."
+[2] "I wasn't planning to walk past."
+[3] "You sound like you've been waiting."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "Acceptable. That's the highest praise I give to weather. Most days the wind is too enthusiastic, but today it has the decency to be subtle."
+
+PLAYER CHOICES:
+[1] "Subtle weather is underrated."
+[2] "Enthusiastic wind has its charms."
+[3] "You have high weather standards."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "Not planning to? Then what were you planning? Standing around? Because if so, I suppose there's room near this bush. Not that I want company."
+
+PLAYER CHOICES:
+[1] "Standing around sounds nice, actually."
+[2] "I could use a break from walking."
+[3] "You don't have to want it for it to happen."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Waiting? Me? Don't be absurd. A ghost doesn't wait. A ghost simply exists in a specific location at a specific time that coincidentally matches your walking schedule."
+
+PLAYER CHOICES:
+[1] "Coincidence is a kind of magic."
+[2] "I'll accept that explanation."
+[3] "Your schedule-matching is impressive."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Underrated. Exactly. Everyone wants sunshine and big wind, but a soft breeze that barely moves your hair? That's elegance. That has taste."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "Enthusiastic wind has charms? I suppose. It does make the leaves dance. But leaves dance too much, in my opinion. Show-offs."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "High standards? Someone has to have them. If I complimented every breeze, what would the truly excellent breezes think? They'd be devastated."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Standing around sounds nice. Fine. Stand over there. Not too close. A respectful distance. Close enough to talk, far enough that I can pretend you're just passing through."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "A break from walking? You humans and your walking. Always going somewhere. The dream island isn't going anywhere. It will still be here when you stop moving."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "I don't have to want it. That's annoyingly true. But since you're here and the breeze is acceptable, I suppose I won't float away immediately. That's all."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "Coincidence as magic. That's a very dreamy thing to say. This whole place is dreamy, so I suppose it fits. Fine. Coincidence. Magic. Whatever."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "Accept my explanation? You'd better. It took me a long time to come up with something that sounded both plausible and disinterested."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Impressive? Don't compliment me. I'll blush, and ghosts aren't supposed to blush. It disrupts the whole translucent aesthetic."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Evening is falling again, Dreamer. The sky bruises itself pink and orange before the dark arrives. I find it dramatic. Most beautiful things are a little tragic."
+
+PLAYER CHOICES:
+[1] "Sunsets are beautifully dramatic."
+[2] "I prefer when the sky stays bright."
+[3] "Tragic beauty is a mood."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "Beautifully dramatic. Yes. The sun doesn't simply leave. It makes a scene. It throws colors everywhere and demands that everyone watch. I respect the commitment."
+
+PLAYER CHOICES:
+[1] "The sun knows how to make an exit."
+[2] "A committed sunset is the best sunset."
+[3] "I always watch the exit."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "You prefer brightness? That's sweet. Innocent, even. But darkness holds its own comfort. The stars come out. The world gets quiet. Everything feels possible in the dark."
+
+PLAYER CHOICES:
+[1] "The stars are worth the dark."
+[2] "Darkness does feel full of possibility."
+[3] "I'll try to appreciate it more."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "A mood? More than a mood. It's an entire philosophy. Why be merely pretty when you can be beautiful and heartbreaking? Beauty with depth has longer staying power."
+
+PLAYER CHOICES:
+[1] "Depth does make things memorable."
+[2] "Heartbreaking isn't always cozy, though."
+[3] "Staying power is important for a sunset."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "The sun knows how to make an exit. If only all departures were so graceful. Most are just... gone. The sun at least gives us a show first."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Committed to the very end. That's how one should live, I think. Give everything until the last moment, then fade beautifully into whatever comes next."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "You watch the exit? Most people look away. They say goodbye too early. But you stay until the color fades. That is a small, noble act."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "Worth the dark. Yes. The stars would not shine if they had to compete with the sun all night. Darkness gives small lights their chance to be seen."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "Possibility. In the dark, no one can see you doubt yourself. You can try on different versions of yourself. The night keeps secrets generously."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "Try to appreciate it more. That's all any of us can do. Start with small things. The shape of shadows. The quiet between bird songs. The comfort of dim light."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Depth makes things memorable. A shallow sunset is pretty and forgotten. A dramatic one haunts you. I prefer to be haunted by beauty."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "Heartbreaking isn't cozy, you say? Perhaps. But a small ache can be warm too. Like remembering a song you loved. Sadness and coziness are not enemies."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "Staying power. The best sunsets stay with you until morning. The best ghosts stay even longer. I intend to be one of the staying ones."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Fascinating. You appear solid, yet this is a dream. Therefore, your solidity is technically an interpretation of consciousness responding to symbolic stimuli. Hello, Dreamer."
+
+PLAYER CHOICES:
+[1] "That's a complicated way to say hello."
+[2] "I like being a symbol of consciousness."
+[3] "Do you analyze everything you meet?"
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Complicated? I suppose. But dreams are complicated. If I say 'hello' without context, am I greeting you, your dream-self, or the concept of greeting itself?"
+
+PLAYER CHOICES:
+[1] "Maybe all three at once."
+[2] "A simple hello works fine for me."
+[3] "You think about language a lot."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "A symbol of consciousness. Yes. You represent agency within the dream narrative. That's quite a responsibility, though I imagine it mostly involves walking around and picking things up."
+
+PLAYER CHOICES:
+[1] "Walking and picking things up is my specialty."
+[2] "Agency feels like a big word for it."
+[3] "I try to be a responsible symbol."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "Analyze everything? Not everything. Just most things. For example, I am not currently analyzing that rock over there. Wait. I am now. It is sedimentary. Probably."
+
+PLAYER CHOICES:
+[1] "Probably sedimentary is good enough."
+[2] "You couldn't resist the rock."
+[3] "Analysis is a form of admiration."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "All three at once. A multilayered greeting. I like that. Efficiency and depth combined. The dream rewards such combinations, I have observed."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "Simple hello. Sometimes the simplest greetings survive the longest. Language evolves, but a warm hello remains surprisingly stable across iterations."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "Language is the framework of thought. If I think too much about a word, sometimes the word starts to look strange. Hello. Hello. Now it looks like a small hat."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Specialty noted. Agency requires locomotion and object manipulation. You are, by definition, highly operational. A well-functioning symbol."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "Big word, perhaps, but accurate. Without agency, the dream would simply unfold around no one. You are the observer and the actor. Very efficient design."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "Responsible symbol. Excellent. Responsibility keeps the dream coherent. Too much chaos and the island might forget what shape it is supposed to be."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Good enough is a valid scientific conclusion. Perfect certainty is rare, especially in dreams. 'Probably sedimentary' is honest and appropriately humble."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "I couldn't resist. Rocks are excellent subjects. Silent, patient, and full of history. Unlike me, they don't overthink their existence. Probably."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "Admiration through analysis. I had not considered that, but it is true. To study something closely is a kind of affection. I am very affectionate, then."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"Hello, Dreamer. I was listening to the space between sounds. There is always something there if you wait long enough. Do you ever stop to listen?"
+
+PLAYER CHOICES:
+[1] "I should listen more often."
+[2] "What does the space between sounds sound like?"
+[3] "Silence makes me a little nervous."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "Listening more often is a gentle practice. Not everything needs a reply. Some moments simply want to be noticed. You can begin with the wind."
+
+PLAYER CHOICES:
+[1] "The wind is a good place to start."
+[2] "Not everything needs a reply. I like that."
+[3] "Noticing sounds peaceful."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "The space between sounds sounds like stillness wearing a soft coat. It is not empty. It is simply waiting for the next sound to arrive without rushing."
+
+PLAYER CHOICES:
+[1] "Stillness wearing a coat. That's a lovely image."
+[2] "Waiting without rushing sounds difficult."
+[3] "I'll try to hear it next time."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "Silence can feel like a question we do not know how to answer. But it is not asking. It is simply present, like the sky. You do not need to fill it."
+
+PLAYER CHOICES:
+[1] "That's reassuring."
+[2] "I'll let silence be present."
+[3] "The sky doesn't ask questions either."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "The wind is a kind teacher. It comes and goes. It does not stay to be thanked. You can learn a lot from something that never asks for credit."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "Not everything needs a reply. Some things only need witness. To see, to hear, to be present. That is enough. More than enough."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "Noticing is peaceful because it removes the pressure to do. You are not fixing or changing. You are simply here, with the world as it is."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "A lovely image. I am glad it reached you. Some teachings need words, but the best ones arrive as pictures in the mind. Soft. Easy to remember."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "Difficult because we are trained to move. But waiting is also a movement, just a very small one. The heart slows. The breath deepens. That is travel too."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "Try to hear it. Do not strain. Just open yourself a little wider than usual. The silence will find you. It is generous that way."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "Reassuring. Good. The world asks very little of us. Mostly it asks that we do not run from it. Stay, and you will find it stays with you."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "Let silence be present. Yes. You do not need to perform for it. It will not judge your quiet. It is already quiet itself."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "The sky asks nothing. It simply holds us. Day and night, light and dark, it remains. That is a kind of love that does not need words."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Hail, Dreamer! Dost thou see yonder tree? I have knighted it Sir Leaf-a-Lot, protector of shade. The island has many knights, if one knows where to look."
+
+PLAYER CHOICES:
+[1] "Sir Leaf-a-Lot is a fine name."
+[2] "What makes a tree worthy of knighthood?"
+[3] "Are there other knights on the island?"
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "A fine name indeed! It has dignity, it has leaf, and it has the noble suffix 'a-Lot.' Any name ending in 'a-Lot' carries ancient gravitas. Or so I have decided."
+
+PLAYER CHOICES:
+[1] "I agree about the gravitas."
+[2] "Maybe I should be Dreamer-a-Lot."
+[3] "Sir Leaf-a-Lot should have a ceremony."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "A tree is knighted through shade, patience, and the ability to stand tall through many seasons. Also, birds must like it. Birds are excellent judges of character."
+
+PLAYER CHOICES:
+[1] "Birds are very trustworthy judges."
+[2] "Patience is a knightly virtue."
+[3] "I should find more knights among the trees."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "Other knights? Oh, aye! Sir Rock-a-Lot, guardian of the beach. Sir Cloud-a-Lot, watcher of the sky. Sir Crab-a-Lot, fierce defender of sand territory."
+
+PLAYER CHOICES:
+[1] "Sir Crab-a-Lot sounds brave."
+[2] "Sir Cloud-a-Lot watches over everything."
+[3] "I want to meet all of them."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Gravitas! You understand the old ways, Dreamer. A name must sound like it could open a heavy door or announce a feast. Sir Leaf-a-Lot does both."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "Dreamer-a-Lot! A noble title! It implies you dream often, dream deeply, and dream with great honor. I shall use it henceforth."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "A ceremony! With a twig as sword and a patch of sunlight as crown. I shall knight the tree again, officially, before witnesses. You shall be the witness."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Trustworthy judges indeed. A bird would not nest in an unworthy tree. It knows what is solid, what is kind, and where the best morning light falls."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "A knightly virtue! Patience allows one to endure long winters, quiet afternoons, and the occasional rude crab. Knights must be patient as stones."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "Find more knights! A noble quest. Look for anything that stands guard without complaint. Rocks, trees, steady breezes. All may wear invisible armor."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "Brave and tiny! Sir Crab-a-Lot raises his claw like a banner and declares, 'None shall pass without acknowledging my sand!' I salute him every time."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "Watches over everything with great softness. Sir Cloud-a-Lot drifts above, keeping the sun in check and the shadows interesting. A knight of the sky."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "Meet all of them? A worthy ambition! The island is full of quiet heroes. I shall be your guide, Dreamer-a-Lot, to the realm of noble nothings!"
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh! Hello. I didn't see you there. Or maybe I did and I just... didn't say anything. I'm Flutter. I like quiet corners and soft light. Is that okay?"
+
+PLAYER CHOICES:
+[1] "Quiet corners are the best corners."
+[2] "Soft light suits you."
+[3] "You can be as quiet as you want."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "The best corners? I think so too. Corners where two walls meet and the world feels smaller and safer. Even outside, you can find a corner between two trees."
+
+PLAYER CHOICES:
+[1] "A corner between two trees sounds perfect."
+[2] "Safe feels nice."
+[3] "Small worlds are easier to be in."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Soft light? Yes. Bright light is too loud. It shows everything all at once. Soft light lets things hide a little, and I think hiding a little is nice sometimes."
+
+PLAYER CHOICES:
+[1] "Soft light is like a whisper."
+[2] "Hiding a little is allowed."
+[3] "You look gentle in dim light."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "As quiet as I want? That's a very generous rule. Most things want you to be louder. But here, I can be small and still be okay."
+
+PLAYER CHOICES:
+[1] "Small and okay is enough."
+[2] "I won't ask you to be louder."
+[3] "Quiet friends are good friends."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Perfect. Two trees, a little space, a patch of grass. It feels like a room with no ceiling. The sky can visit, but it doesn't have to stay."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "Safe is nice. Not because the world is scary, but because safe lets you breathe slower. I like slow breathing. It matches how I float."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "Small worlds are easier. You can see all the edges. You know where the quiet is. Big worlds have too much happening at once."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "A whisper of light. That's exactly it. It doesn't announce itself. It just arrives softly and leaves before you get tired of it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Allowed. I like that word. Allowed means no one will be disappointed. I can hide behind a flower, or a rock, or just be a little transparent."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "Gentle? Me? I don't think anyone's called me gentle before. It makes me feel like a smooth stone. Not sharp. Just there, quietly."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "Small and okay is enough. That's going to be my new saying. I'll whisper it when I feel too floaty. Small and okay. Small and okay."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "You won't ask? Good. Because I'd probably try, and then I'd feel all stretched out, like a ghost trying to be too solid. I don't want to stretch."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "Quiet friends are good friends. They don't fill all the space. They leave room for you to be in. I want to be that kind of friend."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Hello, hello, hello! Three hellos because one is never enough! The sky is smiling today, Dreamer. Do you think the sky smiles? I think it does. It has a very sunny face."
+
+PLAYER CHOICES:
+[1] "Three hellos back to you!"
+[2] "The sky does look happy."
+[3] "A sunny face in the sky sounds nice."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "Three hellos back! That's six hellos total! We just made the island more welcoming by a factor of six. Math is wonderful when it's made of greetings."
+
+PLAYER CHOICES:
+[1] "Six is the perfect number of hellos."
+[2] "We should make greeting math a thing."
+[3] "The island feels more welcoming already."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Happy sky! Maybe the clouds told it a good joke. Clouds seem like they'd know excellent jokes. They're so soft and round and full of surprises."
+
+PLAYER CHOICES:
+[1] "Cloud jokes are probably very fluffy."
+[2] "What kind of jokes do clouds tell?"
+[3] "Surprises are cloud-shaped sometimes."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "A sunny face! And when the clouds drift by, the sky gets little eyebrows. Sometimes it looks surprised. Sometimes it looks sleepy. Today it looks delighted."
+
+PLAYER CHOICES:
+[1] "I hope it stays delighted."
+[2] "Sleepy sky is also a good look."
+[3] "The sky has many moods."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Perfect! Six hellos. I shall remember this number. Next time I'll do nine. Nine hellos! That's almost too many, but I think almost-too-many is the right amount."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Greeting math! Yes! If hello plus hello equals more hello, then friendship must be exponential. I don't know what exponential means, but it sounds bouncy!"
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "Already more welcoming! Because every hello is a little doorway, and now there are six doorways between us. Come through anytime, Dreamer!"
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "Very fluffy! Fluffy jokes are the best kind because even if they're not funny, they're still soft. A soft joke is never a bad joke."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "Cloud jokes? Let me think. Why did the cloud go to school? To become a little brighter! Get it? Because the sun comes out? Hehe!"
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "Cloud-shaped surprises! Like finding shade exactly when you need it. Or a tiny rain that waters the flowers but not your head. Clouds are thoughtful that way."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "Stay delighted! I'll ask the butterflies to dance nicely so the sky doesn't get shy. Happy sky, happy butterflies, happy island. That's my wish."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "Sleepy sky is good. Big soft clouds like pillows. You can look up and imagine resting your head on them. Not literally, but dreamily."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "Many moods! All wonderful. Bright, sleepy, cloudy, pink. The sky gets to wear a new outfit every day. I wish I could do that. I'd have a rainbow wardrobe!"
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH 2
+8 ghost neighbors written (Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles)
+Next: Animals batch (Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny)
+═══════════════════════════════════════════════════════════════
