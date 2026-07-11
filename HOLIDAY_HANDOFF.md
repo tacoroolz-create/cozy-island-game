@@ -173,26 +173,46 @@ named-neighbor-specific lines (Mimis/Cort aren't in the actual 32-NPC
 roster, same gap as every other holiday with example dialogue for
 out-of-roster characters).
 
-## Remaining 6, ranked easiest → hardest to build
+**The Picnic Reset** (on `main`, pushed to origin). Array slot 22 (was
+"Door-Holding Olympics") renamed. The outline wanted the real player-placed
+outdoor furniture temporarily relocated and restored — out of scope per the
+existing gotcha (that system mutates `world.tiles` and is meant to be
+permanent), so this reuses The Returning Bird's "hijack `npc.stationary` +
+snap position" trick for up to 3 neighbor pairs instead of touching real
+furniture. `findPicnicLineSpots()` in
+[src/game.js](src/game.js:2032) scans every row for the widest clear-grass
+run (same technique as `findLanternShoreLine`) and seats 2-6 randomly chosen
+present neighbors along it as blanket-prop pairs; each neighbor's original
+position/stationary flag is saved and restored when the holiday ends or a
+new day begins. A static organizer NPC (same shape as `islandGod`) gives
+flavor lines; facing a seated pair and interacting shows a two-line banter
+exchange and gives both neighbors `gainGift(2)` once, with a one-time
+"Picnic Napper" flavor line after 3 different pairs (standing in for the
+outline's "sit in three seats" upgrade — no sitting mechanic exists in this
+codebase). Hoggy gets a "picnic" mood; neighbor dialogue gets
+seated-vs-not-seated lines via `getHolidayGreetingPrefix`. No new sprite —
+falls back to striped rectangle blankets. Skipped: the outline's named pairs
+(Chester+Luna, Hudson+Mimis), same out-of-roster gap as every other holiday
+with example dialogue — pairs are chosen randomly from the real roster
+instead.
+
+## Remaining 5, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
-   requires storing + restoring original positions. First holiday that
-   mutates existing player-placed state instead of adding temp objects.
-2. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
+1. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
    across the 6-day gap until the holiday repeats). First one needing
    `world`-level persistent storage beyond the day.
-3. **Flealess Market** — 3 items, one of which is a whole new plant type
+2. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-4. **Familiar Seller** — permanent named companion that follows the player
+3. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-5. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+4. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
    IOUs) but needs several new throwaway dialogue lines per neighbor; save
    for when there's appetite for writing flavor text.
-6. **Peak Saucy** — new outline that appeared mid-session
+5. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the

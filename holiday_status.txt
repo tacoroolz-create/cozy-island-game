@@ -21,7 +21,7 @@ Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.m
 Memory Lantern Night           | Yes      | Implemented (dusk lantern-lighter lines the shore, walk near a lantern to read it)
 Well-Wishing Garden            | Yes      | Implemented (gardener hands out flowers, plant near a neighbor's door)
 Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
-The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
+The Picnic Reset               | Yes      | Implemented (organizer seats neighbor pairs picnic-style, listen in for a friendship boost)
 The Returning Bird             | Yes      | Bird hops between 3 stops; a random neighbor swears it's an old friend
 The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors fill anchor spots between dock and home)
 The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
@@ -193,6 +193,33 @@ also skipped the "chosen memory reappears on a later cycle" optional
 upgrade, and named-neighbor-specific lines (Mimis/Cort aren't in the actual
 32-NPC roster, same gap as every other holiday with example dialogue for
 characters outside the real roster).)
+
+(July 11: Implemented The Picnic Reset. Array slot 22 (was "Door-Holding
+Olympics") in src/daycycle.js renamed. The outline calls for temporarily
+moving all placed outdoor furniture into one line and restoring it after —
+but the real outdoor-item system (ITEMS[id].outdoor) is permanent and
+mutates world.tiles, so per the established "no touching that system"
+gotcha this reuses The Returning Bird's "hijack npc.stationary + snap
+position" trick instead, applied to up to 3 neighbor pairs at once
+(spawnPicnicReset/updatePicnicReset/drawPicnicReset/tryListenToPicnicPair,
+src/game.js). findPicnicLineSpots() scans every row for the widest run of
+clear grass (same "scan every row, evenly space N spots" technique as
+findLanternShoreLine) and seats 2-6 randomly chosen present neighbors along
+it in blanket-colored prop pairs; original gridX/gridY/stationary are saved
+per neighbor and restored the moment the holiday ends or a new day starts.
+A static organizer NPC (same shape as islandGod) spawns nearby for flavor
+lines. Facing a seat pair and interacting shows a two-line banter exchange
+from a small generic bank and gives both neighbors in the pair gainGift(2)
+once; listening to 3 different pairs triggers a one-time "Picnic Napper"
+flavor line, standing in for the outline's "sit in three different seats"
+optional upgrade since there's no sitting mechanic in this codebase. Hoggy
+gets a "picnic" mood; neighbor dialogue gets seated-vs-not-seated lines via
+getHolidayGreetingPrefix (src/dialogue.js). No new sprite — falls back to
+striped rectangle blankets. Skipped: the outline's named pairs
+(Chester+Luna, Hudson+Mimis) since none exist in the actual 32-NPC roster,
+same gap as every other holiday with example dialogue for out-of-roster
+characters — banter is generic and neighbor pairs are chosen randomly each
+day instead.)
 
 ---
 

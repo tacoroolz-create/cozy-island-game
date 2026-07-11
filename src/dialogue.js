@@ -111,6 +111,29 @@ function getHolidayGreetingPrefix(name) {
                 "I walked the shore twice just to read every lantern."
             ];
         }
+    } else if (holiday.name === 'The Picnic Reset') {
+        const picnic = (typeof picnicReset !== 'undefined') ? picnicReset : null;
+        const npcObj = (picnic && typeof npcs !== 'undefined') ? npcs.find(n => n.name === name) : null;
+        const pair = (picnic && npcObj) ? picnic.pairs.find(p => p.npcAId === npcObj.id || p.npcBId === npcObj.id) : null;
+        if (pair && pair.thanked) {
+            comments = [
+                "Someone overheard our whole conversation. No regrets.",
+                "I've been sitting so long I forgot my legs work.",
+                "This seat's the best one on the line. Don't tell the others."
+            ];
+        } else if (pair) {
+            comments = [
+                "The organizer put me right next to someone chatty. It's going fine.",
+                "I'm parked on this blanket for the whole day, apparently.",
+                "Come listen in sometime — the conversation's better than the potato salad."
+            ];
+        } else {
+            comments = [
+                "Everyone's lined up on one big picnic blanket today. I got here late.",
+                "There's a whole snaking line of neighbors out there, chatting away.",
+                "I heard the organizer moved every bench into one long row. Ambitious."
+            ];
+        }
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,

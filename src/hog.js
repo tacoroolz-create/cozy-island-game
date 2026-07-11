@@ -518,6 +518,7 @@ function getHogHolidayMood() {
     if (name === 'Well-Wishing Garden') return { emote: 'flower', note: hog.name + ' sniffs at the gardener\'s cart, hoping for a flower of his own.' };
     if (name === 'The Petal Path Maker') return { emote: 'path', note: hog.name + ' trots along the petal path, leaving little hoofprints.' };
     if (name === 'Memory Lantern Night') return { emote: 'glow', note: hog.name + ' watches the lanterns come alive on the shore, transfixed.' };
+    if (name === 'The Picnic Reset') return { emote: 'picnic', note: hog.name + ' flops down at the end of the picnic line, hoping for scraps.' };
     return null;
 }
 
