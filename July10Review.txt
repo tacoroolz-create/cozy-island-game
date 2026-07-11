@@ -78,9 +78,8 @@ W1. THE IOU ECONOMY — the biggest single win available.
     design doc covers it all.
 
 W2. FINISH THE UNDERGROUND SKYLINE. Art status:
-    - blackGoddess.png ....... game-ready 128x128        -> wire it (in progress July 10)
-    - occult_temple_v2.png ... AI render, needs downscale -> wire as Inner
-                               Temple (in progress July 10)
+    - blackGoddess.png ....... game-ready 128x128        -> WIRED July 10
+    - occult_temple_v2.png ... WIRED July 10 as Inner Temple
     - coffee_shop.png ........ AI render 1920x1920, front-facing -> Stimmy Tim's
     - trash_dump.png ......... AI render 1920x1920 -> Recycle Bin
     - bottomless_pit.png ..... AI render 1920x1920 -> Bottomless Pit
@@ -90,11 +89,10 @@ W3. SOUND PASS.
     - Island overworld track (waiting on stars.ceol export -> wav).
     - ~8 procedural SFX in audio.js (harvest, craft, reel splash, UI
       click, dialogue blip, quest-complete chime, door/travel, plant).
-      (in progress July 10)
+      DONE July 10 — island track still waiting on the wav.
 
 W4. HOG OVERHAUL LANDING. Routines, food preferences, tiers, emotes +
-    save v16 sitting uncommitted in the working tree. Land it.
-    (in progress July 10)
+    save v16 sitting uncommitted in the working tree. LANDED July 10.
 
 W5. ONBOARDING. HOW_TO_PLAY.txt lives outside the game. A first-day
     in-game nudge (e.g. point at the gettin' stick recipe) would help

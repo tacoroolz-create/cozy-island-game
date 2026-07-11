@@ -2247,6 +2247,7 @@ function mousePressed() {
             const tx = leftX + i * tabW;
             if (mouseX >= tx && mouseX < tx + tabW &&
                 mouseY >= leftY && mouseY < leftY + tabH) {
+                if (menuTab !== i) audioManager.playSFX('click');
                 menuTab = i;
                 mouseSelectedSlot = null; // reset swap selection on tab change
                 return;
@@ -2396,6 +2397,7 @@ function tryEnterBuilding() {
     player.facing = 'up';
     insideBuilding = b;
     gameState = STATE.INSIDE;
+    audioManager.playSFX('door');
     notify("Entered " + buildingDisplayName(b));
     return true;
 }
@@ -2461,6 +2463,7 @@ function tryExitBuilding() {
     insideBuilding = null;
     gameState = STATE.PLAYING;
     updateCamera();
+    audioManager.playSFX('door');
     notify("Exited building");
     return true;
 }
@@ -3404,6 +3407,7 @@ function keyPressed() {
             gameState = STATE.MENU;
             menuTab = 0;
             invSelectedSlot = 0;
+            audioManager.playSFX('click');
             return false;
         } else if (key === 'm' || key === 'M') {
             if (typeof openMagicCastMenu === 'function') openMagicCastMenu();
@@ -3450,6 +3454,7 @@ function keyPressed() {
             gameState = STATE.MENU;
             menuTab = 0;
             invSelectedSlot = 0;
+            audioManager.playSFX('click');
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Electric Temple: talk to Taira when facing her spot.
@@ -3644,6 +3649,7 @@ function tryHarvest() {
     }
 
     // Harvest! Roll drops
+    audioManager.playSFX('harvest');
     const gotItems = [];
     if (harvestDef.pickOne) {
         // Choose a single drop, weighted by each drop's `chance`.

@@ -118,6 +118,7 @@ function plantSeed(x, y, seedId) {
         stage: 0,
         growthDays: 0
     };
+    audioManager.playSFX('plant');
     notify("Planted: " + PLANTS[plantId].name + ".");
     return true;
 }
