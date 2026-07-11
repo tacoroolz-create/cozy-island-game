@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 15;
+const SAVE_VERSION = 16;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -289,6 +289,16 @@ const MIGRATIONS = [
                     owner: null
                 };
             });
+        }
+        return data;
+    },
+    // v15 -> v16: Hoggy grew a daily routine, rooting ability, and friendship tiers.
+    function(data) {
+        if (data.hog) {
+            if (typeof data.hog.dailyRooted !== 'boolean') data.hog.dailyRooted = false;
+            if (typeof data.hog.homeX !== 'number') data.hog.homeX = data.hog.gridX;
+            if (typeof data.hog.homeY !== 'number') data.hog.homeY = data.hog.gridY;
+            if (typeof data.hog.facing !== 'string') data.hog.facing = 'right';
         }
         return data;
     }
