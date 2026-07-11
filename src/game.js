@@ -181,6 +181,8 @@ let nameEntrySlot = 0;        // slot being named
 let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
 const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
 let islandGod = null; // static giant turtle visitor for Day of the Island God
+let lostMail = null; // { day, letters: [{x,y,npcId,address,isPresent,delivered}], allDeliveredNotified }
+let heldLostMailLetter = null; // the Lost Mail Day letter currently in the player's hand, or null
 const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
@@ -1095,6 +1097,10 @@ function drawGame() {    // Handle continuous movement
     updateIslandGod();
     drawIslandGod();
 
+    // ===== LOST MAIL DAY: beach letters =====
+    updateLostMail();
+    drawLostMail();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -1450,6 +1456,143 @@ function tryTalkToIslandGod() {
     if (!islandGod || !islandGod.isPresent) return false;
     if (!isFacingIslandGod()) return false;
     notify(ISLAND_GOD_LINES[Math.floor(Math.random() * ISLAND_GOD_LINES.length)], 4000);
+    return true;
+}
+
+// ===== LOST MAIL DAY =====
+// Sealed letters wash up on the beach, each addressed with a vague "dream
+// clue" pointing at one random neighbor. Picking one up is a temporary held
+// item (heldLostMailLetter), not an inventory slot — delivering it is tried
+// before dialogue opens at both interact call sites, same hook point as
+// Island God/Yogatron.
+const LOST_MAIL_COUNT = 4;
+const LOST_MAIL_ADDRESSES = [
+    'To: The One Who Talks to Vegetables',
+    'To: The Keeper of Moon Opinions',
+    "To: The Island's Loudest Whistler",
+    'To: Whoever Is Standing Near the Big Rock',
+    'To: The One Who Always Waters First',
+    'To: Whoever Feeds the Loudest Bird',
+    'To: The Keeper of the Best Naps',
+    'To: Whoever Left Footprints at Midnight'
+];
+const LOST_MAIL_MATCH_LINES = [
+    ' unfolds the letter and goes quiet for a second. "This... is exactly what I needed to hear today."',
+    ' reads it twice, then grins. "Only I would get a letter like this."',
+    ' presses the letter to their chest. "Someone out there gets me."'
+];
+const LOST_MAIL_MISMATCH_LINES = [
+    ' squints at the letter. "This isn\'t for me," they say, and hand it back.',
+    ' reads a line, frowns politely, and returns it. "Wrong door, I think."',
+    ' shrugs. "Sounds like someone else\'s dream," they say, handing it back.'
+];
+
+function findLostMailBeachSpots(count) {
+    const spots = [];
+    let attempts = 0;
+    while (spots.length < count && attempts < 500) {
+        attempts++;
+        const x = Math.floor(Math.random() * CONFIG.WORLD_WIDTH);
+        const y = Math.floor(Math.random() * CONFIG.WORLD_HEIGHT);
+        const t = world.tiles[x] && world.tiles[x][y];
+        if (!t || t.type !== 'beach') continue;
+        if (isSolidTile(x, y) || buildingAt(x, y)) continue;
+        if (typeof npcAt === 'function' && npcAt(x, y)) continue;
+        if (spots.some(s => Math.abs(s.x - x) + Math.abs(s.y - y) < 4)) continue;
+        spots.push({ x, y });
+    }
+    return spots;
+}
+
+function spawnLostMail() {
+    if (!world || typeof npcs === 'undefined' || npcs.length === 0) return;
+    const spots = findLostMailBeachSpots(LOST_MAIL_COUNT);
+    if (spots.length === 0) return;
+    const addressPool = LOST_MAIL_ADDRESSES.slice();
+    const npcPool = npcs.slice();
+    const letters = spots.map(spot => {
+        const addrIdx = Math.floor(Math.random() * addressPool.length);
+        const address = addressPool.splice(addrIdx, 1)[0] || 'To: A Friend, Probably';
+        const npcIdx = Math.floor(Math.random() * npcPool.length);
+        const npc = npcPool.splice(npcIdx, 1)[0] || npcs[Math.floor(Math.random() * npcs.length)];
+        return { x: spot.x, y: spot.y, npcId: npc.id, address, isPresent: true, delivered: false };
+    });
+    lostMail = { day: world.day, letters, allDeliveredNotified: false };
+    heldLostMailLetter = null;
+    notify('Crates of undelivered letters washed up on the beach. Find one and deliver it to the right neighbor.', 4500);
+}
+
+function updateLostMail() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Lost Mail Day') {
+        if (lostMail) { lostMail = null; heldLostMailLetter = null; }
+        return;
+    }
+    if (!world) return;
+    if (!lostMail || lostMail.day !== world.day) spawnLostMail();
+}
+
+function drawLostMail() {
+    if (!lostMail) return;
+    const TS = CONFIG.TILE_SIZE;
+    const spr = SPRITES['sprites.letter'];
+    for (const letter of lostMail.letters) {
+        if (!letter.isPresent) continue;
+        const sx = letter.x * TS - cameraX;
+        const sy = letter.y * TS - cameraY;
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            noStroke();
+            fill('#F5E6C8');
+            rectMode(CORNER);
+            rect(sx + 3, sy + 5, TS - 6, TS - 10, 2);
+            stroke('#B0895A');
+            strokeWeight(1);
+            line(sx + 3, sy + 5, sx + TS / 2, sy + TS / 2 - 1);
+            line(sx + TS - 3, sy + 5, sx + TS / 2, sy + TS / 2 - 1);
+            noStroke();
+        }
+    }
+}
+
+function findFacingLostMailLetter() {
+    if (!lostMail || !player) return null;
+    const facing = player.getFacingTile();
+    if (!facing) return null;
+    return lostMail.letters.find(l => l.isPresent && l.x === facing.x && l.y === facing.y) || null;
+}
+
+// Picking a letter up off the beach (holiday interaction, tried before harvest).
+function tryTalkToLostMail() {
+    if (!lostMail || heldLostMailLetter) return false;
+    const letter = findFacingLostMailLetter();
+    if (!letter) return false;
+    letter.isPresent = false;
+    heldLostMailLetter = letter;
+    notify('You picked up a sealed letter. "' + letter.address + '"', 4000);
+    return true;
+}
+
+// Delivering a held letter to a neighbor (tried before dialogue opens). No
+// failure state: a wrong neighbor politely hands it back and it stays held.
+function tryDeliverLostMailLetter(npc) {
+    if (!heldLostMailLetter || !npc) return false;
+    const letter = heldLostMailLetter;
+    if (npc.id === letter.npcId) {
+        const line = LOST_MAIL_MATCH_LINES[Math.floor(Math.random() * LOST_MAIL_MATCH_LINES.length)];
+        notify(npc.name + line + ' Friendship +3.', 4500);
+        if (typeof npc.gainGift === 'function') npc.gainGift(3);
+        letter.delivered = true;
+        heldLostMailLetter = null;
+        if (lostMail && !lostMail.allDeliveredNotified && lostMail.letters.every(l => l.delivered)) {
+            lostMail.allDeliveredNotified = true;
+            notify('A neighbor mentions a "return address" on one of the letters — an address that does not exist on this island.', 5000);
+        }
+    } else {
+        const line = LOST_MAIL_MISMATCH_LINES[Math.floor(Math.random() * LOST_MAIL_MISMATCH_LINES.length)];
+        notify(npc.name + line, 4000);
+    }
     return true;
 }
 
@@ -2180,6 +2323,7 @@ function mousePressed() {
         if (typeof npcAtFacing === 'function') {
             const npc = npcAtFacing();
             if (npc) {
+                if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return;
                 openDialogue(npc);
                 return;
             }
@@ -2190,6 +2334,8 @@ function mousePressed() {
         if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return;
         // Returning Bird holiday interaction (before harvest)
         if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return;
+        // Lost Mail Day: pick up a letter off the beach (before harvest)
+        if (typeof tryTalkToLostMail === 'function' && tryTalkToLostMail()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -3444,6 +3590,7 @@ function keyPressed() {
             if (typeof npcAtFacing === 'function') {
                 const npc = npcAtFacing();
                 if (npc) {
+                    if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return false;
                     openDialogue(npc);
                     return false;
                 }
@@ -3454,6 +3601,8 @@ function keyPressed() {
             if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return false;
             // Returning Bird holiday interaction (before harvest)
             if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return false;
+            // Lost Mail Day: pick up a letter off the beach (before harvest)
+            if (typeof tryTalkToLostMail === 'function' && tryTalkToLostMail()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

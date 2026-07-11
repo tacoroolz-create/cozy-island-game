@@ -13,7 +13,7 @@ Hoggy's Birthday               | Yes      | Implemented (feed Hoggy any gift -> 
 Clean Your Room Day            | Yes      | Implemented (door locked until tidied)
 Day of the Island God          | Yes      | Giant turtle on east beach, doubled animal spawns
 Dig a Hole Day                 | Yes      | Implemented (multi-year hole -> portal at depth 5)
-Lost Mail Day                  | No       | Outline in Holidays/LostMailDay.md
+Lost Mail Day                  | Yes      | Implemented (pick up beach letters, deliver to the addressed neighbor)
 Name the Island Day            | Yes      | Implemented (propose + canvass votes)
 The Flealess Market            | No       | Outline in Holidays/FlealessMarket.md
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
@@ -29,7 +29,7 @@ Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
 Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
 The Great Blink-Off            | No       | Placeholder - to be replaced
 Cool Valley                    | No       | Outline in Holidays/CoolValley.md
-Hat-Stacking Jubilee           | No       | Placeholder - to be replaced
+Peak Yeesh                     | No       | Outline in Holidays/PeakYeesh.md
 
 (Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
 11 of 29 named days have real events; "Hog reaction only" means the hog
@@ -97,3 +97,86 @@ ellipse). Skipped: the outline's Hudson-specific line (no NPC named Hudson in
 the current roster, same gap noted for Turtle Crossing Guard Day) and the
 optional "bird flies away at the final stop" upgrade — stops just loop
 instead, since the "check in for a boost" reward loop doesn't need an ending.)
+
+(July 11: Implemented Lost Mail Day. Array slot 13 (was "Reverse Burglary")
+in src/daycycle.js renamed. Up to 4 sealed letters (lostMail in game.js,
+spawnLostMail/updateLostMail/drawLostMail) spawn on rejection-sampled beach
+tiles each holiday morning, each assigned a random neighbor from npcs[] and a
+vague flavor "dream address" from a small bank. Facing and interacting with a
+letter (tryTalkToLostMail, wired into both interact call sites like Island
+God) picks it up as a temporary held item (heldLostMailLetter) — no
+inventory slot used, per the outline's "no persistent clutter" constraint.
+Delivering it means facing the matching neighbor and interacting
+(tryDeliverLostMailLetter, checked before openDialogue() at both call
+sites): the right neighbor gets a reaction line + gainGift(3) and the letter
+is consumed; a wrong neighbor gives a polite "not mine" line and hands it
+back (no failure state, matches the outline). Delivering all 4 correctly
+triggers a one-time "return address that doesn't exist" flavor line. Hoggy
+gets a "letter" mood. No new sprite — falls back to a drawn envelope shape.
+Skipped: dedicated neighbor-personality-matched addresses (the outline's
+example clues like "the one who talks to vegetables" don't map cleanly onto
+the actual 32-NPC roster, same gap noted for Turtle Crossing Guard Day and
+The Returning Bird) — addresses are generic whimsical flavor instead, since
+there's no failure state requiring the player to actually solve the clue;
+also skipped a custom dialogue.js getHolidayGreetingPrefix bank, following
+the precedent set by Island God/Dig a Hole Day/Castle of Sticks Day, whose
+holidays are similarly "static prop" rather than "everyone's talking about
+it" — the generic holiday-name fallback already covers it.)
+
+---
+
+# Seasonal Holiday Mapping (proposed)
+
+The current 6-day holiday cycle means holiday #N lands on day 1 + (N-1) * 6.
+Season starts are days 1, 41, 81, and 121. The goal is to place seasonal-anchor
+holidays at or very near those starts, and to place animal-themed holidays in
+seasons where those animals are most present.
+
+## Sweet Season (days 1-40)
+Anchored by spring equinox themes.
+- Day 1: **Sweet Valley** — first-harvest offering at the beach altar.
+- Day 7: **Garden Day** — planting/gardening kicks off the growing season.
+- Day 13: **The Returning Bird** — spring migration, bird appears.
+- Day 19: **Compliment a Crab Day** — crabs are active on warming beaches.
+- Day 25: **Tourist Time!** — visitors arrive as the island opens up.
+- Day 31: **Backflip Day** — high-energy silly celebration of longer days.
+- Day 37: **The Petal Path Maker** — flowers in bloom, connect meeting spots.
+
+## Saucy Season (days 41-80)
+Anchored by summer solstice / heat themes.
+- Day 43: **Peak Saucy** — sunset bonfire, longest day celebration.
+- Day 49: **Talk Like an Eagle Day** — birds active, loud sky energy.
+- Day 55: **Ab Appreciation Day** — Yogatron visits, summer fitness silly.
+- Day 61: **Toast Toss Tournament** — beach tournament, dry toast flies well.
+- Day 67: **Snake Run Day** — snakes active in warm grass.
+- Day 73: **Hoggy's Birthday** — mid-summer hog celebration.
+- Day 79: **Memory Lantern Night** — warm evenings, shore memories.
+
+## Cool Season (days 81-120)
+Anchored by autumn equinox / cooling themes.
+- Day 85: **Cool Valley** — moon-lit memory walk, lanterns.
+- Day 91: **The Flealess Market** — harvest market.
+- Day 97: **Lost Mail Day** — breezy season, letters blow around.
+- Day 103: **Turtle Crossing Guard Day** — turtles still active before cooling.
+- Day 109: **The Picnic Reset** — last comfortable outdoor gathering.
+- Day 115: **Name the Island Day** — reflective community vote.
+- Day 121: **Well-Wishing Garden** — plant well-wishes before Yeesh.
+
+## Yeesh Season (days 121-160)
+Anchored by winter solstice / longest night themes.
+- Day 121: **Peak Yeesh** — Everburn bonfire, Papa Yeesh visits at midnight.
+- Day 127: **Day of the Island God** — giant turtle, doubled animal spawns.
+- Day 133: **Castle of Sticks Day** — stick-gathering for cold-day projects.
+- Day 139: **Dig a Hole Day** — digging down, literal underworld expansion.
+- Day 145: **Clean Your Room Day** — indoor cozy season.
+- Day 151: **Backwards Hats Day** — silly indoor-friendly holiday.
+- Day 157: **Familiar Seller** — traveling seller visits during slow season.
+
+## Notes / Unplaced
+- **The Neighborhood Time Capsule** — could anchor any season; suggested day 25
+  (Sweet) or day 115 (Cool) as a mid-season community ritual.
+- These mappings assume the HOLIDAYS array will grow from 29 to 32 entries to
+  match this file. Until then, the bottom three holidays (The Great Blink-Off,
+  Jellybean Council, Hat-Stacking Jubilee) have been replaced in this file by
+  Sweet Valley, Cool Valley, and Peak Yeesh, but src/daycycle.js still has only
+  29 slots — implementation order must be reconciled.
