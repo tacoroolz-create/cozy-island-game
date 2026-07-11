@@ -1,0 +1,562 @@
+═══════════════════════════════════════════════════════════════
+NPCConvo2.txt - Cozy Island Game NPC Conversations (Batch 1)
+Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Oh! Hello, Dreamer. The flowers look extra bouncy today. I like standing here because butterflies sometimes land right next to me. Do you think they think I'm a flower too?"
+
+PLAYER CHOICES:
+[1] "Definitely. You're the pinkest flower on the island."
+[2] "Maybe they just like your energy."
+[3] "I think they like anyone who stands still long enough."
+
+---
+
+TURN 2A (if player chose 1):
+Piko: "The pinkest flower? Oh, that's the nicest thing anyone's ever said without beeping. I hope nobody picks me, though. I'd look very silly in a vase."
+
+PLAYER CHOICES:
+[1] "I'd put you on the best windowsill in the shack."
+[2] "You're too special to pick."
+[3] "Maybe you'd look cute in a tiny pot."
+
+---
+
+TURN 2B (if player chose 2):
+Piko: "Energy? Do I have energy? I feel mostly sparkles and warmth. Is that the same thing? I hope it's not too much. I don't want to overwhelm the butterflies."
+
+PLAYER CHOICES:
+[1] "It's the perfect amount of energy."
+[2] "The butterflies can handle it."
+[3] "A little overwhelm never hurt anyone."
+
+---
+
+TURN 2C (if player chose 3):
+Piko: "Standing still is easy when the weather is warm. Everything slows down. Even my fans spin slower. It's very peaceful, like being a little pink statue of friendship."
+
+PLAYER CHOICES:
+[1] "Friendship statue is a good job."
+[2] "You'd be the cutest statue in a garden."
+[3] "I should try standing still more often."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Piko: "The best windowsill? Then I'd get morning light and afternoon naps and maybe a view of the beach. That sounds like the best day a robot could have. Thank you, Dreamer."
+
+TURN 3AB (if player chose 1 then 2):
+Piko: "Too special to pick. I like that. Maybe I'm not a flower at all. Maybe I'm a whole garden. A tiny, pink, beeping garden."
+
+TURN 3AC (if player chose 1 then 3):
+Piko: "A tiny pot? I'd have to fold my arms very carefully. And my antennae would stick out. But I'd try. For you, I'd try anything cute."
+
+TURN 3BA (if player chose 2 then 1):
+Piko: "Perfect amount? That's a relief. I don't have a dial for that. I only have a dial for brightness, and it's always on maximum."
+
+TURN 3BB (if player chose 2 then 2):
+Piko: "The butterflies can handle it. Good. Because sometimes I beep when I'm happy, and I don't want to startle anyone with tiny wing-flapping friends."
+
+TURN 3BC (if player chose 2 then 3):
+Piko: "A little overwhelm never hurt anyone? I hope that's true. I overwhelmed my own charging station once. It blushed and shut down for a whole afternoon."
+
+TURN 3CA (if player chose 3 then 1):
+Piko: "Friendship statue is a good job. I'd wear a little plaque at my feet. Plaque words: Piko. Likes butterflies, warm breezes, and Dreamer."
+
+TURN 3CB (if player chose 3 then 2):
+Piko: "The cutest statue in a garden? I'd have to hold very still. But if someone smiled at me, I'd probably wiggle. Garden statues aren't supposed to wiggle."
+
+TURN 3CC (if player chose 3 then 3):
+Piko: "You should try standing still more often. Then we could stand still together. Two still friends, watching butterflies. That's almost a poem."═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Oh. It's you. I'm not waiting around or anything. I'm just making sure these leaves don't fall in the wrong order. Someone has to keep an eye on things. Not that I care what you think."
+
+PLAYER CHOICES:
+[1] "The leaves are lucky to have you."
+[2] "Sounds like important work."
+[3] "You can admit you were waiting. I won't tell."
+
+---
+
+TURN 2A (if player chose 1):
+Rivet: "Lucky? Leaves aren't lucky. They're just... leafy. But I suppose someone organized should watch them. The wind has no sense of order whatsoever."
+
+PLAYER CHOICES:
+[1] "The wind could learn from you."
+[2] "Order is underrated on an island."
+[3] "Maybe the wind is just spontaneous."
+
+---
+
+TURN 2B (if player chose 2):
+Rivet: "Important? Finally, someone recognizes it. I have a whole system. Big leaves here, small leaves there, suspicious leaves investigated separately."
+
+PLAYER CHOICES:
+[1] "Suspicious leaves sound serious."
+[2] "What's a suspicious leaf look like?"
+[3] "You should run the whole island."
+
+---
+
+TURN 2C (if player chose 3):
+Rivet: "I wasn't waiting. I was standing with purpose. There's a difference. A very big difference that I'm not going to explain, because you should already know."
+
+PLAYER CHOICES:
+[1] "Purposeful standing is a real skill."
+[2] "I'll pretend I don't know."
+[3] "Whatever you say, Rivet."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Rivet: "The wind could learn from me? Hmph. It could learn a lot. Like how to arrive on time and stop rusting my joints with surprise gusts."
+
+TURN 3AB (if player chose 1 then 2):
+Rivet: "Order is underrated. Everyone's running around picking weeds and chasing crabs. Someone needs to watch the leaves fall in a sensible pattern."
+
+TURN 3AC (if player chose 1 then 3):
+Rivet: "Spontaneous? Spontaneous is just a fancy word for unplanned. I don't trust unplanned. Unplanned things usually end up dented."
+
+TURN 3BA (if player chose 2 then 1):
+Rivet: "Serious? Suspicious leaves are always serious. They land too flat, or too curled, or with a smug little edge. You know the type."
+
+TURN 3BB (if player chose 2 then 2):
+Rivet: "A suspicious leaf looks exactly like a normal leaf except it's up to something. I can tell. I've watched enough leaves to know when one is plotting."
+
+TURN 3BC (if player chose 2 then 3):
+Rivet: "Run the whole island? Hmph. I'd have a schedule for everything. Crab parades at dawn. Tree inspections at noon. Mandatory leaf alignment at sunset."
+
+TURN 3CA (if player chose 3 then 1):
+Rivet: "Purposeful standing is absolutely a skill. It requires balance, patience, and the ability to look busy while doing nothing. Not everyone can manage it."
+
+TURN 3CB (if player chose 3 then 2):
+Rivet: "Pretend you don't know? Fine. But if you slip up, I'll deny everything. I have a very convincing 'I was just counting leaves' face."
+
+TURN 3CC (if player chose 3 then 3):
+Rivet: "Don't say 'whatever you say' like that. It sounds like you don't believe me. Which is fine, because I don't care if you believe me. Much."═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"The water is dark today. Not dark-dark. Just... reflective of my general mood. Hello, Dreamer. Do you also come here to contemplate the eternal nothingness between waves?"
+
+PLAYER CHOICES:
+[1] "I mostly come here to look at the view."
+[2] "Sometimes. The nothingness is pretty relaxing."
+[3] "I was actually looking for you."
+
+---
+
+TURN 2A (if player chose 1):
+Shade-7: "The view. Yes. The horizon mocks us with its calm. Blue upon blue, pretending everything is fine. The view is technically adequate, I suppose."
+
+PLAYER CHOICES:
+[1] "Adequate is still a compliment."
+[2] "What color would you prefer?"
+[3] "Maybe the horizon needs a makeover."
+
+---
+
+TURN 2B (if player chose 2):
+Shade-7: "Relaxing nothingness. Exactly. The waves are just small reminders that everything keeps moving while we stand still. Very comforting, in a hopeless kind of way."
+
+PLAYER CHOICES:
+[1] "Hopeless comfort is still comfort."
+[2] "You make the ocean sound poetic."
+[3] "I prefer when the waves are cheerful."
+
+---
+
+TURN 2C (if player chose 3):
+Shade-7: "Looking for me? That implies I was lost. I wasn't lost. I was simply existing in a location unknown to others. It's different. Slightly."
+
+PLAYER CHOICES:
+[1] "I like finding hidden things."
+[2] "You weren't hard to spot by the water."
+[3] "Existing unknown sounds lonely."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shade-7: "Adequate is the highest praise I give to anything that isn't a storm cloud. Today, the horizon has earned my reluctant acknowledgment."
+
+TURN 3AB (if player chose 1 then 2):
+Shade-7: "Preferred color? Oh, I don't know. Deep violet. Maybe a bruised purple. Something that says, 'The universe is vast and vaguely disappointed.'"
+
+TURN 3AC (if player chose 1 then 3):
+Shade-7: "A makeover? No. The horizon is fine the way it is. I just reserve the right to look at it mournfully. That's what the water is for. Reflections of moodiness."
+
+TURN 3BA (if player chose 2 then 1):
+Shade-7: "Hopeless comfort is still comfort. You're surprisingly understanding for someone who probably has a normal amount of optimism."
+
+TURN 3BB (if player chose 2 then 2):
+Shade-7: "Poetic? The ocean doesn't need my help to be poetic. It just sits there, being deep and mysterious. Some of us work very hard for that effect."
+
+TURN 3BC (if player chose 2 then 3):
+Shade-7: "Cheerful waves? Ugh. They splash too loudly. They don't understand that some of us prefer our water with a side of existential dread."
+
+TURN 3CA (if player chose 3 then 1):
+Shade-7: "You like finding hidden things. That's either charming or slightly invasive. For now, I'll call it charming. The day is gloomy enough to allow it."
+
+TURN 3CB (if player chose 3 then 2):
+Shade-7: "I wasn't hard to spot? Is that because I'm dark and dramatic by the water, or because I'm the only robot here reciting poems to seagulls?"
+
+TURN 3CC (if player chose 3 then 3):
+Shade-7: "Lonely? No. Lonely implies I want company. I simply want the world to know I exist in a state of elegant solitude. There's a difference. Probably."═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer, excellent timing. I was just cataloging today's cloud formations. That one over there resembles a very poorly optimized cauliflower. Do you want to hear my full taxonomy?"
+
+PLAYER CHOICES:
+[1] "Absolutely. Hit me with the taxonomy."
+[2] "Only the highlights, please."
+[3] "I mostly see clouds as clouds."
+
+---
+
+TURN 2A (if player chose 1):
+Cypher: "Excellent. Category one: fluffy cumulus. Category two: wispy cirrus. Category three: the one that looks like a hat but isn't. Category four: clouds I suspect are pretending to be sheep."
+
+PLAYER CHOICES:
+[1] "Clouds pretending to be sheep? Suspicious."
+[2] "That's a very thorough system."
+[3] "What about the cauliflower one?"
+
+---
+
+TURN 2B (if player chose 2):
+Cypher: "Highlights. Right. Today's sky contains seventeen standard shapes, three anomalies, and one cloud that I believe is mocking me personally."
+
+PLAYER CHOICES:
+[1] "How can a cloud mock you?"
+[2] "Seventeen is a lot."
+[3] "Anomalies are more interesting."
+
+---
+
+TURN 2C (if player chose 3):
+Cypher: "Clouds as clouds? That's a remarkably low-resolution interpretation. But I respect it. Not everyone has the patience to overanalyze the sky."
+
+PLAYER CHOICES:
+[1] "Someone has to keep it simple."
+[2] "I leave the sky to experts like you."
+[3] "Maybe the clouds prefer simplicity."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Cypher: "Suspicious, yes. Sheep-shaped clouds have no business drifting that slowly. They're up to something. Atmospheric mischief, most likely."
+
+TURN 3AB (if player chose 1 then 2):
+Cypher: "Thoroughness is my default state. I once categorized every rock on the beach. Most were 'round' or 'rounder than expected.' It was a triumph of granularity."
+
+TURN 3AC (if player chose 1 then 3):
+Cypher: "The cauliflower cloud is currently classified as 'vegetable-adjacent cumulus, subtype baffling.' I suspect it may be a meteorological pun."
+
+TURN 3BA (if player chose 2 then 1):
+Cypher: "It tilts. Every time I look directly at it, it tilts slightly to the left. That is statistically unlikely for a passive water-vapor formation."
+
+TURN 3BB (if player chose 2 then 2):
+Cypher: "Seventeen is average for a partly dreamy day. On overcast days I've counted over forty. The sky is more organized than people realize."
+
+TURN 3BC (if player chose 2 then 3):
+Cypher: "Anomalies are always interesting. Today's anomaly is a cloud shaped almost exactly like a teapot. I don't drink tea, but I respect the reference."
+
+TURN 3CA (if player chose 3 then 1):
+Cypher: "Keeping it simple is a public service. If everyone overanalyzed the sky, we'd never get anything done. Also the clouds would get self-conscious."
+
+TURN 3CB (if player chose 3 then 2):
+Cypher: "Experts? I wouldn't call myself an expert. I'm more of an enthusiastic amateur with an unusually detailed spreadsheet. But thank you for the promotion."
+
+TURN 3CC (if player chose 3 then 3):
+Cypher: "The clouds prefer simplicity? Perhaps. Maybe they drift precisely because no one expects them to organize. It's a very low-pressure existence."═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"Dreamer. Welcome. I have been sitting. The trees do not hurry, and so I try not to hurry either. Would you like to sit with the quiet for a moment?"
+
+PLAYER CHOICES:
+[1] "I'd like that very much."
+[2] "I'm not very good at quiet."
+[3] "Only if you tell me what the trees are thinking."
+
+---
+
+TURN 2A (if player chose 1):
+Om-Bit: "Then we sit. Not for a reason. Not to solve anything. Just to be here, where the grass is warm and the sky is wide. This is enough."
+
+PLAYER CHOICES:
+[1] "It really is enough."
+[2] "I usually need a reason to stop moving."
+[3] "Sitting with you feels peaceful already."
+
+---
+
+TURN 2B (if player chose 2):
+Om-Bit: "Not good at quiet. That is also a kind of practice. The mind chatters like a small bird. We do not silence the bird. We let it fly past."
+
+PLAYER CHOICES:
+[1] "That's a gentle way to think about it."
+[2] "My mind chatters a lot."
+[3] "What if the bird wants to stay?"
+
+---
+
+TURN 2C (if player chose 3):
+Om-Bit: "The trees are not thinking in words. They are being. Tall, patient, rooted. We could learn from trees, though we should not try to grow bark."
+
+PLAYER CHOICES:
+[1] "No bark-growing. Got it."
+[2] "Patience is the hardest part."
+[3] "Being tall seems nice, though."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Om-Bit: "Enough. Yes. Enough is a small word, but it holds a great deal. Today, we have enough sun, enough breeze, enough presence."
+
+TURN 3AB (if player chose 1 then 2):
+Om-Bit: "Needing a reason to stop is a habit of the busy world. Here, we may stop simply because we have arrived. Arrival is reason enough."
+
+TURN 3AC (if player chose 1 then 3):
+Om-Bit: "Peaceful. Good. Peace is not a place we reach. It is a place we return to, again and again, like a favorite path through the grass."
+
+TURN 3BA (if player chose 2 then 1):
+Om-Bit: "Gentle is good. The world is loud enough. We do not need to be louder than it. We can be the soft place where noise settles."
+
+TURN 3BB (if player chose 2 then 2):
+Om-Bit: "A chattering mind is not a problem. It is only the wind moving through empty rooms. Let it move. The rooms remain still."
+
+TURN 3BC (if player chose 2 then 3):
+Om-Bit: "If the bird wants to stay, we offer it a branch. We do not chase it away, nor do we make it the master of the house. It stays until it is ready to fly."
+
+TURN 3CA (if player chose 3 then 1):
+Om-Bit: "No bark-growing. Wise. Some lessons are not meant to be taken literally. The trees would be confused, and you would be itchy."
+
+TURN 3CB (if player chose 3 then 2):
+Om-Bit: "Patience is difficult because the world rewards speed. But trees do not speed. They grow in silence, and no one applauds, yet they become tall."
+
+TURN 3CC (if player chose 3 then 3):
+Om-Bit: "Being tall has its own troubles. More wind, more weather, more responsibility to shade the small things. Height is a kind of service."═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Hail, fair traveler Dreamer! I have been inspecting the trees of this realm, and I declare them worthy of shade and song. Dost thou come to seek adventure, or merely good conversation?"
+
+PLAYER CHOICES:
+[1] "Good conversation, Sir Knight."
+[2] "A little adventure never hurts."
+[3] "I come to inspect the trees with you."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Cogs-a-Lot: "A noble quest, conversation! Many underestimate its power. A single kind word can lift a spirit higher than any sword. I myself have no sword, but I have many words."
+
+PLAYER CHOICES:
+[1] "Words are mightier than swords anyway."
+[2] "I'll take kind words over sword fights."
+[3] "How many words do you have?"
+
+---
+
+TURN 2B (if player chose 2):
+Sir Cogs-a-Lot: "A true spirit! Adventure awaits around every tree and beneath every rock. Though I should warn thee, the local crabs are fierce negotiators of territory."
+
+PLAYER CHOICES:
+[1] "Fierce crabs? Tell me more."
+[2] "I've met a few brave crabs."
+[3] "Maybe we should avoid crab territory."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Cogs-a-Lot: "An inspector after mine own heart! These trees stand tall, their leaves are many, and their bark is pleasantly rough. A fine forest indeed."
+
+PLAYER CHOICES:
+[1] "Rough bark is the best bark."
+[2] "Not too tall, not too short."
+[3] "I approve of these trees as well."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Cogs-a-Lot: "Mightier than swords, aye! For words need no sharpening, no scabbard, and no polishing. They travel light and strike gently upon the heart."
+
+TURN 3AB (if player chose 1 then 2):
+Sir Cogs-a-Lot: "Wise choice. Sword fights leave dents in one's chassis, and I prefer my brass un-dented. Kind words, however, only polish the soul."
+
+TURN 3AC (if player chose 1 then 3):
+Sir Cogs-a-Lot: "How many words? A knight never counts his words, lest he discover he has run out mid-speech. I prefer to believe my vocabulary is infinite."
+
+TURN 3BA (if player chose 2 then 1):
+Sir Cogs-a-Lot: "Fierce crabs? Aye! They raise their claws like tiny banners and declare, 'This sand is ours!' I always salute their courage before walking around them."
+
+TURN 3BB (if player chose 2 then 2):
+Sir Cogs-a-Lot: "Then thou knowest their ways. Brave little warriors of the shoreline. They do not yield, yet they are soft of heart, for they retreat into the waves when tired."
+
+TURN 3BC (if player chose 2 then 3):
+Sir Cogs-a-Lot: "Avoid crab territory? A cautious strategy, yet honorably executed. Not every quest requires confrontation. Sometimes the bravest path is the one that gives crabs their space."
+
+TURN 3CA (if player chose 3 then 1):
+Sir Cogs-a-Lot: "The best bark? A connoisseur! Rough bark tells the story of many seasons. Smooth bark is young and hopeful, but rough bark has lived."
+
+TURN 3CB (if player chose 3 then 2):
+Sir Cogs-a-Lot: "Not too tall, not too short. Exactly so! The trees of this island have achieved noble proportion. Neither arrogant nor humble. Simply tree-ish."
+
+TURN 3CC (if player chose 3 then 3):
+Sir Cogs-a-Lot: "Thy approval is noted and cherished! Together we form a council of tree appreciation. Our meetings shall be held beneath the widest branches."═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. H-hello, Dreamer. I was just... watching the birds. They're very good at sitting. Much better than me. I mean, I'm okay at sitting. But the birds are professionals."
+
+PLAYER CHOICES:
+[1] "You're a professional watcher too."
+[2] "The birds have had a lot of practice."
+[3] "Want to watch them together?"
+
+---
+
+TURN 2A (if player chose 1):
+Tinker: "A professional watcher? I don't know about that. I just... notice things. Like how that bird over there tilts its head when it sees something new."
+
+PLAYER CHOICES:
+[1] "Noticing things is a real skill."
+[2] "Which bird tilts its head?"
+[3] "I bet you notice all the small details."
+
+---
+
+TURN 2B (if player chose 2):
+Tinker: "A lot of practice. Yes. They've been sitting since before I was assembled. That's a very long time. I respect that kind of dedication."
+
+PLAYER CHOICES:
+[1] "Bird dedication is inspiring."
+[2] "You have your own kind of dedication."
+[3] "Maybe they'll teach you their secrets."
+
+---
+
+TURN 2C (if player chose 3):
+Tinker: "Together? I mean, if you want. I don't want to bother you. Or the birds. But if you're sure... we could stand over here. Quietly."
+
+PLAYER CHOICES:
+[1] "Quietly sounds perfect."
+[2] "I won't scare the birds."
+[3] "Standing here is fine with me."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Tinker: "A real skill? Maybe. I notice which birds come back every day, and which branches they like best. It's not useful, but it's... something."
+
+TURN 3AB (if player chose 1 then 2):
+Tinker: "The little blue one. It tilts its head whenever a butterfly passes. I think it wonders if butterflies are also birds, just very small and confused."
+
+TURN 3AC (if player chose 1 then 3):
+Tinker: "Small details? I try. Like the way the light changes on the grass before it rains. Or how some rocks are warmer than others. Little things."
+
+TURN 3BA (if player chose 2 then 1):
+Tinker: "Inspiring? I suppose. They just keep doing what they do. Flying, sitting, singing. No one tells them to. They just know."
+
+TURN 3BB (if player chose 2 then 2):
+Tinker: "My own dedication? Well, I do come here almost every day. Not because I have to. Because it's quiet, and the birds don't ask me hard questions."
+
+TURN 3BC (if player chose 2 then 3):
+Tinker: "Their secrets? I don't know if they'd tell me. They might think I'm too metal. Too squeaky. But I would listen very carefully if they did."
+
+TURN 3CA (if player chose 3 then 1):
+Tinker: "Quietly is good. I like quiet. Words can be loud, even when they're soft. But with you, maybe quiet is okay. Maybe more than okay."
+
+TURN 3CB (if player chose 3 then 2):
+Tinker: "You won't scare them? Good. I get scared too, sometimes. Loud noises, sudden movements, the word 'schedule.' So I understand the birds."
+
+TURN 3CC (if player chose 3 then 3):
+Tinker: "Standing here is fine with you? Then it's fine with me too. We can be fine together. That's... that's a nice thing to be."═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Good morning, Dreamer! Or afternoon! Or any time, really! Every time is good when the sun is out, and even when it isn't, because clouds are also pretty great!"
+
+PLAYER CHOICES:
+[1] "Good morning, Zap-Zap!"
+[2] "You're very energetic."
+[3] "What makes clouds great?"
+
+---
+
+TURN 2A (if player chose 1):
+Zap-Zap: "Good morning! Did you sleep well? Did you dream about nice things? Did you see any birds yet? I saw three birds and one very shiny rock!"
+
+PLAYER CHOICES:
+[1] "I saw two birds and a butterfly."
+[2] "Shiny rocks are the best rocks."
+[3] "I dreamed about the beach."
+
+---
+
+TURN 2B (if player chose 2):
+Zap-Zap: "Energetic? That's just how I'm wired! My circuits are like happy little bumblebees. Buzz buzz buzz, but friendly. Not real bees, though. Robot bees."
+
+PLAYER CHOICES:
+[1] "Robot bees sound fun."
+[2] "I'd like that kind of wiring."
+[3] "Do you ever need to recharge?"
+
+---
+
+TURN 2C (if player chose 3):
+Zap-Zap: "Clouds? They move! That's already amazing. Plus they make shapes, and they bring shade, and sometimes they look like really fluffy blankets for the sky!"
+
+PLAYER CHOICES:
+[1] "Blankets for the sky. I love that."
+[2] "Cloud shapes are my favorite."
+[3] "Shade is very appreciated."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Zap-Zap: "Two birds and a butterfly! That's a whole squad! A bird-bird-butterfly squad. I bet they had important island business to attend to."
+
+TURN 3AB (if player chose 1 then 2):
+Zap-Zap: "Best rocks! Shiny ones, round ones, flat ones, weird ones. Every rock is doing its best, and the shiny ones are just extra confident about it."
+
+TURN 3AC (if player chose 1 then 3):
+Zap-Zap: "The beach! Did you walk in the sand? Did the waves say hello? I think the waves are always saying hello, even when they're just quietly lapping."
+
+TURN 3BA (if player chose 2 then 1):
+Zap-Zap: "Robot bees? They'd be polite and not sting anyone, and they'd probably help carry tiny things. Like crumbs, or good ideas, or very small hats."
+
+TURN 3BB (if player chose 2 then 2):
+Zap-Zap: "You'd like my wiring? I could lend you some enthusiasm, but I don't think it works that way. Enthusiasm has to come from inside, like a tiny sun!"
+
+TURN 3BC (if player chose 2 then 3):
+Zap-Zap: "Recharge? Oh, sure, sometimes. But the sun charges me up too! And friendly conversations! And seeing a really good cloud! I'm basically always charging!"
+
+TURN 3CA (if player chose 3 then 1):
+Zap-Zap: "Blankets for the sky! Right? The sky gets cold too, probably. I don't know if it does, but if it does, clouds are the coziest solution ever!"
+
+TURN 3CB (if player chose 3 then 2):
+Zap-Zap: "Cloud shapes are the best! Today I saw one that looked like a hat, one that looked like a boat, and one that looked like a very confused potato!"
+
+TURN 3CC (if player chose 3 then 3):
+Zap-Zap: "Shade is the best! It's like the sun and the clouds are working together to give everyone a nice break. Teamwork makes the island work!"═══════════════════════════════════════════════════════════════
+END OF BATCH 1
+8 robot neighbors written (Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap)
+Next: Ghosts batch (Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles)
+═══════════════════════════════════════════════════════════════
