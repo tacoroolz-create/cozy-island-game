@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 19;
+const SAVE_VERSION = 20;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -355,6 +355,24 @@ const MIGRATIONS = [
             });
         }
         return data;
+    },
+    // v19 -> v20: the Black Goddess gets its club interior. Same re-stamp so
+    // the saved generic room is rebuilt by initInterior.
+    function(data) {
+        const ug = data.extraMaps && data.extraMaps.underground;
+        if (ug) {
+            ug.buildings = UNDERGROUND_STARTING_BUILDINGS.map(s => {
+                const pad = UNDERGROUND_FOUNDATIONS[s.padIndex];
+                const def = BUILDING_TIERS[s.type];
+                return {
+                    type: s.type,
+                    gridX: pad.x + Math.floor((UNDERGROUND_PAD_W - def.w) / 2),
+                    gridY: pad.y,
+                    owner: null
+                };
+            });
+        }
+        return data;
     }
     // Future migrations go here
 ];
@@ -385,6 +403,7 @@ function serializeGame() {
         knownMagic: knownMagic || [],
         magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
         quests: (typeof questSerialize === 'function') ? questSerialize() : null,
+        club: (typeof clubSerialize === 'function') ? clubSerialize() : null,
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
         crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
         turtles: turtles.map(t => ({ type: t.type, gridX: t.gridX, gridY: t.gridY, variant: t.variant })),
@@ -468,6 +487,7 @@ function deserializeGame(data) {
     knownMagic = data.knownMagic || [];
     magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
     if (typeof questLoad === 'function') questLoad(data.quests); // defaults cover old saves
+    if (typeof clubLoad === 'function') clubLoad(data.club);     // defaults cover old saves
 
     birds = [];
     crabs = [];
