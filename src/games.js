@@ -26,10 +26,20 @@ class Minigame {
             if (result === 'win') this.opponent.gainGift(2);
             else if (result === 'draw') this.opponent.gainGift(1);
         }
+        // Prize games (the Black Goddess dance-off) pay IOUs on a win.
+        if (result === 'win' && this.prizeIOUs && typeof awardClubPrize === 'function') {
+            awardClubPrize(this.prizeIOUs);
+        }
+        const hadOpponent = !!this.opponent;
         setTimeout(() => {
             activeMinigame = null;
-            gameState = STATE.PLAYING;
-            notify(result === 'win' ? 'You won! (+2 friendship)' : result === 'draw' ? 'Draw! (+1 friendship)' : 'You lost!');
+            // Return inside if the game was played indoors (the club dance-off).
+            gameState = (typeof insideBuilding !== 'undefined' && insideBuilding) ? STATE.INSIDE : STATE.PLAYING;
+            if (hadOpponent) {
+                notify(result === 'win' ? 'You won! (+2 friendship)' : result === 'draw' ? 'Draw! (+1 friendship)' : 'You lost!');
+            } else {
+                notify(result === 'win' ? 'You owned the dance floor!' : 'The decks win this round.');
+            }
         }, 2000);
     }
 }
@@ -258,7 +268,7 @@ class RhythmGame extends Minigame {
         textAlign(CENTER, TOP);
         textSize(10);
         textFont('Courier New');
-        text('Rhythm vs ' + this.opponent.name, width / 2, 24);
+        text(this.opponent ? 'Rhythm vs ' + this.opponent.name : 'Dance-Off!', width / 2, 24);
 
         // Hit zone
         stroke(255, 255, 100);

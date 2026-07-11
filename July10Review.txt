@@ -82,10 +82,14 @@ W1. THE IOU ECONOMY — the biggest single win available.
     later: an eat/drink mechanic (they're gift items for now, like the
     Protein Shake), morning neighbor visits, and a Tim to stand behind
     the counter. Gettin' Place merchants: furniture / advanced tools /
-    familiars / home models (phase these in). Black Goddess: after-dark
-    neighbor hangout + rhythm-game wagers for IOUs. This turns gettin',
-    harvesting, and treasure into one loop. Blocked on nothing — the
-    design doc covers it all.
+    familiars / home models (phase these in). Black Goddess: BUILT
+    July 10 (src/club.js) — blinking LED dance floor, DJ booth with
+    spinning turntables, speaker stacks, disco ball + roaming
+    spotlights; face the booth to start a rhythm dance-off, first win
+    each day pays 5 IOUs. Still later: Marge the Miracle hosting
+    (needs a character design) and neighbors on the floor after dark.
+    This turns gettin', harvesting, and treasure into one loop.
+    Blocked on nothing — the design doc covers it all.
 
 W2. FINISH THE UNDERGROUND SKYLINE. Art status:
     - blackGoddess.png ....... game-ready 128x128        -> WIRED July 10

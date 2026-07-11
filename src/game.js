@@ -481,7 +481,7 @@ const BUILDING_TIERS = {
     ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 8, h: 8, doorWidth: 2, interiorW: 9, interiorFloorRows: 6 },
     ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 8, h: 5, doorWidth: 2, interiorW: 8, interiorFloorRows: 5 },
     ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     // Player-built second shelter from Castle of Sticks Day. Placeholder
@@ -554,6 +554,10 @@ class Building {
         // Stimmy Tim's gets its full cafe fit-out (see cafe.js).
         if (this.type === 'ug_stimmy_tims' && typeof furnishStimmyCafe === 'function') {
             furnishStimmyCafe(this);
+        }
+        // The Black Goddess gets its club fit-out (see club.js).
+        if (this.type === 'ug_black_goddess' && typeof furnishBlackGoddess === 'function') {
+            furnishBlackGoddess(this);
         }
     }
 
@@ -1068,7 +1072,8 @@ function handleInteriorMovement() {
         // Walls, beds, and solid furniture block movement
         const tile = b.interiorTiles[newX][newY];
         if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile) ||
-            (typeof isSolidCafeTile === 'function' && isSolidCafeTile(tile))) {
+            (typeof isSolidCafeTile === 'function' && isSolidCafeTile(tile)) ||
+            (typeof isSolidClubTile === 'function' && isSolidClubTile(tile))) {
             lastMoveTime = now;
             return;
         }
@@ -2947,6 +2952,11 @@ function drawInterior() {
     textFont('Courier New');
     text('EXIT', doorX + TS / 2, doorY - 1);
 
+    // The Black Goddess: disco ball, neon trim, and roaming spotlights.
+    if (b.type === 'ug_black_goddess' && typeof drawClubOverlay === 'function') {
+        drawClubOverlay(b, offsetX, offsetY, TS);
+    }
+
     // The Electric Temple's resident mac, against the back wall.
     if (b.type === 'ug_electric_temple') {
         const tSpr = SPRITES['sprites.taira'];
@@ -3075,6 +3085,9 @@ function drawInteriorTile(tile, sx, sy, TS) {
     } else if (tile.type && tile.type.indexOf('cafe_') === 0 && typeof drawCafeTile === 'function') {
         // Stimmy Tim's fit-out (floor, counter, bistro tables — see cafe.js)
         drawCafeTile(tile, sx, sy, TS);
+    } else if (tile.type && tile.type.indexOf('club_') === 0 && typeof drawClubTile === 'function') {
+        // The Black Goddess fit-out (LED floor, DJ booth, speakers — see club.js)
+        drawClubTile(tile, sx, sy, TS);
     } else {
         // Fallback
         fill('#7CB342');
@@ -3480,6 +3493,8 @@ function keyPressed() {
             if (tryTalkToTempleTaira()) return false;
             // Stimmy Tim's: facing the counter opens the shop.
             if (typeof tryUseCafeCounter === 'function' && tryUseCafeCounter()) return false;
+            // The Black Goddess: facing the DJ booth offers a dance-off.
+            if (typeof tryUseClubBooth === 'function' && tryUseClubBooth()) return false;
             // Try to sleep in the bed (only at night), otherwise exit building
             if (trySleep()) return false;
             tryExitBuilding();

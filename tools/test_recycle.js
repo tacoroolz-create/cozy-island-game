@@ -100,4 +100,22 @@ assert.strictEqual(bag.iou, 2, 'no charge when pockets are full');
 assert.strictEqual(sellValue('coffee'), 1, 'coffee sell-back below cost');
 assert.strictEqual(sellValue('donut'), 1, 'donut sell-back below cost');
 
+// --- Black Goddess dance-off prize gate ---
+bag.__full = false;
+global.world = { day: 3 };
+eval(fs.readFileSync(path.join(__dirname, '../src/club.js'), 'utf8'));
+
+assert.strictEqual(clubPrizeAvailable(), true, 'prize available on a fresh day');
+bag.iou = 0;
+awardClubPrize(5);
+assert.strictEqual(bag.iou, 5, 'prize paid');
+assert.strictEqual(clubPrizeAvailable(), false, 'one prize per day');
+global.world.day = 4;
+assert.strictEqual(clubPrizeAvailable(), true, 'prize resets next day');
+
+// Save round-trip keeps the gate closed.
+clubLoad(clubSerialize());
+global.world.day = 3;
+assert.strictEqual(clubPrizeAvailable(), false, 'gate survives save/load');
+
 console.log('economy self-check OK');
