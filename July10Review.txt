@@ -70,7 +70,11 @@ NEW WORK ITEMS (July 10)
 ------------------------
 
 W1. THE IOU ECONOMY — the biggest single win available.
+    IOUs confirmed by Charles (July 10) as THE game currency; they stay
+    ordinary inventory items, so the balance lives in your pockets.
     Recycle Bin: counter interface, sell materials/treasure for IOUs.
+    DONE July 10 (src/recycle.js; prices in SELL_CATEGORY_VALUES /
+    SELL_OVERRIDES — retune freely).
     Stimmy Tim's: buy coffee/donuts (consume or gift), neighbors visit
     mornings. Gettin' Place merchants: furniture / advanced tools /
     familiars / home models (phase these in). Black Goddess: after-dark
@@ -82,7 +86,7 @@ W2. FINISH THE UNDERGROUND SKYLINE. Art status:
     - blackGoddess.png ....... game-ready 128x128        -> WIRED July 10
     - occult_temple_v2.png ... WIRED July 10 as Inner Temple
     - coffee_shop.png ........ AI render 1920x1920, front-facing -> Stimmy Tim's
-    - trash_dump.png ......... AI render 1920x1920 -> Recycle Bin
+    - trash_dump.png ......... WIRED July 10 as Recycle Bin
     - bottomless_pit.png ..... AI render 1920x1920 -> Bottomless Pit
     After art: K4's unlock quests decide WHEN each appears.
 
@@ -124,7 +128,7 @@ Charles:  finish stars.ceol -> wav; pick next 3-4 holidays; decide
 Claude:   1. Land hog/save/dialogue work on main (W4)           DONE July 10
           2. Wire Black Goddess + Inner Temple (W2 first half)  DONE July 10
           3. SFX pass (W3 second half)                          DONE July 10
-          4. Recycle Bin + IOU selling (W1 phase 1)
+          4. Recycle Bin + IOU selling (W1 phase 1)             DONE July 10
           5. Stimmy Tim's shop + morning neighbors (W1 phase 2)
           6. Pad-unlock quest mechanism (K4, needs Charles's quests)
           7. Housekeeping (W6), axe mechanic (K7), island track when ready

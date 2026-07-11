@@ -108,6 +108,7 @@ const SPRITE_DEFS = {
     'sprites.ug_gettin':          'assets/sprites/buildings/gettin_place.png',
     'sprites.ug_black_goddess':   'assets/sprites/buildings/black_goddess.png',
     'sprites.ug_inner_temple':    'assets/sprites/buildings/inner_temple.png',
+    'sprites.ug_recycle_bin':     'assets/sprites/buildings/recycle_bin.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
@@ -476,7 +477,7 @@ const BUILDING_TIERS = {
     // block tinted by `color`. Reskin as art lands.
     ug_mubaba_fortress: { spriteKey: 'sprites.ug_mubaba_fortress', name: "Mubaba's Fortress",   color: '#4A0D67', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_gettin:          { spriteKey: 'sprites.ug_gettin',          name: "Gettin' Place",       color: '#5A7E9B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_recycle_bin:     { spriteKey: 'sprites.ug_recycle_bin',     name: 'Recycle Bin',         color: '#4C8A4C', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
@@ -489,13 +490,14 @@ const BUILDING_TIERS = {
 
 // The eight underground building identities (see underWorldBldgs.rtf).
 const UNDERGROUND_BUILDING_TYPES = ['ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin', 'ug_inner_temple', 'ug_electric_temple', 'ug_black_goddess', 'ug_stimmy_tims', 'ug_bottomless_pit'];
-// Fixed at city creation — randomization retired. The five buildings with
+// Fixed at city creation — randomization retired. The six buildings with
 // finished art stand now; the remaining pads fill in as more art lands.
 const UNDERGROUND_STARTING_BUILDINGS = [
     { type: 'ug_inner_temple',    padIndex: 0 },
     { type: 'ug_mubaba_fortress', padIndex: 1 },
     { type: 'ug_electric_temple', padIndex: 2 },
     { type: 'ug_gettin',          padIndex: 3 },
+    { type: 'ug_recycle_bin',     padIndex: 5 },
     { type: 'ug_black_goddess',   padIndex: 6 }
 ];
 
@@ -2382,6 +2384,13 @@ function tryEnterBuilding() {
     // an audience with Mubaba (black scene, magic circle — see magic.js).
     if (b.type === 'ug_mubaba_fortress' && typeof enterMubabaFortress === 'function') {
         enterMubabaFortress();
+        return true;
+    }
+
+    // The Recycle Bin is a counter, not a room: the door opens the sell menu.
+    if (b.type === 'ug_recycle_bin' && typeof openRecycleCounter === 'function') {
+        audioManager.playSFX('door');
+        openRecycleCounter();
         return true;
     }
 
