@@ -441,7 +441,8 @@ function serializeGame() {
         groundLoot: groundLoot.slice(),
         hog: hog ? hog.serialize() : null,
         hogPoopTiles: hogPoopTiles.slice(),
-        gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {}
+        gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {},
+        timeCapsuleBox: (typeof timeCapsuleBox !== 'undefined') ? timeCapsuleBox : null
     };
     // Persist any non-island maps (e.g. the underground city) so their layout
     // and placed buildings are stable across save/load. Entities were parked at
@@ -556,6 +557,9 @@ function deserializeGame(data) {
 
     if (typeof gardenPlots !== 'undefined') {
         gardenPlots = data.gardenPlots || {};
+    }
+    if (typeof timeCapsuleBox !== 'undefined') {
+        timeCapsuleBox = data.timeCapsuleBox || null;
     }
     if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
 }

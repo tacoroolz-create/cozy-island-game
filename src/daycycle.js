@@ -66,7 +66,7 @@ const HOLIDAYS = [
     { name: 'The Picnic Reset',       desc: 'A visiting organizer arranges every neighbor into one long communal picnic line.' },
     { name: 'The Returning Bird',     desc: 'A migrating bird returns, and one neighbor is convinced they are old friends.' },
     { name: 'The Petal Path Maker',   desc: 'A visiting path-artist connects the dock to your door with flower petals. Help fill it in.' },
-    { name: 'Cloud-Naming Congress',  desc: 'Residents vote on official names for every cloud in the sky.' },
+    { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' },
     { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
     { name: 'The Great Blink-Off',    desc: 'A staring contest where the first to blink wins a ceremonial ribbon.' },
     { name: 'Jellybean Council',      desc: 'A single jellybean is placed on a pedestal and consulted for advice.' },
@@ -175,6 +175,9 @@ function onNewDay() {
             }
             if (holiday.name === 'The Picnic Reset' && typeof spawnPicnicReset === 'function') {
                 spawnPicnicReset();
+            }
+            if (holiday.name === 'The Neighborhood Time Capsule' && typeof spawnTimeCapsuleHistorian === 'function') {
+                spawnTimeCapsuleHistorian();
             }
         }
     } else if (isSeasonStart) {

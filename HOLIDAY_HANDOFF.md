@@ -196,23 +196,51 @@ falls back to striped rectangle blankets. Skipped: the outline's named pairs
 with example dialogue — pairs are chosen randomly from the real roster
 instead.
 
-## Remaining 5, ranked easiest → hardest to build
+**The Neighborhood Time Capsule** (on `main`, pushed to origin). Array slot 25
+(was "Cloud-Naming Congress") in
+[src/daycycle.js](src/daycycle.js:69) renamed. First holiday needing state
+that survives past its own day — the holiday recurs every
+`HOLIDAY_INTERVAL * HOLIDAYS.length` = 174 days, and the buried box has to
+last until then. A historian NPC (same static-prop shape as `islandGod`)
+spawns near the dock each occurrence
+(`spawnTimeCapsuleHistorian`/`updateTimeCapsuleHistorian`/
+`drawTimeCapsuleHistorian`/`tryTalkToTimeCapsuleHistorian`, in
+[src/game.js](src/game.js:2203)). Talking to him: if a box is already buried
+from last cycle, the first interact digs it up and reads one mangled reveal
+line (player's old item/memory blended with a handful of flavor-only
+neighbor donations), then clears it; the next interact re-buries a fresh box
+— consuming a real inventory item (first material/gift/treasure slot found,
+skips tools/blocks) plus one random memory line from a small bank.
+`timeCapsuleBox` is the one holiday-state variable that does *not* get reset
+whenever `getCurrentHoliday()` stops matching (every other holiday's temp
+state does) — it's also wired into
+[src/save.js](src/save.js:428)'s `serializeGame`/`deserializeGame` (new
+`timeCapsuleBox` field) so a save/quit mid-cycle doesn't lose it. Hoggy gets
+a "dig" mood; neighbor dialogue gets box-flavored lines via
+`getHolidayGreetingPrefix`, including a special line for neighbors who
+"donated" to the currently-buried box. No new sprite — historian falls back
+to a colored rectangle. Skipped: the outline's named donation lines
+(Chester/Luna/Hudson/Mimis — same out-of-roster gap as every other holiday
+with example dialogue) — neighbor donations are generic lines assigned to
+randomly chosen present neighbors instead; also skipped the "player's own
+donation is mangled specifically" optional upgrade, since the whole reveal
+line is already a single generic mangled blend, matching the "no picker UI"
+precedent from every other visiting-NPC holiday.
+
+## Remaining 4, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
-   across the 6-day gap until the holiday repeats). First one needing
-   `world`-level persistent storage beyond the day.
-2. **Flealess Market** — 3 items, one of which is a whole new plant type
+1. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-3. **Familiar Seller** — permanent named companion that follows the player
+2. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-4. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+3. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
    IOUs) but needs several new throwaway dialogue lines per neighbor; save
    for when there's appetite for writing flavor text.
-5. **Peak Saucy** — new outline that appeared mid-session
+4. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the
