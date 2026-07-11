@@ -1,0 +1,131 @@
+Cozy Island Game — Review & Plan (July 10)
+===========================================
+
+Sources: all src/ modules, July3rdReview.txt, underWorldBldgs.rtf,
+holiday_status.txt, Sprites/ + assets/ folders, git history since July 3.
+
+HEADLINE
+--------
+
+Nearly everything from the July 3rd review landed: minigames wired, magic
+learnable from Mubaba (6 tricks), daily neighbor quests with cardboard-cutout
+rewards, Mubaba's quest chain, underground identities (underWorldBldgs.rtf),
+3 of 8 underground buildings standing with real art, 11 of 29 holidays,
+Dreamer's Almanac, multi-slot saves, underground music, sun shadows,
+click-to-face.
+
+The gap is no longer systems — it's PURPOSE and FEEDBACK:
+
+1. NO LONG-TERM GOAL. Friendship numbers and quest counters exist, but
+   nothing the player works toward that visibly changes the world. The
+   pieces are all designed and half-built, just unconnected:
+   - The 5 empty underground pads are a ready-made progression ladder.
+   - The economy is fully DESIGNED in underWorldBldgs.rtf (Recycle Bin
+     sells your stuff for IOUs; Gettin' Place's 4 merchants, Stimmy Tim's
+     coffee/donuts, and Black Goddess rhythm prizes all use IOUs) and the
+     IOU item already exists — but none of the shops are implemented, so
+     treasure still does nothing (old C8, now an implementation task).
+
+2. THE ISLAND IS SILENT. Music only plays underground. stars.ceol is in
+   Music/ (island theme in progress?). SFX = 3 ambient animal sounds; no
+   feedback for harvest / craft / reel / UI / quests.
+
+
+STATUS OF JULY 3 ITEMS
+----------------------
+
+Charles (creative):
+  C1. Sprite-size answers ............ DONE
+  C2. Underground identities ......... DONE (underWorldBldgs.rtf)
+  C3. Holidays ....................... ONGOING — 11 of 29 implemented
+                                       (holiday_status.txt re-audited July 10)
+  C4. Magic teachers ................. DONE (Mubaba teaches all)
+  C5. Music + SFX wishlist ........... OPEN — island track in progress
+                                       (stars.ceol); no SFX wishlist yet
+  C6. Cosmos ......................... OPEN — still no NPC_DEF, no sprite
+  C7. New-scale sprites .............. ONGOING — underground art nearly
+                                       complete (see W2 below)
+  C8. Treasure purpose ............... ANSWERED by C2: Recycle Bin + IOU
+                                       economy. Now a coding task (W1).
+
+Claude (coding):
+  K1. Wire minigames ................. DONE
+  K2. Wire audio ..................... DONE (underground track)
+  K3. Wire magic teaching ............ DONE
+  K4. Underground unlock system ...... OPEN — pads still fill "as art
+                                       lands", no quest gating
+  K5. Multi-tile sprite engine ....... PARTIAL — animated structure strips
+                                       landed; rest of SpriteUpdate open
+  K6. Holiday framework .............. PARTIAL — 3 added quickly, still
+                                       largely bespoke per holiday
+  K7. Tool cleanup ................... PARTIAL — pickaxe digs holes now;
+                                       axe still has no mechanic ("chops
+                                       wood faster" is a lie)
+  K8. Cosmos in NPC_DEFS ............. OPEN (blocked on C6)
+  K9. Housekeeping ................... OPEN — see W6
+
+
+NEW WORK ITEMS (July 10)
+------------------------
+
+W1. THE IOU ECONOMY — the biggest single win available.
+    Recycle Bin: counter interface, sell materials/treasure for IOUs.
+    Stimmy Tim's: buy coffee/donuts (consume or gift), neighbors visit
+    mornings. Gettin' Place merchants: furniture / advanced tools /
+    familiars / home models (phase these in). Black Goddess: after-dark
+    neighbor hangout + rhythm-game wagers for IOUs. This turns gettin',
+    harvesting, and treasure into one loop. Blocked on nothing — the
+    design doc covers it all.
+
+W2. FINISH THE UNDERGROUND SKYLINE. Art status:
+    - blackGoddess.png ....... game-ready 128x128        -> wire it (in progress July 10)
+    - occult_temple_v2.png ... AI render, needs downscale -> wire as Inner
+                               Temple (in progress July 10)
+    - coffee_shop.png ........ AI render 1920x1920, front-facing -> Stimmy Tim's
+    - trash_dump.png ......... AI render 1920x1920 -> Recycle Bin
+    - bottomless_pit.png ..... AI render 1920x1920 -> Bottomless Pit
+    After art: K4's unlock quests decide WHEN each appears.
+
+W3. SOUND PASS.
+    - Island overworld track (waiting on stars.ceol export -> wav).
+    - ~8 procedural SFX in audio.js (harvest, craft, reel splash, UI
+      click, dialogue blip, quest-complete chime, door/travel, plant).
+      (in progress July 10)
+
+W4. HOG OVERHAUL LANDING. Routines, food preferences, tiers, emotes +
+    save v16 sitting uncommitted in the working tree. Land it.
+    (in progress July 10)
+
+W5. ONBOARDING. HOW_TO_PLAY.txt lives outside the game. A first-day
+    in-game nudge (e.g. point at the gettin' stick recipe) would help
+    anyone who isn't Charles.
+
+W6. HOUSEKEEPING.
+    - Pass.txt in repo root looks like a password — move it OUT of the
+      project (never commit it).
+    - Notes into a notes/ folder: ElectricTemple, "The house", magic,
+      underWorldBldgs.rtf, Mubabas Quests.txt, CharacterDraft.txt.
+    - Delete src/dialogue_written.js.bak.
+    - Remove stale raw 1920x1920 copies from assets/ once conversions land.
+    - Inner Temple puzzle references "The House" warp — "The house" notes
+      file describes it; needs its own design pass before build.
+
+W7. FESTIVALS. Design says "festival every 6 days" after each season's
+    day-1 holiday; only holidays exist. Decide whether festivals are cut
+    or coming.
+
+
+SUGGESTED SEQUENCING
+--------------------
+
+Charles:  finish stars.ceol -> wav; pick next 3-4 holidays; decide
+          Cosmos (write or cut); sketch the 5 pad-unlock quests (what
+          task opens each building); SFX wishlist beyond the default 8.
+
+Claude:   1. Land hog/save/dialogue work on main (W4)          [today]
+          2. Wire Black Goddess + Inner Temple (W2 first half)  [today]
+          3. SFX pass (W3 second half)                          [today]
+          4. Recycle Bin + IOU selling (W1 phase 1)
+          5. Stimmy Tim's shop + morning neighbors (W1 phase 2)
+          6. Pad-unlock quest mechanism (K4, needs Charles's quests)
+          7. Housekeeping (W6), axe mechanic (K7), island track when ready

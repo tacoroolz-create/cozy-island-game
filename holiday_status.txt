@@ -5,19 +5,20 @@ Compliment a Crab Day          | Yes      | Implemented
 Talk Like an Eagle Day         | Yes      | Implemented
 Toast Toss Tournament          | Yes      | Implemented
 Garden Day                     | Yes      | Implemented
-Tinfoil Crown Parade           | No       | No specific code found
+Snake Run Day                  | Yes      | Implemented (snakes dart, catch for a gift)
 Spoon Appreciation Day         | No       | No specific code found
 Ab Appreciation Day            | Yes      | Yogatron NPC gives Protein Shakes
-Talk Like a Boat Day           | No       | No specific code found
+Backflip Day                   | Yes      | Implemented (everything backflips on interact)
 Left-Handed High-Fives         | No       | No specific code found
-Invisible Ladder Week-start    | No       | No specific code found
-Pinecone Prom                  | No       | No specific code found
-Gargle-the-News Hour           | No       | No specific code found
-Suspicious Pebble Day          | No       | No specific code found
+Clean Your Room Day            | Yes      | Implemented (door locked until tidied)
+Pinecone Prom                  | No       | Hog reaction only
+Dig a Hole Day                 | Yes      | Implemented (multi-year hole -> portal at depth 5)
+Reverse Burglary               | No       | No specific code found
+Name the Island Day            | Yes      | Implemented (propose + canvass votes)
 Mandatory Nap Interlude        | No       | No specific code found
-Bucket on the Head Eve         | No       | No specific code found
+Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
 Lawn Mumble Day                | No       | No specific code found
-Pet Rock Adoption Fair         | No       | No specific code found
+Pet Rock Adoption Fair         | No       | Hog reaction only
 Opposite Compliment Day        | No       | No specific code found
 One Big Scarf Festival         | No       | No specific code found
 Door-Holding Olympics          | No       | No specific code found
@@ -28,3 +29,7 @@ Tied-Shoe Celebration          | No       | No specific code found
 The Great Blink-Off            | No       | No specific code found
 Jellybean Council              | No       | No specific code found
 Hat-Stacking Jubilee           | No       | No specific code found
+
+(Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
+11 of 29 named days have real events; "Hog reaction only" means the hog
+notices the day but no event exists yet.)

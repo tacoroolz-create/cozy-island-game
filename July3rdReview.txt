@@ -37,7 +37,7 @@ WHAT CHARLES DOES (creative)
 ----------------------------
 Ordered so the things blocking coding work come first.
 
-C1. Answer the SpriteUpdate.txt open questions (Section 12).
+C1. Answer the SpriteUpdate.txt open questions (Section 12). DONE
     Blocks the entire sprite-rebuild engine work. Specifically: final size
     palette, player/NPC scale (stay 1x2 or grow?), building sizes, Y-sort vs.
     strict passes, and what harvesting a big tree does (remove / stump /
@@ -54,7 +54,7 @@ C3. Pick and design the next holidays.
     the next 3-5 and write a paragraph each: what happens, what the player
     does, what they get. (Tinfoil Crown Parade and Pinecone Prom are begging.)
 
-C4. Assign magic teachers.
+C4. Assign magic teachers. DONE
     Decide which 5 NPCs teach the 5 tricks (Vanish, Movable Feature, Summon
     Fairy, Time Warp, Season Shift), at what friendship level, and write the
     short teaching dialogue for each. Currently teachers are placeholder
