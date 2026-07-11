@@ -22,13 +22,13 @@ Memory Lantern Night           | No       | Outline in Holidays/MemoryLanternNig
 Well-Wishing Garden            | No       | Outline in Holidays/WellWishingGarden.md
 Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
 The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
-The Returning Bird             | No       | Outline in Holidays/ReturningBird.md
+The Returning Bird             | Yes      | Bird hops between 3 stops; a random neighbor swears it's an old friend
 The Petal Path Maker           | No       | Outline in Holidays/PetalPathMaker.md
 The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
 Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
 The Great Blink-Off            | No       | Placeholder - to be replaced
-Jellybean Council              | No       | Placeholder - to be replaced
+Cool Valley                    | No       | Outline in Holidays/CoolValley.md
 Hat-Stacking Jubilee           | No       | Placeholder - to be replaced
 
 (Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
@@ -80,3 +80,20 @@ src/daycycle.js's HOLIDAYS array still has only 29 entries, so this file now
 has one more row than the array — positional mapping is off by one from
 "Peak Saucy" onward until that array gets a matching slot. Recheck both
 files' order before implementing anything at or past that point.)
+
+(July 11: Implemented The Returning Bird. Array slot 22 (was "Fruit Apology
+Day") in src/daycycle.js renamed. A bird (returningBird in animals.js) hops
+between 3 rejection-sampled grass/beach waypoints every 40s, looping all day;
+one random neighbor from npcs[] is marked as its "old friend" for the day
+(findReturningBirdStops/spawnReturningBird), temporarily set stationary and
+snapped to the bird's current stop each time it moves. Facing the pair and
+interacting (tryTalkToReturningBird, wired into both the keyboard and mouse
+interact handlers same as Island God) shows a stop-specific one-sided line
+from the friend; the first check-in at each stop gives that neighbor
+gainGift(3). Other neighbors get generic "someone's talking to a bird" lines
+via dialogue.js getHolidayGreetingPrefix. Hoggy gets a "sky" mood. No new
+sprite — falls back to the existing sprites.bird2 animal sprite (or a colored
+ellipse). Skipped: the outline's Hudson-specific line (no NPC named Hudson in
+the current roster, same gap noted for Turtle Crossing Guard Day) and the
+optional "bird flies away at the final stop" upgrade — stops just loop
+instead, since the "check in for a boost" reward loop doesn't need an ending.)

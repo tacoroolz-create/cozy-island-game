@@ -64,7 +64,7 @@ const HOLIDAYS = [
     { name: 'Opposite Compliment Day', desc: 'Praise is delivered as insults that are clearly meant warmly.' },
     { name: 'Turtle Crossing Guard Day', desc: 'A wave of turtles crawls across the island. Stand near one to help it cross safely.' },
     { name: 'Door-Holding Olympics',  desc: 'Politeness is scored by how long someone holds a door open.' },
-    { name: 'Fruit Apology Day',      desc: 'All disagreements are resolved by offering a fruit and bowing.' },
+    { name: 'The Returning Bird',     desc: 'A migrating bird returns, and one neighbor is convinced they are old friends.' },
     { name: 'Humming in Unison Hour', desc: 'At mid-afternoon, the island hums the same three notes.' },
     { name: 'Cloud-Naming Congress',  desc: 'Residents vote on official names for every cloud in the sky.' },
     { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
@@ -166,6 +166,9 @@ function onNewDay() {
             }
             if (holiday.name === 'Turtle Crossing Guard Day' && typeof spawnTurtleCrossing === 'function') {
                 spawnTurtleCrossing();
+            }
+            if (holiday.name === 'The Returning Bird' && typeof spawnReturningBird === 'function') {
+                spawnReturningBird();
             }
         }
     } else if (isSeasonStart) {
