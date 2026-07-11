@@ -89,6 +89,28 @@ function getHolidayGreetingPrefix(name) {
                 "Today's about silent well-wishes, apparently. I could use one."
             ];
         }
+    } else if (holiday.name === 'Memory Lantern Night') {
+        const mln = (typeof memoryLanternNight !== 'undefined') ? memoryLanternNight : null;
+        const lantern = mln ? mln.lanterns.find(l => l.npcName === name) : null;
+        if (lantern && lantern.read) {
+            comments = [
+                "You read my lantern? I meant every word. Mostly.",
+                "That lantern's mine. I've been quietly proud of it all evening.",
+                "Careful with that memory, it's one of my good ones."
+            ];
+        } else if (lantern) {
+            comments = [
+                "My lantern's out there on the shore somewhere. Go find it.",
+                "I put a little piece of myself in one of those lanterns tonight.",
+                "The shore's glowing. One of those is mine, if you're curious."
+            ];
+        } else {
+            comments = [
+                "Lanterns all along the shore tonight. I didn't get one, but I read three.",
+                "Someone's lighting up the beach with little paper memories. It's lovely.",
+                "I walked the shore twice just to read every lantern."
+            ];
+        }
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,

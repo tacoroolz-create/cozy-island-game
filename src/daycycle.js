@@ -60,7 +60,7 @@ const HOLIDAYS = [
     { name: 'Mandatory Nap Interlude', desc: 'Between noon and one, the island collectively naps wherever they stand.' },
     { name: 'Castle of Sticks Day',   desc: 'Gather 100 sticks and raise a twig tower — a second little home to decorate.' },
     { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
-    { name: 'Pet Rock Adoption Fair', desc: 'Every rock is named and given a tiny paper collar.' },
+    { name: 'Memory Lantern Night',   desc: 'At dusk, a lantern-lighter lines the shore with paper lanterns full of neighbors\' memories.' },
     { name: 'Well-Wishing Garden',    desc: 'A visiting gardener hands out potted flowers to plant near a neighbor\'s door as a silent well-wish.' },
     { name: 'Turtle Crossing Guard Day', desc: 'A wave of turtles crawls across the island. Stand near one to help it cross safely.' },
     { name: 'Door-Holding Olympics',  desc: 'Politeness is scored by how long someone holds a door open.' },
@@ -169,6 +169,9 @@ function onNewDay() {
             }
             if (holiday.name === 'The Returning Bird' && typeof spawnReturningBird === 'function') {
                 spawnReturningBird();
+            }
+            if (holiday.name === 'Memory Lantern Night') {
+                notify('Wait for dusk — a lantern-lighter will line the shore with memories tonight.', 4500);
             }
         }
     } else if (isSeasonStart) {
