@@ -62,7 +62,7 @@ const HOLIDAYS = [
     { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
     { name: 'Pet Rock Adoption Fair', desc: 'Every rock is named and given a tiny paper collar.' },
     { name: 'Opposite Compliment Day', desc: 'Praise is delivered as insults that are clearly meant warmly.' },
-    { name: 'One Big Scarf Festival', desc: 'The whole village shares a single impossibly long scarf.' },
+    { name: 'Turtle Crossing Guard Day', desc: 'A wave of turtles crawls across the island. Stand near one to help it cross safely.' },
     { name: 'Door-Holding Olympics',  desc: 'Politeness is scored by how long someone holds a door open.' },
     { name: 'Fruit Apology Day',      desc: 'All disagreements are resolved by offering a fruit and bowing.' },
     { name: 'Humming in Unison Hour', desc: 'At mid-afternoon, the island hums the same three notes.' },
@@ -163,6 +163,9 @@ function onNewDay() {
             }
             if (holiday.name === "Hoggy's Birthday") {
                 notify("It's Hoggy's Birthday! Bring him a gift — the whole island's chipping in.", 4500);
+            }
+            if (holiday.name === 'Turtle Crossing Guard Day' && typeof spawnTurtleCrossing === 'function') {
+                spawnTurtleCrossing();
             }
         }
     } else if (isSeasonStart) {
