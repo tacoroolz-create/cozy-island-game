@@ -1,0 +1,718 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh4.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Conversations - Animals 17-24
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal (Rabbit) - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! The snow made everything extra soft today. The grass is wearing a white blanket, the flowers look a little sad and sleepy, and the sea is cold and sparkly. Do you love Yeesh season too?"
+
+PLAYER CHOICES:
+[1] "I love Yeesh season too!"
+[2] "Soft snow is cozy."
+[3] "Everything does look extra today."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "You do? Then we can love it together! Cold days feel warmer when you share them. That's probably science. Friendly winter science."
+
+PLAYER CHOICES:
+[1] "Friendly winter science is good science."
+[2] "Shared cold is the best equation."
+[3] "We should celebrate extra."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "Cozy because the snow stacks on top of everything like a fluffy quilt. My heart feels like a little warm marshmallow inside."
+
+PLAYER CHOICES:
+[1] "Warm marshmallow hearts are sweet."
+[2] "Fluffy quilts are nice."
+[3] "You have a snowy heart."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Extra is the perfect word. Extra snow, extra sparkle, extra quiet. I want to collect all the extras in a basket."
+
+PLAYER CHOICES:
+[1] "Collect extras in a basket."
+[2] "Snow sparkle is precious."
+[3] "Extra quiet is the goal."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all little snowflakes."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "The best equation. Cold plus cuddles equals the snuggliest sum. I did the math in my heart and the answer is hot cocoa hugs."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "Celebrate by smiling at snow piles and rocks and bare trees. Everything gets included. That's the best kind of winter party planning."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny warm sound like a kettle friend."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "They are. Fluffy quilts don't fall over. They pile up into a soft tower of nice. I am inside that snowy tower right now."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "Snowy heart! I like that. It means the snow lives in here a little bit, helping me glow even when it is cold outside."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "A basket of extras would be heavy but happy. Snowflakes are light though. I could carry thousands of those."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically snow-globe jars now."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Extra quiet is better than regular quiet. It's like quiet wearing a fuzzy hat. Yeesh season is the fuzzy hat."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal (Cat) - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Ugh, Yeesh season. The cold is everywhere and the snow won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything."
+
+PLAYER CHOICES:
+[1] "The snow is showing off."
+[2] "You can complain if you want."
+[3] "Not complaining is noted."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Showing off is exactly right. Look at it, all white and fluffy, demanding attention. I refuse to give it the satisfaction. Much."
+
+PLAYER CHOICES:
+[1] "Refusing attention is power."
+[2] "The snow is vain."
+[3] "Unimpressed is a strong stance."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's cold and I am unimpressed."
+
+PLAYER CHOICES:
+[1] "Facts are allowed."
+[2] "Cold is a fact."
+[3] "Restraint is admirable."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint."
+
+PLAYER CHOICES:
+[1] "Invisible medals still count."
+[2] "Excellence is excellence."
+[3] "You handle cold well."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "Power is when you look at the snow and squint meaningfully. The snow cannot read expressions. But it feels the energy. Probably."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Vain and successful. I respect the hustle even if I won't applaud it. The snow does not need my applause, which is annoying."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Strong and shivery. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the spring returns."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Allowed and necessary. If nobody states the facts, the snow will think it won. It didn't win. It just exists loudly."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "Cold is a fact. A sharp, everywhere, nose-hurting fact. But still just a fact. I will outlast it with dignity."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal (Crow) - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Yeesh season drapes the island in silver suffering, Dreamer. The snow is too sincere. I prefer the long quiet nights, when the cold at least has the decency to apologize with stars."
+
+PLAYER CHOICES:
+[1] "Silver suffering is a beautiful phrase."
+[2] "The night is a better apology."
+[3] "Sincere snow is exhausting."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Beautiful and accurate. The snow gives silence and takes comfort. That is the oldest tragedy. I shall write a poem about it."
+
+PLAYER CHOICES:
+[1] "Poems make cold meaningful."
+[2] "Tragedy fits Yeesh season."
+[3] "Beauty with discomfort is art."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "Better apology indeed. The long night arrives quietly, chills the stones, and covers the sky with distant lights. That is manners."
+
+PLAYER CHOICES:
+[1] "Night has good manners."
+[2] "Cool stones are a gift."
+[3] "Distant lights are kind."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Exhausting because it offers no mystery. 'Here I am,' it says, 'white and bright and unavoidable.' How dreary."
+
+PLAYER CHOICES:
+[1] "Mystery is underrated."
+[2] "The snow has no subtlety."
+[3] "Dreary brightness is a mood."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Meaningful suffering is the only good kind. If I must shiver, I will shiver with metaphors."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "Tragedy everywhere. The sleeping flower, the frozen rock, the robot whose chassis is too cold. All of it belongs in verse."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "Art often hurts a little. Yeesh season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me shudder."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "A gift from the dark. Stones that were burning at noon become soft and cold. I rest my thoughts on them."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "Kind because they do not demand attention. They simply shine from far away and let you look if you want to."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Underrated and endangered. The snow would eliminate mystery entirely if it could. I resist by admiring shadows."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal (Owl) - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Dreamer! Yeesh season has activated some fascinating behaviors. The nights are longer, the crabs move less at dawn, and the sea temperature is measurably colder than the grass temperature. I have data."
+
+PLAYER CHOICES:
+[1] "Data makes everything better."
+[2] "Long nights are interesting."
+[3] "Tell me more Yeesh facts."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Better and also reliable. For example: fewer insects fly during Yeesh mornings. I counted zero before noon. Sample size small but definitive."
+
+PLAYER CHOICES:
+[1] "Zero insects is definitive."
+[2] "Sample size can grow."
+[3] "Morning research is cozy."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "Interesting and useful. Longer nights mean more observation hours. I appreciate the seasonal scheduling."
+
+PLAYER CHOICES:
+[1] "Long nights are helpful."
+[2] "Seasonal scheduling deserves thanks."
+[3] "You counted them carefully."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "More facts! Flowers rest during cold seasons, the sea gets colder near the beach, and quiet air holds more story potential."
+
+PLAYER CHOICES:
+[1] "Quiet air holds stories."
+[2] "Resting flowers know the season."
+[3] "Stories make research warmer."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Definitive! Tomorrow I will count again. Probably zero. Maybe zero again. Science is just counting things until patterns appear."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "It can. I will expand my insect observation zone. If I stand very still, the lack of insects will still be valid data."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Very cozy. Cold air, long shadows, tiny missing wings. The best laboratory is one where you can also nap."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Helpful and honest. The night doesn't hide the dark. It broadcasts it with enthusiasm and slightly too much quiet."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a season."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "Carefully and quietly. Long nights are shy witnesses. If you move fast, they leave and take their darkness with them."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Stories about where the cold goes and who likes it. The answer is: some things, briefly. Then warmth becomes the hero."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "They do. Their resting schedule is older than the island's name. I admire any creature with seasonal punctuality."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal (Crane) - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The Yeesh snow does not ask permission, Dreamer. It simply arrives and covers what it touches. I am trying to be like the snow: present, without apology."
+
+PLAYER CHOICES:
+[1] "Presence without apology is strong."
+[2] "Stillness is hard in cold."
+[3] "Being present is enough."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "Strong but gentle. The snow does not explain itself. It falls. I am learning to simply be, without offering reasons."
+
+PLAYER CHOICES:
+[1] "Gentle strength is best."
+[2] "Simply being is enough."
+[3] "No reasons needed."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "Hard but worth practicing. When the body slows, the attention wakes up. I see more bare branches, more frost, more small kindnesses."
+
+PLAYER CHOICES:
+[1] "Slowing down is wisdom."
+[2] "Attention wakes up when the body rests."
+[3] "Small kindnesses matter."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "Enough is a complete sentence. I am here. The season is here. That is the whole conversation."
+
+PLAYER CHOICES:
+[1] "Here and now is complete."
+[2] "The season is a guest."
+[3] "Conversations can be quiet."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Best because it does not push. The snow is strong but it does not argue. I try to be the same way."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "Enough is a complete sentence. I am here. The season is here. That is the whole conversation."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "Reasons are for journeys. Being is for arrivals. I have arrived at this cold afternoon."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "Wisdom earned through chill. The body reminds the mind that haste is not always progress."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "They matter most. A shared glance, a small shelter, a moment of patience. These are the real currency of the island."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "Complete and sufficient. I do not need to add anything. The cold afternoon includes me already."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal (Dog) - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Hail, fair traveler! Yeesh season has cast its cold banner across the realm, and even the stones wear cloaks of frost. 'Tis a fine day to seek the warmth of a loyal tree and speak of winter deeds."
+
+PLAYER CHOICES:
+[1] "Frosty cloaks are a fun idea."
+[2] "Loyal trees still shelter us."
+[3] "Winter deeds need telling."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Fun and true! The cold does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace."
+
+PLAYER CHOICES:
+[1] "Meeting cold with grace is chivalry."
+[2] "Fanfare makes frost feel royal."
+[3] "Grace is the best armor."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "They do. A good tree blocks the wind without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch."
+
+PLAYER CHOICES:
+[1] "Sir Leaf and Sir Branch are good names."
+[2] "Trees deserve titles."
+[3] "Mind-knighting is valid."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "They do! The shivering of leaves, the marching of snowflakes, the huddling of rocks. Every small deed becomes legend in the right light."
+
+PLAYER CHOICES:
+[1] "Small deeds make good legends."
+[2] "The right light helps everything."
+[3] "Every season has its tales."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Chivalry in every frosty breath. A true knight faces the day with dignity, even when the day is very cold and very bright."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Royal frost! I shall address it as 'Your Chillness' and bow before seeking shelter. Even the snow enjoys good manners."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "The best armor is composure. It does not block cold, but it makes cold less embarrassing. A noble face is always warmer."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "Good names for good trees. Sir Leaf is bare but brave. Sir Branch is sturdy and patient. Both have served the realm well."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "They do. They hold the soil, shelter the birds, and stand against the wind. Titles are the least we can offer."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The sleeping flowers are ladies-in-waiting."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Good legends because they are honest. A leaf shivers because it must. A snowflake falls because the sky needs it. Noble simplicity."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "It does. Cold light flatters nearly everything. Stones look silver, branches look carved, and even the sea appears regal."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "Every season, yes. Yeesh season's tales are of endurance, shelter, and the brave wild hog seeking a warmer hollow."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal (Turtle) - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh. Hi, Dreamer. I was... I was watching the cold light on the water. It makes little silver paths. I think the sea is being quiet, but shivery."
+
+PLAYER CHOICES:
+[1] "Silver paths on water are pretty."
+[2] "Quiet shivering is fine."
+[3] "You notice beautiful things."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Pretty and shy. The pale sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game."
+
+PLAYER CHOICES:
+[1] "Gentle games are nice."
+[2] "The water plays with light."
+[3] "Pretty things feel like gifts."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "Fine because it doesn't ask for anything. The sea just sparkles coldly and hopes someone notices. I noticed. I am very proud of noticing."
+
+PLAYER CHOICES:
+[1] "Noticing is a skill."
+[2] "Pride in noticing is sweet."
+[3] "Cold sparkle matters."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me silver paths and a very patient rock."
+
+PLAYER CHOICES:
+[1] "Quietness has rewards."
+[2] "Patient rocks are good company."
+[3] "Small nice things add up."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "It does. The water catches the pale sun and then passes it along. Very polite. I would also like to be that polite."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Gifts from the whole afternoon. The sea, the cold sun, and the quiet all worked together to make something pretty."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "It does. Loud sparkle gets attention, but cold sparkle is for people who look closely. I look closely a lot."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the cold wind."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal (Parrot) - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Dreamer! DREAMER! Yeesh season is here and the sea is cold and the flowers look sad and the nights are SO long and quiet and I heard a rumor that maybe vikings are coming but I think it is probably just a silly rumor! Are you having the best winter day possible?"
+
+PLAYER CHOICES:
+[1] "Vikings are probably just a silly rumor."
+[2] "Sad flowers need warm thoughts."
+[3] "Long quiet nights are cozy."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Probably! I am pretty sure there are no vikings. I looked at the beach and I only saw rocks and crabs and no boats with pointy hats at all."
+
+PLAYER CHOICES:
+[1] "Pointy hat boats are a funny idea."
+[2] "Crabs are better than vikings."
+[3] "The beach looks normal."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "They do! We should think warm sunny thoughts at them. Maybe if enough of us think warm thoughts, the flowers will feel less sad and more cozy."
+
+PLAYER CHOICES:
+[1] "Warm thoughts are powerful."
+[2] "Cozy flowers are the goal."
+[3] "Thinking at flowers is cheerful science."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "They are! Long quiet nights are like the island tucking itself in with a big star blanket. Very cozy and very dark and very nice."
+
+PLAYER CHOICES:
+[1] "Star blankets are the best."
+[2] "The island tucking itself in is sweet."
+[3] "Dark and nice is a good combo."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Funny idea! I don't think vikings would fit on our beach anyway. Their boats would probably bump into the rocks and then they'd have to apologize to the wild hog."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "Much better! Crabs are small and sideways and wonderful and they definitely do not wear horned helmets. They don't wear any helmets. I checked."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "Normal! Just sand and cold water and rocks and no mysterious invaders. I give the beach a thumbs up for being regular."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Powerful and warm! If thoughts could make little scarves, every flower on the island would have a cozy neck by tomorrow."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "The goal! Cozy flowers are happy flowers and happy flowers make the whole island look like it is smiling with leaves."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Cheerful science is my favorite kind! No lab coat needed. Just sunshine thoughts and flower friends and maybe a little snow."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "Best blanket ever! Stars are tiny holes in the night so the warm sky can peek through. That's probably not real science but it feels true."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Sweet and sleepy! The island pulls up the sea like a blanket and snuggles the trees and whispers goodnight to the rocks."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "Good combo! Dark is for resting and nice is for feeling safe and together they make the best kind of long quiet night."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

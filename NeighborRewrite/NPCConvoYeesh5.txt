@@ -1,0 +1,720 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh5.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Conversations - Monsters 25-32
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 25: Fluffernox (Monster - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Fluffernox:
+"Dreamer! Yeesh season is here and everything got fluffy and cold. I tried to catch a snowflake on my paw and it melted, but I am still very proud of the attempt."
+
+PLAYER CHOICES:
+[1] "Proud attempts count as catches."
+[2] "Snowflakes are tricky."
+[3] "Cold and fluffy is a nice combination."
+
+---
+
+TURN 2A (if player chose 1):
+Fluffernox: "They do? Then I have caught hundreds of snowflakes in my heart. My heart is very full and slightly damp."
+
+PLAYER CHOICES:
+[1] "A damp heart is a busy heart."
+[2] "Hundreds is an impressive count."
+[3] "Heart catches last forever."
+
+---
+
+TURN 2B (if player chose 2):
+Fluffernox: "Tricky and shy. They float down all pretty, then disappear as soon as you love them. Maybe that is their magic."
+
+PLAYER CHOICES:
+[1] "Shy magic is still magic."
+[2] "Pretty things are allowed to hide."
+[3] "Magic that disappears is still real."
+
+---
+
+TURN 2C (if player chose 3):
+Fluffernox: "It is! My fuzz gets extra fuzzy and the cold makes my cheeks pink. I look like a warm cloud that somebody chilled."
+
+PLAYER CHOICES:
+[1] "Warm clouds are the best clouds."
+[2] "Pink cheeks are cozy."
+[3] "Extra fuzzy is extra huggable."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Fluffernox: "Busy and happy! A damp heart means feelings are moving around. Mine are doing little snow dances."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Fluffernox: "Impressive and probably true. I lost count after twelve but I kept feeling proud, so I rounded up to hundreds."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Fluffernox: "Forever! The snowflake is gone but the proud feeling stayed. That's basically the same as keeping it in a jar."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Fluffernox: "Still magic! Quiet magic, quick magic, magic that only your eyes get to see for a second. I like polite magic."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Fluffernox: "Allowed and smart. If everything stayed visible, the world would be too crowded. Snowflakes know about personal space."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Fluffernox: "Real because I felt it. The cold little tap on my paw happened. That is enough proof for me."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Fluffernox: "Best kind of cloud. Warm inside, cold outside, like a fuzzy contradiction wrapped in me."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Fluffernox: "Cozy like a surprise. My cheeks are saying thank you to the weather even though my toes disagree a little."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Fluffernox: "Huggable and true! I give very soft hugs. In Yeesh season they also come with a free bonus chill."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 26: Grumble (Monster - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Grumble:
+"Yeesh season. Snow everywhere, cold everywhere, and now people are whispering about vikings. As if the cold wasn't enough to complain about. Not that I care."
+
+PLAYER CHOICES:
+[1] "Viking rumors are pretty silly."
+[2] "You have plenty to complain about."
+[3] "Not caring is your brand."
+
+---
+
+TURN 2A (if player chose 1):
+Grumble: "Silly is one word. Vikings? Here? Doing what? Borrowing rocks? I am not worried. I am just... prepared to be unimpressed."
+
+PLAYER CHOICES:
+[1] "Prepared unimpressed is safe."
+[2] "Rocks don't need borrowing."
+[3] "Worry looks good on nobody."
+
+---
+
+TURN 2B (if player chose 2):
+Grumble: "Plenty? I have a menu of complaints. Cold toes, sad flowers, quiet nights that last forever. I am not ordering them all at once. That would be excessive."
+
+PLAYER CHOICES:
+[1] "A menu is organized complaining."
+[2] "Don't order everything at once."
+[3] "Excessive complaining is still complaining."
+
+---
+
+TURN 2C (if player chose 3):
+Grumble: "Brand? I don't have a brand. I have a personality. A strong one. With layers. The top layer is grump and the bottom layer is also grump."
+
+PLAYER CHOICES:
+[1] "Consistent layers are honest."
+[2] "Grump is a valid aesthetic."
+[3] "At least you're warm inside."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Grumble: "Safe and dignified. If vikings arrive, I will cross my arms and look skeptical. That usually solves things."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Grumble: "They don't. The island has enough rocks. Any viking looking to borrow one is going to be disappointed and then politely ignored."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Grumble: "Nobody. Worry wrinkles your face and I am too young and lumpy for that. I will stick to mild suspicion."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Grumble: "Organized and efficient. Today I complain about the cold. Tomorrow maybe the sad flowers. Viking rumors can wait until after lunch."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Grumble: "I won't. Pacing is important. A well-paced complaint lands better than a complaint avalanche."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Grumble: "Still complaining, but with rhythm. There's an art to it. I am basically a complaint composer."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Grumble: "Honest and layered. What you see is what you get, which is mostly frowning and occasional flower-straightening."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Grumble: "Valid and low maintenance. I don't need fancy colors. I just need a cold rock to sit on and an opinion."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Grumble: "Inside where? Don't say my heart. That's a cliché. But yes. Maybe. A small warm spot. Near the flower-straightening muscle."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 27: Vesper (Monster - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Vesper:
+"Yeesh season suits me, Dreamer. The long nights, the cold sea, the flowers drooping like forgotten poems. It is beautifully unfortunate."
+
+PLAYER CHOICES:
+[1] "Beautifully unfortunate is accurate."
+[2] "Long nights are peaceful."
+[3] "The sea being cold feels serious."
+
+---
+
+TURN 2A (if player chose 1):
+Vesper: "Accurate and elegant. Yeesh does not apologize. It arrives with frost and silence and demands we admire the discomfort."
+
+PLAYER CHOICES:
+[1] "Discomfort can be art."
+[2] "Frost has good timing."
+[3] "Silence demands attention."
+
+---
+
+TURN 2B (if player chose 2):
+Vesper: "Peaceful because the world slows down. Even the stars seem to speak more softly when the nights grow long."
+
+PLAYER CHOICES:
+[1] "Soft stars are better stars."
+[2] "Slow nights let thoughts land."
+[3] "Quiet is a kind of music."
+
+---
+
+TURN 2C (if player chose 3):
+Vesper: "Serious and deep. The sea holds cold like a secret. I respect any water that refuses to pretend warmth."
+
+PLAYER CHOICES:
+[1] "Honest water is respectable."
+[2] "Cold secrets are well kept."
+[3] "The sea doesn't pretend."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Vesper: "Art with bite. The flowers are sad, the air is sharp, and I get to wear it all like a velvet cloak."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Vesper: "Good timing. It waits until everything is quiet, then paints the grass in silver. Very theatrical."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Vesper: "It does. Silence makes you lean in. The island whispers louder in Yeesh season because nothing else competes."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Vesper: "Better because they don't shout. They simply glow from far away and let you decide how much wonder to feel."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Vesper: "They land like soft stones. Heavy enough to notice, gentle enough to keep. I collect a few each long night."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Vesper: "Music without notes. The kind you feel in your chest while standing on cold sand and looking at nothing in particular."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Vesper: "Respectable and rare. Most things pretend. The sea just says no and stays beautiful while saying it."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Vesper: "Well kept. I have tried to guess the sea's secrets but it only answers with waves, which is fair."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Vesper: "It never has. I find that comforting. In a world of changing weather, the sea's cold honesty is reliable."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 28: Gizmo (Monster - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gizmo:
+"Dreamer! Yeesh season raises so many questions. Why do flowers look sad when cold? Why does the sea feel colder than the air? And where did the viking rumor even start? I have theories."
+
+PLAYER CHOICES:
+[1] "I want to hear your theories."
+[2] "Sad flowers need warm thoughts."
+[3] "Viking rumors are probably just wind."
+
+---
+
+TURN 2A (if player chose 1):
+Gizmo: "Theory one: flowers droop because their petals are conserving story energy. Theory two: the sea is cold because it is deeper than the sky. Theory three: vikings are a metaphor for winter being loud."
+
+PLAYER CHOICES:
+[1] "Story energy makes sense."
+[2] "The sea deeper than the sky is poetic."
+[3] "Winter being loud is a good metaphor."
+
+---
+
+TURN 2B (if player chose 2):
+Gizmo: "Warm thoughts might help. I tried telling a flower it looked elegant in frost and it did not perk up, but it also did not perk down, which is progress."
+
+PLAYER CHOICES:
+[1] "No further drooping is a win."
+[2] "Frost elegance is real elegance."
+[3] "Flowers appreciate the effort."
+
+---
+
+TURN 2C (if player chose 3):
+Gizmo: "Probably wind. Or a misheard word. Maybe someone said 'ice kings' and it became 'vikings.' Rumors compress data."
+
+PLAYER CHOICES:
+[1] "Rumors compress data nicely."
+[2] "Ice kings sound less scary."
+[3] "Wind is a bad messenger."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gizmo: "It does! Flowers are basically tiny libraries. In Yeesh season they switch to a slower reading speed."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gizmo: "Poetic and possibly true. The sky has depth too, but the sea keeps its cold where we can touch it. That is generous data sharing."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gizmo: "A good metaphor. Winter arrives with announcements. Cold wind, crunching grass, viking-shaped rumors. Loud in a data-rich way."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gizmo: "A documented win. I have charts. Well, I have mental charts. The flower stayed approximately the same. Success."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gizmo: "Real! Frost brings out details. You can see the leaf veins better, the petal edges, the quiet architecture."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gizmo: "Effort counts statistically. Even if the flower cannot say thank you, the universe notes the attempt. I am fairly certain."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gizmo: "Nicely. They take a big event and shrink it into a bite-sized worry. Efficient, if not accurate."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gizmo: "Less scary and more decorative. Ice kings sound like they would build very pretty castles and then apologize for the chill."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gizmo: "The worst. It misdelivers sounds, flattens syllables, and occasionally makes people worry about boats that aren't there."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 29: Ommmm (Monster - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Ommmm:
+"The Yeesh season asks us to be still, Dreamer. The cold sea, the sad flowers, the long quiet nights. All of it invites us to listen more carefully."
+
+PLAYER CHOICES:
+[1] "Listening is harder in the cold."
+[2] "Stillness makes the night longer."
+[3] "The flowers are quiet teachers."
+
+---
+
+TURN 2A (if player chose 1):
+Ommmm: "Harder because the body wants to move, to warm itself. But if we stay with the cold, it becomes a voice too. A quiet one."
+
+PLAYER CHOICES:
+[1] "Cold has a voice?"
+[2] "Staying with discomfort is brave."
+[3] "Quiet voices are worth hearing."
+
+---
+
+TURN 2B (if player chose 2):
+Ommmm: "Longer but not heavier. A slow night holds more space between moments. That space is where peace lives."
+
+PLAYER CHOICES:
+[1] "Space between moments is peace."
+[2] "Slow time is a gift."
+[3] "Peace lives in the gaps."
+
+---
+
+TURN 2C (if player chose 3):
+Ommmm: "Teachers indeed. They do not resist the cold. They let their petals rest and wait. There is wisdom in not fighting the season."
+
+PLAYER CHOICES:
+[1] "Resting is not giving up."
+[2] "Waiting takes strength."
+[3] "Not fighting is a kind of trust."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Ommmm: "A small one. It says 'hush' and 'slow down' and 'feel the world holding its breath.' If you sit with it, you can hear it."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Ommmm: "Brave because the body resists. But bravery here is gentle. It is simply staying, not conquering."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Ommmm: "They are. The quiet ones often carry the deepest truths. The loud world drowns them out. Yeesh season turns the volume down."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Ommmm: "It is. Between one heartbeat and the next, there is room to notice the stars, the cold, the soft breath of the island."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Ommmm: "A gift that is easy to miss. We are used to rushing. Yeesh season reminds us that slow is also a speed."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Ommmm: "In the gaps, yes. Between thoughts, between worries, between snowflakes. Peace finds the empty places and settles there."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Ommmm: "It is not. Resting is preparation. The flowers are gathering patience, storing stillness, readying themselves for the return of warmth."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Ommmm: "Strength that looks like softness. The flower does not argue with frost. It bows and survives. That is power."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Ommmm: "A deep kind of trust. Trust that the cold will pass, that the sun remembers the island, that rest is part of the cycle."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 30: Lord Roar (Monster - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lord Roar:
+"Hail, fair Dreamer! Yeesh season has laid a silver blanket upon our realm. The sea is cold, the nights are long, and rumor speaks of vikings upon the chill winds. A fine time for valor!"
+
+PLAYER CHOICES:
+[1] "Valor in the cold is noble."
+[2] "Viking rumors are probably exaggerated."
+[3] "Silver blankets suit the island."
+
+---
+
+TURN 2A (if player chose 1):
+Lord Roar: "Noble indeed! A brave soul does not wait for warm weather to be bold. I have already challenged three snowflakes to a duel. They yielded upon landing."
+
+PLAYER CHOICES:
+[1] "Snowflakes yield gracefully."
+[2] "Three duels before breakfast is impressive."
+[3] "Bravery does not need warmth."
+
+---
+
+TURN 2B (if player chose 2):
+Lord Roar: "Exaggerated, aye. I suspect 'vikings' are merely large gulls with dramatic silhouettes. Still, I shall keep watch from the highest rock."
+
+PLAYER CHOICES:
+[1] "Gulls make better neighbors."
+[2] "High rocks are good for watching."
+[3] "Dramatic silhouettes are suspicious."
+
+---
+
+TURN 2C (if player chose 3):
+Lord Roar: "They do! The island wears white like a royal cloak. Even the sad flowers look dignified beneath their frost crowns."
+
+PLAYER CHOICES:
+[1] "Frost crowns are royal."
+[2] "Dignified flowers are brave."
+[3] "White cloaks suit the realm."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lord Roar: "Gracefully and without shame. A true duelist knows when to melt. I respected their surrender."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lord Roar: "Impressive and routine. Before breakfast, after breakfast, between snacks. A knight's work is never done."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lord Roar: "It does not. Warmth is a luxury, not a requirement. My cape keeps my spirit cozy and that is sufficient."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lord Roar: "Better neighbors and cleaner guests. Gulls do not borrow cups or leave axe-shaped confusion behind."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lord Roar: "The highest rock with the coldest seat. A small price for vigilance. I shall report any suspicious silhouettes immediately."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lord Roar: "Suspicious and romantic. Any shadow that large has either a story or a beak. I am prepared for either."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lord Roar: "Royal and delicate. Every flower is briefly a tiny monarch ruling over its own frosty kingdom."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lord Roar: "Brave and noble. To droop with dignity is a higher art than standing tall with complaint."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lord Roar: "They suit it perfectly. The realm looks refreshed, as if it has been freshly painted by an orderly cloud."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 31: Snug (Monster - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Snug:
+"Oh. Hello, Dreamer. Yeesh season makes me hide under warmer rocks. The snow is pretty but it looks at me with too many tiny cold eyes."
+
+PLAYER CHOICES:
+[1] "Snowflakes are just curious."
+[2] "Warmer rocks are wise."
+[3] "You can watch from your hiding spot."
+
+---
+
+TURN 2A (if player chose 1):
+Snug: "Curious? Maybe. They land on my head and then disappear, which feels like being asked a question I didn't answer."
+
+PLAYER CHOICES:
+[1] "Unanswered questions are okay."
+[2] "Snowflakes don't need answers."
+[3] "Disappearing is their answer."
+
+---
+
+TURN 2B (if player chose 2):
+Snug: "Wise and cozy. I found one that the sun remembered, so it's slightly less cold than the others. I visit it every morning."
+
+PLAYER CHOICES:
+[1] "A sun-remembered rock is special."
+[2] "Morning visits are loyal."
+[3] "Less cold is still cold."
+
+---
+
+TURN 2C (if player chose 3):
+Snug: "I do. From under the rock I can see the cold sea and the sad flowers without them seeing me back. That feels safer."
+
+PLAYER CHOICES:
+[1] "Safe watching is still watching."
+[2] "The sea won't notice you."
+[3] "Flowers don't look around much."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Snug: "Okay. I don't have to answer everything. Some questions are just snowflakes being friendly in a brief way."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Snug: "They don't? That's a relief. I was worried I was being rude. Now I know snowflakes are just shy too."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Snug: "Their answer is 'I was here, then I wasn't.' That's a very quiet reply. I understand quiet replies."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Snug: "Special because it tries. It holds a little warmth from yesterday and offers it to anyone who stops there."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Snug: "Loyal and shy. I don't say hello to the rock out loud, but I think it knows I am there. Rocks are good at knowing."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Snug: "Still cold but kindly cold. Like a greeting from winter that doesn't mean any harm. I can handle kindly cold."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Snug: "Still watching. I see the world and the world sees everything else. That arrangement suits me fine."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Snug: "It won't. The sea is busy being cold and wide. I am small and under a rock. We have an understanding."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Snug: "They don't. They mostly look down. Which is good, because if they looked around, they might see me and then we would both be startled."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 32: Gigglegrow (Monster - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gigglegrow:
+"Dreamer! It's Yeesh season! Everything is sparkly and cold and the sea looks like it swallowed a bunch of silver coins! I love it!"
+
+PLAYER CHOICES:
+[1] "Sparkly and cold is a great combo."
+[2] "Did the sea swallow silver coins?"
+[3] "Your joy keeps Yeesh warm."
+
+---
+
+TURN 2A (if player chose 1):
+Gigglegrow: "Great combo! Like a popsicle that glitters. I haven't eaten a glitter popsicle but I have thought about it very hard."
+
+PLAYER CHOICES:
+[1] "Thinking hard is almost tasting."
+[2] "Glitter popsicles sound fun."
+[3] "Combos make seasons better."
+
+---
+
+TURN 2B (if player chose 2):
+Gigglegrow: "Probably not! But the waves catch the light and go blink blink blink, and my brain says 'coins!' because coins are shiny too."
+
+PLAYER CHOICES:
+[1] "Blink blink blink is a good description."
+[2] "Brains like shiny things."
+[3] "Coin-waves are beautiful."
+
+---
+
+TURN 2C (if player chose 3):
+Gigglegrow: "My joy is like a little heater! It can't melt snow but it makes my chest feel fuzzy, and maybe fuzziness travels."
+
+PLAYER CHOICES:
+[1] "Fuzziness should travel everywhere."
+[2] "Warm chests are good chests."
+[3] "Joy is portable heat."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gigglegrow: "Almost! My imagination has a very advanced tongue. It reports flavor accurately within the dream."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gigglegrow: "Fun and crunchy maybe? Or slippery? Either way, glitter adds texture to life and also to dessert."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gigglegrow: "They do! Sparkle plus cold plus long night equals a season with a lot of personality. Yeesh has maximum personality."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gigglegrow: "Right? The sea is doing its sparkly wink all afternoon. I wink back but it doesn't stop, so I think it likes the game."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gigglegrow: "They do! Shiny is one of my brain's favorite words. It uses it a lot when describing water, snow, and good moods."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gigglegrow: "Beautiful and rich! If the sea had a piggy bank, it would be all wavy and probably very loud when shaken."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gigglegrow: "Everywhere! I am sending fuzziness to the sad flowers, the cold sea, the long night, and any vikings who might just be confused birds."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gigglegrow: "Good! Warm chests can share heat through hugs and smiling and also by standing near trees and looking friendly."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gigglegrow: "Portable and renewable! I have an endless supply because every sparkly snowflake gives me another charge."
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════
