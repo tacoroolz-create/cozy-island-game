@@ -513,6 +513,7 @@ function getHogHolidayMood() {
     if (name === 'Day of the Island God') return { emote: 'awe', note: hog.name + ' stares east, utterly starstruck.' };
     if (name === 'Pet Rock Adoption Fair') return { emote: 'rock', note: hog.name + ' nudges a nearby rock, considering adoption.' };
     if (name === "Hoggy's Birthday") return { emote: 'heart', note: 'It is ' + hog.name + "'s Birthday! He sits proudly by his picnic blanket, waiting for gifts." };
+    if (name === 'Turtle Crossing Guard Day') return { emote: 'guard', note: hog.name + ' stands watch by the crossing, chest puffed out importantly.' };
     return null;
 }
 

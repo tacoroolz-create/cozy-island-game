@@ -20,12 +20,13 @@ Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig towe
 Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
 Memory Lantern Night           | No       | Outline in Holidays/MemoryLanternNight.md
 Well-Wishing Garden            | No       | Outline in Holidays/WellWishingGarden.md
-Turtle Crossing Guard Day      | No       | Outline in Holidays/TurtleCrossingGuardDay.md
+Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
 The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
 The Returning Bird             | No       | Outline in Holidays/ReturningBird.md
 The Petal Path Maker           | No       | Outline in Holidays/PetalPathMaker.md
 The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
+Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
 The Great Blink-Off            | No       | Placeholder - to be replaced
 Jellybean Council              | No       | Placeholder - to be replaced
 Hat-Stacking Jubilee           | No       | Placeholder - to be replaced
@@ -55,3 +56,27 @@ beside Hoggy (updateHoggyBirthdayBlanket/drawHoggyBirthdayBlanket, hog.js) —
 colored rectangle, no new sprite needed. Neighbor dialogue greetings get
 birthday-flavored gift lines (dialogue.js getHolidayGreetingPrefix). Hoggy
 gets a birthday mood in getHogHolidayMood().)
+
+(July 11: Implemented Turtle Crossing Guard Day. Array slot 20 (was "One Big
+Scarf Festival") in src/daycycle.js renamed. A wave of 5 turtles
+(turtleCrossing in animals.js) crawls in a straight line along the widest
+clear grass row at map center, from findTurtleCrossingRow(), staggered so
+they trickle across rather than launching at once. Standing within 1 tile of
+a moving turtle pauses it (updateTurtleCrossing); the first pause of the day
+boosts every neighbor's friendship by gainGift(3) once, same shared-trigger
+pattern as Hoggy's Birthday. Turtles vanish on reaching the far side. No new
+sprite — falls back to the same colored-shell shape animals.js already uses
+for wild turtles. Hoggy gets a "guard" mood. Neighbor dialogue gets
+crossing-guard-flavored lines via getHolidayGreetingPrefix. Skipped: the
+outline's named neighbors (Brass, Vega, Willow) don't exist in the actual
+32-NPC roster, so lines are generic rather than character-specific; also
+skipped physically repositioning neighbors along the path — not needed for
+the reward loop, and repositioning is the harder pattern reserved for The
+Returning Bird.
+
+Note: a "Peak Saucy" row appeared in this file (Holidays/PeakSaucy.md exists)
+between Sweet Valley and The Great Blink-Off, added outside this session.
+src/daycycle.js's HOLIDAYS array still has only 29 entries, so this file now
+has one more row than the array — positional mapping is off by one from
+"Peak Saucy" onward until that array gets a matching slot. Recheck both
+files' order before implementing anything at or past that point.)

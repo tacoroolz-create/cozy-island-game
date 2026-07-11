@@ -40,6 +40,14 @@ function getHolidayGreetingPrefix(name) {
             "I left a carrot by his blanket. He inspected it for a solid minute before accepting.",
             "Happy birthday to Hoggy! I gave him a squash almost as big as he is."
         ];
+    } else if (holiday.name === 'Turtle Crossing Guard Day') {
+        comments = [
+            "Hold the line. This turtle is six hundred years late and doing fine.",
+            "I saluted a turtle. It did not salute back. I am still proud.",
+            "Softly now. They're carrying small dreams on their backs.",
+            "Crossing guard duty today! I've never taken a job more seriously.",
+            "One turtle down, several more to go. This is the best shift of my life."
+        ];
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,

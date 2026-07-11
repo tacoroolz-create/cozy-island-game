@@ -513,6 +513,7 @@ function updateAnimals(dt) {
     for (const butterfly of butterflies) butterfly.update(dt, world.timeMinutes);
     for (const cicada of cicadas) cicada.update(dt, world.timeMinutes);
     updateSnakes(dt);
+    updateTurtleCrossing(dt);
 
     // Ambient sounds
     if (audioManager && !audioManager.muted) {
@@ -578,6 +579,7 @@ function drawAnimals() {
     for (const butterfly of butterflies) flip(butterfly);
     for (const cicada of cicadas) flip(cicada);
     drawSnakes();
+    drawTurtleCrossing();
     drawGroundLoot();
 }
 
@@ -699,6 +701,98 @@ function drawSnakes() {
         }
         endShape();
         noStroke();
+    }
+}
+
+// ===== TURTLE CROSSING GUARD DAY =====
+// A slow wave of turtles crawls along a fixed line all day. Standing next to
+// a moving turtle pauses it; the first turtle a player helps along nets every
+// neighbor a small friendship boost (same shared-trigger pattern as Hoggy's
+// Birthday's gainGift(5)-to-everyone gift).
+let turtleCrossing = null; // { day, y, startX, endX, list: [{x,y,speed,delay,paused}], helped }
+const TURTLE_CROSSING_COUNT = 5;
+
+function findTurtleCrossingRow() {
+    const y = Math.floor(CONFIG.WORLD_HEIGHT / 2);
+    let bestStart = -1, bestLen = 0, curStart = -1, curLen = 0;
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        const t = world.tiles[x] && world.tiles[x][y];
+        const clear = t && (t.type === 'grass' || t.type === 'beach') && !isSolidTile(x, y) && !buildingAt(x, y);
+        if (clear) {
+            if (curStart < 0) curStart = x;
+            curLen++;
+            if (curLen > bestLen) { bestLen = curLen; bestStart = curStart; }
+        } else {
+            curStart = -1; curLen = 0;
+        }
+    }
+    if (bestLen < 10) return null;
+    return { y, startX: bestStart, endX: bestStart + bestLen - 1 };
+}
+
+function spawnTurtleCrossing() {
+    if (!world) return;
+    const row = findTurtleCrossingRow();
+    if (!row) return;
+    const list = [];
+    for (let i = 0; i < TURTLE_CROSSING_COUNT; i++) {
+        list.push({
+            x: row.startX,
+            y: row.y,
+            speed: 0.08 + Math.random() * 0.05, // tiles/sec, a proper crawl
+            delay: Math.random() * 20000,       // ms before this one starts, staggers the wave
+            paused: false
+        });
+    }
+    turtleCrossing = { day: world.day, y: row.y, startX: row.startX, endX: row.endX, list, helped: false };
+    notify("It's Turtle Crossing Guard Day! A wave of turtles is crawling across the island — stand near one to help it along safely.", 4500);
+}
+
+function updateTurtleCrossing(dt) {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Turtle Crossing Guard Day') {
+        if (turtleCrossing) turtleCrossing = null;
+        return;
+    }
+    if (!world) return;
+    if (!turtleCrossing || turtleCrossing.day !== world.day) spawnTurtleCrossing();
+    if (!turtleCrossing) return;
+
+    for (const t of turtleCrossing.list) {
+        if (t.delay > 0) { t.delay -= dt; continue; }
+        const nearPlayer = !!player && Math.abs(t.x - player.x) <= 1 && Math.abs(t.y - player.y) <= 1;
+        t.paused = nearPlayer;
+        if (nearPlayer && !turtleCrossing.helped) {
+            turtleCrossing.helped = true;
+            if (typeof npcs !== 'undefined') {
+                for (const npc of npcs) if (typeof npc.gainGift === 'function') npc.gainGift(3);
+            }
+            notify('The neighbors cheer as the turtle crosses safely! Friendship +3 with everyone.', 4000);
+        }
+        if (t.paused) continue;
+        t.x += t.speed * (dt / 1000);
+    }
+    // Turtles that reach the far side disappear into the scenery.
+    turtleCrossing.list = turtleCrossing.list.filter(t => t.x < turtleCrossing.endX);
+}
+
+function drawTurtleCrossing() {
+    if (!turtleCrossing) return;
+    const TS = CONFIG.TILE_SIZE;
+    const spr = SPRITES['sprites.turtle'];
+    for (const t of turtleCrossing.list) {
+        if (t.delay > 0) continue; // hasn't entered the crossing yet
+        const sx = t.x * TS - cameraX;
+        const sy = t.y * TS - cameraY;
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            noStroke();
+            fill('#2E8B57');
+            ellipse(sx + 8, sy + 10, 10, 7);
+            fill('#006400');
+            ellipse(sx + 8, sy + 9, 6, 5);
+        }
     }
 }
 
