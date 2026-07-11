@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 20;
+const SAVE_VERSION = 22;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -372,6 +372,34 @@ const MIGRATIONS = [
                 };
             });
         }
+        return data;
+    },
+    // v20 -> v21: the 59-neighbor roster was replaced by the 32-neighbor
+    // rewrite cast, so old numeric NPC ids and names no longer line up.
+    // Clear island neighbors and their shacks (owner is a number; the player
+    // shack's owner is the string 'player') — checkArrivals()/onNpcNewDay()
+    // repopulate the island naturally. Quest state and cutout items reference
+    // old names, so reset quests and strip orphaned cutout items too.
+    function(data) {
+        data.npcs = [];
+        if (data.buildings) {
+            data.buildings = data.buildings.filter(b => typeof b.owner !== 'number');
+        }
+        data.quests = null;
+        if (data.inventory && data.inventory.slots) {
+            for (let i = 0; i < data.inventory.slots.length; i++) {
+                const s = data.inventory.slots[i];
+                if (s && /^cutout_/.test(s.id) && !ITEMS[s.id]) data.inventory.slots[i] = null;
+            }
+        }
+        return data;
+    },
+    // v21 -> v22: the underground city was relaid as one straight east–west
+    // strip. Drop the saved underground map so it regenerates fresh in the new
+    // layout on next visit. Quest/shop state lives in globals (magicFlags,
+    // quests, club), not the map, so progress is preserved.
+    function(data) {
+        if (data.extraMaps) delete data.extraMaps.underground;
         return data;
     }
     // Future migrations go here
