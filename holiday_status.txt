@@ -24,7 +24,7 @@ Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path al
 The Picnic Reset               | Yes      | Implemented (organizer seats neighbor pairs picnic-style, listen in for a friendship boost)
 The Returning Bird             | Yes      | Bird hops between 3 stops; a random neighbor swears it's an old friend
 The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors fill anchor spots between dock and home)
-The Neighborhood Time Capsule  | No       | Outline in Holidays/TimeCapsuleDay.md
+The Neighborhood Time Capsule  | Yes      | Implemented (historian buries a box; dig it up next cycle to hear it mangled)
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
 Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
 The Great Blink-Off            | No       | Placeholder - to be replaced
@@ -220,6 +220,34 @@ striped rectangle blankets. Skipped: the outline's named pairs
 same gap as every other holiday with example dialogue for out-of-roster
 characters — banter is generic and neighbor pairs are chosen randomly each
 day instead.)
+
+(July 11: Implemented The Neighborhood Time Capsule. Array slot 25 (was
+"Cloud-Naming Congress") in src/daycycle.js renamed. First holiday needing
+state that survives past its own day: a historian NPC
+(spawnTimeCapsuleHistorian/updateTimeCapsuleHistorian/drawTimeCapsuleHistorian/
+tryTalkToTimeCapsuleHistorian, src/game.js) spawns near the dock each time the
+holiday occurs. Talking to him: if a box is already buried from last cycle,
+the first interact digs it up and reads a mangled reveal line combining the
+player's old donation + a handful of flavor-only neighbor donations, then
+clears it; the next interact (or if no box existed) donates a real inventory
+item (first material/gift/treasure slot found, tools/blocks excluded) plus
+one random memory line, then re-buries the box. `timeCapsuleBox` is the one
+piece of holiday state NOT reset by getCurrentHoliday() checks — it has to
+last until this holiday slot comes back around (HOLIDAY_INTERVAL *
+HOLIDAYS.length = 174 days later), so it's also wired into src/save.js's
+serializeGame/deserializeGame (new `timeCapsuleBox` field) to survive a
+save/quit in between. Hoggy gets a "dig" mood; neighbor dialogue gets
+box-flavored lines via getHolidayGreetingPrefix, including a special comment
+for neighbors who "donated" to the currently-buried box. No new sprite —
+historian falls back to a colored rectangle "digger" shape. Skipped: the
+outline's named donation lines (Chester/Luna/Hudson/Mimis aren't in the real
+32-NPC roster, same gap as every other holiday with example dialogue for
+out-of-roster characters) — neighbor donations are generic flavor lines
+assigned to randomly chosen present neighbors instead; also skipped the
+optional "player's own donation is specifically mangled" upgrade — the whole
+reveal line is already generically mangled/combined, matching the "no
+picker UI, one random flavor result" precedent set by every other visiting-NPC
+holiday.)
 
 ---
 

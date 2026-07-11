@@ -1117,6 +1117,10 @@ function drawGame() {    // Handle continuous movement
     updatePicnicReset();
     drawPicnicReset();
 
+    // ===== THE NEIGHBORHOOD TIME CAPSULE: historian + buried box =====
+    updateTimeCapsuleHistorian();
+    drawTimeCapsuleHistorian();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2200,6 +2204,131 @@ function tryListenToPicnicPair() {
     return true;
 }
 
+// ===== THE NEIGHBORHOOD TIME CAPSULE =====
+// A visiting historian buries one real player-donated item + a memory line,
+// plus a handful of flavor-only neighbor "donations". Unlike every other
+// holiday's per-day state, `timeCapsuleBox` must survive until this same
+// holiday slot rolls around again (HOLIDAY_INTERVAL * HOLIDAYS.length days
+// later) — so it's the one piece of holiday state also wired into save.js,
+// rather than being reset whenever the holiday isn't active.
+const TIME_CAPSULE_MEMORY_LINES = [
+    "The tide was extra sparkly this morning and nobody else noticed.",
+    "I finally beat my own record for skipping stones. Four! A personal era.",
+    "Someone left a perfect little pile of shells by my door. Still don't know who.",
+    "I napped in the sun for exactly as long as I meant to, which never happens.",
+    "I said something nice to a crab and meant every word of it.",
+    "The bread I baked collapsed but tasted like victory anyway."
+];
+const TIME_CAPSULE_NEIGHBOR_LINES = [
+    'a pebble that looks like regret',
+    'a moonbeam, trapped in a jar (it escaped almost immediately)',
+    'a perfectly good sandwich, for future consumption',
+    'one sock, significance unclear',
+    'a very serious drawing of a cloud',
+    'three words they refuse to repeat out loud',
+    'a shell that whispers when you\'re not listening',
+    'their own shadow, allegedly'
+];
+let timeCapsuleBox = null; // { itemName, memoryLine, neighborDonations:[{name,item}], buriedDay } — persists across cycles
+let timeCapsuleHistorian = null; // { x, y, revealedToday, donatedToday, day } — resets like every other one-day visitor
+
+function spawnTimeCapsuleHistorian() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const spot = findClearGroundNear(dock.x, dock.y, 1, 12) || dock;
+    timeCapsuleHistorian = { x: spot.x, y: spot.y, revealedToday: false, donatedToday: false, day: world.day };
+    if (timeCapsuleBox) {
+        notify('A traveling historian has arrived with a small shovel — and a familiar-looking box.', 4500);
+    } else {
+        notify('A traveling historian has arrived with a small shovel, collecting a memory to bury for next time.', 4500);
+    }
+}
+
+function updateTimeCapsuleHistorian() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'The Neighborhood Time Capsule') {
+        timeCapsuleHistorian = null;
+        return;
+    }
+    if (!world) return;
+    if (!timeCapsuleHistorian || timeCapsuleHistorian.day !== world.day) spawnTimeCapsuleHistorian();
+}
+
+function drawTimeCapsuleHistorian() {
+    if (!timeCapsuleHistorian) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = timeCapsuleHistorian.x * TS - cameraX, sy = timeCapsuleHistorian.y * TS - cameraY;
+    noStroke();
+    fill('#6D4C41');
+    rect(sx + TS * 0.25, sy + TS * 0.3, TS * 0.5, TS * 0.7, 2);
+    fill('#A1887F');
+    rect(sx + TS * 0.15, sy + TS * 0.55, TS * 0.7, TS * 0.15);
+    fill('#FFCC80');
+    ellipse(sx + TS / 2, sy + TS * 0.2, TS * 0.4, TS * 0.4);
+}
+
+function isFacingTimeCapsuleHistorian() {
+    if (!timeCapsuleHistorian || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === timeCapsuleHistorian.x && facing.y === timeCapsuleHistorian.y;
+}
+
+// First real material/gift/treasure item the player is carrying — tools and
+// building blocks don't count as a "harvestable" to donate.
+function findDonatableItem() {
+    if (typeof inventory === 'undefined') return null;
+    for (const slot of inventory.slots) {
+        if (!slot || !slot.id) continue;
+        const item = ITEMS[slot.id];
+        if (!item || item.category === 'tool' || item.category === 'block') continue;
+        return slot;
+    }
+    return null;
+}
+
+function tryTalkToTimeCapsuleHistorian() {
+    if (!timeCapsuleHistorian || !isFacingTimeCapsuleHistorian()) return false;
+
+    if (timeCapsuleBox && !timeCapsuleHistorian.revealedToday) {
+        timeCapsuleHistorian.revealedToday = true;
+        const box = timeCapsuleBox;
+        const donorLines = box.neighborDonations.map(d => d.name + ' donated ' + d.item).join('; ');
+        notify('The historian digs up the old box and reads the list, half-mangled: "' + box.memoryLine + '" — and somewhere in there, ' + box.itemName + '. Neighbors argue cheerfully: ' + donorLines + '.', 6500);
+        timeCapsuleBox = null;
+        return true;
+    }
+
+    if (timeCapsuleHistorian.donatedToday) {
+        notify('"Already got your memory for this box. Come back next time it\'s buried."', 3500);
+        return true;
+    }
+
+    const slot = findDonatableItem();
+    if (!slot) {
+        notify('"Bring me something you\'ve gathered, and a memory to go with it."', 3500);
+        return true;
+    }
+
+    const itemName = ITEMS[slot.id].name || slot.id;
+    inventory.removeItem(slot.id, 1);
+    const memoryLine = TIME_CAPSULE_MEMORY_LINES[Math.floor(Math.random() * TIME_CAPSULE_MEMORY_LINES.length)];
+
+    const present = (typeof npcs !== 'undefined') ? npcs.filter(n => n.isPresent) : [];
+    const donorCount = Math.min(present.length, 2 + Math.floor(Math.random() * 3));
+    const pool = present.slice();
+    const neighborDonations = [];
+    for (let i = 0; i < donorCount; i++) {
+        const npc = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+        const line = TIME_CAPSULE_NEIGHBOR_LINES[Math.floor(Math.random() * TIME_CAPSULE_NEIGHBOR_LINES.length)];
+        neighborDonations.push({ name: npc.name, item: line });
+    }
+
+    timeCapsuleHistorian.donatedToday = true;
+    timeCapsuleBox = { itemName, memoryLine, neighborDonations, buriedDay: world.day };
+    notify('You donate your ' + itemName + ' and one memory: "' + memoryLine + '" The historian buries the box, with everyone else\'s donations mixed in.', 5500);
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -2951,6 +3080,8 @@ function mousePressed() {
         // The Picnic Reset: talk to the organizer, or listen in on a seated pair
         if (typeof tryTalkToPicnicOrganizer === 'function' && tryTalkToPicnicOrganizer()) return;
         if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return;
+        // The Neighborhood Time Capsule: talk to the historian to donate or dig up
+        if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4229,6 +4360,8 @@ function keyPressed() {
             // The Picnic Reset: talk to the organizer, or listen in on a seated pair
             if (typeof tryTalkToPicnicOrganizer === 'function' && tryTalkToPicnicOrganizer()) return false;
             if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return false;
+            // The Neighborhood Time Capsule: talk to the historian to donate or dig up
+            if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

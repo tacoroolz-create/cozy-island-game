@@ -38,7 +38,10 @@ function getHolidayGreetingPrefix(name) {
             "I brought him a moonlit beet. He snorted three times. That means he liked it.",
             "I tried to give him my spare sock. He refused. Politely.",
             "I left a carrot by his blanket. He inspected it for a solid minute before accepting.",
-            "Happy birthday to Hoggy! I gave him a squash almost as big as he is."
+            "Happy birthday to Hoggy! I gave him a squash almost as big as he is.",
+            "Hoggy deserves the world, but I'll start with this perfectly good radish.",
+            "I sang to him very softly. He pretended to sleep, but his ears were listening.",
+            "Hoggy's one year wiser and somehow even hungrier."
         ];
     } else if (holiday.name === 'Turtle Crossing Guard Day') {
         comments = [
@@ -46,7 +49,10 @@ function getHolidayGreetingPrefix(name) {
             "I saluted a turtle. It did not salute back. I am still proud.",
             "Softly now. They're carrying small dreams on their backs.",
             "Crossing guard duty today! I've never taken a job more seriously.",
-            "One turtle down, several more to go. This is the best shift of my life."
+            "One turtle down, several more to go. This is the best shift of my life.",
+            "I gave a turtle a little leaf umbrella. It didn't use it, but the thought counts.",
+            "Turtle traffic is slow, patient, and deeply correct. We could learn a lot.",
+            "I waved a turtle across the path like I was directing a parade. It was a parade."
         ];
     } else if (holiday.name === 'The Returning Bird') {
         const friend = (typeof getReturningBirdFriend === 'function') ? getReturningBirdFriend() : null;
@@ -54,15 +60,162 @@ function getHolidayGreetingPrefix(name) {
             comments = [
                 "That's my old friend out there. I'd know that hop anywhere.",
                 "Sorry, I'm a little distracted — I have a reunion to get to.",
-                "We used to be inseparable. I'm not letting a few years change that."
+                "We used to be inseparable. I'm not letting a few years change that.",
+                "I saved a breadcrumb from breakfast. That bird deserves the good stuff."
             ];
         } else {
             comments = [
                 `I think ${friend ? friend.name : 'someone'} is pretending to remember that bird. Birds are like that.`,
                 "There's a whole bird-reunion happening out there. Very touching. Very confusing.",
-                "I saw someone talking to a bird like it owed them money. Sweet, honestly."
+                "I saw someone talking to a bird like it owed them money. Sweet, honestly.",
+                "I bet that bird remembers more people than it lets on.",
+                "It's sweet how one returning bird can stop the whole island."
             ];
         }
+    } else if (holiday.name === 'Compliment a Crab Day') {
+        comments = [
+            "I told the little crab by the dock its claws had real personality, and it waved at me.",
+            "Have you complimented a crab yet? They pretend not to care, but you can tell they melt.",
+            "I saw a crab holding a shell like a hat. I said it looked distinguished. It ran sideways, thrilled.",
+            "The crabs are waiting, Dreamer. They need to hear something nice before noon.",
+            "I practiced my crab compliments in the mirror. 'Marvelous pincers.' Needs work, I think.",
+            "One crab let me sit nearby for a whole minute. That's basically a five-star review.",
+            "I complimented a crab on its outfit. It was just sand. Still valid."
+        ];
+    } else if (holiday.name === 'Talk Like an Eagle Day') {
+        comments = [
+            "Kyaaaaa! Good morning, neighbor. That never gets old.",
+            "Kyaaaaa! I've been screeching at clouds all morning and they seem impressed.",
+            "Kyaaaaa! Do you think eagles get sore throats? I might need tea.",
+            "Kyaaaaa! I tried to sound majestic in the store and knocked over a basket. Still majestic.",
+            "Kyaaaaa! The eagles on the cliffs are probably wondering why we're so loud today.",
+            "Kyaaaaa! I'll take that as a friendly hello.",
+            "Kyaaaaa! Honoring the eagles means committing to the bit. No quiet sentences before sunset."
+        ];
+    } else if (holiday.name === 'Toast Toss Tournament') {
+        comments = [
+            "I have been practicing my toast toss all morning. My elbow is sore and my breakfast is missing.",
+            "The beach targets are up! I always aim for the middle one because it looks the most polite.",
+            "I brought a whole basket of stale bread. Let us make it rain breakfast.",
+            "My throwing arm is ready. My dignity is not.",
+            "If you see toast stuck in a palm tree, that one is mine. No take backs.",
+            "I won a ribbon last year. It smelled like butter and regret."
+        ];
+    } else if (holiday.name === 'Snake Run Day') {
+        comments = [
+            "The snakes are extra zig-zaggy today. I respect their energy.",
+            "I almost caught one by the big rock. It saw me coming and chose violence.",
+            "If you catch a snake, the island gives you a gift. I assume the snake approves.",
+            "I have been chasing a green one in circles. We are bonding, I think.",
+            "They dart between trees like little ribbons with opinions.",
+            "I am not fast, but I am persistent. The snake will respect that eventually."
+        ];
+    } else if (holiday.name === 'Backflip Day') {
+        comments = [
+            "Go ahead, say hello. I have been waiting all day to backflip at someone.",
+            "I backflipped near a tree and the tree did not backflip back. Rude.",
+            "I waved at a rock and it celebrated with a backflip. This island is magic.",
+            "My knees are ready. My stomach is not. Let us do this.",
+            "Everything flips today. I saw a crab go upside down out of pure holiday spirit.",
+            "Interact with me. I promise a dignified, slightly wobbly backflip."
+        ];
+    } else if (holiday.name === 'Dig a Hole Day') {
+        comments = [
+            "I picked my hole for the year. It is already deeper than my last three decisions.",
+            "They say if we dig deep enough, we reach somewhere new. I hope it has snacks.",
+            "My pickaxe is singing. That might just be my arms complaining.",
+            "Year after year the hole grows. I am basically an architect now.",
+            "I dug for an hour and found sand. More sand. Very on theme.",
+            "Do not fall in my hole. It is part hole, part lifestyle choice."
+        ];
+    } else if (holiday.name === 'Name the Island Day') {
+        comments = [
+            "I already have three names in mind. None of them are good, but one might win.",
+            "Press P, propose a name, then come ask me. I am a swing voter.",
+            "I heard someone suggested Sandwich Island. I am not opposed.",
+            "Majority rules today, so I am being very popular on purpose.",
+            "I voted for your name. I will deny this if asked by a cooler neighbor.",
+            "Naming things is hard. I named my shadow once and it ignored me."
+        ];
+    } else if (holiday.name === 'Castle of Sticks Day') {
+        comments = [
+            "I have thirty-seven sticks and a dream. The twig tower will be glorious.",
+            "A hundred sticks makes a whole second home. I am going to decorate mine with hope.",
+            "I have been gathering twigs since sunrise. My pockets are full of pointy ambition.",
+            "The twig tower is basically a castle if you squint and believe.",
+            "I plan to put a tiny lamp in mine. Very cozy. Very structurally questionable.",
+            "Help me find sticks. I am one short of a real wall and forty short of a roof."
+        ];
+    } else if (holiday.name === 'Clean Your Room Day') {
+        comments = [
+            "I moved one chair and the door let me out. Best holiday ever.",
+            "My room is clean-ish. That is the highest honor I can give it.",
+            "I put away a lamp and now I feel like a new person. A very tidy new person.",
+            "The door was locked until I tidied. The door has standards now.",
+            "I hid everything under my rug. Does that count? It should count.",
+            "One piece of furniture moved, freedom earned. Efficiency."
+        ];
+    } else if (holiday.name === 'Lost Mail Day') {
+        comments = [
+            "If you find a soggy envelope with my name on it, I will be very grateful and slightly confused.",
+            "Letters are washing up everywhere. It is like the ocean finally remembered us.",
+            "I delivered one to the wrong neighbor by accident. They were polite about it.",
+            "I hope someone finds a letter for me. I have always wanted mystery mail.",
+            "The beach is full of sealed secrets today. Pick one up and play postmaster.",
+            "I wrote a letter last year. It is probably still floating around out there."
+        ];
+    } else if (holiday.name === 'Day of the Island God') {
+        comments = [
+            "The big turtle is on the east beach. I bowed and then asked if it wanted a snack.",
+            "Animal life doubled today. I stepped outside and immediately saw two of everything.",
+            "I visited the Island God and it was very still and very wise. I felt judged in a nice way.",
+            "The east beach feels holy today. Also sandy. But mostly holy.",
+            "I left a flower near the giant turtle. It did not move, which I choose to interpret as approval.",
+            "Have you paid your respects yet? The turtle remembers everything, probably."
+        ];
+    } else if (holiday.name === 'Sweet Valley') {
+        comments = [
+            "The beach altar's up, or at least it better be. I have a lot of feelings and nowhere to put them.",
+            "I brought the first thing I pulled from the ground. That's harvest energy right there.",
+            "They say the Island God is on its way. I tidied up my thoughts just in case.",
+            "I hope the altar likes yams. I mean, I hope whoever counts the offerings likes yams.",
+            "Sweet Valley makes the sand smell hopeful. Either that or it's the seaweed.",
+            "I made my offering already. It was a beet. I think it heard me.",
+            "No giant turtle in sight, but I can feel something big and slow being proud of us.",
+            "Beach offerings today, beach snacks later. Balance."
+        ];
+    } else if (holiday.name === 'Peak Saucy') {
+        comments = [
+            "Longest day of the year and I still can't find my other sandal. Doesn't matter. The bonfire will understand.",
+            "I'm walking the procession real slow. You can't rush gratitude. Also my legs are short.",
+            "Sweet tea or lemonade? I brought both because commitment is hard.",
+            "The bonfire's warm and so is my heart. Probably the bonfire, honestly.",
+            "I love today because the sun stays up late and nobody yawns at anyone for it.",
+            "I gave the longest day a little toast. It was sweet tea. The toast was my heart.",
+            "Peak Saucy is just everyone wandering toward warmth together. That's the whole thing and it's perfect."
+        ];
+    } else if (holiday.name === 'Cool Valley') {
+        comments = [
+            "Memory walk tonight. I'm bringing a lantern and the time I found a perfect skipping stone.",
+            "I left a little flower by the old rock. Not mourning, just saying hello to a good memory.",
+            "The moon's coming up whether we're ready or not. That's the best kind of guest.",
+            "I made enough sweet rice balls to share, or to accidentally eat on the way. We'll see.",
+            "Lanterns on the path make everything feel like a story we already love.",
+            "Cool Valley is for remembering without being sad about it. Like a cozy sigh.",
+            "I hope someone leaves a memory at my favorite tree. It deserves to be noticed.",
+            "Walking slow, eating slow, moon rising slow. Today is doing everything right."
+        ];
+    } else if (holiday.name === 'Peak Yeesh') {
+        comments = [
+            "Longest night of the year, but the Everburn's keeping the dark polite.",
+            "I dragged a bigger log than usual to the fire pit. My back is mad, my heart is proud.",
+            "Papa Yeesh is out there somewhere. Quiet. Judging my gift choices. Gently.",
+            "I gave Hoggy an extra nice turnip this year. Just in case Papa Yeesh keeps a tally.",
+            "The Evergreen boughs smell like every cozy night stacked on top of each other.",
+            "Stay up till midnight, they say. I've been training my whole life for this.",
+            "Peak Yeesh isn't about the dark. It's about making the biggest, warmest light possible.",
+            "If Papa Yeesh leaves something by my door, I'm pretending to be surprised."
+        ];
     } else if (holiday.name === 'Well-Wishing Garden') {
         const garden = (typeof wellWishGarden !== 'undefined') ? wellWishGarden : null;
         const spot = garden ? garden.spots.find(s => s.npcName === name) : null;
@@ -132,6 +285,22 @@ function getHolidayGreetingPrefix(name) {
                 "Everyone's lined up on one big picnic blanket today. I got here late.",
                 "There's a whole snaking line of neighbors out there, chatting away.",
                 "I heard the organizer moved every bench into one long row. Ambitious."
+            ];
+        }
+    } else if (holiday.name === 'The Neighborhood Time Capsule') {
+        const box = (typeof timeCapsuleBox !== 'undefined') ? timeCapsuleBox : null;
+        const donated = box && box.neighborDonations.some(d => d.name === name);
+        if (donated) {
+            comments = [
+                "I donated something to the box. I'm not telling you what.",
+                "Whatever I put in that box, I stand by it completely. Mostly.",
+                "The historian buried my contribution today. History will remember me kindly, I hope."
+            ];
+        } else {
+            comments = [
+                "A historian's burying a box of everyone's memories today. Very dramatic for a Tuesday.",
+                "I heard there's an old box getting dug up somewhere. I forget what I put in the last one.",
+                "Something about a time capsule? I wasn't paying attention, I was skipping stones."
             ];
         }
     } else {
