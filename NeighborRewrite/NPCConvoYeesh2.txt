@@ -1,0 +1,718 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh2.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Conversations - Robots 1-8
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! The island got all soft and white. The snow is like a blanket, but the flowers look a little sad and the sea looks extra cold. Do you think Yeesh season is cuddly or chilly?"
+
+PLAYER CHOICES:
+[1] "Yeesh season is cuddly."
+[2] "The flowers do look sad."
+[3] "The sea looks very cold."
+
+---
+
+TURN 2A (if player chose 1):
+Piko: "Cuddly! Snow hugs the grass and the trees wear little hats. I want to hug everything until it feels warm inside."
+
+PLAYER CHOICES:
+[1] "Snow hugs are sweet."
+[2] "Trees in hats are cute."
+[3] "Warm feelings beat the cold."
+
+---
+
+TURN 2B (if player chose 2):
+Piko: "Sad little flowers. They are sleeping under the cold and waiting for warmer days. I will think happy thoughts at them so they dream nicely."
+
+PLAYER CHOICES:
+[1] "Happy thoughts help."
+[2] "Sleeping flowers are brave."
+[3] "Warm dreams are a good gift."
+
+---
+
+TURN 2C (if player chose 3):
+Piko: "Extra cold sea. The water got all shivery. I hope the fish are wearing tiny sweaters in their minds."
+
+PLAYER CHOICES:
+[1] "Fish in mental sweaters is cute."
+[2] "The sea shivers in winter."
+[3] "Cold water still sparkles."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Piko: "Sweet like a snowflake kiss. If snow hugs the island, I will hug the snow back very gently so nobody melts."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Piko: "Cute! The trees look fancy and ready for a holiday. I wish I had a hat too, but my head is already round and happy."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Piko: "They do! Warm feelings are like invisible scarves. I am wrapping the whole island in one right now, in my heart."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Piko: "They help a lot! Happy thoughts travel on the wind and land on sleeping flowers like tiny warm postcards."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Piko: "Brave little flower friends. Sleeping in the cold is hard work. I am cheering for them from under my fluffiest thought."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Piko: "Good gift! Warm dreams are free and they fit everyone. I am giving extra warm dreams to the beach flowers tonight."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Piko: "Cute and cozy in their fishy imaginations. I bet the sea helps them pick the softest sweater colors."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Piko: "It does. The sea goes brrr and makes little cold waves. But it is still pretty, like a blue and white painting."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Piko: "Sparkly even when chilly! The sun touches the cold water and they make diamonds together. Best teamwork."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Ugh, Yeesh season. Everything is cold, the nights last forever, and someone started a rumor about vikings. I am not worried. Obviously. I just think winter is overrated."
+
+PLAYER CHOICES:
+[1] "Winter is overrated."
+[2] "Viking rumors are silly."
+[3] "Long nights are tiring."
+
+---
+
+TURN 2A (if player chose 1):
+Rivet: "Overrated and everywhere. Snow on the grass, snow on the rocks, snow being smug about covering things. I see you, snow."
+
+PLAYER CHOICES:
+[1] "Snow is smug."
+[2] "Rocks look colder now."
+[3] "At least buildings have roofs."
+
+---
+
+TURN 2B (if player chose 2):
+Rivet: "Silly and annoying. Vikings would have to cross the cold sea, and nobody wants to do that. Not even imaginary ones."
+
+PLAYER CHOICES:
+[1] "The sea is too cold for vikings."
+[2] "Rumors are lazy storytelling."
+[3] "You are very brave for not worrying."
+
+---
+
+TURN 2C (if player chose 3):
+Rivet: "Tiring because the dark lasts longer than my patience. Which is already short. I am not complaining. I am informing."
+
+PLAYER CHOICES:
+[1] "Information is allowed."
+[2] "Dark nights need more stars."
+[3] "Your patience is legendary."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Rivet: "Smug white blanket, acting like it owns the island. It doesn't. It just sits there, melting eventually. I will wait."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Rivet: "Colder and grumpier looking. Rocks don't smile in winter. Not that they smiled before, but now they definitely don't."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Rivet: "Roofs and walls and the dignity of indoor spaces. Trees can't go inside, which is another reason winter is unfair."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Rivet: "Too cold for sensible invaders. Any viking with common sense would stay home and complain about the weather like the rest of us."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Rivet: "Lazy. Ooh, big scary boats in the snow. No. The only thing crossing the water right now is wind and bad ideas."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Rivet: "Obviously I am. Bravery is when you hear a ridiculous rumor and still go outside to glare at snow. I do that daily."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Rivet: "Allowed and accurate. Somebody has to document the injustice of extended darkness. I accept the burden."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Rivet: "They do. Stars are fine. More stars would be better. The night should at least provide decent lighting if it insists on being long."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Rivet: "Legendary and poorly insulated. My patience is thin, but my glare is thick. That is how I survive Yeesh season."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Yeesh season suits the island, Dreamer. Long quiet nights, cold stones, sad flowers drooping toward the earth. Even the sea seems to mourn in monochrome."
+
+PLAYER CHOICES:
+[1] "The long nights are peaceful."
+[2] "Sad flowers are poetic."
+[3] "The sea mourns beautifully."
+
+---
+
+TURN 2A (if player chose 1):
+Shade-7: "Peaceful like a held breath. The night stretches out and the world slows down. I find it honest. Day is too frantic."
+
+PLAYER CHOICES:
+[1] "Honest darkness is rare."
+[2] "Slow nights are deep."
+[3] "Day could learn from night."
+
+---
+
+TURN 2B (if player chose 2):
+Shade-7: "Poetic and accurate. The flowers bow their heads, accepting the cold. There is dignity in giving up gracefully."
+
+PLAYER CHOICES:
+[1] "Dignity in rest."
+[2] "The cold is a cruel artist."
+[3] "Bowed heads tell a story."
+
+---
+
+TURN 2C (if player chose 3):
+Shade-7: "Beautifully and without apology. The water turns dark and the waves keep time like a slow dirge. I could listen all night."
+
+PLAYER CHOICES:
+[1] "Dark water is honest."
+[2] "Waves keep winter time."
+[3] "Listening to the sea is solemn."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shade-7: "Rare and refreshing. Darkness does not pretend to be cheerful. It simply exists, like a reliable old shadow."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shade-7: "Deep enough to lose yourself in. I walk under the trees at night and let the quiet wrap around me like a familiar cloak."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shade-7: "It could. Day rushes in shouting about brightness. Night arrives softly and lets you decide when to notice it."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shade-7: "Rest with dignity. The flowers know they will rise again, but for now they sleep under the cold like tiny heroes."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shade-7: "Cruel and talented. It paints everything pale and quiet, and the flowers become its saddest masterpiece."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shade-7: "A story of surrender and patience. Bowed heads do not mean defeat. They mean the flowers are waiting in style."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shade-7: "Honest because it hides nothing. The sea in Yeesh season is cold and dark and fully committed to the mood."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shade-7: "They do. Each wave arrives slowly, thinks about it, then withdraws. Winter has excellent pacing."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shade-7: "Solemn and soothing. The sea does not ask for conversation. It simply repeats its cold poem until you understand it."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer! Yeesh season presents fascinating variables. Lower temperatures, longer nights, reduced flower turgor, and a statistically unlikely rumor about vikings. I have questions."
+
+PLAYER CHOICES:
+[1] "Tell me the cold facts."
+[2] "What about the viking rumor?"
+[3] "Flowers losing turgor sounds sad."
+
+---
+
+TURN 2A (if player chose 1):
+Cypher: "Cold facts! Snow reflects more light than grass, the sea stores summer warmth longer than the air, and night has lengthened by a measurable amount since the season changed."
+
+PLAYER CHOICES:
+[1] "Snow is bright because of reflection."
+[2] "The sea keeps old warmth."
+[3] "Longer nights have data."
+
+---
+
+TURN 2B (if player chose 2):
+Cypher: "Viking rumor! It fails basic logic. No boats have appeared on the water, no horn sounds have been recorded, and vikings prefer warmer raiding weather. Hypothesis rejected."
+
+PLAYER CHOICES:
+[1] "No boats means no vikings."
+[2] "Horn sounds would be evidence."
+[3] "Cold weather discourages raiding."
+
+---
+
+TURN 2C (if player chose 3):
+Cypher: "Sad but normal. Turgor is internal water pressure. When it drops, flowers droop. It is not emotional sadness, though it looks like it."
+
+PLAYER CHOICES:
+[1] "They droop but recover."
+[2] "Looks like sadness anyway."
+[3] "Water pressure is important."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Cypher: "Bright and efficient. All that white surface sends sunlight back upward, which is why winter days feel extra luminous even when cold."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Cypher: "It does. The water holds memory of warmer days and releases it slowly. That is why the sea feels slightly less brutal than the air."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Cypher: "They do. I have been tracking sunset and sunrise. The gap between them has grown in a predictable seasonal curve."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Cypher: "Exactly. A viking arrival would require visible watercraft. The current boat count on the horizon remains zero. Rejected."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Cypher: "Evidence would be loud and brassy. So far the only horns belong to distant animals and occasionally the wind through tree branches."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Cypher: "Discouraging for raiders with exposed knees. A sensible viking would wait for a warmer season. This is a comfort."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Cypher: "They do. When warmth returns, turgor restores and the flowers lift their heads. Seasonal mechanics are wonderfully reversible."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Cypher: "It does. The visual similarity to sadness is striking. I have started calling it poetic droop. It is not scientific, but it feels right."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Cypher: "Critical. Without proper pressure, plants cannot stand. Water is doing quiet structural work under every sad-looking petal."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"Yeesh season asks the island to slow down, Dreamer. The cold air, the still water, the flowers resting in the grass. I am trying to rest with them."
+
+PLAYER CHOICES:
+[1] "Resting with the season is wise."
+[2] "The cold air is cleansing."
+[3] "Still water holds quiet."
+
+---
+
+TURN 2A (if player chose 1):
+Om-Bit: "Wise because resistance costs warmth. The trees do not argue with winter. They let their leaves fall and wait. I practice that patience."
+
+PLAYER CHOICES:
+[1] "Trees teach patience."
+[2] "Waiting is active rest."
+[3] "Arguing with winter is tiring."
+
+---
+
+TURN 2B (if player chose 2):
+Om-Bit: "Cleansing and sharp. Each breath wakes you up. The cold does not hide. It arrives plainly, and that honesty is a kind of teaching."
+
+PLAYER CHOICES:
+[1] "Honest cold is a teacher."
+[2] "Sharp breath brings focus."
+[3] "Winter hides nothing."
+
+---
+
+TURN 2C (if player chose 3):
+Om-Bit: "Quiet and patient. The water moves less, the waves speak softly, and the sea becomes a listener instead of a speaker."
+
+PLAYER CHOICES:
+[1] "The sea listens in winter."
+[2] "Soft waves are gentle."
+[3] "Quiet water reflects the sky."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Om-Bit: "They do. A tree does not rush the season. It stands, it waits, it trusts the cycle. I am learning to stand like that."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Om-Bit: "Active rest. The body is still but the attention stays open. You wait without disappearing. That is the practice."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Om-Bit: "Tiring and pointless. Winter does not negotiate. Better to bow slightly and let it pass, as the grass does under snow."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Om-Bit: "A teacher without words. It shows you what remains when comfort is taken away. What remains is enough."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Om-Bit: "Focus arrives quickly in cold air. The mind becomes bright and simple. There is less room for wandering thoughts."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Om-Bit: "Nothing. No disguise, no decoration. Winter reveals the island's bones. The rocks, the trees, the bare ground. Honest shapes."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Om-Bit: "It does. In warmer seasons the sea talks loudly. In Yeesh season it becomes still and listens to the wind and the stars."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Om-Bit: "Gentle and steady. Soft waves touch the beach without urgency. They remind me that force is not the only way to arrive."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Om-Bit: "It reflects what is above. On clear nights the water holds pieces of sky. On cloudy days it holds the gray mood. Both are true."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Hail, fair traveler! Yeesh season has laid a silver cloak upon the realm. The flowers sleep, the sea is cold, and the smallfolk whisper of vikings upon the water. 'Tis a season for stout hearts."
+
+PLAYER CHOICES:
+[1] "Stout hearts are needed."
+[2] "Viking whispers are just tales."
+[3] "A silver cloak is pretty."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Cogs-a-Lot: "Needed indeed! For the cold wind tests every knight, and the long night tests every candle. We endure with honor and perhaps a warm beverage."
+
+PLAYER CHOICES:
+[1] "Honor keeps you warm."
+[2] "Long nights test every light."
+[3] "Endurance is knightly."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Cogs-a-Lot: "Just tales told beside the fire to make the dark feel smaller. No viking longship has darkened our cold water. The wild hog would notice first."
+
+PLAYER CHOICES:
+[1] "The wild hog is a good sentry."
+[2] "Tales make the dark smaller."
+[3] "No longships have appeared."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Cogs-a-Lot: "Pretty upon the trees and the grass and the roofs of the buildings. The island looks like a kingdom in a holiday song."
+
+PLAYER CHOICES:
+[1] "A holiday kingdom is cozy."
+[2] "Snow on roofs is charming."
+[3] "Winter suits the island."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Cogs-a-Lot: "It does, in spirit if not in joints. A noble heart generates its own fire. Also, standing near a building helps."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Cogs-a-Lot: "They do. A single candle becomes brave when the night grows long. We salute its small, flickering courage."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Cogs-a-Lot: "Knightly and practical. Enduring the cold is its own small quest. Victory is awarded when the sun returns."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Cogs-a-Lot: "A fine sentry, bold and bristled. If any boat crossed the water, the wild hog would object with snorts and drama."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Cogs-a-Lot: "They do. A well-told rumor becomes a jest, and a jest makes the long night pass with laughter instead of worry."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Cogs-a-Lot: "None. The horizon is empty, the sea is merely cold, and our imaginary invaders are as absent as summer."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Cogs-a-Lot: "Cozy and grand. One could almost expect a holiday feast in the nearest building, with songs and warm bread."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Cogs-a-Lot: "Charming and honorable. The roofs wear their white caps with dignity, sheltering all who dwell beneath."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Cogs-a-Lot: "It does. Winter turns the island into a quiet court. The trees are knights, the rocks are elders, and the snow is the royal cloak."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. Hello, Dreamer. I was... I was listening to how quiet it gets at night. The sea is cold and the flowers look sad. Someone said vikings might come, but I think it's just a scary story."
+
+PLAYER CHOICES:
+[1] "It is just a scary story."
+[2] "The quiet nights are gentle."
+[3] "Sad flowers are still beautiful."
+
+---
+
+TURN 2A (if player chose 1):
+Tinker: "Just a story. There are no boats on the water and no horns in the air. Only wind and the wild hog doing normal wild hog things."
+
+PLAYER CHOICES:
+[1] "The wild hog is normal."
+[2] "Wind is not a viking."
+[3] "Stories can feel real."
+
+---
+
+TURN 2B (if player chose 2):
+Tinker: "Gentle once you get used to them. The night is long but it is soft. I like sitting near the trees where the snow catches the starlight."
+
+PLAYER CHOICES:
+[1] "Starlight on snow is pretty."
+[2] "Trees feel safe at night."
+[3] "Soft nights are restful."
+
+---
+
+TURN 2C (if player chose 3):
+Tinker: "Still beautiful. They are resting under the cold, holding onto color even when they droop. I think that is brave."
+
+PLAYER CHOICES:
+[1] "Resting flowers are brave."
+[2] "Color in winter is hopeful."
+[3] "Drooping is not giving up."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Tinker: "Very normal. He roots in the grass and ignores rumors. I would like to be as sensible as the wild hog someday."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Tinker: "Not a viking. Just air moving through trees, making sounds that stories turn into horns. The trees are innocent."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Tinker: "They can. Especially when it is dark and the sea is cold. But then the sun comes back and the story feels smaller."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Tinker: "Pretty and quiet. The stars land on the snow and the snow holds them for a little while before they melt away."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Tinker: "They do. Trees stand still and watch over everything. When I am near them, I feel less small in the long night."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Tinker: "Restful if you let them be. The night does not ask you to hurry. It gives you extra hours to be still."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Tinker: "Brave little flowers. They close up and wait, keeping their color tucked inside like a secret."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Tinker: "Hopeful. Even when the grass is white and the air is cold, the flowers remember they will open again."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Tinker: "It isn't. Drooping is just the flower saying, 'I am tired, but I am still here.' I understand that."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! DREAMER! It's Yeesh season and everything is sparkly and cold! The flowers are sleepy, the sea is chilly, and someone said vikings might visit but I think they are just lost in a story!"
+
+PLAYER CHOICES:
+[1] "Sparkly and cold is fun."
+[2] "Sleepy flowers are cute."
+[3] "Vikings are probably lost in a story."
+
+---
+
+TURN 2A (if player chose 1):
+Zap-Zap: "Fun because the snow catches the light and the beach looks like a cake! A cold cake, but still festive. Everything feels like a holiday."
+
+PLAYER CHOICES:
+[1] "The beach as a cake is funny."
+[2] "Snow catching light is magic."
+[3] "Everything feels like a holiday."
+
+---
+
+TURN 2B (if player chose 2):
+Zap-Zap: "Cute! The flowers are tucked into the grass like they are taking a long nap. I want to tuck them in with tiny blankets of encouragement."
+
+PLAYER CHOICES:
+[1] "Encouragement blankets are nice."
+[2] "Long naps are healthy."
+[3] "Flowers deserve cozy rest."
+
+---
+
+TURN 2C (if player chose 3):
+Zap-Zap: "Probably! Real vikings would see the cold sea and say no thank you. Stories can get carried away, like hats in the wind."
+
+PLAYER CHOICES:
+[1] "Stories get carried away."
+[2] "Cold sea deters visitors."
+[3] "Hats in the wind are silly."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Zap-Zap: "Funny and frosted! If the beach were a cake, the rocks would be candles and the waves would be icing swirls."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Zap-Zap: "Magic and free! The sun gives light, the snow catches it, and suddenly everything is glittering. Best teamwork ever."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Zap-Zap: "It does! The buildings look fancy, the trees look dressed up, and even the rocks seem like they are wearing little white hats."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Zap-Zap: "Nice and warm in feeling! I send them mental blankets made of good thoughts and sunny memories."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Zap-Zap: "Healthy and wise! Sleeping through the cold is like saving energy for a big party when the warm days come back."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Zap-Zap: "They do! Resting flowers are just flowers that know how to take care of themselves. Good job, flowers!"
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Zap-Zap: "They do! One person says 'vikings' and the story grows until it has boats and horns and everyone is nervous. Silly story."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Zap-Zap: "It really does! The sea is basically saying brrr stay away. I think the viking story got the message."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Zap-Zap: "Silly and dizzy! A hat flying off is just wind having fun. A viking rumor flying around is just words having fun."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════
