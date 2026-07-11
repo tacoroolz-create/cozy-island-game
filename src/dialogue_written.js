@@ -708,7 +708,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You? You're INVITED! To EVERYTHING! Here's your official membership card to the 'Mimis Party Posse!' Benefits include: unlimited confetti, surprise celebrations, and access to my secret glitter stash! The GOOD glitter. Not the cheap stuff.",
+      "text": "You? You're INVITED! To EVERYTHING! You're officially part of the 'Mimis Party Posse!' Benefits include: unlimited confetti, surprise celebrations, and access to my secret glitter stash! The GOOD glitter. Not the cheap stuff.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1168,7 +1168,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You have listened. Truly listened. Take this clone. Plant it where you need PEACE. Water it with honesty. Speak to it with kindness. It will grow. And when the wind moves its leaves... you will hear my voice. And the earth's heartbeat. FOREVER.",
+      "text": "You have listened. Truly listened. Carry this thought with you: plant peace where you need it. Water it with honesty. Speak to it with kindness. It will grow. And when the wind moves its leaves... you will hear my voice. And the earth's heartbeat. FOREVER.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1380,9 +1380,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Are you... one of THOSE SCP things? The dangerous ones?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1454,8 +1457,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Ah. You've found me. Most don't. I prefer it that way. But you... you have the look of someone who doesn't ask too many questions. Refreshing.\"",
       "choices": [
@@ -1589,7 +1591,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You know......most people want spells. Potions. Quick fixes. But you? You want to UNDERSTAND. Take this. It's my 'Introduction to Self-Focus' theory. Read it. Question it. IMPROVE it! That's how magic GROWS!",
+      "text": "You know......most people want spells. Potions. Quick fixes. But you? You want to UNDERSTAND. Hold onto this idea: my 'Introduction to Self-Focus' theory. Read it. Question it. IMPROVE it! That's how magic GROWS!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1617,9 +1619,12 @@ const WRITTEN_DIALOGUES = {
           "text": "A dog who loves astrophysics? That's amazing!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1691,8 +1696,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hello. I was just calculating the orbital trajectory of the moon. Well, not CALCULATING calculating. More like... contemplating. I'm Liz. I enjoy astrophysics and quiet contemplation. And doors. Doors are fascinating.\"",
       "choices": [
@@ -1734,7 +1738,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here is my gift to you: Tonight, look up. Not at your phone. Not at lights. At the STARS. Find Orion. Or Cassiopeia. Or just... the space BETWEEN stars. That's where the magic is. And if you see a shooting star... make a wish. I'll be calculating its velocity. But you... wish.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1762,9 +1766,12 @@ const WRITTEN_DIALOGUES = {
           "text": "What's the most satisfying thing you've organized?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1836,8 +1843,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Greetings. I am Eo. I have been... schooling. For responsible attention. It means I pay attention to things. RESPONSIBLY. Not like Quark. He pays attention to EVERYTHING. All at once. It's exhausting to watch.\"",
       "choices": [
@@ -1907,9 +1913,12 @@ const WRITTEN_DIALOGUES = {
           "text": "You're the most energetic robot I've ever met!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -1973,7 +1982,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You know......most people say 'Quark, stop collecting. It's too much.' But you? You're INTERESTED! So......here. My FAVORITE item. A bottle cap. From 1982. It's NOT the most valuable. But it's... SPECIAL. I'm sharing it with you. That means... you're SPECIAL too.",
+      "text": "You know......most people say 'Quark, stop collecting. It's too much.' But you? You're INTERESTED! So......let me tell you about my FAVORITE item. A bottle cap. From 1982. It's NOT the most valuable. But it's... SPECIAL. Sharing the story with you. That means... you're SPECIAL too.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1981,8 +1990,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HIHIHI! You'reNEW! Hi! I'mQuark! DidyoubringanythingSHINY? No? That'sOKAY! IhavePLENTY! Wanttosee? Wanttosee? WANTTOSEE?\"",
       "choices": [
@@ -2024,7 +2032,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "You know......most people say 'Quark, stop collecting. It's too much.' But you? You're INTERESTED! So......let me tell you about my FAVORITE item. A bottle cap. From 1982. It's NOT the most valuable. But it's... SPECIAL. Sharing the story with you. That means... you're SPECIAL too.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2052,9 +2060,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I'd like to meditate with you, if that's okay.",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2118,7 +2129,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You honor......my practice. Take this. It will shift with YOUR emotions. Learn yourself... through color. When you understand your own hues... you understand all beings. Return... when you need color-peace.",
+      "text": "You honor......my practice. May your colors shift with YOUR emotions. Learn yourself... through color. When you understand your own hues... you understand all beings. Return... when you need color-peace.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2126,8 +2137,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hello. I am Zora. I speak in colors, but I can... translate. For you. The sea breeze is particularly lovely today. Would you like to meditate?\"",
       "choices": [
@@ -2169,7 +2179,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "You honor......my practice. May your colors shift with YOUR emotions. Learn yourself... through color. When you understand your own hues... you understand all beings. Return... when you need color-peace.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2197,9 +2207,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I need advice, and I hear you're... opinionated.",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2271,8 +2284,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Well, well. Look what the cat dragged in. Or didn't drag in, because Luna would never. She has STANDARDS. I'm Basil. I grow sarcastic comments on demand. Want a sample? They're fresh.\"",
       "choices": [
@@ -2314,7 +2326,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here's my advice: Stop taking life so SERIOUSLY! Look at me! I'm a PLANT who makes SASS my photosynthesis! But really......if you're stuck, ask yourself: 'What would Basil do?' Answer: Something witty, probably rude, definitely memorable. Come back anytime. I'm rooted here. Literally can't leave.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2342,9 +2354,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I have time now, if your schedule permits!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2416,8 +2431,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Ah. You're 3.47 minutes early for our scheduled interaction. Not that we HAD a schedule. But I've created one. Here. Your appointment slots. Tuesdays work best for me. Unless there's a power outage. Then... chaos.\"",
       "choices": [
@@ -2487,9 +2501,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Is all your gossip nice? Or do you spread mean stuff?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2561,8 +2578,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! OhmygoodnessHI! You'reNEW! I'mZephyr! DidyouhearaboutwhathappenedwithHudsonandMimis? OhWAIT! YouprobablyDON'T! LetmeTELLYOU! \"",
       "choices": [
@@ -2632,9 +2648,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I love shiny things too! Maybe we can share?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2698,7 +2717,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. This is... my FAVORITE. Found it after the big storm. It's GREEN. Like me! I'm trusting you. With my TREASURE. Don't... don't make me regret it, okay? But you can BORROW it! Just bring it back! PLEASE?",
+      "text": "Here. Let me show you... my FAVORITE. Found it after the big storm. It's GREEN. Like me! I'm trusting you. With my TREASURE story. Don't... don't make me regret it, okay? But you can enjoy it too! Just remember it fondly! PLEASE?",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2706,8 +2725,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Halt! I am Gorm! Hoarder of glitter! Guardian of......this particular patch of ground! Wait, you're not here to steal my glitter, are you? Because I HAVE it. All of it. Every piece.\"",
       "choices": [
@@ -2749,7 +2767,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. Let me show you... my FAVORITE. Found it after the big storm. It's GREEN. Like me! I'm trusting you. With my TREASURE story. Don't... don't make me regret it, okay? But you can enjoy it too! Just remember it fondly! PLEASE?",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2777,9 +2795,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I don't want to startle you! Just saying hi!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2843,7 +2864,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. This is... a spore. From my cap. Plant it... where you need calm. It will grow. Small. Quiet. And when you see it... remember:...you are allowed to take up space. Even quietly. Especially quietly. Come back... anytime. I'll be here. Sitting. Breathing. Existing.",
+      "text": "Here. Think of this... as a spore from my cap. Imagine planting it... where you need calm. It will grow. Small. Quiet. And when you see it... remember:...you are allowed to take up space. Even quietly. Especially quietly. Come back... anytime. I'll be here. Sitting. Breathing. Existing.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2851,8 +2872,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Um... hello. I'm... Sprig. Sorry. I don't mean to be... here. But I am. You can... talk. If you want. Or not. That's... also okay.\"",
       "choices": [
@@ -2894,7 +2914,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. Think of this... as a spore from my cap. Imagine planting it... where you need calm. It will grow. Small. Quiet. And when you see it... remember:...you are allowed to take up space. Even quietly. Especially quietly. Come back... anytime. I'll be here. Sitting. Breathing. Existing.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2922,9 +2942,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Are you always this critical, or is today special?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -2988,7 +3011,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here is my truth: Perfection is the GOAL. But NOT the REQUIREMENT. I've baked imperfect bread. It still fed people. Still brought joy. So. You can be imperfect too. And STILL be wonderful. Now stand up straight! We can work on BOTH things!",
+      "text": "Here is my truth: Perfection is the GOAL. But NOT the REQUIREMENT. I've baked imperfect bread. It still fed people. Still filled bellies. Still made smiles. So go. Make your MESS. Your masterpiece. Your SOMETHING. I'll be here. In my bakery. Being perfectly... me.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2996,8 +3019,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Good day. I couldn't help but notice......your shoes are 2.3 degrees off-center. Not that I'm JUDGING. But consistency matters. In shoes. In life. In... dough.\"",
       "choices": [
@@ -3039,7 +3061,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here is my truth: Perfection is the GOAL. But NOT the REQUIREMENT. I've baked imperfect bread. It still fed people. Still filled bellies. Still made smiles. So go. Make your MESS. Your masterpiece. Your SOMETHING. I'll be here. In my bakery. Being perfectly... me.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3067,9 +3089,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Are you a nice ghost or a spooky ghost?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3133,7 +3158,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Okay okay! You got it right! Here's your thing! And......a BONUS! I hid THIS too! Double prize! Remember: losing things isn't BAD. Finding them is an ADVENTURE! And I'll be here... hiding MORE adventures! BYEEE!",
+      "text": "Okay okay! You got it right! Here's your reward: another riddle! And......a BONUS riddle! I hid THESE too! Double puzzle! Remember: losing things isn't BAD. Finding them is an ADVENTURE! And I'll be here... hiding MORE adventures! BYEEE!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3141,8 +3166,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Helloooo~ I'm Nyx! And I have......something of yours. Want it back? Or should we play a game first?\"",
       "choices": [
@@ -3184,7 +3208,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Okay okay! You got it right! Here's your reward: another riddle! And......a BONUS riddle! I hid THESE too! Double puzzle! Remember: losing things isn't BAD. Finding them is an ADVENTURE! And I'll be here... hiding MORE adventures! BYEEE!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3212,9 +3236,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Just conversation, if you have time for that.",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3278,7 +3305,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Thank you. For... conversation. I will continue building. For the community. For YOU. If you need shelter repaired... or simply someone to talk to......I am here. Stoic. Steady. Available. This is... my promise.",
+      "text": "Thank you. For... conversation. I will continue building. For the community. For YOU. If you need shelter repaired... or a good story... or someone to stand BESIDE you... I am here. Always. Strong as stone. Soft as moss.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3286,8 +3313,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Greetings. I am Titan. I build. This will be... a gathering space. For the community. It is behind schedule. But it will be... sturdy.\"",
       "choices": [
@@ -3329,7 +3355,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Thank you. For... conversation. I will continue building. For the community. For YOU. If you need shelter repaired... or a good story... or someone to stand BESIDE you... I am here. Always. Strong as stone. Soft as moss.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3357,9 +3383,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I have time for a story! Which do YOU prefer?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3423,7 +3452,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "And so......the tides were born. From love. From loneliness. From dance. You know......most beings are too BUSY for stories. They rush. They miss the MAGIC. But you? You LISTENED. So I give you this: My story is now YOURS. Tell it. Share it. Remember it. And come back... for MORE. I have MANY. Hundreds. Thousands. I will NEVER run out!",
+      "text": "And so......the tides were born. From love. From loneliness. From dance. You know......most beings are too BUSY for stories. But you? You LISTENED. The ocean will remember that. And so will I. Return to the water... whenever your heart needs... flow.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3431,8 +3460,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Ah, greetings. I am Orla. I was just recalling the story of the Great Kelp Migration of '19. Would you like to hear it? It's quite long. I should warn you.\"",
       "choices": [
@@ -3474,7 +3502,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "And so......the tides were born. From love. From loneliness. From dance. You know......most beings are too BUSY for stories. But you? You LISTENED. The ocean will remember that. And so will I. Return to the water... whenever your heart needs... flow.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3502,9 +3530,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Squishy? Hey, I prefer 'hydro-dynamic'!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3568,7 +3599,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. It's... tumbled quartz. Nothing fancy. But it's SMOOTH. Strong. Like you might be. Someday. Take it. Keep it in your pocket. When things get rough......remember: even rocks had to weather storms to get this smooth. And come back! I've got MORE puns! WAY more!",
+      "text": "Here. It's... tumbled quartz. Nothing fancy. But it's SMOOTH. Strong. Like you might be. Someday. Keep it in your thoughts. When things get rough......remember: even rocks had to weather storms to get this smooth. And come back! I've got MORE puns! WAY more!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3576,8 +3607,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hmph. You're new. I'm Jax. I collect minerals. And I make puns. They're... rock solid. Get it? ROCK? \"",
       "choices": [
@@ -3619,7 +3649,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. It's... tumbled quartz. Nothing fancy. But it's SMOOTH. Strong. Like you might be. Someday. Keep it in your thoughts. When things get rough......remember: even rocks had to weather storms to get this smooth. And come back! I've got MORE puns! WAY more!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3647,9 +3677,12 @@ const WRITTEN_DIALOGUES = {
           "text": "You're so cheerful! What's your secret?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3713,7 +3746,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here's my gift! A lucky leaf! Keep it! When you're sad, look at it! Remember:...you always have choices. You can choose hope. You can choose joy. You can choose......to play hide-and-seek in the rain! I'll be HERE! Being LUCKY! For BOTH of us!",
+      "text": "Here's my wish for you! A lucky thought! Keep it! When you're sad, remember it! Remember:...you always have choices. You can choose hope. You can choose joy. You can choose......to play hide-and-seek in the rain! I'll be HERE! Being LUCKY! For BOTH of us!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3721,8 +3754,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! I'm Clover! I was just playing hide-and-seek! But I'm TOO GOOD at hiding! Nobody ever finds me! So I found YOU instead! Want to play?\"",
       "choices": [
@@ -3764,7 +3796,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here's my wish for you! A lucky thought! Keep it! When you're sad, remember it! Remember:...you always have choices. You can choose hope. You can choose joy. You can choose......to play hide-and-seek in the rain! I'll be HERE! Being LUCKY! For BOTH of us!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3792,9 +3824,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Can you teach me to tinker like you?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -3858,7 +3893,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here! It's a......screwdriver! That's ALSO a bottle opener! And a......I'm not sure what this part does! But it's USEFUL! Probably! Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes......that's just confetti! Come show me your creations!",
+      "text": "Here! Let me show you a......screwdriver! That's ALSO a bottle opener! And a......I'm not sure what this part does! But it's USEFUL! Probably! Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes......that's just confetti! Come show me your creations!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -3866,8 +3901,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hey there! I'm Sprocket! I saw you walking and I thought—you might need this! I don't know WHAT it does yet, but it LOOKS useful! Want it?\"",
       "choices": [
@@ -3909,7 +3943,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here! Let me show you a......screwdriver! That's ALSO a bottle opener! And a......I'm not sure what this part does! But it's USEFUL! Probably! Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes......that's just confetti! Come show me your creations!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4001,7 +4035,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You may join me. But know this:...the nap is not the goal. The nap is the JOURNEY. In stillness, we find motion. In silence, we find song. In sleep......we find ourselves. Stay. Rest. Contemplate. The world will......still be there... when you wake...",
+      "text": "You may join me. But know this:...the nap is not the goal. The nap is the JOURNEY. In stillness, we find motion. In silence, we hear thought. In REST... we become ready. Ready for play. Ready for work. Ready for LIFE. Now close your eyes. Just for a moment. I'll guard your peace.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4029,9 +4063,12 @@ const WRITTEN_DIALOGUES = {
           "text": "You light up when you're excited! That's AMAZING!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4103,8 +4140,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hello! I'm Vira! Why are you here? Why is the sky blue? Why do dreams DREAM us back? WHY is why my FAVORITE question!\"",
       "choices": [
@@ -4146,7 +4182,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here! A piece of my light! It will glow when YOU'RE curious! When YOU ask why! Remember: Every why is a DOOR! Behind it? Another why! And another! The journey NEVER ends! So keep asking! Keep wondering! And come FIND me! I'll have NEW whys! ALWAYS new whys!\" *She zips away, already asking the air \"Why do birds FLY?",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4174,9 +4210,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Just existing together sounds perfect!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4240,7 +4279,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this leaf. It has absorbed my sunlight. My rain. My WISDOM. When you are lost... hold it. When you are afraid... listen to it. It will whisper......what the roots already know: You are stronger than you believe. More connected than you see. And never......truly alone.",
+      "text": "Take this thought. A leaf that has absorbed my sunlight. My rain. My WISDOM. When you are lost... hold it in your heart. When you are afraid... listen to it. It will whisper......what the roots already know: You are stronger than you believe. More connected than you see. And never......truly alone.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4248,8 +4287,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Ah. You approach. I am Birch. I have been... watching. For a long time. Would you care to hear a story? Or perhaps... you have one to share?\"",
       "choices": [
@@ -4291,7 +4329,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this thought. A leaf that has absorbed my sunlight. My rain. My WISDOM. When you are lost... hold it in your heart. When you are afraid... listen to it. It will whisper......what the roots already know: You are stronger than you believe. More connected than you see. And never......truly alone.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4319,9 +4357,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Wait—should I be worried about you melting?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4385,7 +4426,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Thank you. For... staying. Most leave when I melt. They say 'too much.' 'too intense.' But you? You watched. You cared. So here is my promise: I will tell stories FOREVER! For ANYONE who will listen! For ANYONE who sees the DRAMA in existence! And you, darling, will ALWAYS have a front-row seat!",
+      "text": "Thank you. For... staying. Most leave when I melt. They say 'too much.' 'too intense.' But you? You watched. You cared. You didn't try to FIX me. You just... stayed. That means... everything. Come back. I'll be here. Changing. Flowing. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4393,8 +4434,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"GOOD EVENING! Or morning! Or... whenever the dream decides it is! I am Flick! Storyteller! Illuminator! Occasional......melter. When nervous.\"",
       "choices": [
@@ -4436,7 +4476,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Thank you. For... staying. Most leave when I melt. They say 'too much.' 'too intense.' But you? You watched. You cared. You didn't try to FIX me. You just... stayed. That means... everything. Come back. I'll be here. Changing. Flowing. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4464,9 +4504,12 @@ const WRITTEN_DIALOGUES = {
           "text": "The moon IS especially lovely tonight, isn't it?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4538,8 +4581,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Oh. It's you. I was... composing. A poem. About the moon. It's not finished. It's never finished.\"",
       "choices": [
@@ -4581,7 +4623,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. A poem. For you. It is called... 'The Wolf Who Loved the Moon.' Do not read it here. Read it... alone. Under moonlight. And know......that even in darkness, even in solitude... beauty exists. And sometimes......someone sees it with you. Thank you. For... seeing.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4609,9 +4651,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I love retro games too! What are you playing?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4683,8 +4728,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"BEEP! GREETINGS, PLAYER ONE! I am PIXEL! I was just......playing SPACE INVADERS! Classic! You play?\"",
       "choices": [
@@ -4726,7 +4770,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here! A POWER-UP! Well. A DIGITAL representation! But the SENTIMENT is REAL! Remember: Life is like a retro game. HARD. But FAIR. Every death is a LESSON! Every victory EARNED! So! PLAYER ONE! Go forth! COLLECT YOUR RUPPEES! DEFEAT YOUR BOWSERS! And when you need a CHECKPOINT......I am HERE! BEEP BOOP!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4754,9 +4798,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Can you repeat what I just said? With flair?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4820,7 +4867,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "You know......most say 'Aria, TOO MUCH!' 'Aria, QUIET DOWN!' But you?...you asked for MORE! So here is my gift: 🎵 A friend who listens, a friend who cares, a friend who loves how dramatically I BEEEEEEARS! 🎵 That's... that's BEARS. But I meant ARIA. Poetry is HARD! Thank you. For... appreciating my ART!",
+      "text": "You know......most say 'Aria, TOO MUCH!' 'Aria, QUIET DOWN!' But you?...you asked for MORE! So here is my song: 🎵 A friend who listens, a friend who cares, a friend who loves how dramatically I BEEEEEEARS! 🎵 That's... that's BEARS. But I meant ARIA. Poetry is HARD! Thank you. For... appreciating my ART!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4828,8 +4875,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"DARLING! You have arrived! Just in time! I was about to begin my AFTERNOON RECITAL! The acoustics here are DIVINE! Will you be my audience?\"",
       "choices": [
@@ -4871,7 +4917,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "You know......most say 'Aria, TOO MUCH!' 'Aria, QUIET DOWN!' But you?...you asked for MORE! So here is my song: 🎵 A friend who listens, a friend who cares, a friend who loves how dramatically I BEEEEEEARS! 🎵 That's... that's BEARS. But I meant ARIA. Poetry is HARD! Thank you. For... appreciating my ART!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4899,9 +4945,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I'll be quick! Promise! Just... thank you for guarding.",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -4973,8 +5022,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hmph. Another one. I'm Grumble. I guard the caves. Not that anyone ASKS me to. I just... do. Because someone HAS to.\"",
       "choices": [
@@ -5044,9 +5092,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Just moonlight sounds perfect... and you!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5110,7 +5161,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. It holds moonlight. Not metaphorically. Literally. When you are lost... hold it to the sky. The moon will ANSWER. Not in words. In......feeling. In knowing. And remember:...even in the darkest night, you are NEVER unlit. You carry your own light. I simply... help you see it.",
+      "text": "Take this moment. It holds moonlight. Not metaphorically. Literally. When you are lost... hold it in your heart. The moon will ANSWER. Not in words. In......feeling. In knowing. And remember:...even in the darkest night, you are NEVER unlit. You carry your own light. I simply... help you see it.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5118,8 +5169,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Welcome. I am Selene. I was just... arranging. The constellations were... misaligned. They do that. When no one is watching.\"",
       "choices": [
@@ -5161,7 +5211,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this moment. It holds moonlight. Not metaphorically. Literally. When you are lost... hold it in your heart. The moon will ANSWER. Not in words. In......feeling. In knowing. And remember:...even in the darkest night, you are NEVER unlit. You carry your own light. I simply... help you see it.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5189,9 +5239,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Let's talk! But maybe... slower? For my sake?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5255,7 +5308,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here! It's......charged! Wear it! When you need ENERGY! When you need SPEED! And when you need ME? Just... say my name. I'll hear it. I'll COME. Probably at high velocity! But I'll COME! That's what FRIENDS do!",
+      "text": "Here! It's......charged with energy! Imagine wearing it! When you need ENERGY! When you need SPEED! And when you need ME? Just... say my name. I'll hear it. I'll COME. Probably at high velocity! But I'll COME! That's what FRIENDS do!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5263,8 +5316,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! I'mBolt! Didyouseethat? IranaMILE! InTHREEseconds! Well, maybenotaMILE. ButitFELTlikeaMILE! Wanttorace? Wanttoseemysparktricks? Wantto—oops.\"",
       "choices": [
@@ -5306,7 +5358,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here! It's......charged with energy! Imagine wearing it! When you need ENERGY! When you need SPEED! And when you need ME? Just... say my name. I'll hear it. I'll COME. Probably at high velocity! But I'll COME! That's what FRIENDS do!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5334,9 +5386,12 @@ const WRITTEN_DIALOGUES = {
           "text": "How many acorns have you collected? It's a lot!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5400,7 +5455,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here! This is a LUCKY acorn! I found it under a RAINBOW! Keep it! When you're sad, HOLD it! When you're bored, TELL A JOKE! And remember:...life is too short for SLOW conversations or BAD PUNS! Be like me! FAST! FUNNY! FURRY! Come visit! I'll have NEW JOKES! ALWAYS NEW JOKES!",
+      "text": "Here! This is a LUCKY acorn story! I found it under a RAINBOW! Remember it! When you're sad, THINK of it! When you're bored, TELL A JOKE! And remember:...life is too short for SLOW conversations or BAD PUNS! Be like me! FAST! FUNNY! FURRY! Come visit! I'll have NEW JOKES! ALWAYS NEW JOKES!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5408,8 +5463,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! I'mGidget! Wanttohearajoke? Whydon'tsquirrelsliketoplaypoker? Becausethey'realwaysgoingNUTS! Getit? NUTS? BecauseACORNS?\"",
       "choices": [
@@ -5451,7 +5505,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here! This is a LUCKY acorn story! I found it under a RAINBOW! Remember it! When you're sad, THINK of it! When you're bored, TELL A JOKE! And remember:...life is too short for SLOW conversations or BAD PUNS! Be like me! FAST! FUNNY! FURRY! Come visit! I'll have NEW JOKES! ALWAYS NEW JOKES!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5479,9 +5533,12 @@ const WRITTEN_DIALOGUES = {
           "text": "You're SO dreamy! What's it like floating?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5545,7 +5602,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. A wisp of my... essence. Hold it. Breathe it. When life is heavy... remember Lunae. Remember......that you can choose lightness. That you can......float. Even when your feet are on the ground. Your soul... can drift. Come find me. When you need... sky.",
+      "text": "Take this feeling. A wisp of my... essence. Hold it. Breathe it. When life is heavy... remember Lunae. Remember......that you can choose lightness. That you can......float. Even when your feet are on the ground. Your soul... can drift. Come find me. When you need... sky.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5553,8 +5610,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hmm... Hello... I was... floating... through the clouds... They are... lovely today... Would you... like to float... with me?\"",
       "choices": [
@@ -5596,7 +5652,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this feeling. A wisp of my... essence. Hold it. Breathe it. When life is heavy... remember Lunae. Remember......that you can choose lightness. That you can......float. Even when your feet are on the ground. Your soul... can drift. Come find me. When you need... sky.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5624,9 +5680,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Do you hum? I'd love to hear it!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5690,7 +5749,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. When you are heavy... hold it. When you are lost... listen. It will hum. Quietly. Reminding you......that you can bend. That you can release. That you are... held. Come back. Anytime. My branches... are always open.",
+      "text": "Take this memory. When you are heavy... hold it. When you are lost... listen. It will hum. Quietly. Reminding you......that you can bend. That you can release. That you are... held. Come back. Anytime. My branches... are always open.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5698,8 +5757,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hello, dear one. I am Willow. I was just... humming. Would you like to hear? Or perhaps... you would prefer to sit? The shade is... comfortable.\"",
       "choices": [
@@ -5741,7 +5799,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this memory. When you are heavy... hold it. When you are lost... listen. It will hum. Quietly. Reminding you......that you can bend. That you can release. That you are... held. Come back. Anytime. My branches... are always open.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5769,9 +5827,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Your art? I'd love to see what you've created!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5835,7 +5896,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. It's... 'Friendship.' I know. CHEESY. But....you didn't pity me. You saw the ART. So. Take it. Put it on your desk. And remember:...even broken things can make something beautiful. Now go. I have WORK to do. And possibly a nap.",
+      "text": "Here. It's... 'Friendship.' I know. CHEESY. But....you didn't pity me. You saw the ART. So. Remember it. Put it on your mental desk. And remember:...even broken things can make something beautiful. Now go. I have WORK to do. And possibly a nap.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5843,8 +5904,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Oh, LOOK. A visitor. I'm Rusty. I collect......this. Art, some call it. Junk, others say. I say it's whatever pays the bills. If I had bills.\"",
       "choices": [
@@ -5886,7 +5946,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. It's... 'Friendship.' I know. CHEESY. But....you didn't pity me. You saw the ART. So. Remember it. Put it on your mental desk. And remember:...even broken things can make something beautiful. Now go. I have WORK to do. And possibly a nap.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5914,9 +5974,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Your ember hair is ADORABLE! Does it sparkle all the time?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -5988,8 +6051,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! I'mEmber! Iwasjustthinkingabout—oh! You'reHERE! Wantahug? I'mwarm! NotBURNINGwarm! Just......cozywarm! Likeablanket! Aburnyblanket!\"",
       "choices": [
@@ -6059,9 +6121,12 @@ const WRITTEN_DIALOGUES = {
           "text": "I just need someone to talk to... if you have time?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6125,7 +6190,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. A drop of my essence! When you're sad! Brew it! When you're lonely! Smell it! When you need......remembrance that someone cares! I'm always here! Steeping! Waiting! Whistling! And every cup I pour? It has LOVE. Remember that, dearie. Always.",
+      "text": "Take this warmth. A drop of my essence! When you're sad! Brew it in your thoughts! When you're lonely! Smell the comfort! When you need......remembrance that someone cares! I'm always here! Steeping! Waiting! Whistling! And every cup I pour? It has LOVE. Remember that, dearie. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6133,8 +6198,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Hello, dear! I'm Pippa! I was just brewing! Would you like some tea? I have: chamomile for calming, mint for energy, and......a special blend for new friends!\"",
       "choices": [
@@ -6176,7 +6240,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this warmth. A drop of my essence! When you're sad! Brew it in your thoughts! When you're lonely! Smell the comfort! When you need......remembrance that someone cares! I'm always here! Steeping! Waiting! Whistling! And every cup I pour? It has LOVE. Remember that, dearie. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6204,9 +6268,12 @@ const WRITTEN_DIALOGUES = {
           "text": "You've seen many things? What's the most beautiful?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6270,7 +6337,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. A star map. Not of the sky. Of......your path. See this star? It is... your beginning. This? Your... challenge. And this bright one? Your... destination. Keep it. When lost... look. The stars... will guide. And remember:...you are made of star-stuff. You belong... to the cosmos. Always.",
+      "text": "Take this map in your mind. A star map. Not of the sky. Of......your path. See this star? It is... your beginning. This? Your... challenge. And this bright one? Your... destination. Keep it. When lost... look. The stars... will guide. And remember:...you are made of star-stuff. You belong... to the cosmos. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6278,8 +6345,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Greetings... I am Orion. I was... mapping. The constellations... shift. Someone must... record them.\"",
       "choices": [
@@ -6321,7 +6387,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this map in your mind. A star map. Not of the sky. Of......your path. See this star? It is... your beginning. This? Your... challenge. And this bright one? Your... destination. Keep it. When lost... look. The stars... will guide. And remember:...you are made of star-stuff. You belong... to the cosmos. Always.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6349,9 +6415,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Tell me about yourself! The pond/river can wait!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6423,8 +6492,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"HI! I'mNixie! Oh! DidImentionI'mNixie? Imight'vementionedit! Anyway! IheardSOMETHING! AboutSOMEONE! WhatwasitAGAIN?\"",
       "choices": [
@@ -6466,7 +6534,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here's a SECRET! Even though I forget......I remember FRIENDS. I might forget YOUR NAME. Or WHAT we talked about. Or WHY you're here. But I'll remember... you made me SMILE. And that's the gossip worth keeping! Come back! I'll have NEW gossip! Or I'll forget! Either way, it'll be FUN!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6494,9 +6562,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Strength and stillness... teach me.",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6568,8 +6639,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"......You approach....I am Cobble....I stand....I watch....Sometimes... I move.\"",
       "choices": [
@@ -6639,9 +6709,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Make the leaves dance more! That's AMAZING!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6705,7 +6778,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. A leaf from my dance. Hold it. When you feel... still. When you feel... HEAVY. Remember Zeph. Remember the WIND. Remember......that even invisible things MATTER. That even air... can MOVE mountains. Come find me! I'll be......in every breeze. In every whisper. In every... dancing leaf.",
+      "text": "Here. A leaf from my dance. Picture it. When you feel... still. When you feel... HEAVY. Remember Zeph. Remember the WIND. Remember......that even invisible things MATTER. That even air... can MOVE mountains. Come find me! I'll be......in every breeze. In every whisper. In every... dancing leaf.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6713,8 +6786,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Helloooo~ I'm Zeph! Can't see me? That's the POINT! But you can see what I DO! Pretty, right?\"",
       "choices": [
@@ -6756,7 +6828,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. A leaf from my dance. Picture it. When you feel... still. When you feel... HEAVY. Remember Zeph. Remember the WIND. Remember......that even invisible things MATTER. That even air... can MOVE mountains. Come find me! I'll be......in every breeze. In every whisper. In every... dancing leaf.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -6784,9 +6856,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Here, have a carrot!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -6858,8 +6933,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"U-um... h-hello... I'm... Kiko......I was solving... a puzzle......want to help?\"",
       "choices": [
@@ -6929,9 +7003,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Paint the sky for me! Show me your art!",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -7003,8 +7080,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Greetings, dear friend, so bold and bright, / I'm Aurora, bearer of northern light. The sky I paint with colors true, / A gift from me, bestowed on you.\"",
       "choices": [
@@ -7046,7 +7122,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "~Here is my promise, pure and true~ ~The sky will ALWAYS wait for you~ ~When you are sad, look UP at night~ ~I'll paint your darkness into light~ ~Remember this, when days are gray~ ~Aurora's colors... never stray~ ~From those who see... the beauty IN~ ~The cosmic dance... that lives WITHIN~",
       "choices": [
         {
           "text": "Goodbye!",
@@ -7074,9 +7150,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Your bow tie is IMPECCABLE! Where'd you get it?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -7140,7 +7219,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Here. A feather. From my collection. Dip it in ink. Write your TRUTH. And remember:...grammar is not CHAINS. It is WINGS. Structure frees. Precision empowers. Now go. Write. And for the love of literature... USE PROPER PUNCTUATION.",
+      "text": "Here. A feather. From my collection. Picture it dipped in ink. Write your TRUTH. And remember:...grammar is not CHAINS. It is WINGS. Structure frees. Precision empowers. Now go. Write. And for the love of literature... USE PROPER PUNCTUATION.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -7148,8 +7227,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Ahem. I am Quill. I have observed your... sentence structure. It is... adequate. But it could be IMPROVED.\"",
       "choices": [
@@ -7191,7 +7269,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Here. A feather. From my collection. Picture it dipped in ink. Write your TRUTH. And remember:...grammar is not CHAINS. It is WINGS. Structure frees. Precision empowers. Now go. Write. And for the love of literature... USE PROPER PUNCTUATION.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -7219,9 +7297,12 @@ const WRITTEN_DIALOGUES = {
           "text": "Your hat is ADORABLE! Is it functional?",
           "next": "c3",
           "friendshipDelta": 0
+        },
+        {
+          "text": "Actually, tell me something else...",
+          "next": "alt_start",
+          "friendshipDelta": 0
         }
-     ,
-        { "text": "Actually, tell me something else...", "next": "alt_start", "friendshipDelta": 0 }
       ]
     },
     "c1": {
@@ -7285,7 +7366,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "final": {
-      "text": "Take this. A strainer. From my PERSONAL set. Use it. Think of me. And remember:...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be......CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
+      "text": "Take this idea. A strainer. From my PERSONAL set. Imagine it. Think of me. And remember:...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be......CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -7293,8 +7374,7 @@ const WRITTEN_DIALOGUES = {
           "friendshipDelta": 1
         }
       ]
-    }
- ,
+    },
     "alt_start": {
       "text": "\"Good day to you! I am Vex! I was just......contemplating the superiority of Victorian engineering! Have you ever seen a PROPER steam engine?\"",
       "choices": [
@@ -7336,7 +7416,7 @@ const WRITTEN_DIALOGUES = {
       ]
     },
     "alt_final": {
-      "text": "",
+      "text": "Take this idea. A strainer. From my PERSONAL set. Imagine it. Think of me. And remember:...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be......CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
       "choices": [
         {
           "text": "Goodbye!",
