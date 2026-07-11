@@ -149,28 +149,50 @@ path-artist" reward — one-day visiting NPCs (Yogatron, the gardener, the
 path-artist) don't have a friendship system in this codebase at all, not
 worth inventing one for a single cosmetic line.
 
-## Remaining 7, ranked easiest → hardest to build
+**Memory Lantern Night** (on `main`, pushed to origin). Array slot 18 in
+[src/daycycle.js](src/daycycle.js:64) (was "Pet Rock Adoption Fair") renamed.
+Dusk-gated: `updateMemoryLanternNight()` in
+[src/game.js](src/game.js:1886) only spawns once `world.timeMinutes` passes
+5 PM on the holiday day, via `findLanternShoreLine()` (widest run of clear
+beach tiles on any row, same "scan a row" technique as
+`findTurtleCrossingRow`), evenly spaced into 5 lantern spots. 4 lanterns are
+pre-lit with a random neighbor's memory line from a small generic bank; the
+5th starts empty. Walking within 1 tile of a lit lantern reads it ambiently
+(no interact key) and gives that neighbor `gainGift(2)` on first read. A
+static lantern-lighter (same shape as `islandGod`) spawns near the shore;
+interacting fills the empty lantern with one random player memory line — no
+"pick from a list" UI, since one random pick on interact matches every other
+"talk to the visiting NPC for a small reward" holiday. Everything vanishes
+the next morning once the holiday's no longer active, same lifecycle as
+every other one-day visitor. Hoggy gets a "glow" mood; neighbor dialogue
+gets lantern-flavored lines via `getHolidayGreetingPrefix`, including a
+special comment once that neighbor's own lantern has been read. No new
+sprite — falls back to a colored rectangle + soft glow ellipse. Skipped: the
+"chosen memory reappears on a later cycle" optional upgrade, and
+named-neighbor-specific lines (Mimis/Cort aren't in the actual 32-NPC
+roster, same gap as every other holiday with example dialogue for
+out-of-roster characters).
+
+## Remaining 6, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
-   pick-a-memory list UI. New but self-contained (no persistence).
-2. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
+1. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
    requires storing + restoring original positions. First holiday that
    mutates existing player-placed state instead of adding temp objects.
-3. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
+2. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
    across the 6-day gap until the holiday repeats). First one needing
    `world`-level persistent storage beyond the day.
-4. **Flealess Market** — 3 items, one of which is a whole new plant type
+3. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-5. **Familiar Seller** — permanent named companion that follows the player
+4. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-6. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+5. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
    IOUs) but needs several new throwaway dialogue lines per neighbor; save
    for when there's appetite for writing flavor text.
-7. **Peak Saucy** — new outline that appeared mid-session
+6. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the

@@ -18,7 +18,7 @@ Name the Island Day            | Yes      | Implemented (propose + canvass votes
 The Flealess Market            | No       | Outline in Holidays/FlealessMarket.md
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
 Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
-Memory Lantern Night           | No       | Outline in Holidays/MemoryLanternNight.md
+Memory Lantern Night           | Yes      | Implemented (dusk lantern-lighter lines the shore, walk near a lantern to read it)
 Well-Wishing Garden            | Yes      | Implemented (gardener hands out flowers, plant near a neighbor's door)
 Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
 The Picnic Reset               | No       | Outline in Holidays/PicnicReset.md
@@ -167,6 +167,32 @@ for the outline's "boost the path-artist" reward — visiting one-day NPCs
 like Yogatron/the gardener/the path-artist don't have a friendship system in
 this codebase at all, so that reward has no target to attach to; not worth
 inventing one for a single cosmetic line.)
+
+(July 11: Implemented Memory Lantern Night. Array slot 18 (was "Pet Rock
+Adoption Fair") in src/daycycle.js renamed. Dusk-gated (spawns only once the
+world clock passes 5 PM on the holiday day, via updateMemoryLanternNight in
+src/game.js): findLanternShoreLine() scans every row for the widest run of
+clear beach tiles and evenly spaces 5 lantern spots along it. 4 lanterns are
+pre-lit with a random neighbor's memory line from a small generic bank
+(memoryLanternNight.lanterns[].memory); the 5th starts empty. Walking within
+1 tile of a lit lantern reads it ambiently (no interact key needed) via
+notify(), and the first read of a neighbor's lantern gives that neighbor
+gainGift(2). A lantern-lighter NPC (static prop, same shape as islandGod)
+spawns near the shore; interacting with it fills the empty lantern with one
+random line from MEMORY_LANTERN_PLAYER_LINES. Everything vanishes the next
+morning once the holiday is no longer active, same lifecycle as every other
+one-day visitor. Hoggy gets a "glow" mood. Neighbor dialogue gets
+lantern-flavored lines via getHolidayGreetingPrefix, including a
+lantern-specific comment if that neighbor's own lantern has been read
+(src/dialogue.js). No new sprite — lanterns fall back to a colored rectangle
+with a soft glow ellipse. Skipped: the outline's "choose a memory from a
+list" UI for the player's own lantern — one random pick on interact keeps
+the pattern identical to every other "talk to the visiting NPC for a small
+reward" holiday (Well-Wishing Garden's flower, Petal Path Maker's petal);
+also skipped the "chosen memory reappears on a later cycle" optional
+upgrade, and named-neighbor-specific lines (Mimis/Cort aren't in the actual
+32-NPC roster, same gap as every other holiday with example dialogue for
+characters outside the real roster).)
 
 ---
 

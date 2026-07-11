@@ -511,13 +511,13 @@ function getHogHolidayMood() {
     if (name === 'Compliment a Crab Day') return { emote: 'nice', note: hog.name + ' oinks politely in the direction of any crabs.' };
     if (name === 'Snake Run Day') return { emote: 'snake', note: hog.name + ' snorts at the snakes racing past.' };
     if (name === 'Day of the Island God') return { emote: 'awe', note: hog.name + ' stares east, utterly starstruck.' };
-    if (name === 'Pet Rock Adoption Fair') return { emote: 'rock', note: hog.name + ' nudges a nearby rock, considering adoption.' };
     if (name === "Hoggy's Birthday") return { emote: 'heart', note: 'It is ' + hog.name + "'s Birthday! He sits proudly by his picnic blanket, waiting for gifts." };
     if (name === 'Turtle Crossing Guard Day') return { emote: 'guard', note: hog.name + ' stands watch by the crossing, chest puffed out importantly.' };
     if (name === 'The Returning Bird') return { emote: 'sky', note: hog.name + ' cranes his neck skyward, watching for the bird.' };
     if (name === 'Lost Mail Day') return { emote: 'letter', note: hog.name + ' noses at a sealed letter, hoping it is for him.' };
     if (name === 'Well-Wishing Garden') return { emote: 'flower', note: hog.name + ' sniffs at the gardener\'s cart, hoping for a flower of his own.' };
     if (name === 'The Petal Path Maker') return { emote: 'path', note: hog.name + ' trots along the petal path, leaving little hoofprints.' };
+    if (name === 'Memory Lantern Night') return { emote: 'glow', note: hog.name + ' watches the lanterns come alive on the shore, transfixed.' };
     return null;
 }
 

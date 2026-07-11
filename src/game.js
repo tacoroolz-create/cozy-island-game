@@ -1109,6 +1109,10 @@ function drawGame() {    // Handle continuous movement
     updatePetalPath();
     drawPetalPath();
 
+    // ===== MEMORY LANTERN NIGHT: dusk shore lanterns =====
+    updateMemoryLanternNight();
+    drawMemoryLanternNight();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -1883,6 +1887,148 @@ function tryPlacePetal() {
     return true;
 }
 
+// ===== MEMORY LANTERN NIGHT =====
+// Dusk-triggered (spawns only once world clock passes 5 PM on the holiday
+// day) and vanishes on its own the next morning, once the holiday is no
+// longer active — same lifecycle as islandGod/lostMail. Neighbor lanterns
+// are pre-lit with a memory; the last lantern starts empty and the lighter
+// fills it with a random player memory line on interact. Skipped a real
+// "pick from a list" UI for the player's own line (outline's optional
+// flavor) — one random pick keeps the pattern identical to every other
+// "talk to the visiting NPC for one small reward" holiday.
+const MEMORY_LANTERN_COUNT = 5;
+const MEMORY_LANTERN_DUSK_HOUR = 17;
+const MEMORY_LANTERN_NEIGHBOR_LINES = [
+    'I once laughed so hard a cloud changed shape.',
+    'The best sandwich is the one you share with a crab.',
+    'Hoggy looked at me for three full seconds. I\'ll never forget it.',
+    'I wrote about the time I saw a fish wearing a leaf. People doubted me.',
+    'I once sneezed and swear a flower bloomed. I\'m not taking questions.',
+    'Someone waved at me from very far away once. I still think about it.'
+];
+const MEMORY_LANTERN_PLAYER_LINES = [
+    'I found this island and decided to stay a while.',
+    'Someone here made me feel like I belonged before I even unpacked.',
+    'The quietest days here turned out to be my favorite ones.'
+];
+let memoryLanternNight = null; // { day, lanterns:[{x,y,npcId,npcName,memory,read,isPlayer}], lighter:{x,y} }
+
+// Widest run of clear beach tiles on any row, evenly spaced into `count` spots.
+function findLanternShoreLine(count) {
+    let bestY = -1, bestStart = -1, bestLen = 0;
+    for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+        let curStart = -1, curLen = 0;
+        for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+            const t = world.tiles[x] && world.tiles[x][y];
+            const clear = t && t.type === 'beach' && !isSolidTile(x, y) && !buildingAt(x, y);
+            if (clear) {
+                if (curStart < 0) curStart = x;
+                curLen++;
+                if (curLen > bestLen) { bestLen = curLen; bestStart = curStart; bestY = y; }
+            } else {
+                curStart = -1; curLen = 0;
+            }
+        }
+    }
+    if (bestLen < count) return null;
+    const spots = [];
+    for (let i = 0; i < count; i++) {
+        const t = (i + 1) / (count + 1);
+        spots.push({ x: Math.round(bestStart + (bestLen - 1) * t), y: bestY });
+    }
+    return spots;
+}
+
+function spawnMemoryLanternNight() {
+    if (!world || typeof npcs === 'undefined') return;
+    const spots = findLanternShoreLine(MEMORY_LANTERN_COUNT);
+    if (!spots) return;
+    const npcPool = npcs.filter(n => n.isPresent).slice();
+    const linePool = MEMORY_LANTERN_NEIGHBOR_LINES.slice();
+    const lanterns = spots.map((spot, i) => {
+        if (i === spots.length - 1 || npcPool.length === 0) {
+            return { x: spot.x, y: spot.y, npcId: null, npcName: null, memory: null, read: false, isPlayer: true };
+        }
+        const npc = npcPool.splice(Math.floor(Math.random() * npcPool.length), 1)[0];
+        const memory = linePool.length
+            ? linePool.splice(Math.floor(Math.random() * linePool.length), 1)[0]
+            : MEMORY_LANTERN_NEIGHBOR_LINES[Math.floor(Math.random() * MEMORY_LANTERN_NEIGHBOR_LINES.length)];
+        return { x: spot.x, y: spot.y, npcId: npc.id, npcName: npc.name, memory, read: false, isPlayer: false };
+    });
+    const last = spots[spots.length - 1];
+    memoryLanternNight = { day: world.day, lanterns, lighter: findClearGroundNear(last.x, last.y, 1, 6) };
+    notify('A lantern-lighter has lined the shore with paper lanterns for Memory Lantern Night.', 4500);
+}
+
+function updateMemoryLanternNight() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Memory Lantern Night') {
+        if (memoryLanternNight) memoryLanternNight = null;
+        return;
+    }
+    if (!world) return;
+    if (world.timeMinutes / 60 < MEMORY_LANTERN_DUSK_HOUR) return; // not dusk yet
+    if (!memoryLanternNight || memoryLanternNight.day !== world.day) spawnMemoryLanternNight();
+    if (!memoryLanternNight || !player) return;
+
+    // Walking near a lit lantern reads it — ambient, no interact key needed.
+    for (const lantern of memoryLanternNight.lanterns) {
+        if (lantern.read || !lantern.memory) continue;
+        if (Math.abs(lantern.x - player.x) <= 1 && Math.abs(lantern.y - player.y) <= 1) {
+            lantern.read = true;
+            if (lantern.isPlayer) {
+                notify('Your own lantern glows softly: "' + lantern.memory + '"', 4500);
+            } else {
+                notify(lantern.npcName + '\'s lantern reads: "' + lantern.memory + '"', 4500);
+                const npc = npcs.find(n => n.id === lantern.npcId);
+                if (npc && typeof npc.gainGift === 'function') npc.gainGift(2);
+            }
+        }
+    }
+}
+
+function drawMemoryLanternNight() {
+    if (!memoryLanternNight) return;
+    const TS = CONFIG.TILE_SIZE;
+    if (memoryLanternNight.lighter) {
+        const sx = memoryLanternNight.lighter.x * TS - cameraX, sy = memoryLanternNight.lighter.y * TS - cameraY;
+        noStroke();
+        fill('#4E342E');
+        rect(sx + TS * 0.35, sy + TS * 0.3, TS * 0.3, TS * 0.7);
+        fill('#FFD54F');
+        ellipse(sx + TS / 2, sy + TS * 0.25, TS * 0.35, TS * 0.4);
+    }
+    for (const lantern of memoryLanternNight.lanterns) {
+        const sx = lantern.x * TS - cameraX, sy = lantern.y * TS - cameraY;
+        const lit = !lantern.isPlayer || !!lantern.memory;
+        noStroke();
+        fill(lit ? '#FFD54F' : '#9E9E9E');
+        rect(sx + TS * 0.25, sy + TS * 0.2, TS * 0.5, TS * 0.6, 2);
+        if (lit) {
+            fill(255, 235, 150, 90);
+            ellipse(sx + TS / 2, sy + TS * 0.5, TS * 1.4, TS * 1.4);
+        }
+    }
+}
+
+function isFacingLanternLighter() {
+    if (!memoryLanternNight || !memoryLanternNight.lighter || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === memoryLanternNight.lighter.x && facing.y === memoryLanternNight.lighter.y;
+}
+
+function tryTalkToLanternLighter() {
+    if (!memoryLanternNight || !isFacingLanternLighter()) return false;
+    const empty = memoryLanternNight.lanterns.find(l => l.isPlayer && !l.memory);
+    if (!empty) {
+        notify('"Every lantern is lit tonight," the lighter says, smiling at the shore.', 4000);
+    } else {
+        empty.memory = MEMORY_LANTERN_PLAYER_LINES[Math.floor(Math.random() * MEMORY_LANTERN_PLAYER_LINES.length)];
+        notify('The lighter hands you a lantern. "Pick a memory, any memory." You add yours to the line.', 4500);
+    }
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -2629,6 +2775,8 @@ function mousePressed() {
         // The Petal Path Maker: talk to the path-artist, then lay petals at anchors
         if (typeof tryTalkToPetalPathArtist === 'function' && tryTalkToPetalPathArtist()) return;
         if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return;
+        // Memory Lantern Night: talk to the lantern-lighter for a lantern of your own
+        if (typeof tryTalkToLanternLighter === 'function' && tryTalkToLanternLighter()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -3902,6 +4050,8 @@ function keyPressed() {
             // The Petal Path Maker: talk to the path-artist, then lay petals at anchors
             if (typeof tryTalkToPetalPathArtist === 'function' && tryTalkToPetalPathArtist()) return false;
             if (typeof tryPlacePetal === 'function' && tryPlacePetal()) return false;
+            // Memory Lantern Night: talk to the lantern-lighter for a lantern of your own
+            if (typeof tryTalkToLanternLighter === 'function' && tryTalkToLanternLighter()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
