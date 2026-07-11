@@ -37,6 +37,7 @@ class Hog {
         this.friendship = 0;
         this.dailyFed = false;
         this.dailyRooted = false;   // once-per-day rooting dig near trees
+        this.birthdayGiftGiven = false; // Hoggy's Birthday: community gift already triggered today
         this.moveTimer = 0;
         this.frameTimer = 0;
         this.named = false;
@@ -228,6 +229,11 @@ class Hog {
             spawnHogEmote(this.gridX, this.gridY, 'stink');
             if (audioManager) audioManager.playSFX('oink', 0.5);
         }
+
+        if (!this.birthdayGiftGiven) {
+            const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+            if (holiday && holiday.name === "Hoggy's Birthday") triggerHoggyBirthdayGift();
+        }
         return true;
     }
 
@@ -296,6 +302,7 @@ class Hog {
             friendship: this.friendship,
             dailyFed: this.dailyFed,
             dailyRooted: this.dailyRooted,
+            birthdayGiftGiven: this.birthdayGiftGiven,
             named: this.named,
             facing: this.facing,
             homeX: this.homeX,
@@ -309,6 +316,7 @@ class Hog {
         h.friendship = data.friendship || 0;
         h.dailyFed = data.dailyFed || false;
         h.dailyRooted = data.dailyRooted || false;
+        h.birthdayGiftGiven = data.birthdayGiftGiven || false;
         h.named = data.named || false;
         h.facing = data.facing || 'right';
         h.homeX = data.homeX || data.gridX;
@@ -386,6 +394,7 @@ function onHogNewDay() {
     if (hog) {
         hog.dailyFed = false;
         hog.dailyRooted = false;
+        hog.birthdayGiftGiven = false;
     }
     updateHogPoop();
 }
@@ -393,9 +402,11 @@ function onHogNewDay() {
 function updateHog(dt) {
     if (hog) hog.update(dt);
     updateHogEmotes(dt);
+    updateHoggyBirthdayBlanket();
 }
 
 function drawHog() {
+    drawHoggyBirthdayBlanket();
     if (hog) {
         hog.draw();
         drawHogEmotes();
@@ -501,7 +512,47 @@ function getHogHolidayMood() {
     if (name === 'Snake Run Day') return { emote: 'snake', note: hog.name + ' snorts at the snakes racing past.' };
     if (name === 'Day of the Island God') return { emote: 'awe', note: hog.name + ' stares east, utterly starstruck.' };
     if (name === 'Pet Rock Adoption Fair') return { emote: 'rock', note: hog.name + ' nudges a nearby rock, considering adoption.' };
+    if (name === "Hoggy's Birthday") return { emote: 'heart', note: 'It is ' + hog.name + "'s Birthday! He sits proudly by his picnic blanket, waiting for gifts." };
     return null;
+}
+
+// Hoggy's Birthday: the first gift of the day (liked or not) is treated as
+// the community's gift too — every neighbor's friendship gets a boost.
+function triggerHoggyBirthdayGift() {
+    hog.birthdayGiftGiven = true;
+    if (typeof npcs === 'undefined' || !npcs.length) return;
+    for (const npc of npcs) {
+        if (typeof npc.gainGift === 'function') npc.gainGift(5);
+    }
+    notify('Word spreads fast — every neighbor pitches in a little something for ' + hog.name + "'s Birthday! Friendship +5 with everyone.", 4500);
+}
+
+// ===== HOGGY'S BIRTHDAY: PICNIC BLANKET (static decoration, no new assets) =====
+let hoggyBirthdayBlanket = null; // { gridX, gridY }
+
+function updateHoggyBirthdayBlanket() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== "Hoggy's Birthday" || !hog) {
+        hoggyBirthdayBlanket = null;
+        return;
+    }
+    if (!hoggyBirthdayBlanket) {
+        hoggyBirthdayBlanket = { gridX: hog.gridX, gridY: hog.gridY + 1 };
+    }
+}
+
+function drawHoggyBirthdayBlanket() {
+    if (!hoggyBirthdayBlanket) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = hoggyBirthdayBlanket.gridX * TS - cameraX;
+    const sy = hoggyBirthdayBlanket.gridY * TS - cameraY;
+    noStroke();
+    fill('#D32F2F');
+    rect(sx, sy, TS, TS, 3);
+    fill('#FFF176');
+    const half = TS / 2;
+    rect(sx, sy, half, half);
+    rect(sx + half, sy + half, half, half);
 }
 
 // Holiday mood hook: called when the player faces the hog on a holiday
