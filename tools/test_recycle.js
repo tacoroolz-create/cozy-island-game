@@ -1,6 +1,7 @@
-// Self-check for the Recycle Bin sell logic (run: node tools/test_recycle.js).
-// Stubs just enough of the game's globals to exercise sellValue() and
-// iouRoomAfterRemoving() — the two pieces with real branching.
+// Self-check for the IOU economy (run: node tools/test_recycle.js).
+// Stubs just enough of the game's globals to exercise the Recycle Bin's
+// sellValue() / iouRoomAfterRemoving() and Stimmy Tim's buyCafeItem() —
+// the pieces where money changes hands.
 const fs = require('fs');
 const path = require('path');
 
@@ -63,4 +64,40 @@ assert.strictEqual(iouRoomAfterRemoving('gold_coin', 50), 9, 'partial stack stay
 inventory.slots[0] = null;
 assert.strictEqual(iouRoomAfterRemoving('log', 1), 9 + 99, 'empty hotbar slot holds IOUs');
 
-console.log('recycle self-check OK');
+// --- Stimmy Tim's purchase path ---
+// Simple add/remove for the cafe test: one virtual stack per item id.
+const bag = {};
+inventory.countItem = (id) => bag[id] || 0;
+inventory.addItem = (id, n = 1) => {
+    if (bag.__full) return false;
+    bag[id] = (bag[id] || 0) + n;
+    return true;
+};
+inventory.removeItem = (id, n = 1) => { bag[id] = (bag[id] || 0) - n; };
+global.openMagicMenu = () => {};
+global.closeDialogue = () => {};
+global.INTERIOR_WALL_HEIGHT = 2;
+global.player = { x: 0, y: 0, facing: 'up' };
+global.insideBuilding = null;
+
+eval(fs.readFileSync(path.join(__dirname, '../src/cafe.js'), 'utf8'));
+
+bag.iou = 2;
+buyCafeItem('coffee', 3);   // can't afford: nothing charged, nothing gained
+assert.strictEqual(bag.iou, 2, 'no charge when broke');
+assert.strictEqual(bag.coffee || 0, 0, 'no coffee when broke');
+
+bag.iou = 5;
+buyCafeItem('coffee', 3);   // paid and served
+assert.strictEqual(bag.iou, 2, 'charged 3 IOUs');
+assert.strictEqual(bag.coffee, 1, 'got the coffee');
+
+bag.__full = true;
+buyCafeItem('donut', 2);    // pockets full: not charged
+assert.strictEqual(bag.iou, 2, 'no charge when pockets are full');
+
+// Cafe stock sells back below cost — no arbitrage loop.
+assert.strictEqual(sellValue('coffee'), 1, 'coffee sell-back below cost');
+assert.strictEqual(sellValue('donut'), 1, 'donut sell-back below cost');
+
+console.log('economy self-check OK');

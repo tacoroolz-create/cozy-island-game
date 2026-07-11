@@ -11,7 +11,8 @@ const SELL_CATEGORY_VALUES = { material: 1, gift: 2, block: 2, treasure: 3 };
 const SELL_OVERRIDES = {
     gold_coin: 10, old_radio: 8, iron_ingot: 6, crystal: 5, metal_rod: 4,
     turtle_egg: 4, glass_bottle: 3, seashell: 3, berry_jam: 3,
-    fruit_salad: 3, grilled_banana: 3, protein_shake: 3
+    fruit_salad: 3, grilled_banana: 3, protein_shake: 3,
+    coffee: 1, donut: 1  // no flipping Stimmy Tim's stock for profit
 };
 
 function sellValue(itemId) {

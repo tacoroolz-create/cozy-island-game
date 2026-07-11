@@ -109,6 +109,7 @@ const SPRITE_DEFS = {
     'sprites.ug_black_goddess':   'assets/sprites/buildings/black_goddess.png',
     'sprites.ug_inner_temple':    'assets/sprites/buildings/inner_temple.png',
     'sprites.ug_recycle_bin':     'assets/sprites/buildings/recycle_bin.png',
+    'sprites.ug_stimmy_tims':     'assets/sprites/buildings/stimmy_tims.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.mira':           'assets/sprites/mira.png',
     'sprites.luna':           'assets/sprites/luna.png',
@@ -481,7 +482,7 @@ const BUILDING_TIERS = {
     ug_inner_temple:    { spriteKey: 'sprites.ug_inner_temple',    name: 'The Inner Temple',    color: '#8B8B9B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
-    ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 8, h: 5, doorWidth: 2, interiorW: 8, interiorFloorRows: 5 },
     ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     // Player-built second shelter from Castle of Sticks Day. Placeholder
     // colored-block fallback until twig tower art lands.
@@ -490,13 +491,14 @@ const BUILDING_TIERS = {
 
 // The eight underground building identities (see underWorldBldgs.rtf).
 const UNDERGROUND_BUILDING_TYPES = ['ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin', 'ug_inner_temple', 'ug_electric_temple', 'ug_black_goddess', 'ug_stimmy_tims', 'ug_bottomless_pit'];
-// Fixed at city creation — randomization retired. The six buildings with
-// finished art stand now; the remaining pads fill in as more art lands.
+// Fixed at city creation — randomization retired. The seven buildings with
+// finished art stand now; the Bottomless Pit fills the last pad when it lands.
 const UNDERGROUND_STARTING_BUILDINGS = [
     { type: 'ug_inner_temple',    padIndex: 0 },
     { type: 'ug_mubaba_fortress', padIndex: 1 },
     { type: 'ug_electric_temple', padIndex: 2 },
     { type: 'ug_gettin',          padIndex: 3 },
+    { type: 'ug_stimmy_tims',     padIndex: 4 },
     { type: 'ug_recycle_bin',     padIndex: 5 },
     { type: 'ug_black_goddess',   padIndex: 6 }
 ];
@@ -548,6 +550,10 @@ class Building {
                     this.interiorTiles[x][y] = { type: 'grass', variant: floor(Math.random() * 3) };
                 }
             }
+        }
+        // Stimmy Tim's gets its full cafe fit-out (see cafe.js).
+        if (this.type === 'ug_stimmy_tims' && typeof furnishStimmyCafe === 'function') {
+            furnishStimmyCafe(this);
         }
     }
 
@@ -1061,7 +1067,8 @@ function handleInteriorMovement() {
         }
         // Walls, beds, and solid furniture block movement
         const tile = b.interiorTiles[newX][newY];
-        if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile)) {
+        if (tile.type === 'wall' || tile.type === 'bed' || isSolidHomeTile(tile) ||
+            (typeof isSolidCafeTile === 'function' && isSolidCafeTile(tile))) {
             lastMoveTime = now;
             return;
         }
@@ -3065,6 +3072,9 @@ function drawInteriorTile(tile, sx, sy, TS) {
             fill('#FFD700');
             rect(sx + 2, sy + 2, TS - 4, TS - 4);
         }
+    } else if (tile.type && tile.type.indexOf('cafe_') === 0 && typeof drawCafeTile === 'function') {
+        // Stimmy Tim's fit-out (floor, counter, bistro tables — see cafe.js)
+        drawCafeTile(tile, sx, sy, TS);
     } else {
         // Fallback
         fill('#7CB342');
@@ -3468,6 +3478,8 @@ function keyPressed() {
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Electric Temple: talk to Taira when facing her spot.
             if (tryTalkToTempleTaira()) return false;
+            // Stimmy Tim's: facing the counter opens the shop.
+            if (typeof tryUseCafeCounter === 'function' && tryUseCafeCounter()) return false;
             // Try to sleep in the bed (only at night), otherwise exit building
             if (trySleep()) return false;
             tryExitBuilding();
