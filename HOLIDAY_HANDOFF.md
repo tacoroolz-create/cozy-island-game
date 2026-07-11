@@ -56,43 +56,67 @@ character-specific; also skipped physically repositioning neighbors along the
 path — not needed for the reward loop, and that's the harder pattern this
 ranking already reserves for The Returning Bird.
 
-## Remaining 10, ranked easiest → hardest to build
+**The Returning Bird** (on `main`, pushed to origin). Array slot 22 in
+[src/daycycle.js](src/daycycle.js:67) (was "Fruit Apology Day") renamed.
+Lives in [src/animals.js](src/animals.js:799) (`returningBird` state,
+`findReturningBirdStops`/`spawnReturningBird`/`updateReturningBird`/
+`drawReturningBird`/`tryTalkToReturningBird`). One random neighbor from
+`npcs[]` is picked as the bird's "old friend" for the day; that neighbor's
+`stationary` flag is temporarily forced true and its `gridX`/`gridY` snapped
+to the bird's current stop, since `entities.js`'s `NPC` class has no existing
+"follow" concept — cheaper to hijack `stationary` + direct position writes
+for one day than add a real following system. 3 waypoints are picked by
+rejection-sampling clear grass/beach tiles (same technique as `spawnBirds`),
+and the bird loops between them on a 40s timer all day rather than
+"wandering" like a real `Animal`. Facing the bird+neighbor pair and
+interacting (same two call sites as Island God, `game.js:3452` and
+`game.js:2190`) shows a stop-specific one-sided line; first check-in per stop
+gives that neighbor `gainGift(3)`. Hoggy gets a "sky" mood
+([src/hog.js:517](src/hog.js:517)); neighbor dialogue gets
+friend-vs-everyone-else lines via `getHolidayGreetingPrefix`
+([src/dialogue.js:43](src/dialogue.js:43)). Skipped: the outline's
+Hudson-specific line (no NPC named Hudson in the current roster — same gap as
+Turtle Crossing Guard Day) and the optional "bird flies away at the final
+stop" ending, since looping forever serves the check-in reward loop just as
+well.
+
+## Remaining 9, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, interior-only
 decor placement).
 
-1. **Returning Bird** — one bird + one neighbor following preset waypoints.
-   Slightly more state than turtles (a neighbor's position gets overridden for
-   the day).
-2. **Lost Mail Day** — 3-5 pickable letter objects on the beach, matched to a
+1. **Lost Mail Day** — 3-5 pickable letter objects on the beach, matched to a
    neighbor by dialogue trigger. New "held temporary item" concept, no
    inventory slot needed.
-3. **Well-Wishing Garden** / **Petal Path Maker** — both need placing a flower
+2. **Well-Wishing Garden** / **Petal Path Maker** — both need placing a flower
    at a specific outdoor tile (a neighbor's door, or a path anchor) and
    checking it later. Same missing piece: no outdoor per-tile decor system
    exists yet (see gotcha).
-4. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
+3. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
    pick-a-memory list UI. New but self-contained (no persistence).
-5. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
+4. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
    requires storing + restoring original positions. First holiday that
    mutates existing player-placed state instead of adding temp objects.
-6. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
+5. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
    across the 6-day gap until the holiday repeats). First one needing
    `world`-level persistent storage beyond the day.
-7. **Flealess Market** — 3 items, one of which is a whole new plant type
+6. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-8. **Familiar Seller** — permanent named companion that follows the player
+7. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-9. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+8. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
    IOUs) but needs several new throwaway dialogue lines per neighbor; save
    for when there's appetite for writing flavor text.
-10. **Peak Saucy** — new outline that appeared mid-session
+9. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the
     positional mapping from this row onward before implementing it or
-    anything after it.
+    anything after it. (Note: as of this session `holiday_status.txt` row 31
+    also changed from "Jellybean Council" to "Cool Valley" outside this
+    session's edits — the array still says "Jellybean Council" at that slot,
+    another drift point to reconcile before touching that region.)
 
 (Tourist Time and Flealess Market/Familiar Seller are ranked by *systems*
 complexity, not necessarily writing effort — reorder freely.)

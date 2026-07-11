@@ -514,6 +514,7 @@ function updateAnimals(dt) {
     for (const cicada of cicadas) cicada.update(dt, world.timeMinutes);
     updateSnakes(dt);
     updateTurtleCrossing(dt);
+    updateReturningBird();
 
     // Ambient sounds
     if (audioManager && !audioManager.muted) {
@@ -580,6 +581,7 @@ function drawAnimals() {
     for (const cicada of cicadas) flip(cicada);
     drawSnakes();
     drawTurtleCrossing();
+    drawReturningBird();
     drawGroundLoot();
 }
 
@@ -794,6 +796,124 @@ function drawTurtleCrossing() {
             ellipse(sx + 8, sy + 9, 6, 5);
         }
     }
+}
+
+// ===== THE RETURNING BIRD =====
+// A single bird hops between 3 preset stops all day. One random neighbor is
+// convinced it's an old friend and follows it stop to stop, delivering a
+// one-sided line at each. Checking in at a stop for the first time nets that
+// neighbor a small friendship boost.
+let returningBird = null; // { day, friendId, stops:[{x,y}], stopIndex, nextMoveAt, checkedStops:[bool], friendWasStationary }
+const RETURNING_BIRD_STOP_MS = 40000;
+const RETURNING_BIRD_LINES = [
+    "You remember this branch. You napped here for three seasons.",
+    "Don't drink the sea. We talked about this last year.",
+    "Sit with me. Or on me. You always did what you wanted."
+];
+
+function findReturningBirdStops() {
+    const stops = [];
+    let attempts = 0;
+    while (stops.length < 3 && attempts < 500) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH - 1));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const tile = world.tiles[x] && world.tiles[x][y];
+        if (!tile || (tile.type !== 'grass' && tile.type !== 'beach')) continue;
+        if (isSolidTile(x, y) || buildingAt(x, y)) continue;
+        if (isSolidTile(x + 1, y) || buildingAt(x + 1, y)) continue; // room for the bird beside the neighbor
+        if (stops.some(s => Math.abs(s.x - x) + Math.abs(s.y - y) < 8)) continue; // spread the stops out
+        stops.push({ x, y });
+    }
+    return stops.length === 3 ? stops : null;
+}
+
+function getReturningBirdFriend() {
+    if (!returningBird || typeof npcs === 'undefined') return null;
+    return npcs.find(n => n.id === returningBird.friendId) || null;
+}
+
+function spawnReturningBird() {
+    if (!world || returningBird) return;
+    if (typeof npcs === 'undefined' || npcs.length === 0) return;
+    const stops = findReturningBirdStops();
+    if (!stops) return;
+    const friend = npcs[floor(random(npcs.length))];
+    returningBird = {
+        day: world.day,
+        friendId: friend.id,
+        stops,
+        stopIndex: 0,
+        nextMoveAt: millis() + RETURNING_BIRD_STOP_MS,
+        checkedStops: [false, false, false],
+        friendWasStationary: friend.stationary
+    };
+    friend.stationary = true;
+    friend.gridX = stops[0].x;
+    friend.gridY = stops[0].y;
+    notify('A bird has returned to the island — ' + friend.name + ' swears they know it.', 4500);
+}
+
+function updateReturningBird() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'The Returning Bird') {
+        if (returningBird) {
+            const friend = getReturningBirdFriend();
+            if (friend) friend.stationary = returningBird.friendWasStationary;
+            returningBird = null;
+        }
+        return;
+    }
+    if (!world) return;
+    if (!returningBird || returningBird.day !== world.day) spawnReturningBird();
+    if (!returningBird) return;
+    if (millis() >= returningBird.nextMoveAt) {
+        returningBird.stopIndex = (returningBird.stopIndex + 1) % returningBird.stops.length;
+        returningBird.nextMoveAt = millis() + RETURNING_BIRD_STOP_MS;
+        const friend = getReturningBirdFriend();
+        const stop = returningBird.stops[returningBird.stopIndex];
+        if (friend) { friend.gridX = stop.x; friend.gridY = stop.y; }
+    }
+}
+
+function drawReturningBird() {
+    if (!returningBird) return;
+    const TS = CONFIG.TILE_SIZE;
+    const stop = returningBird.stops[returningBird.stopIndex];
+    const sx = (stop.x + 1) * TS - cameraX;
+    const sy = stop.y * TS - cameraY;
+    const spr = SPRITES['sprites.bird2'];
+    if (spr) {
+        image(spr, sx, sy, TS, TS);
+    } else {
+        noStroke();
+        fill('#5C6BC0');
+        ellipse(sx + 8, sy + 10, 11, 8);
+        fill('#3949AB');
+        ellipse(sx + 8, sy + 6, 6, 6);
+    }
+}
+
+function isFacingReturningBird() {
+    if (!returningBird || !player) return false;
+    const stop = returningBird.stops[returningBird.stopIndex];
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    return (facing.x === stop.x && facing.y === stop.y) || (facing.x === stop.x + 1 && facing.y === stop.y);
+}
+
+function tryTalkToReturningBird() {
+    if (!returningBird || !isFacingReturningBird()) return false;
+    const friend = getReturningBirdFriend();
+    const idx = returningBird.stopIndex;
+    const line = RETURNING_BIRD_LINES[idx] || RETURNING_BIRD_LINES[0];
+    const speaker = friend ? friend.name : 'Someone';
+    notify(speaker + ': "' + line + '"', 4000);
+    if (!returningBird.checkedStops[idx]) {
+        returningBird.checkedStops[idx] = true;
+        if (friend && typeof friend.gainGift === 'function') friend.gainGift(3);
+    }
+    return true;
 }
 
 function despawnButterflies() {

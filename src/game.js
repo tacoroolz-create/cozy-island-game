@@ -2188,6 +2188,8 @@ function mousePressed() {
         if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return;
         // Island God holiday interaction (before harvest)
         if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return;
+        // Returning Bird holiday interaction (before harvest)
+        if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -3450,6 +3452,8 @@ function keyPressed() {
             if (typeof tryTalkToYogatron === 'function' && tryTalkToYogatron()) return false;
             // Island God holiday interaction (before harvest)
             if (typeof tryTalkToIslandGod === 'function' && tryTalkToIslandGod()) return false;
+            // Returning Bird holiday interaction (before harvest)
+            if (typeof tryTalkToReturningBird === 'function' && tryTalkToReturningBird()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

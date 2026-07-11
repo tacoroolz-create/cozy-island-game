@@ -48,6 +48,21 @@ function getHolidayGreetingPrefix(name) {
             "Crossing guard duty today! I've never taken a job more seriously.",
             "One turtle down, several more to go. This is the best shift of my life."
         ];
+    } else if (holiday.name === 'The Returning Bird') {
+        const friend = (typeof getReturningBirdFriend === 'function') ? getReturningBirdFriend() : null;
+        if (friend && friend.name === name) {
+            comments = [
+                "That's my old friend out there. I'd know that hop anywhere.",
+                "Sorry, I'm a little distracted — I have a reunion to get to.",
+                "We used to be inseparable. I'm not letting a few years change that."
+            ];
+        } else {
+            comments = [
+                `I think ${friend ? friend.name : 'someone'} is pretending to remember that bird. Birds are like that.`,
+                "There's a whole bird-reunion happening out there. Very touching. Very confusing.",
+                "I saw someone talking to a bird like it owed them money. Sweet, honestly."
+            ];
+        }
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,
