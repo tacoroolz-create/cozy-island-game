@@ -51,7 +51,7 @@ const HOLIDAYS = [
     { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
     { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
     { name: 'Backflip Day',          desc: 'Interact with anyone or anything — neighbors, animals, even trees and stones — and they celebrate with a backflip.' },
-    { name: 'Left-Handed High-Fives', desc: 'Right-handed high-fives are considered mildly suspicious.' },
+    { name: "Hoggy's Birthday",       desc: 'The wild hog is guest of honor. Bring him a gift and every neighbor pitches in, too.' },
     { name: 'Clean Your Room Day',    desc: 'No going outside until you tidy up: move or put away one piece of furniture or decor.' },
     { name: 'Day of the Island God',  desc: 'The Island God rises on the east beach. Animal life doubles in its honor.' },
     { name: 'Dig a Hole Day',         desc: 'Pick a spot and dig it with a pickaxe. Year after year the hole grows deeper... toward somewhere new.' },
@@ -160,6 +160,9 @@ function onNewDay() {
             }
             if (holiday.name === 'Castle of Sticks Day') {
                 notify('100 sticks = one twig tower. Equip sticks and click open ground to build!', 4500);
+            }
+            if (holiday.name === "Hoggy's Birthday") {
+                notify("It's Hoggy's Birthday! Bring him a gift — the whole island's chipping in.", 4500);
             }
         }
     } else if (isSeasonStart) {

@@ -19,44 +19,54 @@ tree — just `notify()`). Animal spawn counts double for the day
 registered but the file (`assets/sprites/island_god.png`) doesn't exist yet —
 falls back to a colored shell shape until Charles drops in art.
 
-## Remaining 12, ranked easiest → hardest to build
+**Hoggy's Birthday** (on `main`, pushed to origin). Array slot 9 in
+[src/daycycle.js](src/daycycle.js:54) (was "Left-Handed High-Fives") renamed.
+No new "place item on NPC" interaction was needed — the existing gift-hand-in
+flow (`Hog.feed()` in [src/hog.js:194](src/hog.js:194)) already covers "give
+Hoggy something"; on this holiday the first feed of the day (any item, liked
+or not) calls `triggerHoggyBirthdayGift()` ([src/hog.js:521](src/hog.js:521)),
+which boosts every neighbor in `npcs[]` by `gainGift(5)` and fires one
+`notify()`. Guarded per-day by `hog.birthdayGiftGiven`, reset in
+`onHogNewDay()`. The picnic blanket is a static colored-rectangle prop
+(`updateHoggyBirthdayBlanket`/`drawHoggyBirthdayBlanket`, hog.js) spawned
+beside Hoggy — no new sprite, per the gotcha below. Neighbor dialogue gets
+gift-flavored birthday lines via the existing `getHolidayGreetingPrefix()`
+bank in [src/dialogue.js](src/dialogue.js:47). Skipped: the "birthday card
+signboard with neighbor signatures" optional upgrade from the outline — not
+needed for the core loop.
+
+## Remaining 11, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, interior-only
 decor placement).
 
-1. **Hoggy's Birthday** — reuses Hoggy NPC + gifting flip. Needs a new "place
-   held item on/near an NPC" interaction (Hoggy already receives items via
-   `feed()` in [src/hog.js:193](src/hog.js:193), so giving him a vegetable is
-   close to free). The outline's picnic-blanket decoration is the only new
-   plumbing — **skip it or reuse an existing static prop** rather than building
-   outdoor decor placement from scratch (see gotcha below).
-2. **Turtle Crossing Guard Day** — spawn 4-6 turtles that walk a straight line
+1. **Turtle Crossing Guard Day** — spawn 4-6 turtles that walk a straight line
    across a path; reuses `Animal`/turtle sprite from animals.js. Needs simple
    waypoint movement (no pathfinding).
-3. **Returning Bird** — one bird + one neighbor following preset waypoints.
+2. **Returning Bird** — one bird + one neighbor following preset waypoints.
    Slightly more state than turtles (a neighbor's position gets overridden for
    the day).
-4. **Lost Mail Day** — 3-5 pickable letter objects on the beach, matched to a
+3. **Lost Mail Day** — 3-5 pickable letter objects on the beach, matched to a
    neighbor by dialogue trigger. New "held temporary item" concept, no
    inventory slot needed.
-5. **Well-Wishing Garden** / **Petal Path Maker** — both need placing a flower
+4. **Well-Wishing Garden** / **Petal Path Maker** — both need placing a flower
    at a specific outdoor tile (a neighbor's door, or a path anchor) and
    checking it later. Same missing piece: no outdoor per-tile decor system
    exists yet (see gotcha).
-6. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
+5. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
    pick-a-memory list UI. New but self-contained (no persistence).
-7. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
+6. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
    requires storing + restoring original positions. First holiday that
    mutates existing player-placed state instead of adding temp objects.
-8. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
+7. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
    across the 6-day gap until the holiday repeats). First one needing
    `world`-level persistent storage beyond the day.
-9. **Flealess Market** — 3 items, one of which is a whole new plant type
+8. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-10. **Familiar Seller** — permanent named companion that follows the player
+9. **Familiar Seller** — permanent named companion that follows the player
     forever, across saves. Biggest new system (persistent follower + naming
     input + per-year selection).
-11. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+10. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
     IOUs) but needs several new throwaway dialogue lines per neighbor; save
     for when there's appetite for writing flavor text.
 
