@@ -516,6 +516,8 @@ function getHogHolidayMood() {
     if (name === 'Turtle Crossing Guard Day') return { emote: 'guard', note: hog.name + ' stands watch by the crossing, chest puffed out importantly.' };
     if (name === 'The Returning Bird') return { emote: 'sky', note: hog.name + ' cranes his neck skyward, watching for the bird.' };
     if (name === 'Lost Mail Day') return { emote: 'letter', note: hog.name + ' noses at a sealed letter, hoping it is for him.' };
+    if (name === 'Well-Wishing Garden') return { emote: 'flower', note: hog.name + ' sniffs at the gardener\'s cart, hoping for a flower of his own.' };
+    if (name === 'The Petal Path Maker') return { emote: 'path', note: hog.name + ' trots along the petal path, leaving little hoofprints.' };
     return null;
 }
 

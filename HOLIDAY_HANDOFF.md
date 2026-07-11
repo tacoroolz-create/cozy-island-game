@@ -104,32 +104,73 @@ to actually solve the clue; also skipped a custom `getHolidayGreetingPrefix`
 bank, following the precedent of Island God/Dig a Hole Day/Castle of Sticks
 Day (static-prop holidays lean on the generic fallback).
 
-## Remaining 8, ranked easiest → hardest to build
-Ranking based on how much new plumbing each needs vs. reusing existing systems
-(NPC roster, `gainGift` friendship, inventory, dialogue tree, interior-only
-decor placement).
+**Well-Wishing Garden + The Petal Path Maker** (on `main`, pushed to origin),
+shipped together since both were blocked on the same missing piece. First
+built the shared primitive the old gotcha below used to warn against —
+`findClearGroundNear(cx, cy, minR, maxR)` and `drawFlowerDecor(x, y)` in
+[src/game.js](src/game.js:1599) — a radial rejection-sampled search for clear
+grass/beach, and a flower sprite/fallback draw call. It's deliberately *not*
+the real furniture/outdoor-item system (`ITEMS[id].outdoor`, used by potted
+trees and neighbor shacks — still interior-placement-only, still permanent,
+still untouched); this is a lighter, purely-visual, per-holiday-state overlay
+that never writes to `world.tiles` and vanishes when the holiday ends, same
+lifecycle as `islandGod`/`lostMail`/`turtleCrossing`.
 
-1. **Well-Wishing Garden** / **Petal Path Maker** — both need placing a flower
-   at a specific outdoor tile (a neighbor's door, or a path anchor) and
-   checking it later. Same missing piece: no outdoor per-tile decor system
-   exists yet (see gotcha).
-2. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
+**Well-Wishing Garden**: array slot 19 (was "Opposite Compliment Day")
+renamed. A static gardener (`wellWishGardener`) spawns near the dock;
+interacting hands the player one held flower a day (`heldWellWishFlower`,
+same temporary-held-item pattern as Lost Mail Day's letters). Door-standing
+spots for every housed neighbor are precomputed each morning
+(`buildWellWishSpots()`, via each neighbor's home `Building` +
+`findExteriorStandingTile()` — the same helper `hog.js` already uses for
+Hoggy's tier-4 morning greet). Facing a spot while holding the flower plants
+it (`tryPlaceWellWishFlower`); the thank-you reaction lives in
+[src/dialogue.js](src/dialogue.js:66)'s `getHolidayGreetingPrefix` (same hook
+as Hoggy's Birthday/Turtle Crossing), firing `gainGift(3)` once per neighbor
+the first time they're greeted after their door is decorated.
+
+**The Petal Path Maker**: array slot 23 (was "Humming in Unison Hour")
+renamed. A path-artist (`petalPathArtist`) spawns near the dock and hands out
+held petals (`heldPetal`). 5 anchor tiles are interpolated between the dock
+and the player's own home door (`findPetalPathAnchors()`, via
+`getPlayerShack()` + `findExteriorStandingTile()`) and snapped to clear
+ground. Neighbors trickle petals onto open anchors every 15-25s
+(`updatePetalPath()`); once every anchor is filled, standing on the path
+within 1 tile of a neighbor triggers a one-time "follow the pink" comment +
+`gainGift(2)` per neighbor (`walkedWith` Set, keyed by `npc.id`).
+
+Both: Hoggy gets a mood in `getHogHolidayMood()`. No new sprites — both fall
+back to `drawFlowerDecor`'s colored-ellipse flower. Skipped: the outline's
+named neighbors (Zora/Gearwick/Nix, Daphne/Krip/Penny — same gap as every
+other holiday with example dialogue for characters outside the real 32-NPC
+roster); Well-Wishing Garden's "perpetual blessing seed" optional upgrade;
+and a friendship stat for the path-artist to receive the outline's "boost the
+path-artist" reward — one-day visiting NPCs (Yogatron, the gardener, the
+path-artist) don't have a friendship system in this codebase at all, not
+worth inventing one for a single cosmetic line.
+
+## Remaining 7, ranked easiest → hardest to build
+Ranking based on how much new plumbing each needs vs. reusing existing systems
+(NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
+decor primitive above).
+
+1. **Memory Lantern Night** — dusk-triggered, lanterns placed in a preset line,
    pick-a-memory list UI. New but self-contained (no persistence).
-3. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
+2. **Picnic Reset** — temporarily relocates all placed outdoor furniture,
    requires storing + restoring original positions. First holiday that
    mutates existing player-placed state instead of adding temp objects.
-4. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
+3. **The Neighborhood Time Capsule** — cross-cycle persistence (store text
    across the 6-day gap until the holiday repeats). First one needing
    `world`-level persistent storage beyond the day.
-5. **Flealess Market** — 3 items, one of which is a whole new plant type
+4. **Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Most new content of any outline.
-6. **Familiar Seller** — permanent named companion that follows the player
+5. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-7. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
+6. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
    IOUs) but needs several new throwaway dialogue lines per neighbor; save
    for when there's appetite for writing flavor text.
-8. **Peak Saucy** — new outline that appeared mid-session
+7. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the
@@ -148,14 +189,17 @@ decor placement).
 complexity, not necessarily writing effort — reorder freely.)
 
 ## Gotchas found while building the first one
-- **No outdoor decor placement system.** Furniture/decoration placement
-  ([src/game.js:2164](src/game.js:2164)) is interior-only (walls/floors inside
-  buildings). Several outlines (Hoggy's Birthday picnic blanket,
-  Well-Wishing Garden, Petal Path Maker) assume you can drop a decorative tile
-  outside. Don't build a general system for this — reuse the temporary-NPC
-  pattern instead (spawn a decoration as a static non-interactive prop object,
-  same as `islandGod`, rather than plumbing it through the real furniture
-  system).
+- **~~No outdoor decor placement system.~~ Resolved.** The real furniture
+  placement system ([src/game.js:2164](src/game.js:2164)) is still
+  interior-only and permanent (walls/floors inside buildings, or the
+  `ITEMS[id].outdoor` potted-tree/shack path that mutates `world.tiles`) — do
+  *not* route new outlines through either of those. Instead use
+  `findClearGroundNear(cx, cy, minR, maxR)` + `drawFlowerDecor(x, y)` in
+  [src/game.js](src/game.js:1599) (added for Well-Wishing Garden/The Petal
+  Path Maker): a radial rejection-sampled ground search + a flower draw call,
+  both purely visual and held in per-holiday JS state that vanishes when the
+  holiday ends. Any future outline needing "drop a decorative tile outside"
+  (Memory Lantern Night's lanterns, etc.) should reuse this, not reinvent it.
 - **`spawnTurtles()` never actually fires.** It's gated on
   `world.season !== 'Sour'` ([src/animals.js:319](src/animals.js:319)), but
   `SEASONS` is `['Sweet','Saucy','Cool','Yeesh']` — there is no 'Sour' season,
