@@ -736,14 +736,37 @@ const DEV_REFRESH_ASSETS = true;
 // it's unique per load; off, it's the fixed version string below.
 const ASSET_VERSION = DEV_REFRESH_ASSETS ? String(Date.now()) : '20260705';
 
+// Slug used to build a per-NPC sprite/portrait key from a display name, e.g.
+// "Sir Cogs-a-Lot" -> "sir_cogs_a_lot". Used by the loader below AND by every
+// draw-time lookup (entities.js, the shadow pass) so keys always match.
+function npcSlug(name) {
+    return String(name).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+}
+
+// Load one image into SPRITES[key]; missing files null out (colored fallback).
+function loadSpriteURL(key, path) {
+    const url = path + (path.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
+    SPRITES[key] = loadImage(url, () => {}, () => {
+        console.warn(`Failed to load sprite ${key} from ${url}`);
+        SPRITES[key] = null;
+    });
+}
+
 function preload() {
     for (const [key, path] of Object.entries(SPRITE_DEFS)) {
-        const url = path + (path.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
-        // loadImage with error callback so missing files don't hang preload
-        SPRITES[key] = loadImage(url, () => {}, () => {
-            console.warn(`Failed to load sprite ${key} from ${url}`);
-            SPRITES[key] = null;
-        });
+        loadSpriteURL(key, path);
+    }
+    // Neighbor + permanent-NPC art, keyed by name slug so the draw-time lookups
+    // resolve. Two sprites each: a 16x32 overworld sprite (assets/sprites/npcs/)
+    // and a 64x64 talking portrait (assets/sprites/portraits/). Missing files
+    // fall back to the colored rect / silhouette, same as everything else.
+    const roamers   = [...NPC_DEFS.map(d => d.name), 'Yogatron'];
+    const portraits = [...NPC_DEFS.map(d => d.name), 'Yogatron', 'Stan', 'Bob'];
+    for (const name of roamers) {
+        loadSpriteURL('sprites.' + npcSlug(name), 'assets/sprites/npcs/' + npcSlug(name) + '.png');
+    }
+    for (const name of portraits) {
+        loadSpriteURL('portraits.' + npcSlug(name), 'assets/sprites/portraits/' + npcSlug(name) + '.png');
     }
     // Load the underworld layout CSV so generateUnderground() can run synchronously.
     // Cache-busted like the script tags in index.html, so layout edits show up
@@ -7269,7 +7292,7 @@ class World {
         if (typeof npcs !== 'undefined') {
             for (const npc of npcs) {
                 if (!npc.isPresent) continue;
-                const spr = SPRITES['sprites.' + npc.name.toLowerCase()];
+                const spr = SPRITES['sprites.' + npcSlug(npc.name)];
                 if (!spr || !spr.width) continue;
                 const big = (npc.wTiles || 1) > 1 || (npc.hTiles || 2) > 2;
                 const sil = shadowSilhouette('actor|' + npc.name, [big ? wholeSource(spr) : charSource(spr)]);

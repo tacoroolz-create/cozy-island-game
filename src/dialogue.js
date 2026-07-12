@@ -1,6 +1,11 @@
 // ===== DIALOGUE SYSTEM =====
 // Multi-turn conversations with NPCs, multiple choice answers
 
+// Conversation typeface. 'Silkscreen' is the pixel webfont pulled in by the
+// Google Fonts <link> in index.html; the fallbacks cover the moment before it
+// loads (and offline). Swap the first name here to change the whole dialogue box.
+const DIALOGUE_FONT = 'Silkscreen, "Courier New", monospace';
+
 // Add dialogue state to STATE if not present
 if (typeof STATE !== 'undefined' && !STATE.DIALOGUE) STATE.DIALOGUE = 'dialogue';
 
@@ -844,7 +849,7 @@ function drawDialogueScreen() {
         fill(255, 255, 200);
         textAlign(LEFT, TOP);
         textSize(10);
-        textFont('Courier New');
+        textFont(DIALOGUE_FONT);
         // Magic menus (magic.js) run without an NPC and set a title instead.
         text(dialogueState.npc ? dialogueState.npc.name : (dialogueState.menuTitle || ''), 8, panelY + 6);
 
@@ -888,14 +893,20 @@ function drawDialogueScreen() {
     if (!node) return;
 
     // --- Layout metrics ---
-    const textX = 38;
+    // A 64x64 portrait sits in the left gutter when one is loaded for this NPC;
+    // the text column shifts right to clear it. No portrait -> the old 24-wide
+    // colored-swatch layout.
+    const portrait = (typeof npcSlug === 'function' && dialogueState.npc)
+        ? SPRITES['portraits.' + npcSlug(dialogueState.npc.name)] : null;
+    const hasPortrait = !!(portrait && portrait.width);
+    const textX = hasPortrait ? 80 : 38;
     const topPad = 24;                 // space for the name/portrait header
     const textMaxW = width - textX - 10;
     const bodySize = 12, bodyLineH = 14;
     const choiceSize = 11, choiceLineH = 13, choiceGap = 5, markerW = 14;
     const footerH = 14;
 
-    textFont('Courier New');
+    textFont(DIALOGUE_FONT);
 
     // Measure the full body text so the panel can grow to fit it.
     textSize(bodySize);
@@ -921,12 +932,20 @@ function drawDialogueScreen() {
     drawDialoguePanelBg(panelY, panelH);
 
     // Portrait
-    fill(dialogueState.npc.color);
-    rect(8, panelY + 8, 24, 24);
-    stroke(200);
-    noFill();
-    rect(8, panelY + 8, 24, 24);
-    noStroke();
+    if (hasPortrait) {
+        image(portrait, 8, panelY + 8, 64, 64);
+        stroke(200);
+        noFill();
+        rect(8, panelY + 8, 64, 64);
+        noStroke();
+    } else {
+        fill(dialogueState.npc.color);
+        rect(8, panelY + 8, 24, 24);
+        stroke(200);
+        noFill();
+        rect(8, panelY + 8, 24, 24);
+        noStroke();
+    }
 
     // Name
     fill(255, 255, 200);
