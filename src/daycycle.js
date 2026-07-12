@@ -48,7 +48,7 @@ const HOLIDAYS = [
     { name: 'Toast Toss Tournament',  desc: 'Beach targets appear and islanders throw stale toast for prizes.' },
     { name: 'Garden Day',             desc: 'A day for the player and neighbors to start gardens. Hoes have unlimited durability and everyone has dirt on their mind.' },
     { name: 'Snake Run Day',          desc: 'A holiday for snakes! They dart between trees, rocks, and buildings all day. Catch one for a small gift.' },
-    { name: 'Spoon Appreciation Day', desc: 'All meals must be prepared, served, and eaten with only spoons.' },
+    { name: 'Tourist Time!',          desc: 'A dreamy little boat beaches with a few bewildered tourists. Give one a souvenir for an IOU.' },
     { name: 'Ab Appreciation Day',   desc: 'A flex-and-sip festival honoring every abdominal. Yogatron visits to hand out Protein Shakes.' },
     { name: 'Backflip Day',          desc: 'Interact with anyone or anything — neighbors, animals, even trees and stones — and they celebrate with a backflip.' },
     { name: "Hoggy's Birthday",       desc: 'The wild hog is guest of honor. Bring him a gift and every neighbor pitches in, too.' },

@@ -6,7 +6,7 @@ Talk Like an Eagle Day         | Yes      | Implemented
 Toast Toss Tournament          | Yes      | Implemented
 Garden Day                     | Yes      | Implemented
 Snake Run Day                  | Yes      | Implemented (snakes dart, catch for a gift)
-Tourist Time!                  | No       | Outline in Holidays/TouristTime.md
+Tourist Time!                  | Yes      | Implemented (offer a beached tourist a gift item for an IOU)
 Ab Appreciation Day            | Yes      | Yogatron NPC gives Protein Shakes
 Backflip Day                   | Yes      | Implemented (everything backflips on interact)
 Hoggy's Birthday               | Yes      | Implemented (feed Hoggy any gift -> every neighbor's friendship +5)
@@ -73,6 +73,23 @@ outline's named neighbors (Brass, Vega, Willow) don't exist in the actual
 skipped physically repositioning neighbors along the path — not needed for
 the reward loop, and repositioning is the harder pattern reserved for The
 Returning Bird.
+
+(July 11: Implemented Tourist Time! Array slot 7 (was "Spoon Appreciation
+Day") in src/daycycle.js renamed. 3 static tourists (touristTime in game.js,
+spawnTouristTime/updateTouristTime/drawTouristTime/tryTalkToTourist) spawn
+near the dock on findClearGroundNear rings so they don't stack. Facing one
+while holding any 'gift'-category item (the closest existing stand-in for
+"harvested fruit or flower" — no dedicated fruit/flower category exists)
+hands it over as a souvenir: item consumed, +1 IOU, once per tourist per
+day. Otherwise, or once thanked, interacting just shows a random naive
+question via notify() — no failure state, matches the outline. Hoggy gets a
+"confused" mood; neighbor dialogue gets tourist-brag lines via
+getHolidayGreetingPrefix. No new sprite or boat — falls back to a colored
+rectangle body per tourist; the boat itself is flavor text only, not drawn.
+Skipped: the outline's named neighbor brags (Chester/Luna/Hudson/Aiko aren't
+all in the actual 32-NPC roster, same gap as every other holiday with
+example dialogue for out-of-roster characters) — brags are generic instead;
+also skipped the "visitor log sign" optional upgrade.)
 
 Note: a "Peak Saucy" row appeared in this file (Holidays/PeakSaucy.md exists)
 between Sweet Valley and The Great Blink-Off, added outside this session.
