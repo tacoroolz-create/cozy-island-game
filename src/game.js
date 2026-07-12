@@ -394,6 +394,15 @@ const ITEMS = {
     wall_shelf:   { name: 'Wall Shelf',    category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A floating shelf for trinkets.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
     round_rug:    { name: 'Round Rug',     category: 'block', maxStack: 99, color: '#E57373', desc: 'A soft round rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
     runner_rug:   { name: 'Runner Rug',    category: 'block', maxStack: 99, color: '#64B5F6', desc: 'A long runner rug for the floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+    // --- Peak Yeesh holiday furniture pool (Papa Yeesh's midnight reward) ---
+    yule_tree:       { name: 'Yule Tree',        category: 'block', maxStack: 99, color: '#1B5E20', desc: 'A decorated evergreen, still smelling of the outdoors.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    brick_fireplace: { name: 'Brick Fireplace',  category: 'block', maxStack: 99, color: '#8D4E32', desc: 'A cozy brick-faced fireplace, an Everburn keepsake.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    garland:         { name: 'Garland',          category: 'block', maxStack: 99, color: '#2E7D32', desc: 'A set of five festive garlands for the wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    wreath:          { name: 'Wreath',           category: 'block', maxStack: 99, color: '#C62828', desc: 'An evergreen wreath for the door or wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    mistletoe_sprig: { name: 'Mistletoe Sprig',  category: 'block', maxStack: 99, color: '#7CB342', desc: 'A small sprig to hang overhead.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
+    candle_log:      { name: 'Candle Log',       category: 'block', maxStack: 99, color: '#EF9A9A', desc: 'A long-burning candle set into a birch log.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+    holly_vase:      { name: 'Holly Vase',       category: 'block', maxStack: 99, color: '#AD1457', desc: 'A vase of holly sprigs for the table.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+    yule_goat_plush: { name: 'Yule Goat Plush',  category: 'block', maxStack: 99, color: '#F5DEB3', desc: 'A small straw goat, a solstice keepsake.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
 
     // Outdoor placeable — equip and click an open area outside to build a neighbor's shack
     neighbor_shack: { name: "Neighbor's Shack", category: 'block', maxStack: 1, color: '#8B6914', desc: 'A cozy little shack for a neighbor. Place it outside on open ground.', outdoor: { type: 'shack' } },
@@ -1136,6 +1145,10 @@ function drawGame() {    // Handle continuous movement
     // ===== SWEET VALLEY: beach altar build + offering =====
     updateSweetValley();
     drawSweetValley();
+
+    // ===== PEAK YEESH: Everburn bonfire + silent Papa Yeesh visitor =====
+    updatePeakYeesh();
+    drawPeakYeesh();
 
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
@@ -2791,11 +2804,183 @@ function tryOfferAtSweetValleyAltar() {
     return true;
 }
 
+// ===== PEAK YEESH =====
+// Winter-solstice holiday. The Everburn fire pit appears the moment the
+// holiday starts (build any time, same materials-consuming shape as Sweet
+// Valley's altar — plain Sticks + Logs, no new Yule Log/Evergreen Bough
+// items, following every other holiday's precedent of skipping a new economy
+// item). After dusk a silent visitor, Papa Yeesh, wanders nearby (same
+// gentle wander tick as Yogatron); talking to him is flavor only, no reward.
+// The real reward resolves automatically at the natural midnight rollover
+// (onPeakYeeshMidnight, called from daycycle.js's onNewDay) based on
+// hog.yearGiftCount — unless the player slept before midnight, tracked via
+// sleptPastMidnight (set in trySleep()).
+const PEAK_YEESH_STICK_COST = 15;
+const PEAK_YEESH_LOG_COST = 5;
+const PEAK_YEESH_DUSK_HOUR = 18;
+const PEAK_YEESH_FURNITURE_POOL = ['yule_tree', 'brick_fireplace', 'garland', 'wreath', 'mistletoe_sprig', 'candle_log', 'holly_vase', 'yule_goat_plush'];
+const PEAK_YEESH_BUILD_LINES = [
+    'You stack the sticks and logs into the Everburn. It catches fast and burns bright against the long night.',
+    'The Everburn roars to life. Somewhere, neighbors cheer at the light on the horizon.',
+    'You light the Everburn. The dark backs off a little.'
+];
+const PAPA_YEESH_LINES = [
+    'Papa Yeesh looks at you and says nothing. He drifts on into the dark.',
+    'Papa Yeesh nods once, silent, and continues his rounds.',
+    'You catch Papa Yeesh\'s eye. He says nothing, but seems to be counting something.',
+    'Papa Yeesh pauses near you for a moment, quiet as snowfall, then moves on.'
+];
+let sleptPastMidnight = false; // set by trySleep(), read + reset by onPeakYeeshMidnight
+let peakYeesh = null; // { day, spot:{x,y}, built }
+let papaYeesh = null; // { x, y, lastMoveAt }
+
+function findEverburnSpot() {
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    return findClearGroundNear(dock.x, dock.y, 1, 15);
+}
+
+function spawnPeakYeesh() {
+    if (!world) return;
+    const spot = findEverburnSpot();
+    if (!spot) return;
+    peakYeesh = { day: world.day, spot, built: false };
+    notify('The longest night has come. Gather 15 Sticks and 5 Logs to build the Everburn bonfire.', 5000);
+}
+
+function updatePeakYeesh() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Peak Yeesh') {
+        if (peakYeesh) peakYeesh = null;
+        if (papaYeesh) papaYeesh = null;
+        return;
+    }
+    if (!world) return;
+    if (!peakYeesh || peakYeesh.day !== world.day) spawnPeakYeesh();
+
+    // Papa Yeesh only comes out after dusk.
+    if (world.timeMinutes / 60 < PEAK_YEESH_DUSK_HOUR) {
+        if (papaYeesh) papaYeesh = null;
+        return;
+    }
+    if (!papaYeesh) {
+        const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+        const spot = findClearGroundNear(dock.x, dock.y, 3, 18);
+        if (!spot) return;
+        papaYeesh = { x: spot.x, y: spot.y, lastMoveAt: 0 };
+        notify('A quiet figure has appeared near the homes. Papa Yeesh has come for the longest night.', 4500);
+        return;
+    }
+    // Gentle wander, same cadence as Yogatron.
+    if (Math.random() < 0.005) {
+        const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+        const d = dirs[Math.floor(Math.random()*4)];
+        const nx = papaYeesh.x + d[0], ny = papaYeesh.y + d[1];
+        if (nx >= 0 && nx < CONFIG.WORLD_WIDTH && ny >= 0 && ny < CONFIG.WORLD_HEIGHT) {
+            if (!isSolidTile(nx, ny) && !buildingAt(nx, ny) && !(typeof npcAt === 'function' && npcAt(nx, ny))) {
+                papaYeesh.x = nx;
+                papaYeesh.y = ny;
+                papaYeesh.lastMoveAt = millis();
+            }
+        }
+    }
+}
+
+function drawPeakYeesh() {
+    if (!peakYeesh) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = peakYeesh.spot.x * TS - cameraX, sy = peakYeesh.spot.y * TS - cameraY;
+    noStroke();
+    if (peakYeesh.built) {
+        fill('#5D4037');
+        rect(sx + TS * 0.2, sy + TS * 0.55, TS * 0.6, TS * 0.35, 2);
+        fill('#FF7043');
+        ellipse(sx + TS * 0.5, sy + TS * 0.4, TS * 0.5, TS * 0.6);
+        fill('#FFCA28');
+        ellipse(sx + TS * 0.5, sy + TS * 0.25, TS * 0.3, TS * 0.4);
+        fill(255, 140, 60, 90);
+        ellipse(sx + TS * 0.5, sy + TS * 0.4, TS * 1.4, TS * 1.4);
+    } else {
+        fill('#8D6E63');
+        ellipse(sx + TS * 0.5, sy + TS * 0.7, TS * 0.7, TS * 0.3);
+        fill('#A0826D');
+        rect(sx + TS * 0.35, sy + TS * 0.35, TS * 0.3, TS * 0.4, 2);
+    }
+    if (papaYeesh) {
+        const px = papaYeesh.x * TS - cameraX, py = papaYeesh.y * TS - cameraY;
+        const moving = (millis() - (papaYeesh.lastMoveAt || 0)) < 300;
+        const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
+        fill('#37474F');
+        rect(px, py - TS + bob, TS, TS * 2);
+        fill('#ECEFF1');
+        ellipse(px + TS * 0.5, py - TS * 1.6 + bob, TS * 0.7, TS * 0.7);
+        fill('#B0BEC5');
+        rect(px - 2, py - TS * 1.9 + bob, TS + 4, TS * 0.35, 3);
+    }
+}
+
+function isFacingEverburn() {
+    if (!peakYeesh || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === peakYeesh.spot.x && facing.y === peakYeesh.spot.y;
+}
+
+// Building/lighting the Everburn (tried before harvest at both interact call sites).
+function tryBuildEverburn() {
+    if (!peakYeesh || peakYeesh.built || !isFacingEverburn()) return false;
+    if (!inventory.hasItem('stick', PEAK_YEESH_STICK_COST) || !inventory.hasItem('log', PEAK_YEESH_LOG_COST)) {
+        notify('The Everburn needs 15 Sticks and 5 Logs to build. Gather a bit more.', 3500);
+        return true;
+    }
+    inventory.removeItem('stick', PEAK_YEESH_STICK_COST);
+    inventory.removeItem('log', PEAK_YEESH_LOG_COST);
+    peakYeesh.built = true;
+    notify(PEAK_YEESH_BUILD_LINES[Math.floor(Math.random() * PEAK_YEESH_BUILD_LINES.length)], 4500);
+    return true;
+}
+
+function isFacingPapaYeesh() {
+    if (!papaYeesh || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === papaYeesh.x && facing.y === papaYeesh.y;
+}
+
+// Papa Yeesh never speaks when approached directly — flavor line only. The
+// real reward resolves at midnight via onPeakYeeshMidnight.
+function tryTalkToPapaYeesh() {
+    if (!papaYeesh || !isFacingPapaYeesh()) return false;
+    notify(PAPA_YEESH_LINES[Math.floor(Math.random() * PAPA_YEESH_LINES.length)], 4000);
+    return true;
+}
+
+// Called from daycycle.js's onNewDay() when yesterday was Peak Yeesh. Reward
+// is based on hog.yearGiftCount accumulated since the last Peak Yeesh: 0.5
+// IOUs per gift (rounded up), or one random holiday furniture piece if that
+// would exceed 20 IOUs. Skipped entirely if the player slept before midnight.
+function onPeakYeeshMidnight() {
+    const wentToSleep = sleptPastMidnight;
+    sleptPastMidnight = false;
+    if (wentToSleep) return;
+    if (typeof hog === 'undefined' || !hog) return;
+    const count = hog.yearGiftCount || 0;
+    hog.yearGiftCount = 0;
+    const iouAmount = Math.ceil(count * 0.5);
+    if (iouAmount <= 0) return;
+    if (typeof inventory === 'undefined' || !inventory) return;
+    if (iouAmount > 20) {
+        const pick = PEAK_YEESH_FURNITURE_POOL[Math.floor(Math.random() * PEAK_YEESH_FURNITURE_POOL.length)];
+        inventory.addItem(pick, 1);
+        notify('Papa Yeesh left something by your door overnight: a ' + ITEMS[pick].name + '.', 5500);
+    } else {
+        inventory.addItem('iou', iouAmount);
+        notify('Papa Yeesh left ' + iouAmount + ' IOU' + (iouAmount === 1 ? '' : 's') + ' by your door — a quiet thanks for how you treated ' + hog.name + ' this year.', 5500);
+    }
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
     let r = 20, g = 20, b = 60;
-    
+
     if (hour < 5) {
         // Deep night
         darkness = 0.5;
@@ -3556,6 +3741,9 @@ function mousePressed() {
         // Sweet Valley: build the beach altar, then offer a harvestable
         if (typeof tryBuildSweetValleyAltar === 'function' && tryBuildSweetValleyAltar()) return;
         if (typeof tryOfferAtSweetValleyAltar === 'function' && tryOfferAtSweetValleyAltar()) return;
+        // Peak Yeesh: build the Everburn, or talk to the silent Papa Yeesh
+        if (typeof tryBuildEverburn === 'function' && tryBuildEverburn()) return;
+        if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4254,6 +4442,9 @@ function trySleep() {
     // Skip to next day 6:00 AM
     world.day++;
     world.timeMinutes = 6 * 60;
+    // Peak Yeesh's midnight reward only fires if the player stayed awake for
+    // the natural clock rollover, not this manual sleep-skip.
+    if (typeof sleptPastMidnight !== 'undefined') sleptPastMidnight = true;
     if (typeof onNewDay === 'function') onNewDay();
     notify("You slept until morning. Day " + world.day + " begins!");
 
@@ -4848,6 +5039,9 @@ function keyPressed() {
             // Sweet Valley: build the beach altar, then offer a harvestable
             if (typeof tryBuildSweetValleyAltar === 'function' && tryBuildSweetValleyAltar()) return false;
             if (typeof tryOfferAtSweetValleyAltar === 'function' && tryOfferAtSweetValleyAltar()) return false;
+            // Peak Yeesh: build the Everburn, or talk to the silent Papa Yeesh
+            if (typeof tryBuildEverburn === 'function' && tryBuildEverburn()) return false;
+            if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

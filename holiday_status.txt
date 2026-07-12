@@ -28,7 +28,7 @@ The Neighborhood Time Capsule  | Yes      | Implemented (historian buries a box;
 Sweet Valley                   | Yes      | Implemented (build a beach altar from sticks+stones, offer a harvestable)
 Peak Saucy                     | Yes      | Implemented (bonfire elder hands out sweet tea, serve neighbors for friendship)
 Cool Valley                    | Yes      | Implemented (dusk elder shares rice balls, leave offerings at rock memory stones)
-Peak Yeesh                     | No       | Outline in Holidays/PeakYeesh.md
+Peak Yeesh                     | Yes      | Implemented (build the Everburn bonfire; silent Papa Yeesh leaves an overnight reward if you stay up past midnight)
 
 (Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
 11 of 29 named days have real events; "Hog reaction only" means the hog
@@ -410,3 +410,46 @@ so this follows the strong precedent of every other holiday skipping new
 economy/plant subsystems for a flavor-only reward (Peak Saucy's Tea
 Leaves/Lemon, Cool Valley's Chrysanthemum). Offerings use any existing
 'gift'-category item instead of a dedicated Yam item.)
+
+(July 11: Implemented Peak Yeesh. Array slot 28 (was "Hat-Stacking Jubilee")
+in src/daycycle.js renamed. A fire pit (findEverburnSpot(), reusing
+findClearGroundNear near the dock) appears the moment the holiday starts;
+facing it and interacting with 15 Sticks + 5 Logs in hand
+(tryBuildEverburn(), src/game.js) builds and lights the Everburn — plain
+existing materials, no new Yule Log/Evergreen Bough items, same
+"materials-consuming altar" shape as Sweet Valley's beach altar. After dusk
+(18:00), Papa Yeesh spawns nearby and wanders gently (same wander tick as
+Yogatron); facing him and interacting (tryTalkToPapaYeesh()) only ever gives
+a silent flavor line via notify() — per the outline, he never speaks when
+approached directly. The real reward resolves automatically at the natural
+midnight clock rollover: onPeakYeeshMidnight() is called from
+src/daycycle.js's onNewDay() whenever yesterday's holiday was Peak Yeesh, and
+grants 0.5 IOUs per gift given to Hoggy since the last Peak Yeesh
+(hog.yearGiftCount, incremented on every successful Hog.feed() call in
+src/hog.js, reset after the reward fires), or one random piece from the new
+8-item holiday furniture pool (yule_tree, brick_fireplace, garland, wreath,
+mistletoe_sprig, candle_log, holly_vase, yule_goat_plush — all plain
+ITEMS/home-placement data-table entries, reusing the existing furniture
+system) if that would exceed 20 IOUs. No reward at all if the player slept
+before midnight: trySleep() sets a sleptPastMidnight flag (src/game.js) that
+onPeakYeeshMidnight() checks and clears. Hoggy gets a "toasty" mood
+(src/hog.js getHogHolidayMood()). Neighbor dialogue's Peak Yeesh comment bank
+was already pre-written and unwired at src/dialogue.js's
+getHolidayGreetingPrefix (same "written ahead, wired later" situation as Cool
+Valley's and Sweet Valley's banks) — no changes needed, it activates
+automatically once holiday.name matches. No new sprites — fire pit and Papa
+Yeesh fall back to colored shapes. Skipped: the outline's literal "carry a
+big Yule Log to the fire pit" drag mechanic and separate Evergreen Bough
+harvesting (folded into the single build-with-materials interaction, same
+precedent as Sweet Valley skipping a dedicated placed-structure system);
+"feed the fire sticks throughout the night" flavor upgrade; and Papa Yeesh
+literally routing between named neighbor homes (he wanders freely near the
+dock instead, cheaper than pathing to the housed-neighbor roster and
+achieves the same "visits nearby" flavor). This closes out the ranked list
+from the prior handoff — Peak Yeesh turned out lazier to build than expected
+(Papa Yeesh needed no dialogue tree, the furniture pool was pure data, and
+"yearly Hoggy-gift count" was one new counter field) despite being ranked
+#2 of 3 remaining. Two outlined holidays remain: The Flealess Market
+(Holidays/FlealessMarket.md) and Familiar Seller
+(Holidays/FamiliarSeller.md) — see HOLIDAY_HANDOFF.md for the updated
+ranking. Backwards Hats Day (array[0]) still has no outline file.)
