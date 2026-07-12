@@ -1161,6 +1161,12 @@ function drawGame() {    // Handle continuous movement
     updateFlealessMarket();
     drawFlealessMarket();
 
+    // ===== FAMILIAR SELLER: druid visitor + persistent companion =====
+    updateFamiliarSeller();
+    drawFamiliarSeller();
+    updateFamiliar(deltaTime);
+    drawFamiliar();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -3092,6 +3098,158 @@ function tryTalkToFlealessMerchant() {
     return true;
 }
 
+// ===== FAMILIAR SELLER =====
+// A traveling druid offers one companion familiar a year for 20 IOUs. Once
+// bought, `familiar` is permanent, persisted state (see save.js) — not
+// scoped to the holiday like the druid herself, who despawns as usual when
+// the day ends. Follow logic is a lazy step-toward-player grid hop on a
+// timer, the same discrete-move shape Animal.update() already uses; no
+// pathfinding or collision, matching the outline's "cosmetic only" constraint.
+const FAMILIAR_KINDS = [
+    { name: 'Will-o-Wisp',   color: '#FFEB3B', desc: 'a small floating light that hums when happy' },
+    { name: 'Shadow Fox',    color: '#37474F', desc: 'a fox-shaped patch of dark that only shows its eyes' },
+    { name: 'Moss Golem',    color: '#4CAF50', desc: 'a fist-sized clump of moss with a face when it wants one' },
+    { name: 'Star Newt',     color: '#7E57C2', desc: 'a newt speckled with what might be actual stars' },
+    { name: 'Candle Wisp',   color: '#FF8A65', desc: 'a floating candle flame that never goes out' },
+    { name: 'Puddle Sprite', color: '#4FC3F7', desc: 'a walking puddle that reflects the wrong sky' }
+];
+const FAMILIAR_COST = 20;
+
+let familiarDruid = null;     // { x, y } — holiday-scoped
+let familiarSellerDay = null; // { day, kindIndex } — holiday-scoped
+let familiar = null; // persistent: { active, name, kindIndex, gridX, gridY, facing, moveTimer } — survives days/saves
+
+function spawnFamiliarSeller() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    familiarDruid = findClearGroundNear(dock.x, dock.y, 1, 12);
+    familiarSellerDay = { day: world.day, kindIndex: world.day % FAMILIAR_KINDS.length };
+    notify('A traveling druid has set up near the dock with a familiar for sale.', 4500);
+}
+
+function updateFamiliarSeller() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Familiar Seller') {
+        if (familiarSellerDay) { familiarSellerDay = null; familiarDruid = null; }
+        return;
+    }
+    if (!world) return;
+    if (!familiarSellerDay || familiarSellerDay.day !== world.day) spawnFamiliarSeller();
+}
+
+function drawFamiliarSeller() {
+    if (!familiarSellerDay || !familiarDruid) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = familiarDruid.x * TS - cameraX, sy = familiarDruid.y * TS - cameraY;
+    noStroke();
+    fill('#6A1B9A');
+    rect(sx + TS * 0.2, sy + TS * 0.15, TS * 0.6, TS * 0.75, 3); // robe
+    fill('#D7CCC8');
+    ellipse(sx + TS * 0.5, sy + TS * 0.2, TS * 0.3, TS * 0.3); // head
+}
+
+function isFacingFamiliarDruid() {
+    if (!familiarDruid || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === familiarDruid.x && facing.y === familiarDruid.y;
+}
+
+function buildFamiliarSellerTree() {
+    if (familiar && familiar.active) {
+        return {
+            start: {
+                text: '"Ah, ' + familiar.name + ' already found you. One familiar a year, that\'s the rule — even for druids."',
+                choices: [{ text: 'Fair enough.', next: null }]
+            }
+        };
+    }
+    const kind = FAMILIAR_KINDS[familiarSellerDay.kindIndex];
+    return {
+        start: {
+            text: '"This year I\'m offering a ' + kind.name + ' — ' + kind.desc + '. Yours for ' + FAMILIAR_COST + ' IOUs, and it\'ll follow you the rest of your days."',
+            choices: [
+                { text: 'Buy it (' + FAMILIAR_COST + ' IOUs).', next: null, action: () => tryBuyFamiliar() },
+                { text: 'Not today.', next: null }
+            ]
+        }
+    };
+}
+
+function tryBuyFamiliar() {
+    if (familiar && familiar.active) return;
+    if (!inventory.hasItem('iou', FAMILIAR_COST)) {
+        notify('"That\'ll cost you ' + FAMILIAR_COST + ' IOUs." You don\'t have enough yet.', 4000);
+        return;
+    }
+    const name = (window.prompt('Name your new familiar:') || '').trim().slice(0, 20);
+    if (!name) { notify('"No name, no deal." The druid shrugs.', 3000); return; }
+    inventory.removeItem('iou', FAMILIAR_COST);
+    const kind = FAMILIAR_KINDS[familiarSellerDay.kindIndex];
+    familiar = {
+        active: true,
+        name,
+        kindIndex: familiarSellerDay.kindIndex,
+        gridX: player.x,
+        gridY: player.y + 1,
+        facing: 'down',
+        moveTimer: 0
+    };
+    notify(name + ' the ' + kind.name + ' blinks awake and starts following you!', 5000);
+}
+
+function tryTalkToFamiliarDruid() {
+    if (!familiarSellerDay || !isFacingFamiliarDruid()) return false;
+    const druid = {
+        id: 'familiar_druid',
+        name: 'The Druid',
+        color: '#6A1B9A',
+        isPresent: true,
+        gridX: familiarDruid.x,
+        gridY: familiarDruid.y,
+        _dialogueTree: buildFamiliarSellerTree()
+    };
+    openDialogue(druid);
+    return true;
+}
+
+// Persistent companion: follows every day, on every map, holiday or not.
+function updateFamiliar(dt) {
+    if (!familiar || !familiar.active || !player || !dt) return;
+    familiar.moveTimer += dt;
+    if (familiar.moveTimer < 260) return;
+    familiar.moveTimer = 0;
+    const dx = player.x - familiar.gridX;
+    const dy = player.y - familiar.gridY;
+    // Snap instantly if it got left behind on another map (e.g. underground).
+    if (Math.abs(dx) + Math.abs(dy) > 40) {
+        familiar.gridX = player.x;
+        familiar.gridY = player.y + 1;
+        return;
+    }
+    if (Math.abs(dx) + Math.abs(dy) <= 1) return;
+    if (Math.abs(dx) >= Math.abs(dy)) {
+        familiar.gridX += Math.sign(dx);
+        familiar.facing = dx > 0 ? 'right' : 'left';
+    } else {
+        familiar.gridY += Math.sign(dy);
+        familiar.facing = dy > 0 ? 'down' : 'up';
+    }
+}
+
+function drawFamiliar() {
+    if (!familiar || !familiar.active) return;
+    const kind = FAMILIAR_KINDS[familiar.kindIndex] || FAMILIAR_KINDS[0];
+    const TS = CONFIG.TILE_SIZE;
+    const sx = familiar.gridX * TS - cameraX, sy = familiar.gridY * TS - cameraY;
+    noStroke();
+    fill(kind.color);
+    ellipse(sx + TS * 0.5, sy + TS * 0.6, TS * 0.5, TS * 0.4);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(7);
+    text(familiar.name, sx + TS * 0.5, sy - 2);
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3862,6 +4020,8 @@ function mousePressed() {
         if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return;
         // The Flealess Market: talk to the traveling merchant to barter
         if (typeof tryTalkToFlealessMerchant === 'function' && tryTalkToFlealessMerchant()) return;
+        // Familiar Seller: talk to the traveling druid
+        if (typeof tryTalkToFamiliarDruid === 'function' && tryTalkToFamiliarDruid()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -5162,6 +5322,8 @@ function keyPressed() {
             if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return false;
             // The Flealess Market: talk to the traveling merchant to barter
             if (typeof tryTalkToFlealessMerchant === 'function' && tryTalkToFlealessMerchant()) return false;
+            // Familiar Seller: talk to the traveling druid
+            if (typeof tryTalkToFamiliarDruid === 'function' && tryTalkToFamiliarDruid()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

@@ -59,7 +59,7 @@ const HOLIDAYS = [
     { name: 'Name the Island Day',    desc: 'Propose a name for the island (press P) and canvass the neighbors for votes. Majority rules!' },
     { name: 'The Flealess Market',    desc: 'A traveling merchant sets up near the dock, bartering rare goods for harvested materials.' },
     { name: 'Castle of Sticks Day',   desc: 'Gather 100 sticks and raise a twig tower — a second little home to decorate.' },
-    { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
+    { name: 'Familiar Seller',        desc: 'A traveling druid sets up near the dock with one familiar for sale — yours forever, once bought.' },
     { name: 'Memory Lantern Night',   desc: 'At dusk, a lantern-lighter lines the shore with paper lanterns full of neighbors\' memories.' },
     { name: 'Well-Wishing Garden',    desc: 'A visiting gardener hands out potted flowers to plant near a neighbor\'s door as a silent well-wish.' },
     { name: 'Turtle Crossing Guard Day', desc: 'A wave of turtles crawls across the island. Stand near one to help it cross safely.' },

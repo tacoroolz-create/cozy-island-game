@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 22;
+const SAVE_VERSION = 23;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -401,6 +401,14 @@ const MIGRATIONS = [
     function(data) {
         if (data.extraMaps) delete data.extraMaps.underground;
         return data;
+    },
+    // v22 -> v23: underworld is now authored from underworld.csv with a new
+    // pond position, building strip, and grass buffer. Drop the saved underground
+    // map so it regenerates from the CSV; the overworld spawn point also moved to
+    // the island pond, which is handled by placePlayerAtStartLocation() after load.
+    function(data) {
+        if (data.extraMaps) delete data.extraMaps.underground;
+        return data;
     }
     // Future migrations go here
 ];
@@ -442,7 +450,8 @@ function serializeGame() {
         hog: hog ? hog.serialize() : null,
         hogPoopTiles: hogPoopTiles.slice(),
         gardenPlots: (typeof gardenPlots !== 'undefined') ? gardenPlots : {},
-        timeCapsuleBox: (typeof timeCapsuleBox !== 'undefined') ? timeCapsuleBox : null
+        timeCapsuleBox: (typeof timeCapsuleBox !== 'undefined') ? timeCapsuleBox : null,
+        familiar: (typeof familiar !== 'undefined') ? familiar : null
     };
     // Persist any non-island maps (e.g. the underground city) so their layout
     // and placed buildings are stable across save/load. Entities were parked at
@@ -560,6 +569,9 @@ function deserializeGame(data) {
     }
     if (typeof timeCapsuleBox !== 'undefined') {
         timeCapsuleBox = data.timeCapsuleBox || null;
+    }
+    if (typeof familiar !== 'undefined') {
+        familiar = data.familiar || null;
     }
     if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
 }
