@@ -259,9 +259,11 @@ class RhythmGame extends Minigame {
     }
 
     render() {
+        // Panel centered on width/2 so it lines up with the arrows/hit-zone
+        // (which are all drawn relative to width/2). ponytail: centering, not 160.
         fill(20, 14, 10, 240);
         stroke(180, 160, 120);
-        rect(160, 20, 160, 160);
+        rect(width / 2 - 80, 20, 160, 160);
         noStroke();
 
         fill(255, 255, 200);
