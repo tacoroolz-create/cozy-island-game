@@ -4368,12 +4368,20 @@ function getPlayerShack() {
 // overworld" — used by both new games and loads so the player can never be
 // warped to the top-left by a stale/interior saved position.
 function placePlayerAtStartLocation() {
-    // Island pond top-left is (47,39). Stand on the grass just west of it —
-    // one tile clear of the pond art, so the player never starts on the pond
-    // itself (column 47 is the pond's own bank ring).
-    player.x = ISLAND_POND_ORIGIN.x - 1;
-    player.y = ISLAND_POND_ORIGIN.y + 2; // (46,41) — grass, facing the pond
-    player.facing = 'right';
+    // Stand the player on the grass just in front of the shack's door, facing
+    // it. Derived from the shack so it stays correct if the shack moves; falls
+    // back to the pond bank if the shack isn't spawned yet.
+    const shack = getPlayerShack();
+    if (shack) {
+        const door = shack.getDoorTile();
+        player.x = door.x;
+        player.y = door.y + 1; // one tile below the door, on open ground
+        player.facing = 'up';
+    } else {
+        player.x = ISLAND_POND_ORIGIN.x - 1;
+        player.y = ISLAND_POND_ORIGIN.y + 2;
+        player.facing = 'right';
+    }
     insideBuilding = null;
     updateCamera();
 }
