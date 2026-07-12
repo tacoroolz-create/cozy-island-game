@@ -69,7 +69,7 @@ const HOLIDAYS = [
     { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' },
     { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
     { name: 'Peak Saucy',             desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
-    { name: 'Jellybean Council',      desc: 'A single jellybean is placed on a pedestal and consulted for advice.' },
+    { name: 'Cool Valley',            desc: 'At dusk, neighbors gather for a memory walk to the shore. Leave offerings at memory stones and share sweet rice balls before the moon rises.' },
     { name: 'Hat-Stacking Jubilee',   desc: 'The wearing of multiple hats is both encouraged and competitively scored.' }
 ];
 
