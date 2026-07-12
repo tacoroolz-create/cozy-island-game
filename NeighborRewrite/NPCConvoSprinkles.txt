@@ -1,0 +1,188 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSprinkles.txt - Cozy Island Game
+Single-word endings, one-liner remarks, and world-lore sprinkles
+for the NeighborRewrite roster (32 species × personality neighbors)
+═══════════════════════════════════════════════════════════════
+
+These lines are designed to be appended or inserted into neighbor
+conversations as flavor. All references are grounded in existing
+Cozy Island mechanics and locations:
+  • Player: Dreamer
+  • Island: Cozy Island
+  • Hog: named by the player, likes berries/bananas/flowers/beans/seashells
+  • Underground: Gettin' Place, Stimmy Tim's, Black Goddess, Recycle Bin
+  • Furniture: chair, armchair, stool, bench, tables, lamp, rug, etc.
+  • Animals: birds, crabs, butterflies, cicadas, turtles, seagulls
+  • Seasons: Sweet, Saucy, Cool, Yeesh
+  • Tone: cozy, funny, spoken words only — no asterisks or action lines
+
+═══════════════════════════════════════════════════════════════
+CATEGORY 1 — SINGLE-WORD ENDINGS
+═══════════════════════════════════════════════════════════════
+
+These are short verbal tics or species-typical sounds that can be
+appended to the end of a neighbor line.
+
+--- SPECIES ENDINGS ---
+
+ROBOT (3)
+  Beep!
+  Zrrrt.
+  Whirr.
+
+GHOST (3)
+  Boo.
+  Wisp.
+  Ooooo.
+
+ANIMAL (3)
+  Chirp.
+  Hop.
+  Paw.
+
+MONSTER (3)
+  Grawr.
+  Squish.
+  Flomp.
+
+--- PERSONALITY ENDINGS ---
+
+KAWAII (3)
+  Yay!
+  Sparkle!
+  Heart!
+
+TSUNDERE (3)
+  Hmph.
+  Tch.
+  Whatever.
+
+GOTH (3)
+  Sigh.
+  Darkness.
+  Eternal.
+
+NERD (3)
+  Interesting.
+  Data.
+  Hmm.
+
+MONK (3)
+  Om.
+  Peace.
+  Stillness.
+
+MEDIEVAL (3)
+  Indeed.
+  Forsooth.
+  Noble.
+
+SHY (3)
+  Eep.
+  Um.
+  Sorry.
+
+CHEERFUL (3)
+  Yippee!
+  Whee!
+  Sunshine!
+
+═══════════════════════════════════════════════════════════════
+CATEGORY 2 — ONE-LINER SPRINKLES
+═══════════════════════════════════════════════════════════════
+
+These are complete single-line remarks that fit a species or
+personality type.
+
+--- SPECIES ONE-LINERS ---
+
+ROBOT (3)
+  "I need my brakes checked."
+  "My oil feels light today, but my mood is still at maximum."
+  "Does this beach need more chrome? I think it does."
+
+GHOST (3)
+  "I tried to haunt a seashell once, but it was too cheerful about everything."
+  "Floating through walls is easier than making small talk, and I am bad at both."
+  "Do you ever feel invisible? I am literally invisible."
+
+ANIMAL (3)
+  "The grass smells like stories today."
+  "I saw a butterfly with very good taste in flowers."
+  "Nap time is not a time. Nap time is a state of mind."
+
+MONSTER (3)
+  "My fluff is extra fluffy after a good rain."
+  "I found a rock that looks like a friend. I named it Rock Friend."
+  "Bouncing is just walking with extra enthusiasm."
+
+--- PERSONALITY ONE-LINERS ---
+
+KAWAII (3)
+  "Oh no, the flowers won't talk to me. Are they mad at me?"
+  "I made a tiny heart out of sand. It washed away, but the love stayed."
+  "Everything is cuter when you wiggle a little."
+
+TSUNDERE (3)
+  "I didn't make this path for you. It just happened to be going your way."
+  "Fine, I'll accept your hello. But only because standing here is boring."
+  "It's not like I wanted to see you or anything. The beach is small."
+
+GOTH (3)
+  "The clouds are being wonderfully dramatic today."
+  "I wrote a poem about the tide. It leaves. It returns. It never explains."
+  "Even the sun has a dark side if you stare long enough."
+
+NERD (3)
+  "Did you know sand is just tiny rocks wearing down over time? Relatable."
+  "I counted the waves. The average shape is wave-shaped."
+  "Cloud classification is harder than it looks, but I am trying."
+
+MONK (3)
+  "The tree grows because it does not worry about growing."
+  "Listen to the water. It has already forgotten yesterday."
+  "A single breath can hold the whole morning if you let it."
+
+MEDIEVAL (3)
+  "Fair traveler, the beach is most pleasing this morn."
+  "I have sworn an oath to defend this picnic blanket."
+  "Hark! A crab approaches. I shall address him with dignity."
+
+SHY (3)
+  "I was going to say hello earlier, but then I didn't. Hello now."
+  "The rock I'm hiding behind says you're nice. I think it agrees."
+  "I like it when it's quiet enough to hear the butterflies."
+
+CHEERFUL (3)
+  "Today is absolutely a day! That is enough to celebrate!"
+  "Hello, sky! Hello, sand! Hello, friend! Hello, me!"
+  "I found a good stick and my whole life got better."
+
+═══════════════════════════════════════════════════════════════
+CATEGORY 3 — WORLD LORE SPRINKLES
+═══════════════════════════════════════════════════════════════
+
+These are grounded references to existing people, places, and things
+on Cozy Island. Each topic has three variations so lines stay fresh.
+
+--- LORE TOPIC A: UNDERGROUND SHOPS ---
+
+  "Stimmy Tim's coffee smells better than the beach looks, and I don't even drink coffee."
+  "The Gettin' Place has a furniture shop downstairs. I daydream about it sometimes."
+  "I heard the Black Goddess dance floor flickers in time with the music. It sounds loud."
+
+--- LORE TOPIC B: HOGGY'S FAVORITE FOODS ---
+
+  "Hoggy will eat a berry so fast you forget you gave it to him."
+  "I saw Hoggy sniff a seashell once. He looked conflicted, then pleased."
+  "Bananas are the fastest way to a hog's heart. Assuming hogs have hearts for bananas."
+
+--- LORE TOPIC C: FURNITURE FAVORITES ---
+
+  "If I had a home, I would fill it with floor lamps and never leave."
+  "There is something noble about a well-placed bench. Very 'sit here and think.'"
+  "A round rug makes any room feel like a hug for your feet."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

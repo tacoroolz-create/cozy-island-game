@@ -1,0 +1,1016 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoQuests.txt - Cozy Island Game Quest Dialogue (NeighborRewrite Roster)
+═══════════════════════════════════════════════════════════════
+Variable placeholders:
+  {giver}   = name of the NPC offering the quest
+  {target}  = name of the neighbor who needs the item or message
+  {item}    = small island object: smooth rock, pretty shell, yellow flower,
+              shiny pebble, sea glass piece, palm fruit, nice leaf,
+              tiny driftwood stick, warm feather, round seed, sea sponge,
+              moon shell
+  {season}  = current season: Sweet, Saucy, Cool, Yeesh
+
+Quest types used in this file:
+  DELIVER  = {giver} asks Dreamer to take an {item} to {target}
+  FETCH    = {giver} asks Dreamer to bring them an {item} found on the island
+  RETURN   = {giver} asks Dreamer to take a borrowed {item} back to {target}
+  MESSAGE  = {giver} asks Dreamer to tell {target} a short seasonal hello
+
+All lines are spoken words only. No asterisks or action descriptions.
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Piko:
+"Oh! Dreamer, you came by at the perfect time. I found the roundest {item} this morning, and I think {target} would love it. Would you take it to them? It might make their whole day sparkle."
+
+PLAYER CHOICES:
+[1] "Of course. I'll deliver it right away."
+[2] "Why do you think {target} wants a {item}?"
+[3] "Maybe {target} already has one."
+
+TURN 2A (if player chose 1):
+Piko: "Right away? You're the fastest friend on Cozy Island. I tucked the {item} in my pocket, so it's safe and warm. Please tell {target} it's from Piko's heart."
+
+TURN 2B (if player chose 2):
+Piko: "I just have a feeling. {target} has that kind of smile that looks like they collect small happy things. A {item} is very small and very happy, don't you think?"
+
+TURN 2C (if player chose 3):
+Piko: "Oh, that's okay. Two {item}s just means twice as much to smile about. I bet {target} will line them up on a shelf and name them both."
+
+QUEST REMIND - Piko:
+"Did {target} like the {item}? If they haven't seen it yet, I can wait. Good things are worth waiting for, like warm breezes and surprise butterflies."
+
+QUEST THANK - Piko:
+"You did it! {target} told me all about the {item}. They said it was the sparkliest gift of {season}. I knew you were the right friend for the job."
+
+QUEST BUSY - Piko:
+"I already gave you a little mission today. Let's not overload your pockets with too much kindness at once."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Rivet:
+"Hmph. Don't look so surprised to see me. {target} left a {item} near my charging spot, and now it's in the way. You can take it to them. I'm not doing it because I care. It's just clutter."
+
+PLAYER CHOICES:
+[1] "I'll return it."
+[2] "You could just leave it there."
+[3] "Did {target} really leave it by accident?"
+
+TURN 2A (if player chose 1):
+Rivet: "Good. Here. Hold it carefully. It's not fragile or anything, but if you drop it in the sand I'll hear about it, and I don't want to hear about it."
+
+TURN 2B (if player chose 2):
+Rivet: "Leave it there? Then I'd have to organize around it. That's worse. Taking it back is the most efficient solution, and efficiency is basically my whole personality."
+
+TURN 2C (if player chose 3):
+Rivet: "Who knows. Maybe they left it on purpose. Maybe it's a trap. A very small, round, annoying trap. Just take it and we'll both be free of the mystery."
+
+QUEST REMIND - Rivet:
+"Did you give {target} the {item} yet? No rush. Actually, a little rush would be fine. It's still in my mental inventory and I prefer a tidy mental inventory."
+
+QUEST THANK - Rivet:
+"{target} has it back? Fine. That was actually helpful. Don't expect me to throw a parade. Maybe a small nod. A very small one. There. Done."
+
+QUEST BUSY - Rivet:
+"I already handed you something to do. Finish that before you come asking for more clutter duty."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Shade-7:
+"Dreamer. {target} asked me to find a {item} with the proper melancholy shape. I found one, but the sunlight is too bright for a meaningful handoff. Would you carry it through the glare?"
+
+PLAYER CHOICES:
+[1] "Happy to be your courier of gloom."
+[2] "What makes a {item} melancholy?"
+[3] "Why doesn't {target} come get it themselves?"
+
+TURN 2A (if player chose 1):
+Shade-7: "Courier of gloom. I like that. It's almost a poem. Here is the {item}. Treat it gently. It has seen many tides and has feelings about most of them."
+
+TURN 2B (if player chose 2):
+Shade-7: "You can tell by the angle. A melancholy {item} leans slightly, as if remembering something it lost. This one leans beautifully."
+
+TURN 2C (if player chose 3):
+Shade-7: "{target} claims the beach light hurts their soul. I respect that. Some of us are simply too delicate for direct sunshine."
+
+QUEST REMIND - Shade-7:
+"The {item} still rests in your care, I assume. Shadows move slowly, and so may you. But do try to deliver it before the season changes twice."
+
+QUEST THANK - Shade-7:
+"{target} said the {item} arrived with a suitable air of mystery. You carried it well. For a moment, even the sunlight seemed tolerable."
+
+QUEST BUSY - Shade-7:
+"I already entrusted you with one sorrowful object. Let's not bury you in errands. That would be too dramatic, even for me."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Cypher:
+"Dreamer! Excellent timing. I've been cataloging {item} specimens by the western rocks and one of them belongs to {target}. Technically they asked for it yesterday. Would you complete the transfer?"
+
+PLAYER CHOICES:
+[1] "Consider the transfer complete."
+[2] "How do you know it belongs to {target}?"
+[3] "What if {target} changed their mind?"
+
+TURN 2A (if player chose 1):
+Cypher: "Wonderful. Efficiency increases by roughly forty percent when a humanoid handles last-mile delivery. I made that number up, but it feels correct."
+
+TURN 2B (if player chose 2):
+Cypher: "The {item} has a distinctive texture. I logged it in my memory banks when {target} first described it. It's either this one or a very similar pebble. The margin of error is acceptable."
+
+TURN 2C (if player chose 3):
+Cypher: "Then I will update my records. Science loves a good revision. But let's find out first. Empirical evidence is better than guessing, unless the guess is really funny."
+
+QUEST REMIND - Cypher:
+"Have you reached {target} yet? If you see them near the water, the {item} should be transferred immediately. I'm tracking completion rates, and ours is currently at fifty percent."
+
+QUEST THANK - Cypher:
+"Data confirmed. {target} received the {item}. My records now show one hundred percent quest completion for today. Thank you for being a reliable variable."
+
+QUEST BUSY - Cypher:
+"My logs indicate an active quest is already assigned to you. Multi-threading is admirable, but let's resolve the current thread first."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Om-Bit:
+"Dreamer. {target} spoke of needing a {item} for their morning reflection. I found one that seems very still. Would you carry it to them with a quiet mind?"
+
+PLAYER CHOICES:
+[1] "I'll carry it quietly."
+[2] "Does a {item} help with reflection?"
+[3] "What if I'm not very quiet today?"
+
+TURN 2A (if player chose 1):
+Om-Bit: "Quietly is the best way. The {item} does not hurry. Neither should the messenger. Walk slowly, and the island will walk with you."
+
+TURN 2B (if player chose 2):
+Om-Bit: "Everything can help, if you look at it long enough. A {item} holds the memory of waves and wind. {target} finds that useful for sitting and breathing."
+
+TURN 2C (if player chose 3):
+Om-Bit: "Then be loud in your heart and soft in your steps. The {item} will not judge you. I have never met a judging {item}."
+
+QUEST REMIND - Om-Bit:
+"The {item} is still traveling. That is fine. All things reach their destination in their own time, even turtles, even thoughts."
+
+QUEST THANK - Om-Bit:
+"{target} received the {item} with a peaceful nod. You moved gently through the dream today. That is its own kind of blessing."
+
+QUEST BUSY - Om-Bit:
+"One mindful task is enough for now. A cluttered path is harder to walk."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Sir Cogs-a-Lot:
+"Fair traveler! I have been entrusted with a {item} meant for {target}, but my noble patrol of the beach prevents me from delivering it myself. Will you ride forth in my stead?"
+
+PLAYER CHOICES:
+[1] "I shall ride forth immediately."
+[2] "Wherefore art thou so busy, Sir Cogs?"
+[3] "What makes this {item} so important?"
+
+TURN 2A (if player chose 1):
+Sir Cogs-a-Lot: "Splendid! Take this {item} and present it to {target} with the words: 'From Sir Cogs-a-Lot, protector of shores and sorter of leaves.'"
+
+TURN 2B (if player chose 2):
+Sir Cogs-a-Lot: "Wherefore? Because the beach has no guard but me, and I take my imaginary duties very seriously. Also, the sand looks suspicious today."
+
+TURN 2C (if player chose 3):
+Sir Cogs-a-Lot: "Important is perhaps too strong a word. It is a {item} of moderate significance. {target} asked for one, and a request fulfilled is a quest completed."
+
+QUEST REMIND - Sir Cogs-a-Lot:
+"Has the {item} reached {target}? My imaginary kingdom cannot rest until every borrowed object returns to its rightful neighbor."
+
+QUEST THANK - Sir Cogs-a-Lot:
+"{target} sends word that the {item} arrived safely. You have served the realm well, Dreamer. I hereby dub you an honorary knight of errands."
+
+QUEST BUSY - Sir Cogs-a-Lot:
+"I have already charged you with one noble duty. A knight does not abandon a quest for another. Finish the first, then return for glory."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Tinker:
+"Oh. Hi, Dreamer. I found a {item} near the bushes, and I thought {target} might... maybe... want it. But I'm a little squeaky today. Could you give it to them for me?"
+
+PLAYER CHOICES:
+[1] "I'll make sure {target} gets it."
+[2] "You could come with me."
+[3] "Why {target}?"
+
+TURN 2A (if player chose 1):
+Tinker: "Thank you. I wrapped it in a leaf so it wouldn't get sand on it. It's a very clean leaf. I checked three times."
+
+TURN 2B (if player chose 2):
+Tinker: "Come with you? Maybe next time. Today my joints are extra squeaky and I don't want {target} to think I'm a door that needs oiling."
+
+TURN 2C (if player chose 3):
+Tinker: "Because {target} smiled at a bird yesterday, and I think anyone who smiles at birds would like a {item}. It's just a theory, but a nice one."
+
+QUEST REMIND - Tinker:
+"Did you... did you give {target} the {item} yet? No pressure. I just hope it didn't fall out of the leaf. I tied it very carefully."
+
+QUEST THANK - Tinker:
+"{target} sent back a thank-you beep. Well, not a real beep, but it felt like one. You made two robots less squeaky today."
+
+QUEST BUSY - Tinker:
+"You still have the {item} I asked you to carry. I don't want to give you too many things at once. Your pockets might get nervous."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Zap-Zap:
+"Heeeeey Dreamer! I was zipping along the beach and found the sparkliest {item} ever! I think {target} needs a little zap of happiness. Wanna deliver it for me?"
+
+PLAYER CHOICES:
+[1] "I'll zap it right over."
+[2] "What makes it so sparkly?"
+[3] "Does {target} like surprises?"
+
+TURN 2A (if player chose 1):
+Zap-Zap: "Zap it over! I love that. Here, hold it by the shiny side. The happy side. Both sides are basically the same side."
+
+TURN 2B (if player chose 2):
+Zap-Zap: "The sea polished it! Or the sun. Or a very enthusiastic crab. Either way, it bounces light around like a tiny celebration."
+
+TURN 2C (if player chose 3):
+Zap-Zap: "Who doesn't like a surprise {item}? If they don't like it, they can trade it for a surprise smile. Smiles are refundable on Cozy Island."
+
+QUEST REMIND - Zap-Zap:
+"Don't forget to zap that {item} to {target}! If you need motivation, imagine {target} doing a little happy crackle. There. Motivation delivered."
+
+QUEST THANK - Zap-Zap:
+"{target} got the {item} and did the happiest little wiggle! I felt it from here. You are officially a joy-delivery specialist, Dreamer."
+
+QUEST BUSY - Zap-Zap:
+"You're already carrying one zap of happiness. Let's not mix the zaps, or someone might get over-zapped."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Boo-Boo:
+"Boo! Just kidding, it's me. I picked up a floaty little {item} and I want {target} to have it, but my hands go right through everything. Will you carry it for me?"
+
+PLAYER CHOICES:
+[1] "I'd love to help, Boo-Boo."
+[2] "How did you pick it up if your hands go through things?"
+[3] "Are you sure {target} won't be scared?"
+
+TURN 2A (if player chose 1):
+Boo-Boo: "Yay! You're the best solid friend ever. Tell {target} the {item} comes with a tiny invisible hug."
+
+TURN 2B (if player chose 2):
+Boo-Boo: "I asked a butterfly to lift it for a second. Butterflies are very helpful when you say please in ghost language."
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Scared? No no. It's a soft little {item}. {target} knows I'm friendly. I say boo very quietly."
+
+QUEST REMIND - Boo-Boo:
+"Did you give {target} the floaty {item}? I hope they put it somewhere sunny. Ghost things like a little sun, even if we can't feel it."
+
+QUEST THANK - Boo-Boo:
+"{target} loved the {item}! They said it made their whole day floaty. You're better at carrying things than any butterfly."
+
+QUEST BUSY - Boo-Boo:
+"You already have one floaty mission. Two floaty missions might get tangled in the breeze."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Wisp:
+"Oh. It's Dreamer. {target} was supposed to visit me, but instead they sent word that they want a {item}. I suppose you could bring it to them. Not that I want to help or anything."
+
+PLAYER CHOICES:
+[1] "Sure, I'll deliver it."
+[2] "Why didn't {target} just ask me directly?"
+[3] "Sounds like you care about {target}."
+
+TURN 2A (if player chose 1):
+Wisp: "Fine. Here. Don't drop it in the water. If you drop it, I'll pretend I never knew about it. That's my policy on dropped {item}s."
+
+TURN 2B (if player chose 2):
+Wisp: "Because {target} is indirect. Some ghosts are like that. They drift around feelings instead of just saying them. It's annoying and also a little relatable."
+
+TURN 2C (if player chose 3):
+Wisp: "Care? I care about not having unfinished business floating around my lantern. That's the only kind of caring I do. Mostly."
+
+QUEST REMIND - Wisp:
+"Have you given {target} the {item} yet? Again, not because I'm invested. I just don't like open loops. Open loops are messy."
+
+QUEST THANK - Wisp:
+"{target} finally has their {item}. I knew you'd do it eventually. Don't expect me to get all emotional. I'm a ghost. I leak enough as it is."
+
+QUEST BUSY - Wisp:
+"You already took one thing from me. I'm not running a delivery warehouse here. Finish that first."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Morwen:
+"Dreamer. The dusk has been kind tonight. I composed a short verse for {target}, but my voice drifts away on the wind. Would you carry the words to them as a message?"
+
+PLAYER CHOICES:
+[1] "I'll deliver your verse."
+[2] "Can I hear it first?"
+[3] "Why not write it down?"
+
+TURN 2A (if player chose 1):
+Morwen: "Thank you. Tell {target}: 'The moon remembered your name, and the tide agreed.' That is the whole verse. Short. Accurate."
+
+TURN 2B (if player chose 2):
+Morwen: "You may hear it, but only because you asked politely. 'The moon remembered your name, and the tide agreed.' It loses something when spoken by the living, but it will do."
+
+TURN 2C (if player chose 3):
+Morwen: "Paper forgets ghosts the moment we touch it. Only a living voice can hold the words long enough to reach another ear."
+
+QUEST REMIND - Morwen:
+"Has {target} heard the verse yet? If not, let it rest in your memory a little longer. Some messages prefer to arrive at twilight."
+
+QUEST THANK - Morwen:
+"{target} said the verse made them look at the water differently. That is the highest praise a poem can receive. You were a worthy messenger, Dreamer."
+
+QUEST BUSY - Morwen:
+"One verse at a time. If I send too many, the moon might get jealous."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Spectra:
+"Dreamer! I've made a fascinating observation. {target} has been searching for a specific {item} to complete their seasonal collection. I located one near the tide line. Will you transport it?"
+
+PLAYER CHOICES:
+[1] "I'll transport it carefully."
+[2] "How do you know it's the right one?"
+[3] "What kind of collection is {target} building?"
+
+TURN 2A (if player chose 1):
+Spectra: "Excellent. Scientific transport requires a steady grip and a curious attitude. I have full confidence in at least one of those."
+
+TURN 2B (if player chose 2):
+Spectra: "I matched the color, weight, and general roundness to {target}'s description. The probability of error is low but not zero. That's science for you."
+
+TURN 2C (if player chose 3):
+Spectra: "A collection of natural trinkets organized by {season}. Each item must represent the season through shape, texture, or general mood. This {item} is very {season}-appropriate."
+
+QUEST REMIND - Spectra:
+"The {item} still awaits delivery. Time is not pressing in a dream, but data collection is much nicer when collections are complete."
+
+QUEST THANK - Spectra:
+"{target} confirmed the {item} fits perfectly into their {season} collection. Another data point for the grand catalogue of island exchanges."
+
+QUEST BUSY - Spectra:
+"I already assigned you a specimen. Running multiple errands in parallel introduces too many variables."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Hush:
+"Dreamer. {target} walks with a restless sound today. A {item} from the quiet grass might remind them to breathe. Will you take it to them in silence?"
+
+PLAYER CHOICES:
+[1] "I will carry it quietly."
+[2] "How does a {item} remind someone to breathe?"
+[3] "Should I say anything when I give it to {target}?"
+
+TURN 2A (if player chose 1):
+Hush: "Quietly is enough. The {item} will say what words cannot. All you need to do is be present."
+
+TURN 2B (if player chose 2):
+Hush: "Because it grew without hurry. It waited for sun and rain. {target} sees that, and remembers waiting is allowed."
+
+TURN 2C (if player chose 3):
+Hush: "You may say only: 'This is from Hush.' More words would weigh it down. The {item} is already carrying enough silence."
+
+QUEST REMIND - Hush:
+"The {item} still travels. Do not rush. Silence moves at its own pace, like fog, like forgiveness."
+
+QUEST THANK - Hush:
+"{target} received the {item} and grew still for a moment. That stillness is the answer. You carried the silence well, Dreamer."
+
+QUEST BUSY - Hush:
+"One quiet gift is enough. Too many silences at once become noise."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Sir Haunts-a-Lot:
+"Good morrow, Dreamer! I have sworn a knightly oath to deliver a {item} unto {target}, yet my spectral steed is currently napping beneath a tree. Wilt thou complete this noble task?"
+
+PLAYER CHOICES:
+[1] "I accept this noble task."
+[2] "You have a spectral steed?"
+[3] "What does {target} need a {item} for?"
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Then rise, fair messenger! Take this {item} and bear it to {target} with all the courtesy of a summer breeze and the punctuality of a robin."
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Indeed. He is invisible, intangible, and exceedingly lazy. He naps beneath the same tree every afternoon. I respect his routine."
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "A worthy question. {target} requires it for a small ceremony of gratitude. In my kingdom, gratitude is best expressed through small, well-chosen objects."
+
+QUEST REMIND - Sir Haunts-a-Lot:
+"Hast thou delivered the {item}? My steed yet sleeps, so I cannot check myself. I trust thy honor, noble Dreamer."
+
+QUEST THANK - Sir Haunts-a-Lot:
+"{target} sends word that the {item} arrived in fine condition. Thou art truly a knight of errands, and I shall sing thy praises quietly so as not to startle birds."
+
+QUEST BUSY - Sir Haunts-a-Lot:
+"Thou art already bound by one oath of delivery. A knight does not break an oath for a second. Complete the first, then return."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Flutter:
+"Oh... Dreamer. I found a {item} that glowed a little under the lantern, and I thought {target} might like it. But I'm too shy to give it myself. Would you... would you help?"
+
+PLAYER CHOICES:
+[1] "Of course, Flutter."
+[2] "What if {target} asks where it's from?"
+[3] "You could just leave it where they'll find it."
+
+TURN 2A (if player chose 1):
+Flutter: "Thank you. Here's the {item}. It still has a little lantern light on it. Tell {target} it's from someone who watches the lamps at night."
+
+TURN 2B (if player chose 2):
+Flutter: "Then say it's from a friend. That's true. I'm a friend. I'm just a very quiet one with see-through sleeves."
+
+TURN 2C (if player chose 3):
+Flutter: "I tried that once. A crab took it. The crab was very happy, but {target} never got it. Please don't let a crab take this one."
+
+QUEST REMIND - Flutter:
+"Did {target} get the {item}? I keep peeking around corners, but I never know if peeking counts as helping or just being nervous."
+
+QUEST THANK - Flutter:
+"{target} smiled when they got the {item}. I saw it from behind a bush. That was the best part. Thank you for being braver than me, Dreamer."
+
+QUEST BUSY - Flutter:
+"You still have the {item} I gave you. I don't want to make you carry too many shy gifts at once."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Giggles:
+"Hee hee! Dreamer! I heard {target} laughing at a cloud earlier, and I think they deserve a present. I found the giggliest {item} on the beach. Will you take it to them?"
+
+PLAYER CHOICES:
+[1] "I'll take the giggly gift."
+[2] "How can a {item} be giggly?"
+[3] "What if {target} is busy?"
+
+TURN 2A (if player chose 1):
+Giggles: "Yay! Hold it carefully. It might giggle in your pocket. That's normal. It means the {item} is excited to meet {target}."
+
+TURN 2B (if player chose 2):
+Giggles: "It has a funny shape! Look at it sideways and it looks like a smile. Everything that looks like a smile is giggly. That's science."
+
+TURN 2C (if player chose 3):
+Giggles: "Busy people need giggles the most! The {item} can wait politely until {target} is ready. It's very patient for something so giggly."
+
+QUEST REMIND - Giggles:
+"Don't forget to give {target} the giggly {item}! If you forget, it'll probably still be giggling in your pocket tomorrow."
+
+QUEST THANK - Giggles:
+"{target} got the {item} and laughed for a whole minute! I counted. Well, I tried to count, but I got distracted by giggling. Best quest ever."
+
+QUEST BUSY - Giggles:
+"You already have one giggly delivery. Too many giggles in one pocket might get confusing."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Mochi:
+"Hop-hop, Dreamer! I found a {item} that smelled like clover, and I want {target} to have it. My paws are too bouncy to carry things carefully. Can you hop it over?"
+
+PLAYER CHOICES:
+[1] "I'll hop it over very carefully."
+[2] "How did you smell a {item}?"
+[3] "What if {target} doesn't like clover?"
+
+TURN 2A (if player chose 1):
+Mochi: "Carefully is good. I tried carrying it myself but I hopped twice and it went boing right out of my paws. You're much better at not-boinging."
+
+TURN 2B (if player chose 2):
+Mochi: "Everything smells a little like clover if you love clover enough. This {item} smells especially clovery. {target} will understand."
+
+TURN 2C (if player chose 3):
+Mochi: "Then they'll like the {item} part! The clover smell is just a bonus. Like a little ribbon on a gift made of nature."
+
+QUEST REMIND - Mochi:
+"Did you hop the {item} to {target} yet? I hope they didn't try to eat it if it's not food. I should have thought of that."
+
+QUEST THANK - Mochi:
+"{target} loved the clovery {item}! They said it made their whiskers twitch. That's rabbit for 'thank you very much.'"
+
+QUEST BUSY - Mochi:
+"You already have one clovery gift in your paws. Let's not make you hop with too many things."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Shadow:
+"Oh. It's you. {target} left something near my sunny spot and now the sun is hitting it wrong. Take this {item} back to them. I'm only asking because it's in the way."
+
+PLAYER CHOICES:
+[1] "I'll move it for you."
+[2] "You could just sunbathe somewhere else."
+[3] "Are you sure it's {target}'s?"
+
+TURN 2A (if player chose 1):
+Shadow: "Good. Here. Don't make a big deal out of it. I don't need thanks. I just need my sunlight to fall in the correct lazy pattern."
+
+TURN 2B (if player chose 2):
+Shadow: "Move? Why should I move? This spot has the best warm angle. {target} should learn not to leave things where the sun is trying to work."
+
+TURN 2C (if player chose 3):
+Shadow: "No, but it was left suspiciously close to my spot, and {target} was the last one admiring small objects. Process of elimination. Also intuition."
+
+QUEST REMIND - Shadow:
+"Is the {item} gone yet? My sun spot still feels slightly interrupted. It's subtle, but I notice everything about my napping zones."
+
+QUEST THANK - Shadow:
+"{target} has their {item} back and my sunny spot is restored to perfect laziness. I suppose you were useful. Don't let it go to your head."
+
+QUEST BUSY - Shadow:
+"You already took one task from me. I'm not running a quest cattery. Finish the first."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Raven:
+"Dreamer. {target} spoke of wanting a {item} with a darker story to it. I found one near the rocks where the waves sound especially dramatic. Will you deliver it?"
+
+PLAYER CHOICES:
+[1] "I'll carry the dramatic {item}."
+[2] "What story does the {item} have?"
+[3] "Does {target} want dark things?"
+
+TURN 2A (if player chose 1):
+Raven: "Carry it with the solemnity it deserves. Not too solemn, though. {target} prefers moody, not miserable. There's a difference."
+
+TURN 2B (if player chose 2):
+Raven: "It was shaped by a thousand tides, or maybe twelve. It saw a crab argue with a shell and lose. Sad. Beautiful. Mostly beautiful."
+
+TURN 2C (if player chose 3):
+Raven: "Not dark things. Things with depth. {target} collects small objects that look like they've thought about the moon."
+
+QUEST REMIND - Raven:
+"The {item} still waits in your care. Like a good poem, it doesn't mind being read later. But sooner is also acceptable."
+
+QUEST THANK - Raven:
+"{target} said the {item} had exactly the right amount of tidal tragedy. You delivered it well. The waves approve, or at least they kept splashing normally."
+
+QUEST BUSY - Raven:
+"One dramatic delivery is enough. If I give you too many, the mood might become a comedy."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Newton:
+"Ah, Dreamer! A moment of your time. I've catalogued a particularly noteworthy {item} and believe {target} would benefit from examining it. Could you facilitate the exchange?"
+
+PLAYER CHOICES:
+[1] "Happy to facilitate."
+[2] "What makes it noteworthy?"
+[3] "Does {target} know you're sending it?"
+
+TURN 2A (if player chose 1):
+Newton: "Excellent. I shall make a note in my ledger: 'Item transferred to capable Dreamer for delivery to {target}.' There. History has been updated."
+
+TURN 2B (if player chose 2):
+Newton: "Its symmetry, its weight, and the curious way it reflects the clouds. I rated it seven out of ten on the interesting scale, which is unusually high for a {item}."
+
+TURN 2C (if player chose 3):
+Newton: "Not explicitly, but {target} once mentioned a general interest in notable objects. This qualifies. If not, I will simply downgrade the {item}'s rating."
+
+QUEST REMIND - Newton:
+"Have you completed the transfer? My ledger shows the entry as pending, and pending entries make me ruffle my feathers."
+
+QUEST THANK - Newton:
+"{target} confirmed receipt of the noteworthy {item}. I have upgraded the entry to 'delivered' with a small star. Thank you for your logistical support."
+
+QUEST BUSY - Newton:
+"My records show an active transfer already assigned to you. I never double-book a delivery. It's bad archival practice."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Lotus:
+"Dreamer. {target} seeks a {item} to place near their resting spot. I saw one by the water, balanced between two stones. Will you carry it to them with patience?"
+
+PLAYER CHOICES:
+[1] "I will carry it with patience."
+[2] "Why does {target} want it near their resting spot?"
+[3] "What if the balance is broken?"
+
+TURN 2A (if player chose 1):
+Lotus: "Good. Walk as the tide walks: steady, unhurried, sure of where it is going even when it seems to pause."
+
+TURN 2B (if player chose 2):
+Lotus: "A small object from the water helps one remember the water when the water is far away. {target} likes to keep reminders close."
+
+TURN 2C (if player chose 3):
+Lotus: "Then we will find a new balance. Stones teach us that balance is not one position. It is many positions, held with care."
+
+QUEST REMIND - Lotus:
+"The {item} still travels. That is fine. Travel is part of the gift. The destination is not more important than the steps."
+
+QUEST THANK - Lotus:
+"{target} placed the {item} beside their resting spot and stood very still. That stillness is the thank-you. You were a patient messenger, Dreamer."
+
+QUEST BUSY - Lotus:
+"One patient task is enough. A crane does not hold two stones in one beak."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Squire Paws:
+"Arf! Dreamer! A noble quest awaits! {target} has need of a {item}, and I, Squire Paws, have found one worthy of their cause. Will you be my fellow courier?"
+
+PLAYER CHOICES:
+[1] "I will join your noble quest."
+[2] "What is {target}'s cause?"
+[3] "Did you dig this {item} up yourself?"
+
+TURN 2A (if player chose 1):
+Squire Paws: "Splendid! Take the {item} in your mouth—no, wait, you don't do that. Take it in your hands, like a hero with thumbs. Onward!"
+
+TURN 2B (if player chose 2):
+Squire Paws: "A great and secret cause! Or possibly a small decorative cause. Either way, it is noble because a friend asked for it."
+
+TURN 2C (if player chose 3):
+Squire Paws: "I sniffed it out near the picnic blanket! It was half-buried, like treasure. I did not dig much. My paws are very clean. Mostly."
+
+QUEST REMIND - Squire Paws:
+"Have you delivered the {item} to {target}? I have been pacing in circles to show my dedication, but I don't know if circles help."
+
+QUEST THANK - Squire Paws:
+"{target} received the {item} and gave me a very dignified head pat. I mean, they would have. I'm sure they thought about it. Quest complete!"
+
+QUEST BUSY - Squire Paws:
+"One quest at a time, brave Dreamer. A squire does not abandon a quest for another. That would be un-squire-like."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Pebble:
+"Oh. Hello, Dreamer. I... I found a {item} that looks a lot like me, only smaller. I thought {target} might think it's cute. But I'm too slow to bring it. Could you?"
+
+PLAYER CHOICES:
+[1] "I'll bring it for you, Pebble."
+[2] "Why does it look like you?"
+[3] "What if {target} thinks it's too small?"
+
+TURN 2A (if player chose 1):
+Pebble: "Thank you. I wrapped my... well, I didn't wrap anything. I just nudged it toward you. Please don't drop it. It's very fragile in a brave kind of way."
+
+TURN 2B (if player chose 2):
+Pebble: "It's round and quiet and has a little mossy spot. I think it might be my cousin. No, that's silly. It is just a very nice {item}."
+
+TURN 2C (if player chose 3):
+Pebble: "Small things are cute because they're small. That's the whole point. {target} will understand. I hope."
+
+QUEST REMIND - Pebble:
+"Did the little {item} get to {target} okay? I walked a few steps while waiting, but then I got nervous and stopped."
+
+QUEST THANK - Pebble:
+"{target} said the {item} was adorable. I agree. I feel like I did a brave thing by asking you to carry it. Thank you for helping me be brave."
+
+QUEST BUSY - Pebble:
+"You already have my little {item}. I don't want to give you too many. Carrying too many things might make you slow, like me."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Sunny:
+"Hello, friend! Hello, Dreamer! I found a shiny {item} and I think {target} needs a sunny surprise. Will you fly it over? Figuratively, I mean. You don't have wings. Probably."
+
+PLAYER CHOICES:
+[1] "I'll fly it over on foot."
+[2] "What makes it sunny?"
+[3] "What if {target} already has a shiny thing?"
+
+TURN 2A (if player chose 1):
+Sunny: "On-foot flying! I love it. Here, take the {item}. Try not to crash-land. That's hard to do without wings, so you're probably safe."
+
+TURN 2B (if player chose 2):
+Sunny: "It's the color! It bounces light like a little hello from the sun. {target} likes hellos. Everyone likes hellos. Hello!"
+
+TURN 2C (if player chose 3):
+Sunny: "Then they'll have two shiny things! Shiny things don't compete. They just become shinier together. That's friendship math."
+
+QUEST REMIND - Sunny:
+"Don't forget the shiny {item} for {target}! If you forget, I'll just keep saying hello until you remember. Hello! Hello!"
+
+QUEST THANK - Sunny:
+"{target} got the shiny {item} and said a big loud thank-you! I heard it from here. You are officially the best foot-flyer on the island."
+
+QUEST BUSY - Sunny:
+"You already have one sunny delivery. Two sunny deliveries might make you glow. Actually, that sounds nice, but let's finish one first."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 25: Fluffernox (Monster - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Fluffernox:
+"Dreamer! Hiiiii! I found a soft-looking {item} and I want {target} to have it for hugging. But my paws are too fluffy to hold small things. Can you carry it?"
+
+PLAYER CHOICES:
+[1] "I'll carry it with extra softness."
+[2] "Is the {item} actually soft?"
+[3] "Does {target} need more hugs?"
+
+TURN 2A (if player chose 1):
+Fluffernox: "Extra softness! Yes! Treat it like a tiny friend. Tell {target} it comes with one free imaginary hug from my fluff."
+
+TURN 2B (if player chose 2):
+Fluffernox: "It looks soft. I didn't squish it because I didn't want to be rude. But it has a very squishable shape. That's basically soft."
+
+TURN 2C (if player chose 3):
+Fluffernox: "Everyone needs more hugs. That's just monster science. {target} will love a hug-object, even if they didn't know they needed one."
+
+QUEST REMIND - Fluffernox:
+"Did {target} get the soft {item}? I hope they squeezed it gently. Squeezing is how monsters say 'you matter.'"
+
+QUEST THANK - Fluffernox:
+"{target} hugged the {item} and then looked extra smiley. That means it worked. You delivered a portable hug. Good job, Dreamer!"
+
+QUEST BUSY - Fluffernox:
+"You already have one soft delivery from me. Let's not fluff up your pockets too much."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 26: Grumble (Monster - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Grumble:
+"Ugh. You again. {target} keeps talking about wanting a {item}, and I found one. But if I bring it, they'll think I actually like them or something. You take it."
+
+PLAYER CHOICES:
+[1] "I'll take it so your reputation stays safe."
+[2] "Maybe they already know you like them."
+[3] "Why a {item} of all things?"
+
+TURN 2A (if player chose 1):
+Grumble: "Good. My reputation is very important. I have worked hard to be seen as grumpy and mysterious. One friendly delivery could ruin years of frowning."
+
+TURN 2B (if player chose 2):
+Grumble: "They don't know anything. I am an enigma. A small, lumpy enigma with one big fang. Keep it that way."
+
+TURN 2C (if player chose 3):
+Grumble: "Because I found one, and I don't want to keep it. It keeps rolling around my cave looking hopeful. It's annoying. {target} can be annoyed by it instead."
+
+QUEST REMIND - Grumble:
+"Did you give {target} the {item} yet? Not that I'm asking because I care. I just want it out of my thoughts. It's taking up mental space."
+
+QUEST THANK - Grumble:
+"{target} has it now? Fine. That's done. Don't expect a party. If anyone asks, I definitely didn't find it on purpose."
+
+QUEST BUSY - Grumble:
+"You already took one thing off my claws. Finish that before I accidentally look generous again."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 27: Vesper (Monster - Goth)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Vesper:
+"Dreamer. The edge of night suits you. {target} asked for a {item} that has been touched by moonlight, and I found one near the rocks after sunset. Will you carry it before dawn ruins it?"
+
+PLAYER CHOICES:
+[1] "I'll protect it from the dawn."
+[2] "Does moonlight actually change a {item}?"
+[3] "Why can't {target} get it themselves?"
+
+TURN 2A (if player chose 1):
+Vesper: "Good. Keep it in shadow. The sun is well-meaning but relentless. It will try to make the {item} cheerful. {target} prefers it the way the moon left it."
+
+TURN 2B (if player chose 2):
+Vesper: "Not in a way science would admit. But everything that sits under the moon learns a little quiet. That quiet stays with it."
+
+TURN 2C (if player chose 3):
+Vesper: "{target} is busy admiring the cold stars. Some of us have priorities, and staring at the moon is a valid one."
+
+QUEST REMIND - Vesper:
+"Has the moonlit {item} reached {target}? If not, keep it close. Dawn is always approaching, and dawn has opinions."
+
+QUEST THANK - Vesper:
+"{target} received the {item} and said it still held the night. You carried it well. The moon would approve, if the moon approved of anything."
+
+QUEST BUSY - Vesper:
+"One moonlit delivery is enough. Two would draw too much attention from the dawn."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 28: Gizmo (Monster - Nerd)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Gizmo:
+"Dreamer! Fascinating development. {target} requested a {item} for an experiment, and I have located a specimen with ideal properties. Will you transport it for peer review?"
+
+PLAYER CHOICES:
+[1] "I'll transport it for science."
+[2] "What experiment is {target} running?"
+[3] "What are the ideal properties?"
+
+TURN 2A (if player chose 1):
+Gizmo: "For science! I like that. Handle it gently. Peer review requires the {item} to arrive in the same number of pieces it started in."
+
+TURN 2B (if player chose 2):
+Gizmo: "They are testing whether a {item} improves one's mood when placed on a windowsill. It's a very important field of study with a sample size of hopefully one."
+
+TURN 2C (if player chose 3):
+Gizmo: "Optimal roundness, acceptable weight, and a color that matches the current season. This one is very {season}, which is the technical term."
+
+QUEST REMIND - Gizmo:
+"Has the {item} reached the peer review stage? I mean, has it reached {target}? Scientific language is fun, but plain language is faster."
+
+QUEST THANK - Gizmo:
+"{target} confirmed the {item} arrived intact and {season}-appropriate. The experiment may now proceed. You are a credit to field logistics."
+
+QUEST BUSY - Gizmo:
+"You already have one specimen in transit. I never run concurrent trials without a control group."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 29: Ommmm (Monster - Monk)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Ommmm:
+"Dreamer. {target} has been moving quickly today. I found a {item} in the quiet grass. Please take it to them. It may remind them to slow down."
+
+PLAYER CHOICES:
+[1] "I'll take it to them gently."
+[2] "How does a {item} remind someone to slow down?"
+[3] "What if {target} doesn't want to slow down?"
+
+TURN 2A (if player chose 1):
+Ommmm: "Gently is the right speed. Do not hurry the {item}. It has already waited in the grass for a long time. A little more waiting is fine."
+
+TURN 2B (if player chose 2):
+Ommmm: "Because it did not rush to grow or fall. It arrived here exactly when it was ready. {target} will feel that, even if they do not name it."
+
+TURN 2C (if player chose 3):
+Ommmm: "Then they will keep the {item} and move quickly with it. That is also fine. We offer gifts, not instructions."
+
+QUEST REMIND - Ommmm:
+"The {item} still travels. That is fine. All gifts take their own time, like moss, like trust."
+
+QUEST THANK - Ommmm:
+"{target} received the {item} and stood quietly for three whole seconds. That is a long time for someone who moves quickly. You gave them a small stillness."
+
+QUEST BUSY - Ommmm:
+"One gentle gift is enough. A rushed gift is still a gift, but a patient gift is better."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 30: Lord Roar (Monster - Medieval)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Lord Roar:
+"Hail, Dreamer! I require a messenger of swift feet and noble heart. {target} has need of a {item}, and I, Lord Roar, have located one worthy of the quest. Will thou serve the realm?"
+
+PLAYER CHOICES:
+[1] "I serve the realm with swift feet."
+[2] "What realm, exactly?"
+[3] "How is a {item} worthy of a quest?"
+
+TURN 2A (if player chose 1):
+Lord Roar: "Excellent! Take this {item}. Deliver it to {target} with my official blessing, which sounds like 'Rawr, but politely.'"
+
+TURN 2B (if player chose 2):
+Lord Roar: "This realm! The sandy one. With trees. And a noble wild hog who serves as my steed in my imagination. It is a very portable realm."
+
+TURN 2C (if player chose 3):
+Lord Roar: "Any object that helps a friend is worthy. A {item} may seem small, but so am I, and yet I am very noble. Size is not the measure of worth!"
+
+QUEST REMIND - Lord Roar:
+"Has the {item} reached {target}? My realm's postal system depends entirely on you, and I cannot issue a royal decree without accurate delivery data."
+
+QUEST THANK - Lord Roar:
+"{target} received the {item} and hailed your name across the beach! Or maybe they just said thanks. Either way, the realm is grateful."
+
+QUEST BUSY - Lord Roar:
+"Thou art already sworn to one quest. A knight does not take a second oath before completing the first. Honor demands it."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 31: Snug (Monster - Shy)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Snug:
+"Oh... hello, Dreamer. I found a {item} under my rock, and I thought {target} might like it. But rocks are heavy, and I'm not good at being seen. Could you... could you give it to them?"
+
+PLAYER CHOICES:
+[1] "Of course, Snug."
+[2] "How did you find it under your rock?"
+[3] "What if {target} asks who it's from?"
+
+TURN 2A (if player chose 1):
+Snug: "Thank you. Here's the {item}. It's not much, but it's clean. I wiped it with my tiny tentacle. Twice."
+
+TURN 2B (if player chose 2):
+Snug: "It was just there one morning. I think the tide left it as a present for shy monsters. I wanted to pass the present along."
+
+TURN 2C (if player chose 3):
+Snug: "Say it's from a friend under a rock. That's true. I'm just a blob-shaped friend who likes small spaces."
+
+QUEST REMIND - Snug:
+"Did {target} get the {item}? I keep peeking out from under my rock, but I can't tell if peeking counts as checking or just being nervous."
+
+QUEST THANK - Snug:
+"{target} smiled. I saw it. Well, I think I saw it. It was sunny. But I'm pretty sure the smile was there. Thank you for being brave for me."
+
+QUEST BUSY - Snug:
+"You still have the {item} from under my rock. I don't want to give you too many rock-gifts. Your hands might get full."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 32: Gigglegrow (Monster - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+QUEST START - Gigglegrow:
+"Wheeee! Dreamer! I found the bounciest {item} on the whole island, and I think {target} needs to see it bounce. Will you bounce it over to them?"
+
+PLAYER CHOICES:
+[1] "I'll bounce it over carefully."
+[2] "Does it actually bounce?"
+[3] "What if {target} doesn't like bouncing things?"
+
+TURN 2A (if player chose 1):
+Gigglegrow: "Carefully bouncing! Yes! Hold it tight so it doesn't escape. It bounces in your heart, mostly, but sometimes it also bounces on the ground."
+
+TURN 2B (if player chose 2):
+Gigglegrow: "Everything bounces if you believe in it hard enough! This one bounces extra because it's round and happy and full of island energy."
+
+TURN 2C (if player chose 3):
+Gigglegrow: "Then they'll like the smile that comes with it! Bouncing is just the packaging. The real gift is the giggles inside."
+
+QUEST REMIND - Gigglegrow:
+"Don't forget to bounce the {item} to {target}! If you drop it, it'll probably bounce right back up. That's a good problem to have."
+
+QUEST THANK - Gigglegrow:
+"{target} got the {item} and bounced a little! I saw it from far away because I'm tall and fluffy. You delivered joy in bounce-form, Dreamer!"
+
+QUEST BUSY - Gigglegrow:
+"You already have one bouncy delivery. Two bouncy things in one pocket might bounce you away. Let's finish one quest before you fly off."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH — 32 characters, quest dialogue ready for variable substitution
+═══════════════════════════════════════════════════════════════

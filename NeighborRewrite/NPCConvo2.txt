@@ -60,7 +60,7 @@ TURN 3BA (if player chose 2 then 1):
 Piko: "Perfect amount? That's a relief. I don't have a dial for that. I only have a dial for brightness, and it's always on maximum."
 
 TURN 3BB (if player chose 2 then 2):
-Piko: "The butterflies can handle it. Good. Because sometimes I beep when I'm happy, and I don't want to startle anyone with tiny wing-flapping friends."
+Piko: "The butterflies can handle it. Good. Because sometimes I beep when I'm happy, and I don't want to startle my tiny wing-flapping friends."
 
 TURN 3BC (if player chose 2 then 3):
 Piko: "A little overwhelm never hurt anyone? I hope that's true. I overwhelmed my own charging station once. It blushed and shut down for a whole afternoon."

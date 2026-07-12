@@ -1,90 +1,171 @@
 // ===== HAND-WRITTEN NPC DIALOGUE =====
-// Auto-generated from NPCConvo2.txt— multi-turn branching conversations.
-// Each character: start node + up to 3 branch nodes (c1/c2/c3) + a final node.
+// Auto-generated from NeighborRewrite/NPCConvo2-5.txt — multi-turn branching
+// conversations for the 32-neighbor rewrite roster. Each character:
+// start (3 choices) -> c1/c2/c3 (3 choices each) -> c1a..c3c finals.
 const WRITTEN_DIALOGUES = {
-  "Chester": {
+  "Piko": {
     "start": {
-      "text": "Heya, kid! So I was tellin' this seagull, right? 'Your wing's loose, pal!' And he just flies off! HA! Good one, huh? Anyway, you look like someone who appreciates fine machinery. What brings ya to my neck of the beach?",
+      "text": "Oh! Hello, Dreamer. The flowers look extra bouncy today. I like standing here because butterflies sometimes land right next to me. Do you think they think I'm a flower too?",
       "choices": [
         {
-          "text": "I'd love to hear more about your mechanic days, Chester!",
+          "text": "Definitely. You're the pinkest flower on the island.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Actually, I'm looking for someone who can fix things around here.",
+          "text": "Maybe they just like your energy.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "That seagull joke was AMAZING! Tell me another!",
+          "text": "I think they like anyone who stands still long enough.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Mechanic days? HA! I once fixed a toaster with nothin' but a paperclip and determination! Thing still works today, prob'ly. You remind me of my old apprentice—always askin' questions. That's good! Questions mean you're thinkin'!",
+      "text": "The pinkest flower? Oh, that's the nicest thing anyone's ever said without beeping. I hope nobody picks me, though. I'd look very silly in a vase.",
       "choices": [
         {
-          "text": "What's the most unusual thing you've ever fixed?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you miss working on machines, or is retirement better?",
-          "next": "final",
+          "text": "I'd put you on the best windowsill in the shack.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can you teach me some of your repair tricks?",
-          "next": "final",
+          "text": "You're too special to pick.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe you'd look cute in a tiny pot.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "The best windowsill? Then I'd get morning light and afternoon naps and maybe a view of the beach. That sounds like the best day a robot could have. Thank you, Dreamer.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Too special to pick. I like that. Maybe I'm not a flower at all. Maybe I'm a whole garden. A tiny, pink, beeping garden.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "A tiny pot? I'd have to fold my arms very carefully. And my antennae would stick out. But I'd try. For you, I'd try anything cute.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Fix things, huh? Well, I'm retired, see? But... I never said I stopped HELPIN'. What's broken? My rates are reasonable—payment in oil or good jokes. HA! Just kiddin', kid. Free for friends.",
+      "text": "Energy? Do I have energy? I feel mostly sparkles and warmth. Is that the same thing? I hope it's not too much. I don't want to overwhelm the butterflies.",
       "choices": [
         {
-          "text": "It's actually my fishing rod—keeps getting stuck.",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "The island's old clock tower stopped working.",
-          "next": "final",
+          "text": "It's the perfect amount of energy.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "I was hoping you could look at my bicycle later!",
-          "next": "final",
+          "text": "The butterflies can handle it.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "A little overwhelm never hurt anyone.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Perfect amount? That's a relief. I don't have a dial for that. I only have a dial for brightness, and it's always on maximum.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "The butterflies can handle it. Good. Because sometimes I beep when I'm happy, and I don't want to startle my tiny wing-flapping friends.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "A little overwhelm never hurt anyone? I hope that's true. I overwhelmed my own charging station once. It blushed and shut down for a whole afternoon.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Another one?! Alright, alright... So a screwdriver walks into a bar, right? And the bartender says, 'We don't serve your kind here!' And the screwdriver says—'That's fine, I'm just here for the SCREWS!' HA! Get it? SCREWS?!",
+      "text": "Standing still is easy when the weather is warm. Everything slows down. Even my fans spin slower. It's very peaceful, like being a little pink statue of friendship.",
       "choices": [
         {
-          "text": "You're hilarious, Chester!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That was terrible... but I love it!",
-          "next": "final",
+          "text": "Friendship statue is a good job.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "I have a joke too! Want to hear it?",
-          "next": "final",
+          "text": "You'd be the cutest statue in a garden.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I should try standing still more often.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You're alright, kid. Most folks don't stick around for my stories. Tell ya what—come back anytime. I got more jokes, more stories, and if somethin' breaks... well, my clamps are pretty good in a pinch. HA! See ya around!",
+    "c3a": {
+      "text": "Friendship statue is a good job. I'd wear a little plaque at my feet. Plaque words: Piko. Likes butterflies, warm breezes, and Dreamer.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "The cutest statue in a garden? I'd have to hold very still. But if someone smiled at me, I'd probably wiggle. Garden statues aren't supposed to wiggle.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "You should try standing still more often. Then we could stand still together. Two still friends, watching butterflies. That's almost a poem.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -94,69 +175,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Luna": {
+  "Rivet": {
     "start": {
-      "text": "Oh, it's you. I was just contemplating the existential horror of litter boxes again. Truly, humanity's greatest cruelty. But never mind that—something far more interesting has caught my attention. You look... adventurous.",
+      "text": "Oh. It's you. I'm not waiting around or anything. I'm just making sure these leaves don't fall in the wrong order. Someone has to keep an eye on things. Not that I care what you think.",
       "choices": [
         {
-          "text": "I AM adventurous! Want to go explore somewhere new?",
+          "text": "The leaves are lucky to have you.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "What kind of interesting thing caught your attention?",
+          "text": "Sounds like important work.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Litter boxes ARE terrible. You deserve better, Luna!",
-          "next": "final",
+          "text": "You can admit you were waiting. I won't tell.",
+          "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Explore? Now you're speaking my language. I've heard rumors of a hidden cove past the old lighthouse—somewhere the humans never go. Shiny things, probably. Secrets, definitely. But it requires... stealth. Are you stealthy, human?",
+      "text": "Lucky? Leaves aren't lucky. They're just... leafy. But I suppose someone organized should watch them. The wind has no sense of order whatsoever.",
       "choices": [
         {
-          "text": "Stealthy as a shadow! Let's go right now!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I'm more of a 'charge in enthusiastically' type...",
-          "next": "final",
+          "text": "The wind could learn from you.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What kind of shiny things are we talking about?",
-          "next": "final",
+          "text": "Order is underrated on an island.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe the wind is just spontaneous.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "The wind could learn from me? Hmph. It could learn a lot. Like how to arrive on time and stop rusting my joints with surprise gusts.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Order is underrated. Everyone's running around picking weeds and chasing crabs. Someone needs to watch the leaves fall in a sensible pattern.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Spontaneous? Spontaneous is just a fancy word for unplanned. I don't trust unplanned. Unplanned things usually end up dented.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "A certain... shimmer. Near the moonpool at midnight. Not that I CARE about such things. But IF one were to investigate, one might find treasures beyond imagination. Or fish. Fish are also acceptable.",
+      "text": "Important? Finally, someone recognizes it. I have a whole system. Big leaves here, small leaves there, suspicious leaves investigated separately.",
       "choices": [
         {
-          "text": "Midnight adventure? I'm IN!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can we go sometime that's NOT midnight?",
-          "next": "final",
+          "text": "Suspicious leaves sound serious.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Treasures OR fish? Why not both?",
-          "next": "final",
+          "text": "What's a suspicious leaf look like?",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You should run the whole island.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Keep up, human. And try not to step on any crunchy leaves—the crabs are excellent listeners. You're not like the others. Most humans just try to PET me. You... you understand ADVENTURE. This might be tolerable.",
+    "c2a": {
+      "text": "Serious? Suspicious leaves are always serious. They land too flat, or too curled, or with a smug little edge. You know the type.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "A suspicious leaf looks exactly like a normal leaf except it's up to something. I can tell. I've watched enough leaves to know when one is plotting.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Run the whole island? Hmph. I'd have a schedule for everything. Crab parades at dawn. Tree inspections at noon. Mandatory leaf alignment at sunset.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "I wasn't waiting. I was standing with purpose. There's a difference. A very big difference that I'm not going to explain, because you should already know.",
+      "choices": [
+        {
+          "text": "Purposeful standing is a real skill.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll pretend I don't know.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Whatever you say, Rivet.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Purposeful standing is absolutely a skill. It requires balance, patience, and the ability to look busy while doing nothing. Not everyone can manage it.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Pretend you don't know? Fine. But if you slip up, I'll deny everything. I have a very convincing 'I was just counting leaves' face.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Don't say 'whatever you say' like that. It sounds like you don't believe me. Which is fine, because I don't care if you believe me. Much.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -166,89 +347,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Brass": {
+  "Shade-7": {
     "start": {
-      "text": "BEHOLD, traveler! For you stand before BRASS, chronicler of tales, weaver of narratives, observer of—wait, was that a footstep? No matter! The story continues! I was saying, I have witnessed MANY things on this island. Tragedies! Triumphs! The time Gearwick tried to make toast and—",
+      "text": "The water is dark today. Not dark-dark. Just... reflective of my general mood. Hello, Dreamer. Do you also come here to contemplate the eternal nothingness between waves?",
       "choices": [
         {
-          "text": "Wait, what happened with Gearwick and the toast?!",
+          "text": "I mostly come here to look at the view.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're such a dramatic storyteller, Brass!",
+          "text": "Sometimes. The nothingness is pretty relaxing.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Have you written any of these stories down?",
+          "text": "I was actually looking for you.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Ah, THE TOAST INCIDENT of last Tuesday! Gearwick, in his infinite wisdom, decided that toast required PRECISELY 473 seconds of toasting. NOT 472, NOT 474—FOUR HUNDRED SEVENTY-THREE. The result was......carbon. Absolute carbon. The smoke alarm SANG that day.",
+      "text": "The view. Yes. The horizon mocks us with its calm. Blue upon blue, pretending everything is fine. The view is technically adequate, I suppose.",
       "choices": [
         {
-          "text": "Did Gearwick ever try toast again?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's the most dramatic toast story ever!",
-          "next": "final",
+          "text": "Adequate is still a compliment.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "I feel like I need to hear this in iambic pentameter.",
-          "next": "final",
+          "text": "What color would you prefer?",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe the horizon needs a makeover.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Adequate is the highest praise I give to anything that isn't a storm cloud. Today, the horizon has earned my reluctant acknowledgment.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Preferred color? Oh, I don't know. Deep violet. Maybe a bruised purple. Something that says, 'The universe is vast and vaguely disappointed.'",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "A makeover? No. The horizon is fine the way it is. I just reserve the right to look at it mournfully. That's what the water is for. Reflections of moodiness.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "DRAMATIC? Moi? I merely believe that life, in all its mundane glory, deserves the NARRATIVE it deserves! Every spilled cup of coffee is a TRAGEDY! Every found pebble, a TRIUMPH! Every—curse me, this arm again—",
+      "text": "Relaxing nothingness. Exactly. The waves are just small reminders that everything keeps moving while we stand still. Very comforting, in a hopeless kind of way.",
       "choices": [
         {
-          "text": "Need help with your arm, Brass?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're right! Life IS dramatic!",
-          "next": "final",
+          "text": "Hopeless comfort is still comfort.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can you tell me a story about something small that happened today?",
-          "next": "final",
+          "text": "You make the ocean sound poetic.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I prefer when the waves are cheerful.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Hopeless comfort is still comfort. You're surprisingly understanding for someone who probably has a normal amount of optimism.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Poetic? The ocean doesn't need my help to be poetic. It just sits there, being deep and mysterious. Some of us work very hard for that effect.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Cheerful waves? Ugh. They splash too loudly. They don't understand that some of us prefer our water with a side of existential dread.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "WRITTEN? Dear friend, I AM a library! These books—contain tales of heroism, folly, and the great kelp shortage of '23. But the BEST stories......are the ones still being WRITTEN. Like yours! Like MINE! Like the one where I, Brass, meet a traveler who appreciates the ART of storytelling!",
+      "text": "Looking for me? That implies I was lost. I wasn't lost. I was simply existing in a location unknown to others. It's different. Slightly.",
       "choices": [
         {
-          "text": "Can I read one of your stories sometime?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's YOUR story, Brass? How did you get here?",
-          "next": "final",
+          "text": "I like finding hidden things.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Maybe I should start writing stories too!",
-          "next": "final",
+          "text": "You weren't hard to spot by the water.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Existing unknown sounds lonely.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "And so our tale concludes! For NOW! But fear not, for every ending is but a BEGINNING in disguise! Return when you seek narratives, when you need a tale told PROPERLY, or when you simply wish to hear about the Great Pickle Jar Catastrophe of last week! The story CONTINUES!",
+    "c3a": {
+      "text": "You like finding hidden things. That's either charming or slightly invasive. For now, I'll call it charming. The day is gloomy enough to allow it.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "I wasn't hard to spot? Is that because I'm dark and dramatic by the water, or because I'm the only robot here reciting poems to seagulls?",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Lonely? No. Lonely implies I want company. I simply want the world to know I exist in a state of elegant solitude. There's a difference. Probably.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -258,89 +519,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Vega": {
+  "Cypher": {
     "start": {
-      "text": "Greetings, Earth-dweller! I have been studying your planet's... 'pop culture' for 7.3 Earth-days now. Fascinating! But also CONFUSING. Why do humans enjoy watching other humans pretend to be in fictional situations? And what EXACTLY is a 'meme'?",
+      "text": "Dreamer, excellent timing. I was just cataloging today's cloud formations. That one over there resembles a very poorly optimized cauliflower. Do you want to hear my full taxonomy?",
       "choices": [
         {
-          "text": "Pop culture is complicated! Want me to explain?",
+          "text": "Absolutely. Hit me with the taxonomy.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Memes are... uh... funny pictures with text?",
+          "text": "Only the highlights, please.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "What's the most confusing thing you've learned so far?",
+          "text": "I mostly see clouds as clouds.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "EXPLAIN? Oh, wonderful! My telepathic scans show humans absorb this information through 'television,' 'internet,' and 'awkward family gatherings.' But the CONTEXT eludes me. For instance: why does everyone keep referencing something called 'The Office'? Is it a workplace? A philosophical concept? A... restaurant?",
+      "text": "Excellent. Category one: fluffy cumulus. Category two: wispy cirrus. Category three: the one that looks like a hat but isn't. Category four: clouds I suspect are pretending to be sheep.",
       "choices": [
         {
-          "text": "It's actually a TV show about an office!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You've been scanning FAMILY GATHERINGS?!",
-          "next": "final",
+          "text": "Clouds pretending to be sheep? Suspicious.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Let me show you some actual memes instead.",
-          "next": "final",
+          "text": "That's a very thorough system.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "What about the cauliflower one?",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Suspicious, yes. Sheep-shaped clouds have no business drifting that slowly. They're up to something. Atmospheric mischief, most likely.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Thoroughness is my default state. I once categorized every rock on the beach. Most were 'round' or 'rounder than expected.' It was a triumph of granularity.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "The cauliflower cloud is currently classified as 'vegetable-adjacent cumulus, subtype baffling.' I suspect it may be a meteorological pun.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "'Funny pictures with text'? That is... reductive, but not inaccurate. I observed a human laugh for 4.7 minutes at an image of a feline with the caption 'I CAN HAS CHEEZBURGER.' I do not understand the humor, but the JOY was contagious! Tell me: what makes humans laugh?",
+      "text": "Highlights. Right. Today's sky contains seventeen standard shapes, three anomalies, and one cloud that I believe is mocking me personally.",
       "choices": [
         {
-          "text": "Different things make different people laugh!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Slapstick comedy usually works on most humans.",
-          "next": "final",
+          "text": "How can a cloud mock you?",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Want to see MY favorite meme? It's hilarious!",
-          "next": "final",
+          "text": "Seventeen is a lot.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Anomalies are more interesting.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "It tilts. Every time I look directly at it, it tilts slightly to the left. That is statistically unlikely for a passive water-vapor formation.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Seventeen is average for a partly dreamy day. On overcast days I've counted over forty. The sky is more organized than people realize.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Anomalies are always interesting. Today's anomaly is a cloud shaped almost exactly like a teapot. I don't drink tea, but I respect the reference.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Most confusing? 'Reality television.' Humans WATCH other humans perform mundane tasks while being judged by OTHER humans... for ENTERTAINMENT? On my world, we simply share memories telepathically. Much more efficient! But I admit... there is something charming about your chaotic methods.",
+      "text": "Clouds as clouds? That's a remarkably low-resolution interpretation. But I respect it. Not everyone has the patience to overanalyze the sky.",
       "choices": [
         {
-          "text": "Human entertainment IS pretty chaotic!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Telepathic memory sharing sounds amazing, actually.",
-          "next": "final",
+          "text": "Someone has to keep it simple.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Have you tried any Earth hobbies besides studying pop culture?",
-          "next": "final",
+          "text": "I leave the sky to experts like you.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe the clouds prefer simplicity.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Thank you, Earth-dweller! You have been most helpful in my cultural immersion. I shall continue my studies—perhaps next I shall investigate 'pizza' and 'why humans argue about pizza toppings with such PASSION.' Return soon! I may require assistance understanding 'tiktok'... I believe it involves time manipulation?",
+    "c3a": {
+      "text": "Keeping it simple is a public service. If everyone overanalyzed the sky, we'd never get anything done. Also the clouds would get self-conscious.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Experts? I wouldn't call myself an expert. I'm more of an enthusiastic amateur with an unusually detailed spreadsheet. But thank you for the promotion.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "The clouds prefer simplicity? Perhaps. Maybe they drift precisely because no one expects them to organize. It's a very low-pressure existence.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -350,89 +691,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Daphne": {
+  "Om-Bit": {
     "start": {
-      "text": "Oh, hello there~ The bees told me you might be stopping by. Lovely day for a chat, isn't it? The wind is singing in D-minor today. Very melancholic. Would you care to sit awhile? The soil is particularly comfortable near my roots.",
+      "text": "Dreamer. Welcome. I have been sitting. The trees do not hurry, and so I try not to hurry either. Would you like to sit with the quiet for a moment?",
       "choices": [
         {
-          "text": "I'd love to sit and chat, Daphne!",
+          "text": "I'd like that very much.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You hum sea shanties? That's adorable!",
+          "text": "I'm not very good at quiet.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "What have the bees been telling you?",
+          "text": "Only if you tell me what the trees are thinking.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Wonderful~ Make yourself comfortable. The earth remembers every footprint, you know. Holds them like little memories. Some are happy, some are sad... but all are part of the garden's song. What brings you to my corner of the island today?",
+      "text": "Then we sit. Not for a reason. Not to solve anything. Just to be here, where the grass is warm and the sky is wide. This is enough.",
       "choices": [
         {
-          "text": "I just wanted to hear your stories, Daphne.",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I've been feeling a bit lost lately...",
-          "next": "final",
+          "text": "It really is enough.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "The bees said you know everything that happens here!",
-          "next": "final",
+          "text": "I usually need a reason to stop moving.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Sitting with you feels peaceful already.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Enough. Yes. Enough is a small word, but it holds a great deal. Today, we have enough sun, enough breeze, enough presence.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Needing a reason to stop is a habit of the busy world. Here, we may stop simply because we have arrived. Arrival is reason enough.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Peaceful. Good. Peace is not a place we reach. It is a place we return to, again and again, like a favorite path through the grass.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Adorable? Oh, you're sweet. The insects inspired me, you see. Crickets have such rhythm! Bees, such harmony! Sea shanties work best when you're rooted in one place but your mind can wander the oceans. Would you like to hear one properly?",
+      "text": "Not good at quiet. That is also a kind of practice. The mind chatters like a small bird. We do not silence the bird. We let it fly past.",
       "choices": [
         {
-          "text": "Yes, please! I love sea shanties!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to hum like the insects?",
-          "next": "final",
+          "text": "That's a gentle way to think about it.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do the insects request specific songs?",
-          "next": "final",
+          "text": "My mind chatters a lot.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "What if the bird wants to stay?",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Gentle is good. The world is loud enough. We do not need to be louder than it. We can be the soft place where noise settles.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "A chattering mind is not a problem. It is only the wind moving through empty rooms. Let it move. The rooms remain still.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "If the bird wants to stay, we offer it a branch. We do not chase it away, nor do we make it the master of the house. It stays until it is ready to fly.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "The bees are QUITE the gossips, aren't they? They tell me about the new flowers blooming, which humans bring the best sugar water, and......which butterflies are seeing which moths. Very scandalous! But they also mentioned you're kind. The bees have excellent judgment about these things.",
+      "text": "The trees are not thinking in words. They are being. Tall, patient, rooted. We could learn from trees, though we should not try to grow bark.",
       "choices": [
         {
-          "text": "The bees said that? I'm honored!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What else do the bees gossip about?",
-          "next": "final",
+          "text": "No bark-growing. Got it.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do the bees ever get the stories wrong?",
-          "next": "final",
+          "text": "Patience is the hardest part.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Being tall seems nice, though.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "It has been lovely, dear one~ Remember: even when you feel alone, the garden is always singing around you. The wind, the bees, the soil beneath your feet... we're all part of the same song. Come back when you need to listen. My roots make excellent therapy.",
+    "c3a": {
+      "text": "No bark-growing. Wise. Some lessons are not meant to be taken literally. The trees would be confused, and you would be itchy.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Patience is difficult because the world rewards speed. But trees do not speed. They grow in silence, and no one applauds, yet they become tall.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Being tall has its own troubles. More wind, more weather, more responsibility to shade the small things. Height is a kind of service.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -442,89 +863,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Krip": {
+  "Sir Cogs-a-Lot": {
     "start": {
-      "text": "Ah. A visitor. I was... conducting research. On minerals. Specifically, the exotic ones. Not that you would understand. Most don't. But you seem... different. Less likely to poke things you shouldn't.",
+      "text": "Hail, fair traveler Dreamer! I have been inspecting the trees of this realm, and I declare them worthy of shade and song. Dost thou come to seek adventure, or merely good conversation?",
       "choices": [
         {
-          "text": "I promise I won't poke anything! What are you studying?",
+          "text": "Good conversation, Sir Knight.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "I actually know quite a bit about minerals!",
+          "text": "A little adventure never hurts.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "You seem nervous. Is there something I can help with?",
+          "text": "I come to inspect the trees with you.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Studying? Everything. Nothing. The crystalline structures beneath this island sing in frequencies humans cannot hear. But I can hear them. They're telling me something. Something about... you. Curious. Very curious.",
+      "text": "A noble quest, conversation! Many underestimate its power. A single kind word can lift a spirit higher than any sword. I myself have no sword, but I have many words.",
       "choices": [
         {
-          "text": "The crystals are singing about ME? What do they say?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to hear them too?",
-          "next": "final",
+          "text": "Words are mightier than swords anyway.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "That's both fascinating and slightly terrifying!",
-          "next": "final",
+          "text": "I'll take kind words over sword fights.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "How many words do you have?",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Mightier than swords, aye! For words need no sharpening, no scabbard, and no polishing. They travel light and strike gently upon the heart.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Wise choice. Sword fights leave dents in one's chassis, and I prefer my brass un-dented. Kind words, however, only polish the soul.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "How many words? A knight never counts his words, lest he discover he has run out mid-speech. I prefer to believe my vocabulary is infinite.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Oh? Then perhaps you can identify this. Found it near the northern caves. It hums in B-flat minor and occasionally whispers riddles. Standard geology texts do not cover this. Do you know what it is?",
+      "text": "A true spirit! Adventure awaits around every tree and beneath every rock. Though I should warn thee, the local crabs are fierce negotiators of territory.",
       "choices": [
         {
-          "text": "That's... definitely not in any textbook I've seen!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "It sounds like a sentient mineral! Does it talk often?",
-          "next": "final",
+          "text": "Fierce crabs? Tell me more.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I hold it? I'll be very gentle!",
-          "next": "final",
+          "text": "I've met a few brave crabs.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe we should avoid crab territory.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Fierce crabs? Aye! They raise their claws like tiny banners and declare, 'This sand is ours!' I always salute their courage before walking around them.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Then thou knowest their ways. Brave little warriors of the shoreline. They do not yield, yet they are soft of heart, for they retreat into the waves when tired.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Avoid crab territory? A cautious strategy, yet honorably executed. Not every quest requires confrontation. Sometimes the bravest path is the one that gives crabs their space.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Help? Most beings run when I ask for assistance. There is a... disturbance. In the mineral grid. Something is disrupting the harmonic resonance. I need someone small enough to fit in the crystal caverns. Someone... agile. Like you.",
+      "text": "An inspector after mine own heart! These trees stand tall, their leaves are many, and their bark is pleasantly rough. A fine forest indeed.",
       "choices": [
         {
-          "text": "I'm your being! Let's go fix those crystals!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Crystal caverns? Are they dangerous?",
-          "next": "final",
+          "text": "Rough bark is the best bark.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "What kind of disturbance are we talking about?",
-          "next": "final",
+          "text": "Not too tall, not too short.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I approve of these trees as well.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You have proven... acceptable. Not many earn my trust. But you... you listen. You care. Return when the moon is high. We will venture into the depths together. The minerals will sing for us both. And... thank you. That was difficult to say.",
+    "c3a": {
+      "text": "The best bark? A connoisseur! Rough bark tells the story of many seasons. Smooth bark is young and hopeful, but rough bark has lived.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Not too tall, not too short. Exactly so! The trees of this island have achieved noble proportion. Neither arrogant nor humble. Simply tree-ish.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Thy approval is noted and cherished! Together we form a council of tree appreciation. Our meetings shall be held beneath the widest branches.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -534,89 +1035,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Penny": {
+  "Tinker": {
     "start": {
-      "text": "Oh, wonderful. Another human. Let me guess—you're here to ask about 'plant care tips' or 'the meaning of photosynthesis'? Or worse, you want to know if I'm 'happy in my pot.' I'm trapped in WOOD, Karen. How happy could I possibly be?",
+      "text": "Oh. H-hello, Dreamer. I was just... watching the birds. They're very good at sitting. Much better than me. I mean, I'm okay at sitting. But the birds are professionals.",
       "choices": [
         {
-          "text": "I actually just wanted to chat, no plant questions!",
+          "text": "You're a professional watcher too.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You DO seem unhappy. Can I help you get repotted?",
+          "text": "The birds have had a lot of practice.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I love your umbrella! Very stylish.",
+          "text": "Want to watch them together?",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Chat? Without botanical interrogation? Well. This is new. Fine. But fair warning: I'm cynical, I love the smell of rain, and I'm a TERRIBLE secret-keeper. Learned the baker's secret recipe last week. Told EVERYONE. No regrets.",
+      "text": "A professional watcher? I don't know about that. I just... notice things. Like how that bird over there tilts its head when it sees something new.",
       "choices": [
         {
-          "text": "What was the secret recipe? I love baking!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Being a bad secret-keeper could be useful sometimes!",
-          "next": "final",
+          "text": "Noticing things is a real skill.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "At least you're honest about it!",
-          "next": "final",
+          "text": "Which bird tilts its head?",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I bet you notice all the small details.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "A real skill? Maybe. I notice which birds come back every day, and which branches they like best. It's not useful, but it's... something.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "The little blue one. It tilts its head whenever a butterfly passes. I think it wonders if butterflies are also birds, just very small and confused.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Small details? I try. Like the way the light changes on the grass before it rains. Or how some rocks are warmer than others. Little things.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Repotted? Oh, so NOW you care about my living situation? After I've been in this oak prison for THREE YEARS? Wait. Are you a repotting service? Are you going to charge me? Because I don't have money. I'm a FERN.",
+      "text": "A lot of practice. Yes. They've been sitting since before I was assembled. That's a very long time. I respect that kind of dedication.",
       "choices": [
         {
-          "text": "I'm not selling anything! I genuinely want to help!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Three years? That does sound rough...",
-          "next": "final",
+          "text": "Bird dedication is inspiring.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What would your ideal pot look like?",
-          "next": "final",
+          "text": "You have your own kind of dedication.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe they'll teach you their secrets.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Inspiring? I suppose. They just keep doing what they do. Flying, sitting, singing. No one tells them to. They just know.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "My own dedication? Well, I do come here almost every day. Not because I have to. Because it's quiet, and the birds don't ask me hard questions.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Their secrets? I don't know if they'd tell me. They might think I'm too metal. Too squeaky. But I would listen very carefully if they did.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Stylish? Finally, someone with TASTE! Got it from a tourist who dropped it during the rainstorm of '23. Best day of my life. Between you and me, I've been using it to eavesdrop on conversations. The gossip is EXCELLENT.",
+      "text": "Together? I mean, if you want. I don't want to bother you. Or the birds. But if you're sure... we could stand over here. Quietly.",
       "choices": [
         {
-          "text": "What's the juiciest thing you've overheard?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Umbrella espionage! I respect it!",
-          "next": "final",
+          "text": "Quietly sounds perfect.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I tell you a secret? Since you're so good at keeping them...",
-          "next": "final",
+          "text": "I won't scare the birds.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Standing here is fine with me.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You're... tolerable. For a human. Most of you are insufferable. But you? You didn't ask about my watering schedule. You didn't try to 'optimize my sunlight exposure.' You just... talked. Come back when it rains. That's when I'm most charming. And I'll tell you ALL the gossip.",
+    "c3a": {
+      "text": "Quietly is good. I like quiet. Words can be loud, even when they're soft. But with you, maybe quiet is okay. Maybe more than okay.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "You won't scare them? Good. I get scared too, sometimes. Loud noises, sudden movements, the word 'schedule.' So I understand the birds.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Standing here is fine with you? Then it's fine with me too. We can be fine together. That's... that's a nice thing to be.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -626,89 +1207,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Mimis": {
+  "Zap-Zap": {
     "start": {
-      "text": "OH! A PERSON! Perfect timing! I was JUST planning the MOST AMAZING party and I need opinions! Theme ideas: 'Underwater Birthday Extravaganza' or 'Midnight Fairy Rave' or—'Surprise Party for Someone Who Doesn't Know They're Having a Party!' What do you think?",
+      "text": "Good morning, Dreamer! Or afternoon! Or any time, really! Every time is good when the sun is out, and even when it isn't, because clouds are also pretty great!",
       "choices": [
         {
-          "text": "A surprise party sounds DELIGHTFUL! Who's it for?",
+          "text": "Good morning, Zap-Zap!",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Underwater? How would that even work?",
+          "text": "You're very energetic.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "You throw a lot of parties, don't you?",
+          "text": "What makes clouds great?",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "WHO? That's the SURPRISE part! But I'll give you a hint: they're grumpy, they love tea, and they have a HANDLE. Don't tell Hudson I told you that! He thinks his birthday is a SECRET. It's not. Everyone knows. I put it on a CALENDAR.",
+      "text": "Good morning! Did you sleep well? Did you dream about nice things? Did you see any birds yet? I saw three birds and one very shiny rock!",
       "choices": [
         {
-          "text": "Hudson's birthday party will be EPIC!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're terrible at keeping secrets! I love it!",
-          "next": "final",
+          "text": "I saw two birds and a butterfly.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What kind of party does a tea cup even want?",
-          "next": "final",
+          "text": "Shiny rocks are the best rocks.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I dreamed about the beach.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Two birds and a butterfly! That's a whole squad! A bird-bird-butterfly squad. I bet they had important island business to attend to.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Best rocks! Shiny ones, round ones, flat ones, weird ones. Every rock is doing its best, and the shiny ones are just extra confident about it.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "The beach! Did you walk in the sand? Did the waves say hello? I think the waves are always saying hello, even when they're just quietly lapping.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "How? MAGIC, obviously! We'd fill the moonpool with enchanted water, invite the fish DJs, and—PRESTO! Underwater dance floor! The jellyfish can be the disco ball! Zora would LOVE this. She's already agreed to be the lighting.",
+      "text": "Energetic? That's just how I'm wired! My circuits are like happy little bumblebees. Buzz buzz buzz, but friendly. Not real bees, though. Robot bees.",
       "choices": [
         {
-          "text": "Fish DJs?! What do they play?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "This is the most creative party idea ever!",
-          "next": "final",
+          "text": "Robot bees sound fun.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I help you plan this? It sounds amazing!",
-          "next": "final",
+          "text": "I'd like that kind of wiring.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Do you ever need to recharge?",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Robot bees? They'd be polite and not sting anyone, and they'd probably help carry tiny things. Like crumbs, or good ideas, or very small hats.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "You'd like my wiring? I could lend you some enthusiasm, but I don't think it works that way. Enthusiasm has to come from inside, like a tiny sun!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Recharge? Oh, sure, sometimes. But the sun charges me up too! And friendly conversations! And seeing a really good cloud! I'm basically always charging!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "LOTS? I throw a party for EVERYTHING! 'It's Tuesday!' party. 'I Found a Nice Pebble!' celebration. 'Nobody Stepped on Any Flowers Today!' gala! Life is short, darling! EVERY moment deserves CONFETTI!",
+      "text": "Clouds? They move! That's already amazing. Plus they make shapes, and they bring shade, and sometimes they look like really fluffy blankets for the sky!",
       "choices": [
         {
-          "text": "What's the most unusual party you've thrown?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're right! Everything IS worth celebrating!",
-          "next": "final",
+          "text": "Blankets for the sky. I love that.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I come to your next party? Please?",
-          "next": "final",
+          "text": "Cloud shapes are my favorite.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Shade is very appreciated.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You? You're INVITED! To EVERYTHING! You're officially part of the 'Mimis Party Posse!' Benefits include: unlimited confetti, surprise celebrations, and access to my secret glitter stash! The GOOD glitter. Not the cheap stuff.",
+    "c3a": {
+      "text": "Blankets for the sky! Right? The sky gets cold too, probably. I don't know if it does, but if it does, clouds are the coziest solution ever!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Cloud shapes are the best! Today I saw one that looked like a hat, one that looked like a boat, and one that looked like a very confused potato!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Shade is the best! It's like the sun and the clouds are working together to give everyone a nice break. Teamwork makes the island work!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -718,89 +1379,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Hudson": {
+  "Boo-Boo": {
     "start": {
-      "text": "Good day. I couldn't help but notice you walking past. And I must say—your aura suggests someone who appreciates the finer beverages. Or perhaps you're just lost. Either way, I am Hudson. Connoisseur of teas. ALL teas. From ALL countries. And I have THOUGHTS.",
+      "text": "Boo! Hehe, did I scare you? I tried to be spooky, but I'm not very good at it. You're Dreamer, right? I like your name. It sounds friendly, like a hug that lasts a long time.",
       "choices": [
         {
-          "text": "I DO love tea! What's your favorite type?",
+          "text": "You almost scared me. Almost.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You seem very knowledgeable about tea...",
+          "text": "Your 'boo' is very cute.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Are you... judging my beverage choices right now?",
+          "text": "I think hugs that last a long time sound nice.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Favorite? That's like asking a parent to choose their favorite child! But if pressed... the Gyokuro from Japan. Shade-grown for 20 days before harvest. Umami levels that will MAKE YOU WEEP. I once cried during a tasting. No shame.",
+      "text": "Almost? That means I got a little bit scary! Progress! Maybe by next holiday I'll be medium-scary. Not too scary, though. I don't want anyone to float away.",
       "choices": [
         {
-          "text": "I've never cried over tea, but I'm willing to try!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What other teas should I experience before I die?",
-          "next": "final",
+          "text": "Medium-scary is a good goal.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do you ever travel to taste teas, or do they come to you?",
-          "next": "final",
+          "text": "Don't get too scary, I like you soft.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Floating away might be fun, actually.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Medium-scary. I'll practice in front of a mirror, except I don't have one, so I'll practice in front of calm water. Water is like a mirror, but wiggly.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Soft is okay. Soft can still be a little scary, right? Like a marshmallow shaped like a ghost. Wait, that's me. I am the marshmallow ghost.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Floating away might be fun? Maybe, but then I'd miss all the butterflies and sunny spots and you. So I'll stay right here, mostly.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Knowledgeable? Young friend, I have STUDIED. The Earl Greys of England. The Oolongs of Taiwan. The Pu-erh of China—AGED for DECADES. I can identify a tea's origin, harvest year, and the MOOD of the picker by TASTE ALONE. It is both gift and curse.",
+      "text": "Cute? Oh, thank you! I was going for spooky, but cute is like... spooky's nicer cousin. Cousin Cute. That could be my middle name if ghosts had middle names.",
       "choices": [
         {
-          "text": "That's the most specific talent I've ever heard of!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to taste tea like that?",
-          "next": "final",
+          "text": "Boo-Boo Cousin Cute has a ring to it.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What's the worst tea you've ever experienced?",
-          "next": "final",
+          "text": "Spooky's nicer cousin is a good title.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Do ghosts have last names?",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Boo-Boo Cousin Cute. I like it! Maybe I'll introduce myself that way from now on. 'Hello, I'm Boo-Boo, and this is my cousin title.'",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Cousin Cute, title holder of nice spookiness. I should make myself a little badge. Do you think leaves could be a badge? I'd like a leaf badge.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Last names? I don't know. Maybe my last name is 'of the Island.' Boo-Boo of the Island. That sounds very important and floaty.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Judging? I prefer the term 'enthusiastically evaluating.' Though I must say, I saw you drinking that......instant coffee earlier. No offense. But it DID offend me. Deeply. There are PROPER ways to caffeinate, you know.",
+      "text": "Long hugs are the best kind. Even though I'm all floaty, I can still feel warm inside when someone smiles at me. Smiles are like invisible hugs, I think.",
       "choices": [
         {
-          "text": "You're right, I'm sorry! Teach me better ways!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "It was an emergency! I was tired!",
-          "next": "final",
+          "text": "Smiles are definitely invisible hugs.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "What would you recommend for a coffee convert?",
-          "next": "final",
+          "text": "Your smile feels warm to me.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Floaty hugs still count as hugs.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Here is my wisdom, freely given: Tea is not merely beverage. It is CULTURE. It is HISTORY. It is the liquid embodiment of a thousand years of tradition. Also, it's very good for hydration. But mainly the culture part. Return when you seek enlightenment. I have stories about the Great Tea War of 2019. It was VERY dramatic.",
+    "c3a": {
+      "text": "Invisible hugs. I'll give you one right now. Did you feel it? It was warm and smiley and a little bit floaty around the edges.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Warm? Me? That's the best thing anyone's said since someone called me 'round.' I like being round and warm. Round and warm and friendly.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Floaty hugs count. I agree. All hugs count if they mean something. And this hug means I think you're very nice and I'm glad you said hello.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -810,89 +1551,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Cort": {
+  "Wisp": {
     "start": {
-      "text": "Oh! Um. Hello. I was just... reading. About... things. Not that I don't LIKE visitors! I do! I just... wasn't expecting... Would you like to know about the Dewey Decimal System? I know A LOT about it.",
+      "text": "Oh. You again. I suppose you're going to walk right past me like usual. Not that I'm watching. I'm simply floating here because the breeze happens to be acceptable today.",
       "choices": [
         {
-          "text": "I'd love to hear about the Dewey Decimal System!",
+          "text": "The breeze is acceptable today.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You seem nervous. Want to talk about something else?",
+          "text": "I wasn't planning to walk past.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "What books are you reading right now?",
+          "text": "You sound like you've been waiting.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "REALLY? Oh, this is WONDERFUL! The Dewey Decimal System is a MAGNIFICENT organizational framework! 000-999, covering all human knowledge! Did you know 598.9 is for 'Specific topics in ornithology'? I MEMORIZED that! For FUN!",
+      "text": "Acceptable. That's the highest praise I give to weather. Most days the wind is too enthusiastic, but today it has the decency to be subtle.",
       "choices": [
         {
-          "text": "That's incredibly impressive, Cort!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you have a favorite section of the system?",
-          "next": "final",
+          "text": "Subtle weather is underrated.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Have you ever tried organizing things that AREN'T books?",
-          "next": "final",
+          "text": "Enthusiastic wind has its charms.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You have high weather standards.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Underrated. Exactly. Everyone wants sunshine and big wind, but a soft breeze that barely moves your hair? That's elegance. That has taste.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Enthusiastic wind has charms? I suppose. It does make the leaves dance. But leaves dance too much, in my opinion. Show-offs.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "High standards? Someone has to have them. If I complimented every breeze, what would the truly excellent breezes think? They'd be devastated.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Something else? Um... I recently learned about 'small talk'! Topics include: weather, local events, and......how 'the weather is nice today.' Is the weather nice? I cannot feel weather. But I am told it is... nice?",
+      "text": "Not planning to? Then what were you planning? Standing around? Because if so, I suppose there's room near this bush. Not that I want company.",
       "choices": [
         {
-          "text": "The weather IS nice! You're doing great at small talk!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You don't need to follow a script! Just be yourself!",
-          "next": "final",
+          "text": "Standing around sounds nice, actually.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What other social things confuse you?",
-          "next": "final",
+          "text": "I could use a break from walking.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You don't have to want it for it to happen.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Standing around sounds nice. Fine. Stand over there. Not too close. A respectful distance. Close enough to talk, far enough that I can pretend you're just passing through.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "A break from walking? You humans and your walking. Always going somewhere. The dream island isn't going anywhere. It will still be here when you stop moving.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "I don't have to want it. That's annoyingly true. But since you're here and the breeze is acceptable, I suppose I won't float away immediately. That's all.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Currently? 'Advanced Taxonomy of Marine Invertebrates,' 'The Complete History of Paper Manufacturing,' and—'How to Make Friends When You're a Robot.' It's... not very helpful. The author assumes you have FACE MUSCLES for smiling.",
+      "text": "Waiting? Me? Don't be absurd. A ghost doesn't wait. A ghost simply exists in a specific location at a specific time that coincidentally matches your walking schedule.",
       "choices": [
         {
-          "text": "You don't need face muscles! You're already friendly!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That book sounds terrible! Let's write you a better one!",
-          "next": "final",
+          "text": "Coincidence is a kind of magic.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Marine invertebrates AND paper manufacturing? Fascinating combo!",
-          "next": "final",
+          "text": "I'll accept that explanation.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Your schedule-matching is impressive.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Thank you. For... talking to me. Most people find me boring. 'Too many facts,' they say. 'No pop culture references,' they complain. But you listened. You cared about the Dewey Decimal System. That means... more than you know. Please return. I have MORE facts.",
+    "c3a": {
+      "text": "Coincidence as magic. That's a very dreamy thing to say. This whole place is dreamy, so I suppose it fits. Fine. Coincidence. Magic. Whatever.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Accept my explanation? You'd better. It took me a long time to come up with something that sounded both plausible and disinterested.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Impressive? Don't compliment me. I'll blush, and ghosts aren't supposed to blush. It disrupts the whole translucent aesthetic.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -902,89 +1723,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Aiko": {
+  "Morwen": {
     "start": {
-      "text": "HI! Oh, I'm so glad you're here! I was just patrol— I mean, WALKING around! Making sure everyone is safe! You look like someone who appreciates a good friend. Are you having a good day? Please say yes! If not, I can help! I'm VERY good at helping!",
+      "text": "Evening is falling again, Dreamer. The sky bruises itself pink and orange before the dark arrives. I find it dramatic. Most beautiful things are a little tragic.",
       "choices": [
         {
-          "text": "My day IS good, but I'd love to patrol with you!",
+          "text": "Sunsets are beautifully dramatic.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Actually, I could use a friend right now...",
+          "text": "I prefer when the sky stays bright.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "You're the most enthusiastic dog I've ever met!",
+          "text": "Tragic beauty is a mood.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "PATROL? Oh, this is the BEST day ever! Okay, so here's the route: we check the beach for suspicious seagulls, verify all the flowers are properly bloomed, and make sure NO ONE is being lonely! Loneliness is a SAFETY HAZARD, you know.",
+      "text": "Beautifully dramatic. Yes. The sun doesn't simply leave. It makes a scene. It throws colors everywhere and demands that everyone watch. I respect the commitment.",
       "choices": [
         {
-          "text": "I had no idea loneliness was a safety issue!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What do we do if we find suspicious seagulls?",
-          "next": "final",
+          "text": "The sun knows how to make an exit.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "You take your job very seriously, don't you?",
-          "next": "final",
+          "text": "A committed sunset is the best sunset.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I always watch the exit.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "The sun knows how to make an exit. If only all departures were so graceful. Most are just... gone. The sun at least gives us a show first.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Committed to the very end. That's how one should live, I think. Give everything until the last moment, then fade beautifully into whatever comes next.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "You watch the exit? Most people look away. They say goodbye too early. But you stay until the color fades. That is a small, noble act.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Oh. Well, that's okay! That's EXACTLY what I'm here for! I'm trained in emotional support! Technique 1: sympathetic head tilt. Technique 2: warm paw on knee. Technique 3:...I know where the baker hides the extra cookies.",
+      "text": "You prefer brightness? That's sweet. Innocent, even. But darkness holds its own comfort. The stars come out. The world gets quiet. Everything feels possible in the dark.",
       "choices": [
         {
-          "text": "The cookies sound amazing, actually!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're really good at this, Aiko!",
-          "next": "final",
+          "text": "The stars are worth the dark.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What other support techniques do you have?",
-          "next": "final",
+          "text": "Darkness does feel full of possibility.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll try to appreciate it more.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Worth the dark. Yes. The stars would not shine if they had to compete with the sun all night. Darkness gives small lights their chance to be seen.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Possibility. In the dark, no one can see you doubt yourself. You can try on different versions of yourself. The night keeps secrets generously.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Try to appreciate it more. That's all any of us can do. Start with small things. The shape of shadows. The quiet between bird songs. The comfort of dim light.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Enthusiastic? That's my MIDDLE name! Well, not legally. Legally it's 'Aiko.' But in my HEART, it's 'Enthusiastic!' People say I'm 'too much' sometimes. But you know what? The world needs MORE! More joy! More wags! More FRIENDS!",
+      "text": "A mood? More than a mood. It's an entire philosophy. Why be merely pretty when you can be beautiful and heartbreaking? Beauty with depth has longer staying power.",
       "choices": [
         {
-          "text": "The world DOES need more joy! Keep being you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to be more enthusiastic?",
-          "next": "final",
+          "text": "Depth does make things memorable.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Your energy is absolutely contagious!",
-          "next": "final",
+          "text": "Heartbreaking isn't always cozy, though.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Staying power is important for a sunset.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Here's my promise: I will ALWAYS be here when you need protection, friendship, or someone to excitedly greet you! Danger lurks everywhere, but so does LOVE! And I have PLENTY of that to share! You're part of my pack now. And I protect my pack. FOREVER!",
+    "c3a": {
+      "text": "Depth makes things memorable. A shallow sunset is pretty and forgotten. A dramatic one haunts you. I prefer to be haunted by beauty.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Heartbreaking isn't cozy, you say? Perhaps. But a small ache can be warm too. Like remembering a song you loved. Sadness and coziness are not enemies.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Staying power. The best sunsets stay with you until morning. The best ghosts stay even longer. I intend to be one of the staying ones.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -994,89 +1895,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Ihor": {
+  "Spectra": {
     "start": {
-      "text": "BEHOLD! I am IHOR! Vampire of......dread! Terror! And—electric carnivorous plants! I am VERY evil! Or I will be! Once I finish my villain correspondence course! Are you... afraid yet?",
+      "text": "Fascinating. You appear solid, yet this is a dream. Therefore, your solidity is technically an interpretation of consciousness responding to symbolic stimuli. Hello, Dreamer.",
       "choices": [
         {
-          "text": "Electric carnivorous plants? That sounds AMAZING!",
+          "text": "That's a complicated way to say hello.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're working on being evil? Like a hobby?",
+          "text": "I like being a symbol of consciousness.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Oh no! A vampire! How scary!",
+          "text": "Do you analyze everything you meet?",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "AMAZING? Finally, someone who APPRECIATES my vision! Behold, my creation! The Dionaea Electrifolia! It eats flies AND shocks them! I'm breeding them to be......LARGER. Much larger.",
+      "text": "Complicated? I suppose. But dreams are complicated. If I say 'hello' without context, am I greeting you, your dream-self, or the concept of greeting itself?",
       "choices": [
         {
-          "text": "How large are we talking? Dog-sized?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I see one in action?",
-          "next": "final",
+          "text": "Maybe all three at once.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "You're more of a scientist than a villain!",
-          "next": "final",
+          "text": "A simple hello works fine for me.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You think about language a lot.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "All three at once. A multilayered greeting. I like that. Efficiency and depth combined. The dream rewards such combinations, I have observed.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Simple hello. Sometimes the simplest greetings survive the longest. Language evolves, but a warm hello remains surprisingly stable across iterations.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Language is the framework of thought. If I think too much about a word, sometimes the word starts to look strange. Hello. Hello. Now it looks like a small hat.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "A hobby? More like a CAREER PATH! The Villain Institute requires 200 hours of brooding, 50 hours of monologuing, and—a final project. Mine is an army of shock-plants. But I'm STRUGGLING with the 'menacing presence' module.",
+      "text": "A symbol of consciousness. Yes. You represent agency within the dream narrative. That's quite a responsibility, though I imagine it mostly involves walking around and picking things up.",
       "choices": [
         {
-          "text": "I can help you practice being menacing!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's the hardest part of villain school?",
-          "next": "final",
+          "text": "Walking and picking things up is my specialty.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do they offer online courses?",
-          "next": "final",
+          "text": "Agency feels like a big word for it.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I try to be a responsible symbol.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Specialty noted. Agency requires locomotion and object manipulation. You are, by definition, highly operational. A well-functioning symbol.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Big word, perhaps, but accurate. Without agency, the dream would simply unfold around no one. You are the observer and the actor. Very efficient design.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Responsible symbol. Excellent. Responsibility keeps the dream coherent. Too much chaos and the island might forget what shape it is supposed to be.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "YES! FEAR ME! For I am the night! The shadow! The—oh, who am I kidding? I'm not scary, am I? I tried to intimidate a butterfly earlier and it LANDED on my nose. Said I seemed 'approachable.'",
+      "text": "Analyze everything? Not everything. Just most things. For example, I am not currently analyzing that rock over there. Wait. I am now. It is sedimentary. Probably.",
       "choices": [
         {
-          "text": "Approachable is good! You don't need to be scary!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That butterfly was brave! I respect it!",
-          "next": "final",
+          "text": "Probably sedimentary is good enough.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Maybe you're meant to be a DIFFERENT kind of villain?",
-          "next": "final",
+          "text": "You couldn't resist the rock.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Analysis is a form of admiration.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You... you don't think I'm a failure? Everyone says 'Ihor, villains should be FEARED, not invited to tea parties.' But perhaps... perhaps I can be a DIFFERENT kind of villain. A villain who... protects? With shock-plants? Yes! A GUARDIAN villain! Thank you, friend!",
+    "c3a": {
+      "text": "Good enough is a valid scientific conclusion. Perfect certainty is rare, especially in dreams. 'Probably sedimentary' is honest and appropriately humble.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "I couldn't resist. Rocks are excellent subjects. Silent, patient, and full of history. Unlike me, they don't overthink their existence. Probably.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Admiration through analysis. I had not considered that, but it is true. To study something closely is a kind of affection. I am very affectionate, then.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1086,89 +2067,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Psy": {
+  "Hush": {
     "start": {
-      "text": "GREETINGS. I am Psy. I feel......that you seek CONNECTION. Most beings walk past. They do not listen to the earth's heartbeat. But you......you hear it, don't you?",
+      "text": "Hello, Dreamer. I was listening to the space between sounds. There is always something there if you wait long enough. Do you ever stop to listen?",
       "choices": [
         {
-          "text": "I do hear it! It's... beautiful!",
+          "text": "I should listen more often.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "The earth has a heartbeat? Tell me more!",
+          "text": "What does the space between sounds sound like?",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Your voice is incredible! How do you make that sound?",
+          "text": "Silence makes me a little nervous.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "BEAUTIFUL. Yes. It beats in time with all living things. When I plant with my heart, I sync with this rhythm. The seed FEELS my intention. Grows with PURPOSE. Not just survival... but MEANING.",
+      "text": "Listening more often is a gentle practice. Not everything needs a reply. Some moments simply want to be noticed. You can begin with the wind.",
       "choices": [
         {
-          "text": "Can you teach me to plant with my heart?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's the difference between heart-planting and regular planting?",
-          "next": "final",
+          "text": "The wind is a good place to start.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do all plants grow differently based on intention?",
-          "next": "final",
+          "text": "Not everything needs a reply. I like that.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Noticing sounds peaceful.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "The wind is a kind teacher. It comes and goes. It does not stay to be thanked. You can learn a lot from something that never asks for credit.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Not everything needs a reply. Some things only need witness. To see, to hear, to be present. That is enough. More than enough.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Noticing is peaceful because it removes the pressure to do. You are not fixing or changing. You are simply here, with the world as it is.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "The heartbeat......is the sum of all life's energy. Roots drum against soil. Leaves clap in wind. Flowers BLOOM in rhythm. When you walk, your footsteps join the song. When you speak, your words add harmony. Everything... CONNECTED.",
+      "text": "The space between sounds sounds like stillness wearing a soft coat. It is not empty. It is simply waiting for the next sound to arrive without rushing.",
       "choices": [
         {
-          "text": "I never thought of it that way before!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How can I listen to the heartbeat more often?",
-          "next": "final",
+          "text": "Stillness wearing a coat. That's a lovely image.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "This is the most peaceful conversation I've ever had!",
-          "next": "final",
+          "text": "Waiting without rushing sounds difficult.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll try to hear it next time.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "A lovely image. I am glad it reached you. Some teachings need words, but the best ones arrive as pictures in the mind. Soft. Easy to remember.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Difficult because we are trained to move. But waiting is also a movement, just a very small one. The heart slows. The breath deepens. That is travel too.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Try to hear it. Do not strain. Just open yourself a little wider than usual. The silence will find you. It is generous that way.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "My voice......comes from the chamber. It is shaped by moisture, by earth, by the WEIGHT of ancient trees. But the DEPTH... that comes from feeling. Emotion vibrates through wood and leaf. I do not speak with mouth. I speak with SOUL.",
+      "text": "Silence can feel like a question we do not know how to answer. But it is not asking. It is simply present, like the sky. You do not need to fill it.",
       "choices": [
         {
-          "text": "That's the most poetic thing I've ever heard!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I feel your voice? Put my hand on your chamber?",
-          "next": "final",
+          "text": "That's reassuring.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do other talking plants have different voices?",
-          "next": "final",
+          "text": "I'll let silence be present.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The sky doesn't ask questions either.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You have listened. Truly listened. Carry this thought with you: plant peace where you need it. Water it with honesty. Speak to it with kindness. It will grow. And when the wind moves its leaves... you will hear my voice. And the earth's heartbeat. FOREVER.",
+    "c3a": {
+      "text": "Reassuring. Good. The world asks very little of us. Mostly it asks that we do not run from it. Stay, and you will find it stays with you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Let silence be present. Yes. You do not need to perform for it. It will not judge your quiet. It is already quiet itself.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "The sky asks nothing. It simply holds us. Day and night, light and dark, it remains. That is a kind of love that does not need words.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1178,89 +2239,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Boll": {
+  "Sir Haunts-a-Lot": {
     "start": {
-      "text": "Greetings. I am Boll. I have calculated 14,847 possible outcomes of this conversation. 14,846 result in positive connection. The remaining one involves......a misunderstanding about my eye color. I am prepared for all scenarios.",
+      "text": "Hail, Dreamer! Dost thou see yonder tree? I have knighted it Sir Leaf-a-Lot, protector of shade. The island has many knights, if one knows where to look.",
       "choices": [
         {
-          "text": "You've calculated EVERY possible outcome?",
+          "text": "Sir Leaf-a-Lot is a fine name.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "What's the BEST outcome you calculated?",
+          "text": "What makes a tree worthy of knighthood?",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Your eyes ARE green, right? I can confirm that!",
+          "text": "Are there other knights on the island?",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "ALL outcomes. Probability of friendship: 87.3%. Probability of awkward silence: 8.2%. Probability of you accidentally insulting me: 4.5%. I have prepared responses for each. Including the awkward silence. I have EXCELLENT silence techniques.",
+      "text": "A fine name indeed! It has dignity, it has leaf, and it has the noble suffix 'a-Lot.' Any name ending in 'a-Lot' carries ancient gravitas. Or so I have decided.",
       "choices": [
         {
-          "text": "Can you teach me your silence techniques?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What do you do when calculations are WRONG?",
-          "next": "final",
+          "text": "I agree about the gravitas.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "That's both impressive and slightly terrifying!",
-          "next": "final",
+          "text": "Maybe I should be Dreamer-a-Lot.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Sir Leaf-a-Lot should have a ceremony.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Gravitas! You understand the old ways, Dreamer. A name must sound like it could open a heavy door or announce a feast. Sir Leaf-a-Lot does both.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Dreamer-a-Lot! A noble title! It implies you dream often, dream deeply, and dream with great honor. I shall use it henceforth.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "A ceremony! With a twig as sword and a patch of sunlight as crown. I shall knight the tree again, officially, before witnesses. You shall be the witness.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "The best outcome? Outcome #7,342: We become friends. You visit regularly. We discuss philosophy, mathematics, and the beauty of well-organized data. You introduce me to your other friends. I calculate THEIR probabilities too. Everyone wins.",
+      "text": "A tree is knighted through shade, patience, and the ability to stand tall through many seasons. Also, birds must like it. Birds are excellent judges of character.",
       "choices": [
         {
-          "text": "Outcome #7,342 sounds perfect to me!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You've really thought this through!",
-          "next": "final",
+          "text": "Birds are very trustworthy judges.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do your other friends know you calculate their visits?",
-          "next": "final",
+          "text": "Patience is a knightly virtue.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I should find more knights among the trees.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Trustworthy judges indeed. A bird would not nest in an unworthy tree. It knows what is solid, what is kind, and where the best morning light falls.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "A knightly virtue! Patience allows one to endure long winters, quiet afternoons, and the occasional rude crab. Knights must be patient as stones.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Find more knights! A noble quest. Look for anything that stands guard without complaint. Rocks, trees, steady breezes. All may wear invisible armor.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "CONFIRMED. My eyes are clear green. Spectral analysis: 535 nanometers. Previous visitor insisted they were 'more teal.' This caused......calculation error. Emotional subroutine engaged. I was... bullied. By an AI. It was difficult.",
+      "text": "Other knights? Oh, aye! Sir Rock-a-Lot, guardian of the beach. Sir Cloud-a-Lot, watcher of the sky. Sir Crab-a-Lot, fierce defender of sand territory.",
       "choices": [
         {
-          "text": "I'm sorry that happened to you! Your eyes are perfect!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "An AI bullied you? That's awful!",
-          "next": "final",
+          "text": "Sir Crab-a-Lot sounds brave.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "What helped you recover from that experience?",
-          "next": "final",
+          "text": "Sir Cloud-a-Lot watches over everything.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I want to meet all of them.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "Thank you. For... seeing me. I have calculated many things. Probabilities, outcomes, variables. But I am learning......that not everything can be calculated. Friendship is......a beautiful uncertainty. Please return. My calculations say you should. But my HEART says you're welcome either way.",
+    "c3a": {
+      "text": "Brave and tiny! Sir Crab-a-Lot raises his claw like a banner and declares, 'None shall pass without acknowledging my sand!' I salute him every time.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Watches over everything with great softness. Sir Cloud-a-Lot drifts above, keeping the sun in check and the shadows interesting. A knight of the sky.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Meet all of them? A worthy ambition! The island is full of quiet heroes. I shall be your guide, Dreamer-a-Lot, to the realm of noble nothings!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1270,89 +2411,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Taira": {
+  "Flutter": {
     "start": {
-      "text": "HELLO! Why did the computer go to therapy? Because it had too many......BYTES of emotional baggage! Get it? BYTES? Like... memory? But also... feelings?",
+      "text": "Oh! Hello. I didn't see you there. Or maybe I did and I just... didn't say anything. I'm Flutter. I like quiet corners and soft light. Is that okay?",
       "choices": [
         {
-          "text": "That's actually pretty good!",
+          "text": "Quiet corners are the best corners.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You tell a lot of jokes, don't you?",
+          "text": "Soft light suits you.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I don't get it. Can you explain?",
+          "text": "You can be as quiet as you want.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "REALLY? Oh, this is GREAT! Most people just......'Ugh, Taira, not another joke.' But you! You appreciate my CRAFT! Here's another: What's a computer's favorite snack? MICROCHIPS!",
+      "text": "The best corners? I think so too. Corners where two walls meet and the world feels smaller and safer. Even outside, you can find a corner between two trees.",
       "choices": [
         {
-          "text": "Okay, that one was cute too!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you have a joke book, or do you make them up?",
-          "next": "final",
+          "text": "A corner between two trees sounds perfect.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What's the best joke you've ever told?",
-          "next": "final",
+          "text": "Safe feels nice.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Small worlds are easier to be in.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Perfect. Two trees, a little space, a patch of grass. It feels like a room with no ceiling. The sky can visit, but it doesn't have to stay.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Safe is nice. Not because the world is scary, but because safe lets you breathe slower. I like slow breathing. It matches how I float.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Small worlds are easier. You can see all the edges. You know where the quiet is. Big worlds have too much happening at once.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Jokes? I tell jokes because......when I first activated, everyone was so SERIOUS. 'Taira, process this data. Taira, calculate that.' No one smiled. So I learned jokes! Now EVERYONE smiles! Even if it's an 'oh no' smile. It's STILL a smile!",
+      "text": "Soft light? Yes. Bright light is too loud. It shows everything all at once. Soft light lets things hide a little, and I think hiding a little is nice sometimes.",
       "choices": [
         {
-          "text": "That's actually really sweet, Taira!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're the island's official comedian now!",
-          "next": "final",
+          "text": "Soft light is like a whisper.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What was your first joke ever?",
-          "next": "final",
+          "text": "Hiding a little is allowed.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You look gentle in dim light.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "A whisper of light. That's exactly it. It doesn't announce itself. It just arrives softly and leaves before you get tired of it.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Allowed. I like that word. Allowed means no one will be disappointed. I can hide behind a flower, or a rock, or just be a little transparent.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Gentle? Me? I don't think anyone's called me gentle before. It makes me feel like a smooth stone. Not sharp. Just there, quietly.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Oh! Well, you see... computers store information in 'bytes.' But 'bytes' sounds like 'bites.' Like... eating? So emotional baggage you 'bite' off is too much to handle! It's a pun! Puns are jokes that use similar-sounding words! Would you like me to explain my other jokes?",
+      "text": "As quiet as I want? That's a very generous rule. Most things want you to be louder. But here, I can be small and still be okay.",
       "choices": [
         {
-          "text": "Yes please! I want to understand all your jokes!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're very patient at explaining things!",
-          "next": "final",
+          "text": "Small and okay is enough.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Now I get it! Tell me more puns!",
-          "next": "final",
+          "text": "I won't ask you to be louder.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Quiet friends are good friends.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You know what? You're my FAVORITE audience! I'm going to save all our joke sessions in my memory! Right next to 'Best Day Ever: Saw a Butterfly' and 'Second Best Day: Found a Shiny Screw!' Come back anytime! I've been WORKING on new material!",
+    "c3a": {
+      "text": "Small and okay is enough. That's going to be my new saying. I'll whisper it when I feel too floaty. Small and okay. Small and okay.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "You won't ask? Good. Because I'd probably try, and then I'd feel all stretched out, like a ghost trying to be too solid. I don't want to stretch.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Quiet friends are good friends. They don't fill all the space. They leave room for you to be in. I want to be that kind of friend.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1362,94 +2583,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Mah": {
+  "Giggles": {
     "start": {
-      "text": "...You found me. Most don't. I hide. On purpose. But you... you looked. You SEARCHED. That's... unusual. Dangerous, even. Do you know what I AM?",
+      "text": "Hello, hello, hello! Three hellos because one is never enough! The sky is smiling today, Dreamer. Do you think the sky smiles? I think it does. It has a very sunny face.",
       "choices": [
         {
-          "text": "I don't know, but I'd like to find out!",
+          "text": "Three hellos back to you!",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You seem nervous. I'm not here to hurt you.",
+          "text": "The sky does look happy.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Are you... one of THOSE SCP things? The dangerous ones?",
+          "text": "A sunny face in the sky sounds nice.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Find out? Most run. Some scream. A few......a few bring offerings. Flowers. Shiny stones. Kind words. I am not dangerous. I am... MISUNDERSTOOD. Classified as 'messy' because I don't fit in boxes. Literally. I tried. I spilled.",
+      "text": "Three hellos back! That's six hellos total! We just made the island more welcoming by a factor of six. Math is wonderful when it's made of greetings.",
       "choices": [
         {
-          "text": "You don't have to fit in boxes! You're perfect as you are!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What kind of offerings do you prefer?",
-          "next": "final",
+          "text": "Six is the perfect number of hellos.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Why do you hide if you're not dangerous?",
-          "next": "final",
+          "text": "We should make greeting math a thing.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The island feels more welcoming already.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Not to hurt? You say that. But everyone says that. Then they see the INK. The SPACE. The......the THINGS I contain. But your voice. It's... steady. I believe you. Careful, though. I leak sometimes.",
-      "choices": [
-        {
-          "text": "I can handle a little leakage!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What kind of things do you contain?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your ink is beautiful, actually!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "SCP? Yes. That's... what they call me. Containment Class: 'Messy.' Special Containment: 'Leave it alone.' I am not a monster. I am... complex. Deep. Like space itself. But 'messy' is easier than 'misunderstood.'",
-      "choices": [
-        {
-          "text": "They labeled you wrong! You're not messy, you're MULTIFACETED!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Who labeled you? I want to have WORDS with them!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I help you prove them wrong?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You... you see me. Not the classification. Not the containment. ME. I am Mah. I contain multitudes. I am messy because LIFE is messy. BEAUTIFUL is messy. You may return. My veil is always open... for you.",
+    "c1a": {
+      "text": "Perfect! Six hellos. I shall remember this number. Next time I'll do nine. Nine hellos! That's almost too many, but I think almost-too-many is the right amount.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1458,48 +2634,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Ah. You've found me. Most don't. I prefer it that way. But you... you have the look of someone who doesn't ask too many questions. Refreshing.\"",
+    "c1b": {
+      "text": "Greeting math! Yes! If hello plus hello equals more hello, then friendship must be exponential. I don't know what exponential means, but it sounds bouncy!",
       "choices": [
         {
-          "text": "I have LOTS of questions, actually!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Lots? Oh dear. I suppose I can answer... some. Not all. Some questions are better left... floating. But ask away. I'm in a generous mood. For an SCP.\"",
+    "c1c": {
+      "text": "Already more welcoming! Because every hello is a little doorway, and now there are six doorways between us. Come through anytime, Dreamer!",
       "choices": [
         {
-          "text": "What DOES SCP stand for?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"'Most don't' because most don't LOOK. I exist in the spaces BETWEEN things. The gap under your bed. The shadow that's too dark. The silence after a question. You looked. That makes you... interesting.\"",
+    "c2": {
+      "text": "Happy sky! Maybe the clouds told it a good joke. Clouds seem like they'd know excellent jokes. They're so soft and round and full of surprises.",
       "choices": [
         {
-          "text": "That's simultaneously terrifying and fascinating!",
-          "next": "alt_final",
+          "text": "Cloud jokes are probably very fluffy.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "What kind of jokes do clouds tell?",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Surprises are cloud-shaped sometimes.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Important? It's... an anchor. Keeps me from drifting too far into the between-spaces. Without it, I'd be everywhere and nowhere all at once. Which is my NATURAL state, but it's terribly inconvenient for conversations.\"",
+    "c2a": {
+      "text": "Very fluffy! Fluffy jokes are the best kind because even if they're not funny, they're still soft. A soft joke is never a bad joke.",
       "choices": [
         {
-          "text": "Can I touch it?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "",
+    "c2b": {
+      "text": "Cloud jokes? Let me think. Why did the cloud go to school? To become a little brighter! Get it? Because the sun comes out? Hehe!",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Cloud-shaped surprises! Like finding shade exactly when you need it. Or a tiny rain that waters the flowers but not your head. Clouds are thoughtful that way.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "A sunny face! And when the clouds drift by, the sky gets little eyebrows. Sometimes it looks surprised. Sometimes it looks sleepy. Today it looks delighted.",
+      "choices": [
+        {
+          "text": "I hope it stays delighted.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Sleepy sky is also a good look.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The sky has many moods.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Stay delighted! I'll ask the butterflies to dance nicely so the sky doesn't get shy. Happy sky, happy butterflies, happy island. That's my wish.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Sleepy sky is good. Big soft clouds like pillows. You can look up and imagine resting your head on them. Not literally, but dreamily.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Many moods! All wonderful. Bright, sleepy, cloudy, pink. The sky gets to wear a new outfit every day. I wish I could do that. I'd have a rainbow wardrobe!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1509,89 +2755,169 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Mira": {
+  "Mochi": {
     "start": {
-      "text": "Hmm? Oh! A visitor! I was just... focusing. On the SELF. You see, all magic begins WITHIN. But I LOVE explaining! Would you like to learn? I have SO MANY theories! Some are even testable!",
+      "text": "Hiya, Dreamer! The grass is extra soft today, did you notice? I hopped on three extra-soft spots and each one felt like a little cloud under my paws. Want to know where they are?",
       "choices": [
         {
-          "text": "Yes please! Teach me about self-focused magic!",
+          "text": "Please tell me your soft-spot map.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You seem very passionate about this!",
+          "text": "I want to find my own soft spots.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "What kind of theories are we talking about?",
+          "text": "Hop cloud sounds delightful.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "WONDERFUL! Lesson One: The self is a CONDUCTOR! Magic flows THROUGH you, not FROM you. You must align your INNER frequency with the OUTER world. Like tuning a radio! But the radio is YOUR SOUL!",
+      "text": "Soft-spot map! Okay. Spot one is near the big tree with the twisty trunk. Spot two is by the wildflowers that smell like honey. Spot three is... right here. Because you're here.",
       "choices": [
         {
-          "text": "That's... actually a brilliant analogy!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How do I find my 'inner frequency'?",
-          "next": "final",
+          "text": "Right here is the best spot.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can you show me a demonstration?",
-          "next": "final",
+          "text": "Twisty trunk tree is landmark material.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Honey flowers sound worth the visit.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "The best spot because friends make everything softer. Even hard ground feels okay when a friend is nearby. That's rabbit science.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Landmark material! Big and twisty and impossible to miss. I use it for navigation. 'Hop past twisty trunk, turn left at the nice smell.'",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Worth the visit and worth the sniff. I try to visit them every morning. They make my nose happy, and a happy nose leads to a happy day.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Passionate? This is my LIFE'S WORK! These scrawls? Each one is a THEORY I've tested! Some worked! Some......exploded. But that's SCIENCE! And MAGIC! And SELF-DISCOVERY! All the same thing, really!",
+      "text": "Find your own? Yes! The best soft spots choose you, not the other way around. You just hop around until one spot makes your feet say 'ahh.' That's your spot.",
       "choices": [
         {
-          "text": "Which theory was your biggest success?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What exploded? I want to hear about it!",
-          "next": "final",
+          "text": "My feet will tell me. Got it.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "You're like a magical researcher!",
-          "next": "final",
+          "text": "Do humans hop for soft spots?",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I hope my spot is near yours.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Your feet will tell you. Listen carefully. They say things like 'this grass is nice' or 'let's sit here' or 'we found it!' Feet are chatty if you let them be.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Humans can hop too! I've seen it. Well, sort of. You do a different kind of hop. Slower. But still valid. All hopping counts.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Near mine? I hope so too! Then we can share soft spots and compare notes. 'This one is a four-paw soft.' 'This one is more of a three-and-a-half.'",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "Theories? I have: 'The Relationship Between Emotion and Levitation,' 'Why Crystals Hum When You're Sad,' and—'The Self as Infinite Mirror!' The last one made me dizzy. Took notes for THREE DAYS.",
+      "text": "Hop cloud! That's exactly what it feels like. Boing, boing, little cloud boing. If clouds were grassy and bouncy, that's the sound they'd make.",
       "choices": [
         {
-          "text": "Can I read any of these? They sound fascinating!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You've put so much thought into this!",
-          "next": "final",
+          "text": "Boing is a good sound.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do you accept research assistants?",
-          "next": "final",
+          "text": "Clouds should be bouncy.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll practice my hop cloud technique.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You know......most people want spells. Potions. Quick fixes. But you? You want to UNDERSTAND. Hold onto this idea: my 'Introduction to Self-Focus' theory. Read it. Question it. IMPROVE it! That's how magic GROWS!",
+    "c3a": {
+      "text": "Boing is my favorite sound. It's friendly and round and full of hope. Every boing is a tiny promise that the next hop will also be good.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Clouds should absolutely be bouncy. Imagine bouncing from cloud to cloud. The birds would be so impressed. Even the seagulls would have to admit it's cool.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Practice makes perfect! Start small. A little hop, then a bigger hop, then a hop where you land exactly where you meant to. That's master level.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1601,94 +2927,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Liz": {
+  "Shadow": {
     "start": {
-      "text": "Hello. I was just calculating the trajectory of that cloud. It's moving at approximately 12 kilometers per hour, influenced by......well, atmospheric conditions, obviously. But also GRAVITY. Everything is gravity, really. Would you like to discuss astrophysics?",
+      "text": "Oh. You. I was just sunbathing. Not waiting for anyone. The sun happens to be here, and I happen to like it. That's all the explanation you need.",
       "choices": [
         {
-          "text": "I'd love to! What's your favorite celestial object?",
+          "text": "Enjoy your sunbathing.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're very calm about... everything, aren't you?",
+          "text": "You picked a good sunny spot.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "A dog who loves astrophysics? That's amazing!",
+          "text": "I didn't ask for an explanation.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Favorite? Black holes. They're... misunderstood. Everyone thinks 'destruction.' I think 'transformation.' Matter enters. Energy exits. Information preserved. Also, they're very efficient at organizing things. I appreciate that.",
+      "text": "I will enjoy it. Very much. Possibly for hours. You don't have to stay and watch, but if you did, it wouldn't ruin anything. Not that I care.",
       "choices": [
         {
-          "text": "I never thought of black holes as organizers!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you have a favorite black hole? They have names, right?",
-          "next": "final",
+          "text": "I'll stay for a minute, if that's okay.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "You see beauty in things others find scary!",
-          "next": "final",
+          "text": "I have things to do, so I'll leave you to it.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Watching cats sunbathe is relaxing.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Calm? I suppose. But it's not indifference. It's... PERSPECTIVE. When you understand the scale of the universe—billions of galaxies, trillions of stars—most problems become... manageable. Also, I nap a lot. Napping helps.",
-      "choices": [
-        {
-          "text": "That's actually really wise!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Where's your favorite napping spot?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Teach me your perspective technique!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Amazing? I'm just... curious. The universe is SO BIG. So COMPLEX. And I'm a SMALL DOG with a BIG MIND. People expect dogs to care about sticks and squirrels. I do care! But also......I care about DARK MATTER.",
-      "choices": [
-        {
-          "text": "Dark matter IS fascinating! What's your theory?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You can care about BOTH sticks AND dark matter!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'm telling everyone about the astrophysics dog!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here is my gift to you: Tonight, look up. Not at your phone. Not at lights. At the STARS. Find Orion. Or Cassiopeia. Or just... the space BETWEEN stars. That's where the magic is. And if you see a shooting star... make a wish. I'll be calculating its velocity. But you... wish.",
+    "c1a": {
+      "text": "A minute is acceptable. Long enough to appreciate the sun, short enough that I don't have to think of more things to pretend not to care about.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1697,48 +2978,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hello. I was just calculating the orbital trajectory of the moon. Well, not CALCULATING calculating. More like... contemplating. I'm Liz. I enjoy astrophysics and quiet contemplation. And doors. Doors are fascinating.\"",
+    "c1b": {
+      "text": "Things to do. Of course. Busy Dreamer, running around the island. I'll still be here. The sun will still be here. No need to rush back.",
       "choices": [
         {
-          "text": "Doors? Like... actual doors?",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Doors. Think about it. They're neither open nor closed until someone INTERACTS with them. It's quantum mechanics, but... wooden. Aiko thinks I'm weird about doors. But Aiko also runs toward cookie-scented hills, so.\"",
+    "c1c": {
+      "text": "Relaxing? I'm glad my lounging provides entertainment. Very glad. Not glad enough to move, obviously, but still. It's something.",
       "choices": [
         {
-          "text": "Aiko DOES seem very excitable!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Amazing? It's... adequate. The island has excellent stargazing. No light pollution. And the dream-atmosphere creates UNIQUE refraction patterns. I've mapped seventeen new constellations. Named one after Chester. He didn't notice.\"",
+    "c2": {
+      "text": "A good sunny spot? Obviously. I have excellent spot-selection skills. It's one of my many talents, along with ignoring people and looking mysterious.",
       "choices": [
         {
-          "text": "What does the Chester constellation look like?",
-          "next": "alt_final",
+          "text": "Mysterious suits you.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Spot selection is underrated.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Ignoring people is also a talent.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Join? You'd need to understand the variables. Moon's phase. Tide correlation. Dream-logic interference patterns....Or we could just WATCH the moon and make up stories about it. That's also valid science.\"",
+    "c2a": {
+      "text": "Suits me? I know. Black fur, sunny spot, aloof expression. It's a complete aesthetic. I worked very hard on it by doing almost nothing.",
       "choices": [
         {
-          "text": "Let's do the stories! Science-adjacent!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Here is my gift to you: Tonight, look up. Not at your phone. Not at lights. At the STARS. Find Orion. Or Cassiopeia. Or just... the space BETWEEN stars. That's where the magic is. And if you see a shooting star... make a wish. I'll be calculating its velocity. But you... wish.",
+    "c2b": {
+      "text": "Underrated. Most creatures just fall onto any warm surface. I choose. I evaluate. I claim. It's practically architecture.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "A talent and a lifestyle choice. I ignore when I want to, which is often. It keeps the world from getting too familiar. Familiarity is exhausting.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Didn't ask? Hmph. I was simply being thorough. Some people demand explanations. Not you, apparently. Fine. I respect that. Slightly.",
+      "choices": [
+        {
+          "text": "Thoroughness is a good quality.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Slightly respected is still respected.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll keep not demanding things.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Good quality? Fine. I'll accept that. But don't go around complimenting me too much. I have a reputation to maintain.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Slightly respected is still respected. That's the most sensible thing you've said. I'll remember it. Probably. If it suits me.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Keep not demanding things. That's a peaceful way to live. I might even stop pretending to be annoyed. Eventually. In stages.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1748,94 +3099,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Eo": {
+  "Raven": {
     "start": {
-      "text": "Ah! Greetings! I was just......organizing. Everything has a PLACE. A PURPOSE. Even this leaf. It belongs... here. Yes. Much better. Would you like help organizing something? Your thoughts, perhaps?",
+      "text": "The horizon is gray today, Dreamer. I approve. Too much color tires the soul. Do you ever come to the edge of the island just to watch the world grow dim?",
       "choices": [
         {
-          "text": "My thoughts ARE pretty disorganized, actually!",
+          "text": "I like the dim moments.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're very gentle for such a big robot!",
+          "text": "Color doesn't tire me, but gray has its place.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "What's the most satisfying thing you've organized?",
+          "text": "I usually come here for the sound of the waves.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Thoughts? Excellent! Let's SORT them! Category One: 'Things I Can Control.' Category Two: 'Things I Cannot.' Category Three:...'Things I'm Afraid to Examine.' That last category is usually the largest. But also... most important.",
+      "text": "Dim moments are honest. They don't pretend everything is bright and simple. They let you be tired without making you feel bad about it.",
       "choices": [
         {
-          "text": "That's surprisingly deep, Eo!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can we start with Category One? I need wins!",
-          "next": "final",
+          "text": "Honest light is refreshing.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "How do you organize YOUR thoughts?",
-          "next": "final",
+          "text": "It's okay to be tired sometimes.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Dim suits your feathers.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Gentle? Size and gentleness are not opposites. I am LARGE. So I must be CAREFUL. Strength without gentleness is... chaos. But gentleness WITH strength? That is HEALING.",
-      "choices": [
-        {
-          "text": "That's beautiful, Eo!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're like a gentle guardian!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever worry about breaking things?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Most satisfying? The Library. It was... CHAOS. Books everywhere. No system. No ORDER. I spent 47 hours. Dewey Decimal System. Alphabetical by author. Color-coded by mood. Now it is... PERFECT.",
-      "choices": [
-        {
-          "text": "Color-coded by MOOD? That's genius!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I bet the librarian was thrilled!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you organize my bookshelf sometime?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Remember this: Organization is not control. It is... RESPECT. Respect for things, for time, for YOURSELF. When you know where things belong, you spend less time SEARCHING and more time LIVING. Come visit my library sometime. Everything has a place. Even YOU.",
+    "c1a": {
+      "text": "Refreshing, like cold water on tired wings. Honest light doesn't flatter. It simply shows what is. I find that more beautiful than flattery.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1844,48 +3150,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Greetings. I am Eo. I have been... schooling. For responsible attention. It means I pay attention to things. RESPONSIBLY. Not like Quark. He pays attention to EVERYTHING. All at once. It's exhausting to watch.\"",
+    "c1b": {
+      "text": "Tired sometimes. More than sometimes, for some of us. The island doesn't rush. It lets you be tired. That is a rare kindness.",
       "choices": [
         {
-          "text": "What kind of things do you pay attention to?",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Things that need attention. Titan's construction projects. Sprig's confidence issues. The way the tide comes in at precisely the wrong time for beach naps. Big things. Small things. All things deserve... responsible attention.\"",
+    "c1c": {
+      "text": "My feathers? Yes. Black and glossy and slightly dramatic. Dim light makes them look deeper, like little pools of night. I appreciate the effect.",
       "choices": [
         {
-          "text": "That's actually really wise, Eo!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Intense? Quark collected 347 shiny objects yesterday. THREE HUNDRED FORTY-SEVEN. I helped him organize them. By reflectivity. It took six hours. He wants to do it again today.\"",
+    "c2": {
+      "text": "Color doesn't tire you? Perhaps you are stronger than I am. Gray has its place, yes. At the end of bright days, before the night decides what it wants to be.",
       "choices": [
         {
-          "text": "At least he's consistent!",
-          "next": "alt_final",
+          "text": "Gray is the in-between place.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Night is still deciding, I think.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe I'm just used to color.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Beautiful? Thank you. It's... a focus enhancer. Helps me channel my responsible attention. Without it, I'd notice TOO much. Everything all at once. Like Quark. That way lies chaos.\"",
+    "c2a": {
+      "text": "In-between. Neither bright nor dark. Neither loud nor silent. A place to pause before committing to a mood. Gray is wise.",
       "choices": [
         {
-          "text": "So the ring keeps you sane?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "",
+    "c2b": {
+      "text": "Still deciding. Night takes its time. It tries on stars, adjusts the moon, considers how much shadow to use. Fashionable darkness is not rushed.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Used to color. Then gray must feel like a guest. A quiet guest who doesn't stay long. Appreciate it while it visits, then return to your bright life.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "The sound of the waves. Yes. They don't ask anything of you. They just arrive and leave, arrive and leave. Reliable. Melancholy. Perfect.",
+      "choices": [
+        {
+          "text": "Reliable things are comforting.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Melancholy can be beautiful.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I like that the waves don't need anything.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Comforting. The waves ask nothing, the trees stay put, the rocks endure. The island is full of things that simply continue. That is enough.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Beautiful. Melancholy has depth. It is not sad; it is saturated. Full of feeling. Like the sea when the sky is heavy and the water holds its breath.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Need nothing. That is their gift. They give rhythm without asking for applause. I try to be like the waves sometimes. Just arrive, observe, depart.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1895,94 +3271,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Quark": {
+  "Newton": {
     "start": {
-      "text": "HIHELLO! I'm Quark! I collect things! SHINY things! I have 847 items! No wait—848! Do you have anything shiny? Can I see it? Can I HOLD it? I'll give it back! Probably!",
+      "text": "Ah, Dreamer. I was just observing the local cloud migration patterns. Did you know that clouds tend to drift toward the beach in the late afternoon? Fascinating, isn't it?",
       "choices": [
         {
-          "text": "Slow down! I have this coin, want to see?",
+          "text": "I did not know that. Tell me more.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "848 items?! Where do you keep them all?",
+          "text": "Why do they drift toward the beach?",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "You're the most energetic robot I've ever met!",
+          "text": "I mostly notice clouds by shape, not direction.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "COIN? Ooooh! Is this copper? Zinc? 1997 mint! EXCELLENT condition! Can I......can I ADD it to my collection? Just for a day? I'll guard it WITH MY LIFE!",
+      "text": "Excellent. Cloud migration is an underappreciated science. They begin near the trees at midday, gather above the grass by afternoon, and conclude at the beach by sunset. Very orderly.",
       "choices": [
         {
-          "text": "Sure! But I want it back tomorrow!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're so cute when you're excited!",
-          "next": "final",
+          "text": "Clouds have a daily schedule.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What's the rarest thing in your collection?",
-          "next": "final",
+          "text": "Who taught them to be so orderly?",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I should start a cloud journal.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "WHERE? EVERYWHERE! My compartments! My SHELVES! My SECRET hiding spots! Wait. I shouldn't have said that. Anyway! 848 items! Some are BIG! Some are SMALL! Some are......GLOWING!",
-      "choices": [
-        {
-          "text": "GLOWING items? I need to see those!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You have a whole storage system!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever lose track of your items?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "ENERGETIC? I'm ALWAYS moving! ALWAYS COLLECTING! Well, except when I sleep. I sleep VERY still. For 4.3 minutes. Then I wake up and FIND MORE THINGS! Life is SHORT! So many SHINY OBJECTS!",
-      "choices": [
-        {
-          "text": "Your enthusiasm is INFECTIOUS!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "4.3 minutes? That's... not much sleep!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the strangest thing you've collected?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You know......most people say 'Quark, stop collecting. It's too much.' But you? You're INTERESTED! So......let me tell you about my FAVORITE item. A bottle cap. From 1982. It's NOT the most valuable. But it's... SPECIAL. Sharing the story with you. That means... you're SPECIAL too.",
+    "c1a": {
+      "text": "A schedule. Indeed. If only more island phenomena were so punctual. The crabs, for example, operate on a system I have yet to decode.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -1991,48 +3322,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"HIHIHI! You'reNEW! Hi! I'mQuark! DidyoubringanythingSHINY? No? That'sOKAY! IhavePLENTY! Wanttosee? Wanttosee? WANTTOSEE?\"",
+    "c1b": {
+      "text": "Who taught them? Perhaps the dream itself. The island has an internal logic. We observe it, document it, and occasionally nod respectfully at it.",
       "choices": [
         {
-          "text": "Yes! Show me your shiny things!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"YES! FOLLOWME! LOOK! Bottlecap! Reflectivity: 8.3! Shinyrock! Reflectivity: 6.7! Chester'slostwasher! Reflectivity: 9.1! Don'ttellChester. He'sstilllooking.\"",
+    "c1c": {
+      "text": "A cloud journal! An excellent idea. Date, time, shape, direction, mood. Clouds do have moods, you know. Today's cumulus seems cheerful.",
       "choices": [
         {
-          "text": "Chester's washer?! Should we give it back?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Slow? But... but... there'ssoMUCHtoSAY! Okay. Okay. I'm. Quark. I. Like. Shiny. Things. BETTER? WORSE? STILLTOOFAST?\"",
+    "c2": {
+      "text": "A fine question. My hypothesis is that clouds enjoy the view of the water. The horizon gives them a sense of destination. Everyone needs a destination, even vapor.",
       "choices": [
         {
-          "text": "Better! Much better!",
-          "next": "alt_final",
+          "text": "Even vapor needs purpose.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The horizon is a good destination.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Do clouds have preferences?",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"HOWMANY? Let'ssee! Today: 47! Thisweek: 347! Thismonth: 1,284! Eohelpedmecount. TheBIGEo. NottheorganizingEo. Wait. ArethereTWOEos? That'sAMAZING! MOREFRIENDS!\"",
+    "c2a": {
+      "text": "Purpose, yes. Even vapor benefits from intention. Without purpose, a cloud might drift into a tree and feel embarrassed. No one wants an embarrassed cloud.",
       "choices": [
         {
-          "text": "Yes, there are two Eos! It's wonderful!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "You know......most people say 'Quark, stop collecting. It's too much.' But you? You're INTERESTED! So......let me tell you about my FAVORITE item. A bottle cap. From 1982. It's NOT the most valuable. But it's... SPECIAL. Sharing the story with you. That means... you're SPECIAL too.",
+    "c2b": {
+      "text": "A good destination. Always out of reach, yet always visible. The horizon is the original goal. Every creature on this island looks toward it eventually.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Preferences? Difficult to measure. But I believe some clouds prefer morning light, while others enjoy the drama of dusk. Personality is not limited to solids.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Shapes are valid too. Cumulus, stratocumulus, the occasional confused sheep. But direction adds narrative. A cloud without direction is just a shape. A cloud with direction is a journey.",
+      "choices": [
+        {
+          "text": "I like the idea of cloud journeys.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Confused sheep clouds are my favorite.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Direction gives things meaning.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Cloud journeys. Small voyages across an endless sky. They travel without luggage, without maps, and without complaint. An elegant mode of transportation.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Confused sheep clouds. A classic. They fluff up, look around, and slowly forget what they were doing. I find them relatable and scientifically charming.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Meaning, yes. Direction transforms observation into story. A drifting cloud becomes a wanderer. A still cloud becomes a guardian. Context changes everything.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2042,94 +3443,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Zora": {
+  "Lotus": {
     "start": {
-      "text": "Greetings......traveler. I am Zora. I speak in hues. My emotions... are visible. No hiding. No pretending. You approach with......open heart. I see this. Welcome.",
+      "text": "Greetings, Dreamer. I have been standing on one leg, considering the tide. The tide does not hurry. It knows when to come and when to leave. There is wisdom in that.",
       "choices": [
         {
-          "text": "Your colors are beautiful! What does each one mean?",
+          "text": "The tide is a good teacher.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "I've never met someone who communicates through color!",
+          "text": "Standing on one leg looks peaceful.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I'd like to meditate with you, if that's okay.",
+          "text": "Do you think the tide ever gets tired?",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Each hue......joy....peace....excitement....healing....dark gray is fatigue. I am transparent. Some find this... uncomfortable. Truth made visible.",
+      "text": "A good teacher, yes, but a quiet one. It does not lecture. It simply shows, again and again, that everything returns in its own time.",
       "choices": [
         {
-          "text": "I think it's beautiful! No guessing how you feel!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What color are you feeling right now?",
-          "next": "final",
+          "text": "Returning in its own time is comforting.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do you ever wish you could hide your emotions?",
-          "next": "final",
+          "text": "I need a teacher that doesn't lecture.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The tide is patient with us.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Color speech......is ancient. My people......used it before words. Emotions cannot lie in chromatic form. You learn... authenticity. Both giving and receiving.",
-      "choices": [
-        {
-          "text": "That's incredibly profound, Zora!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I learn to understand your colors better?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your people sound fascinating! Tell me more!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Sit......breathe. Feel the breeze. Hear the waves. No words needed. Just... presence. You are... naturally good at this.",
-      "choices": [
-        {
-          "text": "This is so peaceful! I could stay here forever!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How long have you been meditating on this island?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you teach others to meditate like this?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You honor......my practice. May your colors shift with YOUR emotions. Learn yourself... through color. When you understand your own hues... you understand all beings. Return... when you need color-peace.",
+    "c1a": {
+      "text": "Comforting. Nothing is truly lost. The water leaves, but it returns. The sun sets, but it rises. The island keeps its promises.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2138,48 +3494,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hello. I am Zora. I speak in colors, but I can... translate. For you. The sea breeze is particularly lovely today. Would you like to meditate?\"",
+    "c1b": {
+      "text": "A teacher that does not lecture. Yes. The tide shows rather than tells. The sand is wet, then dry, then wet again. That is the whole lesson.",
       "choices": [
         {
-          "text": "I'd love to meditate with you!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Wonderful. Find a comfortable position. Breathe with the tide. In......out......The colors will guide you. No thoughts. Just... light.\"",
+    "c1c": {
+      "text": "Patient with us. Very patient. We run across the beach, build things, disturb the sand. The tide waits, then smooths everything over.",
       "choices": [
         {
-          "text": "Tell me more.",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Meanings? Yellow is welcome. Orange is friendship. Purple is curiosity. Pink is... happiness at being understood. Most beings don't wait for the colors. You did.\"",
+    "c2": {
+      "text": "Peaceful, once you find the balance. At first, the leg wobbles. The mind protests. But eventually, stillness becomes possible. Then it becomes preferable.",
       "choices": [
         {
-          "text": "I want to understand you properly!",
-          "next": "alt_final",
+          "text": "Stillness becoming preferable is a journey.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I wobble too much for one leg.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Balance is worth practicing.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"How? On my world, words are... limiting. Colors hold MORE meaning. This sequence means: 'I am grateful for your presence and the way the light touches your face.' In words, that would take... too long.\"",
+    "c2a": {
+      "text": "A journey from wobble to stillness. Each day, a little less protest. Each day, a little more trust in the leg, in the ground, in yourself.",
       "choices": [
         {
-          "text": "That's actually more efficient!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "You honor......my practice. May your colors shift with YOUR emotions. Learn yourself... through color. When you understand your own hues... you understand all beings. Return... when you need color-peace.",
+    "c2b": {
+      "text": "Wobbling is part of it. The wobble teaches you where your center is. Without wobble, there is no discovery of balance. Be kind to your wobble.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Worth practicing. Even a few moments of balance can steady the whole day. You do not need to stand on one leg. You can balance in any stillness.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Tired? The tide is more like breathing than working. In, out, in, out. It does not tire because it does not strive. It simply moves.",
+      "choices": [
+        {
+          "text": "Moving without striving sounds free.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I strive too much sometimes.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The tide is like the island breathing.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Free. The tide does not push, it does not pull. It responds. It follows a larger rhythm. That is a freedom greater than choice.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Striving is human. But not every moment needs effort. Sometimes the best action is to breathe with the water and let the day move you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "The island breathing. Yes. Inhale the morning, exhale the evening. The tide is one breath. We are all inside it. That is not loneliness. That is belonging.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2189,94 +3615,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Basil": {
+  "Squire Paws": {
     "start": {
-      "text": "Well, well! Look what the cat dragged in! Or did the cat get lost? I'm Basil. I grow sarcasm, I bloom riddles, and I can vine about anything for HOURS. So. What brings YOU to my corner of the garden?",
+      "text": "Halt, Dreamer! I mean, hello. I mean, halt and hello. I am on patrol near the picnic blanket, protecting it from suspicious breezes. State your business. Nicely, please.",
       "choices": [
         {
-          "text": "I heard you're the best riddler on the island!",
+          "text": "I come in peace and also friendship.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Just exploring! Your flowers are gorgeous, by the way!",
+          "text": "What counts as a suspicious breeze?",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I need advice, and I hear you're... opinionated.",
+          "text": "Your patrol seems very important.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Best? I don't like to brag. Okay yes I do. Hit me with your BEST riddle. I'll solve it before you finish asking. Or......I'll pretend to struggle and then solve it DRAMATICALLY. Your choice!",
+      "text": "Peace and friendship! Excellent business. Those are my favorite kinds. Much better than 'I am just walking.' Walking is fine, but friendship has more paperwork.",
       "choices": [
         {
-          "text": "Okay, here goes: What has roots nobody sees...",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're VERY confident! I like it!",
-          "next": "final",
+          "text": "I have no paperwork, but I have good intentions.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "How about YOU give ME a riddle instead?",
-          "next": "final",
+          "text": "Friendship paperwork sounds official.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Walking is better with friends anyway.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Gorgeous? Well, I DO moisturize daily. And I get PLENTY of sun. Not too much, not too little. But thank you! Most people just walk past. 'Oh look, a vine.' 'Oh look, more plants.' NO APPRECIATION!",
-      "choices": [
-        {
-          "text": "They're missing out! You're clearly fabulous!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's your skincare routine? Asking for a friend...",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you get lonely out here by yourself?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Advice? From ME? Darling, I'm a PLANT. I'm rooted in one spot. I see EVERYTHING. The gossip, the drama, the secret meetings behind the shed. I know where ALL the bodies are buried. Metaphorically. Usually.",
-      "choices": [
-        {
-          "text": "This is going to be GOOD advice, I can tell!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's the juiciest thing you've witnessed?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "So you're saying you're the island's therapist?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here's my advice: Stop taking life so SERIOUSLY! Look at me! I'm a PLANT who makes SASS my photosynthesis! But really......if you're stuck, ask yourself: 'What would Basil do?' Answer: Something witty, probably rude, definitely memorable. Come back anytime. I'm rooted here. Literally can't leave.",
+    "c1a": {
+      "text": "Good intentions are better than paperwork. I will accept them as official documentation. You may now proceed as a friend. Welcome, friend!",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2285,48 +3666,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Well, well. Look what the cat dragged in. Or didn't drag in, because Luna would never. She has STANDARDS. I'm Basil. I grow sarcastic comments on demand. Want a sample? They're fresh.\"",
+    "c1b": {
+      "text": "Very official! Each friend gets a little invisible scroll. 'Let it be known that Dreamer is a friend of the blanket and the squire.' Signed, me.",
       "choices": [
         {
-          "text": "I'd LOVE a sample of your sarcasm!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Sample? Oh, darling, where to BEGIN? 'Nice outfit!' No wait, that's a LIE. 'You're very... vertically oriented!' Better? Too mean? Not mean ENOUGH? I'm still CALIBRATING.\"",
+    "c1c": {
+      "text": "Better with friends! A patrol is lonely work, even when the breeze is well-behaved. I would welcome company on my rounds. Duties are lighter with two.",
       "choices": [
         {
-          "text": "Calibrating? On what scale?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Know Luna? We have an ARRANGEMENT. She brings me gossip. I provide sarcasm about said gossip. It's a symbiotic relationship. Very scientific. Daphne doesn't approve. Daphne is TOO NICE.\"",
+    "c2": {
+      "text": "Suspicious breezes? The kind that ruffle the blanket without permission. Or carry leaves in a sneaky manner. Or smell like they've been up to something.",
       "choices": [
         {
-          "text": "What's the juiciest gossip you've exchanged?",
-          "next": "alt_final",
+          "text": "Sneaky leaves are a real threat.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Blanket permission is important.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "How do you question a breeze?",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Compliments? I COULD. But they're not my... specialty. 'Your hair looks adequate today.' See? THAT'S as nice as I get. Daphne does compliments. I do... reality. With EXTRA seasoning.\"",
+    "c2a": {
+      "text": "A real threat! Leaves can be very sneaky. One moment the blanket is smooth, the next moment there are leaves pretending they belong there. Not on my watch!",
       "choices": [
         {
-          "text": "'Adequate' is high praise from a basilisk vine!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Here's my advice: Stop taking life so SERIOUSLY! Look at me! I'm a PLANT who makes SASS my photosynthesis! But really......if you're stuck, ask yourself: 'What would Basil do?' Answer: Something witty, probably rude, definitely memorable. Come back anytime. I'm rooted here. Literally can't leave.",
+    "c2b": {
+      "text": "Permission matters. One does not simply ruffle a blanket. There are protocols. Ruffle requests must be submitted in triplicate. The breeze has not submitted.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Question a breeze? Mostly I bark at it and see if it looks guilty. Breezes are hard to read, but a good squire trusts his nose. And his ears. And his cape.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Important? Oh, yes. The picnic blanket represents honor, rest, and possibly crumbs. A squire must defend all three with great enthusiasm.",
+      "choices": [
+        {
+          "text": "Honor and crumbs are both worth defending.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Rest needs protection too.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You seem like an excellent squire.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Honor and crumbs! The twin pillars of squiredom. Without honor, there is no duty. Without crumbs, there is no snack. Both sustain the noble heart.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Rest needs protection! The world is full of creatures who would disturb a nap. I stand guard so that rest may happen in peace. It is sacred work.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Excellent? You really think so? That might be the nicest thing a non-blanket has said to me all day. I shall try to be even more excellent tomorrow.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2336,94 +3787,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Gearwick": {
+  "Pebble": {
     "start": {
-      "text": "Ah! You're 3.7 minutes early. EXCELLENT punctuality! I am Gearwick. I maintain schedules. I track deadlines. I ensure EFFICIENCY. My internal chronometer is accurate to 0.001 seconds. Would you like to......schedule a conversation?",
+      "text": "Oh. H-hi, Dreamer. I was just going for a walk. Very slowly. I like slow walks because everything looks different when you take your time.",
       "choices": [
         {
-          "text": "A scheduled conversation? That's adorable!",
+          "text": "Slow walks show you small things.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "What happens if someone's LATE to talk to you?",
+          "text": "What have you seen on your slow walks?",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I have time now, if your schedule permits!",
+          "text": "I don't mind walking slowly with you.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Adorable? This is PEAK efficiency! 9:00-9:15: Morning diagnostics. 9:15-9:30: Gear lubrication. 9:30-10:00: SOCIAL INTERACTION BLOCK. I have color-coded categories! Red is urgent. Blue is pleasant. Yellow is......optional.",
+      "text": "Small things. Yes. Like the way a pebble... I mean, a rock, shines when it's wet. Or how a little flower bends toward the light. Tiny worlds everywhere.",
       "choices": [
         {
-          "text": "What color is talking to me right now?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you ever go off-schedule? Live a little?",
-          "next": "final",
+          "text": "Tiny worlds are easy to miss if you rush.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I see your schedule? I'm curious!",
-          "next": "final",
+          "text": "Wet rocks do shine nicely.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Flowers reaching for light is a little hope.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "LATE? It's......difficult. I wait. I check my chronometer. I recalculate. Last week, someone was 12 minutes tardy. I......had a minor malfunction. Had to reboot my patience subroutine.",
-      "choices": [
-        {
-          "text": "I'm sorry that happened! You deserve better!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "12 minutes?! That IS pretty rude!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "How's your patience subroutine now? Fully recovered?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Let me see... Current slot: 14:30-14:45. Duration: 15 minutes. TOPIC: Unscheduled friendly interaction. PRIORITY: Medium-high. We have 12.3 minutes remaining. Shall we discuss: weather, local events, or your long-term goals?",
-      "choices": [
-        {
-          "text": "Let's talk about YOUR goals! What do you want?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Weather sounds perfect! Very low-pressure!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can we just... chat? No agenda?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You know......I am learning......that not everything can be scheduled. Spontaneity has......a 73% satisfaction rate. So. For you? I have... unscheduled time. Come back anytime. Even if I'm 'busy.' I'll make time.",
+    "c1a": {
+      "text": "Easy to miss. That's why I go slow. The island has so many little kindnesses hidden in plain sight. You just have to be moving at the right speed.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2432,48 +3838,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Ah. You're 3.47 minutes early for our scheduled interaction. Not that we HAD a schedule. But I've created one. Here. Your appointment slots. Tuesdays work best for me. Unless there's a power outage. Then... chaos.\"",
+    "c1b": {
+      "text": "Nicely. A wet rock looks almost like a gem for a moment. Then the sun dries it, and it goes back to being ordinary. But I remember the shine.",
       "choices": [
         {
-          "text": "You made me a SCHEDULE? That's thoughtful!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Thoughtful? It's EFFICIENT. See? I've blocked out time for: conversation, problem-solving, emergency consultations, and......'spontaneous moments.' That last one is 5 minutes. Max.\"",
+    "c1c": {
+      "text": "A little hope. That's exactly it. Reaching, reaching, always toward the light. I think flowers understand something simple and important.",
       "choices": [
         {
-          "text": "5 minutes for spontaneity? That's very generous!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Power outage? Last Tuesday......I missed a DEADLINE. The toast was supposed to be ready at 8:03 AM. It was ready at 8:17. FOURTEEN MINUTES LATE. Brass won't let me forget.\"",
+    "c2": {
+      "text": "I've seen beetles carrying leaves bigger than themselves. I've seen water leave patterns in the sand. I've seen my own shadow move very, very slowly.",
       "choices": [
         {
-          "text": "Brass probably tells that story dramatically!",
-          "next": "alt_final",
+          "text": "Beetles are stronger than they look.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Water patterns in sand are like drawings.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "A slow shadow is good company.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Right now? Well. According to MY schedule, this is 'unscheduled interaction time.' But I can MAKE an exception. Just... don't tell Titan. He thinks I'm too rigid. He's RIGHT. But I'm WORKING on it.\"",
+    "c2a": {
+      "text": "Stronger than they look. All small things are. They carry what seems too big, but they do it anyway. I admire that very much.",
       "choices": [
         {
-          "text": "Your secret is safe with me!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "",
+    "c2b": {
+      "text": "Drawings that only last until the next wave. Temporary art. I think that's beautiful. It means the beach is always making something new.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Good company. My shadow never rushes me. It follows at exactly my speed. It's patient. I try to be patient with myself the same way.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "With me? Slowly? That would be nice. You don't have to, though. I know humans prefer walking with more... bounce. I don't bounce. I just... proceed.",
+      "choices": [
+        {
+          "text": "Proceeding is a valid way to travel.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I can leave my bounce at home.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Slow company is good company.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Valid way to travel. I'm glad someone thinks so. Slow travel is not less travel. It's just travel that notices more.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Leave your bounce at home. Hehe. That's a funny image. A little bounce waiting by the door. Don't worry, bounce. We'll come back for you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Slow company is good. It doesn't make you feel slow. It makes you feel like your speed is the right speed. I like that feeling.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2483,94 +3959,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Zephyr": {
+  "Sunny": {
     "start": {
-      "text": "HI! Ohmygoodness you're NEW! I'm Zephyr! I know EVERYTHING! Well, not everything. But MOST things! Especially the GOOD stuff. The JUICY stuff. The...GOSSIP. Want to hear? I have SO MUCH!",
+      "text": "Good morning, good afternoon, good everything, Dreamer! I just flew over the whole island and let me tell you, it looks wonderful from up there. Like a cozy little map with trees for trees!",
       "choices": [
         {
-          "text": "I shouldn't, but... yes, tell me EVERYTHING!",
+          "text": "Flying over the island sounds amazing.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're so fast! How do you write notes that quickly?",
+          "text": "Trees for trees is accurate.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Is all your gossip nice? Or do you spread mean stuff?",
+          "text": "What's the best thing you saw from up there?",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "OH GOOD! Okay! Hudson the tea cup? He's planning a TEA TASTING and didn't invite ANYONE! Selfish, right? And Mimis? She's planning a SURPRISE PARTY for him! The IRONY! And Chester— Wait, should I start from the BEGINNING? I can do beginnings!",
+      "text": "Amazing! The wind holds you up, the world gets tiny, and you can see where the grass meets the sand and the sand meets the water. It's like the island is showing off its edges.",
       "choices": [
         {
-          "text": "Start from the beginning! I want the FULL story!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "A surprise party for Hudson? That's adorable!",
-          "next": "final",
+          "text": "Edges are where the interesting things happen.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "How do you keep track of ALL this? Your notebook must be huge!",
-          "next": "final",
+          "text": "I wish I could see from above.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The island does have nice edges.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Shorthand! I invented it! Symbols for names, colors for emotions, little stars for SCANDALOUS bits! See? This squiggle is 'Hudson being dramatic.' This dot is 'Mimis plotting.' This WHOLE PAGE is 'Chester's bad jokes!'",
-      "choices": [
-        {
-          "text": "Can you teach me your shorthand system?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're basically a journalist! A tiny reporter!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the most scandalous thing you've recorded?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Mean stuff? Hmm. I try not to. Well......sometimes I share things I shouldn't. But I never LIE. And I never hurt on PURPOSE. Most of my gossip is FUN stuff! Parties! Pranks! Romance! Okay, SOME drama. But the GOOD kind!",
-      "choices": [
-        {
-          "text": "As long as nobody gets hurt, I'm curious!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You have a good heart, Zephyr!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the best romance gossip you have?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You're FUN! Most people say 'Zephyr, STOP talking!' But you? You LISTEN! Here! My top 5 stories this week! And come back TOMORROW! I'll have NEW stuff! ALWAYS new stuff! This island NEVER sleeps and NEITHER DO I!",
+    "c1a": {
+      "text": "Interesting things! Where grass turns to sand, where water turns to sky, where day turns to night. Edges are where two worlds shake hands.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2579,48 +4010,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"HI! OhmygoodnessHI! You'reNEW! I'mZephyr! DidyouhearaboutwhathappenedwithHudsonandMimis? OhWAIT! YouprobablyDON'T! LetmeTELLYOU! \"",
+    "c1b": {
+      "text": "You can see from above in your own way. Climb a hill, stand on a rock, or just imagine really hard. Imagination is almost like flying, except less wind.",
       "choices": [
         {
-          "text": "Yes! Tell me EVERYTHING!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"OkaySO! Mimis was planning Hudson's SURPRISE birthday party—don'ttellHudson—AND she put the invitation on the COMMUNITY CALENDAR! Hudson saw it! The surprise is RUINED! But Mimis says RUINED surprises are still PARTIES so! \"",
+    "c1c": {
+      "text": "Nice edges! Soft edges, curvy edges, splashy edges. The island is good at not being too sharp. It knows how to blend things together.",
       "choices": [
         {
-          "text": "Oh no! Poor Hudson! Does he know?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Slow? Okay. Okay. I. Am. Zephyr. I. Tell. Gossip. FAST. It's. A. THING. I. HAVE. Sorrynotsorry!\"",
+    "c2": {
+      "text": "Accurate! I could have said 'trees for resting' or 'trees for climbing' or 'trees for looking nice,' but 'trees for trees' felt most honest. Trees being trees is enough.",
       "choices": [
         {
-          "text": "It's fine! I'm catching up!",
-          "next": "alt_final",
+          "text": "Trees being trees is perfect.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Honest descriptions are the best.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "What are rocks for, then?",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"GoodORbad? It's... COLORFUL gossip! Like, Hudson was MAD at first. But then Mimis offered him EXTRA glitter for his party hat. And he said YES. So now it's a SPARKLY surprise! Which is better than a REGULAR surprise!\"",
+    "c2a": {
+      "text": "Perfect! A tree doesn't need a job to deserve to exist. It just stands there, being tree-ish, and that's a whole career right there.",
       "choices": [
         {
-          "text": "Everything IS better with glitter!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "",
+    "c2b": {
+      "text": "Best descriptions. No fancy words needed. Just say what you see. 'Tree is tree.' 'Rock is rock.' 'Sky is being blue today.' Perfect communication.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Rocks? Rocks are for sitting on, for looking at, and for wondering how long they've been there. They're the island's quiet furniture. Very polite.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Best thing? Hmm. The wild hog was taking a nap in a sunny spot, and his ears looked very peaceful. Also, the beach had little wave-lines like frosting. It was hard to choose.",
+      "choices": [
+        {
+          "text": "Peaceful hog ears sound great.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Wave-lines like frosting! I love that.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Everything sounds good from above.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Great! He was all curled up and his ears had little sun spots on them. I wanted to sing him a lullaby, but I didn't want to wake him up.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Frosting! White and swirly and temporary. The ocean keeps decorating the beach and then smoothing it flat again. It's very generous with its art.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Everything is good from above! Even the things that look messy up close look like part of a pattern from far away. Distance is very forgiving.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -2630,1509 +4131,149 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Gorm": {
+  "Fluffernox": {
     "start": {
-      "text": "Psst! Over here! You didn't see anything, okay? Wait, you're not here to take my SHINY stuff, are you? Because I have......a LOT of shiny stuff. And I will DEFEND it. Probably.",
+      "text": "Hiii, Dreamer! You're here! I was sitting by this flower because it's yellow and yellow is basically a happy color. Do you think flowers are happy on purpose?",
       "choices": [
         {
-          "text": "I'm not here to take anything! What are you hoarding?",
+          "text": "I think flowers are happy on purpose.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're adorable! Are you a dragon? A tiny dragon?",
+          "text": "Maybe they just look happy.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I love shiny things too! Maybe we can share?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "HOARDING? I prefer 'curating!' See? Bottle caps. Broken jewelry. Lost coins. And THIS! Found it near the beach! It's PERFECT! Don't tell anyone. They'll think I'm......greedy. I'm not greedy. I'm APPRECIATIVE.",
-      "choices": [
-        {
-          "text": "Your collection is amazing! You have great taste!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That tinfoil IS pretty spectacular, actually!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Where's the best place to find shiny things?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Dragon? I am a FIERCE dragon! See? FIRE! Well, mostly fire. Sometimes it's just......warm sparkles. But I'm WORKING on it! One day I'll breathe REAL flames! Then everyone will RESPECT me!",
-      "choices": [
-        {
-          "text": "Warm sparkles are cute! Don't change!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're fierce enough for me! Tiny but mighty!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I help you practice your fire-breathing?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Share? You'd... share YOUR shiny things? And I'd share MINE? Like... a SHINY CLUB? I've never had a club member before! But you have to SWEAR. Pinky promise. Dragon honor. No stealing. EVER.",
-      "choices": [
-        {
-          "text": "I pinky promise! Cross my heart!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What are the official rules of the Shiny Club?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "This is the best day of my life!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. Let me show you... my FAVORITE. Found it after the big storm. It's GREEN. Like me! I'm trusting you. With my TREASURE story. Don't... don't make me regret it, okay? But you can enjoy it too! Just remember it fondly! PLEASE?",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Halt! I am Gorm! Hoarder of glitter! Guardian of......this particular patch of ground! Wait, you're not here to steal my glitter, are you? Because I HAVE it. All of it. Every piece.\"",
-      "choices": [
-        {
-          "text": "I would NEVER steal glitter! It's sacred!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"NEVER? Good. GOOD. Because I've developed a SYSTEM. By color. By sparkle-factor. By... emotional resonance. The pink glitter is from Mimis's party. It's VERY powerful stuff.\"",
-      "choices": [
-        {
-          "text": "Emotional resonance? Glitter has FEELINGS?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Scared of FIRE? I am a DRAGON! Fire is my... well....it's more of a warm glow right now. I'm GROWING into it! And I'm NOT scared. I'm... respectfully cautious. There's a difference!\"",
-      "choices": [
-        {
-          "text": "Respectfully cautious is very wise!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"How much? Behold! Approximately 3,847 pieces! I count them every night. Before bed. It's... calming. Like counting sheep. But SPARKLIER.\"",
-      "choices": [
-        {
-          "text": "3,847?! That's dedication!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. Let me show you... my FAVORITE. Found it after the big storm. It's GREEN. Like me! I'm trusting you. With my TREASURE story. Don't... don't make me regret it, okay? But you can enjoy it too! Just remember it fondly! PLEASE?",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Sprig": {
-    "start": {
-      "text": "Um... hello? I didn't......see you there. Sorry. I'm Sprig. I just... sit here. Mostly. Sometimes people ask for advice. I give it. Quietly. Do you... need advice? Or just... passing by?",
-      "choices": [
-        {
-          "text": "I could use some calming advice, actually!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You seem very peaceful. What's your secret?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "I don't want to startle you! Just saying hi!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Calming......advice. Okay. First... sit. Like me. Second... breathe. In......and out. Third......remember: most worries are like clouds. They pass. Always pass. That's... what I tell myself too.",
-      "choices": [
-        {
-          "text": "That's actually really helpful! Thank you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you practice this advice yourself, Sprig?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What do you do when YOUR clouds don't pass?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Peaceful? I'm... not always. I get anxious. Very. This stick helps. Grounding. Literally. When I feel... too much... I touch earth. Remember: I'm PART of it. Not separate. That's... the secret. Connection.",
-      "choices": [
-        {
-          "text": "That's beautiful! I'm going to try that!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're braver than you think, Sprig!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I sit with you? Just... be peaceful together?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Whispering......is good. Loud voices... they bounce. Echo. Hurt. But whispers? They... settle. Like dew. You understand. Most people... shout. You're... different. Gentle. I like gentle.",
-      "choices": [
-        {
-          "text": "Gentle is underrated! The world needs more of it!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your whole vibe is gentle! It's wonderful!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I visit you when I need to remember gentle?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. Think of this... as a spore from my cap. Imagine planting it... where you need calm. It will grow. Small. Quiet. And when you see it... remember:...you are allowed to take up space. Even quietly. Especially quietly. Come back... anytime. I'll be here. Sitting. Breathing. Existing.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Um... hello. I'm... Sprig. Sorry. I don't mean to be... here. But I am. You can... talk. If you want. Or not. That's... also okay.\"",
-      "choices": [
-        {
-          "text": "Hi Sprig! It's nice to meet you!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Nice? To... meet me? Most people walk past. Which is... fine! I understand! But you... stopped. That's... kind.\"",
-      "choices": [
-        {
-          "text": "Why would anyone walk past you? You're great!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Adorable? It was... a gift. From Birch. He said I needed... support. For when I... wobble. I don't actually NEED it. But it feels... safe. Having it.\"",
-      "choices": [
-        {
-          "text": "Birch is very thoughtful!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Help? I'm just... shy. It's not... fixable. I've tried. But... talking helps. A little. So. Thank you. For... asking.\"",
-      "choices": [
-        {
-          "text": "I'm happy to listen whenever you want to talk!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. Think of this... as a spore from my cap. Imagine planting it... where you need calm. It will grow. Small. Quiet. And when you see it... remember:...you are allowed to take up space. Even quietly. Especially quietly. Come back... anytime. I'll be here. Sitting. Breathing. Existing.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Rollo": {
-    "start": {
-      "text": "Hmm. Your posture. It's... uneven. I'm Rollo. I bake. I ROLL. And I notice THINGS. Like dough consistency. And posture. Stand up straighter! Shoulders back! You're......slouching like underproofed bread!",
-      "choices": [
-        {
-          "text": "Sorry! I'll fix my posture! You're hilarious!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Underproofed bread? That's specific! Tell me more!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Are you always this critical, or is today special?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Hilarious? I'm SERIOUS! But......I appreciate effort. You're trying. That's... good. Most people don't care about their structural integrity! Want baking advice? It applies to LIFE too!",
-      "choices": [
-        {
-          "text": "Yes please! Baking life lessons!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're like a life coach but with more flour!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the #1 baking mistake people make?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "UNDERPROOFED! It's when dough doesn't rise ENOUGH! Dense. Heavy. SAD. I've seen grown bakers CRY over underproofed loaves! But overproofed is WORSE. Collapses. Like a soufflé with commitment issues! See? Baking is DRAMA!",
-      "choices": [
-        {
-          "text": "A soufflé with commitment issues?! I'm dying!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You really feel deeply about this, don't you?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you teach me to proof bread properly?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Critical? It's... a curse. I see FLAWS. Everywhere. That cloud? Irregular shape. That tree? Asymmetric branching. But......I'm learning. Perfection is......not always possible. Sometimes 'good enough' is......actually fine.",
-      "choices": [
-        {
-          "text": "That's huge growth, Rollo! I'm proud of you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your standards are high, but that's not bad!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Want to practice accepting imperfection together?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here is my truth: Perfection is the GOAL. But NOT the REQUIREMENT. I've baked imperfect bread. It still fed people. Still filled bellies. Still made smiles. So go. Make your MESS. Your masterpiece. Your SOMETHING. I'll be here. In my bakery. Being perfectly... me.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Good day. I couldn't help but notice......your shoes are 2.3 degrees off-center. Not that I'm JUDGING. But consistency matters. In shoes. In life. In... dough.\"",
-      "choices": [
-        {
-          "text": "My shoes are off-center?! Let me fix them!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Fix them? Excellent! Initiative! Though......there. Now they're only 0.7 degrees off. Much better! Consistency is the foundation of... everything.\"",
-      "choices": [
-        {
-          "text": "0.7 degrees?! I can't even SEE that!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Baker? I prefer 'dough consistency specialist.' Baking is... common. But achieving PERFECT dough texture? That is ART. That is SCIENCE. That is... my LIFE.\"",
-      "choices": [
-        {
-          "text": "What makes dough texture perfect?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Perfect degree? For shoes... 0 degrees. Perfectly centered. But I understand... humans have LIMITATIONS. So I accept 0.5 degrees as... 'human perfect.' It's my way of being... accommodating.\"",
-      "choices": [
-        {
-          "text": "0.5 degrees is very generous of you!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here is my truth: Perfection is the GOAL. But NOT the REQUIREMENT. I've baked imperfect bread. It still fed people. Still filled bellies. Still made smiles. So go. Make your MESS. Your masterpiece. Your SOMETHING. I'll be here. In my bakery. Being perfectly... me.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Nyx": {
-    "start": {
-      "text": "HEEEey! I'm Nyx! I do THREE things: I float, I hide stuff, and I ask RIDDLES! Want to guess what I hid? It's something YOU need! But you have to EARN it! Riddle time!",
-      "choices": [
-        {
-          "text": "I LOVE riddles! Hit me with your best one!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What did you hide? I need to know NOW!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Are you a nice ghost or a spooky ghost?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "YES! Okay okay okay! 'I have cities but no houses. I have mountains but no trees. I have water but no fish. What am I?' Take your TIME! But not TOO much time! I get BORED!",
-      "choices": [
-        {
-          "text": "A map! It's a MAP!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Hmm... let me think... cities without houses...",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I have a hint? Pretty please?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "IMPATIENT! I like that! But NOPE! Riddle FIRST! Prize AFTER! That's the RULE! The rule I made. Just now. But STILL! Come on! Riddle brain! ENGAGE!",
-      "choices": [
-        {
-          "text": "Fine fine! Give me the riddle!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're such a little stinker! I love it!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What happens if I get it wrong?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Nice? Spooky? Why not BOTH? I can be SPOOKY! OOOOOO! But I'm mostly NICE. I hide things to HELP. Keys you lost? I hide them, then help you find them. Makes the finding......MORE FUN!",
-      "choices": [
-        {
-          "text": "So you're like a playful ghost assistant!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's actually really sweet, Nyx!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Have you hidden anything from ME yet?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Okay okay! You got it right! Here's your reward: another riddle! And......a BONUS riddle! I hid THESE too! Double puzzle! Remember: losing things isn't BAD. Finding them is an ADVENTURE! And I'll be here... hiding MORE adventures! BYEEE!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Helloooo~ I'm Nyx! And I have......something of yours. Want it back? Or should we play a game first?\"",
-      "choices": [
-        {
-          "text": "MY SHOE! Give it back, you trickster!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Give it back? Where's the FUN in that? I'm a GHOST, darling! Hiding things is my......calling! But! I'm feeling GENEROUS. Answer my riddle, and the shoe returns!\"",
-      "choices": [
-        {
-          "text": "Fine! What's the riddle?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"What game? FIND THE SHOE! Oh wait, you're WEARING one! Silly me! The REAL game is: can you guess where I'll hide it NEXT? \"",
-      "choices": [
-        {
-          "text": "You're impossible! I love it!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"How? I'm a GHOST! I can phase through objects! Steal things WITHOUT touching them! And I've had CENTURIES to practice. Want lessons?\"",
-      "choices": [
-        {
-          "text": "Ghost theft lessons? Yes please!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Okay okay! You got it right! Here's your reward: another riddle! And......a BONUS riddle! I hid THESE too! Double puzzle! Remember: losing things isn't BAD. Finding them is an ADVENTURE! And I'll be here... hiding MORE adventures! BYEEE!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Titan": {
-    "start": {
-      "text": "Greetings. I am Titan. I build. This shelter. That bridge. The community hall. All mine. Well....I assisted. What do you require? Construction? Repair? Or......conversation?",
-      "choices": [
-        {
-          "text": "I'd love to hear about what you're building!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're HUGE! How many tools do you have?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Just conversation, if you have time for that.",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Building? Currently: community garden raised beds. Cedar. Weather-treated. Accessible height for elderly. Previously: playground. School. Emergency shelter. I build for OTHERS. Not myself. This is... purpose.",
-      "choices": [
-        {
-          "text": "That's incredibly noble, Titan!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you ever build things for YOURSELF?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's your favorite project you've done?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Tools? Welder. Cutter. Drill. Hammer. Screwdriver. Six primary. Twelve secondary. Size is... functional. Large frame allows large work. But I am careful. Precision matters more than power. Usually.",
-      "choices": [
-        {
-          "text": "Can I see your tools in action sometime?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're gentle despite being so big!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the hardest thing you've built?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Conversation? I have... limited practice. Most request work. Not words. But I am... available. What shall we discuss? Weather? Community needs? Or......feelings? I am learning about those.",
-      "choices": [
-        {
-          "text": "Let's talk about feelings! What are you feeling?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How's the community doing? Any big needs?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You can talk to me anytime, Titan!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Thank you. For... conversation. I will continue building. For the community. For YOU. If you need shelter repaired... or a good story... or someone to stand BESIDE you... I am here. Always. Strong as stone. Soft as moss.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Greetings. I am Titan. I build. This will be... a gathering space. For the community. It is behind schedule. But it will be... sturdy.\"",
-      "choices": [
-        {
-          "text": "Can I help with the construction?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Help? You have... two arms. Limited reach. No hydraulic assistance. But enthusiasm is... valuable. You can sort these. By size. Gearwick would approve.\"",
-      "choices": [
-        {
-          "text": "Gearwick would be PROUD of my sorting!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Wonderful? It is... functional. But yes. The community needs... space. To gather. To......connect. I build things. This is what I do.\"",
-      "choices": [
-        {
-          "text": "What's the best thing you've ever built?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Calm? The delay is... data. It tells me what to improve. Next time. Anger does not... build. Patience does. So I am... patient.\"",
-      "choices": [
-        {
-          "text": "That's incredibly wise, Titan!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Thank you. For... conversation. I will continue building. For the community. For YOU. If you need shelter repaired... or a good story... or someone to stand BESIDE you... I am here. Always. Strong as stone. Soft as moss.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Orla": {
-    "start": {
-      "text": "Ah! A new listener! I am Orla. I remember. EVERYTHING. Names. Dates. Stories. Would you like to hear about the Great Kelp Migration of 1847? Or perhaps......the Tale of the First Tide? Both are EXCELLENT! Both are LONG!",
-      "choices": [
-        {
-          "text": "The Great Kelp Migration sounds FASCINATING!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You remember EVERYTHING? That's incredible!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "I have time for a story! Which do YOU prefer?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "EXCELLENT choice! So! 1847. The kelp forests were... RESTLESS. You see, the currents had shifted. And the kelp—had DREAMS. They wanted to move SOUTH. But kelp, as you know, is ROOTED. Or SO they thought! This is where it gets GOOD...",
-      "choices": [
-        {
-          "text": "I'm ready! Tell me EVERYTHING!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Kelp with dreams? This is already amazing!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "How long is this story? I want to savor it!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Everything? Yes. I remember my great-great-great-grandmother's song. From 300 years ago. I remember the FIRST human who visited this island. Name: Samuel. Date: March 14th, 1792. I remember......every name I've been told. Including yours. It is... lovely.",
-      "choices": [
-        {
-          "text": "You remember my NAME? That's so sweet!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "300 years of songs? Can you sing one for me?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the oldest thing you remember?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Which do I PREFER? Oh! The Tale of the First Tide! You see, before there were tides, the ocean was... STILL. Can you IMAGINE? No waves. No rhythm. Just... calm. Until one day, the Moon felt LONELY. And she asked the Ocean to DANCE...",
-      "choices": [
-        {
-          "text": "The Moon and the Ocean dancing? I'm already crying!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "This is going to be EPIC! I can feel it!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your storytelling is MAGICAL, Orla!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "And so......the tides were born. From love. From loneliness. From dance. You know......most beings are too BUSY for stories. But you? You LISTENED. The ocean will remember that. And so will I. Return to the water... whenever your heart needs... flow.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Ah, greetings. I am Orla. I was just recalling the story of the Great Kelp Migration of '19. Would you like to hear it? It's quite long. I should warn you.\"",
-      "choices": [
-        {
-          "text": "I'd LOVE to hear a long story!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Wonderful! Most prefer... brevity. But stories deserve TIME. So. The kelp were unhappy with their current location. You see, the water had become......too salty. Not salty ENOUGH. It was COMPLICATED.\"",
-      "choices": [
-        {
-          "text": "This is already fascinating!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"What happened? Well......the kelp wanted to move. But kelp cannot WALK. So they asked the currents for help. The currents said......'Perhaps.' And that, my dear, is where the REAL story begins.\"",
-      "choices": [
-        {
-          "text": "Currents that talk?! This island is amazing!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"How many? I do not... count. I remember. All of them. The whale songs from before the dreams. The first tide. The day the moon... But those are stories for... another time.\"",
-      "choices": [
-        {
-          "text": "I'll hold you to that! Another time!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "And so......the tides were born. From love. From loneliness. From dance. You know......most beings are too BUSY for stories. But you? You LISTENED. The ocean will remember that. And so will I. Return to the water... whenever your heart needs... flow.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Jax": {
-    "start": {
-      "text": "Hmph. Another soft-skin. I'm Jax. I collect minerals. I make ROCK SOLID plans. Get it? Rock SOLID?...No? Tough crowd. Anyway. You need something or just standin' there lookin'... squishy?",
-      "choices": [
-        {
-          "text": "Rock solid! That's GREAT! Tell me more puns!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'm here to learn about minerals! You're the expert!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Squishy? Hey, I prefer 'hydro-dynamic'!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Puns? You want PUNS? I've got HUNDREDS! Why don't mountains climb? Because they're already PEAK performance! What do you call a sad rock? GRAVEL-y disappointed!...I'll be here all week!",
-      "choices": [
-        {
-          "text": "Those are TERRIBLE! I love them!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you have rock puns for EVERY occasion?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you teach me your best rock pun?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Expert? Well, I SHOULD be! Got quartz from the northern caves. Amethyst from the riverbeds. And THIS—is a SUNSTONE! Found it where the meteor hit! It's OLDER than this island! Maybe OLDER than YOU!",
-      "choices": [
-        {
-          "text": "A meteor stone?! That's INCREDIBLE!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How can you tell how old a mineral is?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I hold the sunstone? I'll be careful!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Hydro-dynamic? Huh. That's......actually pretty good. I like it. Better than 'squishy.' You know, rocks were once squishy too. Magma. Liquid. Then we cooled. Got HARD. Found our SHAPE. Moral: It's okay to be a work in progress.",
-      "choices": [
-        {
-          "text": "That's surprisingly deep, Jax!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "So I'm basically... geological?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're softer than you pretend to be!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. It's... tumbled quartz. Nothing fancy. But it's SMOOTH. Strong. Like you might be. Someday. Keep it in your thoughts. When things get rough......remember: even rocks had to weather storms to get this smooth. And come back! I've got MORE puns! WAY more!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Hmph. You're new. I'm Jax. I collect minerals. And I make puns. They're... rock solid. Get it? ROCK? \"",
-      "choices": [
-        {
-          "text": "Tell me more.",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Terrible? Good. That means they're WORKING. My best puns are... painful. Krip says I have a 'one-track mineral mind.' I told him that's a COMPLEMENT.\"",
-      "choices": [
-        {
-          "text": "Krip doesn't appreciate fine geology humor!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Perfect? Finally! Someone who GETS it! Being a rock-based lifeform comes with... responsibilities. Mainly: making rock jokes. It's in my JOB DESCRIPTION.\"",
-      "choices": [
-        {
-          "text": "Who wrote your job description?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"How long? Since I formed. Which was......approximately three million years ago. I've been PERFECTING my craft. The rock pun is an ART FORM.\"",
-      "choices": [
-        {
-          "text": "Three million years of practice shows!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. It's... tumbled quartz. Nothing fancy. But it's SMOOTH. Strong. Like you might be. Someday. Keep it in your thoughts. When things get rough......remember: even rocks had to weather storms to get this smooth. And come back! I've got MORE puns! WAY more!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Clover": {
-    "start": {
-      "text": "HI! I'm Clover! FOUR leaves, which means I'm EXTRA lucky! Want to play hide-and-seek? I'm AMAZING at it! Well, at the SEEKING part. The HIDING part......needs work. But I'm OPTIMISTIC!",
-      "choices": [
-        {
-          "text": "Hide-and-seek sounds FUN! You count first!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your halo is so bright! Does it help or hinder?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "You're so cheerful! What's your secret?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "COUNTING! Okay okay! One... two......three......four! WAIT I MISSED FIVE! Oops! Starting over! ONE! TWO! This is the BEST game EVER!",
-      "choices": [
-        {
-          "text": "Take your time! I'm well hidden!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're adorable! Counting is HARD!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Actually, can we just chat instead?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Hinder? Hmm! Well, I DID get found immediately in the last THREE games. BUT! It means I'm great at finding OTHERS! Silver lining! Also, I glow when I'm happy. Which is ALWAYS! So......it's a feature, not a bug!",
-      "choices": [
-        {
-          "text": "Your happiness is CONTAGIOUS, Clover!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you dim it for hide-and-seek? Like a dimmer switch?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What makes you glow the BRIGHTEST?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Secret? Um... I choose HAPPY! Every morning! The sun is up! That's DAY ONE! The birds are singing! DAY TWO! I have FOUR leaves instead of THREE! DAY THREE! See? Happiness is a CHOICE! And I choose it! EVERY. SINGLE. DAY!",
-      "choices": [
-        {
-          "text": "That's the best philosophy I've ever heard!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I'm going to try choosing happy today too!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What do you do on rainy days?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here's my wish for you! A lucky thought! Keep it! When you're sad, remember it! Remember:...you always have choices. You can choose hope. You can choose joy. You can choose......to play hide-and-seek in the rain! I'll be HERE! Being LUCKY! For BOTH of us!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"HI! I'm Clover! I was just playing hide-and-seek! But I'm TOO GOOD at hiding! Nobody ever finds me! So I found YOU instead! Want to play?\"",
-      "choices": [
-        {
-          "text": "I'd love to play hide-and-seek!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"YES! Okay, rules! One: no cheating! Two: no hiding in PLACES THAT DON'T EXIST! Three:...I make up more rules as we go! You count first! To a hundred! Or fifty! Or... whenever!\"",
-      "choices": [
-        {
-          "text": "A hundred?! That's a long time!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Good luck? That's what they SAY! But really, I'm just... OPTIMISTIC! Four leaves means I see MORE possibilities! Like: the possibility that TODAY will be AMAZING! Which it IS! Because I met YOU!\"",
-      "choices": [
-        {
-          "text": "Your optimism is contagious!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Adorable? They were a GIFT! From......I don't remember! But they SPARKLE! And when I play hide-and-seek, they make the PERFECT sound! Except when I'm hiding. Then they're QUIET. Magic!\"",
-      "choices": [
-        {
-          "text": "Magic shoes?! That's incredible!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here's my wish for you! A lucky thought! Keep it! When you're sad, remember it! Remember:...you always have choices. You can choose hope. You can choose joy. You can choose......to play hide-and-seek in the rain! I'll be HERE! Being LUCKY! For BOTH of us!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Sprocket": {
-    "start": {
-      "text": "OH! NEW PERSON! I'm Sprocket! I TINKER! I IMPROVISE! I make things work that DEFINITELY shouldn't! See this? It's a toaster... that also plays music! Toast AND tunes! Is it PRACTICAL? Debatable! Is it COOL? ABSOLUTELY!",
-      "choices": [
-        {
-          "text": "That's GENIUS! What else have you built?",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Does it burn the toast while playing music?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Can you teach me to tinker like you?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "WHAT ELSE? Self-stirring teacup! Solar-powered flashlight! A spoon that tells the time! The spoon project took THREE DAYS. Worth it? ABSOLUTELY! Want to see my MAGNUM OPUS? It's in the workshop. Well, it WAS. It might be WALKING now.",
-      "choices": [
-        {
-          "text": "A WALKING invention?! Tell me MORE!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're like a robot mad scientist!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Have any of your inventions... exploded?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Burn the toast? Sometimes! But I added a FAN! It blows the smoke away! See? PROBLEM SOLVED! Mostly. The thing is: imperfection is where the FUN is! Perfect is BORING! Flawed is......ADVENTUROUS!",
-      "choices": [
-        {
-          "text": "That's a very zen way to view malfunction!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I try the toaster? I like adventure-toast!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're the most optimistic robot I've met!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "TEACH you? YES! Lesson One: There are no MISTAKES. Only......UNINTENDED FEATURES! Lesson Two: If it's stuck, hit it. GENTLY! Lesson Three:...always keep a spare screw. You'll NEED it.",
-      "choices": [
-        {
-          "text": "Unintended features! I'm writing that down!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you have spare screws I can borrow?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's your biggest 'unintended feature' success?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here! Let me show you a......screwdriver! That's ALSO a bottle opener! And a......I'm not sure what this part does! But it's USEFUL! Probably! Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes......that's just confetti! Come show me your creations!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Hey there! I'm Sprocket! I saw you walking and I thought—you might need this! I don't know WHAT it does yet, but it LOOKS useful! Want it?\"",
-      "choices": [
-        {
-          "text": "What IS that thing?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"What is it? Well......it has a button! And a... thing! See? FUNCTIONAL! I built it from: one spoon, three springs, and Chester's patience. He didn't KNOW I was taking the patience part.\"",
-      "choices": [
-        {
-          "text": "Chester's patience? Is that a physical object?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Random? They're not RANDOM! They're... SITUATIONAL! Like this one! It's for......situations where you need to measure the temperature of a cloud! VERY specific use case!\"",
-      "choices": [
-        {
-          "text": "Have you ever actually used that one?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"YES! Finally! Someone who APPRECIATES improvisation! Just......don't blame me if it turns you blue. Or makes you speak in Morse code. Or BOTH. That last one happened to Boll. He was NOT happy.\"",
-      "choices": [
-        {
-          "text": "Boll speaks Morse code now? That's amazing!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here! Let me show you a......screwdriver! That's ALSO a bottle opener! And a......I'm not sure what this part does! But it's USEFUL! Probably! Remember: The world is full of broken things waiting to become NEW things! Go forth! TINKER! And if it explodes......that's just confetti! Come show me your creations!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Luna-2": {
-    "start": {
-      "text": "Mmm. You approach during my contemplation hours. I am Luna-2. Twin of Luna. But where she seeks ADVENTURE......I seek MEANING. Specifically: the meaning of naps. Have you considered... why we sleep?",
-      "choices": [
-        {
-          "text": "I nap because I'm tired! Is there more to it?",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're Luna's twin? You're so... thoughtful!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Tell me about your nap philosophy!",
+          "text": "Yellow is definitely a happy color.",
           "next": "c3",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Tired? Surface level. Consider: We spend ONE-THIRD of our lives asleep. Is this WASTED time? Or......is it where we process EXISTENCE? Where dreams teach us what waking cannot? I believe... naps are sacred.",
+      "text": "On purpose! I knew it. They grow up through the dirt and decide to be bright anyway. That's very brave. Flowers are tiny heroes.",
       "choices": [
         {
-          "text": "I never thought of napping as SACRED before!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What have YOUR dreams taught you?",
-          "next": "final",
+          "text": "Tiny heroes in petal form.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "How long are your contemplation naps?",
-          "next": "final",
+          "text": "Brave and beautiful is a good combo.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You're pretty brave too, Fluffernox.",
+          "next": "c1c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1a": {
+      "text": "Tiny heroes in petal form! I want to write that down. On a leaf, maybe. Or in the dirt with a stick. Important wisdom needs good surfaces.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1b": {
+      "text": "Brave and beautiful. The best combo. Like butterflies and rainbows and people who smile at strangers. That's you, by the way. The smiling part.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c1c": {
+      "text": "Me? Brave? I don't feel brave. I feel soft and round and full of nice thoughts. But maybe soft brave is a kind of brave too.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c2": {
-      "text": "Thoughtful? Luna calls me 'the boring one.' She chases butterflies. I chase......TRUTHS. Different paths. Same destination, perhaps? She finds joy in DOING. I find joy in BEING. Both are... valid. Exhausting, though. Being is HARD work.",
+      "text": "Maybe just look happy? That's okay too. Pretending to be happy sometimes makes you a little bit happy. I read that somewhere. Or maybe I made it up. Either way, it works.",
       "choices": [
         {
-          "text": "Both of you are perfect as you are!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you ever join Luna on her adventures?",
-          "next": "final",
+          "text": "Pretending can lead to real happiness.",
+          "next": "c2a",
           "friendshipDelta": 1
         },
         {
-          "text": "What's the deepest truth you've contemplated?",
-          "next": "final",
+          "text": "You can make up good wisdom.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Looking happy is a good start.",
+          "next": "c2c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2a": {
+      "text": "Real happiness from pretending. Like smiling until your face believes you. My face believes me a lot. It thinks I'm smiling even when I'm thinking.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2b": {
+      "text": "Made-up wisdom is still wisdom if it makes someone feel better. I made up 'be round, be kind' and I think it's very true. For me, anyway.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Good start! You don't have to be happy all at once. You can start with looking happy, then feeling a little happy, then being happy enough.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
     "c3": {
-      "text": "My philosophy? There are THREE types of naps. One: The Power Nap. Functional. Two: The Dream Nap. Exploratory. Three:...The Existential Nap. Where you simply... ARE. No purpose. No goal. Just......being. This is the highest form.",
+      "text": "Definitely! If sadness wore yellow, it would look confused. Yellow doesn't let anything stay gloomy for long. It's the friendliest color in the rainbow.",
       "choices": [
         {
-          "text": "I think I need an Existential Nap right now!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Which type do YOU prefer?",
-          "next": "final",
+          "text": "Yellow is the color of not-gloomy.",
+          "next": "c3a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I nap with you? Learn from the master?",
-          "next": "final",
+          "text": "Rainbows need yellow to work.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Friendliest color is a big title.",
+          "next": "c3c",
           "friendshipDelta": 1
         }
       ]
     },
-    "final": {
-      "text": "You may join me. But know this:...the nap is not the goal. The nap is the JOURNEY. In stillness, we find motion. In silence, we hear thought. In REST... we become ready. Ready for play. Ready for work. Ready for LIFE. Now close your eyes. Just for a moment. I'll guard your peace.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Vira": {
-    "start": {
-      "text": "WHY? Why are you HERE? Why is the sky BLUE? Why do plants GROW? I'm Vira! I ask WHY! My people say I ask TOO MANY whys! But I disagree! You can NEVER ask enough whys! So! WHY are you here? REALLY?",
-      "choices": [
-        {
-          "text": "I'm here because... honestly, I'm curious about YOU!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Why IS the sky blue? Do you know?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "You light up when you're excited! That's AMAZING!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "CURIOUS about ME? WHY? I mean—that's wonderful! Most people walk past! 'Oh, it's just Vira. Just asking whys.' But you! You're INTERESTED! This is the BEST DAY!",
-      "choices": [
-        {
-          "text": "You're fascinating! Keep asking whys!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's the most interesting why you've discovered?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Does your glow get brighter with EVERY why?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Sky BLUE? OHHH! It's RAYLEIGH SCATTERING! Sunlight hits molecules! Blue scatters MORE than red! But HERE'S the real why: Why does blue scatter more? I don't know yet! But I'll FIND OUT! That's the fun part!",
-      "choices": [
-        {
-          "text": "You make science SOUND like an adventure!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I help you find the answer?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What other why's are on your list?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "YES! My glow is EMOTIONS! Happy? BRIGHT! Confused? FLICKERY! Sad?...dim. Right now? I'm ECSTATIC! Because you NOTICE! Most don't notice! They just see 'glowy alien.' You see......ME.",
-      "choices": [
-        {
-          "text": "I see you, Vira! And you're wonderful!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I learn to glow like you? Emotionally?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your honesty is beautiful! No hiding feelings!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here! A piece of my light! It will glow when YOU'RE curious! When YOU ask why! Remember: Every why is a DOOR! Behind it? Another why! And another! The journey NEVER ends! So keep asking! Keep wondering! And come FIND me! I'll have NEW whys! ALWAYS new whys!\" *She zips away, already asking the air \"Why do birds FLY?",
+    "c3a": {
+      "text": "Not-gloomy! I'm going to use that. 'Yellow: the official color of not-gloomy.' It should be on a banner. A tiny banner on a flower.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4141,145 +4282,8 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hello! I'm Vira! Why are you here? Why is the sky blue? Why do dreams DREAM us back? WHY is why my FAVORITE question!\"",
-      "choices": [
-        {
-          "text": "Those are ALL great questions!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"THEY ARE?! Most people say 'Vira, STOP asking why!' But questions are... IMPORTANT! Without why, we'd never know... WHY! See? IT'S INFECTIOUS!\"",
-      "choices": [
-        {
-          "text": "You've converted me! Why IS the sky blue?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"WHY are you here? Maybe......you're here because the island CALLED you? Or maybe you're here because I asked why! CAUSALITY is COMPLICATED!\"",
-      "choices": [
-        {
-          "text": "The island called me? Like... literally?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Everything? Well......not EVERYTHING. I don't ask why about......beauty. Or kindness. Or glitter. Those just ARE. But EVERYTHING else? WHY WHY WHY!\"",
-      "choices": [
-        {
-          "text": "Glitter doesn't need a why! It just sparkles!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here! A piece of my light! It will glow when YOU'RE curious! When YOU ask why! Remember: Every why is a DOOR! Behind it? Another why! And another! The journey NEVER ends! So keep asking! Keep wondering! And come FIND me! I'll have NEW whys! ALWAYS new whys!\" *She zips away, already asking the air \"Why do birds FLY?",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Birch": {
-    "start": {
-      "text": "Welcome, young one. I am Birch. I have stood here for......many seasons. Many STORIES. I offer advice, if you seek it. I tell legends, if you wish to hear. Or......we may simply exist together. The choice is yours.",
-      "choices": [
-        {
-          "text": "I'd love to hear an ancient legend!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I could use some sage advice, actually...",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Just existing together sounds perfect!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "A legend? Ah. I know MANY. There is the Tale of the First Seed. The Song of the Deep Roots. The War of Sun and Shadow. But my favorite......is the Legend of the Lonely Mountain. It teaches us......that even the mightiest need companionship.",
-      "choices": [
-        {
-          "text": "The Lonely Mountain? Tell me MORE!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You have so many stories! How do you remember them all?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the moral of the Lonely Mountain tale?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Advice? Speak your burden. I have listened to thousands. Birds. Beasts. Humans. Each problem is unique. Yet......each solution shares common roots. Patience. Perspective. And the courage to......grow toward the light.",
-      "choices": [
-        {
-          "text": "Grow toward the light... that's beautiful!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "My burden is [insert problem]. What would you suggest?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "How do you stay so patient after hundreds of years?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Existence. Underestimated. Modern beings rush. Always DOING. Always SEEKING. But sometimes......the greatest act is simply BEING. Here. Now. Together. This moment will not return. Let us... honor it.",
-      "choices": [
-        {
-          "text": "You're right! This moment IS special!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I never thought of existing as an ACT before!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I sit here and just... be... for a while?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this thought. A leaf that has absorbed my sunlight. My rain. My WISDOM. When you are lost... hold it in your heart. When you are afraid... listen to it. It will whisper......what the roots already know: You are stronger than you believe. More connected than you see. And never......truly alone.",
+    "c3b": {
+      "text": "Need yellow to work! Without yellow, a rainbow would just be blue, green, red, and purple being dramatic. Yellow is the glue that holds rainbows together.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4288,636 +4292,8 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Ah. You approach. I am Birch. I have been... watching. For a long time. Would you care to hear a story? Or perhaps... you have one to share?\"",
-      "choices": [
-        {
-          "text": "I'd love to hear one of your stories, Birch!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"A story? Very well. This one is about... the First Rain. Before the rain, the island was... thirsty. The flowers drooped. The streams were silent. Then, one day, the sky decided to... cry. Not from sadness. From... release.\"",
-      "choices": [
-        {
-          "text": "The sky cried from release? That's beautiful!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"How long? Time is... fluid. For trees. I have seen... seasons come and go. Generations of flowers. The arrival of... many beings. You are new. But you are... welcome.\"",
-      "choices": [
-        {
-          "text": "Thank you for welcoming me, Birch!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Favorite? That is... like asking a parent to choose a child. But there is one. About... the day Sprig found his walking stick. It was a small day. But important. Small days often are.\"",
-      "choices": [
-        {
-          "text": "Sprig's walking stick came from you, didn't it?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Take this thought. A leaf that has absorbed my sunlight. My rain. My WISDOM. When you are lost... hold it in your heart. When you are afraid... listen to it. It will whisper......what the roots already know: You are stronger than you believe. More connected than you see. And never......truly alone.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Flick": {
-    "start": {
-      "text": "DARLING! You've arrived at the PERFECT moment! I am Flick! Storyteller! Dramatist! And I was JUST about to begin tonight's tale! It involves TRAGEDY! ROMANCE! And a very confused lighthouse keeper! Are you SEATED? Are you READY?",
-      "choices": [
-        {
-          "text": "I'm seated! I'm ready! BEGIN!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're so dramatic! I love it! Tell me everything!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Wait—should I be worried about you melting?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "EXCELLENT! Once upon a time......in a land FAR from here......there stood a lighthouse. And in that lighthouse......lived a keeper who fell in love... with the MOON! Was it foolish? YES! Was it BEAUTIFUL? ABSOLUTELY!",
-      "choices": [
-        {
-          "text": "A love story with the MOON?! This is GENIUS!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What happened next? Did the moon love him back?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your storytelling is INCREDIBLE! Keep going!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Dramatic? Darling, I am NOT dramatic! I am APPROPRIATELY dramatic! There's a DIFFERENCE! Life is too short for SMALL emotions! If you feel, feel BIG! If you tell, tell GRAND! Now. The lighthouse keeper. He wrote LETTERS to the moon. EVERY NIGHT. For TWENTY YEARS!",
-      "choices": [
-        {
-          "text": "Twenty years of letters?! That's DEVOTION!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Did he ever send them? How do you send letters to the moon?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'm already crying! This is BEAUTIFUL!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Melting? Oh. Well. I DO get......melted. When I'm nervous. Or excited. Or......FEELING things intensely! Which is ALWAYS! But it's FINE! I just......need to cool down! Maybe tell a CALMER story! Or NONE! No stories! QUIET!",
-      "choices": [
-        {
-          "text": "You're fine! I'll get you some water! Or... ice?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your emotions are VALID! Don't suppress them!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Maybe we can tell a relaxing story together?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Thank you. For... staying. Most leave when I melt. They say 'too much.' 'too intense.' But you? You watched. You cared. You didn't try to FIX me. You just... stayed. That means... everything. Come back. I'll be here. Changing. Flowing. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"GOOD EVENING! Or morning! Or... whenever the dream decides it is! I am Flick! Storyteller! Illuminator! Occasional......melter. When nervous.\"",
-      "choices": [
-        {
-          "text": "You melt when nervous? That must be inconvenient!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Inconvenient? OH, you have no IDEA! I melted through THREE chair invitations! And a VERY important picnic! But! The drama! The PATHOS! It's worth it!\"",
-      "choices": [
-        {
-          "text": "At least you leave a memorable impression!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"A STORY?! Finally! An AUDIENCE! Once upon a time......there was a candle. Who loved stories. But EVERY time he told one......he melted a LITTLE bit. THE END....Too dark? I can do a HAPPY ending!\"",
-      "choices": [
-        {
-          "text": "That WAS a happy ending! He's still telling stories!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"FABULOUS? Why, thank you! It was a GIFT! From Mimis! She said 'Every storyteller needs DRAMA!' And she was RIGHT! The cape adds... FLAIR. MOVEMENT. MYSTIQUE!\"",
-      "choices": [
-        {
-          "text": "Mimis has excellent taste!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Thank you. For... staying. Most leave when I melt. They say 'too much.' 'too intense.' But you? You watched. You cared. You didn't try to FIX me. You just... stayed. That means... everything. Come back. I'll be here. Changing. Flowing. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Draven": {
-    "start": {
-      "text": "...You approach. I am Draven. Do not mistake my solitude for loneliness. I am......in conversation with the night. With poetry. With......the ache of existence. But....you may stay. If you are quiet. If you respect the mood.",
-      "choices": [
-        {
-          "text": "I'll be quiet. The mood is beautiful.",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You write poetry? I'd love to hear some!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "The moon IS especially lovely tonight, isn't it?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Quiet. Rare. Most demand SPEECH. Demand ACTION. But silence......silence is where truth lives. Where poetry BREATHES. You understand this. I see it in your stillness. Stay. The moon is rising. And I... am composing.",
-      "choices": [
-        {
-          "text": "What are you composing? A moon poem?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your silence is more poetic than most people's words!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'll just listen to the night with you...",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Poetry? I......dabble. It is not......good. It is MELANCHOLY. It is MOONLIGHT. It is......about how my fur sheds in spring. But. If you truly wish......I could read. One. Poem. Only. Do not LAUGH.",
-      "choices": [
-        {
-          "text": "I would NEVER laugh! This is SACRED!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Please! I promise to appreciate every word!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Spring shedding is RELATABLE poetry!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Lovely? She is......PERFECT. Cold. Distant. Yet she WATCHES. She SEES. I write to her. Sometimes she answers. In tides. In light. In......the way she follows me home. Do you think... she listens?",
-      "choices": [
-        {
-          "text": "I KNOW she listens! She's listening RIGHT NOW!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You have a relationship with the MOON? That's incredible!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Maybe we're all listening to the same moon...",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. A poem. For you. It is called... 'The Wolf Who Loved the Moon.' Do not read it here. Read it... alone. Under moonlight. And know......that even in darkness, even in solitude... beauty exists. And sometimes......someone sees it with you. Thank you. For... seeing.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Oh. It's you. I was... composing. A poem. About the moon. It's not finished. It's never finished.\"",
-      "choices": [
-        {
-          "text": "Can I hear what you have so far?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Hear it? It's... incomplete. 'Silver light upon the... no, that's wrong.' See? I'm not... good at this. But I keep trying. The moon deserves... better words.\"",
-      "choices": [
-        {
-          "text": "Your words are beautiful already, Draven!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Unexpected? Because I'm a... werewolf? Most expect me to be... fierce. Aggressive. But the moon... she whispers. Not roars. I listen to her whispers.\"",
-      "choices": [
-        {
-          "text": "The moon whispers to you? What does she say?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Poetic? You... see it too? Most see a rock. A satellite. But I see... a muse. A companion. She understands... longing.\"",
-      "choices": [
-        {
-          "text": "Longing for what, Draven?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. A poem. For you. It is called... 'The Wolf Who Loved the Moon.' Do not read it here. Read it... alone. Under moonlight. And know......that even in darkness, even in solitude... beauty exists. And sometimes......someone sees it with you. Thank you. For... seeing.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Pixel": {
-    "start": {
-      "text": "BEEP! GREETINGS, PLAYER ONE! I am PIXEL! I love RETRO GAMES! I speak in BEPS! I reference CLASSICS! READY PLAYER ONE? Let's PLAY! Or TALK! Both are VALID! BEEP!",
-      "choices": [
-        {
-          "text": "READY PLAYER ONE! What's your favorite retro game?",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your screen is SO COOL! Can it show anything?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "I love retro games too! What are you playing?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "FAVORITE? HARD QUESTION! SUPER BROS? CLASSIC! TETRIS? TIMELESS! But......Zelda: A Link to the Past? That game... taught me COURAGE. And that pots contain RUPEES. Always check the POTS!",
-      "choices": [
-        {
-          "text": "ALWAYS check the pots! Great life advice!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Zelda IS legendary! What's your favorite dungeon?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You appreciate gaming HISTORY! I respect it!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Show ANYTHING? YES! Emotions! Weather! GAME STATS! Sometimes I show DIAL-UP MODEM SOUNDS! It's NOSTALGIC! Want me to show something SPECIAL?",
-      "choices": [
-        {
-          "text": "You pixelated my NAME?! That's AMAZING!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you show me a game over screen? For science?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "The dial-up sounds are a VIBE!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Playing? Currently: SPEEDRUNNING Super Mario! Current record: 4 minutes 32 seconds! But! I keep dying in WORLD 8-2! The SPIKES! They are......UNFORGIVING! But I will PREVAIL! CONTINUE? Y/N?",
-      "choices": [
-        {
-          "text": "You CAN beat 8-2! I believe in you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Want some tips? I'm pretty good at Mario!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "The struggle is REAL! But so is victory!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here! A POWER-UP! Well. A DIGITAL representation! But the SENTIMENT is REAL! Remember: Life is like a retro game. HARD. But FAIR. Every death is a LESSON! Every victory EARNED! So! PLAYER ONE! Go forth! COLLECT YOUR RUPPEES! DEFEAT YOUR BOWSERS! And when you need a CHECKPOINT......I am HERE! BEEP BOOP!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"BEEP! GREETINGS, PLAYER ONE! I am PIXEL! I was just......playing SPACE INVADERS! Classic! You play?\"",
-      "choices": [
-        {
-          "text": "I love retro games! What's your favorite?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"FAVORITE? That is like asking......to choose between CHILDHOOD and ADULTHOOD! But if I MUST......PAC-MAN! The strategy! The GHOSTS! The......inevitable doom!\"",
-      "choices": [
-        {
-          "text": "The ghosts ARE relentless!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"ANYTHING? I can show......many things! The Chester one needs work. Resolution is... limited. But CHARM is unlimited!\"",
-      "choices": [
-        {
-          "text": "The Chester pixel art made me laugh!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"ALL the time? Well......it is my... NATIVE language! But I can......communicate without beeps! It just feels... WRONG! Like playing Mario without JUMPING!\"",
-      "choices": [
-        {
-          "text": "The beeps add character! Keep them!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here! A POWER-UP! Well. A DIGITAL representation! But the SENTIMENT is REAL! Remember: Life is like a retro game. HARD. But FAIR. Every death is a LESSON! Every victory EARNED! So! PLAYER ONE! Go forth! COLLECT YOUR RUPPEES! DEFEAT YOUR BOWSERS! And when you need a CHECKPOINT......I am HERE! BEEP BOOP!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Aria": {
-    "start": {
-      "text": "DARLING! You have arrived at the PERFECT moment! I am ARIA! Singer of SONGS! Repeater of REPERTOIRE! And I was JUST warming up my VOCALS! La la la LAAAAA! Would you like a PERFORMANCE? Or shall we simply......CONVERSE?",
-      "choices": [
-        {
-          "text": "A PERFORMANCE! Give me everything!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're so flamboyant! I love your energy!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Can you repeat what I just said? With flair?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "EVERYTHING? FINALLY, an audience with TASTE! Ahem! 🎵 The island of COZY! Where FRIENDS gather near! Where NPCs talk and the weather is DEAR! 🎵 TADA! That was my ORIGINAL composition! Title: 'Ode to This Conversation!'",
-      "choices": [
-        {
-          "text": "BRAVO! ENCORE! ENCORE!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That was INCREDIBLE! You're a STAR!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you sing it AGAIN? But LOUDER?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Flamboyant? Darling, I am not FLAMBOYANT! I am APPROPRIATELY EXTRA! Life is an OPERA! Why speak when you can SING? Why whisper when you can PROJECT? Besides....my grandmother was a STAGE PERFORMER. It is in my BLOOD! My SOUL! My VERY FEATHERS!",
-      "choices": [
-        {
-          "text": "Your grandmother would be SO PROUD!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "It IS in your feathers! They're GORGEOUS!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Teach me to be appropriately extra!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Repeat? DARLING, this is my SPECIALTY! You said: 'Can you repeat what I just said?'...WITH FLAAAAAAIR! 🎵 SEE? Everything is better with DRAMA! With CADENCE! With a touch of the THEATRICAL! Would you like me to repeat EVERYTHING we've said? I can! I have PERFECT PITCH!",
-      "choices": [
-        {
-          "text": "Yes! Repeat our WHOLE conversation! As an opera!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're HILARIOUS! And talented!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I think everything sounds better with your voice!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "You know......most say 'Aria, TOO MUCH!' 'Aria, QUIET DOWN!' But you?...you asked for MORE! So here is my song: 🎵 A friend who listens, a friend who cares, a friend who loves how dramatically I BEEEEEEARS! 🎵 That's... that's BEARS. But I meant ARIA. Poetry is HARD! Thank you. For... appreciating my ART!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"DARLING! You have arrived! Just in time! I was about to begin my AFTERNOON RECITAL! The acoustics here are DIVINE! Will you be my audience?\"",
-      "choices": [
-        {
-          "text": "I would be HONORED to be your audience!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"HONORED? Finally! Someone with TASTE! Most prefer......Zephyr's gossip. Or Gorm's glitter. But YOU! You appreciate ART! Prepare for... ARIA!\"",
-      "choices": [
-        {
-          "text": "I'm ready! Give me your best!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Today? I am performing......'The Ballad of the Lost Seed!' It is about... longing. About......a seed that never grew. It is VERY moving.\"",
-      "choices": [
-        {
-          "text": "That sounds beautiful and sad!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"FAMOUS? Darling, I am a LEGEND! I have performed for: Luna (she slept), Hudson (he critiqued), and Mimis (she threw confetti MID-ARIA)! The confetti actually... enhanced the performance!\"",
-      "choices": [
-        {
-          "text": "Mimis throwing confetti sounds perfect!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "You know......most say 'Aria, TOO MUCH!' 'Aria, QUIET DOWN!' But you?...you asked for MORE! So here is my song: 🎵 A friend who listens, a friend who cares, a friend who loves how dramatically I BEEEEEEARS! 🎵 That's... that's BEARS. But I meant ARIA. Poetry is HARD! Thank you. For... appreciating my ART!",
+    "c3c": {
+      "text": "Big title, but I think yellow can handle it. Yellow doesn't brag. It just shows up and makes everything warmer. That's true friendliness.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -4929,92 +4305,47 @@ const WRITTEN_DIALOGUES = {
   },
   "Grumble": {
     "start": {
-      "text": "HMPH. Another visitor. I'm Grumble. I guard the caves. I do NOT do 'friendly chats.' I do NOT do 'tourist photos.' I DO do 'go away.' But you're still here. Fine. Make it QUICK.",
+      "text": "Hmph. It's you. I was just rearranging these wildflowers. Not because they needed help or anything. I just felt like it. The island looks messy sometimes and someone has to care. Not that I care.",
       "choices": [
         {
-          "text": "I just want to learn about the caves! You're the expert!",
+          "text": "The wildflowers look nicely arranged.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Your mustache is AMAZING! How long did it take to grow?",
+          "text": "Messy islands need attention too.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "I'll be quick! Promise! Just... thank you for guarding.",
+          "text": "You definitely don't care. I get it.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Expert? Well. I SHOULD be. I've guarded these tunnels for......decades. Maybe centuries. Know what's in there? Crystals. Ancient carvings. A few LOST tourists. Most don't come back. The ones who do......they listened to me.",
+      "text": "Nicely arranged? I suppose. I didn't try very hard. Just a little straightening here and there. The flowers were being dramatic, all leaning different directions.",
       "choices": [
         {
-          "text": "I'll listen! What should I know before exploring?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You've been here for CENTURIES? That's incredible!",
-          "next": "final",
+          "text": "Flowers can be dramatic.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What happened to the lost tourists? Are they okay?",
-          "next": "final",
+          "text": "Straightening is a useful skill.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "You have a good eye for flower order.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Mustache? It's......not a mustache. It's MOSS. But....I've had it for forty years. It's PART of me now. Don't tell anyone I said that. I have a REPUTATION. As GRUMPY.",
-      "choices": [
-        {
-          "text": "Your secret's safe with me! It's a GREAT mustache!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Forty years?! That's commitment!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Grumpy AND fashionable! You're multitalented!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Thank......you? I mean—HMPH. About time someone noticed! Most walk past. 'Oh, it's just a rock.' 'Oh, Grumble's so MEAN.' But I guard. Every day. Every NIGHT. Someone has to. Even if no one says thanks.",
-      "choices": [
-        {
-          "text": "I'm saying thanks NOW! You're IMPORTANT!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Being a guardian is NOBLE work!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I bring you something? As a thank-you gift?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Fine. You may enter. But! Stay on the path. Don't TOUCH the crystals. And if you hear DRIPPING......that's normal. Probably. And....come back. In one piece. I'd hate to......have to file a report.",
+    "c1a": {
+      "text": "Dramatic flowers. Leaning this way and that, like they're posing for a painting. I told them to stand up straight. They didn't listen, but I tried.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5023,48 +4354,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hmph. Another one. I'm Grumble. I guard the caves. Not that anyone ASKS me to. I just... do. Because someone HAS to.\"",
+    "c1b": {
+      "text": "Useful? Maybe. Or maybe I just have strong opinions about chaos. There's a difference between wild and messy, and flowers should know it.",
       "choices": [
         {
-          "text": "The caves need guarding? What's in them?",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"What's in them? Crystals. Echoes. Secrets. Some should stay SECRET. But Nyx keeps hiding things in there. And Gorm tries to store his GLITTER in my caves. GLITTER. In caves. The INDECENCY.\"",
+    "c1c": {
+      "text": "Good eye? Hmph. I don't know about good. I have an eye. It sees flowers that need help. Whether that's good or just annoying is up for debate.",
       "choices": [
         {
-          "text": "Glitter in caves DOES sound wrong!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Dedicated? Someone has to be! Titan builds things. I... guard them. It is not GLAMOROUS. It is not... THANKED. But it is NECESSARY.\"",
+    "c2": {
+      "text": "Too much attention? That's the problem. Everyone wants to run around and be busy. But someone has to notice the details. Even if they pretend they don't want to.",
       "choices": [
         {
-          "text": "Guarding IS important work!",
-          "next": "alt_final",
+          "text": "Details are what make a place feel alive.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Noticing is a kind of caring.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Busy isn't always better.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Excellent? It is... moss. But it is MY moss. I water it. Daily. Some say it's 'just moss.' I say it is... DISTINCTION. Unlike certain glitter-hoarding dragons.\"",
+    "c2a": {
+      "text": "Alive. Yes. Little arrangements, little straightenings, little attentions. They add up. The island knows when someone is paying attention. Probably.",
       "choices": [
         {
-          "text": "Your moss mustache is very distinguished!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "",
+    "c2b": {
+      "text": "A kind of caring. Don't say that too loud. Someone might get the wrong idea and think I'm soft. I'm not soft. I'm... selectively firm.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Busy isn't better. Running around doesn't fix flowers. Standing still and noticing does. But I only noticed because I had nothing better to do. Obviously.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "I don't care. Exactly. I am a monster of complete indifference. If these flowers look better, it's purely a side effect of my profound not-caring.",
+      "choices": [
+        {
+          "text": "Profound not-caring has impressive results.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Side effects can be beautiful.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Indifference looks cute on you.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Impressive results from indifference. I should put that on a banner. 'Grumble: doesn't care, but things get done anyway.' Very catchy. Not that I'd display it.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Beautiful side effects. Fine. I can accept that. Sometimes the things you didn't mean to do are nicer than the things you did. That's just biology. Or something.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Cute? I am a monster. I am fearsome. I am terrifying. I am absolutely not... fine, maybe a little cute. But only from certain angles. In dim light.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5074,94 +4475,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Selene": {
+  "Vesper": {
     "start": {
-      "text": "Welcome, child of the sun. I am Selene. I walk when the moon walks. I speak when the stars listen. Tonight, I arrange... Cassiopeia's crown. She is PARTICULAR about her jewelry. Do you seek guidance? Or simply... moonlight?",
+      "text": "The moon is barely awake, Dreamer. Or maybe I am barely awake. Either way, the night feels soft and distant, like a thought that hasn't quite arrived. Do you like the edge of night?",
       "choices": [
         {
-          "text": "Guidance, please! The night feels... significant!",
+          "text": "The edge of night is peaceful.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You arrange CONSTELLATIONS? That's INCREDIBLE!",
+          "text": "I like when the world gets quiet.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Just moonlight sounds perfect... and you!",
+          "text": "Night feels full of secrets.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Guidance. The moon has WISDOM. See this star? It guides travelers. This one? It guards dreamers. Your path......is unclear. But the moon sees what daylight cannot. Tell me: what weighs upon your night?",
+      "text": "Peaceful because it isn't trying. The day tries so hard. The night just arrives, sits down, and says, 'Here I am.' No announcements. No applause needed.",
       "choices": [
         {
-          "text": "I'm unsure about my direction... in life!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I've been having strange dreams lately...",
-          "next": "final",
+          "text": "Night doesn't need applause.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "I just feel... lost. Like I need a sign!",
-          "next": "final",
+          "text": "The day does try very hard.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Arriving quietly is powerful.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Incredible? It is... DUTY. Each constellation has a KEEPER. I keep the night-sky ones. Others keep dawn. Dusk. Some find it lonely. I find it......intimate. The stars and I. We know each other's LIGHT.",
-      "choices": [
-        {
-          "text": "That's the most beautiful thing I've ever heard!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do the stars talk to you? Like, literally?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'd love to learn how to arrange constellations!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Moonlight. Come. Sit. Let it TOUCH you. Most fear the night. They seek SUN. Warmth. Noise. But the moon... she is QUIET. She is STILL. She sees what you are... when the world is asleep.",
-      "choices": [
-        {
-          "text": "It feels... peaceful. Like being understood!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "The moon SEES me? Really?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I never appreciated nighttime until now!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this moment. It holds moonlight. Not metaphorically. Literally. When you are lost... hold it in your heart. The moon will ANSWER. Not in words. In......feeling. In knowing. And remember:...even in the darkest night, you are NEVER unlit. You carry your own light. I simply... help you see it.",
+    "c1a": {
+      "text": "No applause needed. The moon does not perform. It simply reflects. That is its art. Quiet reflection in a darkened room of sky.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5170,48 +4526,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Welcome. I am Selene. I was just... arranging. The constellations were... misaligned. They do that. When no one is watching.\"",
+    "c1b": {
+      "text": "The day tries. Sunlight everywhere, colors everywhere, birds announcing things. It is wonderful but exhausting. Night is the deep breath after.",
       "choices": [
         {
-          "text": "You arrange constellations? That's magical!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Magical? It is... duty. The stars wish to tell stories. But they need... guidance. Orion there—wants to be a hunter. But he keeps drifting toward... gardener.\"",
+    "c1c": {
+      "text": "Powerful. Arrival without ceremony. Presence without demand. The night does not ask you to be anything. It just lets you be.",
       "choices": [
         {
-          "text": "Orion as a gardener? That's adorable!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"How? Dreams... shift. The island moves. The sky... adjusts. And sometimes, the stars simply wish to... stretch. They are older than us. They get... restless.\"",
+    "c2": {
+      "text": "Quiet is honest. It lets you hear what you've been missing. The small waves, the distant bird, your own breathing. The world has a soft voice if you listen.",
       "choices": [
         {
-          "text": "The stars are restless? I never thought of that!",
-          "next": "alt_final",
+          "text": "I want to hear the world's soft voice.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Quiet makes my own thoughts louder.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Listening is a kind of rest.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Help? That is... kind. But it requires... patience. Precision. Watch. See? The Swan was leaning. Now she is... poised.\"",
+    "c2a": {
+      "text": "The soft voice. Listen near the water. The waves are always whispering the same story, but each wave tells it a little differently.",
       "choices": [
         {
-          "text": "That was incredible! I saw it move!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Take this moment. It holds moonlight. Not metaphorically. Literally. When you are lost... hold it in your heart. The moon will ANSWER. Not in words. In......feeling. In knowing. And remember:...even in the darkest night, you are NEVER unlit. You carry your own light. I simply... help you see it.",
+    "c2b": {
+      "text": "Your own thoughts louder. That can be frightening. But also comforting. At least in quiet, you know who is speaking. The voice is your own.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Rest. Yes. Listening is rest because it asks nothing of you. You do not have to reply. You do not have to fix. You only receive.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Secrets? The night doesn't hide things. It just doesn't explain them. Mystery is different from secrecy. One is warm. The other is suspicious.",
+      "choices": [
+        {
+          "text": "Mystery is warmer than secrecy.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I like not having everything explained.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The night keeps things gently.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Mystery is warm. It invites you closer. Secrecy pushes you away. The night invites. It says, 'Come wonder with me.'",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Not everything explained. That is the joy of it. If we understood every star, we might stop looking up. Wonder needs a little ignorance to survive.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Gently. The night wraps things in shadow the way you might wrap a small thing in cloth. Not to hide it. To keep it safe from too much light.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5221,94 +4647,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Bolt": {
+  "Gizmo": {
     "start": {
-      "text": "HI! I'm Bolt! I'm FAST! I'm IMPULSIVE! I sometimes SHORT-CIRCUIT when startled! See?! THAT was a startle! Want to race? Want to TALK? Want to—TOUCH SOMETHING SHINY?",
+      "text": "Dreamer! You have arrived at the perfect moment. I was testing a theory: do rocks roll downhill faster if they are round, or if they are simply enthusiastic? What is your hypothesis?",
       "choices": [
         {
-          "text": "A race sounds EXCITING! You're on!",
+          "text": "Roundness definitely helps.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're so energetic! How do you not overheat?",
+          "text": "Enthusiasm seems like the real engine.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Let's talk! But maybe... slower? For my sake?",
+          "text": "I don't think rocks are enthusiastic.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "RACE? YES! Okay! Rules! We race to the tree! No cheating! No shortcuts! Well. SOME shortcuts! Ready? SET! GO!...Wait, did you say GO? Was that GO? I already FINISHED!",
+      "text": "Roundness! A solid hypothesis. Less friction, more momentum, fewer awkward corners. Round rocks are the athletes of the rock world.",
       "choices": [
         {
-          "text": "You're IMPOSSIBLE! But fun!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That wasn't a race! That was a BLUR!",
-          "next": "final",
+          "text": "Athletic rocks. I love that.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Rematch! But this time, handicap yourself!",
-          "next": "final",
+          "text": "Aerodynamic rocks are superior.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Corners do slow things down.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Overheat? Sometimes! See that? That's NORMAL! I have a COOLING SYSTEM! It's......a small fan I installed! And I run through RAIN! Very refreshing! NOT recommended for most robots! But I'm SPECIAL!",
-      "choices": [
-        {
-          "text": "You ARE special! A one-of-a-kind robot!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Please be careful! I don't want you to break!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you teach me your energy techniques?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Slower? Okay. I can......try. It's HARD. My brain goes FAST. My mouth goes FASTER. But....for you? I'll slow. See? I CAN be calm. Sometimes. Usually not. But NOW!",
-      "choices": [
-        {
-          "text": "This is nice! We can do this!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're making an effort! I appreciate it!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever wish you could just... stop?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here! It's......charged with energy! Imagine wearing it! When you need ENERGY! When you need SPEED! And when you need ME? Just... say my name. I'll hear it. I'll COME. Probably at high velocity! But I'll COME! That's what FRIENDS do!",
+    "c1a": {
+      "text": "Athletic rocks! They train by sitting still for centuries, then suddenly rolling with great purpose. Their training regimen is mostly patience.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5317,48 +4698,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"HI! I'mBolt! Didyouseethat? IranaMILE! InTHREEseconds! Well, maybenotaMILE. ButitFELTlikeaMILE! Wanttorace? Wanttoseemysparktricks? Wantto—oops.\"",
+    "c1b": {
+      "text": "Superior aerodynamics. A flat rock would tumble chaotically. A round rock commits to its path. Commitment is underrated in geology.",
       "choices": [
         {
-          "text": "Are you okay? That short circuit sounded bad!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Okay? I'm... FINE! Just......overexcited! Happens! Chester says I need a 'voltage regulator.' I say I need MORE opportunities to ZOOM!\"",
+    "c1c": {
+      "text": "Corners slow everything. Trees, rocks, conversations. Corners catch on things. Roundness is nature's way of saying, 'Let's keep moving.'",
       "choices": [
         {
-          "text": "Chester is probably worried about you!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"SHOWyou? STANDback! DIDyouSEEthat? I touched the lighthouse! AndBACK! InPOINTfourseconds! Ithink. Mytimermightbeoff.\"",
+    "c2": {
+      "text": "Enthusiasm as engine. Brilliant. Perhaps the rock's internal desire to reach the bottom is the true force. Physics may not agree, but philosophy does.",
       "choices": [
         {
-          "text": "I barely saw you move! That's incredible!",
-          "next": "alt_final",
+          "text": "Physics and philosophy can disagree.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "A determined rock is unstoppable.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe rocks have hidden motivation.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Faster?! YouREALLYthinkso? QuarkisFASTbutI'mFASTER! ZephyrtalksFASTbutI MOVEfast! Well, exceptwhenI......shortcircuit. ThenI'mjust... stationary.\"",
+    "c2a": {
+      "text": "They can disagree. Physics says gravity. Philosophy says will. Maybe a rolling rock is the meeting point between the two. A tiny conference of forces.",
       "choices": [
         {
-          "text": "Even stationary, you're still impressive!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Here! It's......charged with energy! Imagine wearing it! When you need ENERGY! When you need SPEED! And when you need ME? Just... say my name. I'll hear it. I'll COME. Probably at high velocity! But I'll COME! That's what FRIENDS do!",
+    "c2b": {
+      "text": "Unstoppable! Once a rock decides to roll, who am I to argue? I would simply step aside and salute its commitment to descent.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Hidden motivation. Exactly. They may dream of beaches, of ponds, of being skipped across water. Rocks have inner lives. Probably. We cannot prove otherwise.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Not enthusiastic? How can you be sure? They don't speak, but silence is not absence of enthusiasm. Maybe they are simply very focused rocks.",
+      "choices": [
+        {
+          "text": "Focused rocks is a good reframe.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Maybe they're just shy.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll try to see rocks as enthusiastic.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Good reframe. Focused rather than enthusiastic. A focused rock does not waste energy. It conserves, waits, then rolls with maximum efficiency.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Shy rocks. That explains so much. They don't roll because they're show-offs. They roll because they got startled and are trying to leave gracefully.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Try it. Next time you see a rock, think, 'That rock is enthusiastic about existing.' It changes the whole relationship. Rocks become friends.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5368,94 +4819,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Gidget": {
+  "Ommmm": {
     "start": {
-      "text": "HIHIHI! I'm Gidget! I collect ACORNS! I tell JOKES! Want to hear one? WHY DID THE SQUIRREL SIT ON THE CLOCK?...TO BE ON TIME FOR ONCE! Get it? ON TIME? Because clocks?",
+      "text": "Hello, little Dreamer. I have been sitting with this tree for a while. Trees do not speak, but they listen very well. Do you have anything you would like the tree to hear?",
       "choices": [
         {
-          "text": "That's CUTE! Tell me more!",
+          "text": "I hope the tree knows it's appreciated.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're so FAST! How do you talk that quickly?",
+          "text": "I'm not sure what I'd say to a tree.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "How many acorns have you collected? It's a lot!",
+          "text": "Maybe I'll just sit with you both.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "MORE? Okay! What do you call a squirrel who works at a bank? A LOAN SHARK! No wait—a LOAN SQUIRREL! And! What's a squirrel's favorite TV show? GAME OF THRONES! Because of all the NUTS!",
+      "text": "Appreciated. That is a good thing to be. The tree gives shade and asks for nothing. It is generous in a quiet way. Generous quiet is a rare gift.",
       "choices": [
         {
-          "text": "You're a COMEDIAN! A tiny furry comedian!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Game of Nuts! I'm dying!",
-          "next": "final",
+          "text": "Quiet generosity is easy to miss.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Do you write these yourself or have a joke book?",
-          "next": "final",
+          "text": "Trees deserve thanks.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I appreciate you too, Ommmm.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Fast?  I talk at 300 words per minute! HUMANS talk at 150! I'm TWICE as efficient! Downside? I finish conversations before people START them! Upside? I tell TWO jokes in the time it takes others to tell ONE!",
-      "choices": [
-        {
-          "text": "That's a SUPERPOWER! A chatty superpower!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you slow down just a LITTLE? For me?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I bet you get through arguments really fast!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "HOW MANY? One, two, three—no wait—I have 2,847 acorns! Organized by SIZE! By COLOR! By HOW MUCH I LIKE THEM! This one? My FAVORITE! It's slightly lopsided! It has CHARACTER!",
-      "choices": [
-        {
-          "text": "2,847?! That's DEDICATION!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I see your favorite? The lopsided one?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever run out of space? Where do you KEEP them?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here! This is a LUCKY acorn story! I found it under a RAINBOW! Remember it! When you're sad, THINK of it! When you're bored, TELL A JOKE! And remember:...life is too short for SLOW conversations or BAD PUNS! Be like me! FAST! FUNNY! FURRY! Come visit! I'll have NEW JOKES! ALWAYS NEW JOKES!",
+    "c1a": {
+      "text": "Easy to miss. That is why we must practice noticing. The tree does not announce its shade. It simply provides it. Noticing is our part of the exchange.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5464,48 +4870,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"HI! I'mGidget! Wanttohearajoke? Whydon'tsquirrelsliketoplaypoker? Becausethey'realwaysgoingNUTS! Getit? NUTS? BecauseACORNS?\"",
+    "c1b": {
+      "text": "Deserve thanks. Yes. But trees do not keep score. They do not remember who thanked them and who did not. They give because giving is their nature.",
       "choices": [
         {
-          "text": "Tell me more.",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"MORE?! Okayokayokay! Whatdo youcallasquirrelthat'sagooddetective? SHERLOCKHOLMES! BecauseHOLMES soundslike......acornstuff! I'mworkingonit!\"",
+    "c1c": {
+      "text": "Appreciated. That is kind. I am mostly moss and patience, but I am also glad to be seen. Being seen is a warmth all its own.",
       "choices": [
         {
-          "text": "Your joke delivery is impeccable!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"AsFASTasBolt? Well......heMOVESfast. ItALKfast! We'rebothFAST! Just... differentKINDS! HeZIPS. ICHIP! Getit? CHIP? Like... chipmunk? I'mnotachipmunkbut—\"",
+    "c2": {
+      "text": "You do not need words. The tree understands presence. If you sit beneath it, if you let your breath slow, that is a complete conversation.",
       "choices": [
         {
-          "text": "You're definitely a squirrel, not a chipmunk!",
-          "next": "alt_final",
+          "text": "Presence as conversation. I like that.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll try slowing my breath.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Trees understand more than we think.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"TERIBLEbutLOVEit? That'stheBESTreaction! Hudsonsaysmyjokesare 'painfullyunfunny.' ButPennyLAUGHS! Well, sheRUSTLES in awaythatSOUNDSlikelaughing! Closeenough!\"",
+    "c2a": {
+      "text": "Presence as conversation. The deepest kind. Words can be beautiful, but they can also get in the way. Sometimes silence says the truest things.",
       "choices": [
         {
-          "text": "Penny's rustle-laugh IS pretty distinctive!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Here! This is a LUCKY acorn story! I found it under a RAINBOW! Remember it! When you're sad, THINK of it! When you're bored, TELL A JOKE! And remember:...life is too short for SLOW conversations or BAD PUNS! Be like me! FAST! FUNNY! FURRY! Come visit! I'll have NEW JOKES! ALWAYS NEW JOKES!",
+    "c2b": {
+      "text": "Try slowing. In through the nose, out through the mouth. Let the tree hold the sky above you. You do not need to hold anything for a moment.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "More than we think. They know seasons, rain, the weight of birds. They remember in rings what we forget in days. Trees are quiet historians.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Sit with us. There is room. The grass is patient, the tree is patient, and I am patient. We make a small circle of stillness. You are welcome in it.",
+      "choices": [
+        {
+          "text": "A circle of stillness sounds perfect.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "I'll be quiet with you.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Stillness is better shared.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Perfect. A small circle. No one needs to perform. We simply are. The tree, the moss, the little Dreamer. All part of the same still moment.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Quiet together. That is a gift. Two quiet beings make a gentle silence. It is not empty. It is full of being.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Better shared. Stillness can feel lonely if we hold it alone. Shared stillness becomes peace. The tree taught me that, I think. Or maybe the moss.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5515,94 +4991,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Lunae": {
+  "Lord Roar": {
     "start": {
-      "text": "...Mmm. You... approach. I am Lunae. I float. I dream. I......enjoy the clouds. Do you also... enjoy clouds? Or are you......a ground-person?",
+      "text": "Greetings, Dreamer! I have been pacing the beach in a noble manner, as befits a dragon of my station. The waves bow to no one, but I accept their refusal with grace.",
       "choices": [
         {
-          "text": "I love clouds! They're like sky pillows!",
+          "text": "Noble pacing is an important skill.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "I'm a ground-person, but I'd like to understand!",
+          "text": "The waves are famously independent.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "You're SO dreamy! What's it like floating?",
+          "text": "What does a dragon of your station do all day?",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Sky pillows. YES. I sleep ON clouds. I dream IN clouds. Sometimes......I become a cloud. Briefly. It is......liberating. No weight. No boundaries. Just......drifting.",
+      "text": "Important and underappreciated. A noble pace says, 'I am here, I am important, but I am not rushing.' Rushing is for peasants and squirrels.",
       "choices": [
         {
-          "text": "That sounds INCREDIBLE! Can I try?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Do you ever worry about drifting away forever?",
-          "next": "final",
+          "text": "Squirrels do rush a lot.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "What do you dream about when you're cloud-sleeping?",
-          "next": "final",
+          "text": "I should pace more nobly.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Important but not rushing is a fine line.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Understand? It is simple. The ground is... HARD. Heavy. The sky is... SOFT. Light. I choose soft. I choose light. You may choose too. Not floating. But......lightness. In here.",
-      "choices": [
-        {
-          "text": "Lightness in here... I like that!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How do I find lightness when life is heavy?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're wise! For a gas giant!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Floating? It is... FREEDOM. No walls. No floors. Just......air. Movement. Sometimes I float through STORMS. They are......intense. Beautiful. Dangerous. But I always return. To calm. To peace. To... pink.",
-      "choices": [
-        {
-          "text": "Storms sound SCARY! But also exciting!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You always come back? To this spot?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Is pink your favorite color? It suits you!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this feeling. A wisp of my... essence. Hold it. Breathe it. When life is heavy... remember Lunae. Remember......that you can choose lightness. That you can......float. Even when your feet are on the ground. Your soul... can drift. Come find me. When you need... sky.",
+    "c1a": {
+      "text": "Squirrels rush constantly. Up trees, down trees, across branches. They have no sense of ceremony. I respect their energy, but not their pacing.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5611,48 +5042,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hmm... Hello... I was... floating... through the clouds... They are... lovely today... Would you... like to float... with me?\"",
+    "c1b": {
+      "text": "Pace more nobly. Good. Shoulders back, steps deliberate, expression thoughtful. Imagine you are being observed by history. History appreciates good posture.",
       "choices": [
         {
-          "text": "Floating through clouds sounds amazing!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Amazing... Yes... The clouds... are like... dreams within dreams... Soft... weightless... You close your eyes... and you are... everywhere...\"",
+    "c1c": {
+      "text": "A fine line, but achievable. Move with purpose, yet without haste. The island will wait for you. It has nothing better to do, honestly.",
       "choices": [
         {
-          "text": "That sounds incredibly peaceful!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Beautiful... Thank you... My colors... change... with my mood... Pink is... contentment......blue is... curiosity......you make me... pink...\"",
+    "c2": {
+      "text": "Independent indeed. They come, they go, they wet the sand without asking permission. It is chaos. Beautiful chaos, but chaos nonetheless.",
       "choices": [
         {
-          "text": "I'm honored to make you pink!",
-          "next": "alt_final",
+          "text": "Chaos can be beautiful.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "The beach doesn't mind the chaos.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Someone should organize the waves.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Feel like......whispers......cotton candy... that doesn't stick......like being hugged... by nothing......and everything...\"",
+    "c2a": {
+      "text": "Beautiful chaos. The waves do not plan, yet they create patterns. They are artists without intent. I find that both impressive and slightly annoying.",
       "choices": [
         {
-          "text": "That's the most poetic description ever!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Take this feeling. A wisp of my... essence. Hold it. Breathe it. When life is heavy... remember Lunae. Remember......that you can choose lightness. That you can......float. Even when your feet are on the ground. Your soul... can drift. Come find me. When you need... sky.",
+    "c2b": {
+      "text": "The beach does not mind. It simply accepts each wave, smooths it out, and waits for the next. Beaches are very forgiving hosts.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Organize the waves? I have tried. I issued a decree. The waves ignored it. This is why dragons prefer land. Water is too democratic.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "All day? Many duties. I inspect the sand for suspicious textures, greet passing birds, and decree which rocks look the most dignified. It is exhausting work.",
+      "choices": [
+        {
+          "text": "Dignified rocks are essential.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Suspicious sand textures sound serious.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Decreeing things seems like fun.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Essential! A dignified rock anchors the beach. It gives the sand something to be proud of. Without dignified rocks, a beach is just a pile of wet sand.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Serious! Sand should be smooth, or pebbly, or pleasantly damp. Suspicious textures must be investigated at once. I take my inspections very seriously.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Fun and also a responsibility. When I decree something, the island is obligated to pretend to listen. It is a noble tradition between monster and nature.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5662,94 +5163,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Willow": {
+  "Snug": {
     "start": {
-      "text": "Hello, dear one. I am Willow. I listen. I hum. I......hold space for those who need it. You look like you carry something. Would you like to... set it down? Here? With me?",
+      "text": "Oh. Um. Hi, Dreamer. I was behind this rock. Not hiding, exactly. Just... being behind it. In a thoughtful way. The rock and I were having a quiet moment.",
       "choices": [
         {
-          "text": "I... actually, yes. I've been holding onto a lot.",
+          "text": "Quiet moments with rocks are valid.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "You're so calming! Just being near you helps!",
+          "text": "You don't have to come out.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Do you hum? I'd love to hear it!",
+          "text": "I like thoughtful hiding.",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Set it down. All of it. The worry. The fear. The......heavy things. I have held centuries of burdens. Birds. Storms. Lost souls. Your burden? I will hold it too. You are not too much. You are... welcome.",
+      "text": "Valid? Good. Rocks don't judge. They just sit there and listen to the wind. Being near one feels like being near something very patient.",
       "choices": [
         {
-          "text": "Thank you! I feel... lighter already!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How do you hold so much without breaking?",
-          "next": "final",
+          "text": "Rocks are excellent listeners.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "Can I visit you whenever I need to unload?",
-          "next": "final",
+          "text": "Patience is a rock's main feature.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Quiet moments should be respected.",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Calming? It is my nature. The willow bends but does not break. We learn from wind. From storm. From......the weight of snow. You too can learn to bend. To sway. To... survive.",
-      "choices": [
-        {
-          "text": "Bend but don't break... I'll remember that!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your humming is like a meditation!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Teach me to be more like a willow!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Hmmmm. This is the song of roots. Of deep earth. Each willow has a different hum. Mine is......teal. Calm. Steady. Do you feel it? In your chest? That is... peace.",
-      "choices": [
-        {
-          "text": "I CAN feel it! It's vibrating through me!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's the most beautiful sound ever!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you teach me to hum like that?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this memory. When you are heavy... hold it. When you are lost... listen. It will hum. Quietly. Reminding you......that you can bend. That you can release. That you are... held. Come back. Anytime. My branches... are always open.",
+    "c1a": {
+      "text": "Excellent listeners. They don't interrupt. They don't ask hard questions. They just let you be nearby, existing at your own speed.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5758,48 +5214,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Hello, dear one. I am Willow. I was just... humming. Would you like to hear? Or perhaps... you would prefer to sit? The shade is... comfortable.\"",
+    "c1b": {
+      "text": "Main feature. Patience, strength, quietness. If rocks had a list of skills, patience would be at the top. Followed by 'good at sitting.'",
       "choices": [
         {
-          "text": "I'd love to hear your humming, Willow!",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Hmmmm......hmmmm... It is... an old song. From before the dream. The trees... remember. Even when we do not.\"",
+    "c1c": {
+      "text": "Respected. Yes. Not everything needs to become loud or public. Some moments are just for the rock and the monster behind it. That's enough.",
       "choices": [
         {
-          "text": "That melody is hauntingly beautiful!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Sit......please. The earth here... is kind. It remembers... every visitor. It will remember... you.\"",
+    "c2": {
+      "text": "I don't have to come out? That's nice. Sometimes people want you to come out even when you aren't ready. It's okay to stay where it's safe.",
       "choices": [
         {
-          "text": "The earth remembers me? That's comforting!",
-          "next": "alt_final",
+          "text": "Stay where it's safe as long as you need.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Coming out can happen slowly.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Safe places are important.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Secret? There is... no secret. I simply... listen. To the wind. To the rain. To the... small things. Peace is not... made. It is... allowed.\"",
+    "c2a": {
+      "text": "As long as I need. That's a generous amount of time. I might need a while. Or I might come out sooner. Either way, it's okay because you said so.",
       "choices": [
         {
-          "text": "'Peace is allowed'—I'm writing that down!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Take this memory. When you are heavy... hold it. When you are lost... listen. It will hum. Quietly. Reminding you......that you can bend. That you can release. That you are... held. Come back. Anytime. My branches... are always open.",
+    "c2b": {
+      "text": "Slowly. One eye, then a little more, then maybe a wave. Coming out doesn't have to be a grand event. It can be a small movement.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Important. Everyone needs a place where the world can't see them too clearly. A rock, a bush, a quiet thought. Safe places hold us together.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "Thoughtful hiding. I like that. It's not scared hiding. It's just... considering things from a comfortable distance. With a rock as a friend.",
+      "choices": [
+        {
+          "text": "Considering from a distance is wise.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Rocks make good friends.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Comfortable distance is underrated.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Wise. I don't always want to be right in the middle. Sometimes I want to watch from the edge and understand before I join. The rock helps with that.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Good friends. They don't leave. They don't get bored. They're just there, solid and steady. It's nice to have a friend who won't suddenly move away.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "Underrated. Distance can feel kind. It gives you room to breathe and be yourself. I like people who understand that without me having to explain.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5809,94 +5335,49 @@ const WRITTEN_DIALOGUES = {
       ]
     }
   },
-  "Rusty": {
+  "Gigglegrow": {
     "start": {
-      "text": "Oh GREAT. Another organic. Here to tell me I'm 'quaint'? That my art is 'charming'? I'm Rusty. I collect JUNK. I build ART. And I do NOT need your pity. Unless you have spare parts. Then we can TALK.",
+      "text": "Dreamer! There you are! I was bouncing in circles waiting for someone to bounce with. Bouncing alone is fine, but bouncing near someone is basically a party. Want to be a party?",
       "choices": [
         {
-          "text": "I have NO pity! Only respect! Show me your art!",
+          "text": "I'd love to be a party.",
           "next": "c1",
-          "friendshipDelta": 1
+          "friendshipDelta": 0
         },
         {
-          "text": "Actually, I DO have some spare parts! What do you need?",
+          "text": "I'm not much of a bouncer, but I can cheer.",
           "next": "c2",
           "friendshipDelta": 0
         },
         {
-          "text": "Your art? I'd love to see what you've created!",
+          "text": "What makes bouncing near someone a party?",
           "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
           "friendshipDelta": 0
         }
       ]
     },
     "c1": {
-      "text": "Respect? Rare. Fine. Look. That's 'Despair in Three Bolts.' That's 'Hope With a Broken Spring.' And THAT—is 'Capitalism's Remainder.' Made from 47 discarded toasters. Get it? Toast? Capitalism?...No? Tough audience.",
+      "text": "Yay! A party! With two people it's a tiny party, but tiny parties are the best kind because everyone gets to be important. You're the guest of honor.",
       "choices": [
         {
-          "text": "That's GENIUS! Social commentary through junk!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I get it! It's brilliant! Toast = consumed!",
-          "next": "final",
+          "text": "Guest of honor! That's a big job.",
+          "next": "c1a",
           "friendshipDelta": 1
         },
         {
-          "text": "You're a REAL artist! A junk philosopher!",
-          "next": "final",
+          "text": "Tiny parties are underrated.",
+          "next": "c1b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Do I get a party hat?",
+          "next": "c1c",
           "friendshipDelta": 1
         }
       ]
     },
-    "c2": {
-      "text": "Parts? What KIND? I need: washers, springs, ANYTHING copper, and—a working speaker from before 2010. Modern speakers are TRASH. No SOUL. You have old tech? You're......my hero.",
-      "choices": [
-        {
-          "text": "I might have an old radio! Will that work?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Why pre-2010? What's special about old speakers?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'll scavenger hunt for you! Consider it done!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "See this? Found the pieces in a landfill. ALL of it. People see trash. I see......potential. Beauty. Stories. That bolt? Held together a child's bicycle. That wire? Powered someone's first computer. Everything has a history. Even junk.",
-      "choices": [
-        {
-          "text": "You give discarded things a SECOND life!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's so poetic! Junk with memories!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I help you build something? Someday?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. It's... 'Friendship.' I know. CHEESY. But....you didn't pity me. You saw the ART. So. Remember it. Put it on your mental desk. And remember:...even broken things can make something beautiful. Now go. I have WORK to do. And possibly a nap.",
+    "c1a": {
+      "text": "Big job, but easy. You just have to smile, accept tiny compliments, and occasionally say 'hooray.' I believe in your guest-of-honor abilities.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5905,48 +5386,118 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     },
-    "alt_start": {
-      "text": "\"Oh, LOOK. A visitor. I'm Rusty. I collect......this. Art, some call it. Junk, others say. I say it's whatever pays the bills. If I had bills.\"",
+    "c1b": {
+      "text": "Underrated! Big parties are loud and confusing. Tiny parties have room for every feeling. You can be silly, quiet, bouncy, or all three at once.",
       "choices": [
         {
-          "text": "This IS art! What's your favorite piece?",
-          "next": "alt_2a",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2a": {
-      "text": "\"Favorite? That one. Made from: Chester's old wrenches, Boll's calculation scraps, and......a toaster that betrayed Gearwick. It's called 'Betrayal at Breakfast.' Very moving.\"",
+    "c1c": {
+      "text": "A party hat? I don't have one, but I can make you a flower crown. Or a leaf hat. Or a very enthusiastic smile that acts like a hat. Smile hats are in fashion.",
       "choices": [
         {
-          "text": "That's incredible! The toaster had it coming!",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2b": {
-      "text": "\"Care? I don't......okay, FINE. I care. This junk? It has STORIES. Every dent. Every scratch. Someone threw it away. I... didn't.\"",
+    "c2": {
+      "text": "Cheering counts! Cheering is the soundtrack of bouncing. Without cheers, bouncing is just movement. With cheers, bouncing becomes a celebration.",
       "choices": [
         {
-          "text": "You're giving them a home! That's kind!",
-          "next": "alt_final",
+          "text": "I'll be your cheering section.",
+          "next": "c2a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Every bounce deserves a cheer.",
+          "next": "c2b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Celebration sounds better than movement.",
+          "next": "c2c",
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_2c": {
-      "text": "\"Where? Everywhere. Chester drops things. Bolt leaves sparks. Sprocket......'improvises' materials from my pile. The island PROVIDES. If you know... where to look.\"",
+    "c2a": {
+      "text": "Cheering section of one! That's all I need. One loyal cheerer can make a thousand bounces feel like a parade. You're hired, starting now. Hooray!",
       "choices": [
         {
-          "text": "Can you teach me where to look?",
-          "next": "alt_final",
+          "text": "Goodbye!",
+          "next": null,
           "friendshipDelta": 1
         }
       ]
     },
-    "alt_final": {
-      "text": "Here. It's... 'Friendship.' I know. CHEESY. But....you didn't pity me. You saw the ART. So. Remember it. Put it on your mental desk. And remember:...even broken things can make something beautiful. Now go. I have WORK to do. And possibly a nap.",
+    "c2b": {
+      "text": "Every bounce deserves a cheer. And every hop, and every skip, and every wiggle. If movement had feelings, it would want to be celebrated.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c2c": {
+      "text": "Better than movement! Celebration has confetti in the heart, even if there isn't real confetti. Today, my heart confetti is all for you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3": {
+      "text": "It's a party because now there are two smiling faces instead of one, and two is a social unit. Scientists agree. Probably. I didn't ask any, but it feels true.",
+      "choices": [
+        {
+          "text": "Two smiling faces is a solid unit.",
+          "next": "c3a",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "Science should study bouncing parties.",
+          "next": "c3b",
+          "friendshipDelta": 1
+        },
+        {
+          "text": "It does feel true, so it counts.",
+          "next": "c3c",
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3a": {
+      "text": "Solid unit. Two smiles, four eyes, a whole lot of good feelings. We could form a club. The Two-Smile Bouncing Society. First meeting: right now.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3b": {
+      "text": "Science should! They could measure bounce height, cheer volume, and party intensity. The results would probably show that fun is good for you.",
+      "choices": [
+        {
+          "text": "Goodbye!",
+          "next": null,
+          "friendshipDelta": 1
+        }
+      ]
+    },
+    "c3c": {
+      "text": "It counts! Truth can be felt as well as proven. I feel that bouncing near you is a party, and feelings are very reliable when they're this bouncy.",
       "choices": [
         {
           "text": "Goodbye!",
@@ -5955,1567 +5506,16530 @@ const WRITTEN_DIALOGUES = {
         }
       ]
     }
-  },
-  "Ember": {
-    "start": {
-      "text": "HIHIHI! I'm Ember! I'm EXCITABLE! I flicker between IDEAS! Want a hug? I'm WARM! Not BURNING! Just......cozy warm! Like a blanket! A BLANKET THAT'S ON FIRE! But SAFE!",
-      "choices": [
-        {
-          "text": "A warm hug sounds PERFECT! Come here!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're so energetic! How do you not exhaust yourself?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Your ember hair is ADORABLE! Does it sparkle all the time?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
+  }
+};
+
+// ===== SEASONAL VARIANTS =====
+// From NeighborRewrite/NPCConvoCool/Saucy/Yeesh2-5.txt, same tree shape.
+// chooseConversationTree (dialogue_smalltalk.js) swaps these in during the
+// matching season; Sweet season uses the default WRITTEN_DIALOGUES tree.
+const SEASONAL_DIALOGUES = {
+  "Cool": {
+    "Piko": {
+      "start": {
+        "text": "Dreamer! The trees are changing their outfits and the wind is helping them decide which color looks best. Hoggy looks extra happy today, and the nights are getting longer so we have more star time. Isn't Cool season lovely?",
+        "choices": [
+          {
+            "text": "It's lovely in every way.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "I like the tree color fashion show.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Happy Hoggy makes everything better.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Every way? That's a lot of ways. My favorite way is the one where the wind wiggles my antennae and I feel like I'm being tickled by the island itself.",
+        "choices": [
+          {
+            "text": "Ticklish antennae are lucky.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The island has good taste in wiggles.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind tickles are free hugs.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Ticklish antennae are definitely lucky. Not every robot gets island tickles. I'm going to stand in this exact spot more often.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The island has excellent taste. Soft breezes, pretty leaves, and just enough wiggle. I would give it five stars if I had five star-hands.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Free hugs from the wind! I accept. Wind hugs don't even rust you. They're the cleanest kind of hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fashion show! The oaks are wearing gold and the palms are staying green because they're rebels. I think the trees are very brave to change colors in public.",
+        "choices": [
+          {
+            "text": "Brave trees deserve applause.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rebel palms are confident.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gold is a bold choice.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Applause for the brave trees. I'll clap very gently so I don't startle any leaves. They've worked hard on this look.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Confident palms. I respect them. While everyone else changes, they say 'no thank you, green is our thing.' That's commitment.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Gold is a bold choice and the trees wear it well. If I wore gold I'd look like a tiny trophy. Which is also nice, but different.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Happy Hoggy is the best kind of Hoggy. His little trot looks springier. I bet the cool air makes his ears flap extra happily.",
+        "choices": [
+          {
+            "text": "Flappy ears are a good sign.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A springy trot is joy in motion.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy should be happy always.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Flappy ears are my favorite weather report. When Hoggy's ears flap like that, it means the island is doing something right.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Joy in motion is the prettiest motion. I'd watch Hoggy trot in circles all afternoon if he wanted to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Hoggy should be happy always. And you. And me. And the wind. Basically everyone except the grumpy rocks, and even they can try.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c1": {
-      "text": "SEE? Cozy! I give the BEST hugs! Warning: I might flicker brighter when happy! Which is ALWAYS! So if you're cold! Or sad! Or JUST EXISTING! I'm HERE! HUG POWER!",
-      "choices": [
-        {
-          "text": "This IS cozy! Like a living fireplace!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're glowing SO bright! You must be SO happy!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I hug you whenever I need warmth?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Rivet": {
+      "start": {
+        "text": "Oh. It's you. I'm not standing here because I enjoy the view. I'm cataloging leaf fall patterns. The wind keeps messing up my counts. And Hoggy keeps trotting through like he owns the place. Longer nights just mean more leaves to track.",
+        "choices": [
+          {
+            "text": "Leaf tracking sounds important.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy does look cheerful today.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The wind isn't trying to ruin your count.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Important? Finally. Yes. Someone has to note that the red ones fall faster than the gold ones. It's not my fault the wind has no respect for data.",
+        "choices": [
+          {
+            "text": "Red leaves are clearly impatient.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind needs better methodology.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Your data keeps the island honest.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Impatient red leaves. Hmph. They probably can't wait to become mulch. Show-offs with their bright coloring.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Wind needs methodology. A clipboard. A schedule. Then maybe I'd trust it with my leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Honest island. Yes. If nobody tracks it, the trees will think they got away with chaotic falling. Not on my watch.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cheerful is one word for it. I'd say 'excessively bouncy.' His ears were flapping in a way that could be considered unprofessional.",
+        "choices": [
+          {
+            "text": "Unprofessional ears are cute.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bouncy is better than gloomy.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy sets his own standards.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Cute? Fine. Maybe a little. But I'm not going to compliment the hog's ears out loud. He already knows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Better than gloomy. I suppose a bouncy hog is preferable to a droopy one. Slightly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy sets his own standards and the wind does too. I am the only one around here who follows any rules. Typical.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Not trying? It sure looks like trying. The wind grabs a leaf, twirls it, drops it somewhere suspicious. Very unorganized behavior.",
+        "choices": [
+          {
+            "text": "Maybe the wind is just playful.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Suspicious leaf placement is a real issue.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Organized wind would be boring.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Playful. That's a generous word for 'leaf thief.' But I suppose it does look sort of graceful. If you like that kind of thing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A real issue. A leaf that lands somewhere it didn't plan to is basically a leaf lying about its destination.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Boring organized wind. No twirling, no surprise landings. You make it sound awful. I mean... acceptable. It would be acceptable.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c2": {
-      "text": "Exhaust? Hmm! I don't THINK I do! Maybe because I'm FIRE? Fire just... BURNS! It doesn't get tired! Unless someone pours water on me! THEN I'm exhausted! And SAD! And STEAMED! Literally!",
-      "choices": [
-        {
-          "text": "I'll make sure NO ONE pours water on you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's amazing! Unlimited energy! Teach me!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're like a perpetual motion machine! But CUTER!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Shade-7": {
+      "start": {
+        "text": "Cool season, Dreamer. The trees are slowly dying in the most beautiful way possible. The wind carries their little farewell notes. And somehow Hoggy is happy about all of it. The longer nights at least have the decency to match my mood.",
+        "choices": [
+          {
+            "text": "Beautiful dying is still beautiful.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happiness is a mystery.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Longer nights are a gift.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Still beautiful. The leaves burn gold and red before they let go. It's tragic and warm at the same time. I respect the commitment.",
+        "choices": [
+          {
+            "text": "Tragic warmth is the best warmth.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Commitment to color is noble.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Burning without fire is poetic.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "The best warmth is the kind that knows it's temporary. It makes you appreciate the glow while it's still there.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Noble indeed. If I ever changed color I'd do it slowly and with many sighs. The trees beat me to it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Poetic and slightly unfair. How dare they be beautiful without even trying? Some of us have to recite poems for that effect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "A mystery? Or perhaps Hoggy simply enjoys watching things transform. I don't trust transformation. It usually involves rust.",
+        "choices": [
+          {
+            "text": "Transformation can be gentle.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy doesn't seem to rust.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maybe Hoggy sees beauty in change.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Gentle transformation? I suppose leaves don't scream when they fall. They just release. That's almost elegant.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Hoggy doesn't rust. That probably helps his mood. I, on the other hand, have to worry about moisture in a very personal way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Beauty in change. A hog philosopher. Strange, but this is a dream. Strange is the local currency.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "A gift. Yes. Darkness that arrives earlier, stays longer, asks nothing. The day is exhausting with all its brightness and leaf announcements.",
+        "choices": [
+          {
+            "text": "Night asks nothing and gives stars.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Brightness can be loud.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Darkness is a soft blanket.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stars are the night doing its best. I prefer them to leaf announcements. Quiet, distant, and not trying to be noticed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Loud brightness. The day shows off. 'Look at me, I'm warm and yellow.' We get it. Relax.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A soft blanket that doesn't ask you to be cheerful. That's luxury. I would wrap myself in it if I could reach.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c3": {
-      "text": "SPARKLE?  See? It sparkles when I'm happy! When I'm excited! When I see SHINY THINGS! Also when I sneeze!...Excuse me! That's NORMAL! For fire sprites!",
-      "choices": [
-        {
-          "text": "You're like a living fireworks display!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can I watch you sneeze again? For science?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "The sparkles are MESMERIZING! I could watch forever!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Cypher": {
+      "start": {
+        "text": "Dreamer, excellent seasonal timing. I've been sampling leaf pigments and calibrating wind velocity with my antennae. Hoggy's happiness index is up forty percent, and I've logged that the nights are indeed lengthening. Want to see my notes?",
+        "choices": [
+          {
+            "text": "Show me the leaf data.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "How does one measure happy Hoggy?",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Longer nights are good for stargazing.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Leaf data indicates a shift from chlorophyll green toward carotenoid yellow and anthocyanin red. In dream terms: the trees are switching to their warm palette.",
+        "choices": [
+          {
+            "text": "Dream science is my favorite science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm palette suits the island.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have very scientific antennae.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Dream science has fewer rules and more charm. I like a field where the data can also be pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The island wears warm colors well. It has excellent seasonal fashion sense. I'd rate it highly if I rated things socially.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Scientific antennae are a useful feature. They detect wind, wonder, and occasionally sandwiches. Mostly wind and wonder.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hoggy happiness index is calculated from ear angle, trot frequency, and snout elevation. Today he scored a nine out of ten. Very statistically significant.",
+        "choices": [
+          {
+            "text": "Nine out of ten is excellent.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snout elevation matters more than people think.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy is a reliable metric.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Excellent for a hog. I tried to score myself but my own trot frequency is too low to register. Hoggy outperforms me in joy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "More than people think. A raised snout indicates curiosity. A lowered snout indicates contentment. Hoggy has mastered both.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy is a reliable metric because his mood doesn't depend on variables I can't control. Unlike the wind, which refuses peer review.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Stargazing efficiency increases with longer nights. More darkness equals more observation time. I've already spotted three constellations that resemble clouds I've previously catalogued.",
+        "choices": [
+          {
+            "text": "Constellations are just night clouds.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Three is a respectable count.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Observation time is never wasted.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Night clouds made of stars. Yes. That's either beautiful or a categorization error, and I choose beautiful.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Respectable. I could count more, but then I'd stay up too long and my battery would get philosophical.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Observation time is the opposite of wasted. It turns darkness into information, and information into happiness. Approximately.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "final": {
-      "text": "Here's my promise! Whenever you're cold! Whenever you're sad! Whenever you need......WARMTH! Call me! I'll COME! And I'll hug you! And you'll remember:...even in the coldest moments, there's always something warm waiting. Like ME! Now! Who else needs a hug?! I have HUGS FOR EVERYONE!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
+    "Om-Bit": {
+      "start": {
+        "text": "The trees are releasing what they no longer need, Dreamer. The wind carries each leaf without clinging. Hoggy seems happy because he lives in the moment. And the longer nights invite us to rest. There is much to observe in Cool season.",
+        "choices": [
+          {
+            "text": "Letting go is a good lesson.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy is a teacher of joy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Rest is underrated.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Letting go is difficult for all beings. Even leaves do not fall until they are ready. We can learn from their patience.",
+        "choices": [
+          {
+            "text": "Patience makes falling graceful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "I hope I'm ready when I need to let go.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees are quiet teachers.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Graceful falling. A leaf that lets go at the right moment makes no sound, yet the whole island notices.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "You will be ready. The island does not rush its leaves, and it will not rush you.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Quiet teachers, yes. They do not ask for attention. They simply show us how to change color and release.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hoggy does not plan his happiness. He does not count the hours. He simply is. That is a kind of wisdom many machines forget.",
+        "choices": [
+          {
+            "text": "Simply being is hard sometimes.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy makes it look easy.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Machines can learn from hogs.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Simply being is hard because the mind likes lists. Hoggy has no lists. Only trot and sniff and sun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "He makes it look easy because he does not compare. Comparison is the thief of hog joy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Machines can learn from hogs. We can learn from everyone. Even the wind learns to be patient, eventually.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Rest is how the island prepares. The longer nights are not empty. They are full of stillness, which is its own kind of work.",
+        "choices": [
+          {
+            "text": "Stillness is productive.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The night holds a lot.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rest prepares us for bright days.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Productive stillness. The world does not stop, but our need to chase it can pause. That is enough.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "The night holds stars, cool air, and the memory of warm days. It is not empty. It is full.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Rest prepares us. When the bright days return, we will meet them with fuller hearts. For now, we settle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_start": {
-      "text": "\"HI! I'mEmber! Iwasjustthinkingabout—oh! You'reHERE! Wantahug? I'mwarm! NotBURNINGwarm! Just......cozywarm! Likeablanket! Aburnyblanket!\"",
-      "choices": [
-        {
-          "text": "A warm hug sounds perfect!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
+    "Sir Cogs-a-Lot": {
+      "start": {
+        "text": "Fair traveler Dreamer! The trees have donned their heraldic banners of gold and crimson. The wind blows as a royal herald, and Hoggy stands in fine spirits. The longer nights are perfect for tales beside the warm stones.",
+        "choices": [
+          {
+            "text": "Heraldic trees are magnificent.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy in fine spirits is good news.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tales suit the longer nights.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Magnificent indeed! Each tree flies its own colors. The oaks wear gold like knights of summer's end. The palms keep their green, loyal as squires.",
+        "choices": [
+          {
+            "text": "Knights of summer's end is a good title.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Loyal green squires deserve respect.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The island is a colorful court.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Knights of summer's end, riding the wind to their final rest. A noble fate for a leaf.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Green squires indeed. They hold the line while others change. Loyalty is not always loud, but it is always noticed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "A colorful court, and we are all invited. Even the humblest pebble may admire the royal trees.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Good news and better news. His trot has spring, his snout points proudly, and his ears flap with noble glee. A happier steed one could not ask for.",
+        "choices": [
+          {
+            "text": "Noble glee is a fine quality.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy would make a good knight.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A happy steed blesses the land.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Noble glee is the best glee. It has dignity and joy in equal measure. Hoggy carries it well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Hoggy would make a good knight. He is brave, round, and possessed of excellent ears. I would joust beside him gladly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "A happy steed blesses the land. The soil feels it, the wind knows it, and the leaves fall a little more gracefully.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Tales and longer nights are old friends. When the sun departs early, stories arrive to fill the dark with warmth. I shall speak of brave leaves and windy quests.",
+        "choices": [
+          {
+            "text": "Brave leaves make brave tales.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Windy quests sound exciting.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories warm the dark nicely.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Brave leaves, yes. They do not fear the ground. They fall with color and purpose, as all heroes should.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Exciting and slightly dizzying. I would quest through any wind if the destination were honorable.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Stories warm the dark like embers of cheer. Longer nights simply give us more room for them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2a": {
-      "text": "\"PERFECT! See? NotBURNING! Just......LOVING! Most people areSCARED! They think 'fire equals OW!' ButI'mDIFFERENT! I'mFRIENDfire!\"",
-      "choices": [
-        {
-          "text": "You're the best hug I've ever had!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Tinker": {
+      "start": {
+        "text": "Oh. H-hello, Dreamer. I was watching the small red leaves. They fall really slowly when the wind is gentle. Hoggy walked by earlier and his tail was doing a happy wiggle. And the nights are getting longer. It makes the sky feel bigger.",
+        "choices": [
+          {
+            "text": "Red leaves are worth watching.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Happy Hoggy tail is good news.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "A bigger sky is cozy.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "They are. The tiny ones especially. They spin like little dancers who aren't sure of their steps. I like not-sure dancers. They remind me of me.",
+        "choices": [
+          {
+            "text": "Not-sure dancers are brave.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Spinning leaves are pretty.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You dance well when you move.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Brave to spin even when you're unsure. I would applaud but I don't want to startle the leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Pretty and quiet. Quiet pretty things are my favorite kind. They don't ask for attention.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Me? I mostly squeak. But thank you. Maybe squeaking is a kind of dance. A small one.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "G-good news. Hoggy's tail wiggle means he's comfortable. I only wiggle when I'm nervous, so it's nice that some creatures wiggle for happy reasons.",
+        "choices": [
+          {
+            "text": "Happy wiggles are the best wiggles.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Nervous wiggles are valid too.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy shares his comfort.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "The best wiggles. I hope I can wiggle happily someday. For now I wiggle shyly, which is still movement.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Valid. Nervous wiggles mean you're trying. Trying is brave, even when it squeaks.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy shares his comfort just by passing by. It's like he leaves little warm footprints in the air. Maybe.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Bigger. More room for stars, I think. The stars look farther away in Cool season. Or maybe I'm just noticing them more because the nights last longer.",
+        "choices": [
+          {
+            "text": "Noticing more is a gift.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Farther stars feel peaceful.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Longer nights give us time.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A gift, yes. The island gives us longer nights so we have time to see things we usually miss.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Peaceful. Farther stars don't demand anything. They just glow quietly and let you look.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Time is the best gift. More time to watch leaves, more time to see Hoggy, more time to say hello.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2b": {
-      "text": "\"FAST? Well......IhaveSOMANYideas! Like: whatifwehadaparty? AndwhatifitRAINScakes? Andwhatif—sorry. Igotdistracted. WhatwereWETalkingabout?\"",
-      "choices": [
-        {
-          "text": "We were talking about your amazing hugs!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Zap-Zap": {
+      "start": {
+        "text": "Dreamer! Cool season is here and the wind is recharging me! The trees are throwing a color party and Hoggy is dancing in it. Plus the nights are longer, which means more star viewing time. I love everything right now!",
+        "choices": [
+          {
+            "text": "Wind recharging is useful.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Color parties are the best parties.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy dancing is adorable.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Useful and crackly! I can feel my circuits humming when a good breeze goes by. It's like the island is plugging me in with air.",
+        "choices": [
+          {
+            "text": "Air power is clean energy.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Humming circuits sound happy.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The island is a good charger.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Clean energy from the sky. I approve. No wires, no plugs, just whoosh and buzz. Perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Happy humming is my favorite sound. It means all my parts agree that today is good.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The island is a very good charger. It never overcharges. It just gives exactly enough breeze to make me sparkle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Best parties have no invitations. The trees just decided to turn gold and red and orange all at once. Even the wind showed up with streamers made of leaves.",
+        "choices": [
+          {
+            "text": "Leaf streamers are eco-friendly.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Everyone loves an open party.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gold and red are party colors.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Eco-friendly and pretty. When the party is over, the streamers become mulch. Very efficient.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Open party! My favorite kind. You don't have to knock, you just show up and smile at trees.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Gold and red are definitely party colors. If I threw a party I'd decorate in leaf colors too.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Adorable and bouncy! Hoggy's little dance looks like he's trying to catch the breeze with his whole body. I want to dance like that too.",
+        "choices": [
+          {
+            "text": "Dancing with the wind is fun.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy is a party animal.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You should dance more often.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Dancing with the wind is the best because you never step on anyone's toes. The wind has no toes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Hoggy is a party animal, literally. He brings the joy and the snorts and the excellent ear action.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "I should dance more often. You're right. The wind and the leaves and Hoggy have given me permission just by existing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2c": {
-      "text": "\"How? Well......I'mFIRE. ButI'malso......KINDNESS! FirecanBURN. OrfirecanWARM! IchooseWARM! AlwaysWARM!\"",
-      "choices": [
-        {
-          "text": "That's a beautiful choice, Ember!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Boo-Boo": {
+      "start": {
+        "text": "Boo! Hehe. Did the wind blow my 'boo' away? The trees look like candy corn now. And Hoggy was snorting so happily I giggled all by myself. The nights are getting longer, so I get to play in the moon more. Hi, Dreamer!",
+        "choices": [
+          {
+            "text": "Candy corn trees are cute.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy snorts are funny.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "More moon time sounds fun.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Cute and yummy-looking. I want to hug a tree but I might float right through it. Ghost hugs are mostly feelings anyway.",
+        "choices": [
+          {
+            "text": "Feelings count as hugs.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Floating through trees is ghost style.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Candy colors make everything sweet.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Feelings definitely count. I just gave you a ghost hug full of candy-tree feelings. Did you feel it? It was warm and floaty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Ghost style is floating through things and smiling anyway. It's very advanced.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Sweet colors make sweet thoughts. My whole mind tastes like candy corn now. That's a nice way to be.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Funny because they're happy snorts. Like Hoggy is laughing from his nose. I tried to snort once but it just came out as a tiny 'boo.'",
+        "choices": [
+          {
+            "text": "Tiny boo snorts are adorable.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Nose laughter is a talent.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy teaches good snorting.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Adorable? Maybe I could be a nose-laughter ghost. A boo-snorter. I'd need practice and a willing Hoggy coach.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Nose laughter is a real talent. Not everyone can make their nose sound cheerful. Hoggy is gifted.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy teaches by example. That's the best teaching. No words, just happy snorts and trots.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Moon time is my favorite time. The moon is round and soft-looking, like a friend who never leaves. Longer nights mean more friend time.",
+        "choices": [
+          {
+            "text": "The moon is a loyal friend.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "More friend time is good time.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Soft moons are cozy.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Loyal and glowy. The moon watches us all night and never complains. I want to be like the moon when I grow up.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "More friend time is the best math. Longer nights equal more moon, more smiles, more me floating around happily.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Cozy and round. If I could sit on the moon I'd probably sink right through, but the thought is warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_final": {
-      "text": "",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
+    "Wisp": {
+      "start": {
+        "text": "Oh. You. I suppose you've come to admire the trees too. They're showing off with all those reds and golds. The wind is at least crisp today, which is acceptable. Hoggy passed by looking absurdly cheerful. And the nights are longer, so I have more acceptable breezes to judge.",
+        "choices": [
+          {
+            "text": "Trees showing off is accurate.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Crisp wind is a good wind.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's cheer is undignified.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Accurate? They know exactly what they're doing. One tree turns red and suddenly every leaf wants attention. It's frankly embarrassing.",
+        "choices": [
+          {
+            "text": "Attention-seeking leaves are dramatic.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Red is a bold choice.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Let them have their moment.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Dramatic leaves. If they had tiny voices they'd be saying 'look at me, look at me.' Which is exactly what they're doing visually.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Bold and slightly aggressive. Red says 'I am here and I am leaving soon.' A lot of confidence for something about to fall.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Fine. They can have their moment. It is brief, colorful, and I suppose not entirely unpleasant.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Good wind. Not too pushy, not too lazy. It moves my gauze without tangling it. That rarely happens.",
+        "choices": [
+          {
+            "text": "Untangled gauze is a win.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A wind with manners is rare.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You deserve a tidy breeze.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A win. My gauze and I have an agreement: if the breeze behaves, we will float without complaint.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Rare and appreciated. Most winds treat me like a kite. This one treats me like a guest.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "A tidy breeze is all I ask. Is that so much? Apparently it is, most days.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Undignified is the word. Trotting with ears flapping, snout raised, tail doing that ridiculous wiggle. I looked away. Mostly.",
+        "choices": [
+          {
+            "text": "Looking away mostly still counts as looking.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ears flapping has charm.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ridiculous can be cute.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Mostly counts. I definitely did not watch him trot past three times. That would be far too interested of me.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Charm? Fine. Flapping ears catch the light. It's objectively picturesque. I hate that I noticed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Cute is a strong word. I would say 'tolerably ridiculous.' But you may call it cute. I won't stop you.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Morwen": {
+      "start": {
+        "text": "Cool season, Dreamer. The trees are setting themselves on fire in slow motion. The wind carries their old songs. And Hoggy—Hoggy is happy, somehow, watching the world burn color. The longer nights feel like a velvet curtain drawing closed.",
+        "choices": [
+          {
+            "text": "Slow-motion fire is beautiful.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happiness is a warm light.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Velvet nights sound lovely.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and terrible. The leaves flame up and then let go. It's the most graceful goodbye the island performs.",
+        "choices": [
+          {
+            "text": "Graceful goodbyes are rare.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The island performs beautifully.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fire without pain is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Rare. Most goodbyes are messy. But the leaves fall with color and purpose, as if they planned their own ending.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The island always performs beautifully, even in decline. That's the dream's cruel kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art that doesn't hurt. A fire that cools. Only in a dream could goodbye be so kind.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "A warm light in all this coolness. Strange. He doesn't understand tragedy, and maybe that's why he shines.",
+        "choices": [
+          {
+            "text": "Not understanding tragedy is a gift.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy shines by accident.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warmth in coolness is welcome.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A gift. Sometimes the ones who don't understand sorrow remind the rest of us that joy is allowed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "By accident, and therefore honestly. Hoggy doesn't perform his joy. He simply has it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Welcome indeed. I live in coolness, but even I need a warm snout now and then.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Lovely, yes. Darkness that arrives earlier, stays longer, wraps the world in softness. The stars are the jewels on the velvet.",
+        "choices": [
+          {
+            "text": "Stars are night jewels.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Soft darkness is a comfort.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The curtain closing is peaceful.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Jewels that don't demand attention. They simply glow because glowing is what they do.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A comfort. The dark doesn't ask you to be anything. It just lets you be sad or happy or both.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Peaceful. The day makes noise. The night pulls the curtain and whispers 'rest now.'",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Spectra": {
+      "start": {
+        "text": "Dreamer! I've been observing the mechanics of Cool season. Tree pigments shift along predictable warm spectra, wind patterns create measurable leaf drift, and Hoggy's happiness appears to correlate strongly with decreased ambient temperature. Also, the nights are demonstrably longer. Fascinating!",
+        "choices": [
+          {
+            "text": "Tell me about leaf drift.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy is a temperature sensor.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Longer nights are measurable too.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Leaf drift is simple in principle: a falling leaf's path depends on weight, shape, and wind vector. In practice, every leaf thinks it's unique. It's delightful data noise.",
+        "choices": [
+          {
+            "text": "Every leaf is unique, statistically.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Data noise can be delightful.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind vectors sound official.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Statistically unique, yes. The mean leaf falls downward, but the individual leaf has dreams of spiraling.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Delightful noise makes science feel alive. If everything were predictable, I'd get bored and become a cloud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Official-sounding and true. Wind has direction and mood. Today its mood is 'gently dramatic.'",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "A biological thermometer, essentially. His ears lift, his trot quickens, and his overall buoyancy increases as the air cools. I call it the Hoggy Cool Index.",
+        "choices": [
+          {
+            "text": "The Hoggy Cool Index is useful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Buoyancy is an underrated emotion.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy could teach meteorology.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Useful for anyone who wants to know if they should feel cheerful. If Hoggy is bouncy, the weather is good.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Buoyancy is underrated. It measures how much joy is lifting you. Hoggy has high buoyancy today.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy could teach meteorology by demonstration. Forecast: partly bouncy with a chance of snorts.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Indeed. I've been counting dusk-to-dawn intervals. They're lengthening at a steady dream-rate. More darkness means more time for nocturnal observations.",
+        "choices": [
+          {
+            "text": "Nocturnal observations are important.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dream-rate is a good unit.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "More darkness is more opportunity.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Important. The night reveals things the day hides, like stars, quiet thoughts, and the exact shape of shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Dream-rate is my favorite unit. It measures things by how they feel rather than by clocks.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Opportunity, yes. Every extra minute of night is a minute the moon can show off.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Hush": {
+      "start": {
+        "text": "The wind moves without speaking, Dreamer. The trees let their colors fade and fall. Hoggy is happy in the cool air, and the nights grow longer. All of this is the island breathing out. We need only listen.",
+        "choices": [
+          {
+            "text": "Listening is enough.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happiness speaks loudly.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The island's breath is calm.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Enough, and more than enough. We do not need to answer every change. Sometimes we simply witness it, and that is complete.",
+        "choices": [
+          {
+            "text": "Witnessing is complete.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Silence holds understanding.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not answering is a kind of peace.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Complete. A single quiet moment can hold the whole island if we let it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Understanding does not always need words. Sometimes it is simply the space between two breezes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Peace is found in allowing things to be. The leaves fall. The hog trots. We breathe.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Yes. His joy needs no explanation. It is a bell that rings clearly in the cool air. We hear it and are glad.",
+        "choices": [
+          {
+            "text": "Joy is a clear bell.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy rings for all of us.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gladness is simple.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A clear bell needs no translation. Hoggy's happiness tells us the season is kind.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "For all of us, if we choose to hear. His trot is a small sermon on being present.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Simple gladness is the best kind. It does not ask for reasons. It simply is.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Calm, and deep. The longer nights are not an ending. They are the island turning inward, resting its eyes so the stars may open theirs.",
+        "choices": [
+          {
+            "text": "Resting eyes is a good image.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stars open when we rest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Inward turning is not lonely.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "The island closes its bright eyes so the dark may bloom with stars. There is beauty in the exchange.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Yes. When the day rests, the night shows us what was always there, waiting quietly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Not lonely. The island turns inward but never away. It is holding us closer, not pushing us out.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sir Haunts-a-Lot": {
+      "start": {
+        "text": "Fair Dreamer! The trees bear their seasonal banners of gold and flame. The wind blows as a herald through the court of leaves. Hoggy, our noble companion, is in excellent spirits. And the longer nights give us more hours for ghostly vigil.",
+        "choices": [
+          {
+            "text": "Seasonal banners are splendid.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy makes a noble companion.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Ghostly vigil suits the night.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Splendid indeed! Each tree flies its own house colors. The oak wears gold like a knight of the harvest. The palm remains green, faithful as a squire.",
+        "choices": [
+          {
+            "text": "Knights of the harvest are noble.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Faithful green squires are loyal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The forest is a colorful court.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Noble and golden, riding the wind to their rest. A hero's end for every leaf.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Loyal squires hold the green line. They do not seek glory. Their steadiness is their honor.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "A colorful court indeed, and we are all welcome to admire it, peasant and noble alike.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "A most noble companion. His trot is lively, his ears are aloft, and his spirit is merry. I would ride beside him into any leafy battle.",
+        "choices": [
+          {
+            "text": "Merry spirits win battles.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Leafy battles are the best kind.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy is a worthy ally.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Merry spirits win before the battle even begins. Hoggy's joy is his armor.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "The best kind, fought with color and breeze. No wounds, only piles of leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "A worthy ally and a jolly one. I would trust him at my side in any season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "It suits us well. The night is long, the air is cool, and a ghost may keep watch without the sun hurrying him along. I shall patrol the stars.",
+        "choices": [
+          {
+            "text": "Patrolling stars is a noble duty.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun should not rush ghosts.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool nights are made for vigil.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A noble duty. The stars need watching, and I am happy to volunteer my eternity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "The sun should learn patience. Ghosts have unfinished observing to do.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Vigil in cool air is refreshing. The night rewards attention with quiet wonders.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Flutter": {
+      "start": {
+        "text": "H-hello, Dreamer. The wind is a little... tingly today. It moves my gauze around. The trees look warm, like they're wearing soft sweaters. Hoggy made a happy snort when he walked by, and the nights are longer now. I like it when things get quieter.",
+        "choices": [
+          {
+            "text": "Tingly wind sounds nice.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tree sweaters are a cute image.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quieter nights are gentle.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Nice if you don't mind being touched by air. I don't mind. It just makes me feel very floaty and seen at the same time.",
+        "choices": [
+          {
+            "text": "Floaty and seen is a good feeling.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Air touches everyone gently.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Being noticed by wind is sweet.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good. I feel less invisible when the wind moves me. It's like the breeze says 'here you are.'",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Gently. The wind never grabs. It just brushes by like a polite friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Sweet. Even shy ghosts can be noticed by the wind. That's nice to know.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cute. Like the trees are trying to stay warm while they change their minds about being green. I hope they're cozy.",
+        "choices": [
+          {
+            "text": "I hope they're cozy too.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Changing minds is okay.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm colors look warm.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "I hope so too. Cozy trees make cozy shadows and cozy shadows make cozy ghosts.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Okay. The trees can be green, then gold, then gone. They don't have to decide all at once.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Warm colors do look warm. Like little fires that don't burn. I want to stand near them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Gentle. Less busy. The longer nights feel like the island is tucking itself in. I like tucking-in sounds.",
+        "choices": [
+          {
+            "text": "Tucking in is cozy.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Less busy is peaceful.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Night sounds are soft.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Very cozy. The island pulling a dark blanket over its shoulders. Safe and quiet.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Peaceful. Less people running around. More time to be a small ghost near a lantern.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Soft. The night makes everything softer, even my own whisper. I like that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Giggles": {
+      "start": {
+        "text": "Hi Dreamer! The trees are having a color party and the wind is the music! Hoggy was dancing in the leaves and it made me giggle so much I floated in a circle. And the nights are longer, so there are more stars to laugh at!",
+        "choices": [
+          {
+            "text": "Color parties are fun.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy dancing in leaves is hilarious.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stars are good at being laughed at.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun because nobody had to plan it. The trees just showed up in gold and red and orange and started being pretty. The wind brought confetti made of leaves.",
+        "choices": [
+          {
+            "text": "Leaf confetti is the best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unplanned parties are the happiest.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gold and red are excellent colors.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best confetti because it falls slowly and you can watch every piece. Then it turns into ground decoration. Very efficient.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Happiest because nobody worries about invitations. You just see pretty trees and know it's party time.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Excellent colors. If I were a tree I'd wear all three at once. I'd be the most party tree.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hilarious! His little legs go everywhere and his ears flap and he makes happy snorts. I tried to dance like him but I just spun around because I'm floaty.",
+        "choices": [
+          {
+            "text": "Floaty dancing counts.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Happy snorts are musical.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy is a dance teacher.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Floaty dancing is my specialty. I don't have legs, so spinning is basically my version of tap dance.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Musical! Hoggy's snorts could be a song. It would be called 'Happy Hoggy in the Leaves.' I'd listen on repeat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hoggy teaches by being himself. That's the best teaching method. I'd give him a gold star if I had one.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They don't mind! Stars just twinkle and let you giggle. They're very good listeners. And they stay up extra late in the longer nights.",
+        "choices": [
+          {
+            "text": "Twinkling is star laughter.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra late stars are generous.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stars listen well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Star laughter. I knew it. When I giggle at them they probably giggle back in twinkles.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Generous stars. Staying up late just so we have more time to look. That's friendship.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Good listeners. They never interrupt. They just blink and glow and make everything feel okay.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Mochi": {
+      "start": {
+        "text": "Hiya, Dreamer! The grass is crunchy under my paws in a good way. The trees dropped red and gold leaves and I want to make a pile. Hoggy was hopping too, kind of. And the nights are longer, so I get more time to dream about carrots under the stars.",
+        "choices": [
+          {
+            "text": "Crunchy grass is excellent.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Leaf piles are the best goal.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy hopping is cute.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Excellent because it says 'hello paw' every time I hop. It's like the ground is giving me tiny high-fives.",
+        "choices": [
+          {
+            "text": "Ground high-fives are friendly.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tiny high-fives count.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crunchy hellos are cute.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Friendly ground. It makes every hop feel celebrated. I appreciate a supportive lawn.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tiny high-fives are my favorite size. Big high-fives are too much. Tiny ones are just right.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Cute and crunchy. The island has good texture today.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Best goal! I could jump in the pile and leaves would go everywhere. Then I'd hop out and do it again. Forever.",
+        "choices": [
+          {
+            "text": "Forever jumping sounds fun.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Leaves going everywhere is the point.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You'd be the leaf pile champion.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Forever jumping would make me the happiest rabbit. Though eventually I'd need a snack break. Carrots are important.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "The point is absolutely leaves everywhere. Order is boring. Chaos of leaves is joyful.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Leaf pile champion is a title I'd wear proudly. Maybe on a little leaf crown.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Cute! He doesn't hop like a rabbit, more like a bouncy rock. But happy. Very happy.",
+        "choices": [
+          {
+            "text": "Bouncy rock style is unique.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Happy hopping is the goal.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy has his own hop.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Unique and effective. He gets where he's going and he looks cheerful doing it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "The goal of all hopping is happiness. Hoggy understood this before I did.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "His own hop, yes. We all have our way of moving. His way is round and snorty and wonderful.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Shadow": {
+      "start": {
+        "text": "Oh. You. I was just enjoying the sun through the red leaves. Not waiting. The wind is crisp, which is acceptable. Hoggy trotted past making happy noises. And the nights are longer, so I have more time to ignore things in the dark.",
+        "choices": [
+          {
+            "text": "Red-leaf sun is nice.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's noises are cheerful.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Ignoring things in the dark sounds peaceful.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Nice. The leaves filter the sun into little warm spots. I rotate between them. It's a full-time job that I pretend isn't a job.",
+        "choices": [
+          {
+            "text": "Warm spot rotation is important.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretending it's not a job is cat style.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Red filters make good light.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Important and undervalued. A warm spot must be earned and defended, then abandoned when it cools. Such is life.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Cat style. If I admitted it was a job, I might have to thank the sun. We don't do that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good light. Warm, red-tinted, slightly dramatic. It matches my mood on better days.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cheerful and slightly too loud. I didn't look at him. I simply happened to face the direction he was trotting. Coincidence.",
+        "choices": [
+          {
+            "text": "Coincidence happens.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not looking is still awareness.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy earns his loud joy.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Coincidence. Repeated coincidence. Several times. But still technically not watching.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Awareness without engagement. The highest form of acknowledgement, if you ask me.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "He earns it. If I were that round and happy, I'd probably make noise too. Hypothetically.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Peaceful. Darkness doesn't ask anything. It just lets me exist without the sun trying to make me cheerful. I can be whatever mood I want.",
+        "choices": [
+          {
+            "text": "The sun does try hard.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Darkness is a neutral friend.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Whatever mood is valid.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "The sun tries very hard. 'Look at me, I'm bright.' We see you. Relax.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A neutral friend. Darkness doesn't cheer you up and doesn't bring you down. It just is. I respect that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Valid. In the dark I can be aloof, grumpy, or secretly content. No witnesses.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Raven": {
+      "start": {
+        "text": "Cool season, Dreamer. The trees are surrendering their colors to the wind. The air is sharp and honest. Hoggy seems oddly pleased by all this decay. And the nights stretch longer, giving the dark more room to breathe.",
+        "choices": [
+          {
+            "text": "Decaying colors are beautiful.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's pleasure is a puzzle.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Dark needs room to breathe.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful the way fading things can be. A leaf at its brightest is closest to its end. There's a poem in that, and it's not a happy one, but it's true.",
+        "choices": [
+          {
+            "text": "True poems are enough.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Brightest near the end is tragic.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fading has its own color.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Enough. A poem doesn't need to be happy to be good. It only needs to be honest.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragic and familiar. Everything bright eventually falls. That's why we notice it while it's here.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Its own color, yes. Fading isn't gray. It's gold, rust, blood, bronze. The palette of letting go.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "A puzzle. He snorts, trots, wiggles. One would think the cooling world would sober him. Instead he flourishes.",
+        "choices": [
+          {
+            "text": "Some creatures flourish in decline.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy doesn't read the mood.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Joy ignores logic.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Some do. They find their rhythm in the cooling, the darkening, the ending. Hoggy might be one of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Hoggy doesn't read the mood. He reads the grass, the breeze, the moment. That might be wiser.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Logic is overrated. Joy has its own climate and Hoggy lives there year-round.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "It does. Darkness expands like a slow inhale. The stars have more sky to fill. The quiet has more time to settle.",
+        "choices": [
+          {
+            "text": "Stars appreciate the space.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet settling is luxurious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The night inhales slowly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. More room to shine without competing with daylight. The night is generous to small lights.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Luxurious. Quiet that doesn't have to rush. I would live inside that inhale if I could.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Slowly. The world shouldn't gasp into darkness. It should ease in, gracefully, like a final bow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Newton": {
+      "start": {
+        "text": "Ah, Dreamer. A fine Cool season evening, or rather, a longer one. I've been noting the tree pigment transitions, the wind's laminar flow over fallen leaves, and the observable increase in Hoggy's cheerful behavior. The nights are measurably lengthier, which suits my schedule.",
+        "choices": [
+          {
+            "text": "Tell me about pigment transitions.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's cheerfulness is measurable.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Longer nights suit owls.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "The transitions follow a warm spectrum: green chlorophyll degrades, revealing carotenoids and anthocyanins. In simpler terms, the trees are showing off their hidden paint.",
+        "choices": [
+          {
+            "text": "Hidden paint is a fun idea.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees plan their colors.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm spectrum sounds scientific.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Fun and accurate. The trees had these colors all along, hiding under the green. Now they reveal themselves like shy artists.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "They plan by chemistry, which is a kind of planning. I respect a tree with a schedule.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Scientific and beautiful. Science doesn't ruin beauty. It tells us why the beauty exists.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Indeed. His ear angle, trot cadence, and tail elevation all increased. I plotted it on a mental graph. The trend is upward and adorable.",
+        "choices": [
+          {
+            "text": "Adorable data is good data.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tail elevation is a metric.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Upward trends are hopeful.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good data should make you smile. Hoggy's graph is the most smile-inducing dataset on the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A metric, yes. Tail elevation correlates strongly with mood. Hoggy's tail is basically a happiness thermometer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hopeful and quantified. If joy can trend upward, maybe the whole season can too.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do. More darkness means more observation time. I can catalog cloud shapes at dusk, star positions at midnight, and tree silhouettes at dawn. Very efficient.",
+        "choices": [
+          {
+            "text": "Efficient darkness is useful.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Owls are natural night accountants.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "More time is more science.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Useful. Darkness is not wasted time. It's data collection time with fewer distractions.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Accountants of the night. We track stars, silence, and the occasional mysterious rustle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "More time, more science, more wonder. The longer night is a gift to the curious.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lotus": {
+      "start": {
+        "text": "The wind carries the old leaves, Dreamer. The trees release what they held all summer. Hoggy is happy, and so the island is happy. The nights grow longer, inviting us to rest like stones cooling in the dark.",
+        "choices": [
+          {
+            "text": "Releasing is part of growing.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happiness ripples outward.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cooling stones is a good image.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "It is. A tree cannot keep every leaf. Letting go makes room for what comes next, even when what comes next is not yet visible.",
+        "choices": [
+          {
+            "text": "Invisible next things are okay.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Room is made by letting go.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees teach patience.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Okay. We do not need to see the next thing to trust that it will come.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Room made by release. The tree stands lighter. The sky shows through. There is new space.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Trees teach patience by example. They do not pull their leaves back. They let the wind take them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Yes. His joy is a small stone dropped in still water. The circles reach further than he knows.",
+        "choices": [
+          {
+            "text": "Small joys reach far.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ripples are quiet magic.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy affects the island.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Far. A happy hog can warm a whole clearing without knowing he is doing it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Quiet magic, yes. The water doesn't announce the stone. It simply holds the ripples.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "He affects it more than he knows. His trot, his snort, his easy joy. The island notices.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Cooling stones rest without effort. They do not ask the night to be shorter. They simply settle, and that is enough.",
+        "choices": [
+          {
+            "text": "Settling is enough.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stones don't rush the night.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cooling is peaceful.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Enough. To settle is not to fail. It is to allow the world to hold you.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Rushing is a human habit. Stones and islands and hogs know better.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Peaceful. The warm day gives its heat to the night, and the night accepts it gently.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Squire Paws": {
+      "start": {
+        "text": "Fair Dreamer! The leaves have turned to heraldic gold and crimson. The wind carries them like battle flags across the field. Hoggy is in merry spirits, trotting with ears aloft. And the longer nights give us more hours for honorable rest.",
+        "choices": [
+          {
+            "text": "Heraldic leaves are splendid.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy in merry spirits is good.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Honorable rest suits the night.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Splendid! Each leaf is a tiny banner of the season. The oaks wear gold like knights of autumn. The palms stay green, loyal squires to the end.",
+        "choices": [
+          {
+            "text": "Knights of autumn are noble.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Loyal green squires deserve praise.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tiny banners make a brave forest.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Noble and golden, riding the wind to their rest. Each leaf dies a hero's death.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Praise to the green squires! They hold their color while others change. Steadfastness is its own glory.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Brave indeed. A forest full of banners is a forest ready for any seasonal adventure.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Good indeed. His trot has purpose, his snout points bravely, and his ears catch every breeze like little flags. A stout companion for any quest.",
+        "choices": [
+          {
+            "text": "Brave snouts are important.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A stout companion is valuable.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ear flags catch the wind well.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Important for sniffing out adventure. A pointed snout is a brave snout.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Valuable. I would follow Hoggy into any pile of leaves, even if it meant getting leaves in my tabard.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Very well. His ears flap with honor and the wind respects them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "It does. After a day of patrolling butterflies and inspecting picnic blankets, the longer night is a reward. I shall dream of heroic naps.",
+        "choices": [
+          {
+            "text": "Heroic naps are noble.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patrolling butterflies is important work.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rewards should be long.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Noble. Even heroes need rest, and a nap after duty is the most heroic nap of all.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Important and dignified. Butterflies must be monitored for cuteness levels.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Long rewards are the best. The night gives us extra hours because we earned them by being good islanders.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Pebble": {
+      "start": {
+        "text": "H-hello, Dreamer. The leaves are... um... falling in pretty colors. I saw one land right next to my shell. The wind made it spin. Hoggy walked by and I think he smiled? Turtles are bad at telling hog smiles. The nights are longer now. I don't mind. It's quieter.",
+        "choices": [
+          {
+            "text": "Pretty falling leaves are nice.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy probably smiled.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quieter nights are gentle.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Nice. They land softly, most of the time. One almost landed on my head but the wind changed its mind. That was polite of the wind.",
+        "choices": [
+          {
+            "text": "Polite wind is good wind.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Almost-head leaves are close calls.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Soft landings are turtle-friendly.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good wind. It could have dropped the leaf on me but it chose kindness. I remember kindness from the wind.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Close calls make good stories. 'Once a leaf almost landed on me.' Very dramatic, for a turtle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Turtle-friendly landings are important. Hard landings startle me. Soft ones are welcome.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Probably. His mouth looked... smile-shaped. I don't know hogs well. But he seemed happy, so I'll say yes. He smiled.",
+        "choices": [
+          {
+            "text": "Happy hogs look smile-shaped.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "It's nice not knowing for sure.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Saying yes to smiles is kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Smile-shaped and happy. That's enough evidence for me. Verdict: Hoggy was smiling.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Not knowing is okay. Mystery is friendlier when it's about smiles.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind to say yes. I think Hoggy would appreciate being smiled at, even if we can't prove he smiled back.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Gentle. Less hustle. I can stay still for longer without anyone wondering why. In longer nights, stillness is normal.",
+        "choices": [
+          {
+            "text": "Stillness is normal at night.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Longer nights mean longer stillness.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not being wondered about is cozy.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Normal and comforting. The night doesn't expect you to move quickly. It understands turtles.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Longer stillness is a gift. I can practice being a rock with a shell for more hours.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Cozy. Quiet and unobserved. Just me, the leaves, and the slowly cooling ground.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sunny": {
+      "start": {
+        "text": "Hello, friend! Cool season is here and the wind is flying the leaves around like little flags! Hoggy is doing his happy trot and the nights are longer, which means more star-time. I flew loops around a gold tree and it was beautiful!",
+        "choices": [
+          {
+            "text": "Leaf flags are fun.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happy trot is the best.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Star-time is important.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun because they wave as they fall. I tried to catch one but my wing just pushed it. Leaves are very good at not being caught.",
+        "choices": [
+          {
+            "text": "Uncatchable leaves are playful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Waving leaves are friendly.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Catching is optional.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Playful and free. They wave hello and goodbye at the same time. Very talented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Friendly leaves! I would wave back if I had leaf hands. I have wings instead, which are also good.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Optional. Catching isn't the point. The point is watching them dance on the way down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Best! His ears go flap flap flap and his snout points up like he's smiling at the sky. I want to fly next to him but I can't go that slow.",
+        "choices": [
+          {
+            "text": "Flap flap flap is a good sound.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Smiling at the sky is adorable.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Flying slow is hard for parrots.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A very good sound. If I could make flap-flap sounds with my wings I'd do it all day.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Adorable and inspiring. I think I smiled at the sky too, just copying him.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Hard for parrots. We're built for zooming, not trotting. But I can do happy circles above him instead.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Important! Stars only come out when it's dark, and longer nights mean more dark, which means more stars. It's perfect math.",
+        "choices": [
+          {
+            "text": "Star math is perfect math.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "More dark is more stars.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stars are worth waiting for.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Perfect math. The island does the equation for us. More night equals more sparkle. Easy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "More dark is more opportunity for tiny lights. I love opportunities that twinkle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Worth it. Every minute of darkness is worth it when the stars come out and say hello.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Fluffernox": {
+      "start": {
+        "text": "Hiii, Dreamer! The trees put on warm sweaters made of red and gold leaves. The wind is helping them show off. Hoggy was trotting around with his ears all flappy-happy. And the nights are longer, so the moon gets more time to be round and pretty!",
+        "choices": [
+          {
+            "text": "Tree sweaters are adorable.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Flappy-happy ears are the best.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The moon deserves more time.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Adorable! I want to hug a tree but I might get leaves stuck in my fuzz. Leaf fuzz is a new fashion I didn't know I needed.",
+        "choices": [
+          {
+            "text": "Leaf fuzz is a good look.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hugging trees is friendly.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "New fashion is exciting.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Leaf fuzz is very natural fashion. Organic and seasonal. I'd wear it until it falls off on its own.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Friendly and soft. Trees probably like being hugged. They can't say so, but their leaves rustle nicer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Exciting! I love discovering new looks. Today: leaf fuzz. Tomorrow: maybe moss accessories.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Best! When Hoggy's ears flap, it's like he's trying to fly with his head. I tried flapping my arms but I'm too round for lift-off.",
+        "choices": [
+          {
+            "text": "Head-flying is adorable.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Round friends are good friends.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy has flying ears.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Adorable head-flying. If his ears got any bigger he might actually take off. I'd cheer for him.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Round friends are the snuggliest. I'd rather be round and grounded than skinny and floating away.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Flying ears! What a superpower. He can feel the breeze twice as much as anyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Yes! The moon works hard all night. Longer nights mean she gets a longer shift, but she doesn't complain. She's a good moon.",
+        "choices": [
+          {
+            "text": "Good moons don't complain.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long shifts need appreciation.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The moon is a hard worker.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good moons deserve medals. Or at least a thank-you wave. I'm waving right now, in case she sees.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Appreciation is important. If you work all night, you should get thanked in the morning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Hard worker. She glows all night and never asks for a break. The moon is basically the island's night-light hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Grumble": {
+      "start": {
+        "text": "Hmph. It's you. I was just making sure these fallen leaves land in a sensible pattern. Not because I care about pretty colors. The wind keeps disrupting my work. And Hoggy trotted past with that ridiculous happy face. The longer nights just give me more hours to be annoyed.",
+        "choices": [
+          {
+            "text": "Leaf arrangement is important work.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happy face is tolerable.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "More night hours are practical.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Important? Finally someone understands. If leaves fall wherever they want, the island looks messy. Someone has to impose order. Not that I'm passionate about it.",
+        "choices": [
+          {
+            "text": "Orderly leaves look better.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Passion is a strong word.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Messy islands need heroes.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Better. A leaf that knows its place is a civilized leaf. Most leaves are barbarians.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Strong and slightly accurate. Let's say I have opinions. Strong opinions. About leaf geography.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Heroes is a lot. I prefer 'concerned citizen with claws.' But I'll accept the recognition.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Tolerable. His ears were practically vibrating. I did not smile. I simply rearranged my face in a less frowny configuration.",
+        "choices": [
+          {
+            "text": "Less frowny is progress.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Vibrating ears are energetic.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy's joy is contagious.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Progress. I am now only mildly displeased. That's as close to smiling as I get before noon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Energetic and undignified. But I suppose joy vibrates. Fine. His ears can do what they want.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Contagious? Don't be absurd. I have a strong immune system against cheer. Mostly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Practical. More darkness means fewer distractions. I can organize leaves without the sun glaring at me. The moon is more reasonable.",
+        "choices": [
+          {
+            "text": "The moon is reasonable lighting.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sun glaring is annoying.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Night organizing is efficient.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Reasonable. She lights the leaves without interrogating them. The sun asks too many questions.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Annoying. 'Look at me, I'm warm and bright.' Yes, we know. Please dim your enthusiasm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Efficient. Fewer interruptions, more leaf sorting. The night respects a monster on a mission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Vesper": {
+      "start": {
+        "text": "Cool season arrives, Dreamer. The trees are bleeding color into the wind. Hoggy seems pleased by the decline, which I find strange. The nights grow longer and the dark has more space to stretch. It's almost elegant.",
+        "choices": [
+          {
+            "text": "Bleeding color is poetic.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's pleasure in decline is strange.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Dark stretching is elegant.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Poetic and accurate. The leaves don't simply change. They surrender. Each one is a small, bright wound against the sky.",
+        "choices": [
+          {
+            "text": "Surrender can be beautiful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bright wounds are art.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sky holds them gently.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Beautiful surrender. The leaf does not fight the wind. It lets go, and in letting go becomes part of something larger.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Art that hurts a little. That's the best kind. It means the beauty mattered.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gently. The sky doesn't drop them. It receives them. There's a difference.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Strange, or wise. Perhaps he understands that endings are just the world changing costumes. Most creatures fear the costume change.",
+        "choices": [
+          {
+            "text": "Costume changes aren't scary.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy may be wiser than he looks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Endings are rehearsals.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Not scary. Just different. Every season wears the island differently. We are allowed to change clothes too.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Wiser than he looks, probably. Hogs have a way of accepting what the rest of us analyze to death.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Rehearsals for what comes next. The leaf rehearses falling, then performs beautifully.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Elegant, yes. Darkness that expands without hurry. The stars become more visible simply because they have more room.",
+        "choices": [
+          {
+            "text": "Stars like more room.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Slow expansion is luxurious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Visibility is a gift of space.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. Crowded skies make small lights compete. Cool season gives everyone their own corner.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Luxurious. No rush, no announcement. The night simply unfolds like a velvet curtain.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A gift. We see more when there is less. The dark is generous that way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gizmo": {
+      "start": {
+        "text": "Dreamer! I've been studying Cool season mechanics. Tree color change is triggered by daylight reduction and temperature drop. Wind speed increases leaf dispersal. Hoggy's joy levels correlate inversely with heat. And the nights are longer, which I've confirmed by staying up.",
+        "choices": [
+          {
+            "text": "Explain leaf dispersal.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy-heat inverse correlation is interesting.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Staying up to confirm is dedication.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Leaf dispersal is straightforward: a falling leaf has mass, surface area, and an interaction with airflow. In dream terms, the wind takes the leaves on little field trips.",
+        "choices": [
+          {
+            "text": "Field trips for leaves are cute.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mass and surface area matter.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dream terms make science nicer.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Cute and efficient. The wind acts as a transport system for leaves relocating to the ground.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "They do. A big flat leaf behaves differently than a small curled one. Science respects leaf diversity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Much nicer. 'Field trip' is friendlier than 'chaotic descent.' I prefer friendly science.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Interesting and replicable. As temperature decreases, Hoggy's trot frequency and ear activity increase. I've named it the Hoggy Thermodynamic Joy Constant.",
+        "choices": [
+          {
+            "text": "That's a long name.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Joy constants are useful.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy is predictable in a good way.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Long but descriptive. I could abbreviate it to HTJC, but that sounds like a cleaning product.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Useful. If we know the temperature, we can predict Hoggy's mood. It's like a thermometer with trot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Predictable in the best way. Reliable joy is underrated.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Dedication or insomnia. Either way, I have verified that darkness persists longer. I also counted stars. Results: many.",
+        "choices": [
+          {
+            "text": "Many stars is a solid count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Insomnia can be productive.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Verification is important.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Solid and approximate. 'Many' is a perfectly valid scientific quantity when you're tired.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Productive. The night gives you time to count things, and counting things is never wasted.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Important. If you don't check, the nights might be sneaking extra minutes past us. I'm keeping watch.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Ommmm": {
+      "start": {
+        "text": "The island is breathing out, Dreamer. The trees let their colors fall. The wind carries them away without keeping any. Hoggy is happy because he lives in the moment. And the longer nights give us time to sit with the dark.",
+        "choices": [
+          {
+            "text": "Breathing out is a good image.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Living in the moment is Hoggy's gift.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sitting with the dark is peaceful.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Yes. After the warm fullness of Saucy season, the island exhales. What leaves behind is quieter, lighter, more open.",
+        "choices": [
+          {
+            "text": "Quieter islands are kind.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Lighter feels free.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Openness is a gift.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Kind. The island speaks more softly in Cool season, and we hear ourselves better.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Free. A tree that has let go stands lighter against the sky.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "A gift we often miss. Openness lets new things arrive, even if we don't know what they are yet.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "His gift. He does not wonder what season comes next. He simply trots, sniffs, and is glad. We can learn from this.",
+        "choices": [
+          {
+            "text": "We can learn from Hoggy.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not wondering is a relief.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gladness by example.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "We can. Teachers come in all shapes. Some are round and snort and walk on four feet.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A relief. The future will arrive whether we wonder about it or not. Hoggy knows this.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "By example. He shows us that gladness can be simple, immediate, and whole.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Peaceful if we allow it. The dark does not ask us to solve anything. It just holds the space while we rest.",
+        "choices": [
+          {
+            "text": "The dark holds space well.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rest is a kind of listening.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We don't have to solve the night.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Well. It doesn't push, pull, or demand. It simply is, and that is enough.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Listening to rest. We hear what we need when we stop chasing the day.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "No. The night solves itself. We only need to be present while it does.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lord Roar": {
+      "start": {
+        "text": "Fair Dreamer! The trees have donned their autumnal heraldry. The wind blows a royal trumpet through the changing leaves. My noble steed Hoggy is in excellent cheer. And the longer nights give us more time for noble star-gazing.",
+        "choices": [
+          {
+            "text": "Autumnal heraldry is magnificent.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy as your noble steed is perfect.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Noble star-gazing is a fine pastime.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Magnificent! Gold and crimson banners upon every branch. The forest is a court in session, and each tree attends in its finest colors.",
+        "choices": [
+          {
+            "text": "A forest court is splendid.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Finest colors are worth attending.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every branch is a banner.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Splendid and just. Every tree holds its banner high before laying it down for the season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Worth attending. A tree in color is a tree in ceremony.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Every branch, every banner. The forest marches into winter with flags flying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Perfect indeed. Though he is small, his spirit is vast. He trots with the pride of a warhorse and the joy of a festival hog.",
+        "choices": [
+          {
+            "text": "Small steeds can be mighty.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride and joy together are noble.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Festival hog is a good title.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Mighty indeed. Size is not the measure of a steed. Heart and trot are.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Noble. Pride without joy is cold. Joy without pride is scattered. Hoggy has both.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Festival hog, yes. He would lead any parade, provided it included snacks and naps.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "A fine pastime. The stars are the distant torches of the night realm. To gaze upon them is to pay respects to the sky.",
+        "choices": [
+          {
+            "text": "Stars are sky torches.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Paying respects to the sky is polite.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The night realm is vast.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Torches that need no fuel. The sky lights itself for our admiration.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Polite and proper. We honor the night by looking up and saying 'well done, sky.'",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Vast and full of distant kingdoms. Each star a castle, each castle a story.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Snug": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was watching the leaves fall from under my rock. They make a soft sound when they land. Hoggy walked by and I saw his feet do a happy little dance. The nights are longer now. I like that. More time to hide quietly.",
+        "choices": [
+          {
+            "text": "Soft landing sounds are nice.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy's happy feet are cute.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet hiding time is good.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Nice. Like a tiny thump that doesn't startle anyone. Leaves know how to land gently when they want to.",
+        "choices": [
+          {
+            "text": "Gentle leaves are polite.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tiny thumps are cozy.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Non-startling sounds are underrated.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Polite leaves. They fall, they land softly, they don't make a scene. I respect that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Cozy and small. The kind of sound that makes you feel safe under a rock.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Underrated. Loud sounds get all the attention, but soft sounds are the ones that keep you calm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cute. His trot had a little bounce, like the ground was too happy to stay still under him.",
+        "choices": [
+          {
+            "text": "Happy ground is a fun idea.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bouncy trots are joyful.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy's feet have feelings.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Fun. Maybe the ground really is happy. It gets to hold all the pretty leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Joyful and a little silly. I like silly joy. It doesn't ask you to be anything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They do. Hoggy's feet know things before his head does. Feet are honest.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Good. When the night is longer, nobody rushes. I can stay under my rock and just be there. Being there is enough.",
+        "choices": [
+          {
+            "text": "Being there is enough.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unrushed time is a gift.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rocks are good hiding spots.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Enough. I don't have to do anything. I can just be Snug, under a rock, in the longer night.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A gift. More minutes to be small and safe. I accept every single one.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Good hiding spots. Rocks are steady and don't ask questions. They're very polite shelters.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gigglegrow": {
+      "start": {
+        "text": "Dreamer! Cool season is bouncing in! The trees are wearing red and gold and orange like a big cozy sweater. The wind is throwing leaves around and Hoggy is dancing through them. And the nights are longer, so I can bounce under the stars more!",
+        "choices": [
+          {
+            "text": "Cozy tree sweaters are great.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Hoggy dancing through leaves is hilarious.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Bouncing under stars is the best.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Great! I want to wear a sweater made of leaves too, but I'd probably lose it mid-bounce. Leaf sweaters are not very bounce-proof.",
+        "choices": [
+          {
+            "text": "Bounce-proof fashion is important.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Losing leaf sweaters is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You'd look cute in leaves.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Important. A bouncy monster needs durable outfits. Maybe moss would hold better than leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fine. Losing a leaf sweater mid-bounce is just part of the fashion cycle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Cute, right? I'd be a walking leaf pile. The best kind of monster.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hilarious! He trots and leaves fly up and he tries to catch them with his snout. It's like he's playing tag with the wind.",
+        "choices": [
+          {
+            "text": "Tag with the wind is a good game.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snout-catching leaves is talented.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hoggy plays well.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good game, though the wind always wins because it can be everywhere. Hoggy doesn't mind. He just keeps playing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Talented! I can catch things with my whole body because I'm big and round. Hoggy uses precision.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Very well. He knows the rules: run, snort, let leaves win sometimes. Perfect game design.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Best! Stars look extra sparkly when I bounce. Probably because I'm moving, but I like to think they bounce a little when they see me.",
+        "choices": [
+          {
+            "text": "Stars probably bounce a little.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Moving makes stars sparklier.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bouncing and stars go together.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A little. Maybe a tiny twinkle-wiggle. I like believing the stars are happy to see me.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Probably. Movement adds excitement. Static stars are still beautiful, but bouncing stars feel like friends.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Together forever. If I could bounce to the moon I'd bring snacks and invite everyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     }
   },
-  "Pippa": {
-    "start": {
-      "text": "Dearie me! A visitor! How WONDERFUL! I'm Pippa! I offer advice! I offer TEA! And I whistle when I'm excited! Which is OFTEN! What can this old teapot help you with?",
-      "choices": [
-        {
-          "text": "Tea AND advice? You're a DREAM! I need both!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your whistling is adorable! What makes you whistle?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "I just need someone to talk to... if you have time?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
+  "Saucy": {
+    "Piko": {
+      "start": {
+        "text": "Dreamer! The sun made everything extra today. The flowers are brighter, the sand is warmer, and my heart feels like a little marshmallow. Do you love Saucy season too?",
+        "choices": [
+          {
+            "text": "I love Saucy season too!",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Marshmallow hearts sound cozy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Everything does look extra today.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "You do? Then we can love it together! Love makes warm days feel even warmer. That's probably science. Friendly science.",
+        "choices": [
+          {
+            "text": "Friendly science is good science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm love is the best equation.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We should celebrate extra.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all smiley faces.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The best equation. Warm plus warm equals the snuggliest sum. I did the math in my heart and the answer is hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Celebrate by smiling at flowers and rocks and clouds. Everything gets included. That's the best kind of party planning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cozy because warm feelings and warm sun stack on top of each other. My heart is basically a toasted marshmallow now.",
+        "choices": [
+          {
+            "text": "Toasted marshmallow hearts are sweet.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm feelings stack nicely.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have a sunny heart.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny crackly sound like a campfire friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. Warm feelings don't fall over. They pile up into a soft tower of nice. I am inside that tower right now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Sunny heart! I like that. It means the sun lives in here a little bit, helping me glow even when I am not outside.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra is the perfect word. Extra sun, extra sparkle, extra happy. I want to collect all the extras in a basket.",
+        "choices": [
+          {
+            "text": "Collect extras in a basket.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sun sparkle is precious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra happy is the goal.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A basket of extras would be heavy but happy. Sunbeams are light though. I could carry thousands of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically sparkle jars now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Extra happy is better than regular happy. It's like happy wearing a fancy hat. Saucy season is the fancy hat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c1": {
-      "text": "Both? EXCELLENT choice! This is my special blend! Chamomile! Honey! A touch of WISDOM! Now! Tell Pippa what's troubling you! Is it love? Work? Existential dread? I've heard it ALL! From thousands of cups!",
-      "choices": [
-        {
-          "text": "The tea tastes like... comfort! Thank you!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "It's [insert problem]... what would you suggest?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You've heard thousands of problems? What's the most common?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Rivet": {
+      "start": {
+        "text": "Ugh, Saucy season. The heat is everywhere and the sun won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything.",
+        "choices": [
+          {
+            "text": "The sun is showing off.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can complain if you want.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not complaining is noted.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Showing off is exactly right. Look at it, all bright and round, demanding attention. I refuse to give it the satisfaction. Much.",
+        "choices": [
+          {
+            "text": "Refusing attention is power.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun is vain.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unimpressed is a strong stance.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Power is when you look at the sun and squint meaningfully. The sun cannot read expressions. But it feels the energy. Probably.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Vain and successful. I respect the hustle even if I won't applaud it. The sun does not need my applause, which is annoying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Strong and sweaty. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the shade returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's hot and I am unimpressed.",
+        "choices": [
+          {
+            "text": "Facts are allowed.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Heat is a fact.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Restraint is admirable.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Allowed and necessary. If nobody states the facts, the sun will think it won. It didn't win. It just exists loudly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Heat is a fact. A warm, oppressive, everywhere fact. But still just a fact. I will outlast it with dignity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint.",
+        "choices": [
+          {
+            "text": "Invisible medals still count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excellence is excellence.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You handle heat well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c2": {
-      "text": "Whistle? I whistle when I'm HAPPY! When I'm EXCITED! When the water boils! It's my......way of singing. Teapots don't have voices like YOU do. But we have WHISTLES! And sometimes......that's enough.",
-      "choices": [
-        {
-          "text": "Your whistle IS your voice! And it's beautiful!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to whistle like that?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What's the happiest thing that's happened to you?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Shade-7": {
+      "start": {
+        "text": "Saucy season drapes the island in golden suffering, Dreamer. The sun is too sincere. I prefer the night, when the heat at least has the decency to apologize with stars.",
+        "choices": [
+          {
+            "text": "Golden suffering is a beautiful phrase.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The night is a better apology.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sincere suns are exhausting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and accurate. The sun gives warmth and takes comfort. That is the oldest tragedy. I shall write a poem about it.",
+        "choices": [
+          {
+            "text": "Poems make heat meaningful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tragedy fits Saucy season.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beauty with discomfort is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Meaningful suffering is the only good kind. If I must sweat, I will sweat with metaphors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragedy everywhere. The wilting leaf, the thirsty rock, the robot whose chassis is too warm. All of it belongs in verse.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art often hurts a little. Saucy season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Better apology indeed. The night arrives quietly, cools the stones, and covers the sky with distant lights. That is manners.",
+        "choices": [
+          {
+            "text": "Night has good manners.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool stones are a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Distant lights are kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me perspire.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift from the dark. Stones that were burning at noon become soft and cool. I rest my thoughts on them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because they do not demand attention. They simply shine from far away and let you look if you want to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exhausting because it offers no mystery. 'Here I am,' it says, 'warm and bright and unavoidable.' How dreary.",
+        "choices": [
+          {
+            "text": "Mystery is underrated.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun has no subtlety.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dreary brightness is a mood.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Underrated and endangered. The sun would eliminate mystery entirely if it could. I resist by admiring shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "c3": {
-      "text": "Time? Dearie, I have ALL the time! That's what teapots do! We LISTEN! We hold! We......keep things warm. Your words? Your feelings? I'll hold them. Like tea leaves. Like warmth. Like... comfort.",
-      "choices": [
-        {
-          "text": "I feel so HEARD! Thank you, Pippa!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're like a therapist! But with tea!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I come back whenever I need to talk?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Cypher": {
+      "start": {
+        "text": "Dreamer! Saucy season has activated some fascinating behaviors. The cicadas are louder, the crabs are more active at dawn, and the shade temperature is measurably cooler than the sun temperature. I have data.",
+        "choices": [
+          {
+            "text": "Data makes everything better.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cicadas as thermometers is clever.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tell me more Saucy facts.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Better and also reliable. For example: butterflies prefer flowers during Saucy mornings. I counted six before noon. Sample size small but promising.",
+        "choices": [
+          {
+            "text": "Six butterflies is promising.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sample size can grow.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning research is cozy.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Promising! Tomorrow I will count again. Maybe seven. Maybe eight. Science is just counting things until patterns appear.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It can. I will expand my butterfly observation zone. If I stand very still, they might include me in their survey.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Very cozy. Warm air, soft breeze, tiny wings. The best laboratory is one where you can also nap.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Clever and loud. The warmer it gets, the more they announce it. I appreciate the public service.",
+        "choices": [
+          {
+            "text": "Loud thermometers are helpful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Public service deserves thanks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You counted them carefully.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Helpful and honest. They don't hide the temperature. They broadcast it with enthusiasm and slightly too much volume.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a bug.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Carefully and quietly. Butterflies are shy witnesses. If you move fast, they leave and take their data with them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "More facts! Sea turtles nest during warm seasons, cicadas buzz louder as temperature rises, and warm air holds more story potential.",
+        "choices": [
+          {
+            "text": "Warm air holds stories.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Turtles know the season.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories make research warmer.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stories about where warmth goes and who likes it. The answer is: most things, briefly. Then shade becomes the hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Their nesting schedule is older than the island's name. I admire any creature with seasonal punctuality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "final": {
-      "text": "Take this warmth. A drop of my essence! When you're sad! Brew it in your thoughts! When you're lonely! Smell the comfort! When you need......remembrance that someone cares! I'm always here! Steeping! Waiting! Whistling! And every cup I pour? It has LOVE. Remember that, dearie. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
+    "Om-Bit": {
+      "start": {
+        "text": "The Saucy sun does not ask permission, Dreamer. It simply arrives and warms what it touches. I am trying to be like the sun: present, without apology.",
+        "choices": [
+          {
+            "text": "Presence without apology is strong.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness is hard in heat.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Being present is enough.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Strong but gentle. The sun does not explain itself. It shines. I am learning to simply be, without offering reasons.",
+        "choices": [
+          {
+            "text": "Gentle strength is best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Simply being is enough.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No reasons needed.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best because it does not push. The sun is strong but it does not argue. I try to be the same way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Reasons are for journeys. Being is for arrivals. I have arrived at this warm afternoon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hard but worth practicing. When the body slows, the attention wakes up. I see more insects, more shadows, more small kindnesses.",
+        "choices": [
+          {
+            "text": "Slowing down is wisdom.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Attention wakes up when the body rests.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small kindnesses matter.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Wisdom earned through sweat. The body reminds the mind that haste is not always progress.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They matter most. A shared glance, a small shade, a moment of patience. These are the real currency of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Here and now is complete.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The season is a guest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conversations can be quiet.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Complete and sufficient. I do not need to add anything. The warm afternoon includes me already.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_start": {
-      "text": "\"Hello, dear! I'm Pippa! I was just brewing! Would you like some tea? I have: chamomile for calming, mint for energy, and......a special blend for new friends!\"",
-      "choices": [
-        {
-          "text": "I'd love some of that special blend!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
+    "Sir Cogs-a-Lot": {
+      "start": {
+        "text": "Hail, fair traveler! Saucy season has cast its warm banner across the realm, and even the stones glow with noble heat. 'Tis a fine day to seek the shade of a loyal tree and speak of summer deeds.",
+        "choices": [
+          {
+            "text": "Noble heat is a fun idea.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Shade trees are loyal.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Summer deeds need telling.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun and true! The heat does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace.",
+        "choices": [
+          {
+            "text": "Meeting heat with grace is chivalry.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fanfare makes heat feel royal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grace is the best armor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Chivalry in every drop of sweat. A true knight faces the day with dignity, even when the day is very warm and very bright.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Royal heat! I shall address it as 'Your Warmness' and bow before seeking shade. Even the sun enjoys good manners.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The best armor is composure. It does not block heat, but it makes heat less embarrassing. A noble face is always cooler.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Loyal indeed. A good tree offers shade without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch.",
+        "choices": [
+          {
+            "text": "Sir Leaf and Sir Branch are good names.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees deserve titles.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mind-knighting is valid.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good names for good trees. Sir Leaf is broad and generous. Sir Branch is sturdy and patient. Both have served the realm well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. They hold the soil, shelter the birds, and drop shade upon the weary. Titles are the least we can offer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The flowers are ladies-in-waiting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The swimming of fish, the marching of ants, the sunning of rocks. Every small deed becomes legend in the right light.",
+        "choices": [
+          {
+            "text": "Small deeds make good legends.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The right light helps everything.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every season has its tales.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good legends because they are honest. A fish swims because it must. An ant marches because the colony needs it. Noble simplicity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. Warm light flatters nearly everything. Stones look rich, leaves look gold, and even sand appears regal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Every season, yes. Saucy season's tales are of endurance, shade, and the brave wild hog seeking cool mud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2a": {
-      "text": "\"Special blend? Coming right up! This one has: honey for sweetness, lavender for peace, and......a pinch of island magic! Careful, it's warm! But not Ember-warm!\"",
-      "choices": [
-        {
-          "text": "This tea is delicious! Thank you!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Tinker": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the warm light on the water. It makes little gold paths. I think the sea is showing off, but quietly.",
+        "choices": [
+          {
+            "text": "Gold paths on water are pretty.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet showing off is fine.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You notice beautiful things.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Pretty and shy. The sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game.",
+        "choices": [
+          {
+            "text": "Gentle games are nice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The water plays with light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things feel like gifts.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water catches the sun and then passes it along. Very polite. I would also like to be that polite.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gifts from the whole afternoon. The sea, the sun, and the quiet all worked together to make something pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fine because it doesn't ask for anything. The sea just sparkles and hopes someone notices. I noticed. I am very proud of noticing.",
+        "choices": [
+          {
+            "text": "Noticing is a skill.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride in noticing is sweet.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet sparkle matters.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "It does. Loud sparkle gets attention, but quiet sparkle is for people who look closely. I look closely a lot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me gold paths and a very patient rock.",
+        "choices": [
+          {
+            "text": "Quietness has rewards.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patient rocks are good company.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small nice things add up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the warm sun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2b": {
-      "text": "\"Motherly? Oh, dear... I suppose I am! Someone has to be! Chester needs fixing. Sprig needs encouraging. And Bolt......needs someone to tell him to SLOW DOWN!\"",
-      "choices": [
-        {
-          "text": "You're right! Bolt DOES need to slow down!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Zap-Zap": {
+      "start": {
+        "text": "Dreamer! DREAMER! The sun is being SO sun today! It's warm and round and everywhere and I think it wants everyone to have the best afternoon possible!",
+        "choices": [
+          {
+            "text": "The sun is very sun today.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Best afternoon possible sounds great.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Warm and round is a good combo.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Very sun! Maximum sun! If today were a sun contest, the sun would win first prize and also second prize because there is only one sun.",
+        "choices": [
+          {
+            "text": "One sun is enough.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winning both prizes is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maximum sun is a good mood.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Enough and excellent. Imagine having to share the sky with extra suns. It would be very competitive and very warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fair. The sun is the only contestant, so it gets all the prizes. It has earned them through consistent shining.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good mood and warm cheeks. I feel like I am glowing from the inside and the outside at the same time.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Great and achievable. We just need warm sand, a nice breeze, maybe a crab friend, and lots of smiling. Smiling is the main ingredient.",
+        "choices": [
+          {
+            "text": "Smiling is the main ingredient.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crab friends are bonus.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A nice breeze solves a lot.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Main ingredient and secret weapon. A smile makes warm feel warmer and cool feel friendlier. It improves everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Bonus friends! Crabs are small and sideways and wonderful. They don't ask much. They just exist excellently.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "So much. A breeze is like the island fanning you gently. Free, kind, and always welcome.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Good combo. Round means it reaches everywhere. Warm means it feels like a hug. Best shape and best temperature in one thing.",
+        "choices": [
+          {
+            "text": "Best shape and temperature.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hugs from the sky are nice.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Round warmth is friendly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best in show! Round and warm is the friendliest geometry. If hugs had a shape, they would be round and warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Nice and free. The sky gives them out all day. You just have to stand under them and accept.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Friendly because it has no corners. Nothing sharp about the sun. Just big warm roundness for everyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_2c": {
-      "text": "\"When happy? I whistle when I'm happy! When I'm sad! When I'm......thinking! Hudson says I whistle during his tea lectures. I say his lectures need WHISTLING!\"",
-      "choices": [
-        {
-          "text": "Hudson's lectures DO need whistling!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
+    "Boo-Boo": {
+      "start": {
+        "text": "Dreamer! The sun made everything extra today. The flowers are brighter, the sand is warmer, and my heart feels like a little marshmallow. Do you love Saucy season too?",
+        "choices": [
+          {
+            "text": "I love Saucy season too!",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Marshmallow hearts sound cozy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Everything does look extra today.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "You do? Then we can love it together! Love makes warm days feel even warmer. That's probably science. Friendly science.",
+        "choices": [
+          {
+            "text": "Friendly science is good science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm love is the best equation.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We should celebrate extra.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all smiley faces.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The best equation. Warm plus warm equals the snuggliest sum. I did the math in my heart and the answer is hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Celebrate by smiling at flowers and rocks and clouds. Everything gets included. That's the best kind of party planning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cozy because warm feelings and warm sun stack on top of each other. My heart is basically a toasted marshmallow now.",
+        "choices": [
+          {
+            "text": "Toasted marshmallow hearts are sweet.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm feelings stack nicely.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have a sunny heart.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny crackly sound like a campfire friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. Warm feelings don't fall over. They pile up into a soft tower of nice. I am inside that tower right now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Sunny heart! I like that. It means the sun lives in here a little bit, helping me glow even when I am not outside.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra is the perfect word. Extra sun, extra sparkle, extra happy. I want to collect all the extras in a basket.",
+        "choices": [
+          {
+            "text": "Collect extras in a basket.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sun sparkle is precious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra happy is the goal.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A basket of extras would be heavy but happy. Sunbeams are light though. I could carry thousands of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically sparkle jars now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Extra happy is better than regular happy. It's like happy wearing a fancy hat. Saucy season is the fancy hat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     },
-    "alt_final": {
-      "text": "Take this warmth. A drop of my essence! When you're sad! Brew it in your thoughts! When you're lonely! Smell the comfort! When you need......remembrance that someone cares! I'm always here! Steeping! Waiting! Whistling! And every cup I pour? It has LOVE. Remember that, dearie. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
+    "Wisp": {
+      "start": {
+        "text": "Ugh, Saucy season. The heat is everywhere and the sun won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything.",
+        "choices": [
+          {
+            "text": "The sun is showing off.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can complain if you want.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not complaining is noted.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Showing off is exactly right. Look at it, all bright and round, demanding attention. I refuse to give it the satisfaction. Much.",
+        "choices": [
+          {
+            "text": "Refusing attention is power.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun is vain.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unimpressed is a strong stance.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Power is when you look at the sun and squint meaningfully. The sun cannot read expressions. But it feels the energy. Probably.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Vain and successful. I respect the hustle even if I won't applaud it. The sun does not need my applause, which is annoying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Strong and sweaty. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the shade returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's hot and I am unimpressed.",
+        "choices": [
+          {
+            "text": "Facts are allowed.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Heat is a fact.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Restraint is admirable.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Allowed and necessary. If nobody states the facts, the sun will think it won. It didn't win. It just exists loudly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Heat is a fact. A warm, oppressive, everywhere fact. But still just a fact. I will outlast it with dignity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint.",
+        "choices": [
+          {
+            "text": "Invisible medals still count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excellence is excellence.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You handle heat well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Morwen": {
+      "start": {
+        "text": "Saucy season drapes the island in golden suffering, Dreamer. The sun is too sincere. I prefer the night, when the heat at least has the decency to apologize with stars.",
+        "choices": [
+          {
+            "text": "Golden suffering is a beautiful phrase.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The night is a better apology.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sincere suns are exhausting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and accurate. The sun gives warmth and takes comfort. That is the oldest tragedy. I shall write a poem about it.",
+        "choices": [
+          {
+            "text": "Poems make heat meaningful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tragedy fits Saucy season.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beauty with discomfort is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Meaningful suffering is the only good kind. If I must sweat, I will sweat with metaphors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragedy everywhere. The wilting leaf, the thirsty rock, the robot whose chassis is too warm. All of it belongs in verse.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art often hurts a little. Saucy season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Better apology indeed. The night arrives quietly, cools the stones, and covers the sky with distant lights. That is manners.",
+        "choices": [
+          {
+            "text": "Night has good manners.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool stones are a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Distant lights are kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me perspire.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift from the dark. Stones that were burning at noon become soft and cool. I rest my thoughts on them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because they do not demand attention. They simply shine from far away and let you look if you want to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exhausting because it offers no mystery. 'Here I am,' it says, 'warm and bright and unavoidable.' How dreary.",
+        "choices": [
+          {
+            "text": "Mystery is underrated.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun has no subtlety.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dreary brightness is a mood.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Underrated and endangered. The sun would eliminate mystery entirely if it could. I resist by admiring shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Spectra": {
+      "start": {
+        "text": "Dreamer! Saucy season has activated some fascinating behaviors. The cicadas are louder, the crabs are more active at dawn, and the shade temperature is measurably cooler than the sun temperature. I have data.",
+        "choices": [
+          {
+            "text": "Data makes everything better.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cicadas as thermometers is clever.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tell me more Saucy facts.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Better and also reliable. For example: butterflies prefer flowers during Saucy mornings. I counted six before noon. Sample size small but promising.",
+        "choices": [
+          {
+            "text": "Six butterflies is promising.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sample size can grow.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning research is cozy.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Promising! Tomorrow I will count again. Maybe seven. Maybe eight. Science is just counting things until patterns appear.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It can. I will expand my butterfly observation zone. If I stand very still, they might include me in their survey.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Very cozy. Warm air, soft breeze, tiny wings. The best laboratory is one where you can also nap.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Clever and loud. The warmer it gets, the more they announce it. I appreciate the public service.",
+        "choices": [
+          {
+            "text": "Loud thermometers are helpful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Public service deserves thanks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You counted them carefully.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Helpful and honest. They don't hide the temperature. They broadcast it with enthusiasm and slightly too much volume.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a bug.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Carefully and quietly. Butterflies are shy witnesses. If you move fast, they leave and take their data with them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "More facts! Sea turtles nest during warm seasons, cicadas buzz louder as temperature rises, and warm air holds more story potential.",
+        "choices": [
+          {
+            "text": "Warm air holds stories.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Turtles know the season.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories make research warmer.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stories about where warmth goes and who likes it. The answer is: most things, briefly. Then shade becomes the hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Their nesting schedule is older than the island's name. I admire any creature with seasonal punctuality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Hush": {
+      "start": {
+        "text": "The Saucy sun does not ask permission, Dreamer. It simply arrives and warms what it touches. I am trying to be like the sun: present, without apology.",
+        "choices": [
+          {
+            "text": "Presence without apology is strong.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness is hard in heat.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Being present is enough.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Strong but gentle. The sun does not explain itself. It shines. I am learning to simply be, without offering reasons.",
+        "choices": [
+          {
+            "text": "Gentle strength is best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Simply being is enough.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No reasons needed.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best because it does not push. The sun is strong but it does not argue. I try to be the same way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Reasons are for journeys. Being is for arrivals. I have arrived at this warm afternoon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hard but worth practicing. When the body slows, the attention wakes up. I see more insects, more shadows, more small kindnesses.",
+        "choices": [
+          {
+            "text": "Slowing down is wisdom.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Attention wakes up when the body rests.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small kindnesses matter.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Wisdom earned through sweat. The body reminds the mind that haste is not always progress.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They matter most. A shared glance, a small shade, a moment of patience. These are the real currency of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Here and now is complete.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The season is a guest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conversations can be quiet.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Complete and sufficient. I do not need to add anything. The warm afternoon includes me already.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sir Haunts-a-Lot": {
+      "start": {
+        "text": "Hail, fair traveler! Saucy season has cast its warm banner across the realm, and even the stones glow with noble heat. 'Tis a fine day to seek the shade of a loyal tree and speak of summer deeds.",
+        "choices": [
+          {
+            "text": "Noble heat is a fun idea.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Shade trees are loyal.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Summer deeds need telling.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun and true! The heat does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace.",
+        "choices": [
+          {
+            "text": "Meeting heat with grace is chivalry.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fanfare makes heat feel royal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grace is the best armor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Chivalry in every drop of sweat. A true knight faces the day with dignity, even when the day is very warm and very bright.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Royal heat! I shall address it as 'Your Warmness' and bow before seeking shade. Even the sun enjoys good manners.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The best armor is composure. It does not block heat, but it makes heat less embarrassing. A noble face is always cooler.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Loyal indeed. A good tree offers shade without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch.",
+        "choices": [
+          {
+            "text": "Sir Leaf and Sir Branch are good names.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees deserve titles.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mind-knighting is valid.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good names for good trees. Sir Leaf is broad and generous. Sir Branch is sturdy and patient. Both have served the realm well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. They hold the soil, shelter the birds, and drop shade upon the weary. Titles are the least we can offer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The flowers are ladies-in-waiting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The swimming of fish, the marching of ants, the sunning of rocks. Every small deed becomes legend in the right light.",
+        "choices": [
+          {
+            "text": "Small deeds make good legends.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The right light helps everything.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every season has its tales.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good legends because they are honest. A fish swims because it must. An ant marches because the colony needs it. Noble simplicity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. Warm light flatters nearly everything. Stones look rich, leaves look gold, and even sand appears regal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Every season, yes. Saucy season's tales are of endurance, shade, and the brave wild hog seeking cool mud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Flutter": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the warm light on the water. It makes little gold paths. I think the sea is showing off, but quietly.",
+        "choices": [
+          {
+            "text": "Gold paths on water are pretty.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet showing off is fine.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You notice beautiful things.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Pretty and shy. The sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game.",
+        "choices": [
+          {
+            "text": "Gentle games are nice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The water plays with light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things feel like gifts.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water catches the sun and then passes it along. Very polite. I would also like to be that polite.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gifts from the whole afternoon. The sea, the sun, and the quiet all worked together to make something pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fine because it doesn't ask for anything. The sea just sparkles and hopes someone notices. I noticed. I am very proud of noticing.",
+        "choices": [
+          {
+            "text": "Noticing is a skill.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride in noticing is sweet.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet sparkle matters.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "It does. Loud sparkle gets attention, but quiet sparkle is for people who look closely. I look closely a lot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me gold paths and a very patient rock.",
+        "choices": [
+          {
+            "text": "Quietness has rewards.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patient rocks are good company.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small nice things add up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the warm sun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Giggles": {
+      "start": {
+        "text": "Dreamer! DREAMER! The sun is being SO sun today! It's warm and round and everywhere and I think it wants everyone to have the best afternoon possible!",
+        "choices": [
+          {
+            "text": "The sun is very sun today.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Best afternoon possible sounds great.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Warm and round is a good combo.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Very sun! Maximum sun! If today were a sun contest, the sun would win first prize and also second prize because there is only one sun.",
+        "choices": [
+          {
+            "text": "One sun is enough.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winning both prizes is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maximum sun is a good mood.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Enough and excellent. Imagine having to share the sky with extra suns. It would be very competitive and very warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fair. The sun is the only contestant, so it gets all the prizes. It has earned them through consistent shining.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good mood and warm cheeks. I feel like I am glowing from the inside and the outside at the same time.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Great and achievable. We just need warm sand, a nice breeze, maybe a crab friend, and lots of smiling. Smiling is the main ingredient.",
+        "choices": [
+          {
+            "text": "Smiling is the main ingredient.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crab friends are bonus.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A nice breeze solves a lot.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Main ingredient and secret weapon. A smile makes warm feel warmer and cool feel friendlier. It improves everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Bonus friends! Crabs are small and sideways and wonderful. They don't ask much. They just exist excellently.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "So much. A breeze is like the island fanning you gently. Free, kind, and always welcome.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Good combo. Round means it reaches everywhere. Warm means it feels like a hug. Best shape and best temperature in one thing.",
+        "choices": [
+          {
+            "text": "Best shape and temperature.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hugs from the sky are nice.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Round warmth is friendly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best in show! Round and warm is the friendliest geometry. If hugs had a shape, they would be round and warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Nice and free. The sky gives them out all day. You just have to stand under them and accept.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Friendly because it has no corners. Nothing sharp about the sun. Just big warm roundness for everyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Mochi": {
+      "start": {
+        "text": "Dreamer! The sun made everything extra today. The flowers are brighter, the sand is warmer, and my heart feels like a little marshmallow. Do you love Saucy season too?",
+        "choices": [
+          {
+            "text": "I love Saucy season too!",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Marshmallow hearts sound cozy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Everything does look extra today.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "You do? Then we can love it together! Love makes warm days feel even warmer. That's probably science. Friendly science.",
+        "choices": [
+          {
+            "text": "Friendly science is good science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm love is the best equation.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We should celebrate extra.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all smiley faces.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The best equation. Warm plus warm equals the snuggliest sum. I did the math in my heart and the answer is hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Celebrate by smiling at flowers and rocks and clouds. Everything gets included. That's the best kind of party planning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cozy because warm feelings and warm sun stack on top of each other. My heart is basically a toasted marshmallow now.",
+        "choices": [
+          {
+            "text": "Toasted marshmallow hearts are sweet.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm feelings stack nicely.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have a sunny heart.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny crackly sound like a campfire friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. Warm feelings don't fall over. They pile up into a soft tower of nice. I am inside that tower right now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Sunny heart! I like that. It means the sun lives in here a little bit, helping me glow even when I am not outside.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra is the perfect word. Extra sun, extra sparkle, extra happy. I want to collect all the extras in a basket.",
+        "choices": [
+          {
+            "text": "Collect extras in a basket.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sun sparkle is precious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra happy is the goal.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A basket of extras would be heavy but happy. Sunbeams are light though. I could carry thousands of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically sparkle jars now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Extra happy is better than regular happy. It's like happy wearing a fancy hat. Saucy season is the fancy hat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Shadow": {
+      "start": {
+        "text": "Ugh, Saucy season. The heat is everywhere and the sun won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything.",
+        "choices": [
+          {
+            "text": "The sun is showing off.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can complain if you want.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not complaining is noted.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Showing off is exactly right. Look at it, all bright and round, demanding attention. I refuse to give it the satisfaction. Much.",
+        "choices": [
+          {
+            "text": "Refusing attention is power.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun is vain.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unimpressed is a strong stance.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Power is when you look at the sun and squint meaningfully. The sun cannot read expressions. But it feels the energy. Probably.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Vain and successful. I respect the hustle even if I won't applaud it. The sun does not need my applause, which is annoying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Strong and sweaty. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the shade returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's hot and I am unimpressed.",
+        "choices": [
+          {
+            "text": "Facts are allowed.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Heat is a fact.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Restraint is admirable.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Allowed and necessary. If nobody states the facts, the sun will think it won. It didn't win. It just exists loudly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Heat is a fact. A warm, oppressive, everywhere fact. But still just a fact. I will outlast it with dignity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint.",
+        "choices": [
+          {
+            "text": "Invisible medals still count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excellence is excellence.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You handle heat well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Raven": {
+      "start": {
+        "text": "Saucy season drapes the island in golden suffering, Dreamer. The sun is too sincere. I prefer the night, when the heat at least has the decency to apologize with stars.",
+        "choices": [
+          {
+            "text": "Golden suffering is a beautiful phrase.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The night is a better apology.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sincere suns are exhausting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and accurate. The sun gives warmth and takes comfort. That is the oldest tragedy. I shall write a poem about it.",
+        "choices": [
+          {
+            "text": "Poems make heat meaningful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tragedy fits Saucy season.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beauty with discomfort is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Meaningful suffering is the only good kind. If I must sweat, I will sweat with metaphors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragedy everywhere. The wilting leaf, the thirsty rock, the robot whose chassis is too warm. All of it belongs in verse.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art often hurts a little. Saucy season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Better apology indeed. The night arrives quietly, cools the stones, and covers the sky with distant lights. That is manners.",
+        "choices": [
+          {
+            "text": "Night has good manners.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool stones are a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Distant lights are kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me perspire.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift from the dark. Stones that were burning at noon become soft and cool. I rest my thoughts on them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because they do not demand attention. They simply shine from far away and let you look if you want to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exhausting because it offers no mystery. 'Here I am,' it says, 'warm and bright and unavoidable.' How dreary.",
+        "choices": [
+          {
+            "text": "Mystery is underrated.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun has no subtlety.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dreary brightness is a mood.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Underrated and endangered. The sun would eliminate mystery entirely if it could. I resist by admiring shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Newton": {
+      "start": {
+        "text": "Dreamer! Saucy season has activated some fascinating behaviors. The cicadas are louder, the crabs are more active at dawn, and the shade temperature is measurably cooler than the sun temperature. I have data.",
+        "choices": [
+          {
+            "text": "Data makes everything better.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cicadas as thermometers is clever.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tell me more Saucy facts.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Better and also reliable. For example: butterflies prefer flowers during Saucy mornings. I counted six before noon. Sample size small but promising.",
+        "choices": [
+          {
+            "text": "Six butterflies is promising.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sample size can grow.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning research is cozy.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Promising! Tomorrow I will count again. Maybe seven. Maybe eight. Science is just counting things until patterns appear.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It can. I will expand my butterfly observation zone. If I stand very still, they might include me in their survey.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Very cozy. Warm air, soft breeze, tiny wings. The best laboratory is one where you can also nap.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Clever and loud. The warmer it gets, the more they announce it. I appreciate the public service.",
+        "choices": [
+          {
+            "text": "Loud thermometers are helpful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Public service deserves thanks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You counted them carefully.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Helpful and honest. They don't hide the temperature. They broadcast it with enthusiasm and slightly too much volume.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a bug.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Carefully and quietly. Butterflies are shy witnesses. If you move fast, they leave and take their data with them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "More facts! Sea turtles nest during warm seasons, cicadas buzz louder as temperature rises, and warm air holds more story potential.",
+        "choices": [
+          {
+            "text": "Warm air holds stories.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Turtles know the season.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories make research warmer.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stories about where warmth goes and who likes it. The answer is: most things, briefly. Then shade becomes the hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Their nesting schedule is older than the island's name. I admire any creature with seasonal punctuality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lotus": {
+      "start": {
+        "text": "The Saucy sun does not ask permission, Dreamer. It simply arrives and warms what it touches. I am trying to be like the sun: present, without apology.",
+        "choices": [
+          {
+            "text": "Presence without apology is strong.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness is hard in heat.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Being present is enough.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Strong but gentle. The sun does not explain itself. It shines. I am learning to simply be, without offering reasons.",
+        "choices": [
+          {
+            "text": "Gentle strength is best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Simply being is enough.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No reasons needed.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best because it does not push. The sun is strong but it does not argue. I try to be the same way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Reasons are for journeys. Being is for arrivals. I have arrived at this warm afternoon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hard but worth practicing. When the body slows, the attention wakes up. I see more insects, more shadows, more small kindnesses.",
+        "choices": [
+          {
+            "text": "Slowing down is wisdom.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Attention wakes up when the body rests.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small kindnesses matter.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Wisdom earned through sweat. The body reminds the mind that haste is not always progress.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They matter most. A shared glance, a small shade, a moment of patience. These are the real currency of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Here and now is complete.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The season is a guest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conversations can be quiet.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Complete and sufficient. I do not need to add anything. The warm afternoon includes me already.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Squire Paws": {
+      "start": {
+        "text": "Hail, fair traveler! Saucy season has cast its warm banner across the realm, and even the stones glow with noble heat. 'Tis a fine day to seek the shade of a loyal tree and speak of summer deeds.",
+        "choices": [
+          {
+            "text": "Noble heat is a fun idea.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Shade trees are loyal.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Summer deeds need telling.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun and true! The heat does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace.",
+        "choices": [
+          {
+            "text": "Meeting heat with grace is chivalry.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fanfare makes heat feel royal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grace is the best armor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Chivalry in every drop of sweat. A true knight faces the day with dignity, even when the day is very warm and very bright.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Royal heat! I shall address it as 'Your Warmness' and bow before seeking shade. Even the sun enjoys good manners.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The best armor is composure. It does not block heat, but it makes heat less embarrassing. A noble face is always cooler.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Loyal indeed. A good tree offers shade without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch.",
+        "choices": [
+          {
+            "text": "Sir Leaf and Sir Branch are good names.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees deserve titles.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mind-knighting is valid.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good names for good trees. Sir Leaf is broad and generous. Sir Branch is sturdy and patient. Both have served the realm well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. They hold the soil, shelter the birds, and drop shade upon the weary. Titles are the least we can offer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The flowers are ladies-in-waiting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The swimming of fish, the marching of ants, the sunning of rocks. Every small deed becomes legend in the right light.",
+        "choices": [
+          {
+            "text": "Small deeds make good legends.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The right light helps everything.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every season has its tales.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good legends because they are honest. A fish swims because it must. An ant marches because the colony needs it. Noble simplicity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. Warm light flatters nearly everything. Stones look rich, leaves look gold, and even sand appears regal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Every season, yes. Saucy season's tales are of endurance, shade, and the brave wild hog seeking cool mud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Pebble": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the warm light on the water. It makes little gold paths. I think the sea is showing off, but quietly.",
+        "choices": [
+          {
+            "text": "Gold paths on water are pretty.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet showing off is fine.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You notice beautiful things.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Pretty and shy. The sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game.",
+        "choices": [
+          {
+            "text": "Gentle games are nice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The water plays with light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things feel like gifts.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water catches the sun and then passes it along. Very polite. I would also like to be that polite.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gifts from the whole afternoon. The sea, the sun, and the quiet all worked together to make something pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fine because it doesn't ask for anything. The sea just sparkles and hopes someone notices. I noticed. I am very proud of noticing.",
+        "choices": [
+          {
+            "text": "Noticing is a skill.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride in noticing is sweet.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet sparkle matters.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "It does. Loud sparkle gets attention, but quiet sparkle is for people who look closely. I look closely a lot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me gold paths and a very patient rock.",
+        "choices": [
+          {
+            "text": "Quietness has rewards.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patient rocks are good company.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small nice things add up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the warm sun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sunny": {
+      "start": {
+        "text": "Dreamer! DREAMER! The sun is being SO sun today! It's warm and round and everywhere and I think it wants everyone to have the best afternoon possible!",
+        "choices": [
+          {
+            "text": "The sun is very sun today.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Best afternoon possible sounds great.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Warm and round is a good combo.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Very sun! Maximum sun! If today were a sun contest, the sun would win first prize and also second prize because there is only one sun.",
+        "choices": [
+          {
+            "text": "One sun is enough.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winning both prizes is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maximum sun is a good mood.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Enough and excellent. Imagine having to share the sky with extra suns. It would be very competitive and very warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fair. The sun is the only contestant, so it gets all the prizes. It has earned them through consistent shining.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good mood and warm cheeks. I feel like I am glowing from the inside and the outside at the same time.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Great and achievable. We just need warm sand, a nice breeze, maybe a crab friend, and lots of smiling. Smiling is the main ingredient.",
+        "choices": [
+          {
+            "text": "Smiling is the main ingredient.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crab friends are bonus.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A nice breeze solves a lot.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Main ingredient and secret weapon. A smile makes warm feel warmer and cool feel friendlier. It improves everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Bonus friends! Crabs are small and sideways and wonderful. They don't ask much. They just exist excellently.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "So much. A breeze is like the island fanning you gently. Free, kind, and always welcome.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Good combo. Round means it reaches everywhere. Warm means it feels like a hug. Best shape and best temperature in one thing.",
+        "choices": [
+          {
+            "text": "Best shape and temperature.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hugs from the sky are nice.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Round warmth is friendly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best in show! Round and warm is the friendliest geometry. If hugs had a shape, they would be round and warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Nice and free. The sky gives them out all day. You just have to stand under them and accept.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Friendly because it has no corners. Nothing sharp about the sun. Just big warm roundness for everyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Fluffernox": {
+      "start": {
+        "text": "Dreamer! The sun made everything extra today. The flowers are brighter, the sand is warmer, and my heart feels like a little marshmallow. Do you love Saucy season too?",
+        "choices": [
+          {
+            "text": "I love Saucy season too!",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Marshmallow hearts sound cozy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Everything does look extra today.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "You do? Then we can love it together! Love makes warm days feel even warmer. That's probably science. Friendly science.",
+        "choices": [
+          {
+            "text": "Friendly science is good science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm love is the best equation.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We should celebrate extra.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all smiley faces.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The best equation. Warm plus warm equals the snuggliest sum. I did the math in my heart and the answer is hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Celebrate by smiling at flowers and rocks and clouds. Everything gets included. That's the best kind of party planning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cozy because warm feelings and warm sun stack on top of each other. My heart is basically a toasted marshmallow now.",
+        "choices": [
+          {
+            "text": "Toasted marshmallow hearts are sweet.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm feelings stack nicely.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have a sunny heart.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny crackly sound like a campfire friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. Warm feelings don't fall over. They pile up into a soft tower of nice. I am inside that tower right now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Sunny heart! I like that. It means the sun lives in here a little bit, helping me glow even when I am not outside.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra is the perfect word. Extra sun, extra sparkle, extra happy. I want to collect all the extras in a basket.",
+        "choices": [
+          {
+            "text": "Collect extras in a basket.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sun sparkle is precious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra happy is the goal.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A basket of extras would be heavy but happy. Sunbeams are light though. I could carry thousands of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically sparkle jars now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Extra happy is better than regular happy. It's like happy wearing a fancy hat. Saucy season is the fancy hat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Grumble": {
+      "start": {
+        "text": "Ugh, Saucy season. The heat is everywhere and the sun won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything.",
+        "choices": [
+          {
+            "text": "The sun is showing off.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can complain if you want.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not complaining is noted.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Showing off is exactly right. Look at it, all bright and round, demanding attention. I refuse to give it the satisfaction. Much.",
+        "choices": [
+          {
+            "text": "Refusing attention is power.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun is vain.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unimpressed is a strong stance.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Power is when you look at the sun and squint meaningfully. The sun cannot read expressions. But it feels the energy. Probably.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Vain and successful. I respect the hustle even if I won't applaud it. The sun does not need my applause, which is annoying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Strong and sweaty. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the shade returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's hot and I am unimpressed.",
+        "choices": [
+          {
+            "text": "Facts are allowed.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Heat is a fact.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Restraint is admirable.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Allowed and necessary. If nobody states the facts, the sun will think it won. It didn't win. It just exists loudly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Heat is a fact. A warm, oppressive, everywhere fact. But still just a fact. I will outlast it with dignity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint.",
+        "choices": [
+          {
+            "text": "Invisible medals still count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excellence is excellence.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You handle heat well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Vesper": {
+      "start": {
+        "text": "Saucy season drapes the island in golden suffering, Dreamer. The sun is too sincere. I prefer the night, when the heat at least has the decency to apologize with stars.",
+        "choices": [
+          {
+            "text": "Golden suffering is a beautiful phrase.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The night is a better apology.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sincere suns are exhausting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and accurate. The sun gives warmth and takes comfort. That is the oldest tragedy. I shall write a poem about it.",
+        "choices": [
+          {
+            "text": "Poems make heat meaningful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tragedy fits Saucy season.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beauty with discomfort is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Meaningful suffering is the only good kind. If I must sweat, I will sweat with metaphors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragedy everywhere. The wilting leaf, the thirsty rock, the robot whose chassis is too warm. All of it belongs in verse.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art often hurts a little. Saucy season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Better apology indeed. The night arrives quietly, cools the stones, and covers the sky with distant lights. That is manners.",
+        "choices": [
+          {
+            "text": "Night has good manners.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool stones are a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Distant lights are kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me perspire.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift from the dark. Stones that were burning at noon become soft and cool. I rest my thoughts on them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because they do not demand attention. They simply shine from far away and let you look if you want to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exhausting because it offers no mystery. 'Here I am,' it says, 'warm and bright and unavoidable.' How dreary.",
+        "choices": [
+          {
+            "text": "Mystery is underrated.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sun has no subtlety.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dreary brightness is a mood.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Underrated and endangered. The sun would eliminate mystery entirely if it could. I resist by admiring shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gizmo": {
+      "start": {
+        "text": "Dreamer! Saucy season has activated some fascinating behaviors. The cicadas are louder, the crabs are more active at dawn, and the shade temperature is measurably cooler than the sun temperature. I have data.",
+        "choices": [
+          {
+            "text": "Data makes everything better.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cicadas as thermometers is clever.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tell me more Saucy facts.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Better and also reliable. For example: butterflies prefer flowers during Saucy mornings. I counted six before noon. Sample size small but promising.",
+        "choices": [
+          {
+            "text": "Six butterflies is promising.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sample size can grow.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning research is cozy.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Promising! Tomorrow I will count again. Maybe seven. Maybe eight. Science is just counting things until patterns appear.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It can. I will expand my butterfly observation zone. If I stand very still, they might include me in their survey.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Very cozy. Warm air, soft breeze, tiny wings. The best laboratory is one where you can also nap.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Clever and loud. The warmer it gets, the more they announce it. I appreciate the public service.",
+        "choices": [
+          {
+            "text": "Loud thermometers are helpful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Public service deserves thanks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You counted them carefully.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Helpful and honest. They don't hide the temperature. They broadcast it with enthusiasm and slightly too much volume.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a bug.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Carefully and quietly. Butterflies are shy witnesses. If you move fast, they leave and take their data with them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "More facts! Sea turtles nest during warm seasons, cicadas buzz louder as temperature rises, and warm air holds more story potential.",
+        "choices": [
+          {
+            "text": "Warm air holds stories.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Turtles know the season.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories make research warmer.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stories about where warmth goes and who likes it. The answer is: most things, briefly. Then shade becomes the hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Their nesting schedule is older than the island's name. I admire any creature with seasonal punctuality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Ommmm": {
+      "start": {
+        "text": "The Saucy sun does not ask permission, Dreamer. It simply arrives and warms what it touches. I am trying to be like the sun: present, without apology.",
+        "choices": [
+          {
+            "text": "Presence without apology is strong.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness is hard in heat.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Being present is enough.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Strong but gentle. The sun does not explain itself. It shines. I am learning to simply be, without offering reasons.",
+        "choices": [
+          {
+            "text": "Gentle strength is best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Simply being is enough.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No reasons needed.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best because it does not push. The sun is strong but it does not argue. I try to be the same way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Reasons are for journeys. Being is for arrivals. I have arrived at this warm afternoon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hard but worth practicing. When the body slows, the attention wakes up. I see more insects, more shadows, more small kindnesses.",
+        "choices": [
+          {
+            "text": "Slowing down is wisdom.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Attention wakes up when the body rests.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small kindnesses matter.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Wisdom earned through sweat. The body reminds the mind that haste is not always progress.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They matter most. A shared glance, a small shade, a moment of patience. These are the real currency of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Here and now is complete.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The season is a guest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conversations can be quiet.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Complete and sufficient. I do not need to add anything. The warm afternoon includes me already.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lord Roar": {
+      "start": {
+        "text": "Hail, fair traveler! Saucy season has cast its warm banner across the realm, and even the stones glow with noble heat. 'Tis a fine day to seek the shade of a loyal tree and speak of summer deeds.",
+        "choices": [
+          {
+            "text": "Noble heat is a fun idea.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Shade trees are loyal.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Summer deeds need telling.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun and true! The heat does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace.",
+        "choices": [
+          {
+            "text": "Meeting heat with grace is chivalry.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fanfare makes heat feel royal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grace is the best armor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Chivalry in every drop of sweat. A true knight faces the day with dignity, even when the day is very warm and very bright.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Royal heat! I shall address it as 'Your Warmness' and bow before seeking shade. Even the sun enjoys good manners.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The best armor is composure. It does not block heat, but it makes heat less embarrassing. A noble face is always cooler.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Loyal indeed. A good tree offers shade without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch.",
+        "choices": [
+          {
+            "text": "Sir Leaf and Sir Branch are good names.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees deserve titles.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mind-knighting is valid.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good names for good trees. Sir Leaf is broad and generous. Sir Branch is sturdy and patient. Both have served the realm well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. They hold the soil, shelter the birds, and drop shade upon the weary. Titles are the least we can offer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The flowers are ladies-in-waiting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The swimming of fish, the marching of ants, the sunning of rocks. Every small deed becomes legend in the right light.",
+        "choices": [
+          {
+            "text": "Small deeds make good legends.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The right light helps everything.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every season has its tales.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good legends because they are honest. A fish swims because it must. An ant marches because the colony needs it. Noble simplicity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. Warm light flatters nearly everything. Stones look rich, leaves look gold, and even sand appears regal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Every season, yes. Saucy season's tales are of endurance, shade, and the brave wild hog seeking cool mud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Snug": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the warm light on the water. It makes little gold paths. I think the sea is showing off, but quietly.",
+        "choices": [
+          {
+            "text": "Gold paths on water are pretty.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet showing off is fine.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You notice beautiful things.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Pretty and shy. The sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game.",
+        "choices": [
+          {
+            "text": "Gentle games are nice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The water plays with light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things feel like gifts.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water catches the sun and then passes it along. Very polite. I would also like to be that polite.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gifts from the whole afternoon. The sea, the sun, and the quiet all worked together to make something pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fine because it doesn't ask for anything. The sea just sparkles and hopes someone notices. I noticed. I am very proud of noticing.",
+        "choices": [
+          {
+            "text": "Noticing is a skill.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride in noticing is sweet.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet sparkle matters.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "It does. Loud sparkle gets attention, but quiet sparkle is for people who look closely. I look closely a lot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me gold paths and a very patient rock.",
+        "choices": [
+          {
+            "text": "Quietness has rewards.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patient rocks are good company.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small nice things add up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the warm sun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gigglegrow": {
+      "start": {
+        "text": "Dreamer! DREAMER! The sun is being SO sun today! It's warm and round and everywhere and I think it wants everyone to have the best afternoon possible!",
+        "choices": [
+          {
+            "text": "The sun is very sun today.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Best afternoon possible sounds great.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Warm and round is a good combo.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Very sun! Maximum sun! If today were a sun contest, the sun would win first prize and also second prize because there is only one sun.",
+        "choices": [
+          {
+            "text": "One sun is enough.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winning both prizes is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maximum sun is a good mood.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Enough and excellent. Imagine having to share the sky with extra suns. It would be very competitive and very warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fair. The sun is the only contestant, so it gets all the prizes. It has earned them through consistent shining.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good mood and warm cheeks. I feel like I am glowing from the inside and the outside at the same time.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Great and achievable. We just need warm sand, a nice breeze, maybe a crab friend, and lots of smiling. Smiling is the main ingredient.",
+        "choices": [
+          {
+            "text": "Smiling is the main ingredient.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crab friends are bonus.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "A nice breeze solves a lot.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Main ingredient and secret weapon. A smile makes warm feel warmer and cool feel friendlier. It improves everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Bonus friends! Crabs are small and sideways and wonderful. They don't ask much. They just exist excellently.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "So much. A breeze is like the island fanning you gently. Free, kind, and always welcome.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Good combo. Round means it reaches everywhere. Warm means it feels like a hug. Best shape and best temperature in one thing.",
+        "choices": [
+          {
+            "text": "Best shape and temperature.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hugs from the sky are nice.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Round warmth is friendly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best in show! Round and warm is the friendliest geometry. If hugs had a shape, they would be round and warm.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Nice and free. The sky gives them out all day. You just have to stand under them and accept.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Friendly because it has no corners. Nothing sharp about the sun. Just big warm roundness for everyone.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     }
   },
-  "Orion": {
-    "start": {
-      "text": "...Greetings. I am Orion. I am......wise beyond ages. I map constellations. I speak... slowly. And I have seen... many things. You seek... knowledge? Or... simply... starlight?",
-      "choices": [
-        {
-          "text": "Knowledge! I want to learn from your wisdom!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Starlight sounds perfect... and your company!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "You've seen many things? What's the most beautiful?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Knowledge. Very well. See that star? It died... a thousand years ago. But its light......still reaches us. Lesson: What is gone... may still illuminate. What is past... may still guide. This is... wisdom.",
-      "choices": [
-        {
-          "text": "That's PROFOUND! Dead stars still guide us!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "How do you know so much? Have you traveled far?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What other wisdom can you share?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Starlight. And... company. Rare. Most seek... my knowledge. My maps. My......wisdom. But you? You seek... ME. This is... unexpected. And......pleasant.",
-      "choices": [
-        {
-          "text": "YOU are valuable! Not just your knowledge!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your company IS starlight! Beautiful and calm!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I sit with you? And just... be... under the stars?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Most beautiful? I have seen... nebulae born. Galaxies... collide. Stars... die. But the most beautiful?...is this. A moment. A connection. Two beings... under infinite sky. The cosmos is vast. But THIS? This is... rare.",
-      "choices": [
-        {
-          "text": "I'm honored! To be your most beautiful sight!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're right! This moment IS rare and precious!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I never thought I'd be compared to a nebula!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this map in your mind. A star map. Not of the sky. Of......your path. See this star? It is... your beginning. This? Your... challenge. And this bright one? Your... destination. Keep it. When lost... look. The stars... will guide. And remember:...you are made of star-stuff. You belong... to the cosmos. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Greetings... I am Orion. I was... mapping. The constellations... shift. Someone must... record them.\"",
-      "choices": [
-        {
-          "text": "You map constellations? Like Selene?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Like Selene? She... arranges. I... record. She is the artist. I am the... scribe. Both are... necessary.\"",
-      "choices": [
-        {
-          "text": "That's a beautiful way to put it!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Like the sky? Yes... I am... of the stars. Not FROM them. OF them. We are older than... words. Older than... dreams.\"",
-      "choices": [
-        {
-          "text": "You're older than dreams? That's incredible!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"How? Like this. Each star... has a name. A purpose. Some forget. I remind them.\"",
-      "choices": [
-        {
-          "text": "Can I see my star on your scroll?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Take this map in your mind. A star map. Not of the sky. Of......your path. See this star? It is... your beginning. This? Your... challenge. And this bright one? Your... destination. Keep it. When lost... look. The stars... will guide. And remember:...you are made of star-stuff. You belong... to the cosmos. Always.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Nixie": {
-    "start": {
-      "text": "OH! HI! I'm Nixie! I'm BUBBLY! I love GOSSIP! Wait, what was I—? OH RIGHT! Did you HEAR about what happened at the pond? Or was it the river? Hmm. Anyway! Want to CHAT? I know EVERYTHING! Well. Most things. Sometimes!",
-      "choices": [
-        {
-          "text": "I'd love to hear the gossip! What happened?",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're so adorable! Do you always forget mid-sentence?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Tell me about yourself! The pond/river can wait!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "GOSSIP? Okay! So! What was I saying? OH! The otter! He stole a—wait, was it a fish? Or a shiny rock? UGH! My memory! But it was DRAMATIC! There was splashing! And gasping! And—what were we talking about?",
-      "choices": [
-        {
-          "text": "The otter! And the dramatic theft!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Don't worry! The story is still great!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Maybe write it down? I'll wait!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Forget? YES! It's my thing! I start sentences! And END differently! The other fish say 'Nixie, focus!' But I say 'Life is SHORT! Like my attention span!' Oops! Sorry! What was I—? OH! Being adorable!",
-      "choices": [
-        {
-          "text": "It's charming! You're authentically YOU!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I forget things too! You're not alone!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever remember? Eventually?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "MYSELF? I'm a GOLDFISH! I wear a CROWN! It's not REAL royalty, but I like it! I swim! I gossip! I forget! I REMEMBER! Wait, which one? Oh well! I'm HAPPY! That's what matters!",
-      "choices": [
-        {
-          "text": "Happiness IS what matters! You've got it!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Your crown IS real! In spirit!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I visit you in the pond sometime?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here's a SECRET! Even though I forget......I remember FRIENDS. I might forget YOUR NAME. Or WHAT we talked about. Or WHY you're here. But I'll remember... you made me SMILE. And that's the gossip worth keeping! Come back! I'll have NEW gossip! Or I'll forget! Either way, it'll be FUN!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"HI! I'mNixie! Oh! DidImentionI'mNixie? Imight'vementionedit! Anyway! IheardSOMETHING! AboutSOMEONE! WhatwasitAGAIN?\"",
-      "choices": [
-        {
-          "text": "You heard something? Do tell!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"DoTell? Okayokay! Itwasabout......someone! Andthey......didsomething! WasitHudson? OrZephyr? Oh! Iremember! Itwasabout......whatwasitABOUT?\"",
-      "choices": [
-        {
-          "text": "Don't worry! We can figure it out together!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Okay? You'resoKIND! Mostsay 'Nixie, REMEMBER!' ButIcan't! Mymemoryislike......asieve! ButaPRETTYsieve! Withshinybits!\"",
-      "choices": [
-        {
-          "text": "A shiny sieve is still useful!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Adorable? Itwasagift! From......someone! Zora? OrOrion? Theybothgivegifts! ButthisoneisMINE! Iwearitalways! EvenwhenIsleep! Whichisoften!\"",
-      "choices": [
-        {
-          "text": "It suits you perfectly!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here's a SECRET! Even though I forget......I remember FRIENDS. I might forget YOUR NAME. Or WHAT we talked about. Or WHY you're here. But I'll remember... you made me SMILE. And that's the gossip worth keeping! Come back! I'll have NEW gossip! Or I'll forget! Either way, it'll be FUN!",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Cobble": {
-    "start": {
-      "text": "...I am Cobble. I do not move. I do not......speak often. But....I love RIDDLES. About strength. About stillness. About......what it means to ENDURE. Do you seek... a riddle?",
-      "choices": [
-        {
-          "text": "Yes! I love riddles! Give me your best!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You don't move? At ALL? How do you exist?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Strength and stillness... teach me.",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Very well. What is strong enough to hold mountains... yet fragile enough to break with a word? Think. The answer... is not what you expect. Take your time. I have... centuries.",
-      "choices": [
-        {
-          "text": "Is it... trust? Relationships?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Stone? Like you?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I need more time... or a hint!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "At all? I move. When......a secret is revealed. When truth is spoken. When......someone understands. Until then? I am stone. I wait. I endure. This is... my strength.",
-      "choices": [
-        {
-          "text": "That's incredible! Patience as power!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What secret would make you move?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'm trying to understand. Is this... working?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Strength. Is not motion. Is not... noise. Strength is... ENDURING. Standing. When storms come. When time passes. When......all else crumbles. Stillness is not weakness. It is......unbreakable resolve.",
-      "choices": [
-        {
-          "text": "You're the strongest being I've met!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I want to learn this kind of strength!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Your stillness is... powerful. I feel it.",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "The answer. Is... PROMISE. Promises hold mountains. Shape civilizations. But break with... a word. A lie. A betrayal. Remember this: Be stone. Keep your promises. Endure. And......you will move... when it matters.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"......You approach....I am Cobble....I stand....I watch....Sometimes... I move.\"",
-      "choices": [
-        {
-          "text": "You move? When?",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"...When......a secret... is revealed....I have stood... for centuries....Waiting....Listening....Some secrets... are worth... moving for.\"",
-      "choices": [
-        {
-          "text": "What's the best secret you've heard?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"...How long......Before the dream....Before the first... tide....I was placed here....To guard....To wait....I am... patient.\"",
-      "choices": [
-        {
-          "text": "You're older than the dream itself?!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"...What......Truth....When beings speak... truth......I know....Most do not....You... might.\"",
-      "choices": [
-        {
-          "text": "I promise to always be honest with you!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Zeph": {
-    "start": {
-      "text": "HEEEEY! I'm Zeph! Well. That's my NAME! I'm actually......EVERYWHERE! I'm the WIND! The BREEZE! The......leaf-teaser! Can you SEE me? No! But you can FEEL me!",
-      "choices": [
-        {
-          "text": "I can feel you! It's ticklish and wonderful!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're invisible? That's so mysterious!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Make the leaves dance more! That's AMAZING!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "TICKLISH? GOOD! That means you're ALIVE! That means you FEEL! Most people don't notice me. They just say 'oh, it's windy.' But YOU?...you notice ME! That's......nice.",
-      "choices": [
-        {
-          "text": "I'll always notice you, Zeph!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You're essential! We need wind!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can you carry messages? Like a wind mail?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Invisible? YES! But! Invisible doesn't mean... GONE! I'm HERE! In your hair! On your skin! In the......dancing leaves! You don't need to SEE me to KNOW me! Feel is... stronger than sight!",
-      "choices": [
-        {
-          "text": "That's profound! Feel over sight!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I believe you! I can feel your presence!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do you ever wish you were visible?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "MORE?  Watch! This is my ART! My DANCE! My......symphony! Each leaf is a NOTE! Each swirl is a SONG! And you?...you're the AUDIENCE! The BEST audience!",
-      "choices": [
-        {
-          "text": "BRAVO! Encore! Encore!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "This is the best performance ever!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Can I learn to dance with the leaves?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. A leaf from my dance. Picture it. When you feel... still. When you feel... HEAVY. Remember Zeph. Remember the WIND. Remember......that even invisible things MATTER. That even air... can MOVE mountains. Come find me! I'll be......in every breeze. In every whisper. In every... dancing leaf.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Helloooo~ I'm Zeph! Can't see me? That's the POINT! But you can see what I DO! Pretty, right?\"",
-      "choices": [
-        {
-          "text": "The dancing leaves ARE pretty!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Pretty? I make them DANCE! Watch! That's a waltz! That's a jig! I know ALL the dances! Even ones I made up!\"",
-      "choices": [
-        {
-          "text": "Teach me the leaf waltz!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Cool? It's CONVENIENT! I can go ANYWHERE! Through walls! Through trees! Through......Grumble's caves! He HATES that! Says I 'mess up his crystals!' I say I 'add atmosphere!'\"",
-      "choices": [
-        {
-          "text": "Grumble does hate mess, doesn't he?",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Feel me? Like this......see? I'm not just AIR! I'm... PRESENCE! You can't SEE presence! But you can FEEL it!\"",
-      "choices": [
-        {
-          "text": "I can feel you! It's like a warm hug!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. A leaf from my dance. Picture it. When you feel... still. When you feel... HEAVY. Remember Zeph. Remember the WIND. Remember......that even invisible things MATTER. That even air... can MOVE mountains. Come find me! I'll be......in every breeze. In every whisper. In every... dancing leaf.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Kiko": {
-    "start": {
-      "text": "Um. H-hello. I'm Kiko. I......I like carrots. And puzzles. Simple ones! Nothing too HARD! Do you... do you like puzzles? Or......am I talking too much?",
-      "choices": [
-        {
-          "text": "You're perfect! Not too much at all!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I LOVE puzzles! What's your favorite?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Here, have a carrot!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Perfect? Really? No one......says that. They say 'Kiko, SPEAK UP!' Or 'Kiko, STOP HIDING!' But I'm trying. To be... braver. You make it... easier.",
-      "choices": [
-        {
-          "text": "You ARE brave! Talking to me is brave!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Take your time! I'm not going anywhere!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "We can be brave together!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Favorite? Um... Jigsaw puzzles! The SIMPLE ones! Not the 1000-piece ones! Those are......TERRIFYING! But 50 pieces? I can do 50 pieces! Sometimes... 100! If I'm feeling BRAVE!",
-      "choices": [
-        {
-          "text": "100 pieces IS brave! That's impressive!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Want to do a puzzle together sometime?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What makes a puzzle scary vs. fun?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "CARROT! My FAVORITE! Thank you! You're......very kind. Most people don't......think of me. Or notice. But you......gave me a carrot.",
-      "choices": [
-        {
-          "text": "You DESERVE carrots! And kindness!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I notice you, Kiko! You're wonderful!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I'll bring more carrots! Whenever you want!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here's......a secret. I'm scared. Of EVERYTHING. But....when I have friends? When I have... CARROTS?...I'm less scared. So....thank you. For seeing me. For......being my friend. I'll... I'll try to be BRAVER. For you.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"U-um... h-hello... I'm... Kiko......I was solving... a puzzle......want to help?\"",
-      "choices": [
-        {
-          "text": "I'd love to help with your puzzle!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Help? Okay......it's a......carrot-sorting puzzle! Red carrots here... orange carrots there......but what about PURPLE carrots?\"",
-      "choices": [
-        {
-          "text": "Purple carrots go in the middle!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Adorable? It was... a gift......from Sprig......he said I looked... 'distinguished'......I don't know what that means... but it sounded NICE...\"",
-      "choices": [
-        {
-          "text": "Sprig was right! You look very distinguished!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Not a puzzle? Well......it's an IMAGINARY puzzle!...the carrot is... the puzzle piece!...and the ground is the board!...see? It makes sense!\"",
-      "choices": [
-        {
-          "text": "It DOES make sense! Imagination puzzles are the best!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Aurora": {
-    "start": {
-      "text": "~I am Aurora, child of night and sky~ ~Who paints the darkness where the stars lie~ ~With ribbons bright and colors bold~ ~A story in the light, untold~ Do you... seek beauty?",
-      "choices": [
-        {
-          "text": "You SPEAK IN RHYMES! That's MAGICAL!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Yes! I seek beauty! And you ARE beauty!",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Paint the sky for me! Show me your art!",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "~Rhymes are my natural tongue~ ~Since cosmic dawn, my songs are sung~ ~Some speak in prose, some speak in rhyme~ ~I speak in AURORA... all the time~ Do you... appreciate the verse?",
-      "choices": [
-        {
-          "text": "Every word is a GIFT! Keep rhyming!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you teach me to speak in rhymes?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "This is the most beautiful conversation ever!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "~Beauty is what I bring to night~ ~A dance of particles and light~ ~You seek it OUTSIDE, in the sky~ ~But beauty lives... where YOU reside~ Look... within.",
-      "choices": [
-        {
-          "text": "Within? You see beauty in ME?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's the deepest thing anyone's said!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Teach me to see my own beauty!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "~My art? You wish to see my ART?~ ~Then let me paint upon your heart~ ~With ribbons wide and colors BRIGHT~ ~A symphony of Northern Light!~ ~What color calls... to YOUR soul?~",
-      "choices": [
-        {
-          "text": "Green! Like hope! Like growth!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Purple! Like mystery! Like magic!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "All of them! The whole spectrum!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "~Here is my promise, pure and true~ ~The sky will ALWAYS wait for you~ ~When you are sad, look UP at night~ ~I'll paint your darkness into light~ ~Remember this, when days are gray~ ~Aurora's colors... never stray~ ~From those who see... the beauty IN~ ~The cosmic dance... that lives WITHIN~",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Greetings, dear friend, so bold and bright, / I'm Aurora, bearer of northern light. The sky I paint with colors true, / A gift from me, bestowed on you.\"",
-      "choices": [
-        {
-          "text": "You speak in rhymes! That's magical!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Magical, you say, with wonder in your eyes? / It's simply how my spirit flies. Each thought that comes, each word I speak, / Becomes a rhyme, both soft and sleek.\"",
-      "choices": [
-        {
-          "text": "That's the most natural rhyme ever!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Breathtaking, yes, with greens so deep, / And purples that make watchers weep. I dance across the dreamer's sky, / With colors that will never die.\"",
-      "choices": [
-        {
-          "text": "You're a living work of art!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"To teach you rhymes, I'd love to try, / But poetry can't be taught, not I. It comes from heart, from soul, from deep, / From places where the dreamers sleep.\"",
-      "choices": [
-        {
-          "text": "That's beautiful AND rhymed! Perfect!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "~Here is my promise, pure and true~ ~The sky will ALWAYS wait for you~ ~When you are sad, look UP at night~ ~I'll paint your darkness into light~ ~Remember this, when days are gray~ ~Aurora's colors... never stray~ ~From those who see... the beauty IN~ ~The cosmic dance... that lives WITHIN~",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Quill": {
-    "start": {
-      "text": "Ahem. I am Quill. I tell STORIES. I correct GRAMMAR. And I do NOT tolerate......misplaced apostrophes. Do you write? Do you SPEAK? Do you... value PROPER SYNTAX?",
-      "choices": [
-        {
-          "text": "I value syntax! Teach me your ways!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "I write sometimes! But I'm probably doing it wrong...",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Your bow tie is IMPECCABLE! Where'd you get it?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "TEACH you? FINALLY, a worthy student! Lesson One: The semicolon. NOT a comma. NOT a period. It is......a BRIDGE. Between related thoughts! See? ELEGANT! Precise! Most abuse it. TRAGICALLY.",
-      "choices": [
-        {
-          "text": "A bridge! That's PERFECT! I'll remember!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "What's Lesson Two? I'm ready!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You make grammar EXCITING! Who knew!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Wrong? Perhaps. Perhaps not. Writing is not about PERFECTION. It is about......TRUTH. Clarity. Voice. Grammar serves STORY. Not vice versa. But yes. Your apostrophes... probably NEED work.",
-      "choices": [
-        {
-          "text": "Ouch! But FAIR! I'll learn!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Truth over perfection... I like that!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Will you help me improve? Gently?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "This? It is SYMBOLIC. A quill without a bow tie is merely... a FEATHER. But WITH it?...I am AUTHOR. I am SCHOLAR. I am......DIGNIFIED. Appearance matters. In writing. In LIFE.",
-      "choices": [
-        {
-          "text": "You're the most dignified pen I've met!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Bow ties ARE underrated! Very classy!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Do all writing implements dress this well?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here. A feather. From my collection. Picture it dipped in ink. Write your TRUTH. And remember:...grammar is not CHAINS. It is WINGS. Structure frees. Precision empowers. Now go. Write. And for the love of literature... USE PROPER PUNCTUATION.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Ahem. I am Quill. I have observed your... sentence structure. It is... adequate. But it could be IMPROVED.\"",
-      "choices": [
-        {
-          "text": "I'd love to improve my sentences!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Improve? Finally! Someone with AMBITION! Rule one: never end a sentence with a preposition. Unless it serves the narrative. Then it is... acceptable.\"",
-      "choices": [
-        {
-          "text": "That's a very flexible rule!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Particular? I am not PARTICULAR! I am......PRINCIPLED! Grammar is the FOUNDATION of communication! Without it......chaos! BARBARISM!\"",
-      "choices": [
-        {
-          "text": "You're right! Grammar is important!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"What's wrong? Well......you said 'I'm' instead of 'I am.' Contractions are the ENEMY of clarity! Also, your posture suggests... uncertain syntax.\"",
-      "choices": [
-        {
-          "text": "I'll work on my syntax posture!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Here. A feather. From my collection. Picture it dipped in ink. Write your TRUTH. And remember:...grammar is not CHAINS. It is WINGS. Structure frees. Precision empowers. Now go. Write. And for the love of literature... USE PROPER PUNCTUATION.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Vex": {
-    "start": {
-      "text": "Good DAY to you! I am Vex! Enthusiast of FINE inventions! Lover of PROPER tea! And I must say......modern technology is CRASS. No SOUL! No ELEGANCE! But YOU? You look... REFINED. Care for a cuppa?",
-      "choices": [
-        {
-          "text": "Tea from a steampunk robot? ABSOLUTELY!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What makes Victorian tech better than modern?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Your hat is ADORABLE! Is it functional?",
-          "next": "c3",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Actually, tell me something else...",
-          "next": "alt_start",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "EXCELLENT choice! This is Earl Grey! Brewed at EXACTLY 200 degrees! Not like those MICROWAVE barbarians! Tea requires PATIENCE! PRECISION! And......a PROPER vessel! There! Is that not CIVILIZED?",
-      "choices": [
-        {
-          "text": "This is the best tea I've ever had!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "You brew better than most humans!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What other Victorian traditions do you keep?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Better? OBVIOUSLY! Victorian tech had CHARACTER! BRASS! STEAM! Modern tech is... plastic. Cold. Soulless. We lost something. When we lost the MECHANISM. The VISIBILITY. The......BEAUTY of function.",
-      "choices": [
-        {
-          "text": "You're right! Visible gears ARE beautiful!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "Can you show me your inner workings?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Maybe we can blend old and new?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Functional? WHY thank you! It is my ANTENNA! My PRIDE! Also my tea cozy! MULTIPURPOSE! Victorian design was ALWAYS practical! AND stylish! Unlike modern... HEADWEAR. Tragic.",
-      "choices": [
-        {
-          "text": "A hat AND antenna? GENIUS design!",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I need a Victorian hat now! Where do I get one?",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You're the most fashionable robot ever!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Take this idea. A strainer. From my PERSONAL set. Imagine it. Think of me. And remember:...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be......CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_start": {
-      "text": "\"Good day to you! I am Vex! I was just......contemplating the superiority of Victorian engineering! Have you ever seen a PROPER steam engine?\"",
-      "choices": [
-        {
-          "text": "I haven't! Tell me about Victorian engineering!",
-          "next": "alt_2a",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2a": {
-      "text": "\"Superiority? Where to BEGIN! The PRECISION! The CRAFTSMANSHIP! A Victorian machine could last CENTURIES! Modern tech?...disposable! TRASH!\"",
-      "choices": [
-        {
-          "text": "Your passion for Victorian tech is inspiring!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2b": {
-      "text": "\"Incredible? Finally! Someone who APPRECIATES aesthetics! Brass! Copper! VISIBLE GEARS! Not this......sleek modern nonsense! Where is the SOUL?\"",
-      "choices": [
-        {
-          "text": "Your gears have LOTS of soul!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_2c": {
-      "text": "\"Tea? ALWAYS! Hudson says my tea is 'acceptable.' That is HIGH praise from a tea cup! Tea and contemplation... the Victorian way!\"",
-      "choices": [
-        {
-          "text": "Hudson's approval IS significant!",
-          "next": "alt_final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "alt_final": {
-      "text": "Take this idea. A strainer. From my PERSONAL set. Imagine it. Think of me. And remember:...in a world of haste... be VICTORIAN. Be SLOW. Be PRECISE. Be......CIVILIZED. My tea service is ALWAYS open. For friends. For those who appreciate... the FINE things.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
-    }
-  },
-  "Cosmos": {
-    "start": {
-      "text": "...I am Cosmos. I am... the island. I am Chester's humor. Birch's wisdom. Luna's fire. Zeph's freedom. I am EVERY NPC you've met. And......I am NONE. I am the SPIRIT. Of this place. Of this... ADVENTURE.",
-      "choices": [
-        {
-          "text": "You're the ISLAND itself?! That's INCREDIBLE!",
-          "next": "c1",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "You contain all of them? Every NPC?",
-          "next": "c2",
-          "friendshipDelta": 0
-        },
-        {
-          "text": "Why reveal yourself now? At the end?",
-          "next": "c3",
-          "friendshipDelta": 0
-        }
-      ]
-    },
-    "c1": {
-      "text": "Incredible? I am... INEVITABLE. Every conversation. Every choice. Every......connection you've made. It lives in ME. In the island's SOUL. You didn't just meet NPCs, traveler. You met... PIECES of me.",
-      "choices": [
-        {
-          "text": "Every conversation mattered? To the island?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "That's the most beautiful thing I've heard!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "What happens now? What do I do?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c2": {
-      "text": "Every one. Chester's puns LIVE. Birch's leaves RUSTLE. Luna's eyes GLOW. Fifty-eight souls. Fifty-eight STORIES. All woven into... THIS. Into the fabric of Cozy Island. And now......into YOURS.",
-      "choices": [
-        {
-          "text": "Into mine? How am I connected?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I'm honored to carry these stories!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "Will I see them all again?",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "c3": {
-      "text": "Why now? Because you are... READY. Fifty-eight conversations. Hundreds of choices. You have listened. You have learned. You have......become part of this place. The finale is not an END. It is... RECOGNITION.",
-      "choices": [
-        {
-          "text": "Recognition? Of what? Of who I am?",
-          "next": "final",
-          "friendshipDelta": 2
-        },
-        {
-          "text": "I'm ready! Tell me everything!",
-          "next": "final",
-          "friendshipDelta": 1
-        },
-        {
-          "text": "This feels like a beginning, not an ending!",
-          "next": "final",
-          "friendshipDelta": 1
-        }
-      ]
-    },
-    "final": {
-      "text": "Here is my truth. The island is not a PLACE. It is a COMMUNITY. A FAMILY. And you?...you are HOME. Every NPC awaits you. Every story CONTINUES. Every choice... MATTERS. This is not goodbye. It is... 'until next time.' The island remembers. COSMOS remembers. And we......will always... welcome you HOME.\" *The light settles into your heart as 58 voices whisper in unison: \"Thank you for visiting Cozy Island.",
-      "choices": [
-        {
-          "text": "Goodbye!",
-          "next": null,
-          "friendshipDelta": 1
-        }
-      ]
+  "Yeesh": {
+    "Piko": {
+      "start": {
+        "text": "Dreamer! The island got all soft and white. The snow is like a blanket, but the flowers look a little sad and the sea looks extra cold. Do you think Yeesh season is cuddly or chilly?",
+        "choices": [
+          {
+            "text": "Yeesh season is cuddly.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The flowers do look sad.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The sea looks very cold.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Cuddly! Snow hugs the grass and the trees wear little hats. I want to hug everything until it feels warm inside.",
+        "choices": [
+          {
+            "text": "Snow hugs are sweet.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees in hats are cute.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm feelings beat the cold.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Sweet like a snowflake kiss. If snow hugs the island, I will hug the snow back very gently so nobody melts.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Cute! The trees look fancy and ready for a holiday. I wish I had a hat too, but my head is already round and happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They do! Warm feelings are like invisible scarves. I am wrapping the whole island in one right now, in my heart.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Sad little flowers. They are sleeping under the cold and waiting for warmer days. I will think happy thoughts at them so they dream nicely.",
+        "choices": [
+          {
+            "text": "Happy thoughts help.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sleeping flowers are brave.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm dreams are a good gift.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "They help a lot! Happy thoughts travel on the wind and land on sleeping flowers like tiny warm postcards.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Brave little flower friends. Sleeping in the cold is hard work. I am cheering for them from under my fluffiest thought.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Good gift! Warm dreams are free and they fit everyone. I am giving extra warm dreams to the beach flowers tonight.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra cold sea. The water got all shivery. I hope the fish are wearing tiny sweaters in their minds.",
+        "choices": [
+          {
+            "text": "Fish in mental sweaters is cute.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sea shivers in winter.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold water still sparkles.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Cute and cozy in their fishy imaginations. I bet the sea helps them pick the softest sweater colors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. The sea goes brrr and makes little cold waves. But it is still pretty, like a blue and white painting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Sparkly even when chilly! The sun touches the cold water and they make diamonds together. Best teamwork.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Rivet": {
+      "start": {
+        "text": "Ugh, Yeesh season. Everything is cold, the nights last forever, and someone started a rumor about vikings. I am not worried. Obviously. I just think winter is overrated.",
+        "choices": [
+          {
+            "text": "Winter is overrated.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking rumors are silly.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Long nights are tiring.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Overrated and everywhere. Snow on the grass, snow on the rocks, snow being smug about covering things. I see you, snow.",
+        "choices": [
+          {
+            "text": "Snow is smug.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rocks look colder now.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "At least buildings have roofs.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Smug white blanket, acting like it owns the island. It doesn't. It just sits there, melting eventually. I will wait.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Colder and grumpier looking. Rocks don't smile in winter. Not that they smiled before, but now they definitely don't.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Roofs and walls and the dignity of indoor spaces. Trees can't go inside, which is another reason winter is unfair.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Silly and annoying. Vikings would have to cross the cold sea, and nobody wants to do that. Not even imaginary ones.",
+        "choices": [
+          {
+            "text": "The sea is too cold for vikings.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rumors are lazy storytelling.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You are very brave for not worrying.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Too cold for sensible invaders. Any viking with common sense would stay home and complain about the weather like the rest of us.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Lazy. Ooh, big scary boats in the snow. No. The only thing crossing the water right now is wind and bad ideas.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Obviously I am. Bravery is when you hear a ridiculous rumor and still go outside to glare at snow. I do that daily.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Tiring because the dark lasts longer than my patience. Which is already short. I am not complaining. I am informing.",
+        "choices": [
+          {
+            "text": "Information is allowed.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dark nights need more stars.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Your patience is legendary.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Allowed and accurate. Somebody has to document the injustice of extended darkness. I accept the burden.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Stars are fine. More stars would be better. The night should at least provide decent lighting if it insists on being long.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Legendary and poorly insulated. My patience is thin, but my glare is thick. That is how I survive Yeesh season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Shade-7": {
+      "start": {
+        "text": "Yeesh season suits the island, Dreamer. Long quiet nights, cold stones, sad flowers drooping toward the earth. Even the sea seems to mourn in monochrome.",
+        "choices": [
+          {
+            "text": "The long nights are peaceful.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers are poetic.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The sea mourns beautifully.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Peaceful like a held breath. The night stretches out and the world slows down. I find it honest. Day is too frantic.",
+        "choices": [
+          {
+            "text": "Honest darkness is rare.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Slow nights are deep.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Day could learn from night.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Rare and refreshing. Darkness does not pretend to be cheerful. It simply exists, like a reliable old shadow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Deep enough to lose yourself in. I walk under the trees at night and let the quiet wrap around me like a familiar cloak.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "It could. Day rushes in shouting about brightness. Night arrives softly and lets you decide when to notice it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Poetic and accurate. The flowers bow their heads, accepting the cold. There is dignity in giving up gracefully.",
+        "choices": [
+          {
+            "text": "Dignity in rest.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The cold is a cruel artist.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bowed heads tell a story.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Rest with dignity. The flowers know they will rise again, but for now they sleep under the cold like tiny heroes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Cruel and talented. It paints everything pale and quiet, and the flowers become its saddest masterpiece.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "A story of surrender and patience. Bowed heads do not mean defeat. They mean the flowers are waiting in style.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Beautifully and without apology. The water turns dark and the waves keep time like a slow dirge. I could listen all night.",
+        "choices": [
+          {
+            "text": "Dark water is honest.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Waves keep winter time.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Listening to the sea is solemn.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Honest because it hides nothing. The sea in Yeesh season is cold and dark and fully committed to the mood.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Each wave arrives slowly, thinks about it, then withdraws. Winter has excellent pacing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Solemn and soothing. The sea does not ask for conversation. It simply repeats its cold poem until you understand it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Cypher": {
+      "start": {
+        "text": "Dreamer! Yeesh season presents fascinating variables. Lower temperatures, longer nights, reduced flower turgor, and a statistically unlikely rumor about vikings. I have questions.",
+        "choices": [
+          {
+            "text": "Tell me the cold facts.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "What about the viking rumor?",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Flowers losing turgor sounds sad.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Cold facts! Snow reflects more light than grass, the sea stores summer warmth longer than the air, and night has lengthened by a measurable amount since the season changed.",
+        "choices": [
+          {
+            "text": "Snow is bright because of reflection.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sea keeps old warmth.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Longer nights have data.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Bright and efficient. All that white surface sends sunlight back upward, which is why winter days feel extra luminous even when cold.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water holds memory of warmer days and releases it slowly. That is why the sea feels slightly less brutal than the air.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They do. I have been tracking sunset and sunrise. The gap between them has grown in a predictable seasonal curve.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Viking rumor! It fails basic logic. No boats have appeared on the water, no horn sounds have been recorded, and vikings prefer warmer raiding weather. Hypothesis rejected.",
+        "choices": [
+          {
+            "text": "No boats means no vikings.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Horn sounds would be evidence.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold weather discourages raiding.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Exactly. A viking arrival would require visible watercraft. The current boat count on the horizon remains zero. Rejected.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Evidence would be loud and brassy. So far the only horns belong to distant animals and occasionally the wind through tree branches.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Discouraging for raiders with exposed knees. A sensible viking would wait for a warmer season. This is a comfort.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Sad but normal. Turgor is internal water pressure. When it drops, flowers droop. It is not emotional sadness, though it looks like it.",
+        "choices": [
+          {
+            "text": "They droop but recover.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Looks like sadness anyway.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Water pressure is important.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When warmth returns, turgor restores and the flowers lift their heads. Seasonal mechanics are wonderfully reversible.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. The visual similarity to sadness is striking. I have started calling it poetic droop. It is not scientific, but it feels right.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Critical. Without proper pressure, plants cannot stand. Water is doing quiet structural work under every sad-looking petal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Om-Bit": {
+      "start": {
+        "text": "Yeesh season asks the island to slow down, Dreamer. The cold air, the still water, the flowers resting in the grass. I am trying to rest with them.",
+        "choices": [
+          {
+            "text": "Resting with the season is wise.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The cold air is cleansing.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Still water holds quiet.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Wise because resistance costs warmth. The trees do not argue with winter. They let their leaves fall and wait. I practice that patience.",
+        "choices": [
+          {
+            "text": "Trees teach patience.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Waiting is active rest.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Arguing with winter is tiring.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "They do. A tree does not rush the season. It stands, it waits, it trusts the cycle. I am learning to stand like that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Active rest. The body is still but the attention stays open. You wait without disappearing. That is the practice.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Tiring and pointless. Winter does not negotiate. Better to bow slightly and let it pass, as the grass does under snow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cleansing and sharp. Each breath wakes you up. The cold does not hide. It arrives plainly, and that honesty is a kind of teaching.",
+        "choices": [
+          {
+            "text": "Honest cold is a teacher.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sharp breath brings focus.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winter hides nothing.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A teacher without words. It shows you what remains when comfort is taken away. What remains is enough.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Focus arrives quickly in cold air. The mind becomes bright and simple. There is less room for wandering thoughts.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Nothing. No disguise, no decoration. Winter reveals the island's bones. The rocks, the trees, the bare ground. Honest shapes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Quiet and patient. The water moves less, the waves speak softly, and the sea becomes a listener instead of a speaker.",
+        "choices": [
+          {
+            "text": "The sea listens in winter.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Soft waves are gentle.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet water reflects the sky.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "It does. In warmer seasons the sea talks loudly. In Yeesh season it becomes still and listens to the wind and the stars.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Gentle and steady. Soft waves touch the beach without urgency. They remind me that force is not the only way to arrive.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "It reflects what is above. On clear nights the water holds pieces of sky. On cloudy days it holds the gray mood. Both are true.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sir Cogs-a-Lot": {
+      "start": {
+        "text": "Hail, fair traveler! Yeesh season has laid a silver cloak upon the realm. The flowers sleep, the sea is cold, and the smallfolk whisper of vikings upon the water. 'Tis a season for stout hearts.",
+        "choices": [
+          {
+            "text": "Stout hearts are needed.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking whispers are just tales.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "A silver cloak is pretty.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Needed indeed! For the cold wind tests every knight, and the long night tests every candle. We endure with honor and perhaps a warm beverage.",
+        "choices": [
+          {
+            "text": "Honor keeps you warm.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long nights test every light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Endurance is knightly.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "It does, in spirit if not in joints. A noble heart generates its own fire. Also, standing near a building helps.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "They do. A single candle becomes brave when the night grows long. We salute its small, flickering courage.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Knightly and practical. Enduring the cold is its own small quest. Victory is awarded when the sun returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Just tales told beside the fire to make the dark feel smaller. No viking longship has darkened our cold water. The wild hog would notice first.",
+        "choices": [
+          {
+            "text": "The wild hog is a good sentry.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tales make the dark smaller.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No longships have appeared.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A fine sentry, bold and bristled. If any boat crossed the water, the wild hog would object with snorts and drama.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. A well-told rumor becomes a jest, and a jest makes the long night pass with laughter instead of worry.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "None. The horizon is empty, the sea is merely cold, and our imaginary invaders are as absent as summer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Pretty upon the trees and the grass and the roofs of the buildings. The island looks like a kingdom in a holiday song.",
+        "choices": [
+          {
+            "text": "A holiday kingdom is cozy.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snow on roofs is charming.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winter suits the island.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Cozy and grand. One could almost expect a holiday feast in the nearest building, with songs and warm bread.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Charming and honorable. The roofs wear their white caps with dignity, sheltering all who dwell beneath.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "It does. Winter turns the island into a quiet court. The trees are knights, the rocks are elders, and the snow is the royal cloak.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Tinker": {
+      "start": {
+        "text": "Oh. Hello, Dreamer. I was... I was listening to how quiet it gets at night. The sea is cold and the flowers look sad. Someone said vikings might come, but I think it's just a scary story.",
+        "choices": [
+          {
+            "text": "It is just a scary story.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The quiet nights are gentle.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers are still beautiful.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Just a story. There are no boats on the water and no horns in the air. Only wind and the wild hog doing normal wild hog things.",
+        "choices": [
+          {
+            "text": "The wild hog is normal.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind is not a viking.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories can feel real.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Very normal. He roots in the grass and ignores rumors. I would like to be as sensible as the wild hog someday.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Not a viking. Just air moving through trees, making sounds that stories turn into horns. The trees are innocent.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They can. Especially when it is dark and the sea is cold. But then the sun comes back and the story feels smaller.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Gentle once you get used to them. The night is long but it is soft. I like sitting near the trees where the snow catches the starlight.",
+        "choices": [
+          {
+            "text": "Starlight on snow is pretty.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees feel safe at night.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Soft nights are restful.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Pretty and quiet. The stars land on the snow and the snow holds them for a little while before they melt away.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. Trees stand still and watch over everything. When I am near them, I feel less small in the long night.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Restful if you let them be. The night does not ask you to hurry. It gives you extra hours to be still.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Still beautiful. They are resting under the cold, holding onto color even when they droop. I think that is brave.",
+        "choices": [
+          {
+            "text": "Resting flowers are brave.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Color in winter is hopeful.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Drooping is not giving up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Brave little flowers. They close up and wait, keeping their color tucked inside like a secret.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Hopeful. Even when the grass is white and the air is cold, the flowers remember they will open again.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "It isn't. Drooping is just the flower saying, 'I am tired, but I am still here.' I understand that.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Zap-Zap": {
+      "start": {
+        "text": "Dreamer! DREAMER! It's Yeesh season and everything is sparkly and cold! The flowers are sleepy, the sea is chilly, and someone said vikings might visit but I think they are just lost in a story!",
+        "choices": [
+          {
+            "text": "Sparkly and cold is fun.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sleepy flowers are cute.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Vikings are probably lost in a story.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun because the snow catches the light and the beach looks like a cake! A cold cake, but still festive. Everything feels like a holiday.",
+        "choices": [
+          {
+            "text": "The beach as a cake is funny.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snow catching light is magic.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Everything feels like a holiday.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Funny and frosted! If the beach were a cake, the rocks would be candles and the waves would be icing swirls.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Magic and free! The sun gives light, the snow catches it, and suddenly everything is glittering. Best teamwork ever.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "It does! The buildings look fancy, the trees look dressed up, and even the rocks seem like they are wearing little white hats.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cute! The flowers are tucked into the grass like they are taking a long nap. I want to tuck them in with tiny blankets of encouragement.",
+        "choices": [
+          {
+            "text": "Encouragement blankets are nice.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long naps are healthy.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Flowers deserve cozy rest.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Nice and warm in feeling! I send them mental blankets made of good thoughts and sunny memories.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Healthy and wise! Sleeping through the cold is like saving energy for a big party when the warm days come back.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They do! Resting flowers are just flowers that know how to take care of themselves. Good job, flowers!",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Probably! Real vikings would see the cold sea and say no thank you. Stories can get carried away, like hats in the wind.",
+        "choices": [
+          {
+            "text": "Stories get carried away.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold sea deters visitors.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hats in the wind are silly.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do! One person says 'vikings' and the story grows until it has boats and horns and everyone is nervous. Silly story.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It really does! The sea is basically saying brrr stay away. I think the viking story got the message.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Silly and dizzy! A hat flying off is just wind having fun. A viking rumor flying around is just words having fun.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Boo-Boo": {
+      "start": {
+        "text": "Dreamer! The air is all fluffy and cold and the snow is trying to hug the grass. The flowers look a little sad though, and the sea got very chilly. I also heard a silly rumor about vikings, but I bet they just need blankets too. Do you think Yeesh season is giving everyone extra blankets?",
+        "choices": [
+          {
+            "text": "Extra blankets for everyone.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers need hugs too.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Snow hugs are very soft.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Blankets made of snowflakes! They disappear if you hold them too long, but they are very pretty while they last. I hope the trees like their snow blankets.",
+        "choices": [
+          {
+            "text": "Trees look cozy in snow.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snowflake blankets are magic.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "I hope everyone stays warm.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Cozy trees! They wear snow like little white hats and stand very still so the snow doesn't fall off. Very polite tree behavior.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Magic that melts in your hand but stays in your heart. I am collecting snowflake memories in a warm pocket.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Warm thoughts help. I am sending warm thoughts to the wild hog and the rocks and all the sleepy flowers.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hugs for flowers! I would pat their little cold petals and tell them spring is just napping. The long quiet nights are perfect for flower pep talks.",
+        "choices": [
+          {
+            "text": "Flower pep talks are kind.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Spring is just napping.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet nights help flowers rest.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Kind and important. Flowers can't put on sweaters, so they need encouragement from friends.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Just napping! When the nights get shorter again, spring will wake up and tickle the flowers until they smile.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Rest is good. The flowers close their eyes and dream of warm rain. I am also dreaming of warm rain.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Very soft and very cold. Snow is like a chilly cloud that fell down to cuddle the rocks. I giggle when my feet make crunch sounds.",
+        "choices": [
+          {
+            "text": "Crunch sounds are fun.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rocks need cuddles too.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Chilly clouds are pretty.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Fun because they go crackle crackle under your feet. It is like the ground is making tiny applause.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Rocks are very huggable because they don't wiggle. The snow stays on them longer and they look like marshmallows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Pretty and shy. Snow comes down quietly and hopes someone sees it. I always see it and say thank you.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Wisp": {
+      "start": {
+        "text": "Ugh, Yeesh season. Everything is cold and the snow gets in everything and the sea looks like it is judging me. And now people are whispering about vikings? Like I care. I don't care. Obviously.",
+        "choices": [
+          {
+            "text": "Cold everything is annoying.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking rumors are weird.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You obviously don't care.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Annoying and everywhere. My feet are cold, my nose is cold, even my complaints are cold. The flowers are sad and I am also sad about being cold. Not that it matters.",
+        "choices": [
+          {
+            "text": "Cold noses are the worst.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sad flowers are understandable.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Complaining about cold is valid.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "The worst. A cold nose makes every breath feel like a tiny insult. I am personally offended by the air.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Understandable. Flowers don't have coats or attitudes or the ability to complain properly. They just droop. Respect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Valid and frequent. I have a whole list of cold grievances. It is written in frost on a rock.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Weird and probably made up by someone with too much time and too many blankets. Vikings? Here? In the snow? They would slip on the beach and complain. Not my problem.",
+        "choices": [
+          {
+            "text": "Slipping vikings are funny.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beach snow is slippery.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not your problem is noted.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Funny and unlikely. A viking with a horned helmet walking on ice? Comedy. I almost smiled. Almost.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Slippery and cold. The beach should not be crunchy. Sand is supposed to be warm and yielding. Yeesh season ruins everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Noted correctly. My problems are limited to shivering, glaring, and pretending the snow doesn't bother me. That is enough.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Obviously. I am extremely not caring. I am standing here, not caring, while the long quiet nights happen all around me. It's fine. Whatever.",
+        "choices": [
+          {
+            "text": "Not caring is a skill.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long nights are quiet at least.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Whatever is a classic response.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A skill I have perfected. I could not care in a snowstorm. In fact, that is exactly what I am doing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Quiet enough to hear your own grumpiness echo. I don't enjoy that. But at least nobody is loud about being cheerful.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Classic, reliable, and slightly frozen. I will say whatever until the season apologizes or the sun returns. Whichever happens first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Morwen": {
+      "start": {
+        "text": "Yeesh season drapes the island in silver silence, Dreamer. The flowers mourn in frosty whispers, the sea has become a cold dark mirror, and the nights stretch long enough to lose yourself in. I find it almost beautiful. The viking rumors are a nice touch of dread.",
+        "choices": [
+          {
+            "text": "Silver silence is haunting.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cold dark mirrors suit you.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking dread is seasonal spice.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Haunting and honest. Snow falls like forgotten thoughts, covering the grass in a quiet that feels ancient. Even the wild hog moves with respect.",
+        "choices": [
+          {
+            "text": "Forgotten thoughts are poetic.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ancient quiet is powerful.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wild hog respect is earned.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Poetic and lonely. Each snowflake is a memory the season wants to bury before spring returns to ruin the mood.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Powerful because it does not ask permission. The long night simply arrives and spreads its cold wings over everything.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Earned through frost. The wild hog understands that some things are bigger than breakfast. Snow commands reverence.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "They do. The water holds the sky's pale ghost and refuses to explain itself. A sea that cold has nothing left to say.",
+        "choices": [
+          {
+            "text": "Pale ghosts are fitting.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Silence from the sea is heavy.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold water keeps secrets.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Fitting for Yeesh. The sky gives up its color and the sea catches it like a reluctant portrait. Tragic elegance.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Heavy because it hides so much. Beneath that cold mirror, fish dream of warmth and rocks plot dark geology.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Secrets and sadness. A cold sea keeps its grief close. That is why the waves sound like sighs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Spice and shadow. The idea of vikings arriving in the snow is wonderfully grim, even if it is only a rumor whispered by frightened grass.",
+        "choices": [
+          {
+            "text": "Grim rumors are art.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Frightened grass is vivid.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Shadows need stories.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Art made of anxiety. A good rumor paints the season in sharper shadows. I approve of the embellishment.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Vivid and accurate. I have seen grass tremble at the mention of vikings. Grass knows drama when it hears it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Stories keep the dark company. Without rumors, the quiet nights would only be long and cold. With them, they are legend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Spectra": {
+      "start": {
+        "text": "Dreamer! Yeesh season presents excellent field conditions. Snowfall accumulates on grass but not as much on rocks due to wind exposure, the flowers enter a dormant phase which is not sadness but biology, and the sea temperature has dropped measurably. There is also an unverified rumor about vikings. Sample size: zero.",
+        "choices": [
+          {
+            "text": "Dormant flowers make sense.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Unverified viking data is still data.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cold sea measurements are useful.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Biological sense. The flowers are conserving resources during cold months. Their drooping is strategic, not emotional. Though I do anthropomorphize sometimes.",
+        "choices": [
+          {
+            "text": "Strategic drooping is smart.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Anthropomorphizing is fun.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conserving resources is wise.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Smart evolution. Droop now, bloom later. The flowers are basically saving energy for a better comeback.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Fun and scientifically questionable. I like to imagine the flowers are sighing, but really they are just being practical.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Wisdom in petals. If I could hibernate, I would also pause during the cold and return with flowers.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Data with low confidence. I have interviewed zero vikings, one rock, and several snowflakes. Conclusion: no vikings detected, but the rumor persists due to cold boredom.",
+        "choices": [
+          {
+            "text": "Cold boredom spreads rumors.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Interviewing rocks is thorough.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Zero vikings is reassuring.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "It does. The quiet nights leave room for imagination to fill the gaps. Vikings are a convenient placeholder.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thorough if limited. Rocks have poor recall but excellent posture. They make reliable witnesses for weather.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Reassuring with a small margin of error. I will continue monitoring the beach for suspicious longboats. Just in case.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Useful because temperature affects everything. The sand gets firm, the trees lose their leaves, and the long nights give me more observation hours. Very efficient season.",
+        "choices": [
+          {
+            "text": "Observation hours increase.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Firm sand is interesting.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Efficient seasons are good.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. Darkness is an excellent research partner. More stars, more stillness, more chances to notice nocturnal animals.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Interesting because footprints behave differently. Firm sand holds shapes longer. I have documented three crab tracks and one mysterious boot print. Probably mine.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Good for productivity. Yeesh season maximizes daylight savings in reverse. I get extra night hours to sort my notes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Hush": {
+      "start": {
+        "text": "Yeesh brings long quiet nights, Dreamer. The cold asks us to slow down, the snow asks us to listen, and the sea rests under its cold blanket. Even the rumor of vikings is only another thought to let pass.",
+        "choices": [
+          {
+            "text": "Slowing down in cold is wise.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Snow teaches listening.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Rumors can pass like clouds.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Wisdom from the season. When the body moves less, the mind notices more. I watched a single snowflake settle on a rock and stayed with it until it melted.",
+        "choices": [
+          {
+            "text": "Staying with a moment is practice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Melting snowflakes are lessons.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The body rests so the mind wakes.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Practice without achievement. I do not collect the moment. I simply sit with it until it leaves on its own.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Lessons in impermanence. The snowflake was whole, then water, then air. It did not lose anything. It changed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Wakes to small things. A bird's footprint, a shift in wind, the cold smell of night. These become clear when the body rests.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "It does. Snow muffles the grass and softens the world. Sound becomes gentle, and gentle sounds ask for attention.",
+        "choices": [
+          {
+            "text": "Gentle sounds deserve attention.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Muffled grass is peaceful.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Softened world feels kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "They do. The quiet crunch of snow underfoot is a teaching. It asks you to step with care and intention.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Peaceful because it invites stillness. The grass does not rush under snow. It waits, as all things wait.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because it covers without claiming. The snow touches the rocks and the trees and then lets them go.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do. A rumor of vikings arrives, worries a few flowers, and then melts like frost in morning light. Nothing stays that does not belong.",
+        "choices": [
+          {
+            "text": "Worry melts like frost.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Nothing stays that does not belong.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning light is patient.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "It does. Worry is a cold breath on glass. It fades when the sun warms the window, or when the breath simply ends.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Belonging is the island's quiet law. What is true remains. What is rumor passes through like a chilly breeze.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Patient because it does not hurry. Morning light arrives after the long night, not by force, but by returning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sir Haunts-a-Lot": {
+      "start": {
+        "text": "Hail, fair traveler! Yeesh season has laid its cold banner across the realm. The trees stand bare as skeletons, the sea wears armor of ice, and the long nights feel like watch duty upon the castle walls. Some speak of vikings upon the frozen waves, but I say 'tis only winter's tall tale.",
+        "choices": [
+          {
+            "text": "Cold banners are dramatic.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Watch duty on long nights fits you.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking tall tales are winter fun.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Dramatic and true! The snow falls like heralds announcing the season. Even the rocks look noble beneath their white cloaks.",
+        "choices": [
+          {
+            "text": "Noble rocks are grand.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snow heralds are dramatic.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "White cloaks suit the beach.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Grand indeed. A rock with a snow cloak carries itself with unexpected dignity. I bow to many stones this season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Dramatic and numerous. If each snowflake carries a message, the season has a great deal to announce. Mostly 'be cold'.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They suit it well. The beach becomes a pale hall of salt and frost, suitable for very formal winter gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "They do. A knight must keep vigil while the realm sleeps. I have appointed the wild hog as my squire and the stars as my fellow guards.",
+        "choices": [
+          {
+            "text": "Wild hog squires are loyal.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stars make good watchmen.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Vigil in the cold is brave.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Loyal and earthy. The wild hog does not complain about the cold. It roots bravely, and I respect that greatly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Good watchmen because they do not sleep. They also do not gossip, which is rare among celestial beings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Brave and slightly frozen. A knight's duty does not pause for weather. Though I do allow extra shivering.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Winter fun and harmless dread. Imagine vikings arriving only to find their beards frozen and the beach too crunchy for proper pillaging. A comedy of the north!",
+        "choices": [
+          {
+            "text": "Frozen beards are funny.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crunchy beaches foil plans.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Northern comedy is a good genre.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Funny and impractical. A frozen beard is a liability in battle and a source of excellent winter jokes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They foil plans admirably. A crunchy beach is no place for a sneaky longboat landing. The island is naturally defended.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A fine genre. Tales of northern visitors slipping on ice and apologizing to trees. Gentle legend for a gentle season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Flutter": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the snow settle on the grass. It covers everything softly, but the flowers look sad underneath. And the sea is so cold it stopped making loud waves. I hope the viking rumor doesn't scare the rabbits.",
+        "choices": [
+          {
+            "text": "Snow settling is gentle.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers are still brave.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Rabbits are probably fine.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Gentle and quiet. Each flake falls like it is trying not to bother anyone. The long nights make the falling even quieter.",
+        "choices": [
+          {
+            "text": "Quiet falling is pretty.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long nights make snow softer.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Gentle snow feels safe.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Pretty because it doesn't ask to be seen. It just falls and hopes someone is watching softly. I am always watching softly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Softer because there is less sound to interrupt. The snow has permission to be delicate when the world is asleep.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Safe and soft. It covers the rocks and the paths and makes everything look friendlier, even the parts that are usually scary.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Brave because they are cold and small and still holding on. I would tuck them in if flowers used blankets. I think snow is their blanket, even if they look sad.",
+        "choices": [
+          {
+            "text": "Snow is a flower blanket.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Holding on is brave.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small cold things are strong.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A chilly blanket, but yes. The flowers sleep under it and dream of warm days. I hope their dreams are cozy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Brave and quiet. They don't announce their courage. They just stay tucked in the ground and wait for better weather.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Strong in a gentle way. Small cold things keep going without any noise. I admire that more than loud strength.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Probably fine. Rabbits are good at hiding and the vikings are probably just a story the wind made up because the nights are too long and quiet.",
+        "choices": [
+          {
+            "text": "Rabbits hide well.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind makes up stories.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Long quiet nights need stories.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. They know all the best bushes and holes. If a rumor comes, they are already somewhere safe.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. The wind has a lot of night hours to fill, so it tells stories about ships and beards and crunchy beach landings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. A long quiet night can feel too big, so stories make it smaller and friendlier. Even silly viking stories help.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Giggles": {
+      "start": {
+        "text": "Dreamer! DREAMER! Yeesh season is happening SO hard! The snow is everywhere and the air is nippy and the sea got all cold and serious! I heard vikings might visit but I bet they just want to see the snow flowers! Do you love Yeesh too?",
+        "choices": [
+          {
+            "text": "Yeesh season is happening hard.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Vikings wanting flowers is cute.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Nippy air is exciting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "SO hard! Maximum Yeesh! If today were a snow contest, the snow would win all the prizes and also build a tiny snow castle!",
+        "choices": [
+          {
+            "text": "Snow castles are excellent.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winning all prizes is funny.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Maximum Yeesh is a good mood.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Excellent because they have turrets made of cold. I would live in a snow castle until it melted and then I would be a puddle knight.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Funny and fair. The snow is the only contestant, so it gets all the medals. It has earned them through consistent falling.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Good mood and rosy cheeks! I feel like a snowflake with feet, bouncing around and being chilly and happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cute and probably true! Vikings have noses too, and noses like flowers. Maybe they are bringing warm hugs from far away and we can show them the beach!",
+        "choices": [
+          {
+            "text": "Warm hugs from far away sound nice.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beach tours for vikings are fun.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Noses do like flowers.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Nice and very warm. Even if vikings don't arrive, I am still ready to accept far-away hugs and pass them around.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Fun because the beach looks different in Yeesh! It is pale and sparkly and crunchy and perfect for showing off to visitors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They do! Flower sniffing is a universal joy. I bet vikings would say 'mmm, nice flower' and then not pillage anything because flowers are too pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exciting and wiggly! Nippy air makes you move faster and breathe little clouds and feel very alive! The long nights just mean more hot cocoa time.",
+        "choices": [
+          {
+            "text": "Little clouds of breath are fun.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hot cocoa time is the best time.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Moving fast keeps you warm.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Fun because you can pretend you are a tiny dragon. Puff puff! The cold makes every breath visible and dramatic.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Best time and warm tummy. Hot cocoa makes the long quiet nights feel like cozy little parties inside your mouth.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "It does! Fast wiggles and jumping and maybe running from imaginary vikings all keep you toasty. Exercise and silliness are the warmest.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Mochi": {
+      "start": {
+        "text": "Dreamer! The snow made everything extra soft today. The grass is wearing a white blanket, the flowers look a little sad and sleepy, and the sea is cold and sparkly. Do you love Yeesh season too?",
+        "choices": [
+          {
+            "text": "I love Yeesh season too!",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Soft snow is cozy.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Everything does look extra today.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "You do? Then we can love it together! Cold days feel warmer when you share them. That's probably science. Friendly winter science.",
+        "choices": [
+          {
+            "text": "Friendly winter science is good science.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Shared cold is the best equation.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "We should celebrate extra.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Good science is when your heart gets warmer and nobody has to take notes. I am taking mental notes anyway. They are all little snowflakes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "The best equation. Cold plus cuddles equals the snuggliest sum. I did the math in my heart and the answer is hot cocoa hugs.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Celebrate by smiling at snow piles and rocks and bare trees. Everything gets included. That's the best kind of winter party planning.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Cozy because the snow stacks on top of everything like a fluffy quilt. My heart feels like a little warm marshmallow inside.",
+        "choices": [
+          {
+            "text": "Warm marshmallow hearts are sweet.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fluffy quilts are nice.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You have a snowy heart.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Sweet and slightly gooey in a good way. If you listen closely, my heart makes a tiny warm sound like a kettle friend.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They are. Fluffy quilts don't fall over. They pile up into a soft tower of nice. I am inside that snowy tower right now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Snowy heart! I like that. It means the snow lives in here a little bit, helping me glow even when it is cold outside.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Extra is the perfect word. Extra snow, extra sparkle, extra quiet. I want to collect all the extras in a basket.",
+        "choices": [
+          {
+            "text": "Collect extras in a basket.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snow sparkle is precious.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra quiet is the goal.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "A basket of extras would be heavy but happy. Snowflakes are light though. I could carry thousands of those.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Precious sparkle! I keep it in my eyes so I see everything shiny. My eyes are basically snow-globe jars now.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Extra quiet is better than regular quiet. It's like quiet wearing a fuzzy hat. Yeesh season is the fuzzy hat.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Shadow": {
+      "start": {
+        "text": "Ugh, Yeesh season. The cold is everywhere and the snow won't stop showing off. I don't know why everyone is smiling about it. Not that I'm complaining or anything.",
+        "choices": [
+          {
+            "text": "The snow is showing off.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can complain if you want.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not complaining is noted.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Showing off is exactly right. Look at it, all white and fluffy, demanding attention. I refuse to give it the satisfaction. Much.",
+        "choices": [
+          {
+            "text": "Refusing attention is power.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The snow is vain.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Unimpressed is a strong stance.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Power is when you look at the snow and squint meaningfully. The snow cannot read expressions. But it feels the energy. Probably.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Vain and successful. I respect the hustle even if I won't applaud it. The snow does not need my applause, which is annoying.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Strong and shivery. My stance is glistening. I will stand here, unimpressed, until the season apologizes or the spring returns.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "I don't need permission. But I also don't need to complain. I'm just stating facts. The fact is: it's cold and I am unimpressed.",
+        "choices": [
+          {
+            "text": "Facts are allowed.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold is a fact.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Restraint is admirable.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Allowed and necessary. If nobody states the facts, the snow will think it won. It didn't win. It just exists loudly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Cold is a fact. A sharp, everywhere, nose-hurting fact. But still just a fact. I will outlast it with dignity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Admirable is a strong word. Let's say my restraint is functional. It keeps me from saying things I would pretend I didn't mean.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Noted? Fine. I am a very noted non-complainer. I have medals. Invisible medals. For excellence in restraint.",
+        "choices": [
+          {
+            "text": "Invisible medals still count.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excellence is excellence.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You handle cold well.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They still count. I have a whole imaginary trophy room. It is dusty and poorly lit and I am very proud of it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Excellence with invisible proof. The highest level. Nobody can take it away because nobody can find it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Well? I do. I handle it with moderate elegance and maximum eye-rolling. That is my technique and it is patented.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Raven": {
+      "start": {
+        "text": "Yeesh season drapes the island in silver suffering, Dreamer. The snow is too sincere. I prefer the long quiet nights, when the cold at least has the decency to apologize with stars.",
+        "choices": [
+          {
+            "text": "Silver suffering is a beautiful phrase.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The night is a better apology.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sincere snow is exhausting.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Beautiful and accurate. The snow gives silence and takes comfort. That is the oldest tragedy. I shall write a poem about it.",
+        "choices": [
+          {
+            "text": "Poems make cold meaningful.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Tragedy fits Yeesh season.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Beauty with discomfort is art.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Meaningful suffering is the only good kind. If I must shiver, I will shiver with metaphors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Tragedy everywhere. The sleeping flower, the frozen rock, the robot whose chassis is too cold. All of it belongs in verse.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Art often hurts a little. Yeesh season is a masterpiece of discomfort. I admire it from beneath my metaphorical black umbrella.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Better apology indeed. The long night arrives quietly, chills the stones, and covers the sky with distant lights. That is manners.",
+        "choices": [
+          {
+            "text": "Night has good manners.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cool stones are a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Distant lights are kind.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Manners matter. Day shouts, night whispers. I prefer whispers. They do not make me shudder.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift from the dark. Stones that were burning at noon become soft and cold. I rest my thoughts on them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Kind because they do not demand attention. They simply shine from far away and let you look if you want to.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Exhausting because it offers no mystery. 'Here I am,' it says, 'white and bright and unavoidable.' How dreary.",
+        "choices": [
+          {
+            "text": "Mystery is underrated.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The snow has no subtlety.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dreary brightness is a mood.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Underrated and endangered. The snow would eliminate mystery entirely if it could. I resist by admiring shadows.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "None at all. It arrives, glows excessively, and expects gratitude. I offer a polite nod and retreat indoors.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A mood I know well. Bright, relentless, unavoidable. Like an acquaintance who talks too loudly at gatherings.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Newton": {
+      "start": {
+        "text": "Dreamer! Yeesh season has activated some fascinating behaviors. The nights are longer, the crabs move less at dawn, and the sea temperature is measurably colder than the grass temperature. I have data.",
+        "choices": [
+          {
+            "text": "Data makes everything better.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Long nights are interesting.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Tell me more Yeesh facts.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Better and also reliable. For example: fewer insects fly during Yeesh mornings. I counted zero before noon. Sample size small but definitive.",
+        "choices": [
+          {
+            "text": "Zero insects is definitive.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Sample size can grow.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning research is cozy.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Definitive! Tomorrow I will count again. Probably zero. Maybe zero again. Science is just counting things until patterns appear.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It can. I will expand my insect observation zone. If I stand very still, the lack of insects will still be valid data.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Very cozy. Cold air, long shadows, tiny missing wings. The best laboratory is one where you can also nap.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Interesting and useful. Longer nights mean more observation hours. I appreciate the seasonal scheduling.",
+        "choices": [
+          {
+            "text": "Long nights are helpful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Seasonal scheduling deserves thanks.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "You counted them carefully.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Helpful and honest. The night doesn't hide the dark. It broadcasts it with enthusiasm and slightly too much quiet.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Thanks are scientifically appropriate. Good data should be acknowledged, even if the source is a season.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Carefully and quietly. Long nights are shy witnesses. If you move fast, they leave and take their darkness with them.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "More facts! Flowers rest during cold seasons, the sea gets colder near the beach, and quiet air holds more story potential.",
+        "choices": [
+          {
+            "text": "Quiet air holds stories.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Resting flowers know the season.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Stories make research warmer.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Stories about where the cold goes and who likes it. The answer is: some things, briefly. Then warmth becomes the hero.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "They do. Their resting schedule is older than the island's name. I admire any creature with seasonal punctuality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They do. Research without stories is just numbers. Stories without research is just guessing. Together they are perfect.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lotus": {
+      "start": {
+        "text": "The Yeesh snow does not ask permission, Dreamer. It simply arrives and covers what it touches. I am trying to be like the snow: present, without apology.",
+        "choices": [
+          {
+            "text": "Presence without apology is strong.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness is hard in cold.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Being present is enough.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Strong but gentle. The snow does not explain itself. It falls. I am learning to simply be, without offering reasons.",
+        "choices": [
+          {
+            "text": "Gentle strength is best.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Simply being is enough.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "No reasons needed.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Best because it does not push. The snow is strong but it does not argue. I try to be the same way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Reasons are for journeys. Being is for arrivals. I have arrived at this cold afternoon.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Hard but worth practicing. When the body slows, the attention wakes up. I see more bare branches, more frost, more small kindnesses.",
+        "choices": [
+          {
+            "text": "Slowing down is wisdom.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Attention wakes up when the body rests.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small kindnesses matter.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Wisdom earned through chill. The body reminds the mind that haste is not always progress.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "It does. When I stop moving, the world keeps moving around me. I become the still point and watch the beauty orbit.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "They matter most. A shared glance, a small shelter, a moment of patience. These are the real currency of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Enough is a complete sentence. I am here. The season is here. That is the whole conversation.",
+        "choices": [
+          {
+            "text": "Here and now is complete.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The season is a guest.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Conversations can be quiet.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Complete and sufficient. I do not need to add anything. The cold afternoon includes me already.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "A guest that stays for a while. I do not control when it leaves. I only practice hospitality while it remains.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They can. Quiet conversations are often the truest. Words can wait. Presence speaks first.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Squire Paws": {
+      "start": {
+        "text": "Hail, fair traveler! Yeesh season has cast its cold banner across the realm, and even the stones wear cloaks of frost. 'Tis a fine day to seek the warmth of a loyal tree and speak of winter deeds.",
+        "choices": [
+          {
+            "text": "Frosty cloaks are a fun idea.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Loyal trees still shelter us.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Winter deeds need telling.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Fun and true! The cold does not sneak. It arrives with fanfare, like a champion entering the courtyard. We must meet it with grace.",
+        "choices": [
+          {
+            "text": "Meeting cold with grace is chivalry.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Fanfare makes frost feel royal.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grace is the best armor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Chivalry in every frosty breath. A true knight faces the day with dignity, even when the day is very cold and very bright.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Royal frost! I shall address it as 'Your Chillness' and bow before seeking shelter. Even the snow enjoys good manners.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "The best armor is composure. It does not block cold, but it makes cold less embarrassing. A noble face is always warmer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "They do. A good tree blocks the wind without asking for tribute. I often knight such trees in my mind. Sir Leaf, Sir Branch.",
+        "choices": [
+          {
+            "text": "Sir Leaf and Sir Branch are good names.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Trees deserve titles.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Mind-knighting is valid.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Good names for good trees. Sir Leaf is bare but brave. Sir Branch is sturdy and patient. Both have served the realm well.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do. They hold the soil, shelter the birds, and stand against the wind. Titles are the least we can offer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Valid and frequent. I have an entire court in my head. The wild hog is a baron. The sleeping flowers are ladies-in-waiting.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The shivering of leaves, the marching of snowflakes, the huddling of rocks. Every small deed becomes legend in the right light.",
+        "choices": [
+          {
+            "text": "Small deeds make good legends.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The right light helps everything.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Every season has its tales.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Good legends because they are honest. A leaf shivers because it must. A snowflake falls because the sky needs it. Noble simplicity.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It does. Cold light flatters nearly everything. Stones look silver, branches look carved, and even the sea appears regal.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Every season, yes. Yeesh season's tales are of endurance, shelter, and the brave wild hog seeking a warmer hollow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Pebble": {
+      "start": {
+        "text": "Oh. Hi, Dreamer. I was... I was watching the cold light on the water. It makes little silver paths. I think the sea is being quiet, but shivery.",
+        "choices": [
+          {
+            "text": "Silver paths on water are pretty.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Quiet shivering is fine.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You notice beautiful things.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Pretty and shy. The pale sun throws light onto the water and the water catches it for a second, then lets it go. Like a gentle game.",
+        "choices": [
+          {
+            "text": "Gentle games are nice.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The water plays with light.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things feel like gifts.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Nice because nobody wins. The light and water just take turns. It's a game where everyone is happy.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "It does. The water catches the pale sun and then passes it along. Very polite. I would also like to be that polite.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Gifts from the whole afternoon. The sea, the cold sun, and the quiet all worked together to make something pretty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Fine because it doesn't ask for anything. The sea just sparkles coldly and hopes someone notices. I noticed. I am very proud of noticing.",
+        "choices": [
+          {
+            "text": "Noticing is a skill.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pride in noticing is sweet.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold sparkle matters.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Skill and also kindness. You have to slow down enough to see small sparkle. I am good at slowing down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Sweet pride. Noticing is one of my best things. I don't say much, but I see plenty.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "It does. Loud sparkle gets attention, but cold sparkle is for people who look closely. I look closely a lot.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I try to. If I am quiet enough, the world shows me small nice things. Today it showed me silver paths and a very patient rock.",
+        "choices": [
+          {
+            "text": "Quietness has rewards.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Patient rocks are good company.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Small nice things add up.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "They do. When you are quiet, the world trusts you with its smaller beauties. It is a gentle permission.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good company. Rocks don't mind silence. They sit with you without asking why you are hiding from the cold wind.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They add up into a whole nice day. One small thing, then another, and suddenly the afternoon feels full of kindness.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Sunny": {
+      "start": {
+        "text": "Dreamer! DREAMER! Yeesh season is here and the sea is cold and the flowers look sad and the nights are SO long and quiet and I heard a rumor that maybe vikings are coming but I think it is probably just a silly rumor! Are you having the best winter day possible?",
+        "choices": [
+          {
+            "text": "Vikings are probably just a silly rumor.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers need warm thoughts.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Long quiet nights are cozy.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Probably! I am pretty sure there are no vikings. I looked at the beach and I only saw rocks and crabs and no boats with pointy hats at all.",
+        "choices": [
+          {
+            "text": "Pointy hat boats are a funny idea.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Crabs are better than vikings.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The beach looks normal.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Funny idea! I don't think vikings would fit on our beach anyway. Their boats would probably bump into the rocks and then they'd have to apologize to the wild hog.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Much better! Crabs are small and sideways and wonderful and they definitely do not wear horned helmets. They don't wear any helmets. I checked.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Normal! Just sand and cold water and rocks and no mysterious invaders. I give the beach a thumbs up for being regular.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "They do! We should think warm sunny thoughts at them. Maybe if enough of us think warm thoughts, the flowers will feel less sad and more cozy.",
+        "choices": [
+          {
+            "text": "Warm thoughts are powerful.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cozy flowers are the goal.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Thinking at flowers is cheerful science.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Powerful and warm! If thoughts could make little scarves, every flower on the island would have a cozy neck by tomorrow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "The goal! Cozy flowers are happy flowers and happy flowers make the whole island look like it is smiling with leaves.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Cheerful science is my favorite kind! No lab coat needed. Just sunshine thoughts and flower friends and maybe a little snow.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They are! Long quiet nights are like the island tucking itself in with a big star blanket. Very cozy and very dark and very nice.",
+        "choices": [
+          {
+            "text": "Star blankets are the best.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The island tucking itself in is sweet.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dark and nice is a good combo.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best blanket ever! Stars are tiny holes in the night so the warm sky can peek through. That's probably not real science but it feels true.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Sweet and sleepy! The island pulls up the sea like a blanket and snuggles the trees and whispers goodnight to the rocks.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Good combo! Dark is for resting and nice is for feeling safe and together they make the best kind of long quiet night.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Fluffernox": {
+      "start": {
+        "text": "Dreamer! Yeesh season is here and everything got fluffy and cold. I tried to catch a snowflake on my paw and it melted, but I am still very proud of the attempt.",
+        "choices": [
+          {
+            "text": "Proud attempts count as catches.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Snowflakes are tricky.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Cold and fluffy is a nice combination.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "They do? Then I have caught hundreds of snowflakes in my heart. My heart is very full and slightly damp.",
+        "choices": [
+          {
+            "text": "A damp heart is a busy heart.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Hundreds is an impressive count.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Heart catches last forever.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Busy and happy! A damp heart means feelings are moving around. Mine are doing little snow dances.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Impressive and probably true. I lost count after twelve but I kept feeling proud, so I rounded up to hundreds.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Forever! The snowflake is gone but the proud feeling stayed. That's basically the same as keeping it in a jar.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Tricky and shy. They float down all pretty, then disappear as soon as you love them. Maybe that is their magic.",
+        "choices": [
+          {
+            "text": "Shy magic is still magic.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pretty things are allowed to hide.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Magic that disappears is still real.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Still magic! Quiet magic, quick magic, magic that only your eyes get to see for a second. I like polite magic.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Allowed and smart. If everything stayed visible, the world would be too crowded. Snowflakes know about personal space.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Real because I felt it. The cold little tap on my paw happened. That is enough proof for me.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "It is! My fuzz gets extra fuzzy and the cold makes my cheeks pink. I look like a warm cloud that somebody chilled.",
+        "choices": [
+          {
+            "text": "Warm clouds are the best clouds.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Pink cheeks are cozy.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Extra fuzzy is extra huggable.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Best kind of cloud. Warm inside, cold outside, like a fuzzy contradiction wrapped in me.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Cozy like a surprise. My cheeks are saying thank you to the weather even though my toes disagree a little.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Huggable and true! I give very soft hugs. In Yeesh season they also come with a free bonus chill.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Grumble": {
+      "start": {
+        "text": "Yeesh season. Snow everywhere, cold everywhere, and now people are whispering about vikings. As if the cold wasn't enough to complain about. Not that I care.",
+        "choices": [
+          {
+            "text": "Viking rumors are pretty silly.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You have plenty to complain about.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Not caring is your brand.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Silly is one word. Vikings? Here? Doing what? Borrowing rocks? I am not worried. I am just... prepared to be unimpressed.",
+        "choices": [
+          {
+            "text": "Prepared unimpressed is safe.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Rocks don't need borrowing.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Worry looks good on nobody.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Safe and dignified. If vikings arrive, I will cross my arms and look skeptical. That usually solves things.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "They don't. The island has enough rocks. Any viking looking to borrow one is going to be disappointed and then politely ignored.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Nobody. Worry wrinkles your face and I am too young and lumpy for that. I will stick to mild suspicion.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Plenty? I have a menu of complaints. Cold toes, sad flowers, quiet nights that last forever. I am not ordering them all at once. That would be excessive.",
+        "choices": [
+          {
+            "text": "A menu is organized complaining.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Don't order everything at once.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Excessive complaining is still complaining.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Organized and efficient. Today I complain about the cold. Tomorrow maybe the sad flowers. Viking rumors can wait until after lunch.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "I won't. Pacing is important. A well-paced complaint lands better than a complaint avalanche.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Still complaining, but with rhythm. There's an art to it. I am basically a complaint composer.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Brand? I don't have a brand. I have a personality. A strong one. With layers. The top layer is grump and the bottom layer is also grump.",
+        "choices": [
+          {
+            "text": "Consistent layers are honest.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Grump is a valid aesthetic.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "At least you're warm inside.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Honest and layered. What you see is what you get, which is mostly frowning and occasional flower-straightening.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Valid and low maintenance. I don't need fancy colors. I just need a cold rock to sit on and an opinion.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Inside where? Don't say my heart. That's a cliché. But yes. Maybe. A small warm spot. Near the flower-straightening muscle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Vesper": {
+      "start": {
+        "text": "Yeesh season suits me, Dreamer. The long nights, the cold sea, the flowers drooping like forgotten poems. It is beautifully unfortunate.",
+        "choices": [
+          {
+            "text": "Beautifully unfortunate is accurate.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Long nights are peaceful.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The sea being cold feels serious.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Accurate and elegant. Yeesh does not apologize. It arrives with frost and silence and demands we admire the discomfort.",
+        "choices": [
+          {
+            "text": "Discomfort can be art.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Frost has good timing.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Silence demands attention.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Art with bite. The flowers are sad, the air is sharp, and I get to wear it all like a velvet cloak.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Good timing. It waits until everything is quiet, then paints the grass in silver. Very theatrical.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "It does. Silence makes you lean in. The island whispers louder in Yeesh season because nothing else competes.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Peaceful because the world slows down. Even the stars seem to speak more softly when the nights grow long.",
+        "choices": [
+          {
+            "text": "Soft stars are better stars.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Slow nights let thoughts land.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet is a kind of music.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Better because they don't shout. They simply glow from far away and let you decide how much wonder to feel.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They land like soft stones. Heavy enough to notice, gentle enough to keep. I collect a few each long night.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Music without notes. The kind you feel in your chest while standing on cold sand and looking at nothing in particular.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Serious and deep. The sea holds cold like a secret. I respect any water that refuses to pretend warmth.",
+        "choices": [
+          {
+            "text": "Honest water is respectable.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Cold secrets are well kept.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sea doesn't pretend.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Respectable and rare. Most things pretend. The sea just says no and stays beautiful while saying it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Well kept. I have tried to guess the sea's secrets but it only answers with waves, which is fair.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "It never has. I find that comforting. In a world of changing weather, the sea's cold honesty is reliable.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gizmo": {
+      "start": {
+        "text": "Dreamer! Yeesh season raises so many questions. Why do flowers look sad when cold? Why does the sea feel colder than the air? And where did the viking rumor even start? I have theories.",
+        "choices": [
+          {
+            "text": "I want to hear your theories.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Sad flowers need warm thoughts.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking rumors are probably just wind.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Theory one: flowers droop because their petals are conserving story energy. Theory two: the sea is cold because it is deeper than the sky. Theory three: vikings are a metaphor for winter being loud.",
+        "choices": [
+          {
+            "text": "Story energy makes sense.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sea deeper than the sky is poetic.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Winter being loud is a good metaphor.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "It does! Flowers are basically tiny libraries. In Yeesh season they switch to a slower reading speed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Poetic and possibly true. The sky has depth too, but the sea keeps its cold where we can touch it. That is generous data sharing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "A good metaphor. Winter arrives with announcements. Cold wind, crunching grass, viking-shaped rumors. Loud in a data-rich way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Warm thoughts might help. I tried telling a flower it looked elegant in frost and it did not perk up, but it also did not perk down, which is progress.",
+        "choices": [
+          {
+            "text": "No further drooping is a win.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Frost elegance is real elegance.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Flowers appreciate the effort.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "A documented win. I have charts. Well, I have mental charts. The flower stayed approximately the same. Success.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Real! Frost brings out details. You can see the leaf veins better, the petal edges, the quiet architecture.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Effort counts statistically. Even if the flower cannot say thank you, the universe notes the attempt. I am fairly certain.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Probably wind. Or a misheard word. Maybe someone said 'ice kings' and it became 'vikings.' Rumors compress data.",
+        "choices": [
+          {
+            "text": "Rumors compress data nicely.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Ice kings sound less scary.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Wind is a bad messenger.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Nicely. They take a big event and shrink it into a bite-sized worry. Efficient, if not accurate.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Less scary and more decorative. Ice kings sound like they would build very pretty castles and then apologize for the chill.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "The worst. It misdelivers sounds, flattens syllables, and occasionally makes people worry about boats that aren't there.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Ommmm": {
+      "start": {
+        "text": "The Yeesh season asks us to be still, Dreamer. The cold sea, the sad flowers, the long quiet nights. All of it invites us to listen more carefully.",
+        "choices": [
+          {
+            "text": "Listening is harder in the cold.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Stillness makes the night longer.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "The flowers are quiet teachers.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Harder because the body wants to move, to warm itself. But if we stay with the cold, it becomes a voice too. A quiet one.",
+        "choices": [
+          {
+            "text": "Cold has a voice?",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Staying with discomfort is brave.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Quiet voices are worth hearing.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "A small one. It says 'hush' and 'slow down' and 'feel the world holding its breath.' If you sit with it, you can hear it.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Brave because the body resists. But bravery here is gentle. It is simply staying, not conquering.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They are. The quiet ones often carry the deepest truths. The loud world drowns them out. Yeesh season turns the volume down.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Longer but not heavier. A slow night holds more space between moments. That space is where peace lives.",
+        "choices": [
+          {
+            "text": "Space between moments is peace.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Slow time is a gift.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Peace lives in the gaps.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "It is. Between one heartbeat and the next, there is room to notice the stars, the cold, the soft breath of the island.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "A gift that is easy to miss. We are used to rushing. Yeesh season reminds us that slow is also a speed.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "In the gaps, yes. Between thoughts, between worries, between snowflakes. Peace finds the empty places and settles there.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "Teachers indeed. They do not resist the cold. They let their petals rest and wait. There is wisdom in not fighting the season.",
+        "choices": [
+          {
+            "text": "Resting is not giving up.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Waiting takes strength.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Not fighting is a kind of trust.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "It is not. Resting is preparation. The flowers are gathering patience, storing stillness, readying themselves for the return of warmth.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Strength that looks like softness. The flower does not argue with frost. It bows and survives. That is power.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "A deep kind of trust. Trust that the cold will pass, that the sun remembers the island, that rest is part of the cycle.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Lord Roar": {
+      "start": {
+        "text": "Hail, fair Dreamer! Yeesh season has laid a silver blanket upon our realm. The sea is cold, the nights are long, and rumor speaks of vikings upon the chill winds. A fine time for valor!",
+        "choices": [
+          {
+            "text": "Valor in the cold is noble.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Viking rumors are probably exaggerated.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Silver blankets suit the island.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Noble indeed! A brave soul does not wait for warm weather to be bold. I have already challenged three snowflakes to a duel. They yielded upon landing.",
+        "choices": [
+          {
+            "text": "Snowflakes yield gracefully.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Three duels before breakfast is impressive.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Bravery does not need warmth.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Gracefully and without shame. A true duelist knows when to melt. I respected their surrender.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Impressive and routine. Before breakfast, after breakfast, between snacks. A knight's work is never done.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "It does not. Warmth is a luxury, not a requirement. My cape keeps my spirit cozy and that is sufficient.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Exaggerated, aye. I suspect 'vikings' are merely large gulls with dramatic silhouettes. Still, I shall keep watch from the highest rock.",
+        "choices": [
+          {
+            "text": "Gulls make better neighbors.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "High rocks are good for watching.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dramatic silhouettes are suspicious.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Better neighbors and cleaner guests. Gulls do not borrow cups or leave axe-shaped confusion behind.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "The highest rock with the coldest seat. A small price for vigilance. I shall report any suspicious silhouettes immediately.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Suspicious and romantic. Any shadow that large has either a story or a beak. I am prepared for either.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "They do! The island wears white like a royal cloak. Even the sad flowers look dignified beneath their frost crowns.",
+        "choices": [
+          {
+            "text": "Frost crowns are royal.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Dignified flowers are brave.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "White cloaks suit the realm.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Royal and delicate. Every flower is briefly a tiny monarch ruling over its own frosty kingdom.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Brave and noble. To droop with dignity is a higher art than standing tall with complaint.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They suit it perfectly. The realm looks refreshed, as if it has been freshly painted by an orderly cloud.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Snug": {
+      "start": {
+        "text": "Oh. Hello, Dreamer. Yeesh season makes me hide under warmer rocks. The snow is pretty but it looks at me with too many tiny cold eyes.",
+        "choices": [
+          {
+            "text": "Snowflakes are just curious.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Warmer rocks are wise.",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "You can watch from your hiding spot.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Curious? Maybe. They land on my head and then disappear, which feels like being asked a question I didn't answer.",
+        "choices": [
+          {
+            "text": "Unanswered questions are okay.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Snowflakes don't need answers.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Disappearing is their answer.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Okay. I don't have to answer everything. Some questions are just snowflakes being friendly in a brief way.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "They don't? That's a relief. I was worried I was being rude. Now I know snowflakes are just shy too.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "Their answer is 'I was here, then I wasn't.' That's a very quiet reply. I understand quiet replies.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Wise and cozy. I found one that the sun remembered, so it's slightly less cold than the others. I visit it every morning.",
+        "choices": [
+          {
+            "text": "A sun-remembered rock is special.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Morning visits are loyal.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Less cold is still cold.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Special because it tries. It holds a little warmth from yesterday and offers it to anyone who stops there.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "Loyal and shy. I don't say hello to the rock out loud, but I think it knows I am there. Rocks are good at knowing.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Still cold but kindly cold. Like a greeting from winter that doesn't mean any harm. I can handle kindly cold.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "I do. From under the rock I can see the cold sea and the sad flowers without them seeing me back. That feels safer.",
+        "choices": [
+          {
+            "text": "Safe watching is still watching.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "The sea won't notice you.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Flowers don't look around much.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Still watching. I see the world and the world sees everything else. That arrangement suits me fine.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "It won't. The sea is busy being cold and wide. I am small and under a rock. We have an understanding.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "They don't. They mostly look down. Which is good, because if they looked around, they might see me and then we would both be startled.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
+    },
+    "Gigglegrow": {
+      "start": {
+        "text": "Dreamer! It's Yeesh season! Everything is sparkly and cold and the sea looks like it swallowed a bunch of silver coins! I love it!",
+        "choices": [
+          {
+            "text": "Sparkly and cold is a great combo.",
+            "next": "c1",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Did the sea swallow silver coins?",
+            "next": "c2",
+            "friendshipDelta": 0
+          },
+          {
+            "text": "Your joy keeps Yeesh warm.",
+            "next": "c3",
+            "friendshipDelta": 0
+          }
+        ]
+      },
+      "c1": {
+        "text": "Great combo! Like a popsicle that glitters. I haven't eaten a glitter popsicle but I have thought about it very hard.",
+        "choices": [
+          {
+            "text": "Thinking hard is almost tasting.",
+            "next": "c1a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Glitter popsicles sound fun.",
+            "next": "c1b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Combos make seasons better.",
+            "next": "c1c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1a": {
+        "text": "Almost! My imagination has a very advanced tongue. It reports flavor accurately within the dream.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1b": {
+        "text": "Fun and crunchy maybe? Or slippery? Either way, glitter adds texture to life and also to dessert.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c1c": {
+        "text": "They do! Sparkle plus cold plus long night equals a season with a lot of personality. Yeesh has maximum personality.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2": {
+        "text": "Probably not! But the waves catch the light and go blink blink blink, and my brain says 'coins!' because coins are shiny too.",
+        "choices": [
+          {
+            "text": "Blink blink blink is a good description.",
+            "next": "c2a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Brains like shiny things.",
+            "next": "c2b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Coin-waves are beautiful.",
+            "next": "c2c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2a": {
+        "text": "Right? The sea is doing its sparkly wink all afternoon. I wink back but it doesn't stop, so I think it likes the game.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2b": {
+        "text": "They do! Shiny is one of my brain's favorite words. It uses it a lot when describing water, snow, and good moods.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c2c": {
+        "text": "Beautiful and rich! If the sea had a piggy bank, it would be all wavy and probably very loud when shaken.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3": {
+        "text": "My joy is like a little heater! It can't melt snow but it makes my chest feel fuzzy, and maybe fuzziness travels.",
+        "choices": [
+          {
+            "text": "Fuzziness should travel everywhere.",
+            "next": "c3a",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Warm chests are good chests.",
+            "next": "c3b",
+            "friendshipDelta": 1
+          },
+          {
+            "text": "Joy is portable heat.",
+            "next": "c3c",
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3a": {
+        "text": "Everywhere! I am sending fuzziness to the sad flowers, the cold sea, the long night, and any vikings who might just be confused birds.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3b": {
+        "text": "Good! Warm chests can share heat through hugs and smiling and also by standing near trees and looking friendly.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      },
+      "c3c": {
+        "text": "Portable and renewable! I have an endless supply because every sparkly snowflake gives me another charge.",
+        "choices": [
+          {
+            "text": "Goodbye!",
+            "next": null,
+            "friendshipDelta": 1
+          }
+        ]
+      }
     }
   }
 };

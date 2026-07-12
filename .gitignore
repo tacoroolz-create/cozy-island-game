@@ -31,3 +31,9 @@ Desktop.ini
 # Build artifacts
 dist/
 build/
+
+# Claude Code local state / worktrees
+.claude/worktrees/
+
+# Editor backups
+*.bak
