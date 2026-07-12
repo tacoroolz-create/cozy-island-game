@@ -1,0 +1,193 @@
+═══════════════════════════════════════════════════════════════════════════════
+COZY ISLAND — NEIGHBOR NPC DRAFT V2 (REVISED)
+Species × Personality Matrix (32 characters)
+═══════════════════════════════════════════════════════════════════════════════
+
+Matrix: 4 Species × 8 Personalities
+Species: Robot, Ghost, Animal, Monster
+Personalities: Kawaii, Tsundere, Goth, Nerd, Monk, Medieval, Shy, Cheerful
+
+Note: Kawaii, Tsundere, Goth, and Cheerful personalities are written as female.
+All descriptions use only idle presence, dialogue flavor, and existing island
+features (trees, rocks, beach, water, animals, wild hog, holidays, day/night).
+No trails, dropped gifts, unique items, or mechanics that don't already exist.
+
+═══════════════════════════════════════════════════════════════════════════════
+ROBOTS
+═══════════════════════════════════════════════════════════════════════════════
+
+Name: Piko
+Species: Robot
+Personality: Kawaii
+Description: A bubblegum-pink robot with heart-shaped LED eyes and tiny antennae. She lights up when Dreamer walks by and likes to watch butterflies near flowers.
+
+Name: Rivet
+Species: Robot
+Personality: Tsundere (female)
+Description: A clanky crimson robot with one loose rivet above her eye. She watches the island trees while muttering that she is only counting leaves because someone has to.
+
+Name: Shade-7
+Species: Robot
+Personality: Goth (female)
+Description: A matte-black robot with spiderweb etchings and a single dim violet optic. She spends quiet afternoons near the water, reciting poems to herself.
+
+Name: Cypher
+Species: Robot
+Personality: Nerd
+Description: A compact teal robot with thick glass-lens spectacles. He notices every cloud shape and happily tells Dreamer what they resemble.
+
+Name: Om-Bit
+Species: Robot
+Personality: Monk
+Description: A brass robot with a weathered chassis. He sits very still with his hands folded, as if meditating, and speaks in slow, thoughtful sentences.
+
+Name: Sir Cogs-a-Lot
+Species: Robot
+Personality: Medieval
+Description: A brass robot with a tiny plume on his head. He walks with a proud posture, calls everyone "fair traveler," and compliments the island's trees.
+
+Name: Tinker
+Species: Robot
+Personality: Shy
+Description: A small, slightly rusted robot with squeaky joints. He stays near bushes and watches the birds, waving shyly when Dreamer says hello.
+
+Name: Zap-Zap
+Species: Robot
+Personality: Cheerful (female)
+Description: A bright yellow robot with zigzag antennae. She laughs in crackles, greets everyone loudly, and enjoys sunny mornings on the beach.
+
+═══════════════════════════════════════════════════════════════════════════════
+GHOSTS
+═══════════════════════════════════════════════════════════════════════════════
+
+Name: Boo-Boo
+Species: Ghost
+Personality: Kawaii (female)
+Description: A tiny round ghost with a pink bow and rosy cheeks. She says "boo" very softly, then claps her little hands and smiles.
+
+Name: Wisp
+Species: Ghost
+Personality: Tsundere (female)
+Description: A gauzy lavender ghost. She floats beside Dreamer while sighing that she guesses company is better than drifting around alone.
+
+Name: Morwen
+Species: Ghost
+Personality: Goth (female)
+Description: An elegant ghost with moon-silver hair and tattered lace. She enjoys evening breezes and hums slow, moody songs after sunset.
+
+Name: Spectra
+Species: Ghost
+Personality: Nerd
+Description: A scholarly ghost with floating spectacles. He studies cloud shapes and explains small facts about the dream with great enthusiasm.
+
+Name: Hush
+Species: Ghost
+Personality: Monk
+Description: A calm, translucent ghost in simple robes. He floats quietly with his hands pressed together and nods in silent blessing.
+
+Name: Sir Haunts-a-Lot
+Species: Ghost
+Personality: Medieval
+Description: A noble knight ghost. He speaks in "thee" and "thou," compliments everyone's posture, and bows before entering any building.
+
+Name: Flutter
+Species: Ghost
+Personality: Shy
+Description: A tiny, faint ghost who stays near lanterns. She whispers shy compliments and covers her face with her gauzy sleeves.
+
+Name: Giggles
+Species: Ghost
+Personality: Cheerful (female)
+Description: A giggling ghost. She floats around trees and laughs when Dreamer says hello, convinced every day is worth celebrating.
+
+═══════════════════════════════════════════════════════════════════════════════
+ANIMALS
+═══════════════════════════════════════════════════════════════════════════════
+
+Name: Mochi
+Species: Animal (Rabbit)
+Personality: Kawaii (female)
+Description: A round, marshmallow-white rabbit with pastel pink cheeks. She hops in place when happy and nibbles clover near the grass.
+
+Name: Shadow
+Species: Animal (Cat)
+Personality: Tsundere (female)
+Description: A sleek black cat with a perpetually flicking tail. She curls in sunny spots and insists she is only there for the warmth.
+
+Name: Raven
+Species: Animal (Crow)
+Personality: Goth (female)
+Description: A glossy crow with dark feathers and a thoughtful gaze. She recites poems about the sea and admires dark clouds on the horizon.
+
+Name: Newton
+Species: Animal (Owl)
+Personality: Nerd
+Description: A snowy owl with oversized reading glasses. He explains facts about clouds, trees, and tides whenever Dreamer will listen.
+
+Name: Lotus
+Species: Animal (Crane)
+Personality: Monk
+Description: A serene white crane. She meditates on one leg for hours and speaks in gentle koans about patience and the tide.
+
+Name: Squire Paws
+Species: Animal (Dog)
+Personality: Medieval
+Description: A small scruffy dog wearing a tiny felt tabard. He barks at butterflies and trots proudly beside picnic blankets.
+
+Name: Pebble
+Species: Animal (Turtle)
+Personality: Shy
+Description: A small mossy turtle. She retracts into her shell at loud noises and stops moving whenever Dreamer turns to look.
+
+Name: Sunny
+Species: Animal (Parrot)
+Personality: Cheerful (female)
+Description: A bright sun-yellow parrot. She flies loops over the beach and greets every morning with a loud "Hello, friend!"
+
+═══════════════════════════════════════════════════════════════════════════════
+MONSTERS
+═══════════════════════════════════════════════════════════════════════════════
+
+Name: Fluffernox
+Species: Monster
+Personality: Kawaii (female)
+Description: A fuzzy round monster with tiny horns and a heart-patterned belly. She gives gentle pats and smiles with her whole face.
+
+Name: Grumble
+Species: Monster
+Personality: Tsundere (female)
+Description: A small lumpy monster with one oversized fang. She insists she is terrifying, then carefully straightens wildflowers with her claws.
+
+Name: Vesper
+Species: Monster
+Personality: Goth (female)
+Description: A tall, elegant shadow monster with silver claws. She likes to sit on rocks after sunset and hum moody songs to the moon.
+
+Name: Gizmo
+Species: Monster
+Personality: Nerd
+Description: A lumpy monster with many watchful eyes. He inspects rocks and weeds, then tells Dreamer exactly how he thinks they work.
+
+Name: Ommmm
+Species: Monster
+Personality: Monk
+Description: A large, moss-covered monster with gentle arms. He sits very still, hums low sounds, and believes listening is the highest magic.
+
+Name: Lord Roar
+Species: Monster (Dragon-like)
+Personality: Medieval
+Description: A small dragon-like monster in a velvet cape. He greets everyone formally and calls the wild hog his "noble steed."
+
+Name: Snug
+Species: Monster
+Personality: Shy
+Description: A small blob monster. She hides under rocks, peeks out with one big eye, and waves a tiny tentacle when Dreamer walks by.
+
+Name: Gigglegrow
+Species: Monster
+Personality: Cheerful (female)
+Description: A big bouncy fluff monster. She bounces instead of walking and laughs loud enough to startle birds into the sky.
+
+═══════════════════════════════════════════════════════════════════════════════
+END OF DRAFT V2 REVISED — 32 grounded neighbor NPC profiles
+═══════════════════════════════════════════════════════════════════════════════

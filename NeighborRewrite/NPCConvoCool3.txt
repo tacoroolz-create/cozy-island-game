@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool3.txt - Cozy Island Game NPC Conversations (Cool Season)
+Cool Season Conversations - Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Boo! Hehe. Did the wind blow my 'boo' away? The trees look like candy corn now. And Hoggy was snorting so happily I giggled all by myself. The nights are getting longer, so I get to play in the moon more. Hi, Dreamer!"
+
+PLAYER CHOICES:
+[1] "Candy corn trees are cute."
+[2] "Hoggy snorts are funny."
+[3] "More moon time sounds fun."
+
+---
+
+TURN 2A (if player chose A):
+Boo-Boo: "Cute and yummy-looking. I want to hug a tree but I might float right through it. Ghost hugs are mostly feelings anyway."
+
+PLAYER CHOICES:
+[1] "Feelings count as hugs."
+[2] "Floating through trees is ghost style."
+[3] "Candy colors make everything sweet."
+
+---
+
+TURN 2B (if player chose B):
+Boo-Boo: "Funny because they're happy snorts. Like Hoggy is laughing from his nose. I tried to snort once but it just came out as a tiny 'boo.'"
+
+PLAYER CHOICES:
+[1] "Tiny boo snorts are adorable."
+[2] "Nose laughter is a talent."
+[3] "Hoggy teaches good snorting."
+
+---
+
+TURN 2C (if player chose C):
+Boo-Boo: "Moon time is my favorite time. The moon is round and soft-looking, like a friend who never leaves. Longer nights mean more friend time."
+
+PLAYER CHOICES:
+[1] "The moon is a loyal friend."
+[2] "More friend time is good time."
+[3] "Soft moons are cozy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Boo-Boo: "Feelings definitely count. I just gave you a ghost hug full of candy-tree feelings. Did you feel it? It was warm and floaty."
+
+---
+
+TURN 3AB (if player chose A then B):
+Boo-Boo: "Ghost style is floating through things and smiling anyway. It's very advanced."
+
+---
+
+TURN 3AC (if player chose A then C):
+Boo-Boo: "Sweet colors make sweet thoughts. My whole mind tastes like candy corn now. That's a nice way to be."
+
+---
+
+TURN 3BA (if player chose B then A):
+Boo-Boo: "Adorable? Maybe I could be a nose-laughter ghost. A boo-snorter. I'd need practice and a willing Hoggy coach."
+
+---
+
+TURN 3BB (if player chose B then B):
+Boo-Boo: "Nose laughter is a real talent. Not everyone can make their nose sound cheerful. Hoggy is gifted."
+
+---
+
+TURN 3BC (if player chose B then C):
+Boo-Boo: "Hoggy teaches by example. That's the best teaching. No words, just happy snorts and trots."
+
+---
+
+TURN 3CA (if player chose C then A):
+Boo-Boo: "Loyal and glowy. The moon watches us all night and never complains. I want to be like the moon when I grow up."
+
+---
+
+TURN 3CB (if player chose C then B):
+Boo-Boo: "More friend time is the best math. Longer nights equal more moon, more smiles, more me floating around happily."
+
+---
+
+TURN 3CC (if player chose C then C):
+Boo-Boo: "Cozy and round. If I could sit on the moon I'd probably sink right through, but the thought is warm."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. You. I suppose you've come to admire the trees too. They're showing off with all those reds and golds. The wind is at least crisp today, which is acceptable. Hoggy passed by looking absurdly cheerful. And the nights are longer, so I have more acceptable breezes to judge."
+
+PLAYER CHOICES:
+[1] "Trees showing off is accurate."
+[2] "Crisp wind is a good wind."
+[3] "Hoggy's cheer is undignified."
+
+---
+
+TURN 2A (if player chose A):
+Wisp: "Accurate? They know exactly what they're doing. One tree turns red and suddenly every leaf wants attention. It's frankly embarrassing."
+
+PLAYER CHOICES:
+[1] "Attention-seeking leaves are dramatic."
+[2] "Red is a bold choice."
+[3] "Let them have their moment."
+
+---
+
+TURN 2B (if player chose B):
+Wisp: "Good wind. Not too pushy, not too lazy. It moves my gauze without tangling it. That rarely happens."
+
+PLAYER CHOICES:
+[1] "Untangled gauze is a win."
+[2] "A wind with manners is rare."
+[3] "You deserve a tidy breeze."
+
+---
+
+TURN 2C (if player chose C):
+Wisp: "Undignified is the word. Trotting with ears flapping, snout raised, tail doing that ridiculous wiggle. I looked away. Mostly."
+
+PLAYER CHOICES:
+[1] "Looking away mostly still counts as looking."
+[2] "Ears flapping has charm."
+[3] "Ridiculous can be cute."
+
+---
+
+TURN 3AA (if player chose A then A):
+Wisp: "Dramatic leaves. If they had tiny voices they'd be saying 'look at me, look at me.' Which is exactly what they're doing visually."
+
+---
+
+TURN 3AB (if player chose A then B):
+Wisp: "Bold and slightly aggressive. Red says 'I am here and I am leaving soon.' A lot of confidence for something about to fall."
+
+---
+
+TURN 3AC (if player chose A then C):
+Wisp: "Fine. They can have their moment. It is brief, colorful, and I suppose not entirely unpleasant."
+
+---
+
+TURN 3BA (if player chose B then A):
+Wisp: "A win. My gauze and I have an agreement: if the breeze behaves, we will float without complaint."
+
+---
+
+TURN 3BB (if player chose B then B):
+Wisp: "Rare and appreciated. Most winds treat me like a kite. This one treats me like a guest."
+
+---
+
+TURN 3BC (if player chose B then C):
+Wisp: "A tidy breeze is all I ask. Is that so much? Apparently it is, most days."
+
+---
+
+TURN 3CA (if player chose C then A):
+Wisp: "Mostly counts. I definitely did not watch him trot past three times. That would be far too interested of me."
+
+---
+
+TURN 3CB (if player chose C then B):
+Wisp: "Charm? Fine. Flapping ears catch the light. It's objectively picturesque. I hate that I noticed."
+
+---
+
+TURN 3CC (if player chose C then C):
+Wisp: "Cute is a strong word. I would say 'tolerably ridiculous.' But you may call it cute. I won't stop you."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Cool season, Dreamer. The trees are setting themselves on fire in slow motion. The wind carries their old songs. And Hoggy—Hoggy is happy, somehow, watching the world burn color. The longer nights feel like a velvet curtain drawing closed."
+
+PLAYER CHOICES:
+[1] "Slow-motion fire is beautiful."
+[2] "Hoggy's happiness is a warm light."
+[3] "Velvet nights sound lovely."
+
+---
+
+TURN 2A (if player chose A):
+Morwen: "Beautiful and terrible. The leaves flame up and then let go. It's the most graceful goodbye the island performs."
+
+PLAYER CHOICES:
+[1] "Graceful goodbyes are rare."
+[2] "The island performs beautifully."
+[3] "Fire without pain is art."
+
+---
+
+TURN 2B (if player chose B):
+Morwen: "A warm light in all this coolness. Strange. He doesn't understand tragedy, and maybe that's why he shines."
+
+PLAYER CHOICES:
+[1] "Not understanding tragedy is a gift."
+[2] "Hoggy shines by accident."
+[3] "Warmth in coolness is welcome."
+
+---
+
+TURN 2C (if player chose C):
+Morwen: "Lovely, yes. Darkness that arrives earlier, stays longer, wraps the world in softness. The stars are the jewels on the velvet."
+
+PLAYER CHOICES:
+[1] "Stars are night jewels."
+[2] "Soft darkness is a comfort."
+[3] "The curtain closing is peaceful."
+
+---
+
+TURN 3AA (if player chose A then A):
+Morwen: "Rare. Most goodbyes are messy. But the leaves fall with color and purpose, as if they planned their own ending."
+
+---
+
+TURN 3AB (if player chose A then B):
+Morwen: "The island always performs beautifully, even in decline. That's the dream's cruel kindness."
+
+---
+
+TURN 3AC (if player chose A then C):
+Morwen: "Art that doesn't hurt. A fire that cools. Only in a dream could goodbye be so kind."
+
+---
+
+TURN 3BA (if player chose B then A):
+Morwen: "A gift. Sometimes the ones who don't understand sorrow remind the rest of us that joy is allowed."
+
+---
+
+TURN 3BB (if player chose B then B):
+Morwen: "By accident, and therefore honestly. Hoggy doesn't perform his joy. He simply has it."
+
+---
+
+TURN 3BC (if player chose B then C):
+Morwen: "Welcome indeed. I live in coolness, but even I need a warm snout now and then."
+
+---
+
+TURN 3CA (if player chose C then A):
+Morwen: "Jewels that don't demand attention. They simply glow because glowing is what they do."
+
+---
+
+TURN 3CB (if player chose C then B):
+Morwen: "A comfort. The dark doesn't ask you to be anything. It just lets you be sad or happy or both."
+
+---
+
+TURN 3CC (if player chose C then C):
+Morwen: "Peaceful. The day makes noise. The night pulls the curtain and whispers 'rest now.'"
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I've been observing the mechanics of Cool season. Tree pigments shift along predictable warm spectra, wind patterns create measurable leaf drift, and Hoggy's happiness appears to correlate strongly with decreased ambient temperature. Also, the nights are demonstrably longer. Fascinating!"
+
+PLAYER CHOICES:
+[1] "Tell me about leaf drift."
+[2] "Hoggy is a temperature sensor."
+[3] "Longer nights are measurable too."
+
+---
+
+TURN 2A (if player chose A):
+Spectra: "Leaf drift is simple in principle: a falling leaf's path depends on weight, shape, and wind vector. In practice, every leaf thinks it's unique. It's delightful data noise."
+
+PLAYER CHOICES:
+[1] "Every leaf is unique, statistically."
+[2] "Data noise can be delightful."
+[3] "Wind vectors sound official."
+
+---
+
+TURN 2B (if player chose B):
+Spectra: "A biological thermometer, essentially. His ears lift, his trot quickens, and his overall buoyancy increases as the air cools. I call it the Hoggy Cool Index."
+
+PLAYER CHOICES:
+[1] "The Hoggy Cool Index is useful."
+[2] "Buoyancy is an underrated emotion."
+[3] "Hoggy could teach meteorology."
+
+---
+
+TURN 2C (if player chose C):
+Spectra: "Indeed. I've been counting dusk-to-dawn intervals. They're lengthening at a steady dream-rate. More darkness means more time for nocturnal observations."
+
+PLAYER CHOICES:
+[1] "Nocturnal observations are important."
+[2] "Dream-rate is a good unit."
+[3] "More darkness is more opportunity."
+
+---
+
+TURN 3AA (if player chose A then A):
+Spectra: "Statistically unique, yes. The mean leaf falls downward, but the individual leaf has dreams of spiraling."
+
+---
+
+TURN 3AB (if player chose A then B):
+Spectra: "Delightful noise makes science feel alive. If everything were predictable, I'd get bored and become a cloud."
+
+---
+
+TURN 3AC (if player chose A then C):
+Spectra: "Official-sounding and true. Wind has direction and mood. Today its mood is 'gently dramatic.'"
+
+---
+
+TURN 3BA (if player chose B then A):
+Spectra: "Useful for anyone who wants to know if they should feel cheerful. If Hoggy is bouncy, the weather is good."
+
+---
+
+TURN 3BB (if player chose B then B):
+Spectra: "Buoyancy is underrated. It measures how much joy is lifting you. Hoggy has high buoyancy today."
+
+---
+
+TURN 3BC (if player chose B then C):
+Spectra: "Hoggy could teach meteorology by demonstration. Forecast: partly bouncy with a chance of snorts."
+
+---
+
+TURN 3CA (if player chose C then A):
+Spectra: "Important. The night reveals things the day hides, like stars, quiet thoughts, and the exact shape of shadows."
+
+---
+
+TURN 3CB (if player chose C then B):
+Spectra: "Dream-rate is my favorite unit. It measures things by how they feel rather than by clocks."
+
+---
+
+TURN 3CC (if player chose C then C):
+Spectra: "Opportunity, yes. Every extra minute of night is a minute the moon can show off."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The wind moves without speaking, Dreamer. The trees let their colors fade and fall. Hoggy is happy in the cool air, and the nights grow longer. All of this is the island breathing out. We need only listen."
+
+PLAYER CHOICES:
+[1] "Listening is enough."
+[2] "Hoggy's happiness speaks loudly."
+[3] "The island's breath is calm."
+
+---
+
+TURN 2A (if player chose A):
+Hush: "Enough, and more than enough. We do not need to answer every change. Sometimes we simply witness it, and that is complete."
+
+PLAYER CHOICES:
+[1] "Witnessing is complete."
+[2] "Silence holds understanding."
+[3] "Not answering is a kind of peace."
+
+---
+
+TURN 2B (if player chose B):
+Hush: "Yes. His joy needs no explanation. It is a bell that rings clearly in the cool air. We hear it and are glad."
+
+PLAYER CHOICES:
+[1] "Joy is a clear bell."
+[2] "Hoggy rings for all of us."
+[3] "Gladness is simple."
+
+---
+
+TURN 2C (if player chose C):
+Hush: "Calm, and deep. The longer nights are not an ending. They are the island turning inward, resting its eyes so the stars may open theirs."
+
+PLAYER CHOICES:
+[1] "Resting eyes is a good image."
+[2] "Stars open when we rest."
+[3] "Inward turning is not lonely."
+
+---
+
+TURN 3AA (if player chose A then A):
+Hush: "Complete. A single quiet moment can hold the whole island if we let it."
+
+---
+
+TURN 3AB (if player chose A then B):
+Hush: "Understanding does not always need words. Sometimes it is simply the space between two breezes."
+
+---
+
+TURN 3AC (if player chose A then C):
+Hush: "Peace is found in allowing things to be. The leaves fall. The hog trots. We breathe."
+
+---
+
+TURN 3BA (if player chose B then A):
+Hush: "A clear bell needs no translation. Hoggy's happiness tells us the season is kind."
+
+---
+
+TURN 3BB (if player chose B then B):
+Hush: "For all of us, if we choose to hear. His trot is a small sermon on being present."
+
+---
+
+TURN 3BC (if player chose B then C):
+Hush: "Simple gladness is the best kind. It does not ask for reasons. It simply is."
+
+---
+
+TURN 3CA (if player chose C then A):
+Hush: "The island closes its bright eyes so the dark may bloom with stars. There is beauty in the exchange."
+
+---
+
+TURN 3CB (if player chose C then B):
+Hush: "Yes. When the day rests, the night shows us what was always there, waiting quietly."
+
+---
+
+TURN 3CC (if player chose C then C):
+Hush: "Not lonely. The island turns inward but never away. It is holding us closer, not pushing us out."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Fair Dreamer! The trees bear their seasonal banners of gold and flame. The wind blows as a herald through the court of leaves. Hoggy, our noble companion, is in excellent spirits. And the longer nights give us more hours for ghostly vigil."
+
+PLAYER CHOICES:
+[1] "Seasonal banners are splendid."
+[2] "Hoggy makes a noble companion."
+[3] "Ghostly vigil suits the night."
+
+---
+
+TURN 2A (if player chose A):
+Sir Haunts-a-Lot: "Splendid indeed! Each tree flies its own house colors. The oak wears gold like a knight of the harvest. The palm remains green, faithful as a squire."
+
+PLAYER CHOICES:
+[1] "Knights of the harvest are noble."
+[2] "Faithful green squires are loyal."
+[3] "The forest is a colorful court."
+
+---
+
+TURN 2B (if player chose B):
+Sir Haunts-a-Lot: "A most noble companion. His trot is lively, his ears are aloft, and his spirit is merry. I would ride beside him into any leafy battle."
+
+PLAYER CHOICES:
+[1] "Merry spirits win battles."
+[2] "Leafy battles are the best kind."
+[3] "Hoggy is a worthy ally."
+
+---
+
+TURN 2C (if player chose C):
+Sir Haunts-a-Lot: "It suits us well. The night is long, the air is cool, and a ghost may keep watch without the sun hurrying him along. I shall patrol the stars."
+
+PLAYER CHOICES:
+[1] "Patrolling stars is a noble duty."
+[2] "The sun should not rush ghosts."
+[3] "Cool nights are made for vigil."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Haunts-a-Lot: "Noble and golden, riding the wind to their rest. A hero's end for every leaf."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Haunts-a-Lot: "Loyal squires hold the green line. They do not seek glory. Their steadiness is their honor."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Haunts-a-Lot: "A colorful court indeed, and we are all welcome to admire it, peasant and noble alike."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Haunts-a-Lot: "Merry spirits win before the battle even begins. Hoggy's joy is his armor."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Haunts-a-Lot: "The best kind, fought with color and breeze. No wounds, only piles of leaves."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Haunts-a-Lot: "A worthy ally and a jolly one. I would trust him at my side in any season."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Haunts-a-Lot: "A noble duty. The stars need watching, and I am happy to volunteer my eternity."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Haunts-a-Lot: "The sun should learn patience. Ghosts have unfinished observing to do."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Haunts-a-Lot: "Vigil in cool air is refreshing. The night rewards attention with quiet wonders."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"H-hello, Dreamer. The wind is a little... tingly today. It moves my gauze around. The trees look warm, like they're wearing soft sweaters. Hoggy made a happy snort when he walked by, and the nights are longer now. I like it when things get quieter."
+
+PLAYER CHOICES:
+[1] "Tingly wind sounds nice."
+[2] "Tree sweaters are a cute image."
+[3] "Quieter nights are gentle."
+
+---
+
+TURN 2A (if player chose A):
+Flutter: "Nice if you don't mind being touched by air. I don't mind. It just makes me feel very floaty and seen at the same time."
+
+PLAYER CHOICES:
+[1] "Floaty and seen is a good feeling."
+[2] "Air touches everyone gently."
+[3] "Being noticed by wind is sweet."
+
+---
+
+TURN 2B (if player chose B):
+Flutter: "Cute. Like the trees are trying to stay warm while they change their minds about being green. I hope they're cozy."
+
+PLAYER CHOICES:
+[1] "I hope they're cozy too."
+[2] "Changing minds is okay."
+[3] "Warm colors look warm."
+
+---
+
+TURN 2C (if player chose C):
+Flutter: "Gentle. Less busy. The longer nights feel like the island is tucking itself in. I like tucking-in sounds."
+
+PLAYER CHOICES:
+[1] "Tucking in is cozy."
+[2] "Less busy is peaceful."
+[3] "Night sounds are soft."
+
+---
+
+TURN 3AA (if player chose A then A):
+Flutter: "Good. I feel less invisible when the wind moves me. It's like the breeze says 'here you are.'"
+
+---
+
+TURN 3AB (if player chose A then B):
+Flutter: "Gently. The wind never grabs. It just brushes by like a polite friend."
+
+---
+
+TURN 3AC (if player chose A then C):
+Flutter: "Sweet. Even shy ghosts can be noticed by the wind. That's nice to know."
+
+---
+
+TURN 3BA (if player chose B then A):
+Flutter: "I hope so too. Cozy trees make cozy shadows and cozy shadows make cozy ghosts."
+
+---
+
+TURN 3BB (if player chose B then B):
+Flutter: "Okay. The trees can be green, then gold, then gone. They don't have to decide all at once."
+
+---
+
+TURN 3BC (if player chose B then C):
+Flutter: "Warm colors do look warm. Like little fires that don't burn. I want to stand near them."
+
+---
+
+TURN 3CA (if player chose C then A):
+Flutter: "Very cozy. The island pulling a dark blanket over its shoulders. Safe and quiet."
+
+---
+
+TURN 3CB (if player chose C then B):
+Flutter: "Peaceful. Less people running around. More time to be a small ghost near a lantern."
+
+---
+
+TURN 3CC (if player chose C then C):
+Flutter: "Soft. The night makes everything softer, even my own whisper. I like that."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Hi Dreamer! The trees are having a color party and the wind is the music! Hoggy was dancing in the leaves and it made me giggle so much I floated in a circle. And the nights are longer, so there are more stars to laugh at!"
+
+PLAYER CHOICES:
+[1] "Color parties are fun."
+[2] "Hoggy dancing in leaves is hilarious."
+[3] "Stars are good at being laughed at."
+
+---
+
+TURN 2A (if player chose A):
+Giggles: "Fun because nobody had to plan it. The trees just showed up in gold and red and orange and started being pretty. The wind brought confetti made of leaves."
+
+PLAYER CHOICES:
+[1] "Leaf confetti is the best."
+[2] "Unplanned parties are the happiest."
+[3] "Gold and red are excellent colors."
+
+---
+
+TURN 2B (if player chose B):
+Giggles: "Hilarious! His little legs go everywhere and his ears flap and he makes happy snorts. I tried to dance like him but I just spun around because I'm floaty."
+
+PLAYER CHOICES:
+[1] "Floaty dancing counts."
+[2] "Happy snorts are musical."
+[3] "Hoggy is a dance teacher."
+
+---
+
+TURN 2C (if player chose C):
+Giggles: "They don't mind! Stars just twinkle and let you giggle. They're very good listeners. And they stay up extra late in the longer nights."
+
+PLAYER CHOICES:
+[1] "Twinkling is star laughter."
+[2] "Extra late stars are generous."
+[3] "Stars listen well."
+
+---
+
+TURN 3AA (if player chose A then A):
+Giggles: "Best confetti because it falls slowly and you can watch every piece. Then it turns into ground decoration. Very efficient."
+
+---
+
+TURN 3AB (if player chose A then B):
+Giggles: "Happiest because nobody worries about invitations. You just see pretty trees and know it's party time."
+
+---
+
+TURN 3AC (if player chose A then C):
+Giggles: "Excellent colors. If I were a tree I'd wear all three at once. I'd be the most party tree."
+
+---
+
+TURN 3BA (if player chose B then A):
+Giggles: "Floaty dancing is my specialty. I don't have legs, so spinning is basically my version of tap dance."
+
+---
+
+TURN 3BB (if player chose B then B):
+Giggles: "Musical! Hoggy's snorts could be a song. It would be called 'Happy Hoggy in the Leaves.' I'd listen on repeat."
+
+---
+
+TURN 3BC (if player chose B then C):
+Giggles: "Hoggy teaches by being himself. That's the best teaching method. I'd give him a gold star if I had one."
+
+---
+
+TURN 3CA (if player chose C then A):
+Giggles: "Star laughter. I knew it. When I giggle at them they probably giggle back in twinkles."
+
+---
+
+TURN 3CB (if player chose C then B):
+Giggles: "Generous stars. Staying up late just so we have more time to look. That's friendship."
+
+---
+
+TURN 3CC (if player chose C then C):
+Giggles: "Good listeners. They never interrupt. They just blink and glow and make everything feel okay."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

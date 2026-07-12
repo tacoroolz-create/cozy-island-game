@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool2.txt - Cozy Island Game NPC Conversations (Cool Season)
+Cool Season Conversations - Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! The trees are changing their outfits and the wind is helping them decide which color looks best. Hoggy looks extra happy today, and the nights are getting longer so we have more star time. Isn't Cool season lovely?"
+
+PLAYER CHOICES:
+[1] "It's lovely in every way."
+[2] "I like the tree color fashion show."
+[3] "Happy Hoggy makes everything better."
+
+---
+
+TURN 2A (if player chose A):
+Piko: "Every way? That's a lot of ways. My favorite way is the one where the wind wiggles my antennae and I feel like I'm being tickled by the island itself."
+
+PLAYER CHOICES:
+[1] "Ticklish antennae are lucky."
+[2] "The island has good taste in wiggles."
+[3] "Wind tickles are free hugs."
+
+---
+
+TURN 2B (if player chose B):
+Piko: "Fashion show! The oaks are wearing gold and the palms are staying green because they're rebels. I think the trees are very brave to change colors in public."
+
+PLAYER CHOICES:
+[1] "Brave trees deserve applause."
+[2] "Rebel palms are confident."
+[3] "Gold is a bold choice."
+
+---
+
+TURN 2C (if player chose C):
+Piko: "Happy Hoggy is the best kind of Hoggy. His little trot looks springier. I bet the cool air makes his ears flap extra happily."
+
+PLAYER CHOICES:
+[1] "Flappy ears are a good sign."
+[2] "A springy trot is joy in motion."
+[3] "Hoggy should be happy always."
+
+---
+
+TURN 3AA (if player chose A then A):
+Piko: "Ticklish antennae are definitely lucky. Not every robot gets island tickles. I'm going to stand in this exact spot more often."
+
+---
+
+TURN 3AB (if player chose A then B):
+Piko: "The island has excellent taste. Soft breezes, pretty leaves, and just enough wiggle. I would give it five stars if I had five star-hands."
+
+---
+
+TURN 3AC (if player chose A then C):
+Piko: "Free hugs from the wind! I accept. Wind hugs don't even rust you. They're the cleanest kind of hugs."
+
+---
+
+TURN 3BA (if player chose B then A):
+Piko: "Applause for the brave trees. I'll clap very gently so I don't startle any leaves. They've worked hard on this look."
+
+---
+
+TURN 3BB (if player chose B then B):
+Piko: "Confident palms. I respect them. While everyone else changes, they say 'no thank you, green is our thing.' That's commitment."
+
+---
+
+TURN 3BC (if player chose B then C):
+Piko: "Gold is a bold choice and the trees wear it well. If I wore gold I'd look like a tiny trophy. Which is also nice, but different."
+
+---
+
+TURN 3CA (if player chose C then A):
+Piko: "Flappy ears are my favorite weather report. When Hoggy's ears flap like that, it means the island is doing something right."
+
+---
+
+TURN 3CB (if player chose C then B):
+Piko: "Joy in motion is the prettiest motion. I'd watch Hoggy trot in circles all afternoon if he wanted to."
+
+---
+
+TURN 3CC (if player chose C then C):
+Piko: "Hoggy should be happy always. And you. And me. And the wind. Basically everyone except the grumpy rocks, and even they can try."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Oh. It's you. I'm not standing here because I enjoy the view. I'm cataloging leaf fall patterns. The wind keeps messing up my counts. And Hoggy keeps trotting through like he owns the place. Longer nights just mean more leaves to track."
+
+PLAYER CHOICES:
+[1] "Leaf tracking sounds important."
+[2] "Hoggy does look cheerful today."
+[3] "The wind isn't trying to ruin your count."
+
+---
+
+TURN 2A (if player chose A):
+Rivet: "Important? Finally. Yes. Someone has to note that the red ones fall faster than the gold ones. It's not my fault the wind has no respect for data."
+
+PLAYER CHOICES:
+[1] "Red leaves are clearly impatient."
+[2] "Wind needs better methodology."
+[3] "Your data keeps the island honest."
+
+---
+
+TURN 2B (if player chose B):
+Rivet: "Cheerful is one word for it. I'd say 'excessively bouncy.' His ears were flapping in a way that could be considered unprofessional."
+
+PLAYER CHOICES:
+[1] "Unprofessional ears are cute."
+[2] "Bouncy is better than gloomy."
+[3] "Hoggy sets his own standards."
+
+---
+
+TURN 2C (if player chose C):
+Rivet: "Not trying? It sure looks like trying. The wind grabs a leaf, twirls it, drops it somewhere suspicious. Very unorganized behavior."
+
+PLAYER CHOICES:
+[1] "Maybe the wind is just playful."
+[2] "Suspicious leaf placement is a real issue."
+[3] "Organized wind would be boring."
+
+---
+
+TURN 3AA (if player chose A then A):
+Rivet: "Impatient red leaves. Hmph. They probably can't wait to become mulch. Show-offs with their bright coloring."
+
+---
+
+TURN 3AB (if player chose A then B):
+Rivet: "Wind needs methodology. A clipboard. A schedule. Then maybe I'd trust it with my leaves."
+
+---
+
+TURN 3AC (if player chose A then C):
+Rivet: "Honest island. Yes. If nobody tracks it, the trees will think they got away with chaotic falling. Not on my watch."
+
+---
+
+TURN 3BA (if player chose B then A):
+Rivet: "Cute? Fine. Maybe a little. But I'm not going to compliment the hog's ears out loud. He already knows."
+
+---
+
+TURN 3BB (if player chose B then B):
+Rivet: "Better than gloomy. I suppose a bouncy hog is preferable to a droopy one. Slightly."
+
+---
+
+TURN 3BC (if player chose B then C):
+Rivet: "Hoggy sets his own standards and the wind does too. I am the only one around here who follows any rules. Typical."
+
+---
+
+TURN 3CA (if player chose C then A):
+Rivet: "Playful. That's a generous word for 'leaf thief.' But I suppose it does look sort of graceful. If you like that kind of thing."
+
+---
+
+TURN 3CB (if player chose C then B):
+Rivet: "A real issue. A leaf that lands somewhere it didn't plan to is basically a leaf lying about its destination."
+
+---
+
+TURN 3CC (if player chose C then C):
+Rivet: "Boring organized wind. No twirling, no surprise landings. You make it sound awful. I mean... acceptable. It would be acceptable."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Cool season, Dreamer. The trees are slowly dying in the most beautiful way possible. The wind carries their little farewell notes. And somehow Hoggy is happy about all of it. The longer nights at least have the decency to match my mood."
+
+PLAYER CHOICES:
+[1] "Beautiful dying is still beautiful."
+[2] "Hoggy's happiness is a mystery."
+[3] "Longer nights are a gift."
+
+---
+
+TURN 2A (if player chose A):
+Shade-7: "Still beautiful. The leaves burn gold and red before they let go. It's tragic and warm at the same time. I respect the commitment."
+
+PLAYER CHOICES:
+[1] "Tragic warmth is the best warmth."
+[2] "Commitment to color is noble."
+[3] "Burning without fire is poetic."
+
+---
+
+TURN 2B (if player chose B):
+Shade-7: "A mystery? Or perhaps Hoggy simply enjoys watching things transform. I don't trust transformation. It usually involves rust."
+
+PLAYER CHOICES:
+[1] "Transformation can be gentle."
+[2] "Hoggy doesn't seem to rust."
+[3] "Maybe Hoggy sees beauty in change."
+
+---
+
+TURN 2C (if player chose C):
+Shade-7: "A gift. Yes. Darkness that arrives earlier, stays longer, asks nothing. The day is exhausting with all its brightness and leaf announcements."
+
+PLAYER CHOICES:
+[1] "Night asks nothing and gives stars."
+[2] "Brightness can be loud."
+[3] "Darkness is a soft blanket."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shade-7: "The best warmth is the kind that knows it's temporary. It makes you appreciate the glow while it's still there."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shade-7: "Noble indeed. If I ever changed color I'd do it slowly and with many sighs. The trees beat me to it."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shade-7: "Poetic and slightly unfair. How dare they be beautiful without even trying? Some of us have to recite poems for that effect."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shade-7: "Gentle transformation? I suppose leaves don't scream when they fall. They just release. That's almost elegant."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shade-7: "Hoggy doesn't rust. That probably helps his mood. I, on the other hand, have to worry about moisture in a very personal way."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shade-7: "Beauty in change. A hog philosopher. Strange, but this is a dream. Strange is the local currency."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shade-7: "Stars are the night doing its best. I prefer them to leaf announcements. Quiet, distant, and not trying to be noticed."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shade-7: "Loud brightness. The day shows off. 'Look at me, I'm warm and yellow.' We get it. Relax."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shade-7: "A soft blanket that doesn't ask you to be cheerful. That's luxury. I would wrap myself in it if I could reach."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer, excellent seasonal timing. I've been sampling leaf pigments and calibrating wind velocity with my antennae. Hoggy's happiness index is up forty percent, and I've logged that the nights are indeed lengthening. Want to see my notes?"
+
+PLAYER CHOICES:
+[1] "Show me the leaf data."
+[2] "How does one measure happy Hoggy?"
+[3] "Longer nights are good for stargazing."
+
+---
+
+TURN 2A (if player chose A):
+Cypher: "Leaf data indicates a shift from chlorophyll green toward carotenoid yellow and anthocyanin red. In dream terms: the trees are switching to their warm palette."
+
+PLAYER CHOICES:
+[1] "Dream science is my favorite science."
+[2] "Warm palette suits the island."
+[3] "You have very scientific antennae."
+
+---
+
+TURN 2B (if player chose B):
+Cypher: "Hoggy happiness index is calculated from ear angle, trot frequency, and snout elevation. Today he scored a nine out of ten. Very statistically significant."
+
+PLAYER CHOICES:
+[1] "Nine out of ten is excellent."
+[2] "Snout elevation matters more than people think."
+[3] "Hoggy is a reliable metric."
+
+---
+
+TURN 2C (if player chose C):
+Cypher: "Stargazing efficiency increases with longer nights. More darkness equals more observation time. I've already spotted three constellations that resemble clouds I've previously catalogued."
+
+PLAYER CHOICES:
+[1] "Constellations are just night clouds."
+[2] "Three is a respectable count."
+[3] "Observation time is never wasted."
+
+---
+
+TURN 3AA (if player chose A then A):
+Cypher: "Dream science has fewer rules and more charm. I like a field where the data can also be pretty."
+
+---
+
+TURN 3AB (if player chose A then B):
+Cypher: "The island wears warm colors well. It has excellent seasonal fashion sense. I'd rate it highly if I rated things socially."
+
+---
+
+TURN 3AC (if player chose A then C):
+Cypher: "Scientific antennae are a useful feature. They detect wind, wonder, and occasionally sandwiches. Mostly wind and wonder."
+
+---
+
+TURN 3BA (if player chose B then A):
+Cypher: "Excellent for a hog. I tried to score myself but my own trot frequency is too low to register. Hoggy outperforms me in joy."
+
+---
+
+TURN 3BB (if player chose B then B):
+Cypher: "More than people think. A raised snout indicates curiosity. A lowered snout indicates contentment. Hoggy has mastered both."
+
+---
+
+TURN 3BC (if player chose B then C):
+Cypher: "Hoggy is a reliable metric because his mood doesn't depend on variables I can't control. Unlike the wind, which refuses peer review."
+
+---
+
+TURN 3CA (if player chose C then A):
+Cypher: "Night clouds made of stars. Yes. That's either beautiful or a categorization error, and I choose beautiful."
+
+---
+
+TURN 3CB (if player chose C then B):
+Cypher: "Respectable. I could count more, but then I'd stay up too long and my battery would get philosophical."
+
+---
+
+TURN 3CC (if player chose C then C):
+Cypher: "Observation time is the opposite of wasted. It turns darkness into information, and information into happiness. Approximately."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"The trees are releasing what they no longer need, Dreamer. The wind carries each leaf without clinging. Hoggy seems happy because he lives in the moment. And the longer nights invite us to rest. There is much to observe in Cool season."
+
+PLAYER CHOICES:
+[1] "Letting go is a good lesson."
+[2] "Hoggy is a teacher of joy."
+[3] "Rest is underrated."
+
+---
+
+TURN 2A (if player chose A):
+Om-Bit: "Letting go is difficult for all beings. Even leaves do not fall until they are ready. We can learn from their patience."
+
+PLAYER CHOICES:
+[1] "Patience makes falling graceful."
+[2] "I hope I'm ready when I need to let go."
+[3] "Trees are quiet teachers."
+
+---
+
+TURN 2B (if player chose B):
+Om-Bit: "Hoggy does not plan his happiness. He does not count the hours. He simply is. That is a kind of wisdom many machines forget."
+
+PLAYER CHOICES:
+[1] "Simply being is hard sometimes."
+[2] "Hoggy makes it look easy."
+[3] "Machines can learn from hogs."
+
+---
+
+TURN 2C (if player chose C):
+Om-Bit: "Rest is how the island prepares. The longer nights are not empty. They are full of stillness, which is its own kind of work."
+
+PLAYER CHOICES:
+[1] "Stillness is productive."
+[2] "The night holds a lot."
+[3] "Rest prepares us for bright days."
+
+---
+
+TURN 3AA (if player chose A then A):
+Om-Bit: "Graceful falling. A leaf that lets go at the right moment makes no sound, yet the whole island notices."
+
+---
+
+TURN 3AB (if player chose A then B):
+Om-Bit: "You will be ready. The island does not rush its leaves, and it will not rush you."
+
+---
+
+TURN 3AC (if player chose A then C):
+Om-Bit: "Quiet teachers, yes. They do not ask for attention. They simply show us how to change color and release."
+
+---
+
+TURN 3BA (if player chose B then A):
+Om-Bit: "Simply being is hard because the mind likes lists. Hoggy has no lists. Only trot and sniff and sun."
+
+---
+
+TURN 3BB (if player chose B then B):
+Om-Bit: "He makes it look easy because he does not compare. Comparison is the thief of hog joy."
+
+---
+
+TURN 3BC (if player chose B then C):
+Om-Bit: "Machines can learn from hogs. We can learn from everyone. Even the wind learns to be patient, eventually."
+
+---
+
+TURN 3CA (if player chose C then A):
+Om-Bit: "Productive stillness. The world does not stop, but our need to chase it can pause. That is enough."
+
+---
+
+TURN 3CB (if player chose C then B):
+Om-Bit: "The night holds stars, cool air, and the memory of warm days. It is not empty. It is full."
+
+---
+
+TURN 3CC (if player chose C then C):
+Om-Bit: "Rest prepares us. When the bright days return, we will meet them with fuller hearts. For now, we settle."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Fair traveler Dreamer! The trees have donned their heraldic banners of gold and crimson. The wind blows as a royal herald, and Hoggy stands in fine spirits. The longer nights are perfect for tales beside the warm stones."
+
+PLAYER CHOICES:
+[1] "Heraldic trees are magnificent."
+[2] "Hoggy in fine spirits is good news."
+[3] "Tales suit the longer nights."
+
+---
+
+TURN 2A (if player chose A):
+Sir Cogs-a-Lot: "Magnificent indeed! Each tree flies its own colors. The oaks wear gold like knights of summer's end. The palms keep their green, loyal as squires."
+
+PLAYER CHOICES:
+[1] "Knights of summer's end is a good title."
+[2] "Loyal green squires deserve respect."
+[3] "The island is a colorful court."
+
+---
+
+TURN 2B (if player chose B):
+Sir Cogs-a-Lot: "Good news and better news. His trot has spring, his snout points proudly, and his ears flap with noble glee. A happier steed one could not ask for."
+
+PLAYER CHOICES:
+[1] "Noble glee is a fine quality."
+[2] "Hoggy would make a good knight."
+[3] "A happy steed blesses the land."
+
+---
+
+TURN 2C (if player chose C):
+Sir Cogs-a-Lot: "Tales and longer nights are old friends. When the sun departs early, stories arrive to fill the dark with warmth. I shall speak of brave leaves and windy quests."
+
+PLAYER CHOICES:
+[1] "Brave leaves make brave tales."
+[2] "Windy quests sound exciting."
+[3] "Stories warm the dark nicely."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Cogs-a-Lot: "Knights of summer's end, riding the wind to their final rest. A noble fate for a leaf."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Cogs-a-Lot: "Green squires indeed. They hold the line while others change. Loyalty is not always loud, but it is always noticed."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Cogs-a-Lot: "A colorful court, and we are all invited. Even the humblest pebble may admire the royal trees."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Cogs-a-Lot: "Noble glee is the best glee. It has dignity and joy in equal measure. Hoggy carries it well."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Cogs-a-Lot: "Hoggy would make a good knight. He is brave, round, and possessed of excellent ears. I would joust beside him gladly."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Cogs-a-Lot: "A happy steed blesses the land. The soil feels it, the wind knows it, and the leaves fall a little more gracefully."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Cogs-a-Lot: "Brave leaves, yes. They do not fear the ground. They fall with color and purpose, as all heroes should."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Cogs-a-Lot: "Exciting and slightly dizzying. I would quest through any wind if the destination were honorable."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Cogs-a-Lot: "Stories warm the dark like embers of cheer. Longer nights simply give us more room for them."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. H-hello, Dreamer. I was watching the small red leaves. They fall really slowly when the wind is gentle. Hoggy walked by earlier and his tail was doing a happy wiggle. And the nights are getting longer. It makes the sky feel bigger."
+
+PLAYER CHOICES:
+[1] "Red leaves are worth watching."
+[2] "Happy Hoggy tail is good news."
+[3] "A bigger sky is cozy."
+
+---
+
+TURN 2A (if player chose A):
+Tinker: "They are. The tiny ones especially. They spin like little dancers who aren't sure of their steps. I like not-sure dancers. They remind me of me."
+
+PLAYER CHOICES:
+[1] "Not-sure dancers are brave."
+[2] "Spinning leaves are pretty."
+[3] "You dance well when you move."
+
+---
+
+TURN 2B (if player chose B):
+Tinker: "G-good news. Hoggy's tail wiggle means he's comfortable. I only wiggle when I'm nervous, so it's nice that some creatures wiggle for happy reasons."
+
+PLAYER CHOICES:
+[1] "Happy wiggles are the best wiggles."
+[2] "Nervous wiggles are valid too."
+[3] "Hoggy shares his comfort."
+
+---
+
+TURN 2C (if player chose C):
+Tinker: "Bigger. More room for stars, I think. The stars look farther away in Cool season. Or maybe I'm just noticing them more because the nights last longer."
+
+PLAYER CHOICES:
+[1] "Noticing more is a gift."
+[2] "Farther stars feel peaceful."
+[3] "Longer nights give us time."
+
+---
+
+TURN 3AA (if player chose A then A):
+Tinker: "Brave to spin even when you're unsure. I would applaud but I don't want to startle the leaves."
+
+---
+
+TURN 3AB (if player chose A then B):
+Tinker: "Pretty and quiet. Quiet pretty things are my favorite kind. They don't ask for attention."
+
+---
+
+TURN 3AC (if player chose A then C):
+Tinker: "Me? I mostly squeak. But thank you. Maybe squeaking is a kind of dance. A small one."
+
+---
+
+TURN 3BA (if player chose B then A):
+Tinker: "The best wiggles. I hope I can wiggle happily someday. For now I wiggle shyly, which is still movement."
+
+---
+
+TURN 3BB (if player chose B then B):
+Tinker: "Valid. Nervous wiggles mean you're trying. Trying is brave, even when it squeaks."
+
+---
+
+TURN 3BC (if player chose B then C):
+Tinker: "Hoggy shares his comfort just by passing by. It's like he leaves little warm footprints in the air. Maybe."
+
+---
+
+TURN 3CA (if player chose C then A):
+Tinker: "A gift, yes. The island gives us longer nights so we have time to see things we usually miss."
+
+---
+
+TURN 3CB (if player chose C then B):
+Tinker: "Peaceful. Farther stars don't demand anything. They just glow quietly and let you look."
+
+---
+
+TURN 3CC (if player chose C then C):
+Tinker: "Time is the best gift. More time to watch leaves, more time to see Hoggy, more time to say hello."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! Cool season is here and the wind is recharging me! The trees are throwing a color party and Hoggy is dancing in it. Plus the nights are longer, which means more star viewing time. I love everything right now!"
+
+PLAYER CHOICES:
+[1] "Wind recharging is useful."
+[2] "Color parties are the best parties."
+[3] "Hoggy dancing is adorable."
+
+---
+
+TURN 2A (if player chose A):
+Zap-Zap: "Useful and crackly! I can feel my circuits humming when a good breeze goes by. It's like the island is plugging me in with air."
+
+PLAYER CHOICES:
+[1] "Air power is clean energy."
+[2] "Humming circuits sound happy."
+[3] "The island is a good charger."
+
+---
+
+TURN 2B (if player chose B):
+Zap-Zap: "Best parties have no invitations. The trees just decided to turn gold and red and orange all at once. Even the wind showed up with streamers made of leaves."
+
+PLAYER CHOICES:
+[1] "Leaf streamers are eco-friendly."
+[2] "Everyone loves an open party."
+[3] "Gold and red are party colors."
+
+---
+
+TURN 2C (if player chose C):
+Zap-Zap: "Adorable and bouncy! Hoggy's little dance looks like he's trying to catch the breeze with his whole body. I want to dance like that too."
+
+PLAYER CHOICES:
+[1] "Dancing with the wind is fun."
+[2] "Hoggy is a party animal."
+[3] "You should dance more often."
+
+---
+
+TURN 3AA (if player chose A then A):
+Zap-Zap: "Clean energy from the sky. I approve. No wires, no plugs, just whoosh and buzz. Perfect."
+
+---
+
+TURN 3AB (if player chose A then B):
+Zap-Zap: "Happy humming is my favorite sound. It means all my parts agree that today is good."
+
+---
+
+TURN 3AC (if player chose A then C):
+Zap-Zap: "The island is a very good charger. It never overcharges. It just gives exactly enough breeze to make me sparkle."
+
+---
+
+TURN 3BA (if player chose B then A):
+Zap-Zap: "Eco-friendly and pretty. When the party is over, the streamers become mulch. Very efficient."
+
+---
+
+TURN 3BB (if player chose B then B):
+Zap-Zap: "Open party! My favorite kind. You don't have to knock, you just show up and smile at trees."
+
+---
+
+TURN 3BC (if player chose B then C):
+Zap-Zap: "Gold and red are definitely party colors. If I threw a party I'd decorate in leaf colors too."
+
+---
+
+TURN 3CA (if player chose C then A):
+Zap-Zap: "Dancing with the wind is the best because you never step on anyone's toes. The wind has no toes."
+
+---
+
+TURN 3CB (if player chose C then B):
+Zap-Zap: "Hoggy is a party animal, literally. He brings the joy and the snorts and the excellent ear action."
+
+---
+
+TURN 3CC (if player chose C then C):
+Zap-Zap: "I should dance more often. You're right. The wind and the leaves and Hoggy have given me permission just by existing."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════
