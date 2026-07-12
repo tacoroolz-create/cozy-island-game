@@ -25,7 +25,7 @@ The Picnic Reset               | Yes      | Implemented (organizer seats neighbo
 The Returning Bird             | Yes      | Bird hops between 3 stops; a random neighbor swears it's an old friend
 The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors fill anchor spots between dock and home)
 The Neighborhood Time Capsule  | Yes      | Implemented (historian buries a box; dig it up next cycle to hear it mangled)
-Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
+Sweet Valley                   | Yes      | Implemented (build a beach altar from sticks+stones, offer a harvestable)
 Peak Saucy                     | Yes      | Implemented (bonfire elder hands out sweet tea, serve neighbors for friendship)
 Cool Valley                    | Yes      | Implemented (dusk elder shares rice balls, leave offerings at rock memory stones)
 Peak Yeesh                     | No       | Outline in Holidays/PeakYeesh.md
@@ -380,3 +380,33 @@ holiday has used) and a literal "high point" destination — this engine has
 no elevation/hill concept, so the moon-viewing gathering happens along the
 shore like Memory Lantern Night's instead, which fits the source
 tradition's waterside moon-viewing just as well.)
+
+(July 11: Implemented Sweet Valley. Array slot 25 (was "Tied-Shoe
+Celebration") in src/daycycle.js renamed. A single altar spot is picked on
+the widest beach run each morning (findSweetValleyAltarSpot(), reusing
+findLanternShoreLine(1) from Memory Lantern Night/Cool Valley), starting
+unbuilt. Facing it and interacting while carrying 10 Sticks + 5 Stones
+(tryBuildSweetValleyAltar, src/game.js) consumes both and marks it built —
+no new placed-structure system needed since it's one fixed tile, not a
+footprint like Castle of Sticks Day's Building-based twig tower (which also
+explicitly excludes beach tiles from its footprint check, so it wasn't
+reusable here anyway). Once built, facing it while holding any
+'gift'-category item and interacting (tryOfferAtSweetValleyAltar) consumes
+the item, plays a flavor line, and the first offering of the day boosts
+every neighbor's friendship by gainGift(2) once, same shared-trigger pattern
+as Hoggy's Birthday/Turtle Crossing Guard Day. Hoggy gets an "altar" mood.
+Neighbor dialogue's Sweet Valley comment bank was already pre-written and
+unwired in src/dialogue.js (same situation Cool Valley's and Peak Yeesh's
+banks were in) — no changes needed there, it activates automatically once
+holiday.name matches. No new sprite — altar falls back to colored
+rectangles (unbuilt: a small pile; built: a two-tier stone-and-stick shape
+with a soft glow). Skipped: the outline's whole Wild Yam -> Yam growable
+plant chain and the Candied Yam reward — the outline itself calls Candied
+Yam "flavor-only until Marge the Miracle storyline is implemented," and
+"harvestable from wild zones" would need a new wild-forage-node spawn system
+that doesn't exist anywhere in this codebase (checked; the only precedent is
+tool-harvestable resource nodes like fir trees, not scattered wild pickups),
+so this follows the strong precedent of every other holiday skipping new
+economy/plant subsystems for a flavor-only reward (Peak Saucy's Tea
+Leaves/Lemon, Cool Valley's Chrysanthemum). Offerings use any existing
+'gift'-category item instead of a dedicated Yam item.)

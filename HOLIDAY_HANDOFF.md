@@ -319,24 +319,65 @@ moon-viewing gathering happens along the shore like Memory Lantern Night's
 instead, which fits the source tradition's waterside moon-viewing just as
 well.
 
+**Sweet Valley** (on `main`, pushed to origin). Array slot 25 (was "Tied-Shoe
+Celebration") in [src/daycycle.js](src/daycycle.js:70) renamed. This one
+wasn't in the ranked list below in earlier handoffs — its outline
+(`Holidays/SweetValley.md`) was written later in the July 11 session than
+the other three, after the ranking was first drafted; a background research
+pass confirmed it was actually lazier to build than Flealess Market (no
+barter-UI subsystem, no unbreakable-tool flag, no decor-placement system
+needed) before starting. `findSweetValleyAltarSpot()` in
+[src/game.js](src/game.js:2681) reuses `findLanternShoreLine(1)` verbatim to
+pick a single beach spot each morning, starting unbuilt. Facing it while
+carrying 10 Sticks + 5 Stones and interacting
+(`tryBuildSweetValleyAltar`) consumes both and marks it built — deliberately
+*not* routed through Castle of Sticks Day's `Building`+`isFootprintClear`
+system, since that footprint check explicitly rejects beach tiles and the
+altar only needs one fixed tile, not a multi-tile footprint. Once built,
+facing it while holding any `'gift'`-category item and interacting
+(`tryOfferAtSweetValleyAltar`) consumes it, shows a flavor line, and the
+first offering of the day boosts every neighbor via `gainGift(2)` once (same
+shared-trigger pattern as Hoggy's Birthday/Turtle Crossing Guard Day). Hoggy
+gets an "altar" mood. The `getHolidayGreetingPrefix` comment bank was
+already pre-written and unwired at
+[src/dialogue.js:176](src/dialogue.js:176) — another instance of the
+"written ahead, wired later" situation Cool Valley's and Peak Yeesh's banks
+were in; worth checking `dialogue.js` for more of these before the next
+holiday. No new sprite — altar falls back to colored rectangles. Skipped:
+the outline's whole Wild Yam → Yam growable plant chain and Candied Yam
+reward — confirmed no wild-forage-node spawn system exists anywhere in this
+codebase (only tool-harvestable resource nodes like fir trees), and the
+outline itself calls Candied Yam "flavor-only until Marge the Miracle
+storyline is implemented," so this follows the same precedent as Peak
+Saucy's Tea Leaves/Lemon and Cool Valley's Chrysanthemum — offerings use any
+existing `'gift'`-category item instead.
+
 ## Remaining, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **The Flealess Market** — 3 items, one of which is a whole new plant type
-   (seed + growth stages). Confirmed in Peak Saucy's research that the
-   crop-growth system (`PLANTS`/`SEED_TO_PLANT` in gardening.js) is a tiny
-   data-table addition, not a new state machine — so this is less scary than
-   it sounds, just more items than usual.
+1. **The Flealess Market** — needs three separate new subsystems: a
+   barter-pay UI (the picker itself is reusable via `openMagicMenu`, but "any
+   harvestable for a flat item" trade logic is new), a per-item "unbreakable"
+   flag threaded through the two durability-decrement call sites
+   (`src/game.js` around L4880-4887 and L4989-4995 — currently only
+   Garden Day's hoe gets a hardcoded exception, see
+   `isUnbreakableToolToday` at L4849), and a statue/decor placement path
+   (nothing to reuse — no outdoor furniture/statue placement system exists).
+   The new plant type piece is cheap (confirmed: `PLANTS`/`SEED_TO_PLANT` in
+   gardening.js is a data-table addition, no new state machine), but the
+   other three pieces make this the most new plumbing of what's left.
 2. **Peak Yeesh** — needs 8 new furniture pieces (reuses the existing
    furniture/decoration placement system, so each is a data-table item, not
    new plumbing), a silent wandering NPC (Papa Yeesh), a "stay awake until
    midnight" timing check, and reading back the player's yearly Hoggy-gift
    count for the reward split. Its `getHolidayGreetingPrefix` comment bank is
    already written ([src/dialogue.js:208](src/dialogue.js:208)), same
-   pre-written-but-unwired situation Cool Valley's was in. More moving parts
-   than Flealess Market but nothing that needs a new subsystem.
+   pre-written-but-unwired situation Cool Valley's and Sweet Valley's were
+   in. More moving parts than Flealess Market's individual pieces, but
+   nothing that needs a brand-new subsystem the way barter/unbreakable/decor
+   placement do.
 3. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection) — no existing "follow the player" or

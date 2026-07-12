@@ -67,7 +67,7 @@ const HOLIDAYS = [
     { name: 'The Returning Bird',     desc: 'A migrating bird returns, and one neighbor is convinced they are old friends.' },
     { name: 'The Petal Path Maker',   desc: 'A visiting path-artist connects the dock to your door with flower petals. Help fill it in.' },
     { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' },
-    { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
+    { name: 'Sweet Valley',           desc: 'A spring altar rises on the beach. Gather sticks and stones to build it, then offer a harvestable to honor the coming Island God.' },
     { name: 'Peak Saucy',             desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
     { name: 'Cool Valley',            desc: 'At dusk, neighbors gather for a memory walk to the shore. Leave offerings at memory stones and share sweet rice balls before the moon rises.' },
     { name: 'Hat-Stacking Jubilee',   desc: 'The wearing of multiple hats is both encouraged and competitively scored.' }
