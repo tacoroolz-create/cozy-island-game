@@ -183,7 +183,7 @@ const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (
 let islandGod = null; // static giant turtle visitor for Day of the Island God
 let lostMail = null; // { day, letters: [{x,y,npcId,address,isPresent,delivered}], allDeliveredNotified }
 let heldLostMailLetter = null; // the Lost Mail Day letter currently in the player's hand, or null
-const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target']);
+const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target', 'ug_wall', 'ug_pit']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
 // deferred pass after all base terrain so the next column's base can't clip the
@@ -333,6 +333,7 @@ const ITEMS = {
     seed:        { name: 'Seed',        category: 'material', maxStack: 99, color: '#8BC34A', desc: 'A generic seed for planting.' },
     rose_seed:   { name: 'Rose Seed',   category: 'material', maxStack: 99, color: '#E53935', desc: 'A red rose seed.' },
     tulip_bulb:  { name: 'Tulip Bulb',  category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A white tulip bulb.' },
+    flea_lily_seed: { name: 'Flea Lily Seed', category: 'material', maxStack: 99, color: '#8E24AA', desc: 'A rare seed bartered from the Flealess Market. Plant it on tilled soil.' },
     bird_poop:   { name: 'Bird Poop',   category: 'material', maxStack: 99, color: '#E0E0E0', desc: 'May contain seeds.' },
     rose:        { name: 'Rose',        category: 'gift',     maxStack: 99, color: '#E53935', desc: 'A freshly picked red rose.' },
     tulip:       { name: 'Tulip',       category: 'gift',     maxStack: 99, color: '#F5F5F5', desc: 'A freshly picked tulip.' },
@@ -341,10 +342,12 @@ const ITEMS = {
     palm_frond:  { name: 'Palm Frond',  category: 'material', maxStack: 99, color: '#4CAF50', desc: 'A broad leaf from a palm tree.' },
     bean:        { name: 'Bean',        category: 'gift',     maxStack: 99, color: '#D4A76A', desc: 'An edible seed you can eat or plant.' },
     berry:       { name: 'Berry',       category: 'gift',     maxStack: 99, color: '#C62828', desc: 'A sweet gift from the garden.' },
+    flea_lily_bloom: { name: 'Flea Lily Bloom', category: 'gift', maxStack: 99, color: '#AB47BC', desc: 'A strange lavender bloom that grew from a market seed. Neighbors seem to love it.' },
     gettin_stick:{ name: "Gettin' Stick", category: 'tool', maxStack: 1, color: '#D4A76A', desc: 'A stick with a magnet. Pulls treasure from the water!', durability: 3 },
     axe:         { name: 'Axe',         category: 'tool',     maxStack: 1, color: '#7CB342', desc: 'Chops wood faster.', durability: 3 },
     hoe:         { name: 'Hoe',         category: 'tool',     maxStack: 1, color: '#A1887F', desc: 'Tills soil.', durability: 3 },
     pickaxe:     { name: 'Pickaxe',     category: 'tool',     maxStack: 1, color: '#B0BEC5', desc: 'Mines rocks.', durability: 3 },
+    sturdy_pickaxe: { name: 'Sturdy Pickaxe', category: 'tool', maxStack: 1, color: '#B0BEC5', desc: 'A pickaxe bartered from a traveling merchant. It never seems to dull.', unbreakable: true },
     // --- Treasure items (pulled from the water with a Gettin' Stick) ---
     glass_bottle:{ name: 'Glass Bottle',category: 'treasure', maxStack: 99, color: '#B3E5FC', desc: 'A barnacle-crusted bottle. Something inside?' },
     iron_ingot:  { name: 'Iron Ingot',  category: 'treasure', maxStack: 99, color: '#90A4AE', desc: 'A heavy rust-spotted ingot. Good metal.' },
@@ -403,6 +406,8 @@ const ITEMS = {
     candle_log:      { name: 'Candle Log',       category: 'block', maxStack: 99, color: '#EF9A9A', desc: 'A long-burning candle set into a birch log.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
     holly_vase:      { name: 'Holly Vase',       category: 'block', maxStack: 99, color: '#AD1457', desc: 'A vase of holly sprigs for the table.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
     yule_goat_plush: { name: 'Yule Goat Plush',  category: 'block', maxStack: 99, color: '#F5DEB3', desc: 'A small straw goat, a solstice keepsake.', home: { cls: 'decoration', placeOn: 'floor', solid: false } },
+    // --- Flealess Market barter reward ---
+    flealess_statue: { name: 'Flealess Statue', category: 'block', maxStack: 1, color: '#B0A18F', desc: 'An odd little statue bartered from a traveling merchant. Decorate your home with it.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
 
     // Outdoor placeable — equip and click an open area outside to build a neighbor's shack
     neighbor_shack: { name: "Neighbor's Shack", category: 'block', maxStack: 1, color: '#8B6914', desc: 'A cozy little shack for a neighbor. Place it outside on open ground.', outdoor: { type: 'shack' } },
@@ -739,6 +744,8 @@ function preload() {
             SPRITES[key] = null;
         });
     }
+    // Load the underworld layout CSV so generateUnderground() can run synchronously.
+    underworldCSVLines = loadStrings('underworld.csv');
 }
 
 function setup() {
@@ -1149,6 +1156,10 @@ function drawGame() {    // Handle continuous movement
     // ===== PEAK YEESH: Everburn bonfire + silent Papa Yeesh visitor =====
     updatePeakYeesh();
     drawPeakYeesh();
+
+    // ===== THE FLEALESS MARKET: traveling merchant near the dock =====
+    updateFlealessMarket();
+    drawFlealessMarket();
 
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
@@ -2976,6 +2987,111 @@ function onPeakYeeshMidnight() {
     }
 }
 
+// ===== THE FLEALESS MARKET =====
+// A traveling merchant barters three rare items for common harvested
+// materials — no currency system, matches the outline's barter-only
+// constraint. Reuses the real dialogue-choice UI (the same `choices`/`action`
+// shape quest dialogue already uses in quests.js) instead of inventing a shop
+// menu: the merchant's `_dialogueTree` is set directly and opened through the
+// normal openDialogue(npc), no Yogatron-style global override needed.
+const FLEALESS_MARKET_OFFERS = [
+    { key: 'statue', label: 'A Statue',         cost: { stone: 15, stick: 10 },  give: () => inventory.addItem('flealess_statue', 1),
+      line: 'The merchant unwraps a small carved statue. "Careful — heavier than it looks."' },
+    { key: 'tool',   label: 'A Sturdy Pickaxe', cost: { stone: 20, crystal: 5 }, give: () => inventory.addItem('sturdy_pickaxe', 1),
+      line: 'The merchant hands over a pickaxe. "Never dulls, never breaks. Don\'t ask how."' },
+    { key: 'seed',   label: 'Mystery Seeds',    cost: { fiber: 10, pinecone: 5 }, give: () => inventory.addItem('flea_lily_seed', 3),
+      line: 'The merchant presses a few seeds into your hand. "Not from around here, if you catch my meaning."' }
+];
+let flealessMerchant = null; // { x, y }
+let flealessMarket = null;   // { day, bought: {statue,tool,seed} }
+
+function flealessCostLabel(cost) {
+    return Object.entries(cost).map(([id, n]) => n + ' ' + (ITEMS[id] ? ITEMS[id].name : id)).join(' + ');
+}
+
+function spawnFlealessMarket() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    flealessMerchant = findClearGroundNear(dock.x, dock.y, 1, 12);
+    flealessMarket = { day: world.day, bought: { statue: false, tool: false, seed: false } };
+    notify('A traveling merchant has set up near the dock, offering rare goods for barter.', 4500);
+}
+
+function updateFlealessMarket() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'The Flealess Market') {
+        if (flealessMarket) { flealessMarket = null; flealessMerchant = null; }
+        return;
+    }
+    if (!world) return;
+    if (!flealessMarket || flealessMarket.day !== world.day) spawnFlealessMarket();
+}
+
+function drawFlealessMarket() {
+    if (!flealessMarket || !flealessMerchant) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = flealessMerchant.x * TS - cameraX, sy = flealessMerchant.y * TS - cameraY;
+    noStroke();
+    fill('#4E342E');
+    rect(sx + TS * 0.1, sy - TS * 0.25, TS * 0.8, TS * 0.28, 2); // cart canopy
+    fill('#8D6E63');
+    rect(sx + TS * 0.15, sy, TS * 0.7, TS * 0.55, 2); // cart body
+    fill('#D7CCC8');
+    ellipse(sx + TS * 0.5, sy + TS * 0.7, TS * 0.35, TS * 0.45); // merchant
+}
+
+function isFacingFlealessMerchant() {
+    if (!flealessMerchant || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === flealessMerchant.x && facing.y === flealessMerchant.y;
+}
+
+function buildFlealessMarketTree() {
+    const choices = FLEALESS_MARKET_OFFERS.map(offer => {
+        const bought = flealessMarket.bought[offer.key];
+        const text = bought ? offer.label + ' (sold)' : offer.label + ' — ' + flealessCostLabel(offer.cost);
+        return { text, next: null, action: () => tryBuyFlealessOffer(offer) };
+    });
+    choices.push({ text: 'Just looking.', next: null });
+    return {
+        start: {
+            text: 'Rare goods, honest prices — well, honest barter. Take a look?',
+            choices
+        }
+    };
+}
+
+function tryBuyFlealessOffer(offer) {
+    if (flealessMarket.bought[offer.key]) {
+        notify('"Already sold you that one, friend."', 3000);
+        return;
+    }
+    const affordable = Object.entries(offer.cost).every(([id, n]) => inventory.hasItem(id, n));
+    if (!affordable) {
+        notify('"That\'ll cost you ' + flealessCostLabel(offer.cost) + '." You don\'t have enough yet.', 4000);
+        return;
+    }
+    for (const [id, n] of Object.entries(offer.cost)) inventory.removeItem(id, n);
+    offer.give();
+    flealessMarket.bought[offer.key] = true;
+    notify(offer.line, 4500);
+}
+
+function tryTalkToFlealessMerchant() {
+    if (!flealessMarket || !isFacingFlealessMerchant()) return false;
+    const merchant = {
+        id: 'flealess_merchant',
+        name: 'The Merchant',
+        color: '#6D4C41',
+        isPresent: true,
+        gridX: flealessMerchant.x,
+        gridY: flealessMerchant.y,
+        _dialogueTree: buildFlealessMarketTree()
+    };
+    openDialogue(merchant);
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3744,6 +3860,8 @@ function mousePressed() {
         // Peak Yeesh: build the Everburn, or talk to the silent Papa Yeesh
         if (typeof tryBuildEverburn === 'function' && tryBuildEverburn()) return;
         if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return;
+        // The Flealess Market: talk to the traveling merchant to barter
+        if (typeof tryTalkToFlealessMerchant === 'function' && tryTalkToFlealessMerchant()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4082,16 +4200,16 @@ function getPlayerShack() {
     return buildings.find(b => b.owner === 'player') || buildings[0];
 }
 
-// Place the player in the overworld, standing in the space in front of the shack.
+// Place the player in the overworld, standing on the island pond's west bank.
 // This is the single source of truth for "where the player appears in the
 // overworld" — used by both new games and loads so the player can never be
 // warped to the top-left by a stale/interior saved position.
-function placePlayerAtShackEntrance() {
-    const b = getPlayerShack();
-    const spot = b ? findExteriorStandingTile(b) : { x: 50, y: 50 };
-    player.x = spot.x;
-    player.y = spot.y;
-    player.facing = 'down';
+function placePlayerAtStartLocation() {
+    // Island pond top-left is (47,39). Its west bank ring is column 47, rows 39-44.
+    // Place the player on a walkable bank tile just outside the water.
+    player.x = ISLAND_POND_ORIGIN.x;
+    player.y = ISLAND_POND_ORIGIN.y + 2; // (47,41) — west bank, facing the pond
+    player.facing = 'right';
     insideBuilding = null;
     updateCamera();
 }
@@ -5042,6 +5160,8 @@ function keyPressed() {
             // Peak Yeesh: build the Everburn, or talk to the silent Papa Yeesh
             if (typeof tryBuildEverburn === 'function' && tryBuildEverburn()) return false;
             if (typeof tryTalkToPapaYeesh === 'function' && tryTalkToPapaYeesh()) return false;
+            // The Flealess Market: talk to the traveling merchant to barter
+            if (typeof tryTalkToFlealessMerchant === 'function' && tryTalkToFlealessMerchant()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
@@ -5160,6 +5280,8 @@ function updateCamera() {
 // ===== TILLING / GARDEN DAY HELPERS =====
 // Returns true if the active tool should not lose durability today (Garden Day = hoe)
 function isUnbreakableToolToday(toolId) {
+    // Flealess Market's Sturdy Pickaxe never breaks, any day.
+    if (ITEMS[toolId] && ITEMS[toolId].unbreakable) return true;
     if (toolId !== 'hoe') return false;
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
     return !!(holiday && holiday.name === 'Garden Day');
@@ -5765,8 +5887,8 @@ function loadGameFromSlot(slot) {
     if (typeof enhancedLoadGameFromSlot === 'function' && enhancedLoadGameFromSlot(slot)) {
         if (typeof checkArrivals === 'function' && (!npcs || npcs.length === 0)) checkArrivals();
         if (typeof spawnHog === 'function' && !hog) spawnHog();
-        // Always re-enter the overworld in front of the shack (never warp top-left).
-        placePlayerAtShackEntrance();
+        // Always re-enter the overworld in front of the pond (never warp top-left).
+        placePlayerAtStartLocation();
         startView = 'main';
         gameState = STATE.PLAYING;
         notify('Loaded: ' + currentSaveName);
@@ -5798,8 +5920,8 @@ function startNewGame() {
     if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
     // Spawn hog if not already present (fresh games)
     if (typeof spawnHog === 'function' && !hog) spawnHog();
-    // Stand the player in front of the shack (single source of truth).
-    placePlayerAtShackEntrance();
+    // Stand the player on the island pond's west bank (single source of truth).
+    placePlayerAtStartLocation();
     gameState = STATE.PLAYING;
 }
 
@@ -5831,10 +5953,8 @@ function loadGame() {
         // Ensure systems that may not be in old saves are present
         if (typeof checkArrivals === 'function' && (!npcs || npcs.length === 0)) checkArrivals();
         if (typeof spawnHog === 'function' && !hog) spawnHog();
-        // Always re-enter the overworld in front of the shack. The saved position
-        // can be interior coords (if saved indoors), which would otherwise warp
-        // the player to the top-left of the map.
-        placePlayerAtShackEntrance();
+        // Always re-enter the overworld in front of the pond (never warp top-left).
+        placePlayerAtStartLocation();
         gameState = STATE.PLAYING;
         notify('Save loaded!');
         return true;
@@ -6303,34 +6423,42 @@ function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
 // water warps you to the other (see World.placePond(), checkPortalUnderfoot()).
 const ISLAND_POND_ORIGIN      = { x: 47, y: 39 }; // top-left of the 6x6 island pond
 const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as the underground pond's warp target
-const UNDERGROUND_POND_ORIGIN = { x: 85, y: 48 }; // top-left of the 6x6 underground pond (east cap of the strip)
-const UNDERGROUND_POND_LANDING = { x: 87, y: 50 }; // inner water tile, used as the island pond's warp target
+
+// The underworld path now has two grass rows (CSV rows 9-10). The pit marker
+// ('bp') sits at CSV col 0, row 11 — the front/south end of the path, just
+// before the southern tree wall. The pond marker ('p') is at CSV col 74, row 10.
+// The 6x6 pond extends up/right from there, so its top-left is at (74, 5).
+const UNDERGROUND_POND_ORIGIN = { x: 74, y: 5 };   // top-left of the 6x6 underground pond
+const UNDERGROUND_POND_LANDING = { x: 76, y: 8 };  // inner water tile; used as the island pond's warp target
 
 // Mubaba waits inside his fortress (isPresent stays false, so this is never
-// drawn — see generateUnderground()/magic.js). Kept roughly at the fortress
-// footprint for tidiness.
-const MUBABA_SPAWN = { x: 58, y: 46 };
+// drawn — see generateUnderground()/magic.js). The fortress is the 6th building
+// in the CSV row of 'b' markers (0-indexed: building 5).
+const MUBABA_SPAWN = { x: 46, y: 4 };
 
-// The underground city is one straight east–west strip: the surface pond
-// (entrance/exit) caps the far east, then eight buildings run west, all fronting
-// a single grass path. Everything else is a solid wall of underground trees and
-// boulders, so the only movable space is the path itself.
+// Building types placed left-to-right from the 'b' markers in underworld.csv.
+// The CSV has 8 markers, one per canonical underground building.
 const UNDERGROUND_STRIP = [
-    // West -> East (x increasing). The pond sits just east of 'ug_recycle_bin'.
+    // West -> East (x increasing). The pond caps the far east.
     'ug_bottomless_pit', 'ug_inner_temple', 'ug_stimmy_tims', 'ug_black_goddess',
     'ug_electric_temple', 'ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin'
 ];
-const UG_STRIP_START_X = 7;        // west-most building's left edge
-const UG_STRIP_GAP = 2;            // wall tiles between adjacent buildings
-const UG_DOOR_ROW = 50;            // every building's bottom (door) row; enter from the row below
-const UG_PATH_ROWS = [51, 52, 53]; // grass path in front of the doors
+
+// Dimensions of the CSV-authored area embedded in the top-left of the 100x100 world.
+const UNDERWORLD_CSV_WIDTH = 80;
 
 // Where the Teleport trick (magic.js) drops the player: one tile clear of
 // each map's pond, so it never lands on a warp tile.
 const TELEPORT_LANDINGS = {
     island:      { x: 50, y: 45, facing: 'down' },
-    underground: { x: 20, y: 17, facing: 'down' }
+    underground: { x: 73, y: 9, facing: 'down' }
 };
+
+// Multi-tile footprint sizes used when expanding CSV symbols.
+const UNDERGROUND_BUILDING_SIZE = { w: 8 };
+const UNDERGROUND_TREE_SIZE = { w: 1, h: 2 };
+const UNDERGROUND_POND_SIZE = { w: 6, h: 6 };
+const UNDERGROUND_PIT_SIZE = { w: 2, h: 2 };
 
 // The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
 // Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
@@ -6358,6 +6486,26 @@ function shuffled(arr) {
     return a;
 }
 
+// Parse the underworld.csv lines loaded by preload(). Cells are trimmed and
+// empty cells become '.'. Strips a leading BOM from the first cell if present.
+function parseUnderworldCSV(lines) {
+    if (!lines || !lines.length) return [];
+    const rows = [];
+    for (const line of lines) {
+        if (!line || !line.trim()) {
+            // Preserve blank rows as all '.' so row indices stay stable.
+            rows.push(new Array(UNDERWORLD_CSV_WIDTH).fill('.'));
+            continue;
+        }
+        const cells = line.split(',').map(s => s.trim());
+        if (rows.length === 0 && cells[0] && cells[0].charCodeAt(0) === 0xFEFF) {
+            cells[0] = cells[0].slice(1);
+        }
+        rows.push(cells);
+    }
+    return rows;
+}
+
 class World {
     constructor(kind = 'island', id = null) {
         this.kind = kind;          // 'island' | 'underground' (drives generation)
@@ -6375,49 +6523,116 @@ class World {
         // generation; the caller fills in tiles/entities.
     }
 
-    // The underground city: one straight east–west strip. A solid wall of
-    // underground trees and boulders fills the whole cavern; the buildings and
-    // a single grass path carve the only movable space out of it. Building order
-    // and the east-capping pond are defined by UNDERGROUND_STRIP / UG_* consts.
+    // The underground city is now authored in underworld.csv and loaded here.
+    // The CSV is embedded in the top-left of the 100x100 world; everything outside
+    // it stays solid ug_wall. Symbols use bottom-left anchoring for tall objects
+    // (tree, building) and the pond is placed via its top-left equivalent so it
+    // lines up with World.placePond().
     generateUnderground() {
         const W = CONFIG.WORLD_WIDTH, H = CONFIG.WORLD_HEIGHT;
-        // Solid wall everywhere; variant scatters trees/boulders (see drawTile).
+        // Solid wall everywhere.
         for (let x = 0; x < W; x++) {
             this.tiles[x] = [];
             for (let y = 0; y < H; y++) {
-                this.tiles[x][y] = { type: 'ug_wall', variant: floor(random(10)), solid: true };
+                this.tiles[x][y] = { type: 'ug_wall', variant: 6 + floor(random(4)), solid: true };
             }
         }
 
-        // Place the eight buildings left-to-right, bottom-aligned on the door row.
+        const csv = parseUnderworldCSV(underworldCSVLines);
+        if (!csv || csv.length === 0) {
+            console.warn('underworld.csv failed to load; using fallback wall.');
+            this.entities = { buildings: [], npcs: [] };
+            return;
+        }
+
+        // Mark which cells are occupied by expanding multi-tile symbols.
+        const occupied = new Set();
+        function mark(x, y, w, h) {
+            for (let dx = 0; dx < w; dx++) {
+                for (let dy = 0; dy < h; dy++) {
+                    occupied.add((x + dx) + ',' + (y + dy));
+                }
+            }
+        }
+
         const placed = [];
-        let x = UG_STRIP_START_X;
-        for (const type of UNDERGROUND_STRIP) {
-            const def = BUILDING_TIERS[type] || {};
-            const bw = def.w || 6, bh = def.h || 4;
-            const gy = UG_DOOR_ROW - bh + 1; // bottom edge lands on UG_DOOR_ROW
-            placed.push(new Building(type, x, gy, null));
-            x += bw + UG_STRIP_GAP;
-        }
+        let buildingIndex = 0;
+        const bSize = UNDERGROUND_BUILDING_SIZE;
+        const tSize = UNDERGROUND_TREE_SIZE;
+        const pSize = UNDERGROUND_POND_SIZE;
 
-        // Carve the grass path in front of the doors, from the west end up to
-        // (but not into) the pond that caps the east end.
-        const pathEndX = UNDERGROUND_POND_ORIGIN.x - 1;
-        for (let px = UG_STRIP_START_X - 1; px <= pathEndX; px++) {
-            if (px < 0 || px >= W) continue;
-            for (const py of UG_PATH_ROWS) this.tiles[px][py] = { type: 'grass', variant: 0 };
+        for (let r = 0; r < csv.length; r++) {
+            const row = csv[r];
+            for (let c = 0; c < row.length; c++) {
+                const sym = row[c];
+                const wx = c;
+                const wy = r; // bottom-left anchor row for tall objects
+                if (sym === 'g') {
+                    this.tiles[wx][wy] = { type: 'grass_underworld', variant: 0 };
+                } else if (sym === 'bp') {
+                    // Bottomless pit placeholder: 1x1 solid black tile.
+                    // When its 4x4 sprite is ready, update UNDERGROUND_PIT_SIZE and this branch.
+                    this.tiles[wx][wy] = { type: 'ug_pit', variant: 0, solid: true };
+                } else if (sym === 't') {
+                    // 2-tall underground tree, bottom-left anchored. The bottom tile
+                    // draws the full tree; the top tile is plain wall.
+                    if (wy >= 0 && wy < H) {
+                        this.tiles[wx][wy] = { type: 'ug_wall', variant: floor(random(3)), solid: true };
+                        mark(c, r, tSize.w, tSize.h);
+                    }
+                    const topY = wy - 1;
+                    if (topY >= 0 && topY < H) {
+                        this.tiles[wx][topY] = { type: 'ug_wall', variant: 6 + floor(random(4)), solid: true };
+                    }
+                } else if (sym === 'bp') {
+                    // Bottomless pit: 2x2, top-left anchored, expanding down/right.
+                    // The marker sits at the west end of the path row (row 10); the pit
+                    // occupies rows 10-11, cols 0-1, just south of the buildings.
+                    const pitW = UNDERGROUND_PIT_SIZE.w;
+                    const pitH = UNDERGROUND_PIT_SIZE.h;
+                    for (let dx = 0; dx < pitW; dx++) {
+                        for (let dy = 0; dy < pitH; dy++) {
+                            const px = wx + dx, py = wy + dy;
+                            if (px < W && py < H) {
+                                this.tiles[px][py] = { type: 'ug_pit', variant: 0, solid: true };
+                            }
+                        }
+                    }
+                    mark(c, r, pitW, pitH);
+                } else if (sym === 'b') {
+                    const type = UNDERGROUND_STRIP[buildingIndex];
+                    if (!type) continue;
+                    buildingIndex++;
+                    const def = BUILDING_TIERS[type] || {};
+                    const bw = bSize.w;           // all underworld buildings are 8 wide
+                    const bh = def.h || 8;        // height varies per building (Stimmy Tim's is 5)
+                    // Bottom-left anchored in the CSV: the marker row is the building's bottom row.
+                    const gx = wx;
+                    const gy = wy - bh + 1;
+                    if (gy >= 0) {
+                        // Carve the exact footprint to grass.
+                        for (let dx = 0; dx < bw; dx++) {
+                            for (let dy = 0; dy < bh; dy++) {
+                                const bx = gx + dx, by = gy + dy;
+                                if (bx < W && by < H) {
+                                    this.tiles[bx][by] = { type: 'grass_underworld', variant: 0 };
+                                }
+                            }
+                        }
+                        placed.push(new Building(type, gx, gy, null));
+                        mark(c, r, bw, bh);
+                    }
+                } else if (sym === 'p') {
+                    // 6x6 pond, bottom-left anchored in the CSV; convert to top-left for placePond.
+                    const originX = wx;
+                    const originY = wy - pSize.h + 1;
+                    this.placePond(originX, originY, 'island',
+                                   ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
+                    mark(c, r, pSize.w, pSize.h);
+                }
+                // '.' and anything else leave the solid ug_wall from initialization.
+            }
         }
-        // Keep tall trees off the wall row directly south of the path so nothing
-        // overhangs the walkway (trees are drawn bottom-anchored, 3 tiles tall).
-        const southRow = UG_PATH_ROWS[UG_PATH_ROWS.length - 1] + 1;
-        for (let px = 0; px < W; px++) {
-            const t = this.tiles[px][southRow];
-            if (t && t.type === 'ug_wall') t.variant = 3 + floor(random(7)); // boulder/plain only
-        }
-
-        // Animated route back to the surface: a pond mirroring the island one.
-        this.placePond(UNDERGROUND_POND_ORIGIN.x, UNDERGROUND_POND_ORIGIN.y, 'island',
-                       ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
 
         // Mubaba awaits inside his fortress (isPresent false keeps him off the
         // map; entering the fortress talks to this record — see magic.js).
@@ -7031,6 +7246,21 @@ class World {
                     if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
                     else { fill('#3A352F'); ellipse(screenX + TS / 2, screenY + TS / 2, TS, TS * 0.8); }
                 }
+                break;
+            }
+            case 'grass_underworld': {
+                const gug = SPRITES['tiles.grass_underworld'];
+                if (gug) {
+                    image(gug, screenX, screenY, TS, TS);
+                } else {
+                    fill('#5A6B3A');
+                    rect(screenX, screenY, TS, TS);
+                }
+                break;
+            }
+            case 'ug_pit': {
+                fill('#0D0D0D');
+                rect(screenX, screenY, TS, TS);
                 break;
             }
             case 'sea': {

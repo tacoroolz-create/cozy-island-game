@@ -529,6 +529,7 @@ function getHogHolidayMood() {
     if (name === 'Cool Valley') return { emote: 'moonlit', note: hog.name + ' sits quietly by the shore, watching the lanterns and the rising moon.' };
     if (name === 'Sweet Valley') return { emote: 'altar', note: hog.name + ' noses at the beach altar, hoping someone offers him something.' };
     if (name === 'Peak Yeesh') return { emote: 'toasty', note: hog.name + ' curls up close to the Everburn, watching for a quiet visitor.' };
+    if (name === 'The Flealess Market') return { emote: 'trade', note: hog.name + ' snuffles at the merchant\'s cart, hoping to barter a good sniff for a snack.' };
     return null;
 }
 
