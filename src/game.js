@@ -111,6 +111,7 @@ const SPRITE_DEFS = {
     'sprites.ug_inner_temple':    'assets/sprites/buildings/inner_temple.png',
     'sprites.ug_recycle_bin':     'assets/sprites/buildings/recycle_bin.png',
     'sprites.ug_stimmy_tims':     'assets/sprites/buildings/stimmy_tims.png',
+    'sprites.ug_bottomless_pit':  'assets/sprites/buildings/bottomless_pit.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
     'sprites.turtle':         'assets/sprites/turtle.png',
     'sprites.island_god':     'assets/sprites/island_god.png',
@@ -446,7 +447,7 @@ const BUILDING_TIERS = {
     ug_electric_temple: { spriteKey: 'sprites.ug_electric_temple', name: 'The Electric Temple', color: '#C9B23A', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
     ug_black_goddess:   { spriteKey: 'sprites.ug_black_goddess',   name: 'The Black Goddess',   color: '#26202B', w: 8, h: 8, doorWidth: 2, interiorW: 9, interiorFloorRows: 6 },
     ug_stimmy_tims:     { spriteKey: 'sprites.ug_stimmy_tims',     name: "Stimmy Tim's",        color: '#B3574D', w: 8, h: 5, doorWidth: 2, interiorW: 8, interiorFloorRows: 5 },
-    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 6, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },
+    ug_bottomless_pit:  { spriteKey: 'sprites.ug_bottomless_pit',  name: 'A Bottomless Pit',    color: '#111111', w: 4, h: 4, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 64x64 sprite
     // Player-built second shelter from Castle of Sticks Day. Placeholder
     // colored-block fallback until twig tower art lands.
     twig_tower:         { spriteKey: 'sprites.twig_tower',         name: 'Twig Tower',          color: '#9A7B4F', w: 4, h: 5, doorWidth: 1, interiorW: 5, interiorFloorRows: 3 }
@@ -745,7 +746,9 @@ function preload() {
         });
     }
     // Load the underworld layout CSV so generateUnderground() can run synchronously.
-    underworldCSVLines = loadStrings('underworld.csv');
+    // Cache-busted like the script tags in index.html, so layout edits show up
+    // on plain reload.
+    underworldCSVLines = loadStrings('underworld.csv?v=' + Date.now());
 }
 
 function setup() {
@@ -4365,10 +4368,11 @@ function getPlayerShack() {
 // overworld" — used by both new games and loads so the player can never be
 // warped to the top-left by a stale/interior saved position.
 function placePlayerAtStartLocation() {
-    // Island pond top-left is (47,39). Its west bank ring is column 47, rows 39-44.
-    // Place the player on a walkable bank tile just outside the water.
-    player.x = ISLAND_POND_ORIGIN.x;
-    player.y = ISLAND_POND_ORIGIN.y + 2; // (47,41) — west bank, facing the pond
+    // Island pond top-left is (47,39). Stand on the grass just west of it —
+    // one tile clear of the pond art, so the player never starts on the pond
+    // itself (column 47 is the pond's own bank ring).
+    player.x = ISLAND_POND_ORIGIN.x - 1;
+    player.y = ISLAND_POND_ORIGIN.y + 2; // (46,41) — grass, facing the pond
     player.facing = 'right';
     insideBuilding = null;
     updateCamera();
@@ -4465,17 +4469,21 @@ function checkPortalUnderfoot() {
 // player straight into another warp. Falls back to (sx, sy) itself if nothing
 // is found within range.
 function findOpenTileNear(sx, sy) {
+    // Scan every tile of each ring (Chebyshev radius r), nearest ring first —
+    // an 8-direction spot check can miss a narrow path (e.g. the underworld's
+    // grass strip beside the pond) and strand the player on the warp tile.
     for (let r = 1; r <= 8; r++) {
-        for (let a = 0; a < 8; a++) {
-            const rad = a * PI / 4;
-            const tx = Math.round(sx + r * Math.cos(rad));
-            const ty = Math.round(sy + r * Math.sin(rad));
-            if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
-            const tile = world.tiles[tx] ? world.tiles[tx][ty] : null;
-            if (!tile || tile.target || tile.type === 'pond') continue;
-            if (isSolidTile(tx, ty)) continue;
-            if (buildingAt(tx, ty)) continue;
-            return { x: tx, y: ty };
+        for (let dx = -r; dx <= r; dx++) {
+            for (let dy = -r; dy <= r; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) !== r) continue;
+                const tx = sx + dx, ty = sy + dy;
+                if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
+                const tile = world.tiles[tx] ? world.tiles[tx][ty] : null;
+                if (!tile || tile.target || tile.type === 'pond') continue;
+                if (isSolidTile(tx, ty)) continue;
+                if (buildingAt(tx, ty)) continue;
+                return { x: tx, y: ty };
+            }
         }
     }
     return { x: sx, y: sy };
@@ -6586,9 +6594,9 @@ function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
 const ISLAND_POND_ORIGIN      = { x: 47, y: 39 }; // top-left of the 6x6 island pond
 const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as the underground pond's warp target
 
-// The underworld path now has two grass rows (CSV rows 9-10). The pit marker
-// ('bp') sits at CSV col 0, row 11 — the front/south end of the path, just
-// before the southern tree wall. The pond marker ('p') is at CSV col 74, row 10.
+// The underworld path is grass rows 9-11. The Bottomless Pit marker ('bp')
+// sits at CSV col 0, row 11 and caps the path's west end; the pond marker
+// ('p') is at CSV col 74, row 10.
 // The 6x6 pond extends up/right from there, so its top-left is at (74, 5).
 const UNDERGROUND_POND_ORIGIN = { x: 74, y: 5 };   // top-left of the 6x6 underground pond
 const UNDERGROUND_POND_LANDING = { x: 76, y: 8 };  // inner water tile; used as the island pond's warp target
@@ -6599,10 +6607,12 @@ const UNDERGROUND_POND_LANDING = { x: 76, y: 8 };  // inner water tile; used as 
 const MUBABA_SPAWN = { x: 46, y: 4 };
 
 // Building types placed left-to-right from the 'b' markers in underworld.csv.
-// The CSV has 8 markers, one per canonical underground building.
+// The CSV has 7 markers, one per canonical underground building. The Bottomless
+// Pit is not part of the strip — it has its own 'bp' marker capping the path's
+// west end (the pond caps the east).
 const UNDERGROUND_STRIP = [
-    // West -> East (x increasing). The pond caps the far east.
-    'ug_bottomless_pit', 'ug_inner_temple', 'ug_stimmy_tims', 'ug_black_goddess',
+    // West -> East (x increasing).
+    'ug_inner_temple', 'ug_stimmy_tims', 'ug_black_goddess',
     'ug_electric_temple', 'ug_mubaba_fortress', 'ug_gettin', 'ug_recycle_bin'
 ];
 
@@ -6620,7 +6630,6 @@ const TELEPORT_LANDINGS = {
 const UNDERGROUND_BUILDING_SIZE = { w: 8 };
 const UNDERGROUND_TREE_SIZE = { w: 1, h: 2 };
 const UNDERGROUND_POND_SIZE = { w: 6, h: 6 };
-const UNDERGROUND_PIT_SIZE = { w: 2, h: 2 };
 
 // The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
 // Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
@@ -6731,10 +6740,6 @@ class World {
                 const wy = r; // bottom-left anchor row for tall objects
                 if (sym === 'g') {
                     this.tiles[wx][wy] = { type: 'grass_underworld', variant: 0 };
-                } else if (sym === 'bp') {
-                    // Bottomless pit placeholder: 1x1 solid black tile.
-                    // When its 4x4 sprite is ready, update UNDERGROUND_PIT_SIZE and this branch.
-                    this.tiles[wx][wy] = { type: 'ug_pit', variant: 0, solid: true };
                 } else if (sym === 't') {
                     // 2-tall underground tree, bottom-left anchored. The bottom tile
                     // draws the full tree; the top tile is plain wall.
@@ -6743,30 +6748,18 @@ class World {
                         mark(c, r, tSize.w, tSize.h);
                     }
                     const topY = wy - 1;
-                    if (topY >= 0 && topY < H) {
+                    // Only claim the top tile if it's still untouched wall, so a
+                    // tree row never clobbers an authored grass/path row above it.
+                    if (topY >= 0 && topY < H && this.tiles[wx][topY].type === 'ug_wall') {
                         this.tiles[wx][topY] = { type: 'ug_wall', variant: 6 + floor(random(4)), solid: true };
                     }
-                } else if (sym === 'bp') {
-                    // Bottomless pit: 2x2, top-left anchored, expanding down/right.
-                    // The marker sits at the west end of the path row (row 10); the pit
-                    // occupies rows 10-11, cols 0-1, just south of the buildings.
-                    const pitW = UNDERGROUND_PIT_SIZE.w;
-                    const pitH = UNDERGROUND_PIT_SIZE.h;
-                    for (let dx = 0; dx < pitW; dx++) {
-                        for (let dy = 0; dy < pitH; dy++) {
-                            const px = wx + dx, py = wy + dy;
-                            if (px < W && py < H) {
-                                this.tiles[px][py] = { type: 'ug_pit', variant: 0, solid: true };
-                            }
-                        }
-                    }
-                    mark(c, r, pitW, pitH);
-                } else if (sym === 'b') {
-                    const type = UNDERGROUND_STRIP[buildingIndex];
+                } else if (sym === 'b' || sym === 'bp') {
+                    // 'b': the next building in UNDERGROUND_STRIP.
+                    // 'bp': the Bottomless Pit, capping the path's west end.
+                    const type = (sym === 'bp') ? 'ug_bottomless_pit' : UNDERGROUND_STRIP[buildingIndex++];
                     if (!type) continue;
-                    buildingIndex++;
                     const def = BUILDING_TIERS[type] || {};
-                    const bw = bSize.w;           // all underworld buildings are 8 wide
+                    const bw = def.w || bSize.w;  // strip buildings are 8 wide; the pit is 4
                     const bh = def.h || 8;        // height varies per building (Stimmy Tim's is 5)
                     // Bottom-left anchored in the CSV: the marker row is the building's bottom row.
                     const gx = wx;
