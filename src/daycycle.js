@@ -68,7 +68,7 @@ const HOLIDAYS = [
     { name: 'The Petal Path Maker',   desc: 'A visiting path-artist connects the dock to your door with flower petals. Help fill it in.' },
     { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' },
     { name: 'Tied-Shoe Celebration',  desc: 'Anyone whose shoes are tied receives applause.' },
-    { name: 'The Great Blink-Off',    desc: 'A staring contest where the first to blink wins a ceremonial ribbon.' },
+    { name: 'Peak Saucy',             desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
     { name: 'Jellybean Council',      desc: 'A single jellybean is placed on a pedestal and consulted for advice.' },
     { name: 'Hat-Stacking Jubilee',   desc: 'The wearing of multiple hats is both encouraged and competitively scored.' }
 ];
