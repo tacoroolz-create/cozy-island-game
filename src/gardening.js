@@ -29,6 +29,14 @@ const PLANTS = {
         seed: 'berry',
         crop: 'berry',
         color: '#C62828'
+    },
+    flea_lily: {
+        name: 'Flea Lily',
+        stages: 3,
+        daysPerStage: 1,
+        seed: 'flea_lily_seed',
+        crop: 'flea_lily_bloom',
+        color: '#8E24AA'
     }
 };
 
@@ -40,7 +48,8 @@ const SEED_RANDOM_ID = 'seed_random';
 // Map seed item ids -> plant id. Multiple seed ids can map to the same plant.
 const SEED_TO_PLANT = {
     seed: 'wildflower',       // generic seed -> wildflower
-    berry: 'berry_bush'        // berry -> berry bush
+    berry: 'berry_bush',       // berry -> berry bush
+    flea_lily_seed: 'flea_lily' // Flealess Market seed -> flea lily
 };
 
 // ===== PLOTS =====

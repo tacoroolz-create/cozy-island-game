@@ -15,7 +15,7 @@ Day of the Island God          | Yes      | Giant turtle on east beach, doubled 
 Dig a Hole Day                 | Yes      | Implemented (multi-year hole -> portal at depth 5)
 Lost Mail Day                  | Yes      | Implemented (pick up beach letters, deliver to the addressed neighbor)
 Name the Island Day            | Yes      | Implemented (propose + canvass votes)
-The Flealess Market            | No       | Outline in Holidays/FlealessMarket.md
+The Flealess Market            | Yes      | Implemented (traveling merchant barters a statue, unbreakable pickaxe, or rare seeds)
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
 Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
 Memory Lantern Night           | Yes      | Implemented (dusk lantern-lighter lines the shore, walk near a lantern to read it)
@@ -453,3 +453,39 @@ from the prior handoff — Peak Yeesh turned out lazier to build than expected
 (Holidays/FlealessMarket.md) and Familiar Seller
 (Holidays/FamiliarSeller.md) — see HOLIDAY_HANDOFF.md for the updated
 ranking. Backwards Hats Day (array[0]) still has no outline file.)
+
+(July 11: Implemented The Flealess Market. Array slot 15 (was "Mandatory Nap
+Interlude") in src/daycycle.js renamed. A traveling merchant
+(flealessMerchant/flealessMarket state, spawnFlealessMarket/
+updateFlealessMarket/drawFlealessMarket in src/game.js) spawns near the dock
+on a findClearGroundNear ring, same static-prop placement as the Peak Saucy
+and Cool Valley elders. Talking to the merchant (tryTalkToFlealessMerchant)
+opens the real branching-dialogue UI via the normal openDialogue(npc) —
+first holiday to reuse it directly for a temporary NPC by setting
+`_dialogueTree` on a throwaway merchant object, instead of Yogatron's
+global-function-override pattern, since getDialogueTree() already prefers
+`npc._dialogueTree` when present. Three choices barter common materials
+for one-time rewards (tryBuyFlealessOffer, gated by inventory.hasItem):
+15 Stone + 10 Stick for a Flealess Statue (a new home-placeable furniture
+item, reusing the existing interior furniture system every other holiday's
+reward items already use — Peak Yeesh's wreath/yule tree, etc.); 20 Stone +
+5 Crystal for a Sturdy Pickaxe (a new tool item flagged `unbreakable: true`,
+checked by extending the existing isUnbreakableToolToday() helper — one
+line, reusing both of its existing call sites in tryTillSoil/tryHarvest
+rather than adding new ones); 10 Fiber + 5 Pinecone for 3 Flea Lily Seeds (a
+new PLANTS/SEED_TO_PLANT entry in gardening.js, confirmed cheap per the
+prior handoff's research — crop is a new 'gift'-category item so it also
+works in every other holiday's gift-turn-in loop for free). Each ware is
+one-time per holiday occurrence; re-selecting a bought item or one you can't
+afford yet just shows a flavor line, no failure state. Hoggy gets a "trade"
+mood. No new sprite — merchant cart falls back to colored shapes. Skipped: a
+custom getHolidayGreetingPrefix bank — same "static prop, not everyone's
+talking about it" precedent as Island God/Lost Mail Day/Dig a Hole Day/
+Castle of Sticks Day, the generic per-holiday fallback already covers it;
+also skipped the outline's named neighbor lines (Daphne/Krip/Penny aren't in
+the actual 32-NPC roster, same gap as every other holiday with example
+dialogue for out-of-roster characters) for the same reason. One outlined
+holiday remains: Familiar Seller (Holidays/FamiliarSeller.md) — a permanent
+named companion that follows the player forever, the one remaining holiday
+needing a genuinely new system (persistent follower + naming input), per
+the prior handoff's ranking.)

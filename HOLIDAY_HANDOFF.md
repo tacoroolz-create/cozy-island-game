@@ -389,31 +389,53 @@ flavor upgrade; and Papa Yeesh literally routing between named neighbor
 homes (he wanders freely near the dock instead — cheaper than pathing to the
 housed-neighbor roster, same visual effect).
 
-## Remaining, ranked easiest → hardest to build
-Ranking based on how much new plumbing each needs vs. reusing existing systems
-(NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
-decor primitive above). Only two outlined holidays are left.
+## Shipped this session (cont'd, 3)
+**The Flealess Market** (on `main`, pushed to origin). Array slot 15 (was
+"Mandatory Nap Interlude") in [src/daycycle.js](src/daycycle.js:60) renamed.
+Came in much lazier than the prior ranking predicted, similar to how Peak
+Yeesh beat its own estimate. The "barter-pay UI" turned out to need no new
+UI at all: `getDialogueTree()` in
+[src/dialogue.js](src/dialogue.js:762) already prefers `npc._dialogueTree`
+when set, so the merchant is a throwaway object with a pre-built
+`choices`/`action` tree (the same shape quest dialogue in quests.js already
+uses) opened through the normal `openDialogue(npc)` — no Yogatron-style
+global function override needed, and no picker menu to invent. The
+"unbreakable tool" flag turned out to be a one-line addition to the
+*existing* `isUnbreakableToolToday()` at
+[src/game.js](src/game.js:5164) (now also checks `ITEMS[toolId].unbreakable`)
+rather than new plumbing at the two durability call sites — both already
+route through that one function. The "statue" reward skipped a new outdoor
+placement system entirely: it's a home-placeable furniture item using the
+same `home: {cls, placeOn, solid}` system Peak Yeesh's reward pool already
+uses, not the permanent outdoor-item system. The new plant type was exactly
+as cheap as predicted — one `PLANTS`/`SEED_TO_PLANT` entry in gardening.js.
+Full build: `spawnFlealessMarket`/`updateFlealessMarket`/`drawFlealessMarket`/
+`tryTalkToFlealessMerchant`/`tryBuyFlealessOffer` in
+[src/game.js](src/game.js:2982), merchant spawns near the dock via
+`findClearGroundNear` (same placement as the Peak Saucy/Cool Valley elders).
+Three wares, one-time-per-occurrence each: Flealess Statue (15 Stone + 10
+Stick), Sturdy Pickaxe (20 Stone + 5 Crystal), 3 Flea Lily Seeds (10 Fiber +
+5 Pinecone). Hoggy gets a "trade" mood. No new sprite — merchant cart falls
+back to colored shapes. Skipped: a custom `getHolidayGreetingPrefix` bank,
+same precedent as Island God/Lost Mail Day/Dig a Hole Day/Castle of Sticks
+Day (static-prop holidays lean on the generic fallback); the outline's named
+neighbor lines (Daphne/Krip/Penny aren't in the real 32-NPC roster, same gap
+as every other holiday with example dialogue for out-of-roster characters).
 
-1. **The Flealess Market** — needs three separate new subsystems: a
-   barter-pay UI (the picker itself is reusable via `openMagicMenu`, but "any
-   harvestable for a flat item" trade logic is new), a per-item "unbreakable"
-   flag threaded through the two durability-decrement call sites
-   (`src/game.js` around L4880-4887 and L4989-4995 — currently only
-   Garden Day's hoe gets a hardcoded exception, see
-   `isUnbreakableToolToday` at L4849), and a statue/decor placement path
-   (nothing dedicated to reuse, though the outdoor decor primitive above —
-   `findClearGroundNear` + a static-prop draw, same shape as
-   `peakSaucyElder`/`peakYeesh`'s fire pit — covers "place a statue" well
-   enough that this may be cheaper than the original assessment guessed; the
-   new plant type piece is confirmed cheap too, a `PLANTS`/`SEED_TO_PLANT`
-   data-table addition in gardening.js). Re-verify the barter/unbreakable
-   pieces before starting, since Peak Yeesh's actual build came in easier
-   than its original ranking predicted.
-2. **Familiar Seller** — permanent named companion that follows the player
+## Remaining, ranked easiest → hardest to build
+Only one outlined holiday is left.
+
+1. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection) — no existing "follow the player" or
    "permanent named pet" system to reuse, unlike everything else built so
-   far.
+   far. Given how consistently "ranked hardest" holidays have come in lazier
+   than expected once actually scoped (Peak Yeesh, The Flealess Market),
+   re-verify against the current codebase before assuming the full follower
+   system is required — The Returning Bird and The Picnic Reset's
+   `npc.stationary` + direct position-write hijack may cover "follows the
+   player" well enough for a single companion without inventing real
+   pathfinding.
 
 `Backwards Hats Day` (array[0]) is still unimplemented with no outline file —
 not ranked, since the skill's step 1 only considers `No` rows that have a
@@ -453,6 +475,17 @@ checking `getCurrentHoliday()` every frame." `islandGod` (added this session,
 [src/game.js:1367](src/game.js:1367)) is a stripped-down variant with no
 movement and no dialogue tree — better starting point than Yogatron for any
 holiday whose NPC is static or has no branching conversation.
+
+For a static NPC that *does* need real branching dialogue/choices (a shop, a
+multi-option conversation), don't copy Yogatron's global-function-override
+hack — it predates the simpler path. `getDialogueTree()` in
+[src/dialogue.js:762](src/dialogue.js:762) already prefers
+`npc._dialogueTree` when the object has one set, so build a throwaway NPC
+object with `_dialogueTree` assigned directly and open it with the normal
+`openDialogue(npc)`. `choice.action` can be any plain function (see
+`tryBuyFlealessOffer` via `flealessMerchant`,
+[src/game.js:2982](src/game.js:2982), or the quest-turn-in choices in
+[src/quests.js:195](src/quests.js:195)) — no override plumbing needed.
 
 Friendship boosts: `npc.gainGift(value)` (neighbors, capped at 300,
 [src/entities.js:144](src/entities.js:144)); Hoggy uses his own 0-10 scale

@@ -57,7 +57,7 @@ const HOLIDAYS = [
     { name: 'Dig a Hole Day',         desc: 'Pick a spot and dig it with a pickaxe. Year after year the hole grows deeper... toward somewhere new.' },
     { name: 'Lost Mail Day',          desc: 'Crates of undelivered letters wash up on the beach. Deliver each to the neighbor it was meant for.' },
     { name: 'Name the Island Day',    desc: 'Propose a name for the island (press P) and canvass the neighbors for votes. Majority rules!' },
-    { name: 'Mandatory Nap Interlude', desc: 'Between noon and one, the island collectively naps wherever they stand.' },
+    { name: 'The Flealess Market',    desc: 'A traveling merchant sets up near the dock, bartering rare goods for harvested materials.' },
     { name: 'Castle of Sticks Day',   desc: 'Gather 100 sticks and raise a twig tower — a second little home to decorate.' },
     { name: 'Lawn Mumble Day',        desc: 'Gardeners whisper encouraging words to the grass while mowing.' },
     { name: 'Memory Lantern Night',   desc: 'At dusk, a lantern-lighter lines the shore with paper lanterns full of neighbors\' memories.' },
