@@ -422,20 +422,40 @@ Day (static-prop holidays lean on the generic fallback); the outline's named
 neighbor lines (Daphne/Krip/Penny aren't in the real 32-NPC roster, same gap
 as every other holiday with example dialogue for out-of-roster characters).
 
-## Remaining, ranked easiest → hardest to build
-Only one outlined holiday is left.
+**Familiar Seller** (on `main`, pushed to origin). Array slot 17 (was "Lawn
+Mumble Day") in [src/daycycle.js](src/daycycle.js:62) renamed. Turned out
+lazier than the prior ranking's "biggest new system" estimate: a druid
+(`familiarDruid`/`familiarSellerDay` state,
+`spawnFamiliarSeller`/`updateFamiliarSeller`/`drawFamiliarSeller`/
+`tryTalkToFamiliarDruid` in [src/game.js](src/game.js:3095)) spawns near the
+dock via `findClearGroundNear`, same placement as the Flealess
+Market/Peak Saucy/Cool Valley visitors, and opens the real dialogue-tree UI
+through a throwaway `_dialogueTree` object — same "no override plumbing"
+pattern the Flealess Market established. Buying (20 IOUs, one of 6 flavor
+familiar kinds picked deterministically per day) uses `window.prompt()` for
+the name, the same input mechanism Name the Island Day's
+`tryProposeIslandName` already uses — no new naming UI needed. The one
+genuinely new piece is `familiar`, a persistent (not holiday-scoped) global
+that survives past its own day: `updateFamiliar()` steps it one tile toward
+the player every 260ms whenever more than 1 tile away — the same discrete
+grid-hop shape `Animal.update()` already uses, no pathfinding or collision,
+matching the outline's "cosmetic only" constraint — and it's wired into
+[src/save.js](src/save.js:454)'s serializeGame/deserializeGame (new
+`familiar` field), same pattern as `timeCapsuleBox`. If the player warps far
+away (e.g. into the underground city map) the familiar snaps to their side
+instead of visibly crossing the map. One familiar per player, ever — the
+druid still visits every occurrence for flavor, but her dialogue just
+confirms the existing familiar's name rather than offering a new one. Hoggy
+gets a "curious" mood; neighbor dialogue gets before/after-purchase lines
+via `getHolidayGreetingPrefix` (src/dialogue.js), referencing the familiar's
+name once owned. Nothing skipped — the outline's own scope was already
+cosmetic-only with no combat or extra mechanics. This closes out every
+outlined holiday from the July 11 batch; only `Backwards Hats Day`
+(array[0]) remains, with no outline file yet.
 
-1. **Familiar Seller** — permanent named companion that follows the player
-   forever, across saves. Biggest new system (persistent follower + naming
-   input + per-year selection) — no existing "follow the player" or
-   "permanent named pet" system to reuse, unlike everything else built so
-   far. Given how consistently "ranked hardest" holidays have come in lazier
-   than expected once actually scoped (Peak Yeesh, The Flealess Market),
-   re-verify against the current codebase before assuming the full follower
-   system is required — The Returning Bird and The Picnic Reset's
-   `npc.stationary` + direct position-write hijack may cover "follows the
-   player" well enough for a single companion without inventing real
-   pathfinding.
+## Remaining, ranked easiest → hardest to build
+None. Familiar Seller (below) was the last outlined holiday from the July 11
+batch.
 
 `Backwards Hats Day` (array[0]) is still unimplemented with no outline file —
 not ranked, since the skill's step 1 only considers `No` rows that have a

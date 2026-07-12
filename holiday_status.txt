@@ -17,7 +17,7 @@ Lost Mail Day                  | Yes      | Implemented (pick up beach letters, 
 Name the Island Day            | Yes      | Implemented (propose + canvass votes)
 The Flealess Market            | Yes      | Implemented (traveling merchant barters a statue, unbreakable pickaxe, or rare seeds)
 Castle of Sticks Day           | Yes      | Implemented (100 sticks -> twig tower)
-Familiar Seller                | No       | Outline in Holidays/FamiliarSeller.md
+Familiar Seller                | Yes      | Implemented (druid sells one permanent named companion a year for 20 IOUs)
 Memory Lantern Night           | Yes      | Implemented (dusk lantern-lighter lines the shore, walk near a lantern to read it)
 Well-Wishing Garden            | Yes      | Implemented (gardener hands out flowers, plant near a neighbor's door)
 Turtle Crossing Guard Day      | Yes      | Implemented (turtles crawl a path all day, stand near one to help it cross)
@@ -489,3 +489,32 @@ holiday remains: Familiar Seller (Holidays/FamiliarSeller.md) — a permanent
 named companion that follows the player forever, the one remaining holiday
 needing a genuinely new system (persistent follower + naming input), per
 the prior handoff's ranking.)
+
+(July 12: Implemented Familiar Seller. Array slot 17 (was "Lawn Mumble Day")
+in src/daycycle.js renamed. A druid (familiarDruid/familiarSellerDay state,
+spawnFamiliarSeller/updateFamiliarSeller/drawFamiliarSeller/
+tryTalkToFamiliarDruid, src/game.js) spawns near the dock via
+findClearGroundNear, same static-prop placement as the Peak Saucy/Cool
+Valley/Flealess Market visitors. Talking to her opens the real dialogue-tree
+UI via a throwaway `_dialogueTree` object (same pattern as the Flealess
+Market's merchant) offering one of 6 flavor familiar kinds (deterministic
+per day, no new sprites — colored-shape fallback) for 20 IOUs. Buying uses
+`window.prompt()` for the name (same input mechanism Name the Island Day's
+`tryProposeIslandName` already uses) and creates the one genuinely new piece
+of state this holiday needed: `familiar`, a persistent (not holiday-scoped)
+object that follows the player forever via `updateFamiliar()` — a lazy
+step-toward-player grid hop on a 260ms timer, the same discrete-move shape
+`Animal.update()` already uses, no pathfinding or collision per the
+outline's "cosmetic only" constraint. `familiar` survives days and saves
+(wired into src/save.js's serializeGame/deserializeGame, same pattern as
+`timeCapsuleBox`) and snaps directly to the player if it ever ends up more
+than 40 tiles away (e.g. a map switch to the underground city), instead of
+visibly speed-walking across the map. One familiar per player, ever — the
+druid still visits every occurrence for flavor, but her dialogue just
+confirms the existing familiar's name instead of offering a new one. Hoggy
+gets a "curious" mood; neighbor dialogue gets before/after-purchase lines
+via getHolidayGreetingPrefix (src/dialogue.js), referencing the familiar's
+name once owned. Skipped: nothing outline-required — the outline's own
+scope was already cosmetic-only with no combat/mechanics. This was the last
+outlined holiday from the July 11 batch; only Backwards Hats Day (array[0])
+remains unimplemented, and it has no outline file yet.)

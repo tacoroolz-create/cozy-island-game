@@ -329,6 +329,21 @@ function getHolidayGreetingPrefix(name) {
             "I gave a tourist directions to somewhere that doesn't exist. They seemed thrilled anyway.",
             "A tourist asked where to leave his socks. I still don't have an answer for him."
         ];
+    } else if (holiday.name === 'Familiar Seller') {
+        const has = (typeof familiar !== 'undefined') && familiar && familiar.active;
+        comments = has ? [
+            `Is that ${familiar.name} following you around? It suits you.`,
+            `That thing follows you like it owes you a secret. Where'd you find it?`,
+            "I saw your familiar blink at me. I'm choosing to believe it likes me.",
+            "One familiar a year, that's the rule. Glad you didn't miss your window.",
+            `${familiar.name} has better posture than most of us, honestly.`
+        ] : [
+            "There's a druid by the dock selling familiars again. Very mysterious. Very overpriced.",
+            "I've been saving IOUs all year for this. Wish me luck.",
+            "Did you see the druid's cart? Something in there was definitely looking back at me.",
+            "I don't trust anything that follows you forever, but I respect the commitment.",
+            "One familiar a year, they said. I'm still deciding if I want the responsibility."
+        ];
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,
