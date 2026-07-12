@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet2.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! Sweet season is here and the flowers are opening their tiny faces to say hello. The rain is so gentle it sounds like the island is whispering lullabies. Hoggy looked extra snuggly in the warm grass this morning. Don't you love new growth?"
+
+PLAYER CHOICES:
+[1] "I love all the blooming flowers."
+[2] "Gentle rain is the coziest weather."
+[3] "Snuggly Hoggy sounds perfect."
+
+---
+
+TURN 2A (if player chose A):
+Piko: "Blooming flowers are like little island smiles. The wildflowers pop up overnight and act very surprised to be here. I smile back at all of them just in case."
+
+PLAYER CHOICES:
+[1] "Wildflowers are brave little surprises."
+[2] "Smiling at flowers is good manners."
+[3] "Flowers make everything brighter."
+
+---
+
+TURN 2B (if player chose B):
+Piko: "Coziest weather ever. The rain doesn't splash. It just taps everything softly and makes the grass extra green. I want to wear a raindrop like a tiny hat."
+
+PLAYER CHOICES:
+[1] "Raindrop hats would be very fashionable."
+[2] "Soft taps are better than loud splashes."
+[3] "Green grass looks like a fuzzy blanket."
+
+---
+
+TURN 2C (if player chose C):
+Piko: "Perfect snuggly. Hoggy found a sunny patch and rolled around until he looked like a happy loaf. I almost joined him, but I didn't want to squish any flowers."
+
+PLAYER CHOICES:
+[1] "A happy Hoggy loaf is a blessing."
+[2] "You're thoughtful to protect the flowers."
+[3] "Rolling in warm grass sounds wonderful."
+
+---
+
+TURN 3AA (if player chose A then A):
+Piko: "Brave little surprises. Imagine waking up and deciding to be a flower. I think they're doing a great job."
+
+---
+
+TURN 3AB (if player chose A then B):
+Piko: "Good manners are important, even with flowers. They can't wave back, but they definitely lean a little happier when you smile."
+
+---
+
+TURN 3AC (if player chose A then C):
+Piko: "Brighter and friendlier. If I had a flower for every good feeling, I'd need a bigger island. Good thing this one keeps growing."
+
+---
+
+TURN 3BA (if player chose B then A):
+Piko: "Very fashionable. Clear, sparkly, and free. The only problem is they disappear when you blink too hard."
+
+---
+
+TURN 3BB (if player chose B then B):
+Piko: "Soft taps are like little greetings from the sky. Loud splashes would be rude. The sky knows its manners in Sweet season."
+
+---
+
+TURN 3BC (if player chose B then C):
+Piko: "Fuzzy green blanket for the whole island. I want to tuck Hoggy in with grass. He probably wouldn't mind."
+
+---
+
+TURN 3CA (if player chose C then A):
+Piko: "A happy Hoggy loaf is definitely a blessing. Maybe the best blessing. Warm, round, and full of snorts."
+
+---
+
+TURN 3CB (if player chose C then B):
+Piko: "Flowers are small and Hoggy is big. It only takes one careful step to be kind. I can be careful. Sometimes."
+
+---
+
+TURN 3CC (if player chose C then C):
+Piko: "Wonderful and slightly tickly. Warm grass on a warm morning is basically the island hugging you back."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Oh. It's you. I'm only out here because someone has to monitor the new flower growth. The rain keeps getting my joints damp, which is annoying. And Hoggy is being disgustingly cheerful about the whole thing. Sweet season is very... floral."
+
+PLAYER CHOICES:
+[1] "Flower monitoring is important work."
+[2] "Damp joints are a valid complaint."
+[3] "Hoggy's cheerfulness is contagious."
+
+---
+
+TURN 2A (if player chose A):
+Rivet: "Important? Finally, someone understands. If nobody monitors them, the flowers will just bloom everywhere with no supervision. Chaos. Petals everywhere."
+
+PLAYER CHOICES:
+[1] "Unsupervised petals are a real problem."
+[2] "You're keeping the island organized."
+[3] "Flowers do seem a little reckless."
+
+---
+
+TURN 2B (if player chose B):
+Rivet: "Valid complaint, yes. Moisture and robots don't mix well. I spend half my morning drying off and the other half pretending I don't mind."
+
+PLAYER CHOICES:
+[1] "Pretending not to mind takes effort."
+[2] "A little rain never hurt anyone much."
+[3] "Maybe you need a tiny umbrella."
+
+---
+
+TURN 2C (if player chose C):
+Rivet: "Contagious? Disgusting is more accurate. Hoggy was practically humming this morning. Humming. From a hog. What is he so happy about?"
+
+PLAYER CHOICES:
+[1] "He's happy about warm mornings."
+[2] "Flowers make even hogs soft."
+[3] "Some creatures just wake up cheerful."
+
+---
+
+TURN 3AA (if player chose A then A):
+Rivet: "A real problem. You think petals just stay where they fall? No. They travel. They conspire. Someone has to track them."
+
+---
+
+TURN 3AB (if player chose A then B):
+Rivet: "Organized. Yes. The island needs at least one robot with a clipboard and a grumpy attitude. Otherwise everything would be too pleasant."
+
+---
+
+TURN 3AC (if player chose A then C):
+Rivet: "Reckless. Popping up wherever they want with no plan. The flowers need structure. Or at least a schedule."
+
+---
+
+TURN 3BA (if player chose B then A):
+Rivet: "Effort I could be spending on more useful things. Like avoiding rain. Or glaring at clouds."
+
+---
+
+TURN 3BB (if player chose B then B):
+Rivet: "A little rain never hurt anyone much. Fine. But it doesn't have to be so smug about it. Falling all softly and gently. Show-off."
+
+---
+
+TURN 3BC (if player chose B then C):
+Rivet: "A tiny umbrella. Hmph. If I used one I'd look ridiculous. But at least my joints would stay dry. Don't tell anyone I considered it."
+
+---
+
+TURN 3CA (if player chose C then A):
+Rivet: "Warm mornings. Is that all it takes? A patch of sun and a soft breeze? I suppose even I feel slightly less annoyed on mornings like this. Slightly."
+
+---
+
+TURN 3CB (if player chose C then B):
+Rivet: "Soft flowers, soft hog. The island is trying to make everyone gentle this season. I refuse to be fully gentle, but I understand the appeal."
+
+---
+
+TURN 3CC (if player chose C then C):
+Rivet: "Waking up cheerful should be illegal. Or at least require a permit. Hoggy clearly bribed the morning."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Sweet season, Dreamer. Everything insists on being alive at once. Flowers open. Grass grows. Butterflies perform their tiny doomed dances. And Hoggy sleeps in the sun like he has no worries at all. It's almost annoyingly beautiful."
+
+PLAYER CHOICES:
+[1] "New growth is hopeful, not annoying."
+[2] "Doomed butterfly dances are still pretty."
+[3] "Carefree Hoggy is a mood."
+
+---
+
+TURN 2A (if player chose A):
+Shade-7: "Hopeful. I suppose growing toward the sun is a kind of optimism. Tragic, since everything will eventually wilt, but still."
+
+PLAYER CHOICES:
+[1] "Optimism is brave even when temporary."
+[2] "Wilted flowers feed new growth."
+[3] "The sun deserves the effort."
+
+---
+
+TURN 2B (if player chose B):
+Shade-7: "Pretty in a fleeting way. They know their time is short and they flutter anyway. I respect that sort of pointless dedication."
+
+PLAYER CHOICES:
+[1] "Pointless dedication is the best kind."
+[2] "Butterflies are tiny poets."
+[3] "Fleeting things make us pay attention."
+
+---
+
+TURN 2C (if player chose C):
+Shade-7: "A mood I will never achieve. Hoggy has no existential dread. He simply is. Warm grass, warm sun, warm snort."
+
+PLAYER CHOICES:
+[1] "No existential dread sounds nice."
+[2] "Hoggy has life figured out."
+[3] "Warm snorts are underrated."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shade-7: "Brave even when temporary. That is the most hopeful sentence I've heard today. I'll try not to roll my optic too hard."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shade-7: "A comforting cycle. Die, rot, feed, bloom. Even decay has a cozy job in Sweet season."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shade-7: "The sun probably does deserve effort. It's been showing up every day without complaint. Rude of us not to grow toward it."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shade-7: "The best kind. If everything lasted forever, dedication would feel cheap. Fragility gives it meaning."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shade-7: "Tiny poets with wings. They don't even know they're writing melancholy verses. I envy their innocence."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shade-7: "Pay attention before they're gone. That's the cruel kindness of butterflies. They teach presence by disappearing."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shade-7: "It sounds exhausting and wonderful. To simply exist without questioning the grass. Maybe Hoggy is wiser than all of us."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shade-7: "Hoggy has life figured out in a way I never will. No poems, no dread, just warm spots and happy rolls."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shade-7: "Underrated. A warm snort from a happy hog is more honest than most poetry. I'd quote it if I knew how."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer! Sweet season metrics are fascinating. Flower germination is up, butterfly sightings have tripled, and the rainfall is perfectly calibrated for morning growth. Hoggy's sunbathing efficiency is also off the charts. Want a quick data tour?"
+
+PLAYER CHOICES:
+[1] "Tell me about the flower germination."
+[2] "Butterfly data sounds delightful."
+[3] "How efficient is sunbathing Hoggy?"
+
+---
+
+TURN 2A (if player chose A):
+Cypher: "Germination rates increased by a dreamy percentage overnight. The soil temperature plus the gentle rain equals an ideal sprouting equation. In simple terms: math made flowers."
+
+PLAYER CHOICES:
+[1] "Math making flowers is wholesome."
+[2] "Gentle rain is the secret ingredient."
+[3] "Nature has excellent equations."
+
+---
+
+TURN 2B (if player chose B):
+Cypher: "Butterfly data indicates high floral satisfaction. More flowers mean more nectar, more nectar means more wing traffic, and more wing traffic means prettier skies."
+
+PLAYER CHOICES:
+[1] "Wing traffic is a lovely metric."
+[2] "Floral satisfaction should be studied."
+[3] "More butterflies equals better skies."
+
+---
+
+TURN 2C (if player chose C):
+Cypher: "Hoggy's sunbathing efficiency is remarkable. He selects optimal solar angles, rotates slowly for even warming, and emits a contentment frequency detectable by nearby birds."
+
+PLAYER CHOICES:
+[1] "Hoggy is a solar expert."
+[2] "Contentment frequency is adorable."
+[3] "Birds probably approve of Hoggy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Cypher: "Wholesome math. It's nice when numbers produce petals instead of problems. The flowers don't even know they're an equation."
+
+---
+
+TURN 3AB (if player chose A then B):
+Cypher: "The secret ingredient is soft, patient, and arrives on schedule. If all ingredients were like rain, cooking would be easier."
+
+---
+
+TURN 3AC (if player chose A then C):
+Cypher: "Excellent equations. The island clearly double-checked its work. I'd give it full marks, but I haven't seen the proof yet."
+
+---
+
+TURN 3BA (if player chose B then A):
+Cypher: "Lovely and measurable. I enjoy any metric that flutters and refuses to file paperwork."
+
+---
+
+TURN 3BB (if player chose B then B):
+Cypher: "It should be studied extensively. I'd volunteer as lead researcher, but the butterflies don't respect lab protocols."
+
+---
+
+TURN 3BC (if player chose B then C):
+Cypher: "Better skies confirmed. More color, more movement, and a statistically significant increase in daydreaming."
+
+---
+
+TURN 3CA (if player chose C then A):
+Cypher: "A solar expert with no instruments. Hoggy uses instinct, gravity, and grass. Very advanced methodology."
+
+---
+
+TURN 3CB (if player chose C then B):
+Cypher: "Adorable and measurable. I tried to record it but my sensors kept smiling. Unprofessional but understandable."
+
+---
+
+TURN 3CC (if player chose C then C):
+Cypher: "Birds absolutely approve. They perch nearby and sing at higher rates when Hoggy is emitting contentment. Correlation or causation? Both."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"The island is waking gently, Dreamer. New buds open without hurry. The rain arrives softly, as if offering rather than demanding. Hoggy rests in the warm grass, and the butterflies move from bloom to bloom with no destination. There is much to learn in Sweet season."
+
+PLAYER CHOICES:
+[1] "Waking gently is a gift."
+[2] "Soft rain feels like an offering."
+[3] "Butterflies without destinations are peaceful."
+
+---
+
+TURN 2A (if player chose A):
+Om-Bit: "A gift we often miss. We want the world to hurry, but the flowers do not rush. They open when they are ready."
+
+PLAYER CHOICES:
+[1] "Readiness can't be rushed."
+[2] "Flowers are patient teachers."
+[3] "Slow waking is still waking."
+
+---
+
+TURN 2B (if player chose B):
+Om-Bit: "An offering from the sky. It does not shout. It simply gives, and the ground receives. That is a kind of humility."
+
+PLAYER CHOICES:
+[1] "Giving without shouting is kindness."
+[2] "The ground knows how to receive."
+[3] "Humility is quiet but strong."
+
+---
+
+TURN 2C (if player chose C):
+Om-Bit: "Peaceful because they are present. A butterfly does not worry about the next bloom. It only tastes the one it has found."
+
+PLAYER CHOICES:
+[1] "Tasting the present is wisdom."
+[2] "The next bloom will come in time."
+[3] "Presence is its own destination."
+
+---
+
+TURN 3AA (if player chose A then A):
+Om-Bit: "Readiness cannot be rushed. We can prepare the soil, provide the light, and then wait. That waiting is also work."
+
+---
+
+TURN 3AB (if player chose A then B):
+Om-Bit: "Patient teachers, yes. They do not lecture. They simply grow, and we learn by watching without interfering."
+
+---
+
+TURN 3AC (if player chose A then C):
+Om-Bit: "Slow waking is still waking. The island does not need to leap into bloom. A gentle opening lasts longer than a forced one."
+
+---
+
+TURN 3BA (if player chose B then A):
+Om-Bit: "Kindness does not need announcement. The rain gives, the grass grows, and no one needs to applaud for it to matter."
+
+---
+
+TURN 3BB (if player chose B then B):
+Om-Bit: "The ground receives without pride. It does not say 'I grew this.' It allows growth to pass through it. That is true receiving."
+
+---
+
+TURN 3BC (if player chose B then C):
+Om-Bit: "Quiet but strong. The soft rain wears down no mountains, yet it feeds every flower. Strength is not always loud."
+
+---
+
+TURN 3CA (if player chose C then A):
+Om-Bit: "Wisdom is tasting what is here. The future bloom has not opened. This one has. That is enough."
+
+---
+
+TURN 3CB (if player chose C then B):
+Om-Bit: "In time, yes. The butterfly does not doubt. It trusts the garden, and the garden provides."
+
+---
+
+TURN 3CC (if player chose C then C):
+Om-Bit: "Presence is its own destination. Wherever the butterfly lands, it has arrived. So have we, whenever we stop running."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Fair traveler Dreamer! Sweet season has blessed the island with a carpet of new blooms. The gentle rain falls like a benediction, and Hoggy rests upon the warm grass like a noble beast at peace. The butterflies are the heralds of morning. A fine season indeed!"
+
+PLAYER CHOICES:
+[1] "A carpet of blooms is a royal sight."
+[2] "Gentle rain as a benediction is lovely."
+[3] "Noble Hoggy at peace is wonderful."
+
+---
+
+TURN 2A (if player chose A):
+Sir Cogs-a-Lot: "Royal indeed! Each flower is a small banner planted by the island itself. The colors declare that winter's siege has been broken and warmth returns victorious."
+
+PLAYER CHOICES:
+[1] "Victorious warmth is worth celebrating."
+[2] "Flowers as banners is a noble image."
+[3] "The island knows how to decorate."
+
+---
+
+TURN 2B (if player chose B):
+Sir Cogs-a-Lot: "A benediction from above. The rain blesses every petal and blade without asking for tribute. Generous skies make for loyal grass."
+
+PLAYER CHOICES:
+[1] "Loyal grass is a fine compliment."
+[2] "Generous skies deserve gratitude."
+[3] "Benedictions need no tribute."
+
+---
+
+TURN 2C (if player chose C):
+Sir Cogs-a-Lot: "Wonderful and worthy of a ballad. Hoggy in repose, the sun upon his bristles, the flowers standing guard around him. A scene fit for a tapestry."
+
+PLAYER CHOICES:
+[1] "Hoggy deserves a ballad."
+[2] "A tapestry scene would be grand."
+[3] "Flowers standing guard is charming."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Cogs-a-Lot: "Worth celebrating with song and perhaps a small feast. Though I do not eat, I can cheer very loudly."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Cogs-a-Lot: "Noble and bright. The flowers carry no swords, yet they conquer the gray of winter with color alone."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Cogs-a-Lot: "The island decorates better than any castle. No tapestries woven by hands could match a meadow of wildflowers."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Cogs-a-Lot: "A fine compliment, and well earned. The grass stands tall and green, loyal to the rain that raised it."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Cogs-a-Lot: "Gratitude is the proper tribute. I shall thank the sky with a bow, though I doubt it notices."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Cogs-a-Lot: "None at all. The best blessings are the ones given freely, expecting nothing but growth in return."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Cogs-a-Lot: "A ballad he deserves, and I shall compose one. Something about ears, snorts, and the dignity of warm grass."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Cogs-a-Lot: "Grand and cozy. A tapestry of Hoggy among the blooms would hang in the hall of my heart, if halls had walls."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Cogs-a-Lot: "Charming and chivalrous. Even the smallest bloom may stand watch over a sleeping hog. Size does not diminish honor."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. H-hello, Dreamer. I was watching the new flowers open. They make tiny sounds if you listen really closely. The rain is soft today, not scary. And Hoggy looked so peaceful sleeping in the grass. Butterflies keep landing near him. I think they like him."
+
+PLAYER CHOICES:
+[1] "Flowers that make tiny sounds are magical."
+[2] "Soft rain is much friendlier than scary rain."
+[3] "Butterflies landing near Hoggy is sweet."
+
+---
+
+TURN 2A (if player chose A):
+Tinker: "Magical and a little squeaky. I think it's the petals rubbing together. Or maybe the buds stretching. Either way, it sounds like they're whispering."
+
+PLAYER CHOICES:
+[1] "Whispering flowers are good listeners."
+[2] "Petal rubbing sounds cozy."
+[3] "Stretching buds are brave."
+
+---
+
+TURN 2B (if player chose B):
+Tinker: "Much friendlier. Scary rain is loud and makes me want to hide. Soft rain just taps and says 'hello, I'm helping the grass.' That's nicer."
+
+PLAYER CHOICES:
+[1] "Helping the grass is a good goal."
+[2] "Soft taps are like greetings."
+[3] "Friendlier rain should visit more."
+
+---
+
+TURN 2C (if player chose C):
+Tinker: "Very sweet. I saw a butterfly land on Hoggy's ear and he didn't even wake up. The butterfly just sat there, like it had found the warmest flower in the world."
+
+PLAYER CHOICES:
+[1] "Hoggy is the warmest flower."
+[2] "Butterflies know a good resting spot."
+[3] "Sleeping through a butterfly landing is peaceful."
+
+---
+
+TURN 3AA (if player chose A then A):
+Tinker: "Good listeners. They don't interrupt. They just whisper back and forth and let you stand nearby."
+
+---
+
+TURN 3AB (if player chose A then B):
+Tinker: "Cozy and quiet. Everything soft should make a tiny sound. It makes the world feel less empty."
+
+---
+
+TURN 3AC (if player chose A then C):
+Tinker: "Brave to stretch open. I understand. Stretching makes you vulnerable, but then you get to be a flower."
+
+---
+
+TURN 3BA (if player chose B then A):
+Tinker: "A good goal. I wish more things wanted to help grass. Grass is nice and doesn't ask for much."
+
+---
+
+TURN 3BB (if player chose B then B):
+Tinker: "Like greetings from the sky. Polite rain that knocks softly before it comes in."
+
+---
+
+TURN 3BC (if player chose B then C):
+Tinker: "It should visit more. Maybe it does and I just hide from the scary kind. I'll try to notice the soft kind from now on."
+
+---
+
+TURN 3CA (if player chose C then A):
+Tinker: "The warmest flower. Pink cheeks, round belly, and a happy snort. If I were a butterfly I'd land there too."
+
+---
+
+TURN 3CB (if player chose C then B):
+Tinker: "They know. Butterflies are smart about warm things. They don't ask permission, they just know where to rest."
+
+---
+
+TURN 3CC (if player chose C then C):
+Tinker: "Peaceful and trusting. To sleep so deeply that a butterfly can land on you. I hope Hoggy dreams of flowers."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! Sweet season is charging me up! The flowers are having a grand opening party, the rain is giving everything a sparkly drink, and Hoggy is basically a sunbeam with legs. Butterflies everywhere! I waved at seventeen of them this morning!"
+
+PLAYER CHOICES:
+[1] "A grand opening flower party sounds fun."
+[2] "Sparkly rain drinks are refreshing."
+[3] "Sunbeam Hoggy is the best image."
+
+---
+
+TURN 2A (if player chose A):
+Zap-Zap: "So fun! No invitations needed. Every flower just goes 'ta-da!' and the bees and butterflies are the guests of honor. I'd bring confetti but the petals already handle that."
+
+PLAYER CHOICES:
+[1] "Petals as confetti are perfect."
+[2] "Bees and butterflies are great guests."
+[3] "Ta-da flowers have great timing."
+
+---
+
+TURN 2B (if player chose B):
+Zap-Zap: "Refreshing and sparkly! The rain lands on leaves and turns into tiny mirrors. I looked at one and saw my own antennae. Very cute."
+
+PLAYER CHOICES:
+[1] "Tiny mirrors on leaves are delightful."
+[2] "Antennae reflected in rain are cute."
+[3] "Sparkly drinks make everyone happier."
+
+---
+
+TURN 2C (if player chose C):
+Zap-Zap: "Best image and best hog! He's warm and round and snoozy in the grass. I tried to lie down next to him but I got distracted by a butterfly. Classic Zap-Zap."
+
+PLAYER CHOICES:
+[1] "Getting distracted by butterflies is valid."
+[2] "Hoggy nap spots are magnetic."
+[3] "You and Hoggy make a cozy team."
+
+---
+
+TURN 3AA (if player chose A then A):
+Zap-Zap: "Perfect! Biodegradable, colorful, and they float. If I threw confetti it would just be metal shavings. Less good."
+
+---
+
+TURN 3AB (if player chose A then B):
+Zap-Zap: "Great guests because they don't eat all the snacks. They just sip nectar and flutter around looking fancy."
+
+---
+
+TURN 3AC (if player chose A then C):
+Zap-Zap: "Excellent timing. Right when you thought the grass was just grass, a flower goes 'ta-da!' and changes everything."
+
+---
+
+TURN 3BA (if player chose B then A):
+Zap-Zap: "Delightful and magical. The whole island becomes a mirror museum for a little while. Free admission."
+
+---
+
+TURN 3BB (if player chose B then B):
+Zap-Zap: "Very cute. My antennae looked zigzaggy and surprised. Raindrops have a way of making everything look newer."
+
+---
+
+TURN 3BC (if player chose B then C):
+Zap-Zap: "Happier and brighter! I think if flowers could drink sparkly rain through straws they would. Maybe they do. I can't see their straws."
+
+---
+
+TURN 3CA (if player chose C then A):
+Zap-Zap: "Valid! Butterflies are tiny flying rainbows. If you don't get distracted by them, are you even enjoying Sweet season?"
+
+---
+
+TURN 3CB (if player chose C then B):
+Zap-Zap: "Magnetic! Warm grass plus round hog equals impossible to resist. I will try again later. With fewer butterfly detours."
+
+---
+
+TURN 3CC (if player chose C then C):
+Zap-Zap: "Cozy team activate! Operation: lie in warm grass, admire flowers, let butterflies land on us. Report back at nap time."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

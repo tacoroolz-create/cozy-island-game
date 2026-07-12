@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool4_T2.txt - Cozy Island Game NPC Conversations (Cool Season)
+Cool Season Tree 2 - Animals 17-24: Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny
+Dramatic clouds, longer shadows, brisk breezes, leaves beginning to change, evening stargazing
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! Look at the sky! The clouds are all big and puffy and dramatic, like they're performing a cloud play. The breeze is brisk and it makes my ears flap a little. Hoggy's shadow looks extra long, like a stretchy hog silhouette. And the leaves are just starting to turn at the edges. It's a very exciting time to be a rabbit."
+
+PLAYER CHOICES:
+[1] "Cloud plays are the best plays."
+[2] "Brisk ear flaps look cute."
+[3] "Long hog shadows are funny."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "The best plays! I think that big gray one is a castle and the little one is a hopping carrot. Clouds have good imaginations."
+
+PLAYER CHOICES:
+[1] "A hopping carrot cloud is perfect."
+[2] "Clouds are very creative."
+[3] "I see shapes too."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "They feel like tiny wind high-fives. My ears say hello to the breeze and the breeze says hello back. Very polite weather."
+
+PLAYER CHOICES:
+[1] "Polite weather is nice."
+[2] "Wind high-fives are friendly."
+[3] "Your ears are good at greeting."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Funny because he looks even rounder in shadow. Shadows don't lie about roundness. Hoggy is proud of his silhouette."
+
+PLAYER CHOICES:
+[1] "Round shadows are honest."
+[2] "Hoggy should be proud."
+[3] "Silhouettes are like portraits."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "Perfect! I could watch the sky all day, but then I'd miss the stars. Clouds and stars are both good, so I split my time."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "Very creative. The sky paints with water and wind and then shows us the picture for free."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "Seeing shapes is fun because everyone sees different ones. No two islanders see the same cloud bunny."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Nice weather makes nice days. I think the breeze is trying to be a good guest."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "Friendly weather is my favorite. Wind that says hello instead of pushing too hard."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "They are! I've been practicing. The left one waves more than the right one. They're both learning."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Honest shadows. They stretch you out and show how tall you could be if you were made of sunset light."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "He should be. A happy hog silhouette is a work of art. I'd hang it on a tree if I could."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Portraits drawn by the sun. The island makes art everywhere if you look at the ground at the right time."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Oh. It's you. I was merely observing how the afternoon sun stretches everything into long shadows. Not that I care. The clouds are dramatic, which is acceptable, and the breeze is brisk enough to ruffle fur properly. Hoggy's shadow is nearly as long as he is wide. The leaves are barely changing, but they think they're being poetic."
+
+PLAYER CHOICES:
+[1] "Long shadows are dramatic."
+[2] "Brisk fur ruffles look good."
+[3] "Leaves can be poetic if they want."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Dramatic in a tolerable way. Everything looks taller, older, slightly more important. Even Hoggy looks like he has thoughts."
+
+PLAYER CHOICES:
+[1] "Hoggy with thoughts is impressive."
+[2] "Shadows add importance."
+[3] "Taller versions of things are fun."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "Good, yes. A proper breeze gives fur texture. Flat fur is for indoors and amateurs."
+
+PLAYER CHOICES:
+[1] "Texture is important."
+[2] "Indoor fur is boring."
+[3] "You have excellent fur."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "They can try. Barely yellow edges do not make a leaf a philosopher, but I suppose ambition matters."
+
+PLAYER CHOICES:
+[1] "Ambition matters."
+[2] "Yellow edges are a start."
+[3] "Every leaf has a dream."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "Impressive and unlikely. His thoughts are probably about mud. But in shadow, he could be contemplating existence."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Importance without effort. The sun does the work and the ground holds the pose. Very efficient."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Fun for a moment. Then you remember you're still the same size and the shadow is just showing off."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Important. A cat without texture is a cat without dignity. The wind understands this."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "Boring and unacceptable. If the breeze wants to ruffle me, I allow it. That is the difference."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "Obviously. I maintain it with sunbathing, disdain, and occasional naps. It takes skill to look this unbothered."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Ambition matters, even in leaves. A leaf that aims for poetry might accidentally become beautiful."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "A start, yes. The slowest, most reluctant start. But the season has to begin somewhere."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Every leaf has a dream and every dream ends on the ground. It's almost noble, in a hopeless sort of way."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Dreamer, the clouds are performing their grey theater today. Long shadows stretch across the grass like quiet promises. The breeze is brisk and honest, and the leaves are just beginning to surrender their green. Hoggy seems philosophical in the half-light. I find it... suitable."
+
+PLAYER CHOICES:
+[1] "Grey theater is beautiful."
+[2] "Long shadows are like promises."
+[3] "Hoggy looks philosophical."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Beautiful because it knows it's temporary. Dramatic clouds gather, perform, dissolve. Nothing lasts, which makes the moment honest."
+
+PLAYER CHOICES:
+[1] "Temporary things are honest."
+[2] "Dissolving clouds are graceful."
+[3] "Honest moments are rare."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "Promises that the day is ending and something darker is coming. Not a threat, just a fact. Darkness keeps its word."
+
+PLAYER CHOICES:
+[1] "Darkness keeps its word."
+[2] "Ending days are poetic."
+[3] "Shadows tell the truth."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Philosophical for a hog. He stands very still, snout tilted, ears just so. Perhaps he is considering mud, or mortality, or both."
+
+PLAYER CHOICES:
+[1] "Mud or mortality, both valid."
+[2] "Still hogs are deep."
+[3] "Hoggy has a thinker pose."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Honest because they don't pretend to stay. A cloud that vanishes is more truthful than a stone that pretends forever."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "Graceful. They don't fall apart dramatically. They simply thin and disappear, like goodbyes should be."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "Rare and worth noticing. The world usually lies about permanence. Clouds don't."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "It does. It arrives on time, covers everything equally, and asks nothing. Darkness is a reliable guest."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "Poetic. The long shadow is the day's final line before the night begins its own verse."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "They tell the truth about shape and light. They don't flatter. They don't lie. They just stretch and stay quiet."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Both valid. Mud is immediate joy. Mortality is long-term dread. A hog can hold both in one round head."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "Deep, or at least still. Stillness in a hog is unusual. It makes you wonder what the breeze whispered to him."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "He has the posture of a thinker. Snout raised, eyes soft, tail not wagging. Very suspicious. Very admirable."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer. Excellent timing. I've been observing the cumulus formation, the angle of the afternoon shadows, and the first measurable leaf-color shift. Hoggy is standing in a long shadow that makes him look approximately forty percent more contemplative. Also, the brisk breeze is perfect for testing feather aerodynamics. A productive Cool season afternoon."
+
+PLAYER CHOICES:
+[1] "Tell me about cumulus formations."
+[2] "Shadow angles are measurable."
+[3] "Feather aerodynamics sounds scientific."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Cumulus clouds are heaps of condensed water vapor with flat bases and fluffy tops. The dramatic ones today suggest moderate instability and excellent sunset potential."
+
+PLAYER CHOICES:
+[1] "Sunset potential is exciting."
+[2] "Flat bases are interesting."
+[3] "Cloud heaps are cute."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "Absolutely. As the sun lowers, shadows lengthen according to the tangent of the sun's angle. Hoggy's current shadow is roughly one-point-four hog-lengths. I estimated."
+
+PLAYER CHOICES:
+[1] "One-point-four hog-lengths is precise."
+[2] "Estimating hog shadows is useful."
+[3] "Math makes nature clearer."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "It is. My feathers are optimized for silent flight, but a brisk breeze adds a variable lift component. I feel approximately twelve percent more aerodynamic."
+
+PLAYER CHOICES:
+[1] "Twelve percent is a solid gain."
+[2] "Silent flight plus breeze is complex."
+[3] "Optimization is admirable."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Exciting and predictable. The atmosphere gives us a schedule, and the sun keeps the appointment."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "Interesting because they mark the condensation level. Everything below the base is too warm. Above it, clouds happen."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Cute and accurate. They look like piles of cotton, but they're actually floating physics demonstrations."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Precise enough for field work. True precision would require measuring Hoggy, which he finds undignified."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "Useful for understanding time of day without a clock. If you know a hog's height and shadow length, you can estimate the solar angle."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "Clearer, yes. Math doesn't make nature less magical. It just tells us which magic is happening and why."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "A solid gain. Most creatures can't quantify their breeze advantage. Owls keep records."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "Complex. The breeze helps lift but adds turbulence. I compensate with subtle wing adjustments. Very elegant."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "Admirable. Nature optimizes feathers for quiet hunting. I merely appreciate the engineering."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The clouds move slowly today, Dreamer. They cast long shadows that cross the island like gentle thoughts. The breeze is brisk but kind, and the leaves are just beginning to let go at the edges. Hoggy stands in the half-light, very still, as if listening to the cooling ground. Evening will bring stars, and stars bring patience."
+
+PLAYER CHOICES:
+[1] "Gentle shadow thoughts are nice."
+[2] "The breeze is kind today."
+[3] "Stars teach patience."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "Nice because they do not rush. A shadow crosses the grass the way a breath crosses the mind, quietly and without leaving a mark."
+
+PLAYER CHOICES:
+[1] "Quiet crossing is peaceful."
+[2] "Shadows don't leave marks."
+[3] "Everything moves like breath."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "Kind. It nudges but does not push. It reminds the leaves to dance but does not tear them from the branch."
+
+PLAYER CHOICES:
+[1] "Nudging is better than pushing."
+[2] "Leaves need permission to dance."
+[3] "The wind respects branches."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "They do. A star does not hurry to be seen. It simply shines, and when the night is long enough, we notice."
+
+PLAYER CHOICES:
+[1] "Noticing is enough."
+[2] "Long nights make noticing easier."
+[3] "Stars shine without asking."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Peaceful. The world crosses our attention and keeps moving. We do not need to hold it."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "They leave nothing behind. That is their gift. They show us shape without claiming the ground."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "Everything moves like breath if we let it. The clouds, the shadows, the leaves, ourselves. In and out."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "Better. A nudge invites. A push demands. The island prefers invitation."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "They do. A leaf holds on until the moment feels right. The wind does not rush the moment."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "It respects what holds the leaf. The branch releases when ready. The wind merely carries what is given."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "Enough. We do not need to own the stars. Seeing them is its own completion."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "Easier. Longer nights give us more time to become quiet enough to notice."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "They shine without asking, and we receive without earning. That is the nature of light in the dark."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Fair Dreamer! The clouds ride low and bold across the sky, like banners of a passing realm. The brisk breeze carries the scent of change, and the long shadows march beside us like loyal companions. Hoggy stands at attention in the half-light, a stout sentinel of the cooling field. The leaves are beginning their slow turn to gold. A noble afternoon for patrol."
+
+PLAYER CHOICES:
+[1] "Cloud banners are splendid."
+[2] "Long shadows are loyal companions."
+[3] "Hoggy makes a good sentinel."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Splendid! Each cloud is a standard of some invisible kingdom. The grey ones are serious. The white ones are optimistic. Both are honorable."
+
+PLAYER CHOICES:
+[1] "Grey clouds are serious."
+[2] "White clouds are optimistic."
+[3] "All clouds are honorable."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "Loyal indeed. They follow us at a respectful distance and never ask for food. Better companions than some squirrels I know."
+
+PLAYER CHOICES:
+[1] "Shadows are low maintenance."
+[2] "Squirrels are unreliable."
+[3] "A respectful distance is polite."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "A fine sentinel. He does not move unless the breeze commands it, and his ears catch every whisper of the field. Very dignified for a hog."
+
+PLAYER CHOICES:
+[1] "Dignity suits Hoggy."
+[2] "Ears that catch whispers are useful."
+[3] "Sentinels should be still."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Serious and deliberate. They hold the sky like knights hold a line. I salute them with my tail."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Optimistic! They drift as if the day will surely improve. I admire their confidence."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "All clouds are honorable because all weather serves the island. Even the rainy ones have their duty."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "Very low maintenance. They appear at the proper hour and depart without complaint. Excellent etiquette."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "Unreliable and cheeky. They chatter promises and then vanish up a tree. Shadows keep their appointments."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Polite and proper. A companion should walk beside you, not upon you. Shadows understand this rule."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "It does. Dignity is a small cape that anyone can wear if they stand still and believe in themselves."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "Useful for a field guardian. He hears the grass leaning, the leaves rustling, and the occasional butterfly conspiracy."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "Stillness is the first duty of a sentinel. Hoggy serves with admirable immobility. I shall commend him later."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh, h-hello, Dreamer. The clouds are very... big today. They make the shadows longer, and my shadow looks almost like a real turtle stretched out. The breeze is brisk. It moved a leaf past me really fast. I didn't flinch much. Hoggy's shadow is huge. I think it's comforting that something so round can look so long. The leaves are starting to change at the edges."
+
+PLAYER CHOICES:
+[1] "Your long shadow looks brave."
+[2] "Fast leaves are surprising."
+[3] "Hoggy's huge shadow is comforting."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Brave? I didn't think of it that way. It's like I'm bigger when the sun is low. Bigger without having to move faster."
+
+PLAYER CHOICES:
+[1] "Bigger without moving is nice."
+[2] "Low sun makes everyone tall."
+[3] "Shadows give free courage."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "Surprising but not scary. The leaf was in a hurry. Probably had leaf business. I waved a little with my shell."
+
+PLAYER CHOICES:
+[1] "Leaf business is understandable."
+[2] "Waving with a shell is friendly."
+[3] "Not scary is a win."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "Comforting. If Hoggy's shadow is huge, then somewhere nearby is a huge warm hog. That's a nice thought to have quietly."
+
+PLAYER CHOICES:
+[1] "Huge warm hogs are nice thoughts."
+[2] "Shadows point to real things."
+[3] "Quiet comfort is the best comfort."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "Nice for a turtle. We don't usually get to feel big. Shadows let us borrow height for a little while."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Everyone tall. Even the grass looks like tall grass. The island becomes grand for a few hours."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Free courage, yes. I can stand still and my shadow does the brave stretching for me."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Understandable. Leaves have schedules too. Probably a meeting with another leaf."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Friendly in a shy way. I didn't move much, but my shell definitely meant well."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "A win. I used to flinch at every breeze. Now I only flinch at brisk ones. Progress."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "Nice thoughts to keep inside your shell. Warm hog, long shadow, safe island."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "They do. A shadow is proof that something solid is standing between you and the big sky."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "The best. Loud comfort is too much. Quiet comfort fits in a small shell."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Hello, friend! The clouds are huge today, like fluffy mountains in the sky, and the wind is brisk and bouncy! I flew through a long shadow and for a second I thought I was a much bigger parrot. Hoggy's shadow stretched all the way across the grass. The leaves are starting to turn colors at the tips. And tonight there will be more stars because the night is longer. I love Cool season!"
+
+PLAYER CHOICES:
+[1] "Fluffy sky mountains are fun."
+[2] "Flying through shadows feels magical."
+[3] "More stars tonight is exciting."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Fun because I can fly around them without bumping into them. Real mountains are much harder to loop around."
+
+PLAYER CHOICES:
+[1] "Clouds are loop-friendly."
+[2] "Real mountains are too solid."
+[3] "Sky mountains move with you."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "Magical! My shadow flew under me on the grass and we matched wing-beat for wing-beat. We were a team for a whole minute."
+
+PLAYER CHOICES:
+[1] "A team for a minute is still a team."
+[2] "Matching wing-beats is impressive."
+[3] "Shadow parrots are good friends."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "Exciting! I made a star-waiting plan. First I rest. Then I look up. Then I say hello to each star. Very organized."
+
+PLAYER CHOICES:
+[1] "Organized stargazing is the best."
+[2] "Saying hello to stars is polite."
+[3] "Rest first, stars later."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Loop-friendly! I can do spirals around clouds without worrying about bumping my beak."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "Too solid and too tall. Clouds are friendly because they let you fly through their cousins, the breezes."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "They move with you! You fly east, they float east. It's like the sky is cheering you on."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Still a team! A minute of perfect teamwork is better than no teamwork at all."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Impressive because shadows are fast and my wings are fast and we didn't crash once."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Good friends who never argue. They follow you everywhere and never ask for snacks."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "The best! A plan makes the waiting part feel like part of the fun. I'm very good at plans."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Polite and friendly. Stars probably like being noticed. I would like being noticed if I were a star."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "Rest first, yes. A tired parrot says messy hellos to stars. A rested parrot says tidy, cheerful ones."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH

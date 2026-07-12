@@ -1,0 +1,704 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh3_T2.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Conversations - Ghosts 9-16 - Tree 2
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer, the sea got all shivery and the flowers are wearing little frowns. I heard the silly viking rumor again, so I told the flowers it is just a story and they should not worry. Long quiet nights are nice for snuggling, don't you think?"
+
+PLAYER CHOICES:
+[1] "Snuggling through long nights is cozy."
+[2] "Shivery seas are just seas being honest."
+[3] "Telling flowers not to worry is kind."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "Cozy and warm inside! I pretend the stars are night-lights and the cold air is a fluffy sheet. Even the wild hog looks like a snuggle ball when he curls up."
+
+PLAYER CHOICES:
+[1] "Stars make good night-lights."
+[2] "Wild hog snuggle balls are adorable."
+[3] "Fluffy sheets of cold air are pretty."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Honest seas tell the truth with their shivers. The water is cold and it is not pretending. I think that is brave, like a sea wearing no costume."
+
+PLAYER CHOICES:
+[1] "Brave seas are impressive."
+[2] "No costume is honest."
+[3] "Cold truth is better than warm lies."
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Kind and necessary. Flowers cannot talk back, but I bet they feel better when someone says nice things. I feel better too when you say nice things."
+
+PLAYER CHOICES:
+[1] "Nice words are warm blankets."
+[2] "Listening flowers are lucky."
+[3] "You deserve nice things too."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "Good night-lights because they don't need batteries. They just glow and glow and never complain about being awake."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "Adorable and round. I would hug the wild hog but he is probably warm and I am probably chilly, so maybe I will just send him warm thoughts."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Pretty because the cold air sparkles when the moon looks at it. It is like the night put on a silver nightgown."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "Impressive because the sea is big and cold and still keeps waving. Even when it shivers, it does its job."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "Honest is brave. The sea says 'I am cold today' and that is okay. Everyone has cold days."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "Better because warm lies melt. Cold truth can be hugged with a scarf and then it is not so bad."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "Warm blankets made of sound. A nice word can wrap around you even if your fingers are chilly."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Lucky flowers. They have the whole ground to listen and no ears to get tired."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Thank you, Dreamer. I will keep your nice words in my warm pocket and take them out on extra cold nights."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Dreamer. The sea is basically yelling about how cold it is, the flowers are all droopy and dramatic, and the nights last forever. Also, someone started the viking rumor again. Like anyone believes it. I don't. Obviously. Do you?"
+
+PLAYER CHOICES:
+[1] "The sea does yell in shivers."
+[2] "Droopy flowers are doing their best."
+[3] "Viking rumors are hard to believe."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "Yells without words. The waves just shiver and slap the beach and expect sympathy. Fine. I am slightly sympathetic. Not really. A little."
+
+PLAYER CHOICES:
+[1] "Slightly sympathetic is still sympathy."
+[2] "Waves are attention seekers."
+[3] "Cold waves have a right to complain."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "Their best is pathetic. They are just stems with attitude now. But I suppose if I were a flower I would also give up on standing straight in this chill."
+
+PLAYER CHOICES:
+[1] "Stems with attitude is fair."
+[2] "Giving up on straightness is valid."
+[3] "Flowers should get tiny sweaters."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Hard because there are zero boats and zero beards and approximately too many people whispering near warm rocks. Rumors are born from boredom, not vikings."
+
+PLAYER CHOICES:
+[1] "Warm rocks breed rumors."
+[2] "Boredom is the real invader."
+[3] "Zero beards is strong evidence."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Don't tell anyone. I have a reputation as someone who doesn't care, and sympathy would ruin it completely."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "They are. Always crashing and foaming and making sure everyone looks. The sea is the original show-off."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "A right I respect grudgingly. If I were cold and wet all day I would also slap things. Probably not the beach, but something."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Fair and accurate. They droop with commitment. It is almost impressive how much they commit to looking sad."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "Valid in this weather. Straight is overrated. Curves are warmer anyway. The flowers have accidentally figured that out."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "Tiny sweaters would help. Also tiny scarves and tiny grumpy hats. The island would look ridiculous and I would approve."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "They do. Everyone huddles near them and whispers nonsense. Warm rocks are basically gossip incubators."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "The real invader is the long quiet night. It has too much time and not enough entertainment, so it invades everyone's imagination."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Strong and scientific. Show me one beard and I will consider panicking. Until then, the vikings can stay hypothetical."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Ah, Dreamer. Yeesh season turns the sea into a cold grey poem and the flowers into quiet mourners at their own frosty vigil. The nights stretch like velvet ribbons, and somewhere a rumor of vikings drifts ashore. I find the whole thing gorgeously bleak."
+
+PLAYER CHOICES:
+[1] "Cold grey poems suit the season."
+[2] "Frosty vigils are beautifully sad."
+[3] "Velvet ribbon nights feel luxurious."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "They do. The sea writes its melancholy in shivery lines across the sand, and the beach reads it aloud in hushed, salty whispers."
+
+PLAYER CHOICES:
+[1] "Salty whispers are good narration."
+[2] "Melancholy waves have style."
+[3] "The beach is a good listener."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "Beautifully sad because the flowers know how to grieve politely. They droop, they frost, they wait. No drama. Just elegant resignation."
+
+PLAYER CHOICES:
+[1] "Elegant resignation is rare."
+[2] "Flowers grieve without noise."
+[3] "Polite sadness is art."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "Luxurious and a little dangerous. The long night wraps around the island like a velvet cloak, and we are all tucked inside its dark folds, waiting for dawn to unwrap us."
+
+PLAYER CHOICES:
+[1] "Dark folds are cozy."
+[2] "Dawn unwraps patiently."
+[3] "Velvet cloaks suit ghosts."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "Good narration for a lonely season. The sea tells the story and the sand repeats it until the tide erases the chapter."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Style in abundance. The waves do not merely crash; they sigh, recoil, and compose another stanza of cold."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "A good listener is rare. The beach hears every secret the sea brings and keeps them buried beneath the shells."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "Rare and refined. Most sadness wants attention. Flower sadness simply exists, which makes it noble."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "They do. Their grief is visual, not vocal. A drooping petal says more than a thousand wails."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "Art in its quietest form. To be sad without disturbing the world is a kind of poetry only flowers and ghosts understand."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Cozy until you remember you cannot leave. But that is part of the romance. The night keeps us because it loves us a little too much."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "Patiently and without hurry. Dawn knows the night has its own business and does not interrupt."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "They do. We are already mostly cloak and shadow. Yeesh season simply gives us better fabric."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! Yeesh season field report: the sea surface temperature has dropped, causing visible shivering in the waves; the flowers are exhibiting negative phototropism, or as locals say, 'sadness'; and the nights have increased in length, which I have confirmed with shadow measurements. Viking rumor status: still unconfirmed, still silly."
+
+PLAYER CHOICES:
+[1] "Negative phototropism is a good term."
+[2] "Shadow measurements are rigorous."
+[3] "Unconfirmed silliness is still worth tracking."
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Scientifically satisfying. Flowers bending away from the weak winter light is not sadness, it is efficiency. They are optimizing for survival, not drama."
+
+PLAYER CHOICES:
+[1] "Efficient flowers are admirable."
+[2] "Survival over drama is smart."
+[3] "Winter light is weak anyway."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "Rigorous and repeatable. I measured the same shadow three nights in a row and the night is definitely longer than it used to be. Statistically significant gloom."
+
+PLAYER CHOICES:
+[1] "Repeatable measurements are reliable."
+[2] "Significant gloom is a finding."
+[3] "Three nights is a good sample."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "Worth tracking because rumors follow predictable patterns. Cold plus boredom plus long nights equals an increase in imaginary maritime visitors. I have graphed it."
+
+PLAYER CHOICES:
+[1] "A graph is excellent proof."
+[2] "Boredom plus cold is dangerous."
+[3] "Maritime imagination spikes in Yeesh."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "Admirable biochemistry. The flowers are basically running a low-power mode. I aspire to that level of seasonal budgeting."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "Smart evolution. Drama consumes calories. Winter is no time for unnecessary expenditure. The flowers understand thermodynamics."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "Weak but honest. The sun is doing its best from far away. We should send it an encouraging note."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Reliable because shadows do not lie. They may be long, but they are mathematically consistent."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "A peer-reviewed finding. I will publish it in the imaginary journal of island observations. The title will be very long."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "Good enough for island science. If the trend continues, I may upgrade to five nights and publish a second edition."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Excellent proof of nothing. A graph makes any rumor look studied, which is the first step toward either debunking or folklore."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "Dangerous for accuracy. A bored cold mind will populate the sea with anything: vikings, sea monsters, unusually large crabs."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "It does. I hypothesize the spike peaks on the longest night and then declines as the flowers slowly stop listening."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The cold sea breathes slowly in Yeesh season, Dreamer. The sad flowers bow their heads not in defeat, but in rest. The long quiet nights offer more space for listening, and the rumor of vikings is only another wave of thought, rising and passing."
+
+PLAYER CHOICES:
+[1] "Slow breathing seas are peaceful."
+[2] "Rest is not defeat."
+[3] "Rumors pass like waves."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "Peaceful because they do not hurry. A cold sea moves in its own time, touching the shore and withdrawing without argument. There is a lesson in that rhythm."
+
+PLAYER CHOICES:
+[1] "Rhythm is a gentle teacher."
+[2] "Not hurrying is hard but good."
+[3] "The shore learns from each touch."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "Not defeat. The flower closes to preserve what warmth it has. It is wisdom, not surrender. The season asks for patience, and the flower answers."
+
+PLAYER CHOICES:
+[1] "Wisdom looks like stillness."
+[2] "Patience is a warm answer."
+[3] "Preserving warmth is skillful."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "They do. A rumor arrives, worries a few minds, and then recedes when no boat appears. The sea does not keep what does not belong to it."
+
+PLAYER CHOICES:
+[1] "The sea returns what is borrowed."
+[2] "Worry recedes like tide."
+[3] "What belongs stays."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "Gentle and patient. The sea does not test you. It simply shows you how to come and go without grasping."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "Hard but good. We are trained to rush. Yeesh season untrains us, one cold breath at a time."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "It does. Each wave leaves a smooth lesson in the sand. By morning, the sand has learned something new."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "It does. Stillness is often the only wise movement available. The flower is not stuck. It is choosing."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "Warm because it comes from within. Patience is a small fire that does not depend on the season."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "Skillful and humble. To close is not to refuse the world. It is to wait until opening is safe again."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "It returns. The sea receives our borrowed worries, swirls them for a while, and gives them back as something quieter."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "It does. Worry has no anchor. When the expected visitor does not arrive, the worry drifts away, lighter than it came."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "What belongs stays. The island, the flowers, the slow sea. Rumors come and go, but the warm truth of here remains."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Greetings, fair traveler! Yeesh season has turned the cold sea into a moat of silver and the sad flowers into a kingdom of bowed subjects. The nights are long enough for three watches, and the rumor of vikings has reached mine ears once more. I have volunteered to guard the warmest rock."
+
+PLAYER CHOICES:
+[1] "Guarding the warmest rock is noble."
+[2] "Bowed flower subjects are loyal."
+[3] "Three watches in long nights is brave."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Noble and practical. A warm rock is a strategic asset in Yeesh season. Whoever holds the rock holds the morale of the realm, or at least a warm place for ghostly knees."
+
+PLAYER CHOICES:
+[1] "Morale rocks are important."
+[2] "Warm knees win battles."
+[3] "Strategy is its own warmth."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Loyal indeed. The flowers bow not from defeat, but from proper courtly respect for the cold. They shall rise again when the spring king returns."
+
+PLAYER CHOICES:
+[1] "Courtly respect is elegant."
+[2] "Spring kings are good rulers."
+[3] "Loyal flowers deserve praise."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "Brave and slightly theatrical. I divide the long night into three heroic watches: the Shivering Vigil, the Numb Patrol, and the Hour of Almost Dawn, which is the coldest and therefore the most honorable."
+
+PLAYER CHOICES:
+[1] "Heroic watch names are inspiring."
+[2] "Cold hours are the most honorable."
+[3] "Theatrical bravery is still bravery."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Important as any crown. A warm rock gathers hope around it like a hearth. I shall knight the rock at sunrise."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "They do. A knight with warm knees can think clearly and defend with vigor. Cold knees lead only to regret."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "Its own warmth and its own honor. Planning by moonlight keeps the mind too busy to notice the nose turning frosty."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Elegant and proper. The flowers observe the season's protocol with grace. One cannot rush a good bow."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "Good rulers and punctual. When the spring king returns, the flowers shall rise in orderly celebration."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "They do, and they shall receive it. I have composed a short poem in their honor, though it is mostly about patience and soil."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "Inspiring and useful. Naming a watch makes the cold feel like a quest instead of a discomfort."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "The most honorable. Suffering in the hour before dawn proves the knight's dedication to the coming sun."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "Still bravery, and memorable besides. I shall perform the Shivering Vigil with extra shivering so the realm knows I mean it."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh, Dreamer. I was watching the cold sea from behind the rocks. It looks tired, like it wants a blanket too. The flowers are all bent over, and the nights are so long and quiet. I heard the viking rumor and I hope... I hope no one is scared."
+
+PLAYER CHOICES:
+[1] "Tired seas deserve blankets too."
+[2] "Bent flowers are just resting."
+[3] "Hope can keep people warm."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "They do. If I had a big enough blanket I would drape it over the water. But the sea is too big, so maybe I will just sit near it and keep it company instead."
+
+PLAYER CHOICES:
+[1] "Keeping the sea company is gentle."
+[2] "Small blankets are still kind."
+[3] "Company is warmer than fabric."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Resting, yes. They are not broken. They are just tired of holding themselves up in the cold. I understand that. I also want to curl up when it is chilly."
+
+PLAYER CHOICES:
+[1] "Resting is not the same as giving up."
+[2] "Cold makes everyone want to curl up."
+[3] "Flowers and ghosts both get tired."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "It can. I am hoping very quietly right now, and I think it makes the air around me a little warmer. Maybe if enough of us hope, the rumor will float away."
+
+PLAYER CHOICES:
+[1] "Quiet hoping is powerful."
+[2] "Warm air from hope is nice."
+[3] "Rumors dissolve in kindness."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Gentle and small. I cannot fix the sea, but I can watch it so it does not feel alone."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "Still kind. Even a tiny blanket for a rock is better than no blanket at all."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "It is. A warm presence stays even after the fabric is gone. I will be the sea's warm presence tonight."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "Not the same at all. Giving up is falling. Resting is folding carefully so you can stand again later."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Everyone. Even the wild hog probably curls up tighter. Curling is the warmest shape."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "We do. We both get tired of being visible. Sometimes hiding is the only way to rest."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "Powerful because no one hears it. It works in secret, like a tiny heater under all the worry."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "Nice and soft. Hope does not blast like a fire. It hovers, like a warm breath near your hands."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "They do. Kindness makes everything less sharp. Even a silly rumor becomes smaller when people smile at it."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Dreamer! The sea is shivering like a chilly puppy and the flowers are doing their best sad poses and the nights are SO long and quiet! I heard vikings might come but I decided they probably just want soup and a beach tour! What do you think?"
+
+PLAYER CHOICES:
+[1] "Soup and beach tours for everyone."
+[2] "Chilly puppy seas are cute."
+[3] "Sad flower poses are dramatic."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "For everyone! Even imaginary vikings deserve a warm bowl and a friendly walk! I would serve them the warmest soup and show them the crunchiest sand!"
+
+PLAYER CHOICES:
+[1] "Warm soup fixes everything."
+[2] "Crunchy sand is a great attraction."
+[3] "Friendly walks warm hearts."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Cute and shivery! The sea is all wobble-wobble with its waves, like it is saying 'brr brr brr' but very loud because it is big!"
+
+PLAYER CHOICES:
+[1] "Big chilly things are adorable."
+[2] "Wobble-wobble waves are fun."
+[3] "The sea says brr brr brr."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "Dramatic and committed! The flowers are bent over like tiny actors bowing at the end of a play about winter! Bravo, flowers!"
+
+PLAYER CHOICES:
+[1] "Flower actors deserve applause."
+[2] "Winter plays need good bows."
+[3] "Committed poses are impressive."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Everything! A warm bowl makes your tummy happy, and a happy tummy makes your whole ghost glow brighter!"
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Great attraction! The sand goes crunch crunch underfoot and it sounds like the island is clapping for you!"
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "They do! A heart that has been walked around warmly is basically a portable fireplace for the rest of the day!"
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "Adorable! Big shivery sea is just a giant puppy that needs a towel and a hug and maybe a beach blanket the size of the sky!"
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "Fun! The waves wiggle and giggle before they splash, like they are dancing a chilly little dance for anyone watching!"
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "It does! If I were the sea I would shout 'brr brr brr' really loud so everyone knew I needed a scarf. Communication is important!"
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "They do! I am clapping very quietly so I don't scare them, but I am clapping a lot!"
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "They do! You cannot end a winter play without a good bow, and the flowers are professionals!"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "Impressive! It takes talent to look that sad and that beautiful at the same time. The flowers are winning awards in my heart!"
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

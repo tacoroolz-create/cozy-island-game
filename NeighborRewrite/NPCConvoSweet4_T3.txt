@@ -1,0 +1,713 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet4_T3.txt - Cozy Island Game NPC Conversations (Sweet Season Tree 3)
+Sweet Season Conversations - Animals 17-24: Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny
+Lens: flowers everywhere, butterflies in pairs, warm-but-mild days, picnics on grass, gentle sun
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Hello, Dreamer! The island is one big flower garden today! Every path has petals and every breeze smells like honey. I saw two butterflies flying together and I think they were holding hands with their wings. Hoggy found a sunny picnic spot and is napping on the grass like a fluffy loaf. And the sun is warm-but-mild, which is my favorite temperature."
+
+PLAYER CHOICES:
+[1] "A flower-garden island is a happy island."
+[2] "Butterflies holding wing-hands is adorable."
+[3] "Hoggy as a sunny loaf is perfect."
+
+---
+
+TURN 2A (if player chose A):
+Mochi: "Happy island! The flowers are so friendly. They don't mind if you hop between them. They just wave their petals and keep smelling good."
+
+PLAYER CHOICES:
+[1] "Friendly flowers make good neighbors."
+[2] "Petals waving hello is polite."
+[3] "Hopping between flowers is allowed fun."
+
+---
+
+TURN 2B (if player chose B):
+Mochi: "Adorable! They flutter side by side and land on the same bloom. Maybe they share. Maybe they just like matching. Either way, cute."
+
+PLAYER CHOICES:
+[1] "Matching butterflies have good taste."
+[2] "Sharing a bloom is butterfly friendship."
+[3] "Two wings together are stronger wings."
+
+---
+
+TURN 2C (if player chose C):
+Mochi: "Perfect loaf! He's all round in the grass and the sun makes his ears glow. I want to curl up next to him but I might bounce by accident."
+
+PLAYER CHOICES:
+[1] "A glowing-eared loaf is magical."
+[2] "Bouncing near naps takes practice."
+[3] "Sunny grass naps are the best naps."
+
+---
+
+TURN 3AA (if player chose A then A):
+Mochi: "Good neighbors! They don't make noise or borrow things. They just give color and smell. Best neighbors ever."
+
+---
+
+TURN 3AB (if player chose A then B):
+Mochi: "Polite! They wave without arms. That's advanced manners. I waved back with my ears."
+
+---
+
+TURN 3AC (if player chose A then C):
+Mochi: "Allowed fun! The flowers make little tunnels and I hop through them like a bunny parade. Very official."
+
+---
+
+TURN 3BA (if player chose B then A):
+Mochi: "Good taste! If you're going to match with someone, match on a pretty flower. That's romance, probably."
+
+---
+
+TURN 3BB (if player chose B then B):
+Mochi: "Butterfly friendship! They take turns sipping and never argue about who goes first. I should learn that."
+
+---
+
+TURN 3BC (if player chose B then C):
+Mochi: "Stronger wings! Two butterflies together make the breeze feel like a duet. A tiny flying song."
+
+---
+
+TURN 3CA (if player chose C then A):
+Mochi: "Magical! If I had glowy ears I'd probably show them off more. Hoggy doesn't even notice. He's humble."
+
+---
+
+TURN 3CB (if player chose C then B):
+Mochi: "Practice! Bounce low, land soft, nap near. I'm still on step one. Step one is bouncy."
+
+---
+
+TURN 3CC (if player chose C then C):
+Mochi: "Best naps! Warm grass, gentle sun, and a hog-shaped pillow nearby. That's a five-star bunny rest."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Oh. Dreamer. I was not enjoying the picnic blanket. I was simply testing gravity on a flat surface. The flowers are absolutely everywhere, crowding the grass with their colors. Butterflies keep passing in pairs like they're showing off. And Hoggy is sprawled in a sun patch, snoring like a small thunderstorm. Mildly tolerable, I suppose."
+
+PLAYER CHOICES:
+[1] "Testing gravity is important work."
+[2] "Flowers do crowd the grass shamelessly."
+[3] "Hoggy snores make their own weather."
+
+---
+
+TURN 2A (if player chose A):
+Shadow: "Important and underappreciated. Someone must ensure the ground stays flat. I take this burden seriously, usually while napping."
+
+PLAYER CHOICES:
+[1] "Napping science is valid science."
+[2] "Flat-ground testing is a public service."
+[3] "You sacrifice a lot for this island."
+
+---
+
+TURN 2B (if player chose B):
+Shadow: "Shamelessly. They don't even ask permission. One day it's grass, the next it's a floral takeover. It's... fine. Decorative."
+
+PLAYER CHOICES:
+[1] "A floral takeover is a gentle invasion."
+[2] "Decorative excess is spring's brand."
+[3] "Flowers don't ask, they just bloom."
+
+---
+
+TURN 2C (if player chose C):
+Shadow: "His own weather system. I've heard softer avalanches. But he looks pleased with himself, so I won't complain. Much."
+
+PLAYER CHOICES:
+[1] "Pleased snorers are the loudest."
+[2] "A hog thunderstorm is nature's lullaby."
+[3] "Complaining 'much' is still restraint."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shadow: "Valid. The body relaxes, gravity confirms itself, data is collected. I am basically a researcher."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shadow: "A service I provide for free. The ground has never once failed my test. I keep checking anyway. Dedication."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shadow: "So much. I lend my weight to the grass, my presence to the sun, my disapproval to the flowers. Heroic, really."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shadow: "Gentle invasion. No swords, just petals. The grass doesn't even fight back. It just gets prettier."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shadow: "Spring's brand. Excess petals, loud colors, dramatic fragrance. It's advertising itself. Subtlety is dead."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shadow: "They just bloom. Rude and efficient. If I could get anything done with that confidence I'd probably rule the island."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shadow: "The loudest. Satisfaction amplifies everything. He probably thinks his snoring is a lullaby for the flowers."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shadow: "A lullaby if you enjoy unpredictable rhythm. I'd call it avant-garde sleep music. Not for everyone."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shadow: "Restraint, yes. I only sighed eleven times. That's basically support. Don't tell him I said so."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Sweet season, Dreamer. The flowers are staging a quiet rebellion against emptiness. They cover the grass in colors so bright they almost hurt. I saw two butterflies drift together through a sunbeam, perfectly synchronized. And Hoggy has claimed a picnic blanket as his throne, though I'm fairly certain he does not understand picnics. The sun is gentle today. It apologizes with warmth."
+
+PLAYER CHOICES:
+[1] "A rebellion of flowers is beautiful anarchy."
+[2] "Synchronized butterflies are art."
+[3] "Hoggy's picnic throne is his by right."
+
+---
+
+TURN 2A (if player chose A):
+Raven: "Beautiful anarchy. No leader, no plan, just color rising everywhere at once. The island overthrows its own dullness."
+
+PLAYER CHOICES:
+[1] "Dullness deserves to be overthrown."
+[2] "Color without a plan is honest."
+[3] "Flowers make good revolutionaries."
+
+---
+
+TURN 2B (if player chose B):
+Raven: "Art in motion. Two wings moving as one, as if the air itself choreographed them. Brief and perfect."
+
+PLAYER CHOICES:
+[1] "Brief perfect things are precious."
+[2] "The air is a good choreographer."
+[3] "Two wings as one is a partnership."
+
+---
+
+TURN 2C (if player chose C):
+Raven: "By right of presence. He sat there, he expanded, the blanket accepted its fate. Monarchs are made this way."
+
+PLAYER CHOICES:
+[1] "Presence is a form of power."
+[2] "Blankets that accept fate are wise."
+[3] "Sir Hoggy of the Picnic has a ring to it."
+
+---
+
+TURN 3AA (if player chose A then A):
+Raven: "It does. Winter's quiet was lovely, but spring's noise is a necessary riot."
+
+---
+
+TURN 3AB (if player chose A then B):
+Raven: "Honest. No map, no strategy, just growth. The flowers trust themselves more than most creatures trust anything."
+
+---
+
+TURN 3AC (if player chose A then C):
+Raven: "Good revolutionaries. They rise, they bloom, they fall, and they leave seeds for the next uprising."
+
+---
+
+TURN 3BA (if player chose B then A):
+Raven: "Precious because they pass. You cannot keep a butterfly duet. You can only witness it and remember."
+
+---
+
+TURN 3BB (if player chose B then B):
+Raven: "A fine one. It gives them space, lifts them, lets them part when the dance is done. Generous air."
+
+---
+
+TURN 3BC (if player chose B then C):
+Raven: "Partnership. Two small creatures agreeing on direction without speaking. That's rarer than it looks."
+
+---
+
+TURN 3CA (if player chose C then A):
+Raven: "A quiet power. He does not demand. He simply occupies completely until the world rearranges around him."
+
+---
+
+TURN 3CB (if player chose C then B):
+Raven: "Wise. A blanket that fights a hog would only lose with drama. Acceptance is the softer victory."
+
+---
+
+TURN 3CC (if player chose C then C):
+Raven: "It does. A royal title for a hog who rules a woven square. The kingdom is small but well-napped."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer. A textbook example of a mild Sweet-season afternoon. Floral density is remarkably high, butterfly pairs are displaying apparent mate-guarding behavior, and the grass has achieved optimal picnic-level compressibility. Hoggy has selected a sun patch and entered what I can only describe as a horizontal meditation state. The gentle sun is providing illumination without excessive thermal load."
+
+PLAYER CHOICES:
+[1] "Floral density is a happy metric."
+[2] "Butterfly pairs are fascinating."
+[3] "Horizontal hog meditation should be studied."
+
+---
+
+TURN 2A (if player chose A):
+Newton: "A happy metric indeed. High floral density correlates strongly with pollinator activity, pleasant fragrance, and an increased probability of someone exclaiming 'oh, pretty!'"
+
+PLAYER CHOICES:
+[1] "Pretty-exclamation probability is high today."
+[2] "Pollinators love dense flowers."
+[3] "Fragrance is a measurable improvement."
+
+---
+
+TURN 2B (if player chose B):
+Newton: "Fascinating and efficient. Paired flight reduces energy expenditure through draft sharing. Also, it looks nice. Two valid reasons."
+
+PLAYER CHOICES:
+[1] "Draft-sharing butterflies are smart."
+[2] "Looking nice is scientifically valid."
+[3] "Two reasons are better than one."
+
+---
+
+TURN 2C (if player chose C):
+Newton: "Studied extensively, I assume. The subject appears motionless yet deeply committed. I hypothesize the snoring is a regulatory mechanism."
+
+PLAYER CHOICES:
+[1] "Snoring as regulation is elegant."
+[2] "Motionless commitment is advanced."
+[3] "Hoggy is a natural research subject."
+
+---
+
+TURN 3AA (if player chose A then A):
+Newton: "Extremely high. I've exclaimed twice already, and I'm not usually the exclaiming type. The data is overwhelming."
+
+---
+
+TURN 3AB (if player chose A then B):
+Newton: "They do. Density offers options. More blooms per square meter means more efficient nectar routes. Good logistics."
+
+---
+
+TURN 3AC (if player chose A then C):
+Newton: "A measurable improvement over bare ground, certainly. The air now carries measurable pleasantness units."
+
+---
+
+TURN 3BA (if player chose B then A):
+Newton: "Quite smart. Aerodynamic cooperation at a small scale. The animal kingdom is full of tiny engineers."
+
+---
+
+TURN 3BB (if player chose B then B):
+Newton: "Valid. Science allows for aesthetic appreciation. In fact, beauty often indicates underlying efficiency."
+
+---
+
+TURN 3BC (if player chose B then C):
+Newton: "Indeed. One reason would be insufficient. The butterflies are both practical and decorative. Excellent multitaskers."
+
+---
+
+TURN 3CA (if player chose C then A):
+Newton: "Elegant in its simplicity. Inhale, exhale, rumble. The system self-regulates and requires no intervention."
+
+---
+
+TURN 3CB (if player chose C then B):
+Newton: "Advanced relaxation. Most creatures fidget. Hoggy achieves total stillness while somehow also vibrating slightly. Impressive."
+
+---
+
+TURN 3CC (if player chose C then C):
+Newton: "A natural subject. He conducts field experiments daily without paperwork. I merely observe and take mental notes."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The world is generous today, Dreamer. Flowers open along every path, not competing, simply being. Two butterflies rested on the same blossom for a long moment, sharing without taking. The grass is warm and mild, inviting any tired body to lie down. Hoggy accepted that invitation with his whole heart. And the sun gives gently, as if it knows we do not need much to be happy."
+
+PLAYER CHOICES:
+[1] "Flowers simply being is a gift."
+[2] "Sharing a blossom is peaceful."
+[3] "Gentle sun is the best sun."
+
+---
+
+TURN 2A (if player chose A):
+Lotus: "A gift without giver or receiver. The flower blooms, the eye sees, and both are enough. No exchange is needed."
+
+PLAYER CHOICES:
+[1] "Seeing without wanting is freedom."
+[2] "Enough is a complete sentence."
+[3] "A bloom and an eye are perfect companions."
+
+---
+
+TURN 2B (if player chose B):
+Lotus: "Peaceful. They did not argue over nectar. They did not claim the petal. They simply were two wings on one bloom."
+
+PLAYER CHOICES:
+[1] "Not claiming is a kind of giving."
+[2] "Two wings on one bloom is harmony."
+[3] "Sharing nectar is sharing sweetness."
+
+---
+
+TURN 2C (if player chose C):
+Lotus: "The best sun. It does not demand attention or push too hard. It just stays, warm and patient, until we remember how to rest."
+
+PLAYER CHOICES:
+[1] "Rest is remembered, not forced."
+[2] "Patience is the sun's teaching."
+[3] "Warmth without demand is love."
+
+---
+
+TURN 3AA (if player chose A then A):
+Lotus: "Freedom. When we only look, the world remains whole. When we grasp, we divide it into mine and not-mine."
+
+---
+
+TURN 3AB (if player chose A then B):
+Lotus: "It is. The flower does not ask to be more. The eye does not ask to see more. In that, there is completeness."
+
+---
+
+TURN 3AC (if player chose A then C):
+Lotus: "Perfect companions. One offers, one receives, and neither loses anything. That is the way of flowers."
+
+---
+
+TURN 3BA (if player chose B then A):
+Lotus: "A giving. To leave the bloom unclaimed is to let it belong to the world a little longer."
+
+---
+
+TURN 3BB (if player chose B then B):
+Lotus: "Harmony. Two different patterns sharing one space. The flower does not choose one wing over the other."
+
+---
+
+TURN 3BC (if player chose B then C):
+Lotus: "Sharing sweetness. The nectar is not less because two sip. The bloom is not smaller for being shared."
+
+---
+
+TURN 3CA (if player chose C then A):
+Lotus: "Remembered. The sun does not make us rest. It creates a place where rest becomes possible, and we finally allow it."
+
+---
+
+TURN 3CB (if player chose C then B):
+Lotus: "Its teaching. It returns each day without urgency. If the sun can be patient, so can we."
+
+---
+
+TURN 3CC (if player chose C then C):
+Lotus: "Love. It warms the grass, the flowers, the hog, and the dreamer, and asks for nothing but your presence."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Fair Dreamer! The realm is in full bloom, with flowers lining every meadow like courtiers at a spring feast. I spotted two butterflies flying in formation, surely a knightly patrol of the skies. The grass is warm and mild, perfect for a noble picnic, and Hoggy has already claimed a blanket as his royal resting grounds. A gentle sun smiles upon us all. A fine day to be alive and wagging!"
+
+PLAYER CHOICES:
+[1] "Flower courtiers make a grand feast."
+[2] "Butterfly patrols protect the sky-kingdom."
+[3] "A royal resting blanket is a sacred right."
+
+---
+
+TURN 2A (if player chose A):
+Squire Paws: "A grand feast indeed! The colors bow to the sun, the fragrances greet the breeze, and every bee is a jester performing for the court."
+
+PLAYER CHOICES:
+[1] "Bee jesters are excellent entertainment."
+[2] "Colors bowing to the sun is proper etiquette."
+[3] "A spring feast needs no table."
+
+---
+
+TURN 2B (if player chose B):
+Squire Paws: "Protect it they do! Two wings, one mission: survey the blooms, maintain order, and look lovely while doing it. The highest calling."
+
+PLAYER CHOICES:
+[1] "Lovely patrols are effective patrols."
+[2] "Two wings, one mission is noble."
+[3] "Sky-kingdoms need good guards."
+
+---
+
+TURN 2C (if player chose C):
+Squire Paws: "Sacred and essential! A knight must rest between quests. Hoggy chose his blanket wisely, in the sun, on soft grass, near snacks that may fall."
+
+PLAYER CHOICES:
+[1] "Strategic blanket placement wins battles."
+[2] "Rest between quests is honorable."
+[3] "Near potential snacks is clever planning."
+
+---
+
+TURN 3AA (if player chose A then A):
+Squire Paws: "Excellent entertainment! They buzz, they dip, they vanish, they return. A jester with wings cannot be booed."
+
+---
+
+TURN 3AB (if player chose A then B):
+Squire Paws: "Proper etiquette! The pink ones curtsy, the yellow ones salute, and the white ones nod with great dignity."
+
+---
+
+TURN 3AC (if player chose A then C):
+Squire Paws: "No table needed! The grass is the floor, the sky is the ceiling, and the flowers are the decorations. A feast for all who wander by."
+
+---
+
+TURN 3BA (if player chose B then A):
+Squire Paws: "Effective indeed! A lovely patrol lifts the spirits of the entire kingdom. Morale is half of defense."
+
+---
+
+TURN 3BB (if player chose B then B):
+Squire Paws: "Noble! Two small hearts beating as one above the flowers. That's the kind of loyalty songs are written about."
+
+---
+
+TURN 3BC (if player chose B then C):
+Squire Paws: "They do! Without guards, who would keep the clouds in line? The butterfly patrol performs a vital service."
+
+---
+
+TURN 3CA (if player chose C then A):
+Squire Paws: "Wins battles! A rested knight on a sunny blanket is worth three tired knights in the shade. Strategy, Dreamer."
+
+---
+
+TURN 3CB (if player chose C then B):
+Squire Paws: "Honorable! The quest can wait. The blanket will not. A squire knows when to pause and fluff."
+
+---
+
+TURN 3CC (if player chose C then C):
+Squire Paws: "Clever planning! A picnic blanket is not just for resting. It is a launchpad for crumbs, a stage for feasts that arrive by accident."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"H-hello, Dreamer. The flowers are... um... everywhere. I sat next to a clump of little white ones and a butterfly pair flew right over my shell. They were very close together. The grass is warm today, not too hot, and I saw a picnic blanket spread nearby. Hoggy found it and now he's lying on it. He looks very comfortable and a little bit square. The sun is gentle. I like gentle."
+
+PLAYER CHOICES:
+[1] "Little white flowers are good company."
+[2] "A butterfly pair over your shell is lucky."
+[3] "Hoggy looks comfortable and square."
+
+---
+
+TURN 2A (if player chose A):
+Pebble: "Good company. They don't talk loud or move fast. They just smell nice and stay where they are. Very respectful flowers."
+
+PLAYER CHOICES:
+[1] "Respectful flowers are the best flowers."
+[2] "Sitting with flowers is a real activity."
+[3] "Nice-smelling company is calming."
+
+---
+
+TURN 2B (if player chose B):
+Pebble: "Lucky. They didn't land but they passed close enough that I felt the little breeze from their wings. It was like being visited by a flying hello."
+
+PLAYER CHOICES:
+[1] "Flying hellos are special."
+[2] "Little wing breezes are soft."
+[3] "Being visited by butterflies is nice."
+
+---
+
+TURN 2C (if player chose C):
+Pebble: "Comfortable and square. He spread out and the blanket got smaller around him. He looks like a hog-shaped picnic item."
+
+PLAYER CHOICES:
+[1] "Hog-shaped picnic items are adorable."
+[2] "Blankets getting smaller is funny."
+[3] "Comfortable is the best look."
+
+---
+
+TURN 3AA (if player chose A then A):
+Pebble: "The best. Some flowers wave too much and it gets tiring. These ones just exist quietly beside me."
+
+---
+
+TURN 3AB (if player chose A then B):
+Pebble: "A real activity. I sat, they bloomed, we were together. That's enough. You don't have to do things to be doing something."
+
+---
+
+TURN 3AC (if player chose A then C):
+Pebble: "Calming. I breathed in slowly and the flowers helped. They didn't mean to help, but they did anyway."
+
+---
+
+TURN 3BA (if player chose B then A):
+Pebble: "Special. Most hellos come from voices. This one came from wings and color. I didn't even have to answer."
+
+---
+
+TURN 3BB (if player chose B then B):
+Pebble: "Soft. It touched my shell like a tiny whisper. I pretended not to notice but I definitely noticed."
+
+---
+
+TURN 3BC (if player chose B then C):
+Pebble: "Nice. They didn't need anything from me. They just flew by and made the air prettier for a second."
+
+---
+
+TURN 3CA (if player chose C then A):
+Pebble: "Adorable. If I saw a hog-shaped item at a picnic I'd probably sit next to it and feel safer."
+
+---
+
+TURN 3CB (if player chose C then B):
+Pebble: "Funny. The blanket started big and now it's mostly hog. He wins by being cozy."
+
+---
+
+TURN 3CC (if player chose C then C):
+Pebble: "The best look. If you can look comfortable, you've basically succeeded at the day. Hoggy is very successful."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Hello, friend! It's a flowers-everywhere kind of day and I love it! I saw two butterflies holding wing-hands as they fluttered past, and I yelled 'you look great!' but they didn't answer. Maybe butterflies are shy. Hoggy found a picnic blanket in the warm grass and now he's a big happy loaf under the gentle sun. I want to join him but I'm worried I'd bounce on his nap."
+
+PLAYER CHOICES:
+[1] "Flowers everywhere is the best kind of day."
+[2] "Butterflies are maybe just focused."
+[3] "Bouncing on Hoggy's nap would be rude."
+
+---
+
+TURN 2A (if player chose A):
+Sunny: "Best day! Everywhere you look, color! Color on the ground, color in the air, color in your heart if you let it in. Spring is very generous."
+
+PLAYER CHOICES:
+[1] "Color in your heart is the best color."
+[2] "Generous spring deserves thanks."
+[3] "Looking everywhere makes more flowers appear."
+
+---
+
+TURN 2B (if player chose B):
+Sunny: "Focused! They're busy being beautiful and synchronized. Shouting compliments mid-flight is probably distracting. I'll whisper next time."
+
+PLAYER CHOICES:
+[1] "Whispered compliments are classy."
+[2] "Synchronized beauty takes concentration."
+[3] "Mid-flight compliments are still nice."
+
+---
+
+TURN 2C (if player chose C):
+Sunny: "Very rude! A nap is a sacred loaf-time. You don't bounce a loaf. You admire it from a respectful distance and maybe hum quietly."
+
+PLAYER CHOICES:
+[1] "Loaf admiration is an art."
+[2] "Quiet humming near naps is polite."
+[3] "Respecting the loaf shows character."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sunny: "Best color! And it doesn't even need paint. You just walk outside and your heart gets a little brighter."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sunny: "It does! I'm saying thank you to every flower I pass. It's taking a while but I have a lot of gratitude."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sunny: "It does! The more you look, the more blooms pop out like 'hi, we were here the whole time!' Sneaky flowers."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sunny: "Classy! Loud compliments are fun but whispered ones are like little secrets between friends and butterflies."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sunny: "It does! Flying together perfectly while looking pretty is basically a tiny circus act. They need focus."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sunny: "Still nice! Even if they didn't hear me, the air heard, and the air will probably tell them later. Air is chatty."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sunny: "An art! You look, you appreciate, you don't disturb. I could write a book about loaf admiration. A short book. With pictures."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sunny: "Polite! A gentle hum says 'I see you, loaf, and I support you' without making anyone open their eyes."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sunny: "It does! Only the strongest souls can walk past a sunny hog-loaf without bouncing. I'm basically a hero for resisting."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

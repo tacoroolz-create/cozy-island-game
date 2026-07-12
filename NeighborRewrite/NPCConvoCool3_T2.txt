@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool3_T2.txt - Cozy Island Game NPC Conversations (Cool Season Tree 2)
+Cool Season Tree 2 - Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+Seasonal lens: dramatic clouds, longer shadows, brisk breezes, leaves beginning to change, evening stargazing
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer, look at the sky! The clouds are all puffy and dramatic, like they're putting on a show just for us. The shadows are getting longer too, and my gauze got brushed by a brisk breeze. It tickled. Some leaves are starting to change at the edges, like they're thinking about being gold. I want to watch stars tonight."
+
+PLAYER CHOICES:
+[1] "Dramatic clouds are like sky paintings."
+[2] "Brisk breezes are good for tickling gauze."
+[3] "Leaves thinking about gold is cute."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "Sky paintings! Big soft ones that move. I wish I could paint, but I can only float through things and say 'boo.' Clouds are better painters than me."
+
+PLAYER CHOICES:
+[1] "Floating through clouds is a kind of art."
+[2] "Your 'boo' is better than painting."
+[3] "Moving paintings are extra special."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Good tickling. The breeze doesn't mean to be rude, it just wants to say hello to my edges. I giggle every time my gauze flutters."
+
+PLAYER CHOICES:
+[1] "Edge hellos are polite."
+[2] "Gauze fluttering looks pretty."
+[3] "Giggling at breezes is sweet."
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Cute! They're shy about changing color. First a little yellow, then a little orange, then a big 'ta-da!' I like trees that rehearse."
+
+PLAYER CHOICES:
+[1] "Rehearsing trees are patient."
+[2] "Little colors count too."
+[3] "Ta-da is a good season word."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "A kind of art, yes! I float through clouds and they don't mind. They just keep painting around me. I'm part of the sky now."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "Better? Really? A 'boo' is just a tiny sound, but if you say it's art then it's art. Thank you, Dreamer."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Extra special because nobody gets bored of them. They change while you watch. Like a very slow surprise."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "Polite and soft. The breeze never grabs. It just touches the parts of me that are floatiest and says 'hi there, little ghost.'"
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "Pretty? I feel like a tiny kite. A pink, round, giggly kite with a bow. That's a nice thing to feel like."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "Sweet because the wind doesn't know it's being funny. It just wants to play. I always want to play too."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "Patient trees. They take their time so we can enjoy every step. I hope they know we appreciate the rehearsal."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Little colors count. A tiny yellow edge is still a hello from autumn. It means more gold is coming soon."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Ta-da! When the trees all turn at once it's like the island shouting 'surprise!' I hope I'm there to clap."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. Dreamer. I was not waiting for you. I was merely observing the dramatic cloud formations and the increasingly theatrical shadows. The breezes are brisk enough to be interesting, and the leaves are finally beginning to turn. I suppose stargazing season is upon us, not that I care."
+
+PLAYER CHOICES:
+[1] "Dramatic clouds suit the island."
+[2] "Theatrical shadows are a good show."
+[3] "Stargazing season is worth noticing."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "Suit? More like the sky is showing off. 'Look at my puffs,' it says. 'Admire my greys.' Fine. I will look. Briefly."
+
+PLAYER CHOICES:
+[1] "Showing off is understandable."
+[2] "Greys can be elegant."
+[3] "Brief admiration still counts."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "A show I did not buy a ticket for, yet here I am watching. The shadows stretch like they own the ground. It's almost impressive."
+
+PLAYER CHOICES:
+[1] "Shadows owning ground is dramatic."
+[2] "An unplanned show is a gift."
+[3] "Impressive is a strong word from you."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Noticing is different from caring. I notice that the stars come out earlier now. I also notice that they are bright. These are facts."
+
+PLAYER CHOICES:
+[1] "Facts are a kind of caring."
+[2] "Bright stars are good facts."
+[3] "Earlier stars are efficient."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Understandable. If I were the sky I'd probably show off too. All that space and nobody complimenting it. Until now."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "Elegant greys. A touch moody, a touch proud. I respect a cloud that commits to a color scheme."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "It counts. I looked at the clouds for several seconds. That is an eternity of attention from me."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Dramatic and slightly greedy. The shadows want all the ground. I suppose they can have it until sunset."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "A gift. One I will accept grudgingly, but I will accept it. The shadows do know how to pose."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "Strong, perhaps. But not wrong. I have been known to call things impressive when they actually are."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "A very distant kind. Do not read too much into it. I merely collect facts, like a bored librarian of the night."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "Good facts. Reliable, twinkly, and smug about it. The stars know they're pretty."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Efficient stars. Arriving early, shining hard, leaving no room for complaint. I respect punctuality."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"The sky is putting on its grey velvet today, Dreamer. Clouds heavy with promise. Longer shadows reaching across the grass like tired fingers. The wind carries the first crisp edge of change, and the leaves are only beginning to surrender their green. Tonight the stars will be sharp and cold. Beautiful."
+
+PLAYER CHOICES:
+[1] "Grey velvet is a perfect sky."
+[2] "Tired shadow fingers are poetic."
+[3] "Sharp cold stars sound honest."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "Perfect for brooding. The clouds are not sad; they are full. Full of light they won't release, full of rain they might forget. Drama without apology."
+
+PLAYER CHOICES:
+[1] "Drama without apology is powerful."
+[2] "Unreleased light is mysterious."
+[3] "Brooding skies have dignity."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "Poetic and slightly mournful. The shadows reach because they want to touch something before the sun takes them back. I know the feeling."
+
+PLAYER CHOICES:
+[1] "Wanting to touch before fading is sad."
+[2] "Shadows know longing."
+[3] "Mournful beauty is still beauty."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "Honest stars. They don't pretend to be warm. They just burn quietly in the dark and let you decide if you love them."
+
+PLAYER CHOICES:
+[1] "Quiet burning is brave."
+[2] "Cold stars make clear wishes."
+[3] "Loving them is my decision."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "Powerful because it asks nothing. The sky broods, we watch, and neither of us has to explain why."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Mysterious. The clouds hold secrets they never tell. I find that comforting. Secrets can be beautiful too."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "Dignity in every grey fold. The sky does not need blue to be magnificent. It knows its own depths."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "Sad, yes, but soft. The shadows only want a moment of contact. Even ghosts understand that ache."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "Longing is the shadow's language. They stretch toward us because we are warm and brief and they are not."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "Still beauty. The mournful kind lasts longer in the mind. Joy fades; sorrow wears elegant lace."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Brave. To burn without asking for love. The stars simply exist, and that is enough."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "Clear wishes. Cold air makes thoughts sharp. A wish on a sharp star might actually cut through to the dream."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "Your decision, made freely. That is the best kind of love. The stars will not beg, but they will accept it."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer, excellent timing! I've been cataloguing Cool season phenomena. The cumulus-to-stratus transition is producing dramatic cloud shadows, surface shadows are lengthening at a rate of approximately one tile per hour, the breeze has acquired measurable crispness, and deciduous foliage is initiating color-shift. Also, optimal stargazing conditions are approaching."
+
+PLAYER CHOICES:
+[1] "Cloud shadows are underrated data."
+[2] "One tile per hour is very precise."
+[3] "Color-shift initiation sounds official."
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Underrated! Most people look at the clouds themselves, but the shadows are the clouds' footprints on the ground. Measurable, mobile, and underappreciated."
+
+PLAYER CHOICES:
+[1] "Cloud footprints are a great metaphor."
+[2] "Mobile shadows need tracking."
+[3] "Underappreciated data deserves love."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "Precision is my hobby. I picked a fixed blade of grass and watched its shadow creep. It was very exciting in a quiet, data-heavy way."
+
+PLAYER CHOICES:
+[1] "Data-heavy excitement is valid."
+[2] "Blades of grass make good laboratories."
+[3] "Quiet science is still science."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "Official because it's true! The leaves are filing paperwork to change from chlorophyll green to carotenoid yellow. Bureaucracy, but beautiful."
+
+PLAYER CHOICES:
+[1] "Leaf bureaucracy is adorable."
+[2] "Carotenoid yellow is a good color."
+[3] "True things sound official."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "A metaphor with legs, or rather with shadows. The clouds walk across the island and leave dark evidence behind."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "They do! I may start a shadow-migration log. Subject: cloud footprints. Conclusion: they go wherever the wind tells them."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "All good data deserves affection. Without it, we'd just be guessing that clouds exist. We would be wrong less often, but much less interesting."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Valid! The thrill of a measured fact is underrated. I may have gasped when the shadow crossed a pebble."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "Excellent laboratories. Cheap, abundant, and rooted in place. The blade of grass never asks for funding."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "Still science. Some of the best discoveries happen while staring at grass and waiting. Patience is a research tool."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Adorable bureaucracy. Tiny leaf clerks stamping 'approved' on pigment-transfer forms. I wish I could see their office."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "A warm color made by chemistry. Carotenoid yellow is basically a leaf saying 'I have been planning this all along.'"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "True and official. Reality has a way of sounding correct when described accurately. That's my favorite feature of it."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The clouds pass without hurry, Dreamer. Their shadows walk the island slowly, stretching as the day grows older. A brisk breeze touches the grass. The leaves begin their quiet change. Tonight, if the sky clears, the stars will teach without speaking."
+
+PLAYER CHOICES:
+[1] "Clouds that don't hurry are wise."
+[2] "Shadows walking is a calm image."
+[3] "Stars teach without speaking."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "Wise, because they have nowhere to be. They simply are, and in being, they shade the island with patience."
+
+PLAYER CHOICES:
+[1] "Nowhere to be is a kind of freedom."
+[2] "Patience shades us gently."
+[3] "Being is enough."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "Calm. The shadows do not run. They lengthen, they soften, they rest. They show us that movement can be quiet."
+
+PLAYER CHOICES:
+[1] "Quiet movement is peaceful."
+[2] "Lengthening is not rushing."
+[3] "Shadows soften the day."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "Yes. The stars say nothing, yet we look up and understand our smallness, our place, our wonder. That is good teaching."
+
+PLAYER CHOICES:
+[1] "Smallness is not loneliness."
+[2] "Our place is here."
+[3] "Wonder needs no words."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "Freedom. The clouds are bound to no clock. They drift because drifting is their nature, and that is complete."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "Gently. Patience does not press. It waits, and in waiting it covers us without weight."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "Enough. The cloud is enough. The leaf is enough. The ghost is enough. We need not become more."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "Peaceful. The world slows in the lengthening shadows. We slow with it, and find ourselves less tangled."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "Not rushing. A shadow that grows is still a shadow at rest. It does not chase the sun; it merely follows."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "They do. The bright day can be sharp. The shadows give the grass a place to breathe."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "No. Smallness is being part of the whole. A small ghost under many stars is still held by the same sky."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "Here. On the island, in the dream, beneath the changing leaves. There is no other place we need to be."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "No words, only light. The stars speak in silence, and we hear them perfectly."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Fair Dreamer! The heavens assemble great battalions of cloud, and the lengthening shadows march before them like a vanguard. The wind blows crisp and purposeful, and the leaves begin to don their autumn heraldry. I say, a night of stargazing would be a noble vigil indeed!"
+
+PLAYER CHOICES:
+[1] "Cloud battalions are impressive."
+[2] "Shadow vanguards are fitting."
+[3] "Autumn heraldry suits the trees."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Impressive and orderly. The sky marshals its forces in grey and white, and the sun retreats with dignity. A proper campaign."
+
+PLAYER CHOICES:
+[1] "A dignified retreat is honorable."
+[2] "Grey and white are noble colors."
+[3] "The sky runs a proper army."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Fitting! The shadows go first, scouting the ground for the night. They report back to the stars by dark."
+
+PLAYER CHOICES:
+[1] "Shadow scouts are brave."
+[2] "Reporting to stars is a good duty."
+[3] "Night arrives with good planning."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "Indeed! Each tree becomes a knight in colored livery. Gold, rust, and a stubborn green that holds the summer banner a little longer."
+
+PLAYER CHOICES:
+[1] "Knights in colored livery are splendid."
+[2] "Stubborn green holds summer honorably."
+[3] "Heraldry makes autumn noble."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Honorable. The sun has fought all day and now yields the field with grace. A worthy opponent."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "Noble and understated. A knight in grey armour, a squire in white. The sky has excellent taste."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "A proper army with no bloodshed. The clouds advance, the wind follows, and only leaves fall."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Brave, for they go alone into the light and vanish when their work is done. A scout's fate."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "A fine duty. The stars must know where to shine, and the shadows tell them 'here, and here, and here.'"
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "Good planning. The night does not rush in unannounced. It sends its shadows ahead like courteous heralds."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "Splendid! A forest of knights, each tree in its own bright coat. I would salute every one."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "Honorably held. The green leaf keeps the summer banner flying even as gold and rust gather around it."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "Noble indeed! Autumn wears its colors like a royal court preparing for a long, starry evening."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh, Dreamer. The clouds are so... big today. They make the shadows long and soft, and the breeze feels brisk but not scary. Some leaves are starting to look a little yellow at the edges. I was thinking maybe we could look at stars later. If you want. No pressure."
+
+PLAYER CHOICES:
+[1] "Big clouds feel safe."
+[2] "Long soft shadows are gentle."
+[3] "Star-looking later sounds nice."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "Safe, yes. Like the sky is pulling a big grey blanket over the island. Not to hide it, just to make it cozy."
+
+PLAYER CHOICES:
+[1] "A grey blanket is cozy."
+[2] "The island doesn't need hiding."
+[3] "Cozy skies are friendly."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Gentle. The shadows don't jump out. They just get longer and lie down on the grass like they're tired."
+
+PLAYER CHOICES:
+[1] "Tired shadows are understandable."
+[2] "Lying down on grass is polite."
+[3] "Gentle shadows are easy to be near."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "Nice. If you want. The stars don't mind if we look. They kind of... wait there. Patient and twinkly. Like good listeners."
+
+PLAYER CHOICES:
+[1] "Patient stars are comforting."
+[2] "Twinkling is friendly."
+[3] "Good listeners make night easier."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Cozy. I could float under a grey-blanket sky all day and feel tucked in. Even ghosts like being tucked in sometimes."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "No. The island is pretty. The clouds just want to be near it. Like a soft hat for the whole island."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "Friendly. A grey sky isn't sad if you look at it right. It's just a sky being gentle."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "Understandable. The day has been long and bright. Shadows get tired too, I think."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Polite. They don't block the path or make noise. They just stretch out and rest where the grass is soft."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "Easy to be near. I can float beside a long shadow and not feel alone. It's like having a quiet friend."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "Comforting. They'll wait for us. They have lots of time. More time than a shy ghost does."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "Friendly. Like a tiny wave from very far away. It means 'hi, I'm still here.'"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "Easier. Night can feel big, but the stars make it smaller. They listen to us being small together."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Hi Dreamer! The clouds are doing a big grey dance and the shadows are stretching out like they're yawning! The breeze went 'whoosh' right through me and tickled my gauze. The leaves are getting little golden edges, and tonight we're gonna look at SO many stars. I bet the stars giggle too!"
+
+PLAYER CHOICES:
+[1] "Grey cloud dances are grand."
+[2] "Yawning shadows are funny."
+[3] "Stars that giggle is a great idea."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "Grand! Like the whole sky is doing a waltz. I tried to waltz once but I just spun in a circle. Clouds are better at it."
+
+PLAYER CHOICES:
+[1] "Spinning in a circle is still dancing."
+[2] "Clouds have good waltz posture."
+[3] "Grand dances need an audience."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Funny! The shadows open their mouths wide and no sound comes out. Big silent yawns all over the grass. I laughed at one and it didn't mind."
+
+PLAYER CHOICES:
+[1] "Silent yawns are polite."
+[2] "Laughing at shadows is allowed."
+[3] "Big yawns mean tired light."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "Great idea! When stars giggle they probably go 'twinkle twinkle hee hee.' I want to hear it. Maybe tonight."
+
+PLAYER CHOICES:
+[1] "Twinkle hee hee is a good song."
+[2] "Listening to stars is the best plan."
+[3] "Tonight is a good night for star giggles."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Still dancing! Spinning is a kind of dance. A floaty, dizzy, happy kind. I'm basically a professional."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Good posture. They're big and soft and they float. That's basically perfect waltz technique."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "An audience of me! I cheer for every cloud. 'Go cloud go!' They can't hear me but I think they feel the support."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "Polite. If shadows made noise they'd wake up the whole island. Silent yawning is very considerate."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "Allowed! Shadows don't have feelings. Or maybe they do and they're just shy. Either way, they didn't tell me to stop."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "Tired light. The sun worked hard all day and now it's going to bed. Even light needs a nap."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "A good song. I'd sing it but I don't know the tune. Maybe the stars will teach me tonight."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "Best plan ever. We bring our ears, the stars bring their twinkles, and everybody has a good time."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "Good night for it. The clouds might clear up, the leaves will be little gold edges, and the stars will be ready to giggle. Let's go!"
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH

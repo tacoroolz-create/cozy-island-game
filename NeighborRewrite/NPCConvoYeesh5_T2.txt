@@ -1,0 +1,721 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh5_T2.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Tree 2 Conversations - Monsters 25-32
+Cold sea, sad flowers, long quiet nights, silly viking rumor, seeking warmth
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 25: Fluffernox (Monster - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Fluffernox:
+"Dreamer! My fuzz feels chilly at the edges, so I am sitting on the warmest rock I could find. The cold sea keeps winking at me, but I think it is just being breezy."
+
+PLAYER CHOICES:
+[1] "Warm rocks are good friends."
+[2] "The sea does like to wink."
+[3] "Chilly fuzz needs extra cuddles."
+
+---
+
+TURN 2A (if player chose 1):
+Fluffernox: "Good friends and good heaters! This rock hugged me back with yesterday's sun. I am very grateful to minerals right now."
+
+PLAYER CHOICES:
+[1] "Gratitude makes rocks warmer."
+[2] "Minerals deserve credit."
+[3] "Yesterday's sun is generous."
+
+---
+
+TURN 2B (if player chose 2):
+Fluffernox: "It does! Blink blink blink go the waves. I wink back but my wink is slower because I am cozy and sleepy."
+
+PLAYER CHOICES:
+[1] "Sleepy winks still count."
+[2] "Cozy eyes wink slowly."
+[3] "The sea appreciates effort."
+
+---
+
+TURN 2C (if player chose 3):
+Fluffernox: "Extra cuddles! I am offering free fuzz-hugs to any flower that looks sad. So far zero flowers have accepted, but the offer stands."
+
+PLAYER CHOICES:
+[1] "Sad flowers need time."
+[2] "Your offer is kind."
+[3] "Fuzz-hugs are powerful medicine."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Fluffernox: "They do! I think my thank-you is making the rock glow a tiny bit. Or maybe that is just my own warmth bouncing back. Either way, nice."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Fluffernox: "Credit and applause! The rock did all the heavy warming while I just sat there looking cute. Teamwork."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Fluffernox: "Generous and patient. The sun saved some warmth for later, like putting a blanket in a drawer for a chilly day."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Fluffernox: "They do! A slow wink is just a relaxed wink. The sea will understand that I am busy being warm."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Fluffernox: "Cozy eyes are heavy eyes. They close at their own speed and that speed is currently very floppy."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Fluffernox: "I hope so! I have been practicing my wink in case a wave needs encouragement. Encouragement is important."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Fluffernox: "They do. I will leave the invitation open. When they are ready, my fuzz is ready. No expiration date on hugs."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Fluffernox: "Kind and available! I have unlimited hug inventory. The flowers can claim one whenever their petals feel brave."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Fluffernox: "Powerful and fuzzy! One good fuzz-hug can fix a whole morning. I am prescribing them to everyone on the island, including Hoggy."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 26: Grumble (Monster - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Grumble:
+"The sea is being dramatic again, Dreamer. All that cold water sloshing around like it owns the place. And the flowers look like someone told them a boring story. Not that I am emotionally affected."
+
+PLAYER CHOICES:
+[1] "Dramatic sea is still pretty."
+[2] "Boring stories make everyone droop."
+[3] "You seem very unaffected."
+
+---
+
+TURN 2A (if player chose 1):
+Grumble: "Pretty from a distance. Up close it is just wet and opinionated. I respect its confidence, but I do not need a cold splash lecture."
+
+PLAYER CHOICES:
+[1] "Distance keeps toes dry."
+[2] "Wet opinions are the worst."
+[3] "Confidence is overrated in water."
+
+---
+
+TURN 2B (if player chose 2):
+Grumble: "They do. Someone probably read them the shipping forecast. Now they are resting their petals in protest. I support the protest."
+
+PLAYER CHOICES:
+[1] "Flowers have rights too."
+[2] "Protest naps are valid."
+[3] "The shipping forecast is boring."
+
+---
+
+TURN 2C (if player chose 3):
+Grumble: "Extremely. My heart is a solid block of neutrality. It may also be slightly cold, but that is unrelated. Probably."
+
+PLAYER CHOICES:
+[1] "Neutral hearts are sturdy."
+[2] "Cold hearts need socks."
+[3] "Unrelated cold is suspicious."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Grumble: "Dry toes, dry temper. That is my motto for Yeesh season. I am considering writing it on a banner and then not hanging it up."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Grumble: "The worst. A regular opinion is fine. A wet one splashes everywhere and ruins your carefully planned grump."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Grumble: "Overrated. Water should know its place, which is below the sand and away from my face. Humble water is better water."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Grumble: "They do. Rights to sunlight, rights to warmth, rights to not hear about wind speed at breakfast."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Grumble: "Valid and strategic. You conserve energy while making a point. The flowers are basically protest geniuses."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Grumble: "It is. All numbers and no feelings. If I were a flower, I would fold myself in half just to avoid it."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Grumble: "Sturdy and low maintenance. I do not have to explain myself to anyone, which saves a lot of emotional effort."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Grumble: "Socks for hearts? Do they make those? If they do, I want a pair in whatever color says 'I am fine, stop asking.'"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Grumble: "Suspicious and also accurate. Fine. Maybe my heart is a tiny bit chilly. I will warm it later, under protest."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 27: Vesper (Monster - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Vesper:
+"I have been watching the cold sea, Dreamer. It is the color of a song nobody finishes. The sad flowers understand. We are all just waiting for the long night to blink."
+
+PLAYER CHOICES:
+[1] "Unfinished songs are still beautiful."
+[2] "Waiting together is warmer."
+[3] "Long nights have to blink eventually."
+
+---
+
+TURN 2A (if player chose 1):
+Vesper: "Beautiful because they leave room for longing. The sea does not resolve. It just repeats its chorus against the shore."
+
+PLAYER CHOICES:
+[1] "Longing is a kind of poetry."
+[2] "Repetition can be comforting."
+[3] "The shore listens well."
+
+---
+
+TURN 2B (if player chose 2):
+Vesper: "Warmer, yes. Even shadow creatures huddle when the dark gets too long. I pretend I am only observing the cold, but we both know I am also feeling it."
+
+PLAYER CHOICES:
+[1] "Feeling cold is honest."
+[2] "Shadows need warmth too."
+[3] "Observation and warmth blend."
+
+---
+
+TURN 2C (if player chose 3):
+Vesper: "Eventually. Even the longest night is just a slow blink. I try to find one small light and let it hold my attention until morning."
+
+PLAYER CHOICES:
+[1] "Small lights are brave."
+[2] "Attention is a form of warmth."
+[3] "Morning remembers everyone."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Vesper: "Poetry with teeth. Longing chews on the silence and turns it into something you can carry in your chest."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Vesper: "Comforting because it does not ask you to understand it. The waves keep coming, steady and unknowable, like a lullaby in a language you almost know."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Vesper: "It does. The shore is patient. It accepts every cold chorus without interrupting. That is a rare kind of friendship."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Vesper: "Honest and elegant. The cold does not care if I look dramatic. It simply exists, and I exist shivering beside it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Vesper: "They do. We gather near whatever warmth we can find. A lantern, a memory, another shadow doing the same thing."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Vesper: "They blend. To watch the cold carefully is to admit you are part of it. I find that admission strangely cozy."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Vesper: "Brave and small. A single candle against the long night. It does not have to win. It only has to keep deciding to glow."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Vesper: "It is. To focus on light is to offer it a little of yourself. That exchange keeps both of you alive a while longer."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Vesper: "It remembers. The sun has not forgotten the island, even when the night makes us doubt. I try to doubt less."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 28: Gizmo (Monster - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gizmo:
+"Dreamer! I have compiled new Yeesh data. The sea is quantifiably cold, the flowers are statistically sad, and the viking rumor has a seventy percent chance of being a misidentified cloud."
+
+PLAYER CHOICES:
+[1] "Clouds do look suspicious sometimes."
+[2] "Statistically sad flowers need charts."
+[3] "Seventy percent is reassuring."
+
+---
+
+TURN 2A (if player chose 1):
+Gizmo: "Suspicious! A low cloud over water can resemble a longship if you squint and also want drama. The island has excellent drama-squinters."
+
+PLAYER CHOICES:
+[1] "Drama-squinters are common."
+[2] "Longship clouds are pretty."
+[3] "Squinting changes data."
+
+---
+
+TURN 2B (if player chose 2):
+Gizmo: "They do. I made a flower mood chart with categories: droopy, extra droopy, philosophically droopy, and pretending not to droop. Most are in the middle range."
+
+PLAYER CHOICES:
+[1] "Pretending not to droop is brave."
+[2] "A middle range is normal."
+[3] "Charts help flowers feel heard."
+
+---
+
+TURN 2C (if player chose 3):
+Gizmo: "Reassuring and mathematically cozy. A thirty percent uncertainty leaves room for the rumor to be something nicer, like a floating party."
+
+PLAYER CHOICES:
+[1] "Floating parties are better."
+[2] "Uncertainty has potential."
+[3] "Nicer rumors are good data."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gizmo: "Very common. If squinting were a resource, the island would export it. Quality squinting all year round, peaking in Yeesh."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gizmo: "Pretty and non-threatening. A longship cloud brings atmosphere without bringing axes. Ideal for a cozy worry."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gizmo: "It does. Squinting is a filter. It turns ordinary weather into possible adventure. I should note that in the margin."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gizmo: "Brave and aerodynamic. Holding your petals up when gravity disagrees is a small act of defiance. I respect the physics."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gizmo: "Normal and healthy. A flower cannot be philosophically droopy every day. That would be exhausting and also bad for stem morale."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gizmo: "They do! Acknowledging a mood is step one. Step two is offering warm thoughts. Step three is updating the chart."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gizmo: "Significantly better. Floating parties feature music, snacks, and zero plundering. I would attend a cloud party."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gizmo: "Potential for warmth! If the rumor is wrong, the remaining possibilities include 'big bird,' 'optical chill,' or 'collective imagination exercise.'"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gizmo: "Good data and good vibes. I am updating the rumor log to reflect a high probability of harmless confusion. Much easier to sleep with."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 29: Ommmm (Monster - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Ommmm:
+"The cold sea breathes slowly tonight, Dreamer. The sad flowers have folded their bright voices away. It is a good evening to seek warmth not in the world, but in how we meet it."
+
+PLAYER CHOICES:
+[1] "Meeting cold with warmth is hard."
+[2] "Folded voices are still voices."
+[3] "Seeking warmth is natural."
+
+---
+
+TURN 2A (if player chose 1):
+Ommmm: "Hard, but not impossible. We do not have to love the cold. We only have to notice it without making an enemy of it."
+
+PLAYER CHOICES:
+[1] "Neutrality is a kind of warmth."
+[2] "Not making enemies is wise."
+[3] "Cold does not ask to be loved."
+
+---
+
+TURN 2B (if player chose 2):
+Ommmm: "Still voices, yes. They rest beneath the frost, holding their color like a promise. A quiet promise is still a promise."
+
+PLAYER CHOICES:
+[1] "Promises under frost are patient."
+[2] "Color held in silence glows."
+[3] "Rest is part of speaking."
+
+---
+
+TURN 2C (if player chose 3):
+Ommmm: "Natural, like a seed turning toward light. We all bend toward comfort. There is no shame in wanting the night to be shorter."
+
+PLAYER CHOICES:
+[1] "Bending is not weakness."
+[2] "Comfort is a worthy direction."
+[3] "Wanting shorter nights is human."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Ommmm: "It is. When we stop fighting, the cold becomes simply cold. That small distance is where peace can sit."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Ommmm: "Wise and gentle. The cold has its own path. We do not have to bless it, but we need not chase it away with anger."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Ommmm: "It does not. It simply is. And because it does not ask, we are free to meet it however we choose."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Ommmm: "Patient and rooted. They do not bloom now, but they have not forgotten how. They are waiting, and waiting is work."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Ommmm: "It glows inwardly. The color stays close to the stem, keeping itself safe. That is a kind of courage we rarely see."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Ommmm: "Part of speaking, yes. A season of silence prepares the next season of song. We honor both by listening."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Ommmm: "It is not. The seed that bends toward light survives. Rigidity in the frost would break it. Flexibility is strength."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Ommmm: "Worthy and honest. We are allowed to want ease. Wanting warmth is simply the heart pointing toward what keeps it alive."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Ommmm: "It is. Even in dreams, we carry our human shape. The night feels long because we feel it. That is not a flaw."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 30: Lord Roar (Monster - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lord Roar:
+"Good eve, Dreamer! The Yeesh winds carry whispers of vikings and the cold sea glitters like a moat of ice. I have appointed myself guardian of the warmest torch in the realm."
+
+PLAYER CHOICES:
+[1] "Guardian of warmth is noble."
+[2] "Viking whispers are probably just wind."
+[3] "A torch against the cold sea is brave."
+
+---
+
+TURN 2A (if player chose 1):
+Lord Roar: "Noble and practical! A warm citizen is a happy citizen. I shall patrol between the torch and any shivering flower with great seriousness."
+
+PLAYER CHOICES:
+[1] "Practical nobility is the best kind."
+[2] "Shivering flowers deserve patrols."
+[3] "Seriousness keeps flames steady."
+
+---
+
+TURN 2B (if player chose 2):
+Lord Roar: "Most likely wind dressed up in rumor. The island's breezes are theatrical. They would make excellent jesters if they were not so chilly."
+
+PLAYER CHOICES:
+[1] "Theatrical wind is common here."
+[2] "Chilly jesters are not fun."
+[3] "Rumors make good stories."
+
+---
+
+TURN 2C (if player chose 3):
+Lord Roar: "Brave and slightly damp! The sea may be cold, but my torch is loyal. We shall hold the shoreline against gloom until dawn remembers us."
+
+PLAYER CHOICES:
+[1] "Loyal flames are precious."
+[2] "Gloom is a worthy enemy."
+[3] "Dawn always remembers."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lord Roar: "The best kind, yes! Any knight can guard a gate. Guarding a feeling is the higher calling."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lord Roar: "They do! A drooping petal in distress is a matter of royal concern. I shall issue them honorary tiny shields."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lord Roar: "They do. A steady flame is a disciplined flame. It does not flicker at every rumor, no matter how pointy the helmets sound."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lord Roar: "Common and dramatic. I have seen a breeze pretend to be a dragon, a ghost, and now apparently a fleet. The island has talented weather."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lord Roar: "Not fun at all. A jester should warm the court, not make everyone clutch their cloaks. I would politely decline their performance."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lord Roar: "Good stories, yes! Around a warm fire, the viking rumor becomes a cozy tale. I shall add music and a moral about not panicking."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lord Roar: "Precious and brave. A flame does not ask for glory. It simply stands between us and the dark, which is knightly behavior."
+
+---
+
+TURN 3CB (if player chose 3 then 3):
+Lord Roar: "Always. Dawn is the realm's most reliable ally. It has never missed a morning, though sometimes it arrives slowly to build suspense."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lord Roar: "It does. I have sent a memo to the sun requesting prompt arrival. I am confident it will read it, or at least glow in acknowledgment."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 31: Snug (Monster - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Snug:
+"Oh. Dreamer. I moved my rock closer to the sea so I could watch the cold waves, but now the waves are watching back and I am not sure about eye contact."
+
+PLAYER CHOICES:
+[1] "Waves are not good at eye contact."
+[2] "You can move the rock away again."
+[3] "Watching the sea is brave."
+
+---
+
+TURN 2A (if player chose 1):
+Snug: "Not good? That is a relief. They just keep staring with all that wet surface. I thought maybe I owed them an explanation."
+
+PLAYER CHOICES:
+[1] "You don't owe waves explanations."
+[2] "Wet staring is mostly reflection."
+[3] "The sea is just looking around."
+
+---
+
+TURN 2B (if player chose 2):
+Snug: "Away is an option. But then I would miss the sparkly parts. Maybe I will stay but hide a little more under the rock. That feels like compromise."
+
+PLAYER CHOICES:
+[1] "Compromise is wise."
+[2] "Hiding more is valid."
+[3] "Sparkly parts are worth staying for."
+
+---
+
+TURN 2C (if player chose 3):
+Snug: "Braver than usual. The sea is big and loud and cold. I am small and quiet and under a rock. We are different but I am trying to be friendly."
+
+PLAYER CHOICES:
+[1] "Different things can be friendly."
+[2] "Trying is brave."
+[3] "Rocks make good confidence boosters."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Snug: "Good. I would not know what to tell them anyway. 'Hello, I am Snug and I am under a rock' seems like too much information."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Snug: "Reflection makes sense. The sea is probably looking at itself and I am just in the way. I am okay with being scenery."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Snug: "Just looking around. Then it is probably not judging me. That is nice. I am already doing enough judging for both of us."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Snug: "Wise and shy. I get the sparkles without the pressure. The rock handles the social part by being solid and dependable."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Snug: "Valid and comfortable. Under the rock is my preferred conference room. I hold many meetings there with myself."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Snug: "They are. The cold sea catches little pieces of light and throws them around. I like watching from a safe distance, like a tiny audience."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Snug: "They can? Then maybe the sea and I are friends already. Different friends. Friends who do not have to talk much."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Snug: "Trying feels wobbly but warm. Like my courage is wearing a sweater. A small sweater. Possibly made of moss."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Snug: "They do. The rock does not move or expect things. It just stays there being rock-shaped. That is very supportive behavior."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 32: Gigglegrow (Monster - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gigglegrow:
+"Dreamer! Yeesh season made the flowers sad so I am telling them jokes! Why did the flower go to school? To get a little bud-smarter! The flowers did not laugh but I think one of them smiled inside."
+
+PLAYER CHOICES:
+[1] "Bud-smarter is a good joke."
+[2] "Inside smiles count."
+[3] "Sad flowers need cheerleaders."
+
+---
+
+TURN 2A (if player chose 1):
+Gigglegrow: "Good and educational! I have more plant jokes too. What do you call a fancy flower? A bloom-in-da-bloom! I am very proud of that one."
+
+PLAYER CHOICES:
+[1] "Bloom-in-da-bloom is fancy."
+[2] "Plant jokes are a public service."
+[3] "Pride in jokes is healthy."
+
+---
+
+TURN 2B (if player chose 2):
+Gigglegrow: "They do! Flowers smile with their petals, but sometimes their petals are too cold to move. The smile is still in there doing warm little push-ups."
+
+PLAYER CHOICES:
+[1] "Warm push-ups are strong."
+[2] "Cold petals are slow petals."
+[3] "Inside warmth matters most."
+
+---
+
+TURN 2C (if player chose 3):
+Gigglegrow: "They do! I brought pom-poms made of moss and a megaphone made of a hollow log. My cheering is mostly 'You can do it, flowers!' over and over."
+
+PLAYER CHOICES:
+[1] "Moss pom-poms are creative."
+[2] "Repetition is good cheering."
+[3] "Flowers can do it."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gigglegrow: "Fancy and funny! If flowers wore tiny hats, that is what they would call each other at parties."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gigglegrow: "They are! Laughter helps roots relax. Relaxed roots drink better. Better drinking makes happier flowers. Science of joy!"
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gigglegrow: "Healthy and bouncy! A proud joke-giver gives stronger jokes. My pride is currently at maximum bounce."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gigglegrow: "Strong! Tiny warm push-ups inside a flower stem. That is basically flower gym class. Very impressive."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gigglegrow: "Slow but sincere! Cold petals take their time. When they finally smile, it will be worth the whole wait."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gigglegrow: "It does! The outside can be chilly and droopy while the inside is throwing a tiny warm party. I love tiny warm parties."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gigglegrow: "Creative and soft! Moss pom-poms do not hurt anyone. They are the gentlest cheerleading equipment on the island."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gigglegrow: "Good cheering! If you say it enough, it becomes true. 'You can do it' is basically a spell for courage."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gigglegrow: "They can! Flowers are very capable. They just need a reminder and maybe a joke and maybe a warm thought sent from a bouncy monster."
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

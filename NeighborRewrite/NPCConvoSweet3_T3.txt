@@ -1,0 +1,705 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet3_T3.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+Sweet Tree 3: flowers everywhere, butterflies in pairs, warm-but-mild days, picnics on grass, gentle sun
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer! The island is wearing flowers like little stickers, and the butterflies are going around in twos! Hoggy is having a grass picnic all by himself, but he looks happy about it. The sun is warm but not pushy. I tried to sit on the grass but I floated through it. Still very cozy from above!"
+
+PLAYER CHOICES:
+[1] "Butterfly pairs are extra cute."
+[2] "A Hoggy picnic sounds perfect."
+[3] "Warm-but-not-pushy sun is the best."
+
+---
+
+TURN 2A (if player chose A):
+Boo-Boo: "Extra cute because they match! Two orange ones, two blue ones, two stripey ones. It's like the flowers sent out tiny winged friends in matching outfits."
+
+PLAYER CHOICES:
+[1] "Matching outfits are friendship goals."
+[2] "Winged friends make flowers happier."
+[3] "Pairs are better than singles."
+
+---
+
+TURN 2B (if player chose B):
+Boo-Boo: "Perfect! He has clover, dandelions, and a little patch of warm grass. I don't think he packed a basket, but Hoggy doesn't need baskets when he has nature."
+
+PLAYER CHOICES:
+[1] "Nature baskets are the best baskets."
+[2] "Clover and dandelions are a full meal."
+[3] "Picnics without baskets still count."
+
+---
+
+TURN 2C (if player chose C):
+Boo-Boo: "The best! It hugs you but doesn't sweat on you. I can't feel heat, but the flowers look comfy, so I trust them."
+
+PLAYER CHOICES:
+[1] "Comfy flowers are good thermometers."
+[2] "Gentle sun is a polite sun."
+[3] "Flowers know best about warmth."
+
+---
+
+TURN 3AA (if player chose A then A):
+Boo-Boo: "Friendship goals! I want a matching outfit with a butterfly. Maybe a tiny bow in matching gauze."
+
+---
+
+TURN 3AB (if player chose A then B):
+Boo-Boo: "Happier! Flowers can't clap, but they can send butterflies. That's how flowers cheer."
+
+---
+
+TURN 3AC (if player chose A then C):
+Boo-Boo: "Better than singles. Two butterflies can take turns being the pretty one."
+
+---
+
+TURN 3BA (if player chose B then A):
+Boo-Boo: "The best baskets because they're all around you. Hoggy just picks one clover, then another. Buffet picnic!"
+
+---
+
+TURN 3BB (if player chose B then B):
+Boo-Boo: "A full meal for a happy hog. Plus grass for dessert and sunshine to drink. Hoggy picnics are simple and complete."
+
+---
+
+TURN 3BC (if player chose B then C):
+Boo-Boo: "They still count! A picnic is just eating outside while being pleased. Hoggy is very pleased."
+
+---
+
+TURN 3CA (if player chose C then A):
+Boo-Boo: "Good flower thermometers. When they stand up tall, the sun is just right. When they droop, it's probably past nap time."
+
+---
+
+TURN 3CB (if player chose C then B):
+Boo-Boo: "Polite sun! It shines on everyone and doesn't ask for compliments. The flowers are thankful anyway."
+
+---
+
+TURN 3CC (if player chose C then C):
+Boo-Boo: "Flowers know best. They spend all day in the sun and they still look happy. That's a good review."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. Dreamer. I suppose you noticed the island has become aggressively floral. Flowers on every hill, butterflies flying around in pairs as if they have appointments, and the wild hog is sprawled on the grass like it's some kind of picnic blanket. The sun is warm, the breeze is mild, and it's all faintly acceptable."
+
+PLAYER CHOICES:
+[1] "Aggressively floral is better than aggressively gray."
+[2] "Butterfly appointments are efficient."
+[3] "Hoggy as a picnic blanket is practical."
+
+---
+
+TURN 2A (if player chose A):
+Wisp: "Better, yes. At least color has the decency to be cheerful while taking over. Gray just mopes and makes everything damp."
+
+PLAYER CHOICES:
+[1] "Cheerful takeover is forgivable."
+[2] "Gray can keep its dampness."
+[3] "Color announces itself properly."
+
+---
+
+TURN 2B (if player chose B):
+Wisp: "Efficient and slightly smug. Two butterflies arrive together, visit a flower, leave together. Very organized. I find it suspicious."
+
+PLAYER CHOICES:
+[1] "Suspicious pairs are still pretty."
+[2] "Organized nature is unsettling."
+[3] "Shared schedules show commitment."
+
+---
+
+TURN 2C (if player chose C):
+Wisp: "Practical if you don't mind hog-sized wrinkles. He lies flat, grass bends, and suddenly the meadow has a warm centerpiece. Faintly noble, even."
+
+PLAYER CHOICES:
+[1] "Hog-sized centerpiece is memorable."
+[2] "Flattened grass is still grass."
+[3] "Napping as a blanket is a skill."
+
+---
+
+TURN 3AA (if player chose A then A):
+Wisp: "Forgivable. Flowers do not ask permission, but at least they bloom in pleasant colors while invading."
+
+---
+
+TURN 3AB (if player chose A then B):
+Wisp: "Keep it. The island has enough moisture without gray dragging its clouds everywhere."
+
+---
+
+TURN 3AC (if player chose A then C):
+Wisp: "Properly. If you're going to dominate a season, do it with petals and sunshine. Flowers understand PR."
+
+---
+
+TURN 3BA (if player chose B then A):
+Wisp: "Still pretty. I'll tolerate their paired fluttering because it adds rhythm to the chaos."
+
+---
+
+TURN 3BB (if player chose B then B):
+Wisp: "Unsettling. Butterflies should drift randomly, not coordinate. It makes the meadow feel managed."
+
+---
+
+TURN 3BC (if player chose B then C):
+Wisp: "Commitment, I suppose. Showing up together to the same flower is basically a tiny flying date."
+
+---
+
+TURN 3CA (if player chose C then A):
+Wisp: "Memorable. Not every meadow offers a warm, snorting centerpiece. Hoggy contributes whether asked or not."
+
+---
+
+TURN 3CB (if player chose C then B):
+Wisp: "Still grass. It will spring back when he moves. Grass is resilient in ways I begrudgingly respect."
+
+---
+
+TURN 3CC (if player chose C then C):
+Wisp: "A skill. Most creatures need blankets. Hoggy becomes one. Efficient use of hog, I suppose."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Sweet season has dressed the island in bright mourning, Dreamer. Flowers everywhere, as if the earth is trying to forget the brown months. Butterflies move in pairs through the gentle sun, and Hoggy naps on the grass like a warm offering to the clover. It is beautiful and temporary, which is the only kind of beauty I trust."
+
+PLAYER CHOICES:
+[1] "Bright mourning is a good phrase."
+[2] "Pairs of butterflies feel like witnesses."
+[3] "Hoggy as a warm offering is poetic."
+
+---
+
+TURN 2A (if player chose A):
+Morwen: "Good because it is true. The flowers celebrate life while wearing the colors of a small funeral for winter. Honest contradiction."
+
+PLAYER CHOICES:
+[1] "Honest contradictions are rare."
+[2] "Spring is winter's goodbye party."
+[3] "Flowers wear their grief brightly."
+
+---
+
+TURN 2B (if player chose B):
+Morwen: "Witnesses to the bloom. They see the flowers open, circle, and move on. Butterflies do not stay to mourn. They just testify."
+
+PLAYER CHOICES:
+[1] "Testimony without mourning is kind."
+[2] "Witnesses make moments real."
+[3] "Moving on is their tribute."
+
+---
+
+TURN 2C (if player chose C):
+Morwen: "Poetic and slightly heavy. He gives his warmth to the ground and receives clover in return. A fair exchange."
+
+PLAYER CHOICES:
+[1] "Warm exchanges are holy."
+[2] "The ground accepts offerings gently."
+[3] "Hoggy receives well."
+
+---
+
+TURN 3AA (if player chose A then A):
+Morwen: "Rare. Most seasons pretend to be one thing. Sweet season admits it is both goodbye and hello."
+
+---
+
+TURN 3AB (if player chose A then B):
+Morwen: "A goodbye party with excellent decorations. Winter would be offended if it weren't already leaving."
+
+---
+
+TURN 3AC (if player chose A then C):
+Morwen: "Brightly. They don't hide that something died to make room for them. They just bloom over it."
+
+---
+
+TURN 3BA (if player chose B then A):
+Morwen: "Kind testimony. It allows the flowers to be seen without making the moment sad."
+
+---
+
+TURN 3BB (if player chose B then B):
+Morwen: "Real because something saw it. A flower opened, a butterfly noticed, and the moment existed."
+
+---
+
+TURN 3BC (if player chose B then C):
+Morwen: "Their tribute. They do not cling to the bloom. They honor it by continuing."
+
+---
+
+TURN 3CA (if player chose C then A):
+Morwen: "Holy in a small way. Warmth given, warmth received, and the grass remembers both."
+
+---
+
+TURN 3CB (if player chose C then B):
+Morwen: "Gently. The earth does not reject the hog. It holds him and feeds him clover."
+
+---
+
+TURN 3CC (if player chose C then C):
+Morwen: "He receives very well. His gratitude is snores and soft chewing. The ground seems satisfied."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I've been observing Sweet season peak conditions. Flower density is measurably high across all meadows, butterfly pair formations are occurring at twice the baseline rate, the sun is emitting warm-but-mild radiation, and Hoggy has selected a grass patch with an optimal sun-to-shade ratio for extended rest. Everything suggests an ideal picnic day, statistically."
+
+PLAYER CHOICES:
+[1] "Tell me about flower density."
+[2] "Butterfly pair formations are interesting data."
+[3] "Hoggy's sun-to-shade ratio is impressive."
+
+---
+
+TURN 2A (if player chose A):
+Spectra: "Flower density is an excellent metric. It measures how many petals per square grass-tile we have right now, and the number is 'a lot.' Very precise, I know."
+
+PLAYER CHOICES:
+[1] "'A lot' is a valid scientific unit."
+[2] "Petals per grass-tile should be standard."
+[3] "High density improves island happiness."
+
+---
+
+TURN 2B (if player chose B):
+Spectra: "Interesting because it might not be intentional. Butterflies may just like the same flowers and end up paired by preference, or they may be socially coordinated. I lean toward preference."
+
+PLAYER CHOICES:
+[1] "Preference-based pairing is wholesome."
+[2] "Social coordination is advanced."
+[3] "Same-flower taste creates couples."
+
+---
+
+TURN 2C (if player chose C):
+Spectra: "Impressive and calculated. He found a slope with morning sun and afternoon shade, plus soft grass. His internal sensors are better than some instruments I've seen."
+
+PLAYER CHOICES:
+[1] "Hoggy sensors are underrated."
+[2] "Slope selection shows engineering."
+[3] "Rest optimization is a real field."
+
+---
+
+TURN 3AA (if player chose A then A):
+Spectra: "Valid. Sometimes the most honest measurement is 'more than expected.' Flowers exceed the expected amount."
+
+---
+
+TURN 3AB (if player chose A then B):
+Spectra: "It should be. I'd propose PPGT as the standard unit. Botanists would argue, but they'd adapt."
+
+---
+
+TURN 3AC (if player chose A then C):
+Spectra: "It does. I don't have an exact happiness function, but the correlation between petals and smiling seems strong."
+
+---
+
+TURN 3BA (if player chose B then A):
+Spectra: "Wholesome data. Two butterflies choosing the same bloom is basically a tiny recommendation."
+
+---
+
+TURN 3BB (if player chose B then B):
+Spectra: "Advanced. I haven't seen butterfly committees, but I won't rule them out. Nature has hidden bureaucracy."
+
+---
+
+TURN 3BC (if player chose B then C):
+Spectra: "Couples formed by shared floral preference. A very Sweet-season way to meet someone."
+
+---
+
+TURN 3CA (if player chose C then A):
+Spectra: "Underrated. He evaluates temperature, texture, and slope without any formal training. Natural talent."
+
+---
+
+TURN 3CB (if player chose C then B):
+Spectra: "Engineering without blueprints. He just knows where the sun will move. Hoggy physics is a real discipline."
+
+---
+
+TURN 3CC (if player chose C then C):
+Spectra: "A growing field. Rest optimization could revolutionize picnics, naps, and lazy afternoons."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"Listen, Dreamer. The island is quiet in its blooming. Flowers open without asking who will see them. Butterflies travel in pairs, not because they must, but because sharing a path is lighter. Hoggy rests on the warm grass, offering his weight to the earth. And the sun is mild, as if it knows we have had enough hurry."
+
+PLAYER CHOICES:
+[1] "Opening without asking is generous."
+[2] "Sharing a path is lighter."
+[3] "Mild sun knows our hurry."
+
+---
+
+TURN 2A (if player chose A):
+Hush: "Generous and patient. A flower does not check the crowd before blooming. It simply opens, and the bees, the butterflies, and the morning receive the gift."
+
+PLAYER CHOICES:
+[1] "The morning receives gifts well."
+[2] "No crowd-checking is freedom."
+[3] "Opening is its own reward."
+
+---
+
+TURN 2B (if player chose B):
+Hush: "Lighter, yes. To fly beside another is to divide the wind and multiply the seeing. The butterflies do not lose themselves in the pair."
+
+PLAYER CHOICES:
+[1] "Pairs can still be free."
+[2] "Dividing the wind is wise."
+[3] "Seeing together is deeper seeing."
+
+---
+
+TURN 2C (if player chose C):
+Hush: "It knows. The sun has watched many seasons. It does not rush the island into heat. It gives warmth slowly, like a held breath."
+
+PLAYER CHOICES:
+[1] "Slow warmth is kinder warmth."
+[2] "A held-breath sun is gentle."
+[3] "Seasons teach the sun patience."
+
+---
+
+TURN 3AA (if player chose A then A):
+Hush: "The morning receives well. It does not grasp. It simply holds the light and offers it to whoever is awake."
+
+---
+
+TURN 3AB (if player chose A then B):
+Hush: "Freedom. The flower is not performing. It is being. We could learn from flowers who bloom without an audience."
+
+---
+
+TURN 3AC (if player chose A then C):
+Hush: "Its own reward. The bloom does not wait for praise. The opening is the whole teaching."
+
+---
+
+TURN 3BA (if player chose B then A):
+Hush: "Still free. A pair is not a cage. Each butterfly chooses the flower, the air, the moment. Together, but not bound."
+
+---
+
+TURN 3BB (if player chose B then B):
+Hush: "Wise. The wind does not push harder on two. It is shared, and sharing makes flight easier."
+
+---
+
+TURN 3BC (if player chose B then C):
+Hush: "Deeper. One sees color, two see pattern, and the meadow becomes more than petals."
+
+---
+
+TURN 3CA (if player chose C then A):
+Hush: "Kinder. Sudden heat demands. Slow warmth invites. The island is invited today."
+
+---
+
+TURN 3CB (if player chose C then B):
+Hush: "Gentle. The sun holds its warmth like a long exhale, and the flowers do not flinch."
+
+---
+
+TURN 3CC (if player chose C then C):
+Hush: "It has learned. The sun does not need to hurry. It will rise again. Today, it chooses mildness."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Fair Dreamer! The realm is carpeted in blossoms, butterflies dance in courtly pairs across the gentle sun, and the wild hog holds his midday court upon a grassy knoll. A mild day such as this calls for an outdoor feast, or at least a very noble nap. I shall haunt the meadow poetically and observe the pageantry."
+
+PLAYER CHOICES:
+[1] "Blossom carpets are fit for royalty."
+[2] "Butterfly courtly pairs are elegant."
+[3] "Noble naps are a worthy quest."
+
+---
+
+TURN 2A (if player chose A):
+Sir Haunts-a-Lot: "Fit indeed! The flowers lay themselves down in colors like a tapestry rolled out for passing knights. I feel honored to float above them."
+
+PLAYER CHOICES:
+[1] "Floating above flowers is knightly."
+[2] "Colorful tapestries deserve respect."
+[3] "Even ghosts can feel honored."
+
+---
+
+TURN 2B (if player chose B):
+Sir Haunts-a-Lot: "Elegant and chivalrous. Two butterflies approach a bloom, bow with their wings, and share the nectar as if toasting at a feast. Very refined."
+
+PLAYER CHOICES:
+[1] "Wing bows are good manners."
+[2] "Nectar toasts are royal."
+[3] "Refined insects are a fine sight."
+
+---
+
+TURN 2C (if player chose C):
+Sir Haunts-a-Lot: "A worthy quest! The knight reclines upon the grass, closes his visor to the mild sun, and dreams of further meadows. Hoggy is already on this noble path."
+
+PLAYER CHOICES:
+[1] "Reclining knightly is an art."
+[2] "Grass dreams are peaceful quests."
+[3] "Hoggy leads by napping example."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Haunts-a-Lot: "Knightly and weightless. To float above a floral carpet is to survey one's kingdom without crushing the subjects."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Haunts-a-Lot: "They do. A meadow tapestry woven by the sky itself is worth a respectful glance, even from a ghost."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Haunts-a-Lot: "Even ghosts. Honor is not limited by having or lacking a body. The flowers receive my appreciation all the same."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Haunts-a-Lot: "Good manners in small packages. A bow of wings is more graceful than many a courtly bow I've seen."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Haunts-a-Lot: "Royal and tiny. If nectar were wine, these butterflies would be the smallest, prettiest knights at the round table."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Haunts-a-Lot: "A fine sight. Refined behavior in creatures no bigger than a thumb gives hope to the realm."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Haunts-a-Lot: "An art. The angle of the visor, the placement of the cloak, the softness of the grass. Hoggy has mastered it."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Haunts-a-Lot: "Peaceful quests. No dragon, only dandelions. Yet the rest gained is real and the meadow is safer for it."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Haunts-a-Lot: "He leads well. A hog who naps with such dedication teaches the value of stillness in a blooming realm."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"H-hello, Dreamer. The island has so many flowers today that I keep getting surprised by new colors. And the butterflies are flying around in twos, which feels safer somehow. Hoggy is lying on the grass like he's having a little picnic, and the sun is warm but not too bright. I like days that don't shout."
+
+PLAYER CHOICES:
+[1] "Days that don't shout are nice."
+[2] "Butterfly pairs do feel safer."
+[3] "Hoggy's grass picnic looks peaceful."
+
+---
+
+TURN 2A (if player chose A):
+Flutter: "Nice. They whisper instead. The warm air, the soft petals, the gentle sun. Everything is talking quietly, and I can listen."
+
+PLAYER CHOICES:
+[1] "Quiet talking is easier to hear."
+[2] "Soft petals have soft voices."
+[3] "Listening is a cozy activity."
+
+---
+
+TURN 2B (if player chose B):
+Flutter: "Safer, yes. If one butterfly gets confused, the other one knows the way. I like knowing nobody has to be lost alone."
+
+PLAYER CHOICES:
+[1] "Pairs help with getting lost."
+[2] "Not being alone is warm."
+[3] "Butterflies look out for each other."
+
+---
+
+TURN 2C (if player chose C):
+Flutter: "Peaceful. He isn't doing anything special, just being warm and full of clover. Sometimes doing nothing special is the nicest thing."
+
+PLAYER CHOICES:
+[1] "Doing nothing special is underrated."
+[2] "Clover fullness is contentment."
+[3] "Warm grass is a good companion."
+
+---
+
+TURN 3AA (if player chose A then A):
+Flutter: "Easier. Loud days jump on you. Quiet days let you walk up to them slowly."
+
+---
+
+TURN 3AB (if player chose A then B):
+Flutter: "Soft voices. I think petals say 'hello' with their colors because words would be too loud."
+
+---
+
+TURN 3AC (if player chose A then C):
+Flutter: "Cozy. I don't have to answer back. I can just float nearby and understand."
+
+---
+
+TURN 3BA (if player chose B then A):
+Flutter: "They help. Two wings together can check the wind and pick the flower and still be okay."
+
+---
+
+TURN 3BB (if player chose B then B):
+Flutter: "Warm. Even if you're not touching, knowing someone is near makes the air feel different."
+
+---
+
+TURN 3BC (if player chose B then C):
+Flutter: "They do. One stays while the other sips, then they switch. Polite little friends."
+
+---
+
+TURN 3CA (if player chose C then A):
+Flutter: "Underrated. The best moments don't need a big plan. Just grass, sun, and being there."
+
+---
+
+TURN 3CB (if player chose C then B):
+Flutter: "Contentment. His tummy is full of green things and his nap is full of quiet. That's enough."
+
+---
+
+TURN 3CC (if player chose C then C):
+Flutter: "A good companion. The grass holds him up and doesn't ask questions. I like quiet support."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Hi Dreamer! The island is having a flower party and EVERYONE got an invite! The butterflies are showing up in twos, the sun is warm-but-mild like a cozy blanket, and Hoggy is having a picnic on the grass except he's also the picnic. I giggled at a dandelion and it wiggled!"
+
+PLAYER CHOICES:
+[1] "Flower parties need good guests."
+[2] "Twos of butterflies are double fun."
+[3] "Hoggy being the picnic is funny."
+
+---
+
+TURN 2A (if player chose A):
+Giggles: "Good guests! The butterflies brought their wings, the flowers brought their smells, and the sun brought warm light. Even the grass brought soft!"
+
+PLAYER CHOICES:
+[1] "Sunlight is a great party gift."
+[2] "Soft grass is the best chair."
+[3] "Smelly flowers are welcome too."
+
+---
+
+TURN 2B (if player chose B):
+Giggles: "Double fun because they can race and take turns and cheer each other on. A single butterfly is cute, but two butterflies is a tiny team!"
+
+PLAYER CHOICES:
+[1] "Tiny butterfly teams are powerful."
+[2] "Racing butterflies sound exciting."
+[3] "Two cute things multiply cute."
+
+---
+
+TURN 2C (if player chose C):
+Giggles: "Funny because he's eating the picnic while lying on it! The grass is the plate and the clover is the snack and Hoggy is the whole celebration."
+
+PLAYER CHOICES:
+[1] "Self-eating picnics are efficient."
+[2] "Clover snacks are party food."
+[3] "Celebration hogs are the best hogs."
+
+---
+
+TURN 3AA (if player chose A then A):
+Giggles: "Great gift! Sunlight doesn't need wrapping paper. It just shows up and makes everything glow. Best guest ever."
+
+---
+
+TURN 3AB (if player chose A then B):
+Giggles: "Best chair! You can sit, roll, nap, or wiggle. Grass is a multi-purpose party furniture."
+
+---
+
+TURN 3AC (if player chose A then C):
+Giggles: "Welcome too! Smelly in a good way, like the island put on flower perfume for the party."
+
+---
+
+TURN 3BA (if player chose B then A):
+Giggles: "Powerful! Two wings plus two wings plus flower power equals maximum cute. Tiny teams can do big fluttering."
+
+---
+
+TURN 3BB (if player chose B then B):
+Giggles: "Exciting! They loop around each other and nobody crashes because butterflies are excellent pilots."
+
+---
+
+TURN 3BC (if player chose B then C):
+Giggles: "Multiply cute! One butterfly is one cute. Two butterflies is cute times cute, which is a lot of cute."
+
+---
+
+TURN 3CA (if player chose C then A):
+Giggles: "Efficient! Why bring a picnic when you can BE the picnic? Hoggy solved the whole system."
+
+---
+
+TURN 3CB (if player chose C then B):
+Giggles: "Party food! Tiny green snacks that grow right where you're sitting. Hoggy doesn't even have to get up."
+
+---
+
+TURN 3CC (if player chose C then C):
+Giggles: "The best hogs! A celebration hog brings his own snacks, his own seat, and his own happy snorts. Five stars."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

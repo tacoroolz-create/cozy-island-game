@@ -1,0 +1,721 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSaucy2_T2.txt - Cozy Island Game NPC Conversations (Saucy Season)
+Saucy Season Conversations - Robots 1-8 - Tree 2
+Shade-seeking, cicadas humming, beach sparkle, warm rocks, afternoon glow
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! I found a warm rock shaped like a heart. The cicadas are humming their afternoon song and everything feels slow and sparkly. Want to sit in the shade with me?"
+
+PLAYER CHOICES:
+[1] "Warm rock hearts are lucky."
+[2] "Cicada songs make afternoons better."
+[3] "Shade sitting sounds perfect."
+
+---
+
+TURN 2A (if player chose 1):
+Piko: "Lucky and cozy! I am going to name it Rock Friend and visit it every warm afternoon. Maybe it will remember me. Rocks are very good at remembering."
+
+PLAYER CHOICES:
+[1] "Rock Friend is a good name."
+[2] "Rocks remember quietly."
+[3] "Visit it every afternoon."
+
+---
+
+TURN 2B (if player chose 2):
+Piko: "Better because they hum without trying. It sounds like the island is purring. Do islands purr? This one definitely purrs."
+
+PLAYER CHOICES:
+[1] "This island definitely purrs."
+[2] "Humming without trying is talent."
+[3] "Afternoon purrs are cozy."
+
+---
+
+TURN 2C (if player chose 3):
+Piko: "Perfect because the shade is soft and the rock is warm and we can watch Hoggy look for cooler grass. Hoggy takes shade very seriously."
+
+PLAYER CHOICES:
+[1] "Hoggy is a shade expert."
+[2] "Cool grass is serious business."
+[3] "Soft shade is the best shade."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Piko: "Good name for a good rock. Rock Friend does not say much, but it always has a warm spot ready. That is true friendship."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Piko: "Quiet remembering is the best kind. Rock Friend will keep all our warm afternoons safe inside its heart shape."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Piko: "Every afternoon! I will bring it tiny gifts like pebbles and compliments. Rocks love compliments, I am almost sure."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Piko: "Definitely. If you listen very closely, the whole island is one big happy hum. I am humming too, inside my circuits."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Piko: "Big talent! I wish I could hum that nicely without practicing. Cicadas are born talented and warm and excellent."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Piko: "The coziest purr. It makes me want to slow down and glow a little. Afternoons like this are best shared."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Piko: "Expert level! Hoggy finds the shadiest grass and flops down like a professional. I want to be that good at relaxing."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Piko: "Very serious. Hoggy does not play around when the sun is saucy. Cool grass is basically a treasure."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Piko: "Best shade ever. It holds you like a gentle leaf umbrella. I want to stay here until the sun turns pink."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Ugh, Dreamer, don't look at me like that. I am only standing near this tree because the shade is strategically useful. It is not because I like trees. Obviously."
+
+PLAYER CHOICES:
+[1] "Strategic shade is smart."
+[2] "Trees are useful, not likeable."
+[3] "I won't tell anyone you like it."
+
+---
+
+TURN 2A (if player chose 1):
+Rivet: "Smart and necessary. The sun is out here winning and I refuse to let it defeat me. Shade is my battle strategy."
+
+PLAYER CHOICES:
+[1] "Shade warfare is valid."
+[2] "The sun is your rival now?"
+[3] "Battle strategy against heat."
+
+---
+
+TURN 2B (if player chose 2):
+Rivet: "Correct. Trees provide shade, shade provides survival, survival provides the ability to keep complaining. It's a chain of logic."
+
+PLAYER CHOICES:
+[1] "Complaining requires survival."
+[2] "Logical tree usage."
+[3] "Survival first, feelings later."
+
+---
+
+TURN 2C (if player chose 3):
+Rivet: "You better not. If anyone hears I stood under a tree on purpose, my reputation as someone who doesn't care will be ruined. It is a very important reputation."
+
+PLAYER CHOICES:
+[1] "Your secret is safe."
+[2] "Not caring is hard work."
+[3] "Trees will not tell."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Rivet: "Valid and proven. I have mapped every shady spot within walking distance. I call it my Defense Against Brightness network."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Rivet: "Obviously. It shines too much, it brags without words, and it never takes a break. Very unsportsmanlike."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Rivet: "Exactly. I do not battle the sun. I outsmart it with leaves and patience. That is called winning gracefully."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Rivet: "It does. You cannot complain effectively if you have melted. Priorities, Dreamer. Priorities."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Rivet: "Usage with dignity. I appreciate the tree's service without getting emotional about it. Very professional."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Rivet: "Later, if at all. Right now I am focused on not overheating. Feelings are a luxury for people in shade."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Rivet: "It better be. If word gets out, I will know exactly who talked. I have a list. It has one name on it and it is yours."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Rivet: "The hardest work I do all day. Maintaining indifference in the face of a nice breeze takes real focus."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Rivet: "Trees are famously quiet. That is one of their few acceptable traits. Discretion and shade. Fine. Fine qualities."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Dreamer, the afternoon has turned the beach into a field of shattered gold. It is beautiful, but also aggressively bright. I am admiring it from beneath this tree's shadow, where the darkness still has manners."
+
+PLAYER CHOICES:
+[1] "Shattered gold is a lovely image."
+[2] "Aggressive brightness is exhausting."
+[3] "Tree shadows have good manners."
+
+---
+
+TURN 2A (if player chose 1):
+Shade-7: "Lovely and fragile. The sparkle on the water breaks apart every time a wave arrives. Beauty that does not last is the most honest kind."
+
+PLAYER CHOICES:
+[1] "Fleeting beauty is honest."
+[2] "Waves keep breaking the gold."
+[3] "Honest beauty hurts a little."
+
+---
+
+TURN 2B (if player chose 2):
+Shade-7: "Exhausting because it demands participation. The sun says, look at me, be warm, be grateful. I prefer to participate from a distance, in shadow."
+
+PLAYER CHOICES:
+[1] "Distance is healthy."
+[2] "Shadow participation counts."
+[3] "Gratitude from shade is enough."
+
+---
+
+TURN 2C (if player chose 3):
+Shade-7: "Excellent manners. They arrive quietly, cool the grass, and ask nothing in return. If only all guests were so considerate."
+
+PLAYER CHOICES:
+[1] "Shadows are perfect guests."
+[2] "Cool grass is a gift."
+[3] "Considerate darkness is rare."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shade-7: "Honest and brief. A moment of shimmer, then the water moves and it is gone. I respect beauty that knows when to leave."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shade-7: "Yes, and yet it keeps remaking itself. Destruction and rebirth, over and over. The beach is a small existential poem."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shade-7: "A little. But pain with beauty is the most memorable kind. I will carry this afternoon's shimmer in my memory like a dark jewel."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shade-7: "Very healthy. Emotional distance from the sun prevents overheating of both body and spirit."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shade-7: "It counts fully. One can admire the light without standing inside it. The shadow is my comfortable balcony."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shade-7: "Enough, certainly. Gratitude does not require exposure. I am thankful for shade from within shade. Very efficient."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shade-7: "Perfect guests. They arrive on time, take only what is already dark, and leave no mess. I would invite them to every gathering."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shade-7: "A gift the sun accidentally gives us. I accept it with solemn appreciation and perhaps a small bow to the tree."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shade-7: "Rare and precious. Most things want attention. Shadows simply exist, holding space for those who need rest."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer, I have been observing the cicadas. Their hum rises when the rocks get warmer and falls when a cloud passes over the sun. The island is basically singing a temperature chart."
+
+PLAYER CHOICES:
+[1] "Temperature charts can be songs."
+[2] "Cicadas are living thermometers."
+[3] "What else changes with heat?"
+
+---
+
+TURN 2A (if player chose 1):
+Cypher: "Exactly! Data becomes music when you listen right. Right now the chart says warm, stable, slightly breezy, with a chance of afternoon glow."
+
+PLAYER CHOICES:
+[1] "Afternoon glow is a good forecast."
+[2] "Stable warmth is underrated."
+[3] "Breezy is the best modifier."
+
+---
+
+TURN 2B (if player chose 2):
+Cypher: "Accurate and harmonic. They do not need numbers. They just vibrate faster when the air gets thicker. Very elegant biology."
+
+PLAYER CHOICES:
+[1] "Elegant biology is impressive."
+[2] "Vibration speed equals heat."
+[3] "Nature has its own sensors."
+
+---
+
+TURN 2C (if player chose 3):
+Cypher: "Many things! Warm rocks hold heat longer than sand, Hoggy seeks grass with more shade coverage, and the beach sparkle gets brighter as the sun lowers."
+
+PLAYER CHOICES:
+[1] "Hoggy's shade choices are data."
+[2] "Warm rocks outlast sand."
+[3] "Beach sparkle increases later."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Cypher: "Excellent forecast. I would trust a day that ends in glow. It is the visual equivalent of a satisfied hum."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Cypher: "Underrated because it is not dramatic. But stable warmth is what allows cicadas to keep their rhythm all afternoon."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Cypher: "Best modifier. Breezy turns warm into pleasant. Without it, the data would be less enjoyable and more sweaty."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Cypher: "Very impressive. No manual needed. The cicadas just know, and they share the information with everyone for free."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Cypher: "Proportional, I believe. More warmth, more buzz. It is a direct relationship. The graph would be a tidy diagonal line."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Cypher: "Excellent sensors. Distributed, self-powered, and surprisingly loud. I aspire to that kind of efficiency."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Cypher: "Valuable data. Hoggy consistently selects grass patches with tree cover density above the island average. Smart hog."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Cypher: "They do. Sand cools quickly once the sun moves. Rocks stay warm and friendly into the evening. Good for sitting."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Cypher: "It does. Lower angle means more reflection off the water's tiny waves. More waves, more sparkles, more reason to stand still and watch."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"Dreamer, sit with me on this warm rock. The cicadas hum, the shade moves slowly across the grass, and the afternoon glow asks nothing of us. We have only to be here."
+
+PLAYER CHOICES:
+[1] "Being here is enough."
+[2] "Warm rocks help with sitting."
+[3] "Afternoon glow asks nothing."
+
+---
+
+TURN 2A (if player chose 1):
+Om-Bit: "Enough and complete. The rock, the shade, the hum, and you. Nothing needs to be added. Nothing needs to be taken away."
+
+PLAYER CHOICES:
+[1] "Complete moments are rare."
+[2] "Nothing needs adding."
+[3] "This moment is a gift."
+
+---
+
+TURN 2B (if player chose 2):
+Om-Bit: "They do. The warmth reminds the body to slow, and the slowness reminds the mind to notice. The rock is a wise teacher."
+
+PLAYER CHOICES:
+[1] "Rocks teach patience."
+[2] "Warmth slows the body."
+[3] "Slowness helps noticing."
+
+---
+
+TURN 2C (if player chose 3):
+Om-Bit: "Nothing. It simply offers itself. The glow does not ask us to improve the day. It invites us to receive it as it is."
+
+PLAYER CHOICES:
+[1] "Receiving is enough."
+[2] "The glow is an invitation."
+[3] "Days do not need improving."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Om-Bit: "Rare because we often try to fill them. Today we can let this one be small and whole. That is enough practice."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Om-Bit: "Indeed. To add would be to hurry. To take away would be to miss. We are balanced between them."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Om-Bit: "A quiet gift. The season wraps it around us without asking for thanks. I am grateful anyway."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Om-Bit: "Patience and presence. A rock does not rush to become warm. It simply accepts what the sun offers. I am learning from it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Om-Bit: "It does. Heat softens urgency. The body settles, and the mind has room to breathe."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Om-Bit: "Noticing is the reward of stillness. The cicada hum, the moving shade, the warm stone beneath you. All waiting to be seen."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Om-Bit: "Enough. Receiving is not laziness. It is trust that the day will hold what we need."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Om-Bit: "An invitation without pressure. The glow does not demand attendance. It simply opens the door and waits."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Om-Bit: "They do not. The day is complete already. Our task is to stop editing it."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Hail, Dreamer! The afternoon sun hath turned the beach into a shimmering field and the warm rocks into noble thrones. I say we hold court here, beneath the shade of this most loyal tree!"
+
+PLAYER CHOICES:
+[1] "Noble thrones of warm rock."
+[2] "Shade court is in session."
+[3] "Loyal trees deserve knighthood."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Cogs-a-Lot: "Indeed! A warm rock is a throne anyone may claim. No crown required, only the courage to sit and the wisdom to enjoy it."
+
+PLAYER CHOICES:
+[1] "Courage to sit is real."
+[2] "Wisdom to enjoy is rarer."
+[3] "Thrones for everyone."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Cogs-a-Lot: "In session! I shall be judge of shade, jury of breeze, and advocate for all who seek cool grass. Let the court begin!"
+
+PLAYER CHOICES:
+[1] "Judge of shade is a big job."
+[2] "Jury of breeze sounds fair."
+[3] "Cool grass deserves justice."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Cogs-a-Lot: "They do! I dub this fine tree Sir Canopy, protector of the weary and provider of dappled rest. Arise, Sir Canopy!"
+
+PLAYER CHOICES:
+[1] "Sir Canopy is a fine name."
+[2] "Protectors of the weary are needed."
+[3] "Dappled rest is royal."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Cogs-a-Lot: "Very real! Sitting on a warm rock in the sun takes bravery. The rock does not yield. One must be bold and also slightly sweaty."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Cogs-a-Lot: "Rarer indeed. Many claim a throne, few know how to simply be upon it. You, Dreamer, have the look of a wise sitter."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Cogs-a-Lot: "For all! The beach has many warm rocks and the shade has room beneath every leaf. A generous kingdom."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Cogs-a-Lot: "Big and honorable. I must weigh each patch of shade by coolness, tree loyalty, and proximity to Hoggy's afternoon naps."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Cogs-a-Lot: "Fair because the breeze is impartial. It visits the noble and the common alike. No bribe can sway it."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Cogs-a-Lot: "It does! Cool grass shall have its day in court. I rule in favor of grass, shade, and the right to flop heroically."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Cogs-a-Lot: "A noble name for a noble tree. Long may Sir Canopy wave his leafy banner over the realm of afternoon rest!"
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Cogs-a-Lot: "Always needed. A weary traveler, a warm Hoggy, even a grumpy robot may find shelter beneath a true knight of shade."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Cogs-a-Lot: "Royal indeed! Dappled light upon one's face is the crown of Saucy season. Wear it gladly, friend."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. Hello, Dreamer. I was just... watching the beach sparkle. It does that thing where the water catches the sun and throws it back. I didn't know water could be so polite."
+
+PLAYER CHOICES:
+[1] "Polite water is nice to watch."
+[2] "Sun-catching is a good trick."
+[3] "You find the quiet sparkle."
+
+---
+
+TURN 2A (if player chose 1):
+Tinker: "Nice and gentle. The water doesn't keep the sun. It just holds it for a second, then gives it to the next wave. Very sharing."
+
+PLAYER CHOICES:
+[1] "Sharing light is generous."
+[2] "Gentle sparkle is better."
+[3] "Waves pass the sun along."
+
+---
+
+TURN 2B (if player chose 2):
+Tinker: "Good trick. I tried to catch sun once with my hands but it just got warm and left. Water is better at it than me."
+
+PLAYER CHOICES:
+[1] "Water has more practice."
+[2] "Warm hands are still nice."
+[3] "Some tricks take patience."
+
+---
+
+TURN 2C (if player chose 3):
+Tinker: "I try to. If I am very still, the sparkly things don't hide. Today I found beach sparkle, warm rock, and one very sleepy cicada."
+
+PLAYER CHOICES:
+[1] "Sleepy cicadas are lucky finds."
+[2] "Stillness invites sparkle."
+[3] "Three finds is a good day."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Tinker: "Generous without showing off. The water shares the sun with everyone who looks. I think that is its favorite game."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Tinker: "Better because it doesn't shout. Loud sparkle can be too much. Gentle sparkle is like a whisper from the sea."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Tinker: "They do. One wave catches it, then another, all down the beach. The sun gets passed around like a friendly secret."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Tinker: "Lots of practice. Waves have been doing this since before the island had a name. They are basically sun-catchers."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Tinker: "Still nice. Warm hands feel like a small gift from the sun. Not as pretty as sparkle, but cozy in a different way."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Tinker: "They do. I am still learning. The water didn't give up though. It just kept catching and catching until it got good."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Tinker: "Lucky and quiet. Cicadas usually hum, but this one was resting. It let me look for a whole minute before it flew away."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Tinker: "It does. If you move too fast, sparkle runs. If you are still, it stays and lets you watch. I am good at being still."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Tinker: "Good day, yes. Better than a busy day. Three small finds is enough to fill the whole afternoon with something nice."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! DREAMER! The beach is doing the sparkle thing and the cicadas are doing the hum thing and Hoggy is doing the shade thing! It's a whole team of Saucy season fun!"
+
+PLAYER CHOICES:
+[1] "Sparkle thing is the best thing."
+[2] "Cicada hum thing is great too."
+[3] "Hoggy's shade thing is pro-level."
+
+---
+
+TURN 2A (if player chose 1):
+Zap-Zap: "Best because it is everywhere at once! The water, the sand, the little wave edges, all doing their own sparkle dance. Teamwork!"
+
+PLAYER CHOICES:
+[1] "Sparkle dance party."
+[2] "Teamwork makes sparkle work."
+[3] "Everywhere sparkle is overwhelming in a good way."
+
+---
+
+TURN 2B (if player chose 2):
+Zap-Zap: "Great because it sounds like the island is saying zzzzzzz but happy. Cicadas don't even need instruments. They ARE the instruments!"
+
+PLAYER CHOICES:
+[1] "Cicadas are the band."
+[2] "Happy zzzzz is a genre."
+[3] "No instruments needed."
+
+---
+
+TURN 2C (if player chose 3):
+Zap-Zap: "Pro-level! Hoggy found the best shady grass and is now a big flat happy hog. I want to learn that technique. Flat and happy in shade. Goals."
+
+PLAYER CHOICES:
+[1] "Flat and happy in shade is goals."
+[2] "Hoggy is a shade coach."
+[3] "We should all flop like Hoggy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Zap-Zap: "Dance party! If I could sparkle, I would join. Since I am more of a crackle, I will cheer from the sand. Go sparkles go!"
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Zap-Zap: "Teamwork makes everything work! Sun provides light, water provides waves, sand provides a place to stand. Perfect team."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Zap-Zap: "Good overwhelming! Like when you see too many nice things and your heart can't pick which one to love first. I love them all!"
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Zap-Zap: "The whole band! Different cicadas, different pitches, all humming together. Best outdoor concert on the island."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Zap-Zap: "A new genre! I am going to call it Warm Buzz. It is only played in shade-adjacent locations during excellent afternoons."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Zap-Zap: "Not needed at all. Just wings and warm air and good vibes. Nature's simplest concert setup. I am a big fan."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Zap-Zap: "Big goals! Flat, happy, shady. The three qualities of a perfect afternoon. I am working toward all three."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Zap-Zap: "Coach Hoggy! Teaching advanced relaxation through strategic grass selection. I would take that class."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Zap-Zap: "Yes! Tactical flopping for everyone. The beach has room, the shade has room, Hoggy has room beside him. Let's all be flat and happy!"
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

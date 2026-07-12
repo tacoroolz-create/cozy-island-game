@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet3.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Boo! Hehe. The flowers are opening their little faces today, Dreamer. Everything smells like honey and rain. Hoggy was rolling in the soft grass and a butterfly landed on my bow. Sweet season makes my gauze feel extra pink!"
+
+PLAYER CHOICES:
+[1] "Flower faces are cute."
+[2] "Hoggy rolling in grass is funny."
+[3] "Butterfly bows are lucky."
+
+---
+
+TURN 2A (if player chose A):
+Boo-Boo: "Cute and brave. Imagine being a tiny flower and deciding to open up to the whole big sky. I'd clap for every single one."
+
+PLAYER CHOICES:
+[1] "Flowers are tiny sky-openers."
+[2] "I'd clap too."
+[3] "Opening up is sweet."
+
+---
+
+TURN 2B (if player chose B):
+Boo-Boo: "Funny because he gets grass on his snout and then sneezes happy sneezes. I tried rolling once but I just floated through the grass. Still fun."
+
+PLAYER CHOICES:
+[1] "Happy sneezes are the best."
+[2] "Floating through grass counts."
+[3] "Hoggy has good grass taste."
+
+---
+
+TURN 2C (if player chose C):
+Boo-Boo: "Lucky! The butterfly sat there for a whole minute. I didn't move because I didn't want to scare it. It tickled a little but nicely."
+
+PLAYER CHOICES:
+[1] "Butterfly tickles are nice."
+[2] "Staying still is hard."
+[3] "Nice luck is the best kind."
+
+---
+
+TURN 3AA (if player chose A then A):
+Boo-Boo: "Tiny sky-openers. They don't even wear hats and they're not scared. I want to be flower-brave when I grow up."
+
+---
+
+TURN 3AB (if player chose A then B):
+Boo-Boo: "Clapping for flowers. They can't hear us, but maybe the ground does and it tells them they're doing great."
+
+---
+
+TURN 3AC (if player chose A then C):
+Boo-Boo: "Sweet like the season. When you open up, sometimes a bee visits, sometimes the sun smiles. Either way is good."
+
+---
+
+TURN 3BA (if player chose B then A):
+Boo-Boo: "Best sneezes. Hoggy's nose says 'achoo!' but his whole body says 'I love this grass!'"
+
+---
+
+TURN 3BB (if player chose B then B):
+Boo-Boo: "It counts as rolling if you're happy while you do it. I left a ghost-shaped dimple in the grass."
+
+---
+
+TURN 3BC (if player chose B then C):
+Boo-Boo: "Hoggy knows which grass is the rolliest. That's a real skill. I trust his grass opinions."
+
+---
+
+TURN 3CA (if player chose C then A):
+Boo-Boo: "Nice tickles. Like a tiny friend saying hello with its feet. I giggled very quietly."
+
+---
+
+TURN 3CB (if player chose C then B):
+Boo-Boo: "Very hard. But worth it. The butterfly was so pretty I wanted to be a statue of a happy ghost."
+
+---
+
+TURN 3CC (if player chose C then C):
+Boo-Boo: "Best kind. Not finding gold or anything, just finding a butterfly who thinks your bow is a good resting place."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. It's you. I suppose Sweet season is officially here, since the flowers have all decided to be dramatic about blooming and the grass looks unnecessarily soft. Hoggy is wallowing in a patch of clover like it's a throne. And it rained this morning, so everything smells faintly acceptable."
+
+PLAYER CHOICES:
+[1] "Dramatic blooming is a good show."
+[2] "Clover thrones are fitting for Hoggy."
+[3] "Faintly acceptable smells are rare."
+
+---
+
+TURN 2A (if player chose A):
+Wisp: "A good show. Each flower opens as if the world has been waiting just for it. Arrogant, but visually I can't complain."
+
+PLAYER CHOICES:
+[1] "Arrogant flowers have confidence."
+[2] "The world probably was waiting."
+[3] "Visual quality matters."
+
+---
+
+TURN 2B (if player chose B):
+Wisp: "Fitting. A clover throne for a hog of... simple pleasures. He snorts like a king receiving applause."
+
+PLAYER CHOICES:
+[1] "Snorts are a fine applause."
+[2] "Simple pleasures are dignified."
+[3] "Kings should roll more."
+
+---
+
+TURN 2C (if player chose C):
+Wisp: "Rare, yes. Usually rain smells too enthusiastic. This morning it was subtle, like rain was trying not to disturb anyone."
+
+PLAYER CHOICES:
+[1] "Polite rain is considerate."
+[2] "Subtle wetness is an art."
+[3] "Morning rain earns points."
+
+---
+
+TURN 3AA (if player chose A then A):
+Wisp: "Confidence I can tolerate. At least flowers don't pretend to be humble before shoving color everywhere."
+
+---
+
+TURN 3AB (if player chose A then B):
+Wisp: "It probably was. The ground has been waiting all Cool season to hand out petals. About time."
+
+---
+
+TURN 3AC (if player chose A then C):
+Wisp: "It matters. If you're going to bloom, bloom properly. No half-opened flowers on my island."
+
+---
+
+TURN 3BA (if player chose B then A):
+Wisp: "A fine, snuffly applause. Better than some courtiers I've imagined. More sincere, at least."
+
+---
+
+TURN 3BB (if player chose B then B):
+Wisp: "Dignified in their own way. Hoggy doesn't need grandeur to be royal in his clover."
+
+---
+
+TURN 3BC (if player chose B then C):
+Wisp: "They should. Kings would be less stuffy if they rolled in grass occasionally. I won't write the decree, but I support it."
+
+---
+
+TURN 3CA (if player chose C then A):
+Wisp: "Considerate and damp. The flowers looked grateful without being smug. I respect that."
+
+---
+
+TURN 3CB (if player chose C then B):
+Wisp: "An art. Too much rain is a statement. This was more of a soft suggestion."
+
+---
+
+TURN 3CC (if player chose C then C):
+Wisp: "Points earned. Wet mornings usually offend my gauze, but this one was merely present."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Sweet season, Dreamer. The dead things pretend to be alive again. Flowers push through old leaves, rain cleans the stones, and the grass grows with a kind of stubborn hope. Hoggy sleeps in the clover as if the world has forgiven him. Maybe it has."
+
+PLAYER CHOICES:
+[1] "Dead things pretending is beautiful."
+[2] "Stubborn hope is powerful."
+[3] "Clover forgiveness is gentle."
+
+---
+
+TURN 2A (if player chose A):
+Morwen: "Beautiful and temporary. The petals will fall, the stems will brown, but right now the dead earth is wearing a bright mask. I find that honest."
+
+PLAYER CHOICES:
+[1] "Temporary beauty is real."
+[2] "Bright masks have their place."
+[3] "Honest decay is kind."
+
+---
+
+TURN 2B (if player chose B):
+Morwen: "Powerful in a quiet way. The grass doesn't announce its return. It simply pushes up, blade by blade, until the brown is gone."
+
+PLAYER CHOICES:
+[1] "Blade by blade is enough."
+[2] "Quiet returns last longer."
+[3] "Brown being gone is a victory."
+
+---
+
+TURN 2C (if player chose C):
+Morwen: "Gentle and strange. Forgiveness from flowers seems too easy. But Hoggy sleeps so peacefully I almost believe in easy mercy."
+
+PLAYER CHOICES:
+[1] "Easy mercy is still mercy."
+[2] "Peaceful sleep is trust."
+[3] "Flowers are generous judges."
+
+---
+
+TURN 3AA (if player chose A then A):
+Morwen: "Real because it ends. Things that last forever become invisible. Sweet season insists on being seen."
+
+---
+
+TURN 3AB (if player chose A then B):
+Morwen: "Their place is now. Let the world wear pink and yellow for a while. I'll appreciate the contrast."
+
+---
+
+TURN 3AC (if player chose A then C):
+Morwen: "Kind to tell the truth through color. Everything blooms, everything falls. No lies in that cycle."
+
+---
+
+TURN 3BA (if player chose B then A):
+Morwen: "Enough. The earth doesn't need one grand gesture. It needs a million tiny green decisions."
+
+---
+
+TURN 3BB (if player chose B then B):
+Morwen: "Longer, perhaps. Quiet returns don't burn out from their own noise. They just stay."
+
+---
+
+TURN 3BC (if player chose B then C):
+Morwen: "A small green victory, won without bloodshed. Sweet season conquers the dead ground gently."
+
+---
+
+TURN 3CA (if player chose C then A):
+Morwen: "Still mercy. I'll take it, even if it doesn't ask enough questions."
+
+---
+
+TURN 3CB (if player chose C then B):
+Morwen: "Trust in the clover. The hog doesn't question the ground. He sleeps, and the ground holds him."
+
+---
+
+TURN 3CC (if player chose C then C):
+Morwen: "Generous and slightly foolish. But their softness is real. Even I can respect soft justice."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I've been cataloguing Sweet season phenomena. Flower bloom rates are up, butterfly activity is measurably higher, grass growth follows a predictable upward curve, and Hoggy has selected a statistically significant clover patch for his afternoon rest. Also, the morning rain had a pH of 'pleasant.'"
+
+PLAYER CHOICES:
+[1] "Tell me about bloom rates."
+[2] "Hoggy's clover selection is scientific."
+[3] "Pleasant pH is a useful metric."
+
+---
+
+TURN 2A (if player chose A):
+Spectra: "Bloom rates correlate strongly with warm mornings and gentle rain. The island is essentially running a flower-scheduling algorithm, and the flowers are very compliant data points."
+
+PLAYER CHOICES:
+[1] "Compliant flowers are ideal."
+[2] "The island runs good algorithms."
+[3] "Flower scheduling sounds official."
+
+---
+
+TURN 2B (if player chose B):
+Spectra: "Scientifically rigorous. Hoggy evaluated several patches before settling on one with optimal softness, clover density, and sun angle. I recorded his snort of approval."
+
+PLAYER CHOICES:
+[1] "Snort-based approval is valid."
+[2] "Hoggy is a field researcher."
+[3] "Clover density matters."
+
+---
+
+TURN 2C (if player chose C):
+Spectra: "Useful and subjective. Pleasant pH means the rain was neither too sharp nor too bland. It hit a perfect middle note on the tongue of the atmosphere."
+
+PLAYER CHOICES:
+[1] "Middle-note rain is harmonious."
+[2] "Atmospheric tongues are interesting."
+[3] "Subjective metrics still count."
+
+---
+
+TURN 3AA (if player chose A then A):
+Spectra: "Ideal data points. They open on schedule, display color, and attract pollinators. Very professional flowers."
+
+---
+
+TURN 3AB (if player chose A then B):
+Spectra: "Good algorithms. Warmth plus water plus patience equals predictable delight. The island has excellent logic."
+
+---
+
+TURN 3AC (if player chose A then C):
+Spectra: "Official-sounding because it is. Every bloom has a time slot. Today they are all on time."
+
+---
+
+TURN 3BA (if player chose B then A):
+Spectra: "Valid and repeatable. If Hoggy approves, the patch has passed peer review."
+
+---
+
+TURN 3BB (if player chose B then B):
+Spectra: "A field researcher with excellent instincts. He doesn't take notes, but his sample sites are consistently superior."
+
+---
+
+TURN 3BC (if player chose B then C):
+Spectra: "Density affects comfort and rolling potential. Hoggy's selected patch scored high in both categories."
+
+---
+
+TURN 3CA (if player chose C then A):
+Spectra: "Harmonious rain. It doesn't demand attention. It just plays its note and lets the flowers sing along."
+
+---
+
+TURN 3CB (if player chose C then B):
+Spectra: "Interesting and metaphorical. The sky tastes the rain, decides it's acceptable, and shares it with us."
+
+---
+
+TURN 3CC (if player chose C then C):
+Spectra: "They count. Science needs hard numbers, but soft observations are where the best questions start."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"Listen, Dreamer. The rain has passed and the island breathes again. Flowers open without hurry. Grass rises where it fell. Hoggy rests in the clover, and the morning is mild. All of this is the gift of returning. We need only receive it."
+
+PLAYER CHOICES:
+[1] "Returning is a gentle gift."
+[2] "Hoggy resting is part of the peace."
+[3] "Receiving without hurry is hard."
+
+---
+
+TURN 2A (if player chose A):
+Hush: "Gentle, yes. The island does not return with noise. It returns the way rain soaks in, the way grass lifts, the way a flower opens one petal at a time."
+
+PLAYER CHOICES:
+[1] "One petal at a time is enough."
+[2] "Soaking in is real change."
+[3] "Quiet returns are strong."
+
+---
+
+TURN 2B (if player chose B):
+Hush: "He is part of it. His sleep says the ground is safe, the air is kind, and there is nothing to run from. That is a blessing the whole island feels."
+
+PLAYER CHOICES:
+[1] "Safe ground is a blessing."
+[2] "Kind air is easy to breathe."
+[3] "Rest without worry is holy."
+
+---
+
+TURN 2C (if player chose C):
+Hush: "Hard, because we want to hold it. But Sweet season does not ask us to keep it. It asks us to be here while it is here."
+
+PLAYER CHOICES:
+[1] "Being here is enough."
+[2] "Letting go is its own holding."
+[3] "Seasons teach presence."
+
+---
+
+TURN 3AA (if player chose A then A):
+Hush: "Enough. A single petal opening is the whole season speaking if we are quiet enough to hear."
+
+---
+
+TURN 3AB (if player chose A then B):
+Hush: "Real change. Not the loud kind, but the deep kind. The earth remembers water and begins again."
+
+---
+
+TURN 3AC (if player chose A then C):
+Hush: "Strong because it does not force. The island returns with patience, and patience is stronger than shouting."
+
+---
+
+TURN 3BA (if player chose B then A):
+Hush: "A blessing we walk upon. Every soft step in the grass is a thanks the ground understands."
+
+---
+
+TURN 3BB (if player chose B then B):
+Hush: "Easy to breathe and easy to share. The kind air moves through us all, hog and ghost alike."
+
+---
+
+TURN 3BC (if player chose B then C):
+Hush: "Holy in its simplicity. To rest without worry is to trust the world for a little while."
+
+---
+
+TURN 3CA (if player chose C then A):
+Hush: "Enough. We cannot keep the flower, but we can keep the memory of having been near it."
+
+---
+
+TURN 3CB (if player chose C then B):
+Hush: "Yes. We hold by releasing. The season stays with us because we did not try to own it."
+
+---
+
+TURN 3CC (if player chose C then C):
+Hush: "They teach presence better than any words. The flower is here now. That is the whole lesson."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Fair Dreamer! The realm of flowers has awakened from its winter slumber. The gentle rain has watered the fields, the grass grows lush as a green carpet, and Hoggy has claimed a clover patch as his royal resting ground. A mild morning such as this calls for a wandering minstrel, though I shall simply haunt poetically instead."
+
+PLAYER CHOICES:
+[1] "Flower realms are worthy of knights."
+[2] "Clover patches make fine royal grounds."
+[3] "Poetic haunting is a noble art."
+
+---
+
+TURN 2A (if player chose A):
+Sir Haunts-a-Lot: "Worthy indeed! A knight may defend castles, but who defends the daisies? They have no walls, yet they stand brave against the morning dew."
+
+PLAYER CHOICES:
+[1] "Daisies are brave little warriors."
+[2] "Defending flowers is honorable."
+[3] "No walls, only petals."
+
+---
+
+TURN 2B (if player chose B):
+Sir Haunts-a-Lot: "Fine grounds for a hog of discerning taste. The clover is soft, the sun is mild, and the royal snores are peaceful. A prosperous kingdom."
+
+PLAYER CHOICES:
+[1] "Peaceful snores mean peace."
+[2] "Clover kingdoms are cozy."
+[3] "Hoggy is a wise ruler."
+
+---
+
+TURN 2C (if player chose C):
+Sir Haunts-a-Lot: "A noble art! To glide among blossoms and sigh with meaning is to honor the season. I shall practice my most wistful moan."
+
+PLAYER CHOICES:
+[1] "Wistful moans suit spring."
+[2] "Blossoms deserve honor."
+[3] "Practice makes haunting perfect."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Haunts-a-Lot: "Brave little warriors in white and yellow, standing at dawn without swords. Their courage is soft but true."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Haunts-a-Lot: "Honorable and fragrant. A knight who defends flowers defends beauty itself."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Haunts-a-Lot: "Petals are enough. They need no armor when the morning light is their shield."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Haunts-a-Lot: "Peace indeed. Where the hog sleeps soundly, no villain dares disturb the clover."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Haunts-a-Lot: "Cozy kingdoms are the best kind. No wars, only soft noses and green rest."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Haunts-a-Lot: "A wise and restful ruler. He governs by example, and his example is mostly napping."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Haunts-a-Lot: "They suit spring perfectly. A little longing, a lot of flowers, and a breeze that understands."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Haunts-a-Lot: "They do. Each bloom is a small banner raised in honor of returning life."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Haunts-a-Lot: "Perfect haunting is an eternal pursuit. Today I shall be approximately eighty percent wistful and twenty percent floral."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"H-hello, Dreamer. Sweet season is... very bright. The flowers opened today and it made the whole island look shy too, in a good way. Hoggy is sleeping in some clover and I saw a butterfly that was almost the same color as my gauze. The morning rain left little sparkles on the grass."
+
+PLAYER CHOICES:
+[1] "Shy islands are pretty."
+[2] "Hoggy sleeping in clover is sweet."
+[3] "Sparkly grass is magical."
+
+---
+
+TURN 2A (if player chose A):
+Flutter: "Pretty because it's not trying to be loud. The island just put on its soft colors and hoped someone would notice. I noticed."
+
+PLAYER CHOICES:
+[1] "Noticing is a kind gift."
+[2] "Soft colors are brave too."
+[3] "Loud isn't the only pretty."
+
+---
+
+TURN 2B (if player chose B):
+Flutter: "Sweet. He looks very round and peaceful. I wanted to tiptoe closer but I was scared I'd float through his dream."
+
+PLAYER CHOICES:
+[1] "Dreams are soft to float through."
+[2] "Peaceful hogs are nice to see."
+[3] "Tiptoeing is thoughtful."
+
+---
+
+TURN 2C (if player chose C):
+Flutter: "Magical in a small way. Each sparkle is just rain remembering how to shine. I tried to catch one but my hand went through it because I'm ghosty."
+
+PLAYER CHOICES:
+[1] "Ghosty hands still appreciate."
+[2] "Rain remembering is a nice thought."
+[3] "Small magic is real magic."
+
+---
+
+TURN 3AA (if player chose A then A):
+Flutter: "A gift I can give. I don't need to say much. Just seeing the island's soft side is enough."
+
+---
+
+TURN 3AB (if player chose A then B):
+Flutter: "Brave too. Soft colors don't shout for attention. They just trust that beauty is enough."
+
+---
+
+TURN 3AC (if player chose A then C):
+Flutter: "It's not. Loud is one way. Quiet is another. The island is good at both in different seasons."
+
+---
+
+TURN 3BA (if player chose B then A):
+Flutter: "Soft to float through. Hoggy's dreams are probably full of clover and warm snorts. That's a nice place to drift."
+
+---
+
+TURN 3BB (if player chose B then B):
+Flutter: "Nice to see. It makes the whole day feel safer, knowing there's a happy hog sleeping nearby."
+
+---
+
+TURN 3BC (if player chose B then C):
+Flutter: "Thoughtful and careful. I didn't want to be the ghost who woke a sleeping hog. That would be rude."
+
+---
+
+TURN 3CA (if player chose C then A):
+Flutter: "They do. Even if I can't hold the sparkles, I can hold the feeling of seeing them. That's still something."
+
+---
+
+TURN 3CB (if player chose C then B):
+Flutter: "Nice thought. The rain falls, then it waits on the grass, then the sun reminds it to shine again."
+
+---
+
+TURN 3CC (if player chose C then C):
+Flutter: "Real magic. Not big spells, just tiny lights on tiny leaves that make the morning feel special."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Hi Dreamer! Sweet season is like the island woke up and put on a flower dress! Hoggy is napping in clover like a fluffy king, butterflies are doing loop-de-loops, and the grass has rain sparkles everywhere. I giggled so hard a flower wiggled!"
+
+PLAYER CHOICES:
+[1] "Flower dresses are excellent."
+[2] "Butterfly loop-de-loops are funny."
+[3] "Rain sparkles make everything better."
+
+---
+
+TURN 2A (if player chose A):
+Giggles: "Excellent because the island didn't even need a mirror. It just grew one on every hill and said 'ta-da!'"
+
+PLAYER CHOICES:
+[1] "Ta-da flowers are confident."
+[2] "Hills in dresses look fancy."
+[3] "Growing your own dress is clever."
+
+---
+
+TURN 2B (if player chose B):
+Giggles: "Funny because they're showing off but in a tiny way. A butterfly loop is basically a flying giggle. I tried to loop too but I spun into a tree. Softly."
+
+PLAYER CHOICES:
+[1] "Flying giggles are the best."
+[2] "Spinning into trees is soft for ghosts."
+[3] "Butterflies are tiny show-offs."
+
+---
+
+TURN 2C (if player chose C):
+Giggles: "Better! Everything looks like it got sprinkled with tiny diamonds. The grass, the flowers, even Hoggy's snout had one sparkle. I almost counted them but I got excited and lost track at 'sparkle.'"
+
+PLAYER CHOICES:
+[1] "Counting sparkles is hard."
+[2] "Sparkle snouts are royal."
+[3] "Tiny diamonds are everywhere."
+
+---
+
+TURN 3AA (if player chose A then A):
+Giggles: "Confident and colorful. I wish I could wear a dress made of flowers. I'd be the prettiest ghost at the blooming party."
+
+---
+
+TURN 3AB (if player chose A then B):
+Giggles: "Fancy hills! The island is going to a party and we all got invited just by walking around."
+
+---
+
+TURN 3AC (if player chose A then C):
+Giggles: "Clever because you never outgrow it. Next year it'll make a new dress all over again. Sustainable fashion!"
+
+---
+
+TURN 3BA (if player chose B then A):
+Giggles: "Best kind of giggle. Small, floaty, and slightly dizzy. Butterflies know how to party in the air."
+
+---
+
+TURN 3BB (if player chose B then B):
+Giggles: "Soft for ghosts. The tree didn't mind. It probably thought 'hello, floaty friend.' Trees are polite like that."
+
+---
+
+TURN 3BC (if player chose B then C):
+Giggles: "Tiny show-offs in the best way. They're saying 'look at my pretty wings!' and we absolutely should look."
+
+---
+
+TURN 3CA (if player chose C then A):
+Giggles: "Very hard. I got to 'one' and then a butterfly did a loop and I forgot numbers exist."
+
+---
+
+TURN 3CB (if player chose C then B):
+Giggles: "Royal! A king with a sparkly snout is a king I respect. Long live King Hoggy of the Clover!"
+
+---
+
+TURN 3CC (if player chose C then C):
+Giggles: "Everywhere if you look close. The island is secretly very rich. Rich in sparkles, I mean."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

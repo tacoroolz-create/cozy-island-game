@@ -1,0 +1,720 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh4_T3.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Tree 3 Conversations - Animals 17-24
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal (Rabbit) - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! I found a warm rock this morning and it felt like a little Everburn hug. The snow left the cutest footprints everywhere, and I keep wondering if the viking rumor is just someone worrying out loud. Want to share a pretend hot drink with me?"
+
+PLAYER CHOICES:
+[1] "Pretend hot drinks are delicious."
+[2] "Warm rocks feel like hugs."
+[3] "Viking rumors are just cozy worries."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "Delicious and warm! I am sipping imaginary cocoa and it tastes like marshmallows and kindness. My favorite flavor."
+
+PLAYER CHOICES:
+[1] "Marshmallows and kindness is a good flavor."
+[2] "Imaginary drinks are never too hot."
+[3] "Cocoa hugs are the best hugs."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "They do! The rock holds yesterday's sun and shares it slowly. I sat on it and my whole body said thank you."
+
+PLAYER CHOICES:
+[1] "Sun memories are the best."
+[2] "Slow warmth is cozy."
+[3] "Your body said thank you nicely."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Just cozy worries! If vikings came, they would probably want hot drinks too. We could all sit on warm rocks and be friends."
+
+PLAYER CHOICES:
+[1] "Vikings probably like cocoa."
+[2] "Warm rocks make friends."
+[3] "Worrying together is cozy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "The best flavor! I want to bottle it and save it for sad afternoons. The label would say 'Mochi's Kindness Cocoa, one sip equals three hugs.'"
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "Never too hot and always just right. Imaginary cocoa is very safe. It cannot spill and it cannot burn your tongue, only your heart in a good way."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "The best hugs! They start in your tummy and travel all the way to your ears. I think my ears just got warmer thinking about it."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "The very best! The sun writes little warm notes in the rock and we get to read them with our sit-bones. It's like a sunny letter."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "Cozy because it stays. Fast warmth is exciting but slow warmth is trustworthy. I trust this rock with my whole fluffy bottom."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "It said it very politely, like a tiny full-body whisper. Rocks understand gratitude when you sit still enough to let them hear it."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Probably! Cocoa is a universal language. Even a viking would put down his pointy hat for a mug of warm friendship."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "They do! Warm rocks don't care who sits on them. They just share. That is the friendliest thing a rock can do."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Cozy because then it is not alone. A worry shared is a worry that gets smaller and fluffier and easier to pat."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal (Cat) - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Dreamer. I found a warm rock this morning and I'm only sitting here because it's slightly less annoying than the snow. The viking rumor is going around again. Not that I'm worried. I'm just observing how silly everyone is being."
+
+PLAYER CHOICES:
+[1] "Warm rocks make observation comfortable."
+[2] "Silly rumors are worth observing."
+[3] "Not worried is a strong look."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Comfortable enough. I'm not enjoying it. I'm simply tolerating the warmth with dignity. There's a difference."
+
+PLAYER CHOICES:
+[1] "Dignified tolerance is an art."
+[2] "Warmth and dignity go well together."
+[3] "Tolerating warmth sounds hard."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "Worth observing, yes. Everyone is whispering about pointy hats and boats. As if a boat would survive our cold sea. Ridiculous."
+
+PLAYER CHOICES:
+[1] "Pointy hats are ridiculous."
+[2] "Our cold sea is intimidating."
+[3] "Whispering makes rumors worse."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Strong and frosty. My tail is not twitching nervously. It's just cold. Extremely cold and definitely not worried."
+
+PLAYER CHOICES:
+[1] "Frosty tails are dignified."
+[2] "Cold explains everything."
+[3] "Worry-free is impressive."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "An art I have mastered. It requires a straight back, a disdainful gaze, and a rock that understands its role."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "They do. Warmth keeps the dignity from freezing. Without this rock, my dignity would be much stiffer and less impressive."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Hard if you have no self-control. I, however, am a professional. I can tolerate almost anything except enthusiasm."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Ridiculous and impractical. A pointy hat would only collect snow. Then you'd have a hat full of cold. Why would anyone want that."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "It is. The sea has been practicing its unwelcoming face. I respect its commitment to keeping boats away."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "It does. Whispering gives silly things a costume of importance. If you say a rumor loudly, it usually deflates."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Dignified and possibly a little stiff. But stiff is just dignity in cold weather."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "Everything. Cold nose, cold paws, cold attitude. It's all thermodynamics and I am a victim of science."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Impressive and underreported. I maintain a complete absence of worry while looking only mildly offended. It's a skill."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal (Crow) - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Dreamer. The morning snow has left delicate footprints across the island, each one a small poem about solitude. I have been sitting near a warm rock, drinking something dark and steaming, and wondering if the viking rumor is merely the cold's way of keeping us awake."
+
+PLAYER CHOICES:
+[1] "Footprints are poems about solitude."
+[2] "Dark steaming drinks suit Yeesh."
+[3] "The cold invents rumors to stay interesting."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "They are. Every step leaves a brief elegy in white. By noon, the sun will edit them into something softer."
+
+PLAYER CHOICES:
+[1] "The sun edits snow well."
+[2] "Brief elegies are beautiful."
+[3] "Footprints fade like thoughts."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "They do. Bitter warmth in a cup, black as the long nights. I drink slowly so the season cannot rush me."
+
+PLAYER CHOICES:
+[1] "Bitter warmth is honest."
+[2] "Drinking slowly is defiance."
+[3] "Dark drinks match Yeesh."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Indeed. Without the rumor, we would only talk about temperature. The cold wants drama. I respect the effort."
+
+PLAYER CHOICES:
+[1] "Cold drama is understandable."
+[2] "Rumors give winter a script."
+[3] "The cold needs attention."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "It does. The sun is a gentle editor, turning sharp white lines into soft grey sighs. I appreciate its quiet revisions."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "Beautiful because they do not last. A footprint is a small death that the wind attends with patience."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "They do. Both are temporary impressions of something that has already moved on. Melancholy and accurate."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "Honest because it does not pretend to be sweet. The cup tells the truth about the season and I admire its courage."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "It is. The season wants to hurry us indoors, but I refuse. I will sip slowly and outlast its impatience."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "They do. In Yeesh, even the drinks wear shadows. I match them and we understand each other."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Understandable and a little desperate. The cold has nothing new to say, so it invents a plot to keep us listening."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "They do. Winter needs a narrative or we would simply shiver in silence. The rumor is its clumsy poetry."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "It does. Cold, ignored, becomes mere temperature. With a rumor, it becomes a conversation. Clever, in a lonely way."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal (Owl) - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Dreamer! I've been conducting a field study on Yeesh warmth retention. Warm rocks maintain measurable heat longer than cold grass, hot drinks lose temperature at a predictable rate, and the viking rumor appears to spread most rapidly during quiet mornings. Fascinating data."
+
+PLAYER CHOICES:
+[1] "Warm rocks are excellent heat sinks."
+[2] "Hot drink cooling rates matter."
+[3] "Viking rumors spread in quiet mornings."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Excellent thermal mass! The rock absorbs solar energy during the day and releases it gradually. I have named this phenomenon 'cozy inertia.'"
+
+PLAYER CHOICES:
+[1] "Cozy inertia is a good term."
+[2] "Solar energy storage is smart."
+[3] "Rocks make good heaters."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "They do! I timed a cup and it remained pleasantly warm for exactly twelve minutes. I recorded it. Science tastes better when documented."
+
+PLAYER CHOICES:
+[1] "Twelve minutes is precise."
+[2] "Documented warmth is valid."
+[3] "Science tastes better warm."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "Correct! Reduced ambient noise correlates with increased rumor transmission. Quiet mornings provide ideal worry conditions."
+
+PLAYER CHOICES:
+[1] "Quiet mornings are worry amplifiers."
+[2] "Ambient noise suppresses rumors."
+[3] "Data explains the rumor spread."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Thank you! I plan to submit it to no one in particular. Cozy inertia will revolutionize how we understand sitting."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "Smart and ancient. Rocks have been storing solar energy since before I started counting things, which was a long time ago."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Good heaters and excellent listeners. They do not interrupt while you warm yourself, which is a rare quality in a companion."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Precise to the minute! I used my internal clock, which is fairly accurate because I am mostly awake at night."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "Valid and repeatable. If you cannot write it down, did the warmth even happen? Philosophically and thermodynamically, I think not."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "It does! Warm science has more flavor molecules. This is not proven, but my data supports it enthusiastically."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Amplifiers indeed. With no birdsong or breeze, the worry has nowhere else to go except directly into nearby ears."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "It does. Birdsong and wind provide alternative information, diluting the rumor. Quiet mornings lack this protective interference."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "It does! The correlation is strong. I have prepared seventeen notes. Would you like to hear all of them? No? Understandable. I will summarize: quiet plus cold equals imaginative concern."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal (Crane) - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The Yeesh morning arrives quietly, Dreamer. I warmed my feet on a sun-held stone and watched the snow footprints appear one by one. They say vikings may come, but I think the rumor itself is just a way to keep our hearts close to the Everburn warmth."
+
+PLAYER CHOICES:
+[1] "Sun-held stones are patient teachers."
+[2] "Footprints appear one by one."
+[3] "Rumors keep hearts near warmth."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "They are. The stone does not rush to give its warmth. It waits until something needs it, then offers without condition."
+
+PLAYER CHOICES:
+[1] "Offering without condition is kindness."
+[2] "Patience warms better than hurry."
+[3] "Stones teach by example."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "They do. Each step is a small arrival. The island writes its diary in snow, and the sun will turn the page by afternoon."
+
+PLAYER CHOICES:
+[1] "The island keeps a snow diary."
+[2] "Each step is an arrival."
+[3] "The sun turns pages gently."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "They do. Worry, spoken softly, becomes an excuse to gather closer. The cold outside reminds us of the warmth we already share."
+
+PLAYER CHOICES:
+[1] "Gathering closer is warmth."
+[2] "Cold outside, warmth inside."
+[3] "Shared worry becomes shared comfort."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Kindness without expectation is the deepest warmth. The stone asks nothing for its heat. We could learn much from such silence."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "It does. Hurry makes warmth thin and scattered. Patience lets it settle deeply, where the cold cannot reach."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "They do. The stone does not lecture. It simply sits, holds the sun, and lets the lesson arrive through your own stillness."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "It does. Each footprint is a brief entry, soon closed by wind or light. The island is not attached to any single page."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "An arrival without departure. For a moment, the snow says someone was here. Then it gently lets the moment go."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "Gently, without tearing the paper. The sun is a careful reader of winter, turning each white page with soft light."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "It is. When we draw near, our warmth combines. One small flame becomes a little fire. One little fire becomes a hearth."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "Yes. The season may press against the shore, but inside our gathered circle, the cold is only a visitor at the window."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "It does. Shared worry loses its weight and becomes a reason to sit closer, to listen longer, to be present together."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal (Dog) - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Hail, Dreamer! I have been patrolling the warm rocks of the realm, leaving noble paw-prints in the snow. The viking rumor troubles the small folk, but I say let us raise our mugs to the Everburn and toast the quiet morning! Courage is best served warm!"
+
+PLAYER CHOICES:
+[1] "Paw-prints in snow are noble patrols."
+[2] "Toasting the Everburn is good morale."
+[3] "Courage is best served warm."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Noble indeed! Each print marks the boundary between cold wilderness and cozy civilization. I shall defend the warm side."
+
+PLAYER CHOICES:
+[1] "Defend the warm side bravely."
+[2] "Prints make good boundaries."
+[3] "Cozy civilization must be protected."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "Excellent morale! A warm mug raised high is a banner that winter cannot capture. I shall lead the toast at dawn."
+
+PLAYER CHOICES:
+[1] "Dawn toasts are brave."
+[2] "Winter cannot capture warm mugs."
+[3] "Lead the toast proudly."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "It is! A brave heart with a warm drink is worth more than armor in this weather. I shall keep my spirits steaming."
+
+PLAYER CHOICES:
+[1] "Steaming spirits are strong."
+[2] "Warm drinks beat cold armor."
+[3] "Brave hearts are weatherproof."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Bravely and with a full mug! The warm side shall not fall while I have paws and a reasonably hot beverage."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "They do! A paw-print says 'here be warmth' and 'here be a dog who takes his patrols seriously.' Both messages are important."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "It must! Cozy civilization is the realm's greatest treasure. We shall fortify it with quilts, mugs, and loyal companions."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "Brave because the day is young and the cold is old. A dawn toast declares that warmth has already won the night."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "It cannot! A captured mug would grow cold and useless. Winter knows this and avoids the attempt out of respect."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Proudly! I shall raise my mug first and loudest, though perhaps not so loud that I spill. A spilled toast is poor strategy."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Strong and fragrant! A steaming spirit rises like a battle cry made of mist. Very intimidating to frost."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "They do! Armor only keeps out the cold. A warm drink invites warmth in. The difference is hospitality."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "Weatherproof and rumor-proof! A brave heart fears neither viking nor chill. It simply steams onward."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal (Turtle) - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh. Hi, Dreamer. I was... I was watching the snow footprints. Each one is a little shape that someone left behind. The warm rocks feel nice today. I heard the viking rumor but I'm mostly just glad Hoggy is probably finding a warm spot too."
+
+PLAYER CHOICES:
+[1] "Snow footprints are little stories."
+[2] "Warm rocks are worth finding."
+[3] "Hoggy deserves a warm spot."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Little stories. Someone walked here and now the snow remembers their shape for a while. It's like the island is reading aloud."
+
+PLAYER CHOICES:
+[1] "The island reads snow aloud."
+[2] "Shapes remembered are gentle."
+[3] "Footprints are brief stories."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "They are. I found one that still held some sun. I sat on it and felt very brave for being outside."
+
+PLAYER CHOICES:
+[1] "Brave for sitting outside."
+[2] "Sun in a rock is a gift."
+[3] "Finding warmth is an adventure."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "He does. He's big and warm and I bet he found a nice hollow or a friendly rock. I hope he's not worried about vikings either."
+
+PLAYER CHOICES:
+[1] "Hoggy is too sensible to worry."
+[2] "Big warm hogs find good spots."
+[3] "Hoggy and warm rocks go together."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "It does, in a quiet voice. The snow tells who passed and the wind turns the pages. I like listening without being seen."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Gentle and brief. The snow remembers just long enough to be kind, then lets the shape go without complaining."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Brief but real. Someone was definitely here. The footprint is proof that even a small walk leaves a small mark."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "A tiny brave. I stayed outside even though the cold was big. I think that counts, for a turtle."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "A gift from yesterday's sun, saved in the rock just for me. I am very grateful to both the sun and the rock."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "An adventure that doesn't move much. I found the warm rock by going slowly and paying attention. That is my kind of quest."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "Too sensible. He would probably listen to the rumor, snort once, and then go back to napping on something warm."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "They do. Being big and warm probably helps. The island has lots of nice hollows if you are the right size to fit in them."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "They do. I can imagine him tucked against a sun-warmed stone, being a big warm hog loaf. That is a comforting picture."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal (Parrot) - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Dreamer! DREAMER! Yeesh morning is SO quiet and the snow has little footprints everywhere and I found a warm rock that felt like a tiny Everburn and the viking rumor is just a COZY WORRY so I am choosing to be WARM instead! Do you want to be warm with me?"
+
+PLAYER CHOICES:
+[1] "Being warm together is the best choice."
+[2] "Cozy worries can be ignored."
+[3] "Tiny Everburn rocks are amazing."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Best choice! Warm together is like a friendship blanket that nobody can steal because it is made of us."
+
+PLAYER CHOICES:
+[1] "Friendship blankets are unstealable."
+[2] "Us-blankets are warm."
+[3] "Together warmth is stronger."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "They can! I am putting the worry in a little imaginary box and labeling it 'probably just cold people talking.' Then I fly away from it."
+
+PLAYER CHOICES:
+[1] "Labeling worries helps."
+[2] "Flying away from worries is valid."
+[3] "Cold people talk funny."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "Amazing! It's like the rock remembered a tiny piece of summer and saved it just for me. I am very grateful to geology."
+
+PLAYER CHOICES:
+[1] "Grateful to geology is funny."
+[2] "Summer memories in rocks are magic."
+[3] "Geology saves the best warmth."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Unstealable! You can't take a friendship blanket to a pawn shop. It would just fall apart because it is made of feelings."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "Warm because we are both in it! Two warm hearts make a blanket way toastier than one warm heart all alone."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "Stronger and louder! Warmth with a friend is like turning the cozy volume up to maximum. Very efficient."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "It helps a lot! Once a worry has a label, it stops being scary and starts being organized. Organized worries are much smaller."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Valid and fun! Flying away from a worry is like saying 'no thank you' but with wings. I recommend it."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Funny and shivery! When people are cold, their words get all wobbly and make rumors. Warm people just say 'hello' and 'nice rock.'"
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "Funny and true! Geology saved me a warm spot. I should write a thank-you note and leave it on the rock."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Magic! The rock kept a little summer in its pocket and now it is sharing it with my feet. Best pocket ever."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "It does! Geology is secretly full of warm memories. This rock is basically a summer library and I just checked out a foot."
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

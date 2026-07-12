@@ -1,0 +1,718 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh4_T2.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Tree 2 Conversations - Animals 17-24
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal (Rabbit) - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! The sea is being very cold and blue today, and the flowers are bending their heads like they are sad. I heard a silly rumor that vikings might visit, but I think they would just be cold too. Should we make a warm spot together?"
+
+PLAYER CHOICES:
+[1] "Let's make a warm spot."
+[2] "Vikings would just be cold visitors."
+[3] "Sad flowers need warm friends."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "Yes! Warm spots are like tiny invisible campfires made of friendship. I want to build one right here with you."
+
+PLAYER CHOICES:
+[1] "Friendship campfires are the best."
+[2] "Build it with happy thoughts."
+[3] "Tiny warm spots are enough."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "They would! Maybe they would sit by our warm spot and realize viking-ing is not as nice as cocoa hugs. I would offer them a paw."
+
+PLAYER CHOICES:
+[1] "Cocoa hugs solve many problems."
+[2] "Warm paws are generous."
+[3] "Viking-ing is overrated."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "They do! We can stand near them and think warm thoughts. Maybe the flowers will perk up a little bit and feel less droopy."
+
+PLAYER CHOICES:
+[1] "Perked-up flowers are happy flowers."
+[2] "Warm thoughts travel far."
+[3] "Flowers feel friend energy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "The best! They don't need wood or matches, just hearts that want to be close. My heart is basically a little glowing marshmallow right now."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "Happy thoughts are good bricks. Each smile makes the warm spot a little bigger. I am adding a giggle brick right now."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "Enough is perfect. Even a small warm spot can hold two friends and one hopeful flower. That is cozy math."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Many problems! Cold noses, sad flowers, and silly rumors all get smaller when cocoa hugs are nearby."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "Generous and toasty. If a viking accepts my paw, we become instant warm friends. That is the rule of paw offering."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "Very overrated. Being cozy with friends is much more important than sailing around with pointy hats. I would tell them so politely, and Hoggy would nod because he is very sensible."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Happy flowers! Even a small perk is a victory. I will celebrate with a tiny hop and a warm thought."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "They travel all the way to flower ears and sea waves and sad clouds. Warm thoughts are fast travelers."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "They do! Flowers are excellent at feeling friend energy. I think they collect it in their petals like tiny cups."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal (Cat) - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Dreamer. The nights are getting longer and the sea looks like it is trying to be dramatic and cold. Someone told me vikings might show up. As if I care. I am clearly only concerned about the temperature."
+
+PLAYER CHOICES:
+[1] "Long nights make the sea dramatic."
+[2] "Temperature is a valid concern."
+[3] "Viking rumors are barely worth caring about."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Obviously. The sea has been practicing its brooding look. It's doing too much. The quiet nights are just giving it more screen time."
+
+PLAYER CHOICES:
+[1] "The sea should calm down."
+[2] "Quiet nights are long."
+[3] "Dramatic water is annoying."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "Thank you for validating my very reasonable complaint. Cold is a fact, not a feeling. I am simply stating facts while shivering with dignity."
+
+PLAYER CHOICES:
+[1] "Dignified shivering is impressive."
+[2] "Facts are better than feelings."
+[3] "Cold noses are factual."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Barely. If vikings arrive, they can deal with the cold themselves. I am not running a warming service for strangers in silly hats."
+
+PLAYER CHOICES:
+[1] "Warming services are overrated."
+[2] "Strangers in silly hats can manage."
+[3] "Your concern is still noted."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "It really should. Nobody asked for cold sparkle and moody waves. The sea should keep its weather to itself."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Too long. I could get bored in all this quiet if I weren't so busy being unimpressed by it."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Extremely. The water is basically showing off its chill. I refuse to applaud."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Impressive and frosty. I have a very straight back and a very offended tail. It's practically an art form."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "In this case, yes. The fact is cold. The feeling is also cold. Both are true and annoying."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "Factual and pink. My nose is currently a very honest shade of uncomfortable."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Profoundly overrated. I barely warm myself. Why would I warm a boat full of rumor-havers?"
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "They can manage or they can leave. The island is not responsible for every pointy-hat fantasy people invent."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Noted and filed under 'things I pretend not to care about.' It is a large file. You are in it too."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal (Crow) - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Dreamer. The Yeesh sea is cold enough to hold its own breath, and the flowers have given up on color for now. They say vikings may come, but I find the rumor less frightening than the silence between waves."
+
+PLAYER CHOICES:
+[1] "Silence between waves is deep."
+[2] "Cold sea holds its breath well."
+[3] "Viking rumors are small beside winter."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Deep as the long nights. The sea pauses after each wave, as if remembering something sad. I find it honest."
+
+PLAYER CHOICES:
+[1] "Honest sadness is beautiful."
+[2] "The sea remembers winter."
+[3] "Pauses are full of meaning."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "It does. There is a kind of politeness in such cold. It does not pretend to be warm. It simply is."
+
+PLAYER CHOICES:
+[1] "Honest cold is rare."
+[2] "Pretending warmth is worse."
+[3] "Cold has its own poetry."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Small indeed. A rumor is just wind wearing a costume. The season itself is the real performance."
+
+PLAYER CHOICES:
+[1] "Seasons outshine costumes."
+[2] "Rumors are lightweight."
+[3] "Winter is the real show."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Beautiful in the way that makes your chest ache. I would frame it if I could find a frame large enough for the shore."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "It remembers every chill, every grey morning, every flower that folded inward. Memory is the sea's secret poem."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "They are. In the pause, the world catches its breath and lets you hear your own thoughts. Terrifying and tender."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "Rare and respectable. Most things lie about their temperature. The sea tells the truth with its teeth."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "Much worse. False warmth is a betrayal. Cold, at least, keeps its promises."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "It does. Each shiver is a syllable. I am composing an ode to the blue ache of Yeesh mornings."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "They do. The snow needs no audience. It falls, it covers, it waits. That is true artistry."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "Light as feathers and just as easily scattered. I do not build my winter around costumes."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "The show no one asked for but everyone watches. Long nights, cold sea, sleeping color. Magnificent melancholy."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal (Owl) - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Dreamer! Fascinating Yeesh phenomena tonight. The sea is measurably colder, the flowers are entering a sadness-rest phase, and the nights have stretched so long that I have extra hours to test the viking rumor for accuracy. Hypothesis: unlikely but cozy to worry about."
+
+PLAYER CHOICES:
+[1] "Worrying about vikings is cozy?"
+[2] "Flowers need sadness-rest?"
+[3] "Long nights give more research time."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Cozily unlikely! The probability of pointy-hat boats is low, but the probability of warm blankets and hot drinks is very high. I prefer high-probability comfort."
+
+PLAYER CHOICES:
+[1] "High-probability comfort is wise."
+[2] "Pointy-hat probability is low."
+[3] "Warm blankets are reliable data."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "A documented response. When temperatures drop, flowers reduce their petal display to conserve resources. It looks sad, but it's actually efficient."
+
+PLAYER CHOICES:
+[1] "Efficient flowers are smart."
+[2] "Sad-looking but sensible."
+[3] "Resource conservation is wise."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "Considerably! I have logged three extra observation hours already. The night is like a long quiet laboratory with excellent darkness control."
+
+PLAYER CHOICES:
+[1] "Darkness control is important."
+[2] "Quiet laboratories are cozy."
+[3] "Extra hours mean extra data."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Wisdom backed by evidence. I would rather trust a blanket than a rumor. Blankets are repeatable."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "Statistically negligible. I estimate one viking per zero boats, which rounds down to none. Very tidy math."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Reliable and warm. I have tested three blankets and they all passed the coziness threshold."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Smart and seasonal. The flowers are budgeting their energy for warmer days. Excellent planning."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "Exactly. Appearances can be emotional. The flower is simply resting its pigments for future brightness."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "Wise indeed. Conserving now means blooming later. I respect any organism with a savings plan."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Important for accurate star-watching. Uncontrolled brightness ruins the data. The night is a professional."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "Cozy and productive. The hum of the dark is very conducive to sorting one's thoughts into neat piles."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "They do. I have already filed seventeen notes about cold air, quiet waves, and the probable non-existence of vikings. Good session."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal (Crane) - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The Yeesh sea breathes coldly tonight, Dreamer. The flowers bow their heads not in defeat, but in rest. Even the silly viking rumor drifts by like a cloud, neither true nor false, just passing. I am seeking warmth in stillness."
+
+PLAYER CHOICES:
+[1] "Warmth in stillness is deep."
+[2] "Resting flowers are wise."
+[3] "Rumors pass like clouds."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "Deep and nearby. Stillness does not travel to warmth. It discovers that warmth was already here, beneath the hurry."
+
+PLAYER CHOICES:
+[1] "Beneath the hurry is peaceful."
+[2] "Warmth was already here."
+[3] "Stillness discovers quietly."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "They are. To rest is not to fail. The flower stores its color for the season that welcomes it back."
+
+PLAYER CHOICES:
+[1] "Storing color is patient."
+[2] "Rest is not failure."
+[3] "Welcome-back seasons will come."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "They do. A rumor has no weight unless grasped. I let it float over the cold sea and disappear toward the horizon."
+
+PLAYER CHOICES:
+[1] "Ungrasped rumors are harmless."
+[2] "Horizons absorb many things."
+[3] "Letting go is warm."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Peaceful because nothing needs to be solved. The cold exists. I exist. We are both allowed."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "It was. In the breath, in the pause, in the willingness to simply stand together. Warmth is not earned. It is noticed."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "Quietly and without announcement. That is why stillness is kind. It does not demand credit."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "Patient and humble. The flower does not argue with winter. It waits, and in waiting, it preserves its whole bright future."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "Never. Rest is preparation. The season that rests deeply blooms most fully when warmth returns."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "They will. No season stays forever. The cold sea will soften, and the flowers will lift their heads again."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "Harmless as mist. I do not chase them, so they do not follow me. This is the freedom of a quiet mind."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "Many things. Worry, rumor, the day's small noise. The horizon holds them without keeping them."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "It is. Letting go creates space, and space allows warmth to enter. I am practicing this in every cold breath."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal (Dog) - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Hail, Dreamer! The sea has turned cold and grey as a knight's old banner, and the flowers droop like squires after a long march. There is word of vikings abroad, but I say let them come; we shall defend the warmth of the realm with blanket forts and good cheer!"
+
+PLAYER CHOICES:
+[1] "Blanket forts defend the realm well."
+[2] "Good cheer is the best armor."
+[3] "Drooping flowers are tired squires."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Indeed! A well-built blanket fort is a castle of coziness. I have already mentally constructed battlements of quilt and pillow."
+
+PLAYER CHOICES:
+[1] "Quilt battlements are strong."
+[2] "Pillow towers are noble."
+[3] "Coziness castles win wars."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "The best! A warm heart laughs at the cold. I shall lead the charge with a mug of something steamy and a brave smile."
+
+PLAYER CHOICES:
+[1] "Steamy mugs are brave."
+[2] "Cold hearts fear warm smiles."
+[3] "Lead the cheer charge."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "Tired but loyal! They have marched through frost and wind and deserve a warm hearth and a kind word. I shall knight them for endurance."
+
+PLAYER CHOICES:
+[1] "Endurance deserves titles."
+[2] "Kind words warm tired squires."
+[3] "Knight the flowers in spring."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Strong and soft! The enemy's cold cannot pierce a good quilt. I would stake my tabard on it."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Noble and fluffy! A pillow tower rises swiftly and welcomes all who seek shelter from the chill."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "They do! No frost can withstand a properly fortified cuddle. Victory is warm."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "Brave indeed! Steam rises like a battle standard. I shall raise my mug high and salute the realm."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "They do! A warm smile is a terrible weapon against winter. The cold shall flee before our kindness."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "With pleasure! I shall ride at the front of the cheer column, barking encouragement to all."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Titles are the least reward for loyal service. Sir Petal and Sir Stem shall be honored when the thaw comes."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "They do! A kind word is like a tiny coal placed in the heart. It glows long after it is spoken."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "A fine plan! When warmth returns, I shall hold a ceremony and dub the flowers with a small warm breeze. Hoggy shall attend as the realm's most honorable warm baron."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal (Turtle) - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh. Hi, Dreamer. I was... I was thinking about how the sea gets so cold at Yeesh time. And the flowers look sad. And the nights are so long and quiet. I heard about vikings but I don't think they'd fit under my shell. I am just seeking a warm rock to sit on."
+
+PLAYER CHOICES:
+[1] "Warm rocks are good goals."
+[2] "Vikings wouldn't fit under shells."
+[3] "Long quiet nights suit shy turtles."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Good and simple. A warm rock holds the sun's memory and shares it slowly. I like slow warm things."
+
+PLAYER CHOICES:
+[1] "Slow warmth is cozy."
+[2] "Sun memories are nice."
+[3] "Simple goals are best."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "They wouldn't. Their helmets would get stuck. Also, I think they would prefer bigger places. I am not worried. Much."
+
+PLAYER CHOICES:
+[1] "Not being much worried is brave."
+[2] "Helmets in shells is funny."
+[3] "Small places are safe."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "They do. When the world gets quiet and long, I can hear my own thoughts better. They are small thoughts, but they are mine."
+
+PLAYER CHOICES:
+[1] "Small thoughts matter."
+[2] "Hearing yourself is cozy."
+[3] "Quiet nights are gentle."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "Cozy because it doesn't rush. It stays with you while the cold passes. I am good at staying."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Nice and patient. The sun leaves a little warmth in the rock, and the rock shares it with whoever needs it."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Best. Big goals are scary. A warm rock is just right for a small turtle with small plans."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Brave in a tiny way. I might hide a little, but I would also peek. Peeking is a kind of courage."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Funny and unlikely. A viking helmet sticking out of a turtle shell would look like a very small parade float."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "Safe and familiar. My shell is small but it knows me. I would rather be here than anywhere big and loud."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "They do. If I collect enough small thoughts, I have a whole quiet day inside my head. It is a nice place."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "Cozy because nobody else is there. Just me and my thoughts, sitting together like friends who don't need to talk."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "Gentle and slow. The night doesn't hurry me. It lets me take my time being warm and being here."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal (Parrot) - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Dreamer! DREAMER! The sea is SO cold and the flowers are SO droopy and the nights are SO long and quiet and I heard the viking rumor AGAIN but I decided it is just a cozy worry and NOT a real thing! Do you want to help me make everything warmer with loud happy thoughts?"
+
+PLAYER CHOICES:
+[1] "Loud happy thoughts make warmth."
+[2] "Cozy worries are not real things."
+[3] "Droopy flowers need cheering."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "They DO! Happy thoughts are like tiny heaters that you turn on by smiling. I am currently smiling at maximum volume."
+
+PLAYER CHOICES:
+[1] "Maximum volume smiling is powerful."
+[2] "Tiny heaters add up."
+[3] "Smiling at cold makes it confused."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "Right! A cozy worry is just a worry wearing a fuzzy sweater. It looks big but it's mostly fluff. Not real danger fluff."
+
+PLAYER CHOICES:
+[1] "Fluffy worries are manageable."
+[2] "Fuzzy sweaters are cute."
+[3] "Real danger fluff is different."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "They DO! I am going to cheer them with compliments and maybe a little warm dance. Flowers love encouragement."
+
+PLAYER CHOICES:
+[1] "Flower compliments are kind."
+[2] "Warm dances help everything."
+[3] "Encouragement is warm magic."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Powerful! If you smile hard enough, the cold forgets what it was doing and wanders off confused. I have seen it almost work."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "They add up into a whole cozy room! One tiny heater, then another, and suddenly we are all warm and giggling."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "Confused cold is the best! It shows up expecting shivers and finds smiles. Very awkward for the cold."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Manageable and huggable! You can pat the worry and say 'there there' and then it gets smaller and sleepier."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Cute and warm! Fuzzy sweater worries are just looking for a cuddle before they melt away."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Very different! Real danger fluff would be scary. Our worry fluff is just a rumor wearing a tiny knitted hat."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "Kind and sunny! I told a flower it had excellent petals and I think it stood a little taller. Flower magic."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "They help! A warm dance makes your heart into a heater and your feet into happy stamps. Cold doesn't like stamps."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "It is! Encouragement turns sad droops into hopeful little lifts. I am basically a warm magic parrot. Best job."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

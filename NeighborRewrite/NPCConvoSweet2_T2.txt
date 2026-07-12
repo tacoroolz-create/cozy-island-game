@@ -1,0 +1,710 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet2_T2.txt - Cozy Island Game NPC Conversations (Sweet Season, Tree 2)
+Sweet Season Tree 2 - Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! The morning is all misty and mild, and the puddles are like tiny island mirrors. New weeds are popping up everywhere, and they're so brave and green. The rain left little drops on the grass that sparkle like tiny stars. Have you seen a puddle today?"
+
+PLAYER CHOICES:
+[1] "Puddles are the best tiny mirrors."
+[2] "Sprouting weeds are brave little plants."
+[3] "Raindrops on grass look like stars."
+
+---
+
+TURN 2A (if player chose A):
+Piko: "The best mirrors, and you don't even have to brush your antennae. I saw a butterfly stop for a drink in a puddle and it looked like it was visiting its own reflection. Very polite."
+
+PLAYER CHOICES:
+[1] "Butterflies have nice table manners."
+[2] "A puddle visit sounds refreshing."
+[3] "Reflections make everything double cute."
+
+---
+
+TURN 2B (if player chose B):
+Piko: "Brave little plants! They push through dirt and don't even ask permission. Weeds are just flowers that forgot to be fancy, and I think that's wonderful."
+
+PLAYER CHOICES:
+[1] "Fancy isn't everything."
+[2] "Weeds grow with big determination."
+[3] "Every green sprout is a tiny victory."
+
+---
+
+TURN 2C (if player chose C):
+Piko: "Tiny stars on the ground. The grass wears them like jewelry until the sun comes out and takes them back. It's a very short sparkle party."
+
+PLAYER CHOICES:
+[1] "Short sparkle parties are still special."
+[2] "The grass looks fancy wearing stars."
+[3] "Morning sparkles are the best jewelry."
+
+---
+
+TURN 3AA (if player chose A then A):
+Piko: "Nice table manners and tiny sips. If I were a butterfly I'd drink from the roundest puddle and say thank you with a wing wave."
+
+---
+
+TURN 3AB (if player chose A then B):
+Piko: "Refreshing and puddle-shaped. I almost jumped in one but I didn't want to splash the butterfly. Priorities."
+
+---
+
+TURN 3AC (if player chose A then C):
+Piko: "Double cute means double happy. Two Pikos would be a lot, but two butterflies are just right."
+
+---
+
+TURN 3BA (if player chose B then A):
+Piko: "Fancy isn't everything. Sometimes the best things are the ones that grow wherever they want with leaves everywhere."
+
+---
+
+TURN 3BB (if player chose B then B):
+Piko: "Big determination in a tiny green body. Weeds are basically plant heroes with messy hair."
+
+---
+
+TURN 3BC (if player chose B then C):
+Piko: "Tiny victories add up. If every sprout cheered, the whole island would sound like a little green parade."
+
+---
+
+TURN 3CA (if player chose C then A):
+Piko: "Still special because you have to catch them early. The best sparkle parties are the ones the sun doesn't know about yet."
+
+---
+
+TURN 3CB (if player chose C then B):
+Piko: "Fancy grass! Walking through it feels like stepping into a garden that got dressed up for no reason."
+
+---
+
+TURN 3CC (if player chose C then C):
+Piko: "The best jewelry because it never gets heavy. The grass just sparkles until it's done, then it goes back to being cozy."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Oh. You're walking around in the mist too? I suppose someone has to check on the weeds. They're sprouting absolutely everywhere with no regard for order. The puddles are also suspiciously reflective. And don't get me started on how cheerful the damp grass looks. It's a lot."
+
+PLAYER CHOICES:
+[1] "Weeds do sprout with a lot of nerve."
+[2] "Suspiciously reflective puddles are suspicious."
+[3] "Damp grass does look smugly green."
+
+---
+
+TURN 2A (if player chose A):
+Rivet: "A lot of nerve. Pushing up wherever they please, flaunting their little leaves. Someone should file a complaint with the island."
+
+PLAYER CHOICES:
+[1] "The island probably ignores complaints."
+[2] "At least weeds are easy to spot."
+[3] "Leaves are a bold fashion choice."
+
+---
+
+TURN 2B (if player chose B):
+Rivet: "Suspicious. What are they reflecting? The sky? Me? How dare a puddle copy my scowl without permission."
+
+PLAYER CHOICES:
+[1] "Puddles are notorious copycats."
+[2] "Maybe they're just showing off the clouds."
+[3] "Reflections can't help themselves."
+
+---
+
+TURN 2C (if player chose C):
+Rivet: "Smugly green. As if the rain personally complimented it. 'Oh, look at me, I'm so damp and thriving.' Disgusting."
+
+PLAYER CHOICES:
+[1] "Thriving is basically bragging."
+[2] "You'd look green too if you were grass."
+[3] "The rain does play favorites."
+
+---
+
+TURN 3AA (if player chose A then A):
+Rivet: "Ignores them completely. The island just keeps growing things and whistling. Very unprofessional."
+
+---
+
+TURN 3AB (if player chose A then B):
+Rivet: "Easy to spot, which is annoying because then I have to keep noticing them. I prefer my problems hidden and manageable."
+
+---
+
+TURN 3AC (if player chose A then C):
+Rivet: "Bold and green. The weeds are out here wearing leaf outfits with no shame. I could learn nothing from them."
+
+---
+
+TURN 3BA (if player chose B then A):
+Rivet: "Notorious copycats with no originality. A puddle sees one cloud and suddenly it thinks it's an artist."
+
+---
+
+TURN 3BB (if player chose B then B):
+Rivet: "Showing off clouds is acceptable. The clouds are dramatic and know how to pose. The puddle is just the stage."
+
+---
+
+TURN 3BC (if player chose B then C):
+Rivet: "Can't help themselves. I'd respect them more if they tried. At least pretend you don't enjoy reflecting me back to myself."
+
+---
+
+TURN 3CA (if player chose C then A):
+Rivet: "Bragging. The grass is basically posting about its morning routine. Nobody asked, grass. Nobody asked."
+
+---
+
+TURN 3CB (if player chose C then B):
+Rivet: "I would not look green. I'd look dignified and slightly damp. There is a difference."
+
+---
+
+TURN 3CC (if player chose C then C):
+Rivet: "Plays favorites. It waters the grass and ignores my joints. Typical sky behavior. Biased and moist."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Dreamer. Sweet season has softened everything into mist. The weeds rise from the wet ground like tiny green ghosts. Puddles hold the sky's memory after the rain has moved on. Even the new growth seems aware that it is temporary. Beautiful and doomed, as usual."
+
+PLAYER CHOICES:
+[1] "Misty mornings feel like a secret."
+[2] "Weeds as green ghosts is poetic."
+[3] "Puddles holding sky memories is lovely."
+
+---
+
+TURN 2A (if player chose A):
+Shade-7: "A secret the morning keeps from the afternoon. The mist wraps the trees and makes the island feel unfinished, like a dream within a dream."
+
+PLAYER CHOICES:
+[1] "Unfinished islands are more interesting."
+[2] "Dreams within dreams are cozy."
+[3] "Mist makes everything look like a question."
+
+---
+
+TURN 2B (if player chose B):
+Shade-7: "Poetic and slightly damp. They haunt the edges of paths and sidewalks, refusing to be ignored. Weeds understand mortality better than flowers do."
+
+PLAYER CHOICES:
+[1] "Weeds do grow anywhere, even in exile."
+[2] "Refusing to be ignored is power."
+[3] "Flowers could learn from weeds."
+
+---
+
+TURN 2C (if player chose C):
+Shade-7: "Lovely and temporary. The puddle holds the sky only until the sun reclaims it. A brief blue embrace."
+
+PLAYER CHOICES:
+[1] "Brief embraces are still real."
+[2] "The sky probably trusts the puddle."
+[3] "Temporary mirrors are the prettiest."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shade-7: "More interesting. Finished things are dead things. The mist keeps the island alive with possibility."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shade-7: "Cozy and a little disorienting. If I wake up inside one more layer of dream I may have to write a darker poem."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shade-7: "A question without an answer. The mist asks where the trees went, and the trees don't reply. Rude, but atmospheric."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shade-7: "Exile is where they thrive. The cracks, the corners, the places nobody wanted green. Weeds are the rebels of botany."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shade-7: "Power in small leaves. They don't bloom for approval. They simply exist and dare you to pull them up."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shade-7: "Flowers are too busy being admired. Weeds are busy surviving. Different aesthetics, equally tragic."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shade-7: "Real enough to reflect in. That's all a puddle needs to be. The sky doesn't mind being held for a little while."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shade-7: "Trusts it temporarily. The sky knows the puddle will give it back. There's something sad and noble about that."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shade-7: "The prettiest because they vanish. A puddle mirror is a promise that the day will keep changing."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer! The meteorological data for Sweet season is exceptional. Mist retention is high, weed germination has spiked in the last 24 hours, and puddle formation follows a predictable but aesthetically pleasing pattern. Even the grass looks statistically happier. Want to explore the data?"
+
+PLAYER CHOICES:
+[1] "Tell me about mist retention."
+[2] "How fast are weeds germinating?"
+[3] "What pattern do puddles follow?"
+
+---
+
+TURN 2A (if player chose A):
+Cypher: "Mist retention depends on mild temperatures and low wind velocity. Basically, the island is holding its breath so the morning stays soft and fuzzy around the edges."
+
+PLAYER CHOICES:
+[1] "Holding breath makes a soft morning."
+[2] "Low wind is underrated weather."
+[3] "Fuzzy edges sound mathematically cozy."
+
+---
+
+TURN 2B (if player chose B):
+Cypher: "Weed germination is outpacing my estimates by a sprightly margin. New sprouts appear in clusters near tree shade and path borders. They're organized, just not where we'd expect."
+
+PLAYER CHOICES:
+[1] "Unexpected organization is still organization."
+[2] "Trees make good shade sponsors."
+[3] "Weeds have excellent distribution logic."
+
+---
+
+TURN 2C (if player chose C):
+Cypher: "Puddles form in low points and compacted soil zones. Their shape maps the island's tiny topography. If you connected the puddles with string, you'd see the ground's secret face."
+
+PLAYER CHOICES:
+[1] "The ground has a secret face?"
+[2] "Connecting puddles with string sounds fun."
+[3] "Topography is just ground personality."
+
+---
+
+TURN 3AA (if player chose A then A):
+Cypher: "Soft morning achieved. The island exhales around noon, and then everything gets crisp again. Breathing schedule confirmed."
+
+---
+
+TURN 3AB (if player chose A then B):
+Cypher: "Underrated. Without wind, sounds carry farther and smells stay put. I can hear a butterfly flap from three tiles away. Hypothetically."
+
+---
+
+TURN 3AC (if player chose A then C):
+Cypher: "Mathematically cozy is my favorite category. Mist adds a rounding error to sharp edges, and the whole island looks friendlier."
+
+---
+
+TURN 3BA (if player chose B then A):
+Cypher: "Still organization. Chaos is just pattern we haven't finished measuring yet. The weeds are ahead of us, statistically."
+
+---
+
+TURN 3BB (if player chose B then B):
+Cypher: "Excellent shade sponsors. Trees provide moisture retention and filtered light. The weeds are basically their leafy interns."
+
+---
+
+TURN 3BC (if player chose B then C):
+Cypher: "They distribute by opportunity, not committee. It's a self-organizing system. If committees grew this well, meetings would be shorter."
+
+---
+
+TURN 3CA (if player chose C then A):
+Cypher: "A secret face made of dips and dents. The ground has been shaped by rain, footsteps, and probably Hoggy naps. It's a collaborative portrait."
+
+---
+
+TURN 3CB (if player chose C then B):
+Cypher: "Fun and slightly soggy. The string wouldn't last, but the mental map would be beautiful. I'd call it Puddle Constellation Number One."
+
+---
+
+TURN 3CC (if player chose C then C):
+Cypher: "Exactly. Flat ground is boring. Dented ground collects mirrors. Personality is just topology with attitude."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"The rain has passed, Dreamer, and the island breathes gently. Mist rises from the grass. Weeds appear, not as intruders, but as reminders that growth does not ask where it is welcome. Puddles remain for a while, then let go. There is a lesson in every small thing this morning."
+
+PLAYER CHOICES:
+[1] "Growth doesn't ask permission."
+[2] "Puddles letting go is peaceful."
+[3] "Mist rising from grass feels calm."
+
+---
+
+TURN 2A (if player chose A):
+Om-Bit: "It does not ask. It simply finds the light, the water, and the soil, and begins. The weed is as earnest as the flower. The island does not rank them."
+
+PLAYER CHOICES:
+[1] "Earnest growth deserves respect."
+[2] "The island is fair to all green things."
+[3] "Beginning is the bravest part."
+
+---
+
+TURN 2B (if player chose B):
+Om-Bit: "Peaceful because they do not cling. The puddle held the sky, held the rain's last gift, and then returns it to the air without complaint."
+
+PLAYER CHOICES:
+[1] "Not clinging is a kind of freedom."
+[2] "The sky is grateful, even if quiet."
+[3] "Giving back takes trust."
+
+---
+
+TURN 2C (if player chose C):
+Om-Bit: "Calm and slow. The mist does not rush to become cloud. It rises because the sun asks gently, and the grass allows it to leave."
+
+PLAYER CHOICES:
+[1] "Gentle asking is stronger than demanding."
+[2] "Grass allows mist to leave gracefully."
+[3] "Slow rising is still becoming."
+
+---
+
+TURN 3AA (if player chose A then A):
+Om-Bit: "It does. Respect the sprout, and you respect the will to be. The weed does not know it is unwelcome in some gardens. It only knows growth."
+
+---
+
+TURN 3AB (if player chose A then B):
+Om-Bit: "Fair in a way humans often forget. The island gives sun and rain to the tended plot and the wild corner alike."
+
+---
+
+TURN 3AC (if player chose A then C):
+Om-Bit: "The bravest part, yes. To begin when you are small and unsure, and to keep growing anyway. That is the whole teaching."
+
+---
+
+TURN 3BA (if player chose B then A):
+Om-Bit: "Freedom without loss. The puddle does not become less by giving back the sky. It becomes air, cloud, rain, and eventually a puddle again."
+
+---
+
+TURN 3BB (if player chose B then B):
+Om-Bit: "Grateful in its quiet way. The sky would not stay the same without the water that rises to meet it. Everything is borrowed and returned."
+
+---
+
+TURN 3BC (if player chose B then C):
+Om-Bit: "Trust takes practice. The puddle trusts the sun, the sun trusts the cloud, and we trust the next rain. The island teaches in cycles."
+
+---
+
+TURN 3CA (if player chose C then A):
+Om-Bit: "Stronger and kinder. To ask gently is to give the other room to answer. The mist rises because it is invited, not chased."
+
+---
+
+TURN 3CB (if player chose C then B):
+Om-Bit: "Gracefully. The grass does not hold the mist's sleeve. It lets it rise, and remains rooted. That is love without possession."
+
+---
+
+TURN 3CC (if player chose C then C):
+Om-Bit: "Still becoming. The mist that rises today may fall as rain tomorrow. Every state is a doorway, not a destination."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Fair Dreamer! Sweet season has blessed the realm with gentle rains and misty morns. The weeds spring forth like green squires answering a call to arms, and the puddles stand as shallow moats for beetles and butterflies. The trees wear new leaves like bright heraldry. A noble time to walk the island!"
+
+PLAYER CHOICES:
+[1] "Green squires answering spring is a noble image."
+[2] "Puddle moats for butterflies are charming."
+[3] "Trees in new leaf heraldry look royal."
+
+---
+
+TURN 2A (if player chose A):
+Sir Cogs-a-Lot: "Noble indeed! Each weed is a small knight of persistence, armored in green and sworn to grow wherever the soil permits. They are the unsung defenders of the path's edge."
+
+PLAYER CHOICES:
+[1] "Persistence is the best armor."
+[2] "Defending the path's edge is honorable."
+[3] "Small knights deserve recognition."
+
+---
+
+TURN 2B (if player chose B):
+Sir Cogs-a-Lot: "Charming and practical. A butterfly visiting a puddle is like a noble calling for a drink at a wayside well. Proper hydration before further fluttering."
+
+PLAYER CHOICES:
+[1] "Wayside puddles are noble refreshment."
+[2] "Hydration is a knight's duty."
+[3] "Butterflies look fancy at wells."
+
+---
+
+TURN 2C (if player chose C):
+Sir Cogs-a-Lot: "Royal and resplendent. The new leaves flutter like banners in the mild breeze, declaring that winter's long siege has ended and the green kingdom is restored."
+
+PLAYER CHOICES:
+[1] "The green kingdom is restored!"
+[2] "Banners in the breeze are inspiring."
+[3] "A restored kingdom calls for a stroll."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Cogs-a-Lot: "The best armor, for it does not dent. Persistence keeps the weeds standing through rain and sun alike. A fine quality in flora and in folk."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Cogs-a-Lot: "Honorable, though often overlooked. The path's edge needs guarding too, and the weeds stand watch without complaint or trumpet."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Cogs-a-Lot: "They do. I shall compose a short ode to the roadside weed. 'O leaf of green, at path's edge seen, unbowed and ever growing!' Needs work, but heartfelt."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Cogs-a-Lot: "Noble refreshment from the sky's own well. Any traveler, winged or wheeled, may drink without toll. Generous are the island's inns."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Cogs-a-Lot: "A duty I observe most rigorously. Though I drink no water, I can admire the discipline of those who do. Hydration is a quest worth taking."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Cogs-a-Lot: "Fancy indeed, with wings like courtly cloaks. A butterfly at a puddle could pass for a visiting dignitary from the land of Nectar."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Cogs-a-Lot: "Restored and green! Long live the leaves, and may their photosynthesis be ever victorious!"
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Cogs-a-Lot: "Inspiring to all who pass beneath them. I, for one, feel my gears stir more chivalrously under a canopy of fresh banners."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Cogs-a-Lot: "A stroll most fitting. Let us walk the green kingdom at a pace befitting its gentle restoration, and salute every new leaf we meet."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh, Dreamer. The mist is making everything look... softer. I found a really round puddle, and it had a leaf floating in it like a tiny boat. There are new weeds everywhere, little ones with wobbly stems. I almost said hello to one but I didn't want to scare it."
+
+PLAYER CHOICES:
+[1] "A leaf boat in a puddle is sweet."
+[2] "Wobbly-stemmed weeds are cute."
+[3] "Saying hello to a weed is kind."
+
+---
+
+TURN 2A (if player chose A):
+Tinker: "Sweet and a little wobbly. The leaf boat moved whenever the wind blew, like it was sailing somewhere important. Maybe to a bigger puddle."
+
+PLAYER CHOICES:
+[1] "A bigger puddle would be a real voyage."
+[2] "Leaf captains are brave."
+[3] "Tiny sails are the best sails."
+
+---
+
+TURN 2B (if player chose B):
+Tinker: "Cute, like a baby plant that hasn't decided how tall to be. I watched one bend when a butterfly landed on it, and it bounced back afterward. Very brave."
+
+PLAYER CHOICES:
+[1] "Bouncing back is brave."
+[2] "Butterflies make good landing testers."
+[3] "Baby plants are the best company."
+
+---
+
+TURN 2C (if player chose C):
+Tinker: "Kind, but I don't think weeds can hear. Still, it might feel it. I try to be friendly to small things just in case they understand somehow."
+
+PLAYER CHOICES:
+[1] "Small things probably notice kindness."
+[2] "Friendly intentions matter."
+[3] "Even silent hellos count."
+
+---
+
+TURN 3AA (if player chose A then A):
+Tinker: "A real voyage across the yard. The leaf would need a tiny snack and a map made of dew. I'd help pack."
+
+---
+
+TURN 3AB (if player chose A then B):
+Tinker: "Brave, especially with no engine. Just wind and hope and a very flat hull."
+
+---
+
+TURN 3AC (if player chose A then C):
+Tinker: "The best because they're easy to imagine. A big sail would be too heavy for a puddle. Tiny ones work better."
+
+---
+
+TURN 3BA (if player chose B then A):
+Tinker: "Brave to bend and then stand back up. I do that inside sometimes when things feel heavy."
+
+---
+
+TURN 3BB (if player chose B then B):
+Tinker: "They do. Butterflies land so gently, like they're checking if a thing is strong enough for joy. The weed passed."
+
+---
+
+TURN 3BC (if player chose B then C):
+Tinker: "The best company because they don't talk too much. You can sit near a baby plant and just be there together. It's nice."
+
+---
+
+TURN 3CA (if player chose C then A):
+Tinker: "Probably. I think kindness makes the air a little warmer. Maybe that's why the weeds look happy after someone walks by smiling."
+
+---
+
+TURN 3CB (if player chose C then B):
+Tinker: "They matter. Even if nothing hears, I hear myself being kind. That counts too. I think."
+
+---
+
+TURN 3CC (if player chose C then C):
+Tinker: "They count. A hello doesn't need ears to be real. It just needs someone to mean it."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! Sweet season part two is here! The mist is doing soft swirly things, the puddles are full of sky, and the weeds are like little green fireworks that go 'sprout!' instead of 'boom!' I saw Hoggy step in a puddle and he looked very surprised by his own footprint. Best morning ever!"
+
+PLAYER CHOICES:
+[1] "Puddles full of sky are amazing."
+[2] "Sprout-fireworks are the best kind."
+[3] "Hoggy surprised by his footprint is perfect."
+
+---
+
+TURN 2A (if player chose A):
+Zap-Zap: "Amazing! It's like the sky fell down for a visit and the puddle is holding it so it doesn't get lost. I tried to catch the sky once but my hands are too fast and it ran away."
+
+PLAYER CHOICES:
+[1] "The sky probably visits puddles on purpose."
+[2] "Fast hands are good for other things."
+[3] "A puddle sky is a portable sky."
+
+---
+
+TURN 2B (if player chose B):
+Zap-Zap: "The best kind because they're quiet and green and they don't scare birds. Also they keep happening every day. Daily fireworks. Free admission."
+
+PLAYER CHOICES:
+[1] "Daily free fireworks should be a holiday."
+[2] "Quiet fireworks are underrated."
+[3] "Green explosions are very eco-friendly."
+
+---
+
+TURN 2C (if player chose C):
+Zap-Zap: "Perfect! His foot went squelch and his face went 'huh?' and the puddle went blorp. I laughed so hard my lights flickered. I think Hoggy is a puddle comedian now."
+
+PLAYER CHOICES:
+[1] "Squelch-blorp comedy is top tier."
+[2] "Hoggy has excellent timing."
+[3] "Flickering lights mean true joy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Zap-Zap: "On purpose. The sky likes a little ground vacation now and then. Puddles are basically sky hammocks."
+
+---
+
+TURN 3AB (if player chose A then B):
+Zap-Zap: "Good for waving, high-fiving butterflies, and catching falling petals. Fast hands are never useless."
+
+---
+
+TURN 3AC (if player chose A then C):
+Zap-Zap: "Portable sky! You can carry it in your eyes if you look down at the right time. Very convenient for sky emergencies."
+
+---
+
+TURN 3BA (if player chose B then A):
+Zap-Zap: "It should be. We could call it Sprout Day. Everyone gets a free weed and a good mood. I'll write to the calendar committee."
+
+---
+
+TURN 3BB (if player chose B then B):
+Zap-Zap: "Underrated because they don't need a big finish. A sprout just goes 'boop' and that's the whole show. Beautiful."
+
+---
+
+TURN 3BC (if player chose B then C):
+Zap-Zap: "Eco-friendly and extra cute. Green explosions make more green explosions. It's the explosion that builds instead of breaks."
+
+---
+
+TURN 3CA (if player chose C then A):
+Zap-Zap: "Top tier, elite comedy. The sound effects write themselves. Blorp is the punchline nature gave us."
+
+---
+
+TURN 3CB (if player chose C then B):
+Zap-Zap: "Excellent timing. Hoggy waited until the puddle was perfectly calm, then delivered the squelch. Standing ovation from the weeds."
+
+---
+
+TURN 3CC (if player chose C then C):
+Zap-Zap: "True joy makes my circuits sing. Flickering lights are just my happiness leaking out the front. Very normal."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════
+
+---
+
+Summary:
+- Wrote the full text content of NPCConvoSweet2_T2.txt (Sweet Season Tree 2) for all 8 Robots: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap.
+- Used the exact 3-turn branching tree format from NPCConvoSweet2.txt with `---` separators, `if player chose A/B/C` labels, and `END OF BATCH
