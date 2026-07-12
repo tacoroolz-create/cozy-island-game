@@ -103,6 +103,76 @@ function drawCafeTile(tile, sx, sy, TS) {
     }
 }
 
+// ===== STAN (Stimmy Tim's counter clerk — see NPCConvoUnderworld1.txt) =====
+const STAN_NPC = { name: 'Stan', color: '#6F4E37' };
+const STAN_TREE = {
+    start: { text: "HEY! HI! HELLO! Welcome to Stimmy Tims, my name is Stan, I am your friend and also your caffeine enthusiast, what can I get you today, we have hot coffee, cold coffee, medium coffee, coffee with a donut on top, and a donut with coffee inside it!",
+        choices: [
+            { text: "Slow down, Stan. One coffee, please.", next: 'oneCoffee' },
+            { text: "What do you recommend?", next: 'recommend' },
+            { text: "You seem very... awake.", next: 'awake' }
+        ] },
+    oneCoffee: { text: "One coffee! Got it! One coffee coming right up! Hot or cold or lukewarm or mysterious? Mysterious is whatever's left in the bottom of the pot, and honestly? It's got a following.",
+        choices: [
+            { text: "Hot. Regular. No surprises.", next: 'hotRegular' },
+            { text: "I'll try the mysterious one.", next: 'mysterious' },
+            { text: "Do you have a favorite?", next: 'favorite' }
+        ] },
+    recommend: { text: "Recommend? I recommend EVERYTHING! But if you want the real inside scoop, the little know-it-alls around here each got their own perfect pairing. Robots like the bolt-brew, ghosts go ghostly vanilla, animals love the nutty crunch blend, and monsters? They pretend they don't want whipped cream, but they do.",
+        choices: [
+            { text: "Tell me more about the secret menu.", next: 'secretMenu' },
+            { text: "I'll have the ghostly vanilla.", next: 'ghostlyVanilla' },
+            { text: "Which one's for me?", next: 'whichOne' }
+        ] },
+    awake: { text: "Awake? I am awake like a lighthouse in a lightning storm! I am customer service incarnate! I greet the sunrise with a mug in each hand and a list of names I want to remember! You, Dreamer, are at the top of that list!",
+        choices: [
+            { text: "That's dedication.", next: 'dedication' },
+            { text: "Do you ever sleep?", next: 'sleep' },
+            { text: "I want to be a regular here.", next: 'regular' }
+        ] },
+    hotRegular: { text: "Hot regular no surprises! I respect that. Solid. Reliable. The kind of order a person makes when they got things to do and places to be. I'll put a little extra warmth in it on the house.",
+        choices: [{ text: "Thanks, Stan.", action: () => openStimmyShop() }] },
+    mysterious: { text: "Mysterious! Bold choice! It might be dark roast, it might be yesterday's special, it might taste like ambition. Whatever it is, it'll keep your eyelids at full attention. Enjoy the adventure!",
+        choices: [{ text: "Here goes nothing.", action: () => openStimmyShop() }] },
+    favorite: { text: "My favorite? The sunrise sipper. It tastes like the first orange slice of morning and the last yawn of night. I drink one every day at dawn and then I organize the sprinkles by color. Best hour of my life.",
+        choices: [{ text: "Sounds lovely. Let's order.", action: () => openStimmyShop() }] },
+    secretMenu: { text: "Secret menu? Oh, you heard right! Once we're good friends, I'll show you the whole list — every neighbor species got their own donut and coffee combo written down special. It makes folks feel seen, and feeling seen is basically my whole job description.",
+        choices: [{ text: "Can't wait. For now, the usual.", action: () => openStimmyShop() }] },
+    ghostlyVanilla: { text: "Ghostly vanilla! One cup of cloud-white comfort coming up! It tastes like a soft apology and a warm blanket. I don't even know how we make it, but the ghosts keep comin' back, so something's workin'.",
+        choices: [{ text: "Perfect.", action: () => openStimmyShop() }] },
+    whichOne: { text: "For you? Hmm. Dreamer, you strike me as a midday-miracle person. Not too hot, not too cold, a little sweet, a little bold, with a sprinkle of 'what just happened?' on top. I'll make it custom.",
+        choices: [{ text: "I'll trust you on this one.", action: () => openStimmyShop() }] },
+    dedication: { text: "Dedication? It's not dedication, it's JOY! Serving people good things and seein' their eyes light up? That's better than any nap. Naps are great, but this? This is magic in a paper cup.",
+        choices: [{ text: "Can't argue with that.", action: () => openStimmyShop() }] },
+    sleep: { text: "Sleep? Sure, eventually. Around 10 PM I go back down to the underworld, recharge my social battery, and then I'm up again before the rooster even thinks about it. Come find me after business hours someday — I wander the island just to say hi to the trees.",
+        choices: [{ text: "I'll look for you.", action: () => openStimmyShop() }] },
+    regular: { text: "A regular? Dreamer, you're already family. Come back every day, every hour, every minute if you want. I'll remember your order before you even say it. That's a Stan promise, and Stan promises are legally binding in my heart.",
+        choices: [{ text: "Deal. Let's order.", action: () => openStimmyShop() }] }
+};
+STAN_NPC._dialogueTree = STAN_TREE;
+
+let stanGreeted = false; // ponytail: session-only; skip the full chat after the first visit
+const STAN_LINES = ["HEY! Welcome back! Coffee's fresh, or at least recently made!", "Oh hey, it's you again! Best part of my day!", "Back for more?! I remembered you! Mostly!", "Coffee o'clock again? Let's gooo!"];
+
+// Entry point for the counter — Stan's chat the first visit, a quick line
+// and straight to the menu after that.
+function openStanDialogue() {
+    if (stanGreeted) {
+        notify('Stan: "' + STAN_LINES[Math.floor(Math.random() * STAN_LINES.length)] + '"', 2500);
+        openStimmyShop();
+        return;
+    }
+    stanGreeted = true;
+    dialogueState.active = true;
+    dialogueState.npc = STAN_NPC;
+    dialogueState.currentNode = 'start';
+    dialogueState.textRevealed = 0;
+    dialogueState.selectedChoice = 0;
+    dialogueState.choicesVisible = false;
+    dialogueState.advancedMenu = false;
+    gameState = STATE.DIALOGUE;
+}
+
 // --- The shop ---
 function tryUseCafeCounter() {
     if (!insideBuilding || insideBuilding.type !== 'ug_stimmy_tims') return false;
@@ -115,7 +185,7 @@ function tryUseCafeCounter() {
     if (fx < 0 || fx >= insideBuilding.interiorW || fy < 0 || fy >= insideBuilding.interiorH) return false;
     const t = insideBuilding.interiorTiles[fx][fy];
     if (!t || t.type !== 'cafe_counter') return false;
-    openStimmyShop();
+    openStanDialogue();
     return true;
 }
 

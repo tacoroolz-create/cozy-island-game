@@ -4261,10 +4261,10 @@ function tryEnterBuilding() {
         return true;
     }
 
-    // The Recycle Bin is a counter, not a room: the door opens the sell menu.
-    if (b.type === 'ug_recycle_bin' && typeof openRecycleCounter === 'function') {
+    // The Recycle Bin is a counter, not a room: the door opens onto Bob.
+    if (b.type === 'ug_recycle_bin' && typeof openBobDialogue === 'function') {
         audioManager.playSFX('door');
-        openRecycleCounter();
+        openBobDialogue();
         return true;
     }
 
