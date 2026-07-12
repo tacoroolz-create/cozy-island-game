@@ -26,8 +26,7 @@ The Returning Bird             | Yes      | Bird hops between 3 stops; a random 
 The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors fill anchor spots between dock and home)
 The Neighborhood Time Capsule  | Yes      | Implemented (historian buries a box; dig it up next cycle to hear it mangled)
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
-Peak Saucy                     | No       | Outline in Holidays/PeakSaucy.md
-The Great Blink-Off            | No       | Placeholder - to be replaced
+Peak Saucy                     | Yes      | Implemented (bonfire elder hands out sweet tea, serve neighbors for friendship)
 Cool Valley                    | No       | Outline in Holidays/CoolValley.md
 Peak Yeesh                     | No       | Outline in Holidays/PeakYeesh.md
 
@@ -90,13 +89,6 @@ Skipped: the outline's named neighbor brags (Chester/Luna/Hudson/Aiko aren't
 all in the actual 32-NPC roster, same gap as every other holiday with
 example dialogue for out-of-roster characters) — brags are generic instead;
 also skipped the "visitor log sign" optional upgrade.)
-
-Note: a "Peak Saucy" row appeared in this file (Holidays/PeakSaucy.md exists)
-between Sweet Valley and The Great Blink-Off, added outside this session.
-src/daycycle.js's HOLIDAYS array still has only 29 entries, so this file now
-has one more row than the array — positional mapping is off by one from
-"Peak Saucy" onward until that array gets a matching slot. Recheck both
-files' order before implementing anything at or past that point.)
 
 (July 11: Implemented The Returning Bird. Array slot 22 (was "Fruit Apology
 Day") in src/daycycle.js renamed. A bird (returningBird in animals.js) hops
@@ -319,7 +311,40 @@ Anchored by winter solstice / longest night themes.
 - **The Neighborhood Time Capsule** — could anchor any season; suggested day 25
   (Sweet) or day 115 (Cool) as a mid-season community ritual.
 - These mappings assume the HOLIDAYS array will grow from 29 to 32 entries to
-  match this file. Until then, the bottom three holidays (The Great Blink-Off,
-  Jellybean Council, Hat-Stacking Jubilee) have been replaced in this file by
-  Sweet Valley, Cool Valley, and Peak Yeesh, but src/daycycle.js still has only
-  29 slots — implementation order must be reconciled.
+  match this file. As of July 11, src/daycycle.js still has only 29 slots.
+  Peak Saucy has taken the array[26] slot that used to be the "The Great
+  Blink-Off" placeholder (that row is now gone from this file — it was never
+  a real outline, just filler text Peak Saucy replaced). Two placeholder
+  slots remain unrenamed: array[27] "Jellybean Council" and array[28]
+  "Hat-Stacking Jubilee" — Cool Valley and Peak Yeesh map onto those 1:1 by
+  row order (this file's row 28 = Cool Valley = array[27], row 29 = Peak
+  Yeesh = array[28]). No array growth needed unless a holiday beyond those
+  two also needs a slot.
+
+(July 11: Implemented Peak Saucy. Array slot 26 (was "The Great Blink-Off"
+placeholder) in src/daycycle.js renamed — this also fixed the row-count drift
+between this file and the HOLIDAYS array that a prior session's note flagged
+(the stray "The Great Blink-Off" status row is removed; every row now maps
+1:1 to its array index again). A static bonfire elder
+(peakSaucyElder/peakSaucy state, spawnPeakSaucy/updatePeakSaucy/drawPeakSaucy
+in src/game.js, same static-prop shape as islandGod) spawns near the dock.
+Talking to the elder hands the player a held Sweet Tea (heldSweetTea, same
+"temporary held item, no inventory slot" pattern as Lost Mail Day's letters)
+— refillable all day rather than once-per-day, since the loop is "serve as
+many neighbors as you can," unlike the flower/petal holidays' single-item
+economy. Facing any neighbor while holding tea and interacting
+(tryServeSweetTea, checked before openDialogue at both interact call sites,
+same hook point as Lost Mail Day's delivery) serves it: gainGift(2), no
+targeting required, any neighbor works. Serving 3 different neighbors
+triggers a one-time keepsake IOU reward. Hoggy gets a "cozy" mood; neighbor
+dialogue gets served-vs-not-served lines via getHolidayGreetingPrefix
+(src/dialogue.js). No new sprite — the bonfire/elder falls back to colored
+shapes. Skipped: the outline's separate Tea Leaves/Lemon wild-harvestable
+items and the Sweet Tea/Lemonade crafting chain (research confirmed both
+would be near-trivial data-table additions to the existing
+gardening/crafting systems, but every other holiday in this codebase already
+skips real economy integration in favor of a handed-out flavor item, so this
+follows that precedent instead of being the first exception) — Sweet Tea is
+a flavor-only held item, not a real ITEMS/RECIPES entry; also skipped the
+"both Sweet Tea and Lemonade" keepsake condition and the procession/pathing
+walk, per the outline's own "no complex multi-NPC pathing" constraint.)

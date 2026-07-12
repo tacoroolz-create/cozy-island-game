@@ -247,33 +247,71 @@ neighbor brags (Chester/Luna/Hudson/Aiko — same out-of-roster gap as every
 other holiday with example dialogue) — brags are generic instead; also
 skipped the "visitor log sign" optional upgrade.
 
-## Remaining 3, ranked easiest → hardest to build
+## Shipped this session (cont'd, 2)
+**Peak Saucy** (on `main`, pushed to origin). This also resolved the
+row-count drift flagged below: `holiday_status.txt` had picked up a stray
+extra "The Great Blink-Off" row (never a real outline, just leftover filler
+text) that pushed everything from Peak Saucy onward one row out of sync with
+`src/daycycle.js`'s `HOLIDAYS` array. That row is now gone from the status
+file, so every row maps 1:1 to its array index again — array slot 26 (was
+"The Great Blink-Off" placeholder) is renamed to Peak Saucy. Two placeholder
+slots remain: array[27] "Jellybean Council" and array[28] "Hat-Stacking
+Jubilee", which map 1:1 to Cool Valley and Peak Yeesh respectively by row
+order — no array growth to 32 needed for those two.
+
+Lives in [src/game.js:2423](src/game.js:2423) (`peakSaucyElder`/`peakSaucy`
+state, `spawnPeakSaucy`/`updatePeakSaucy`/`drawPeakSaucy`/
+`tryTalkToPeakSaucyElder`/`tryServeSweetTea`), a static bonfire elder near
+the dock, same shape as `islandGod`. Talking to the elder hands the player a
+held Sweet Tea (`heldSweetTea`, same temporary-held-item pattern as Lost Mail
+Day's letters) — refillable all day rather than once-per-day, since the loop
+is "serve as many neighbors as you can" rather than the flower/petal
+holidays' single-item-per-day economy. Facing any neighbor while holding tea
+and interacting (`tryServeSweetTea`, checked before `openDialogue` at both
+call sites, same hook point as Lost Mail Day's delivery) serves it —
+`gainGift(2)`, no targeting, any neighbor works. Serving 3 different
+neighbors triggers a one-time keepsake IOU. Hoggy gets a "cozy" mood;
+neighbor dialogue gets served-vs-not-served lines via
+`getHolidayGreetingPrefix`. No new sprite — falls back to colored shapes.
+Skipped: the outline's Tea Leaves/Lemon wild-harvestable items and the Sweet
+Tea/Lemonade crafting chain — confirmed both would be near-trivial data-table
+additions (`PLANTS`/`RECIPES`/`HARVEST_TYPES` in gardening.js/crafting.js/
+game.js are all generic, keyed off small data tables), but every other
+holiday in this codebase already skips real economy integration for a
+handed-out flavor item instead, so Peak Saucy follows that precedent rather
+than being the first exception; also skipped the procession/pathing walk per
+the outline's own "no complex multi-NPC pathing" constraint, and the "both
+Sweet Tea and Lemonade" keepsake condition since there's only one drink type.
+
+## Remaining, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **Flealess Market** — 3 items, one of which is a whole new plant type
-   (seed + growth stages). Most new content of any outline.
-2. **Familiar Seller** — permanent named companion that follows the player
+1. **Cool Valley** — mostly reuses existing primitives: "memory stones" are
+   existing landmarks/tiles (no new tile type), lanterns can copy Memory
+   Lantern Night's shape almost verbatim, Sweet Rice Ball can be a flavor-only
+   held item like Peak Saucy's tea. Cleanest array slot (27), no ambiguity.
+2. **The Flealess Market** — 3 items, one of which is a whole new plant type
+   (seed + growth stages). Confirmed in Peak Saucy's research that the
+   crop-growth system (`PLANTS`/`SEED_TO_PLANT` in gardening.js) is a tiny
+   data-table addition, not a new state machine — so this is less scary than
+   it sounds, just more items than usual.
+3. **Peak Yeesh** — needs 8 new furniture pieces (reuses the existing
+   furniture/decoration placement system, so each is a data-table item, not
+   new plumbing), a silent wandering NPC (Papa Yeesh), a "stay awake until
+   midnight" timing check, and reading back the player's yearly Hoggy-gift
+   count for the reward split. More moving parts than Cool Valley/Flealess
+   Market but nothing that needs a new subsystem.
+4. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
-   input + per-year selection).
-3. **Peak Saucy** — new outline that appeared mid-session
-    ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
-    an array slot. `holiday_status.txt` now has 30 rows but
-    `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the
-    positional mapping from this row onward before implementing it or
-    anything after it. `holiday_status.txt` has kept drifting further outside
-    this session's edits: row 31 is now "Cool Valley" (was "Jellybean
-    Council") and row 32 is now "Peak Yeesh" (was "Hat-Stacking Jubilee"),
-    plus a new "Seasonal Holiday Mapping (proposed)" section was appended at
-    the bottom of that file proposing the array grow from 29 to 32 slots
-    entirely. None of that is reconciled against `src/daycycle.js` yet — read
-    both files fresh and re-derive the positional mapping before touching
-    anything from Peak Saucy onward, don't trust this note's row numbers by
-    then either.
+   input + per-year selection) — no existing "follow the player" or
+   "permanent named pet" system to reuse, unlike everything else on this
+   list.
 
-(Tourist Time and Flealess Market/Familiar Seller are ranked by *systems*
-complexity, not necessarily writing effort — reorder freely.)
+`Backwards Hats Day` (array[0]) is still unimplemented with no outline file —
+not ranked, since the skill's step 1 only considers `No` rows that have a
+matching `Holidays/*.md` outline.
 
 ## Gotchas found while building the first one
 - **~~No outdoor decor placement system.~~ Resolved.** The real furniture

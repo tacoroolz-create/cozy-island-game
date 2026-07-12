@@ -521,6 +521,7 @@ function getHogHolidayMood() {
     if (name === 'The Picnic Reset') return { emote: 'picnic', note: hog.name + ' flops down at the end of the picnic line, hoping for scraps.' };
     if (name === 'The Neighborhood Time Capsule') return { emote: 'dig', note: hog.name + ' noses at the freshly dug dirt, hoping something edible got buried.' };
     if (name === 'Tourist Time!') return { emote: 'confused', note: hog.name + ' stares at the tourists with deep, personal suspicion.' };
+    if (name === 'Peak Saucy') return { emote: 'cozy', note: hog.name + ' flops near the bonfire, soaking up the longest day.' };
     return null;
 }
 

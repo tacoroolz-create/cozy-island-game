@@ -1125,6 +1125,10 @@ function drawGame() {    // Handle continuous movement
     updateTouristTime();
     drawTouristTime();
 
+    // ===== PEAK SAUCY: bonfire elder serving sweet tea =====
+    updatePeakSaucy();
+    drawPeakSaucy();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2420,6 +2424,96 @@ function tryTalkToTourist() {
     return true;
 }
 
+// ===== PEAK SAUCY =====
+// A summer-solstice bonfire holiday. A static elder waits by a beach bonfire
+// and hands the player a held Sweet Tea (temporary held item, no inventory
+// slot, no real crafting/harvest chain — same simplification other holidays
+// use for their handed-out flavor items) on request, refillable all day
+// rather than once-per-day like the flower/petal holidays, since the loop is
+// "serve as many neighbors as you can before the fire dies down". Serving a
+// neighbor is tried before dialogue opens, same hook point as Lost Mail Day.
+const PEAK_SAUCY_KEEPSAKE_THRESHOLD = 3;
+const PEAK_SAUCY_ELDER_LINES = [
+    'The elder hands you a warm cup. "Longest day of the year. Go share it."',
+    '"Sweet tea, fresh off the fire," the elder says, passing you a cup.',
+    'The elder tops off a cup for you. "Slow afternoon, warm drink. That\'s the whole plan."'
+];
+const PEAK_SAUCY_SERVE_LINES = [
+    ' takes the cup with both hands. "Perfect. Just perfect for today."',
+    ' sips it slow, watching the water. "This is what summer\'s for."',
+    ' clinks their cup against yours. "To the longest day!"',
+    ' savors it and sighs happily. "You didn\'t have to, but I\'m glad you did."'
+];
+let peakSaucyElder = null; // { x, y }
+let peakSaucy = null; // { day, served:Set<npcId>, keepsakeGiven }
+let heldSweetTea = false;
+
+function spawnPeakSaucy() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    peakSaucyElder = findClearGroundNear(dock.x, dock.y, 1, 12);
+    peakSaucy = { day: world.day, served: new Set(), keepsakeGiven: false };
+    heldSweetTea = false;
+    notify('An elder has built a bonfire near the shore for the longest day of the year. Ask for a cup of sweet tea to share.', 4500);
+}
+
+function updatePeakSaucy() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Peak Saucy') {
+        if (peakSaucy) { peakSaucy = null; peakSaucyElder = null; heldSweetTea = false; }
+        return;
+    }
+    if (!world) return;
+    if (!peakSaucy || peakSaucy.day !== world.day) spawnPeakSaucy();
+}
+
+function drawPeakSaucy() {
+    if (!peakSaucy || !peakSaucyElder) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = peakSaucyElder.x * TS - cameraX, sy = peakSaucyElder.y * TS - cameraY;
+    noStroke();
+    fill('#FF7043');
+    ellipse(sx + TS * 0.5, sy + TS * 0.75, TS * 0.6, TS * 0.4);
+    fill('#FFCA28');
+    ellipse(sx + TS * 0.5, sy + TS * 0.6, TS * 0.35, TS * 0.45);
+    fill('#8D6E63');
+    rect(sx + TS * 0.15, sy, TS * 0.7, TS * 0.55, 2);
+}
+
+function isFacingPeakSaucyElder() {
+    if (!peakSaucyElder || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === peakSaucyElder.x && facing.y === peakSaucyElder.y;
+}
+
+function tryTalkToPeakSaucyElder() {
+    if (!peakSaucy || !isFacingPeakSaucyElder()) return false;
+    if (heldSweetTea) {
+        notify('"You\'re already holding a cup — go find someone to share it with."', 3500);
+    } else {
+        heldSweetTea = true;
+        notify(PEAK_SAUCY_ELDER_LINES[Math.floor(Math.random() * PEAK_SAUCY_ELDER_LINES.length)], 4000);
+    }
+    return true;
+}
+
+// Serving a held cup to a neighbor (tried before dialogue opens, same hook as
+// Lost Mail Day's delivery). No failure state — any neighbor can be served.
+function tryServeSweetTea(npc) {
+    if (!peakSaucy || !heldSweetTea || !npc) return false;
+    heldSweetTea = false;
+    peakSaucy.served.add(npc.id);
+    const line = PEAK_SAUCY_SERVE_LINES[Math.floor(Math.random() * PEAK_SAUCY_SERVE_LINES.length)];
+    notify(npc.name + line + ' Friendship +2.', 4500);
+    if (typeof npc.gainGift === 'function') npc.gainGift(2);
+    if (!peakSaucy.keepsakeGiven && peakSaucy.served.size >= PEAK_SAUCY_KEEPSAKE_THRESHOLD) {
+        peakSaucy.keepsakeGiven = true;
+        inventory.addItem('iou', 1);
+        notify('Word gets around about your tea-serving. Someone presses a keepsake IOU into your hand. "For the longest day."', 5000);
+    }
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3148,6 +3242,7 @@ function mousePressed() {
             const npc = npcAtFacing();
             if (npc) {
                 if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return;
+                if (typeof tryServeSweetTea === 'function' && tryServeSweetTea(npc)) return;
                 openDialogue(npc);
                 return;
             }
@@ -3175,6 +3270,8 @@ function mousePressed() {
         if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return;
         // Tourist Time!: offer a beached tourist a gift for an IOU
         if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return;
+        // Peak Saucy: talk to the bonfire elder for a cup of sweet tea
+        if (typeof tryTalkToPeakSaucyElder === 'function' && tryTalkToPeakSaucyElder()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4430,6 +4527,7 @@ function keyPressed() {
                 const npc = npcAtFacing();
                 if (npc) {
                     if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return false;
+                    if (typeof tryServeSweetTea === 'function' && tryServeSweetTea(npc)) return false;
                     openDialogue(npc);
                     return false;
                 }
@@ -4457,6 +4555,8 @@ function keyPressed() {
             if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return false;
             // Tourist Time!: offer a beached tourist a gift for an IOU
             if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return false;
+            // Peak Saucy: talk to the bonfire elder for a cup of sweet tea
+            if (typeof tryTalkToPeakSaucyElder === 'function' && tryTalkToPeakSaucyElder()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

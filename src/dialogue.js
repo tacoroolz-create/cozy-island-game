@@ -303,6 +303,23 @@ function getHolidayGreetingPrefix(name) {
                 "Something about a time capsule? I wasn't paying attention, I was skipping stones."
             ];
         }
+    } else if (holiday.name === 'Peak Saucy') {
+        const ps = (typeof peakSaucy !== 'undefined') ? peakSaucy : null;
+        const npcObj = (ps && typeof npcs !== 'undefined') ? npcs.find(n => n.name === name) : null;
+        const served = ps && npcObj && ps.served.has(npcObj.id);
+        if (served) {
+            comments = [
+                "That sweet tea you brought me really hit the spot. Longest day of the year, best cup I've had.",
+                "Still thinking about that tea. You've got good timing.",
+                "I keep glancing at the bonfire, half-hoping for a refill."
+            ];
+        } else {
+            comments = [
+                "There's an elder by the shore handing out sweet tea. Haven't gotten mine yet.",
+                "Longest day of the year today. I could really go for something warm to drink.",
+                "The bonfire's going strong. I hear the tea's the whole point."
+            ];
+        }
     } else if (holiday.name === 'Tourist Time!') {
         comments = [
             "I told a tourist the big rock is older than the sky. They believed me.",
