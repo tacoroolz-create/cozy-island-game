@@ -303,6 +303,15 @@ function getHolidayGreetingPrefix(name) {
                 "Something about a time capsule? I wasn't paying attention, I was skipping stones."
             ];
         }
+    } else if (holiday.name === 'Tourist Time!') {
+        comments = [
+            "I told a tourist the big rock is older than the sky. They believed me.",
+            "Welcome to Cozy Island. Population: dreams. Main export: confusion.",
+            "A tourist asked if the trees are made of clouds. I said yes.",
+            "Shh. One of them thinks the moon is following him. Let him have that.",
+            "I gave a tourist directions to somewhere that doesn't exist. They seemed thrilled anyway.",
+            "A tourist asked where to leave his socks. I still don't have an answer for him."
+        ];
     } else {
         comments = [
             `Can you believe today is ${holiday.name}? I already started my preparations.`,

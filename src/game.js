@@ -1121,6 +1121,10 @@ function drawGame() {    // Handle continuous movement
     updateTimeCapsuleHistorian();
     drawTimeCapsuleHistorian();
 
+    // ===== TOURIST TIME!: beached tourists near the dock =====
+    updateTouristTime();
+    drawTouristTime();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2329,6 +2333,93 @@ function tryTalkToTimeCapsuleHistorian() {
     return true;
 }
 
+// ===== TOURIST TIME! =====
+// A dreamy little boat beaches for one day and 3 static tourists wander near
+// the dock (same non-moving "statue" shape as islandGod/the historian).
+// Facing one while holding any 'gift'-category item (the closest existing
+// stand-in for "harvested fruit or flower") hands it over as a souvenir for
+// an IOU, once per tourist per day; otherwise interacting just shows a naive
+// question, no failure state, matching the outline.
+const TOURIST_QUESTIONS = [
+    'Is this island real?',
+    'May I touch a tree?',
+    'Where do I leave my socks?',
+    'Do the crabs have names?',
+    'Is the sand supposed to be this friendly?',
+    'Does it rain upward here?',
+    'Who do I tip for the nice weather?'
+];
+const TOURIST_THANKS = [
+    'A tourist gasps and clutches the souvenir like a holy relic. IOU +1!',
+    'A tourist declares this "the trip of a lifetime" and hands you an IOU.',
+    'A tourist takes seventeen photos of the souvenir before pocketing it. IOU +1!',
+    'A tourist tears up. "This is going straight on the mantel." IOU +1!'
+];
+const TOURIST_NAMES = ['Wide-Eyed Tourist', 'Sunburnt Tourist', 'Bewildered Tourist'];
+let touristTime = null; // { tourists:[{x,y,name,gaveSouvenirToday}], day }
+
+function spawnTouristTime() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const tourists = [];
+    const rings = [[1, 5], [4, 9], [7, 13]];
+    for (let i = 0; i < TOURIST_NAMES.length; i++) {
+        const spot = findClearGroundNear(dock.x, dock.y, rings[i][0], rings[i][1]) || dock;
+        tourists.push({ x: spot.x, y: spot.y, name: TOURIST_NAMES[i], gaveSouvenirToday: false });
+    }
+    touristTime = { tourists, day: world.day };
+    notify('A small, dreamy boat has beached near the dock — tourists! Offer one a gift for an IOU.', 4500);
+}
+
+function updateTouristTime() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Tourist Time!') {
+        touristTime = null;
+        return;
+    }
+    if (!world) return;
+    if (!touristTime || touristTime.day !== world.day) spawnTouristTime();
+}
+
+function drawTouristTime() {
+    if (!touristTime) return;
+    const TS = CONFIG.TILE_SIZE;
+    const colors = ['#4FC3F7', '#FFB74D', '#BA68C8'];
+    touristTime.tourists.forEach((t, i) => {
+        const sx = t.x * TS - cameraX, sy = t.y * TS - cameraY;
+        noStroke();
+        fill(colors[i % colors.length]);
+        rect(sx + TS * 0.25, sy + TS * 0.3, TS * 0.5, TS * 0.7, 3);
+        fill('#FFE0B2');
+        ellipse(sx + TS / 2, sy + TS * 0.22, TS * 0.4, TS * 0.4);
+    });
+}
+
+function findFacingTourist() {
+    if (!touristTime || !player) return null;
+    const facing = player.getFacingTile();
+    if (!facing) return null;
+    return touristTime.tourists.find(t => t.x === facing.x && t.y === facing.y) || null;
+}
+
+function tryTalkToTourist() {
+    const tourist = findFacingTourist();
+    if (!tourist) return false;
+
+    const active = (typeof inventory !== 'undefined') ? inventory.getActiveItem() : null;
+    const item = active ? ITEMS[active.id] : null;
+    if (item && item.category === 'gift' && !tourist.gaveSouvenirToday) {
+        inventory.removeItem(active.id, 1);
+        inventory.addItem('iou', 1);
+        tourist.gaveSouvenirToday = true;
+        notify(TOURIST_THANKS[Math.floor(Math.random() * TOURIST_THANKS.length)], 4000);
+        return true;
+    }
+
+    notify(tourist.name + ' asks: "' + TOURIST_QUESTIONS[Math.floor(Math.random() * TOURIST_QUESTIONS.length)] + '"', 3500);
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3082,6 +3173,8 @@ function mousePressed() {
         if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return;
         // The Neighborhood Time Capsule: talk to the historian to donate or dig up
         if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return;
+        // Tourist Time!: offer a beached tourist a gift for an IOU
+        if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4362,6 +4455,8 @@ function keyPressed() {
             if (typeof tryListenToPicnicPair === 'function' && tryListenToPicnicPair()) return false;
             // The Neighborhood Time Capsule: talk to the historian to donate or dig up
             if (typeof tryTalkToTimeCapsuleHistorian === 'function' && tryTalkToTimeCapsuleHistorian()) return false;
+            // Tourist Time!: offer a beached tourist a gift for an IOU
+            if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions

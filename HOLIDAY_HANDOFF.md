@@ -227,7 +227,27 @@ donation is mangled specifically" optional upgrade, since the whole reveal
 line is already a single generic mangled blend, matching the "no picker UI"
 precedent from every other visiting-NPC holiday.
 
-## Remaining 4, ranked easiest → hardest to build
+**Tourist Time!** (on `main`, pushed to origin). Array slot 7 (was "Spoon
+Appreciation Day") in [src/daycycle.js](src/daycycle.js:52) renamed. 3 static
+tourists spawn near the dock on `findClearGroundNear` rings staggered by
+radius so they don't stack
+(`spawnTouristTime`/`updateTouristTime`/`drawTouristTime`/`tryTalkToTourist`
+in [src/game.js](src/game.js:2333)). Facing one while holding any
+`'gift'`-category item (the closest existing stand-in for "harvested fruit
+or flower" — no dedicated fruit/flower category exists in `ITEMS`) hands it
+over as a souvenir: item consumed via `inventory.removeItem`, `+1 IOU` via
+`inventory.addItem('iou', 1)`, once per tourist per day. Otherwise, or once
+thanked, interacting shows a random naive question via `notify()` — no
+failure state, matching the outline. Hoggy gets a "confused" mood; neighbor
+dialogue gets tourist-brag lines via `getHolidayGreetingPrefix`
+([src/dialogue.js](src/dialogue.js:23)). No new sprite or boat — falls back
+to a colored rectangle body per tourist; the boat itself is flavor text
+only in the spawn `notify()`, never drawn. Skipped: the outline's named
+neighbor brags (Chester/Luna/Hudson/Aiko — same out-of-roster gap as every
+other holiday with example dialogue) — brags are generic instead; also
+skipped the "visitor log sign" optional upgrade.
+
+## Remaining 3, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
@@ -237,10 +257,7 @@ decor primitive above).
 2. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection).
-3. **Tourist Time!** — mechanically simple (spawn 2-3 NPCs, trade item for
-   IOUs) but needs several new throwaway dialogue lines per neighbor; save
-   for when there's appetite for writing flavor text.
-4. **Peak Saucy** — new outline that appeared mid-session
+3. **Peak Saucy** — new outline that appeared mid-session
     ([Holidays/PeakSaucy.md](Holidays/PeakSaucy.md)), not yet ranked or given
     an array slot. `holiday_status.txt` now has 30 rows but
     `src/daycycle.js`'s `HOLIDAYS` array still has 29 — re-verify the
