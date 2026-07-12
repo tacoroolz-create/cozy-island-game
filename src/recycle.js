@@ -77,7 +77,77 @@ function openSellSubmenu(itemId) {
     openMagicMenu(nm + ' x' + count, opts);
 }
 
-// The counter itself — opened by the Recycle Bin door (see tryEnterBuilding).
+// ===== BOB (Recycle Bin clerk — see NPCConvoUnderworld1.txt) =====
+const BOB_NPC = { name: 'Bob', color: '#8D6E63' };
+const BOB_TREE = {
+    start: { text: "Hey. Name's Bob. Got stuff? We take stuff. Trade it in. Get somethin' else. No fuss. No song. No dance. Just... stuff goes here.",
+        choices: [
+            { text: "I have some things to recycle.", next: 'stuff' },
+            { text: "What kind of stuff do you take?", next: 'kind' },
+            { text: "You don't say much, do you?", next: 'quiet' }
+        ] },
+    stuff: { text: "Good. Pile it up. I don't need a story. Don't need a receipt. Just weigh it, swap it, done. You want store credit or you want somethin' shiny today?",
+        choices: [
+            { text: "Store credit sounds fine.", next: 'credit' },
+            { text: "Something shiny today.", next: 'shiny' },
+            { text: "How does the trade value work?", next: 'value' }
+        ] },
+    kind: { text: "Most things. Old tools. Extra weeds. Rocks you picked up and forgot why. Furniture that don't fit your soul no more. If it's clutter, it's currency. That's the Bin way.",
+        choices: [
+            { text: "I like that. Clutter is currency.", next: 'clutter' },
+            { text: "What don't you take?", next: 'wontTake' },
+            { text: "Do people bring weird things?", next: 'weird' }
+        ] },
+    quiet: { text: "Not much. Words wear me out. Folks talk circles around a simple thing. I just like the clink of trade. Clink's honest. Words got too many corners.",
+        choices: [
+            { text: "I'll keep it short then.", next: 'short' },
+            { text: "Clink is honest. I get that.", next: 'clinkHonest' },
+            { text: "You ever get lonely back here?", next: 'lonely' }
+        ] },
+    credit: { text: "Store credit. Smart. Builds up. Somethin' good comes through, you'll be first in line. I write it down. I don't lose paper.",
+        choices: [{ text: "Alright, let's trade.", action: () => openRecycleCounter() }] },
+    shiny: { text: "Shiny today. Alright. Let's see what we got behind the counter. Might be a trinket, might be a tool. You pick what catches your eye. I'll do the math.",
+        choices: [{ text: "Let's see it.", action: () => openRecycleCounter() }] },
+    value: { text: "Trade value? Simple. More useful, more credit. Prettier, maybe less. Ugly but handy? Gold. Pretty but useless? Still pretty. We ain't heartless.",
+        choices: [{ text: "Fair enough.", action: () => openRecycleCounter() }] },
+    clutter: { text: "Clutter is currency. You got it. Most folks don't. They hang onto broken things like they're gonna fix 'em someday. Bin takes 'em and gives 'em a second job.",
+        choices: [{ text: "Let's trade, then.", action: () => openRecycleCounter() }] },
+    wontTake: { text: "Don't take? Feelings. Regrets. Half-eaten sandwiches. We tried once. Mess. Also live crabs. They got their own system.",
+        choices: [{ text: "Noted. Let's trade.", action: () => openRecycleCounter() }] },
+    weird: { text: "Weird? All day. Somebody brought in a lamp that only glowed when you apologized to it. Worked fine. Gave 'em three credits and a napkin.",
+        choices: [{ text: "Sounds about right. Let's trade.", action: () => openRecycleCounter() }] },
+    short: { text: "Short's good. We can do the whole deal in nods if you want. Nod once for trade, twice for credit, shake for 'let me think on it.'",
+        choices: [{ text: "Let's trade.", action: () => openRecycleCounter() }] },
+    clinkHonest: { text: "Clink's honest. You drop a can, it don't pretend to be a cup. It just is what it is. That's why I like this place. No pretending. No show. Just trade.",
+        choices: [{ text: "Just trade, then.", action: () => openRecycleCounter() }] },
+    lonely: { text: "Lonely? Nah. Got the bins. Got the bell on the door. Got the hum of the compactor. Quiet company. Better than loud company most days.",
+        choices: [{ text: "Fair enough. Let's trade.", action: () => openRecycleCounter() }] }
+};
+BOB_NPC._dialogueTree = BOB_TREE;
+
+let bobGreeted = false; // ponytail: session-only; skip the full chat after the first visit
+const BOB_LINES = ["Back again. Pile it up.", "Stuff's stuff. Let's trade.", "Bin's open. What ya got.", "Clink's honest. Let's see it."];
+
+// Entry point for the Recycle Bin door — Bob's chat the first visit, a quick
+// line and straight to the counter after that (see tryEnterBuilding).
+function openBobDialogue() {
+    if (bobGreeted) {
+        notify('Bob: "' + BOB_LINES[Math.floor(Math.random() * BOB_LINES.length)] + '"', 2500);
+        openRecycleCounter();
+        return;
+    }
+    bobGreeted = true;
+    dialogueState.active = true;
+    dialogueState.npc = BOB_NPC;
+    dialogueState.currentNode = 'start';
+    dialogueState.textRevealed = 0;
+    dialogueState.selectedChoice = 0;
+    dialogueState.choicesVisible = false;
+    dialogueState.advancedMenu = false;
+    gameState = STATE.DIALOGUE;
+}
+
+// The counter itself — opened via Bob's dialogue, or directly on repeat visits.
 function openRecycleCounter() {
     const opts = [];
     const seen = new Set();
