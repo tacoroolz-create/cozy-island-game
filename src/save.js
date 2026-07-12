@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 23;
+const SAVE_VERSION = 24;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -406,6 +406,14 @@ const MIGRATIONS = [
     // pond position, building strip, and grass buffer. Drop the saved underground
     // map so it regenerates from the CSV; the overworld spawn point also moved to
     // the island pond, which is handled by placePlayerAtStartLocation() after load.
+    function(data) {
+        if (data.extraMaps) delete data.extraMaps.underground;
+        return data;
+    },
+    // v23 -> v24: the Bottomless Pit left the building strip (7 buildings now)
+    // and caps the path's west end from its own 'bp' marker; the tree row no
+    // longer clobbers the southern grass row. Drop the saved underground map so
+    // it regenerates from the corrected underworld.csv.
     function(data) {
         if (data.extraMaps) delete data.extraMaps.underground;
         return data;
