@@ -523,6 +523,7 @@ function getHogHolidayMood() {
     if (name === 'Tourist Time!') return { emote: 'confused', note: hog.name + ' stares at the tourists with deep, personal suspicion.' };
     if (name === 'Peak Saucy') return { emote: 'cozy', note: hog.name + ' flops near the bonfire, soaking up the longest day.' };
     if (name === 'Cool Valley') return { emote: 'moonlit', note: hog.name + ' sits quietly by the shore, watching the lanterns and the rising moon.' };
+    if (name === 'Sweet Valley') return { emote: 'altar', note: hog.name + ' noses at the beach altar, hoping someone offers him something.' };
     return null;
 }
 

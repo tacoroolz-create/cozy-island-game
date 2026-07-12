@@ -1133,6 +1133,10 @@ function drawGame() {    // Handle continuous movement
     updateCoolValley();
     drawCoolValley();
 
+    // ===== SWEET VALLEY: beach altar build + offering =====
+    updateSweetValley();
+    drawSweetValley();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2674,6 +2678,119 @@ function tryLeaveMemoryOffering() {
     return true;
 }
 
+// ===== SWEET VALLEY =====
+// Spring-equinox holiday honoring the coming Island God. A single altar spot
+// is picked on the widest beach run each morning (reuses findLanternShoreLine
+// with count=1), starting unbuilt. Building it consumes 10 Sticks + 5 Stones
+// (both plain existing ITEMS, no new materials) — no new placed-structure
+// system needed since it's one fixed tile, not a footprint like Castle of
+// Sticks Day's Building-based twig tower. Once built, offering any
+// 'gift'-category item (same "harvestable" stand-in Tourist Time uses) gives
+// a flavor line, and the first offering of the day boosts every neighbor's
+// friendship once, same shared-trigger pattern as Hoggy's Birthday/Turtle
+// Crossing Guard Day.
+const SWEET_VALLEY_STICK_COST = 10;
+const SWEET_VALLEY_STONE_COST = 5;
+const SWEET_VALLEY_BUILD_LINES = [
+    'You stack the sticks and stones into a beach altar. It feels ready for an offering.',
+    'The altar comes together, sticks braced against stones. Something about it already feels honored.',
+    'You set the last stone in place. The altar looks small, but it looks right.'
+];
+const SWEET_VALLEY_OFFER_LINES = [
+    'You lay the offering on the altar. For a moment the sand feels warmer.',
+    'The offering settles into place. Somewhere, something slow and ancient seems pleased.',
+    'You leave it at the altar and step back. It feels like the start of something.',
+    'The offering catches the light oddly as you set it down. Good sign, probably.'
+];
+let sweetValleyAltar = null; // { day, x, y, built, offeredBonusGiven }
+
+function findSweetValleyAltarSpot() {
+    const shore = (typeof findLanternShoreLine === 'function') ? findLanternShoreLine(1) : null;
+    if (shore && shore[0]) return shore[0];
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    return findClearGroundNear(dock.x, dock.y, 1, 15);
+}
+
+function spawnSweetValley() {
+    if (!world) return;
+    const spot = findSweetValleyAltarSpot();
+    if (!spot) return;
+    sweetValleyAltar = { day: world.day, x: spot.x, y: spot.y, built: false, offeredBonusGiven: false };
+    notify('Neighbors say the Island God is expected today. The beach needs an altar — 10 Sticks and 5 Stones should do it.', 5000);
+}
+
+function updateSweetValley() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Sweet Valley') {
+        if (sweetValleyAltar) sweetValleyAltar = null;
+        return;
+    }
+    if (!world) return;
+    if (!sweetValleyAltar || sweetValleyAltar.day !== world.day) spawnSweetValley();
+}
+
+function drawSweetValley() {
+    if (!sweetValleyAltar) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = sweetValleyAltar.x * TS - cameraX, sy = sweetValleyAltar.y * TS - cameraY;
+    noStroke();
+    if (sweetValleyAltar.built) {
+        fill('#9E9E9E');
+        rect(sx + TS * 0.15, sy + TS * 0.4, TS * 0.7, TS * 0.45, 3);
+        fill('#A0826D');
+        rect(sx + TS * 0.25, sy + TS * 0.18, TS * 0.5, TS * 0.28, 2);
+        fill(255, 236, 179, 110);
+        ellipse(sx + TS * 0.5, sy + TS * 0.32, TS * 0.9, TS * 0.9);
+    } else {
+        fill('#9E9E9E');
+        ellipse(sx + TS * 0.35, sy + TS * 0.7, TS * 0.35, TS * 0.22);
+        fill('#A0826D');
+        rect(sx + TS * 0.45, sy + TS * 0.55, TS * 0.35, TS * 0.1, 2);
+    }
+}
+
+function isFacingSweetValleyAltar() {
+    if (!sweetValleyAltar || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === sweetValleyAltar.x && facing.y === sweetValleyAltar.y;
+}
+
+// Building the altar (tried before offering/harvest at both interact call sites).
+function tryBuildSweetValleyAltar() {
+    if (!sweetValleyAltar || sweetValleyAltar.built || !isFacingSweetValleyAltar()) return false;
+    if (!inventory.hasItem('stick', SWEET_VALLEY_STICK_COST) || !inventory.hasItem('stone', SWEET_VALLEY_STONE_COST)) {
+        notify('The altar needs 10 Sticks and 5 Stones to build. Gather a bit more.', 3500);
+        return true;
+    }
+    inventory.removeItem('stick', SWEET_VALLEY_STICK_COST);
+    inventory.removeItem('stone', SWEET_VALLEY_STONE_COST);
+    sweetValleyAltar.built = true;
+    notify(SWEET_VALLEY_BUILD_LINES[Math.floor(Math.random() * SWEET_VALLEY_BUILD_LINES.length)], 4500);
+    return true;
+}
+
+// Making an offering at the built altar. No failure state beyond needing a
+// held gift-category item, matching Tourist Time's "any gift works" rule.
+function tryOfferAtSweetValleyAltar() {
+    if (!sweetValleyAltar || !sweetValleyAltar.built || !isFacingSweetValleyAltar()) return false;
+    const active = (typeof inventory !== 'undefined') ? inventory.getActiveItem() : null;
+    const item = active ? ITEMS[active.id] : null;
+    if (!item || item.category !== 'gift') {
+        notify('The altar is ready. Hold a harvestable gift and interact to make an offering.', 3500);
+        return true;
+    }
+    inventory.removeItem(active.id, 1);
+    notify(SWEET_VALLEY_OFFER_LINES[Math.floor(Math.random() * SWEET_VALLEY_OFFER_LINES.length)], 4500);
+    if (!sweetValleyAltar.offeredBonusGiven) {
+        sweetValleyAltar.offeredBonusGiven = true;
+        if (typeof npcs !== 'undefined') {
+            for (const npc of npcs) { if (typeof npc.gainGift === 'function') npc.gainGift(2); }
+        }
+        notify('A ripple of thanks passes through the neighborhood. Friendship +2, islandwide.', 5000);
+    }
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3436,6 +3553,9 @@ function mousePressed() {
         // Cool Valley: talk to the elder for a rice ball, or leave an offering at a memory stone
         if (typeof tryTalkToCoolValleyElder === 'function' && tryTalkToCoolValleyElder()) return;
         if (typeof tryLeaveMemoryOffering === 'function' && tryLeaveMemoryOffering()) return;
+        // Sweet Valley: build the beach altar, then offer a harvestable
+        if (typeof tryBuildSweetValleyAltar === 'function' && tryBuildSweetValleyAltar()) return;
+        if (typeof tryOfferAtSweetValleyAltar === 'function' && tryOfferAtSweetValleyAltar()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4725,6 +4845,9 @@ function keyPressed() {
             // Cool Valley: talk to the elder for a rice ball, or leave an offering at a memory stone
             if (typeof tryTalkToCoolValleyElder === 'function' && tryTalkToCoolValleyElder()) return false;
             if (typeof tryLeaveMemoryOffering === 'function' && tryLeaveMemoryOffering()) return false;
+            // Sweet Valley: build the beach altar, then offer a harvestable
+            if (typeof tryBuildSweetValleyAltar === 'function' && tryBuildSweetValleyAltar()) return false;
+            if (typeof tryOfferAtSweetValleyAltar === 'function' && tryOfferAtSweetValleyAltar()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
