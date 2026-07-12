@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet4.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Animals 17-24: Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Hello, Dreamer! The flowers are opening today and the whole island smells like pink. I found three clovers already and one had a tiny raindrop on it. Hoggy rolled in the grass and got petals stuck to his ears. And the butterflies are out! They think the wildflowers are a party."
+
+PLAYER CHOICES:
+[1] "Pink-smelling air is magical."
+[2] "Petal ears suit Hoggy."
+[3] "Butterflies love a flower party."
+
+---
+
+TURN 2A (if player chose A):
+Mochi: "Magical! Sometimes I hop and the air tastes like honey and rain at the same time. The island is very good at being sweet right now."
+
+PLAYER CHOICES:
+[1] "Honey-rain air is a great flavor."
+[2] "The island is excellent at sweet."
+[3] "Magical air makes hops happier."
+
+---
+
+TURN 2B (if player chose B):
+Mochi: "They do! He shook his head and the petals stayed. Now he looks like a flower crown with legs. Very fancy."
+
+PLAYER CHOICES:
+[1] "Flower-crown hog is very fancy."
+[2] "Petals that stay are choosing him."
+[3] "Hoggy wears spring well."
+
+---
+
+TURN 2C (if player chose C):
+Mochi: "They do! A flower party with dancing wings. I tried to bounce with them but I am not a butterfly. I am a round rabbit. Still fun."
+
+PLAYER CHOICES:
+[1] "Round rabbits can party too."
+[2] "Dancing wings are beautiful."
+[3] "Bouncing near butterflies counts."
+
+---
+
+TURN 3AA (if player chose A then A):
+Mochi: "Great flavor. The best air is the kind you can almost nibble. I do tiny nibbles with my nose."
+
+---
+
+TURN 3AB (if player chose A then B):
+Mochi: "Excellent at sweet. It practices all winter and then shows off. The flowers are its applause."
+
+---
+
+TURN 3AC (if player chose A then C):
+Mochi: "Happier hops! I hopped extra high today and I think the pink air helped. Spring is a good co-hop-erator."
+
+---
+
+TURN 3BA (if player chose B then A):
+Mochi: "Very fancy! He should walk slowly so everyone can admire his petal crown. He's not good at slow."
+
+---
+
+TURN 3BB (if player chose B then B):
+Mochi: "Choosing him! Flowers know a kind hog when they see one. Petals have good judgment."
+
+---
+
+TURN 3BC (if player chose B then C):
+Mochi: "He wears spring like a cozy scarf made of sunshine and petals. I'm glad he lives here."
+
+---
+
+TURN 3CA (if player chose C then A):
+Mochi: "Round rabbits party by bouncing in place. It's a vertical party and very sincere."
+
+---
+
+TURN 3CB (if player chose C then B):
+Mochi: "Beautiful! I sat very still and watched one land on a flower. It looked like the flower had learned to flutter."
+
+---
+
+TURN 3CC (if player chose C then C):
+Mochi: "It counts. Bouncing near beauty is almost the same as being beauty. I felt very butterfly-adjacent."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Oh. Dreamer. I was not waiting in the warm patch. The sun just happened to arrange itself nicely. The flowers are blooming loudly and the grass is damp from that gentle rain. Hoggy stomped through a puddle like it was personally offending him. It was fine."
+
+PLAYER CHOICES:
+[1] "Warm patches are worth finding."
+[2] "Flowers bloom loudly in spring."
+[3] "Hoggy vs. puddles is entertaining."
+
+---
+
+TURN 2A (if player chose A):
+Shadow: "Worth finding, but I refuse to seem grateful. The sun should know I tolerate it, nothing more. Though this spot is... acceptable."
+
+PLAYER CHOICES:
+[1] "Tolerating warmly is still enjoying."
+[2] "Acceptable is high praise from you."
+[3] "Sun spots are earned, not given."
+
+---
+
+TURN 2B (if player chose B):
+Shadow: "Loudly. All that color and fragrance, crowding the air. It's overwhelming in a... fine way. I suppose the island is trying."
+
+PLAYER CHOICES:
+[1] "The island tries hard in spring."
+[2] "Overwhelming in a fine way is progress."
+[3] "Color crowds are spring's fault."
+
+---
+
+TURN 2C (if player chose C):
+Shadow: "Entertaining and loud. He splashed, snorted, then looked surprised that water moved. Hoggy has a very simple villain origin story."
+
+PLAYER CHOICES:
+[1] "Puddles are natural enemies."
+[2] "Hoggy's surprise is sincere."
+[3] "A simple villain story suits him."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shadow: "Tolerating warmly is the warmest I get. Enjoying would require enthusiasm. We don't do that."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shadow: "High praise. Don't tell anyone. My reputation as aloof and unmoved must remain intact."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shadow: "Earned. I surveyed the lawn, calculated angles, and claimed this patch. The sun merely agreed."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shadow: "It tries very hard. 'Look at me, I have petals.' We see you, island. You're being a lot."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shadow: "Progress, yes. I am not saying spring is good. I am saying it is acceptable with decorative excess."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shadow: "Spring's fault. No other season throws this much color around. It's showy. Showy is spring's whole personality."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shadow: "Natural enemies. Water should stay in its place. Puddles are water getting ideas."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shadow: "Sincere surprise is rare. Most creatures pretend they meant to splash. Hoggy looked genuinely betrayed."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shadow: "It suits him. Epic, loud, slightly confused. He'll conquer that puddle eventually. Or forget about it. Either way."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Sweet season, Dreamer. The flowers rise from the wet earth like quiet resurrections. The rain left everything dark and glistening. Hoggy wandered through a cluster of blooms and came out wearing petals like accidental armor. And the morning fog makes the trees look unfinished. I like that."
+
+PLAYER CHOICES:
+[1] "Quiet resurrections are beautiful."
+[2] "Petals as armor is poetic."
+[3] "Unfinished trees suit the fog."
+
+---
+
+TURN 2A (if player chose A):
+Raven: "Beautiful because they don't announce themselves. One day the ground is bare. The next, color. The flowers understand drama."
+
+PLAYER CHOICES:
+[1] "Drama without announcement is classy."
+[2] "Bare ground to color overnight is magic."
+[3] "Flowers understand presence."
+
+---
+
+TURN 2B (if player chose B):
+Raven: "Accidental armor for a soft-hearted beast. He didn't ask to be decorated. The spring simply chose him as its champion."
+
+PLAYER CHOICES:
+[1] "Spring chooses its champions."
+[2] "Soft-hearted beasts wear petals well."
+[3] "Unasked decoration is destiny."
+
+---
+
+TURN 2C (if player chose C):
+Raven: "The fog erases the edges. Trees become suggestions. It feels like the world hasn't decided what it wants to be yet. There's honesty in that."
+
+PLAYER CHOICES:
+[1] "Unfinished worlds are honest."
+[2] "Fog makes good suggestions."
+[3] "Edges being erased is peaceful."
+
+---
+
+TURN 3AA (if player chose A then A):
+Raven: "Classy drama. No trumpets, no parades. Just color arriving in silence and daring you to notice."
+
+---
+
+TURN 3AB (if player chose A then B):
+Raven: "Overnight magic. The dream doesn't explain itself. It simply hands you blossoms and waits."
+
+---
+
+TURN 3AC (if player chose A then C):
+Raven: "Presence. They do not rush. They open slowly, one petal at a time, until the whole island listens."
+
+---
+
+TURN 3BA (if player chose B then A):
+Raven: "It does. Champions of mud, petals, and snorting. The spring has strange standards, but I respect them."
+
+---
+
+TURN 3BB (if player chose B then B):
+Raven: "Well. Petals and rough hide. Delicacy on something sturdy. It works because it shouldn't."
+
+---
+
+TURN 3BC (if player chose B then C):
+Raven: "Destiny. Hoggy was walking, spring was waiting. The collision became a coronation."
+
+---
+
+TURN 3CA (if player chose C then A):
+Raven: "Honest. Most things pretend to be complete. Fog admits the world is still becoming."
+
+---
+
+TURN 3CB (if player chose C then B):
+Raven: "Good suggestions. A tree half-seen is more tree, somehow. The imagination fills in the rest."
+
+---
+
+TURN 3CC (if player chose C then C):
+Raven: "Peaceful. Edges are exhausting. For a little while the fog lets everything blur and rest."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer. A fascinating Sweet season morning. I've been observing the emergence of wildflower blooms, the post-rain soil saturation, and the measurable increase in butterfly activity. Hoggy appears to have acquired a small floral garnish on his snout, likely through collision rather than intent. And the morning mist is, meteorologically speaking, very misty."
+
+PLAYER CHOICES:
+[1] "Tell me about wildflower emergence."
+[2] "Hoggy's floral garnish is funny."
+[3] "Misty mornings are meteorologically pleasant."
+
+---
+
+TURN 2A (if player chose A):
+Newton: "Wildflower emergence follows a reliable pattern: soil warmth plus moisture triggers germination, then phototropism guides the stems upward. In plain terms, the sun says 'rise' and the flowers say 'understood.'"
+
+PLAYER CHOICES:
+[1] "Sun commands are obeyed by flowers."
+[2] "Phototropism is nature's to-do list."
+[3] "Rising on command is efficient."
+
+---
+
+TURN 2B (if player chose B):
+Newton: "Funny and data-rich. I estimate the petal-to-snout adhesion coefficient is high, given Hoggy's forward velocity and the dampness of the blooms. He is now a walking botanical sample."
+
+PLAYER CHOICES:
+[1] "Walking botanical samples are rare."
+[2] "Petal adhesion depends on hog speed."
+[3] "Science can be very funny."
+
+---
+
+TURN 2C (if player chose C):
+Newton: "Pleasant and technically a cloud at ground level. The suspended water droplets scatter light, reduce contrast, and make the world look like a watercolor in progress. Very aesthetically valid."
+
+PLAYER CHOICES:
+[1] "Clouds at ground level are cozy."
+[2] "Watercolor worlds are valid science."
+[3] "Scattered light makes soft mornings."
+
+---
+
+TURN 3AA (if player chose A then A):
+Newton: "Obeyed. Flowers are excellent listeners. They don't argue. They just orient and grow."
+
+---
+
+TURN 3AB (if player chose A then B):
+Newton: "Nature's to-do list. Item one: detect light. Item two: lean toward it. Item three: bloom dramatically."
+
+---
+
+TURN 3AC (if player chose A then C):
+Newton: "Efficient. Imagine if everything responded to encouragement with visible growth. The island would be unstoppable."
+
+---
+
+TURN 3BA (if player chose B then A):
+Newton: "Rare specimens. I should catalog him under 'mobile flora, accidental.' A new category for the island records."
+
+---
+
+TURN 3BB (if player chose B then B):
+Newton: "Correct. Higher hog speed equals greater petal transfer. The flowers are, in effect, tagging him as he passes."
+
+---
+
+TURN 3BC (if player chose B then C):
+Newton: "It can. The best experiments are the ones that make you laugh before they make you learn."
+
+---
+
+TURN 3CA (if player chose C then A):
+Newton: "Cozy. Having a cloud nearby but not overhead is the meteorological equivalent of a warm blanket."
+
+---
+
+TURN 3CB (if player chose C then B):
+Newton: "Valid. Science doesn't just measure hard data. It also allows for softness, blur, and gentle light."
+
+---
+
+TURN 3CC (if player chose C then C):
+Newton: "Soft mornings are optimal for observation. Everything feels slightly muted, including my urge to talk loudly about science."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The rain has softened the earth, Dreamer. The flowers open because the world asked them gently. Hoggy walked through a patch of new grass and left it a little flatter, a little loved. And the butterflies move from bloom to bloom without hurry. Everything is arriving, not rushing."
+
+PLAYER CHOICES:
+[1] "Gentle asking makes gentle growing."
+[2] "Hoggy leaves places a little loved."
+[3] "Butterflies move without hurry."
+
+---
+
+TURN 2A (if player chose A):
+Lotus: "It does. The rain does not push. It falls, the soil drinks, and the flower decides when it is ready. No force. Only invitation."
+
+PLAYER CHOICES:
+[1] "Invitation is better than force."
+[2] "Flowers decide their own timing."
+[3] "Soft rain is a kind teacher."
+
+---
+
+TURN 2B (if player chose B):
+Lotus: "He does. His hooves press the grass like a blessing. The blades spring back, but for a moment the ground holds his shape. That is love."
+
+PLAYER CHOICES:
+[1] "Ground holding a shape is love."
+[2] "Blessings can be heavy."
+[3] "Hoggy's path is warm."
+
+---
+
+TURN 2C (if player chose C):
+Lotus: "Without hurry. They trust the next bloom will be there. They do not cling to the last one. This is the way of wings."
+
+PLAYER CHOICES:
+[1] "Trusting the next bloom is wise."
+[2] "Not clinging is freedom."
+[3] "Wings know the way."
+
+---
+
+TURN 3AA (if player chose A then A):
+Lotus: "Better. Force makes brittle things. Invitation makes room. The island grows in room, not pressure."
+
+---
+
+TURN 3AB (if player chose A then B):
+Lotus: "They do. We cannot open a flower with our hands. We can only water the ground and wait."
+
+---
+
+TURN 3AC (if player chose A then C):
+Lotus: "A kind teacher. It falls softly, gives slowly, and asks nothing back. Many teachers could learn from rain."
+
+---
+
+TURN 3BA (if player chose B then A):
+Lotus: "Love. Brief, visible, then released. The grass remembers without keeping. That is how the island loves too."
+
+---
+
+TURN 3BB (if player chose B then B):
+Lotus: "They can. A heavy blessing is still a blessing. The ground is strong enough to hold it."
+
+---
+
+TURN 3BC (if player chose B then C):
+Lotus: "Warm where he walks. The grass feels his weight and gives, then rises. Between those two things is comfort."
+
+---
+
+TURN 3CA (if player chose C then A):
+Lotus: "Wise. To trust the next bloom is to trust the world will keep offering beauty."
+
+---
+
+TURN 3CB (if player chose C then B):
+Lotus: "Freedom. Clinging to a finished flower would only tire the wings. There is always another opening."
+
+---
+
+TURN 3CC (if player chose C then C):
+Lotus: "They know. The wing does not question the breeze. It moves with what is given."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Fair Dreamer! The spring dawn has brought new banners of blossom to every tree and bush. The gentle rain left the grass shining like polished armor. Hoggy has been knighted by accident with a crown of petals. And the butterflies ride the warm breeze like tiny heralds. A fine season for noble adventuring!"
+
+PLAYER CHOICES:
+[1] "Blossom banners are splendid."
+[2] "Petals knighting Hoggy is adorable."
+[3] "Butterfly heralds are fitting."
+
+---
+
+TURN 2A (if player chose A):
+Squire Paws: "Splendid! Every branch waves its own colors. The pink ones salute the sun, the white ones salute the moon, and the yellow ones salute whoever brought the bees."
+
+PLAYER CHOICES:
+[1] "Pink banners salute the sun bravely."
+[2] "White banners honor the moon well."
+[3] "Yellow banners salute the bees fairly."
+
+---
+
+TURN 2B (if player chose B):
+Squire Paws: "Adorable and official! By the power vested in spring, I declare him Sir Hoggy of Petalborough. May his snout remain floral and his trots remain merry."
+
+PLAYER CHOICES:
+[1] "Sir Hoggy of Petalborough is noble."
+[2] "Floral snouts are distinguished."
+[3] "Merry trots suit a knight."
+
+---
+
+TURN 2C (if player chose C):
+Squire Paws: "Fitting! They announce the arrival of warmth and color wherever they fly. A butterfly herald is never ignored, only admired."
+
+PLAYER CHOICES:
+[1] "Admired heralds are happy heralds."
+[2] "Warmth announcements are important."
+[3] "Butterfly flights mark good seasons."
+
+---
+
+TURN 3AA (if player chose A then A):
+Squire Paws: "Bravely! They face the brightest part of the day without squinting. Knights of blossom are made of stern stuff."
+
+---
+
+TURN 3AB (if player chose A then B):
+Squire Paws: "Well. The moon keeps watch through the night so the flowers can rest. A noble arrangement."
+
+---
+
+TURN 3AC (if player chose A then C):
+Squire Paws: "Fairly! Bees work hard and deserve salutes. Without them, who would boss the flowers around?"
+
+---
+
+TURN 3BA (if player chose B then A):
+Squire Paws: "Noble indeed. His tabard is natural, his armor is floral, and his heart is brave and round."
+
+---
+
+TURN 3BB (if player chose B then B):
+Squire Paws: "Distinguished! A knight with a petal on his snout has clearly been blessed by the season itself."
+
+---
+
+TURN 3BC (if player chose B then C):
+Squire Paws: "They do! A knight without a merry trot is merely a statue. Sir Hoggy moves with great cheer."
+
+---
+
+TURN 3CA (if player chose C then A):
+Squire Paws: "Happy heralds make happy news. If the messenger smiles, the whole kingdom smiles with them."
+
+---
+
+TURN 3CB (if player chose C then B):
+Squire Paws: "Important. Someone must declare that spring has officially arrived. The butterflies do this with grace."
+
+---
+
+TURN 3CC (if player chose C then C):
+Squire Paws: "They mark it well. Where butterflies gather, good seasons follow. This is known and respected across the realm."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"H-hello, Dreamer. The rain made the grass smell nice and a little beetle walked across my shell. It tickled. Hoggy sniffed a flower and then sneezed, and the petals fell off but he didn't mind. The butterflies are... um... very colorful today. I like watching them from here."
+
+PLAYER CHOICES:
+[1] "Rain-smelling grass is nice."
+[2] "Hoggy's flower sneeze is cute."
+[3] "Butterflies are good to watch quietly."
+
+---
+
+TURN 2A (if player chose A):
+Pebble: "Nice. Wet grass smells alive. I sat very still and the smell just sat with me. We were a team."
+
+PLAYER CHOICES:
+[1] "Teams with smells are peaceful."
+[2] "Stillness pairs well with spring."
+[3] "Wet grass is alive grass."
+
+---
+
+TURN 2B (if player chose B):
+Pebble: "Cute. He sneezed big, then looked at the flower like the flower had startled him. But he didn't stomp it. He just walked around it carefully."
+
+PLAYER CHOICES:
+[1] "Careful walking around flowers is kind."
+[2] "Hoggy blames flowers politely."
+[3] "Sneezing big is dramatic."
+
+---
+
+TURN 2C (if player chose C):
+Pebble: "Good to watch. They don't ask me to move. They just flutter by and I just sit. It's a very low-pressure friendship."
+
+PLAYER CHOICES:
+[1] "Low-pressure friendships are the best."
+[2] "Sitting is a valid way to participate."
+[3] "Fluttering by is polite."
+
+---
+
+TURN 3AA (if player chose A then A):
+Pebble: "Peaceful teams. I like when the world doesn't expect me to do anything except exist near it."
+
+---
+
+TURN 3AB (if player chose A then B):
+Pebble: "It does. Spring is busy with flowers and bugs, but stillness is still allowed. I'm proof."
+
+---
+
+TURN 3AC (if player chose A then C):
+Pebble: "Alive grass. I can feel it under my shell, all soft and damp. It's like sitting on a tiny, friendly cloud."
+
+---
+
+TURN 3BA (if player chose B then A):
+Pebble: "Kind. Big hooves could smash, but he went around. That means he noticed the flower and chose gentle."
+
+---
+
+TURN 3BB (if player chose B then B):
+Pebble: "Politely. He looked offended but he didn't argue. Hoggy has good conflict resolution."
+
+---
+
+TURN 3BC (if player chose B then C):
+Pebble: "Dramatic. I almost moved, but then I remembered I'm a turtle and dramatic sneezes are okay from far away."
+
+---
+
+TURN 3CA (if player chose C then A):
+Pebble: "The best. No obligations. No small talk. Just 'hello, I am a butterfly' and 'hello, I am a rock with a shell.'"
+
+---
+
+TURN 3CB (if player chose C then B):
+Pebble: "Valid. I participate by being here. The butterflies participate by fluttering. Both are real ways to be."
+
+---
+
+TURN 3CC (if player chose C then C):
+Pebble: "Polite. They could land and demand attention, but they just pass by. I appreciate respectful beauty."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Hello, friend! The flowers are having their big opening day and the air smells like happy rain! Hoggy rolled in a clover patch and now he's green and giggly, I think. And the butterflies are doing loop-de-loops from bloom to bloom! I tried to copy them but I got dizzy and had to sit on a warm rock."
+
+PLAYER CHOICES:
+[1] "Happy-rain air is the best air."
+[2] "Green and giggly Hoggy is a delight."
+[3] "Loop-de-loop butterflies are talented."
+
+---
+
+TURN 2A (if player chose A):
+Sunny: "Best air! It smells like flowers saying hello and grass saying hello and everything saying hello at the same time. Very chatty weather."
+
+PLAYER CHOICES:
+[1] "Chatty weather is friendly weather."
+[2] "Everything saying hello is spring."
+[3] "Hello-smelling air should be bottled."
+
+---
+
+TURN 2B (if player chose B):
+Sunny: "Delight! He's got little leaves on his ears and he doesn't even know. I wanted to tell him but I was too busy laughing. I'll tell him later. Maybe."
+
+PLAYER CHOICES:
+[1] "Leaves on ears are accidental fashion."
+[2] "Laughing too hard to talk is valid."
+[3] "Hoggy wears clover well."
+
+---
+
+TURN 2C (if player chose C):
+Sunny: "Talented! They loop, they land, they sip, they loop again. It's like a tiny flying dance party and everyone is invited."
+
+PLAYER CHOICES:
+[1] "Flying dance parties are inclusive."
+[2] "Sipping between loops is athletic."
+[3] "Tiny dancers make big joy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sunny: "Friendly! The rain stopped by just to make everything smell nice. That's good guest behavior."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sunny: "Spring! That's basically spring's whole job. Hello from flowers, hello from bugs, hello from warm rocks."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sunny: "Bottled! Then we could open it in other seasons and smell spring whenever we missed it. Very useful invention."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sunny: "Accidental fashion is the best fashion. He didn't plan it but he rocked it. Hoggy is a natural leaf model."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sunny: "Valid! Sometimes joy is too loud to let words through. I just squawked happily instead. He probably understood."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sunny: "Very well. Clover matches his cheerful energy. He's like a walking garden of Hoggy."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sunny: "Inclusive! No wings required to enjoy it. I watched from my rock and felt like part of the dance."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sunny: "Athletic! Drinking while looping is hard. I'd spill everything. Butterflies are tiny professionals."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sunny: "Big joy! Tiny wings, tiny sips, tiny loops, and the whole island feels brighter. Small dancers, huge smiles."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

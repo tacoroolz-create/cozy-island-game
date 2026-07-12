@@ -1,0 +1,704 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet3_T2.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Ghosts 9-16: Boo-Boo, Wisp, Morwen, Spectra, Hush, Sir Haunts-a-Lot, Flutter, Giggles
+Sweet Tree 2: gentle rain, puddles, new growth, sprouting weeds, misty mild mornings
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer! It rained just enough to make puddles everywhere, and the morning is all misty and soft. Little weeds are poking up like green surprise friends, and Hoggy found the biggest puddle and is making mud art with his snout. My bow got a tiny mist drop on it and it looks like a diamond!"
+
+PLAYER CHOICES:
+[1] "Puddle art is the best art."
+[2] "Green surprise friends are cute."
+[3] "Mist diamonds are lucky."
+
+---
+
+TURN 2A (if player chose A):
+Boo-Boo: "Best art because it doesn't have to be pretty, it just has to be happy. Hoggy's mud circles are like little brown suns."
+
+PLAYER CHOICES:
+[1] "Happy art is real art."
+[2] "Mud suns are warm."
+[3] "Hoggy is a puddle genius."
+
+---
+
+TURN 2B (if player chose B):
+Boo-Boo: "Cute and brave. They push up through dirt and say 'hello, big world!' even though they're very small."
+
+PLAYER CHOICES:
+[1] "Small hellos are brave."
+[2] "Weeds are tiny green heroes."
+[3] "Surprise friends make me smile."
+
+---
+
+TURN 2C (if player chose C):
+Boo-Boo: "Lucky! I have one mist diamond on my bow and one on my gauze. I feel extra fancy, like a ghost at a rain party."
+
+PLAYER CHOICES:
+[1] "Rain parties sound fun."
+[2] "Fancy ghosts are the best."
+[3] "Mist makes everything sparkly."
+
+---
+
+TURN 3AA (if player chose A then A):
+Boo-Boo: "Real art. It doesn't need a frame, just a puddle and a happy hog and a morning that says yes."
+
+---
+
+TURN 3AB (if player chose A then B):
+Boo-Boo: "Warm and round. If the sun came out, the mud suns would bake into little crusty cookies. Hoggy would probably try one."
+
+---
+
+TURN 3AC (if player chose A then C):
+Boo-Boo: "A puddle genius! He knows which puddles are splashest and which ones are best for snout circles."
+
+---
+
+TURN 3BA (if player chose B then A):
+Boo-Boo: "Brave because the world is big and the weed is tiny, but it still says hello. I'd wave back if I had solid hands."
+
+---
+
+TURN 3BB (if player chose B then B):
+Boo-Boo: "Tiny green heroes without capes. They just use their little leaves to push up and up until we notice."
+
+---
+
+TURN 3BC (if player chose B then C):
+Boo-Boo: "They make me smile too. Every surprise friend is a gift from the dirt that the dirt didn't even wrap."
+
+---
+
+TURN 3CA (if player chose C then A):
+Boo-Boo: "So fun! We could wear raindrop jewelry and dance near puddles without splashing, unless we want to."
+
+---
+
+TURN 3CB (if player chose C then B):
+Boo-Boo: "The best kind of fancy. Not too much, just enough mist to make a ghost feel like a special cloud."
+
+---
+
+TURN 3CC (if player chose C then C):
+Boo-Boo: "Sparkly and soft. Mist turns the whole island into a gentle surprise, and I love gentle surprises."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Oh. You're out in the drizzle too, Dreamer. I suppose it's tolerable today. The puddles are doing that annoying thing where they pretend to be mirrors, weeds are popping up with far too much optimism, and the mist has made everything look faintly unfinished. Hoggy is stomping in mud like it's an important job."
+
+PLAYER CHOICES:
+[1] "Puddle mirrors are surprisingly honest."
+[2] "Weed optimism is almost impressive."
+[3] "Mist hides the island's rough edges."
+
+---
+
+TURN 2A (if player chose A):
+Wisp: "Surprisingly honest. They show the sky without pretending to be the sky. More than I can say for some clouds."
+
+PLAYER CHOICES:
+[1] "Honest reflections are rare."
+[2] "Puddles keep their opinions wet."
+[3] "A sky on the ground is useful."
+
+---
+
+TURN 2B (if player chose B):
+Wisp: "Almost impressive. They grow sideways, upside down, through cracks, whatever. Weeds have no dignity, but they have persistence."
+
+PLAYER CHOICES:
+[1] "Persistence beats dignity."
+[2] "Sideways growth is efficient."
+[3] "Weeds know what they want."
+
+---
+
+TURN 2C (if player chose C):
+Wisp: "It hides the rough edges, yes. The island looks like a watercolor that someone forgot to finish. I find that slightly acceptable."
+
+PLAYER CHOICES:
+[1] "Unfinished watercolors have charm."
+[2] "Soft edges are easier to look at."
+[3] "Mist is a forgiving filter."
+
+---
+
+TURN 3AA (if player chose A then A):
+Wisp: "Rare and damp. Most things reflect what they want you to see. A puddle just reflects what's above it and moves on."
+
+---
+
+TURN 3AB (if player chose A then B):
+Wisp: "Wet opinions, as they should be. Too many things on this island have dry, loud opinions. The puddle keeps quiet."
+
+---
+
+TURN 3AC (if player chose A then C):
+Wisp: "Useful for checking the weather without looking up. Lazy, perhaps, but efficient. I approve of efficiency."
+
+---
+
+TURN 3BA (if player chose B then A):
+Wisp: "It does, unfortunately. Dignity is nice, but persistence gets the weeds fed and the flowers shaded. Fine."
+
+---
+
+TURN 3BB (if player chose B then B):
+Wisp: "Efficient and invasive. They find space I didn't even know existed and claim it immediately. Rude, but effective."
+
+---
+
+TURN 3BC (if player chose B then C):
+Wisp: "They want sunlight, water, and a little bit of chaos. Basic desires, clearly stated. I respect that more than flattery."
+
+---
+
+TURN 3CA (if player chose C then A):
+Wisp: "Charm I can tolerate. A finished painting would be boring. The mist gives the island an excuse to be vague."
+
+---
+
+TURN 3CB (if player chose C then B):
+Wisp: "Easier and slightly unfair. Everything looks gentle in mist. Even Hoggy's muddy snout looks poetic."
+
+---
+
+TURN 3CC (if player chose C then C):
+Wisp: "Forgiving and damp. It softens colors, muffles sounds, and makes morning seem less eager to start."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Sweet season rain, Dreamer. The sky wept just enough to wake the sleeping dirt. Puddles hold the gray clouds like small dark mirrors, weeds force their way through old decay, and the mist curls around the trees like a shroud that forgot to be sad. Hoggy wears mud like mourning clothes, but he seems happy."
+
+PLAYER CHOICES:
+[1] "Sky tears are honest weather."
+[2] "Dark puddle mirrors are beautiful."
+[3] "Mist shrouds can be gentle."
+
+---
+
+TURN 2A (if player chose A):
+Morwen: "Honest because they don't pretend to be anything else. Rain falls, the ground receives it, and neither apologizes."
+
+PLAYER CHOICES:
+[1] "Honest weather is comforting."
+[2] "No apologies between sky and ground."
+[3] "Tears water the world."
+
+---
+
+TURN 2B (if player chose B):
+Morwen: "Beautiful because they show the sky's underside. The bright blue is gone, and what's left is deeper, quieter, more truthful."
+
+PLAYER CHOICES:
+[1] "Truthful reflections are rare."
+[2] "Quiet skies have depth."
+[3] "Dark mirrors suit Sweet season."
+
+---
+
+TURN 2C (if player chose C):
+Morwen: "Gentle, yes. A shroud doesn't have to mean an ending. Sometimes it just means the world wants a softer morning."
+
+PLAYER CHOICES:
+[1] "Soft mornings feel like mercy."
+[2] "Not all shrouds are endings."
+[3] "Gentle veils hide nothing cruel."
+
+---
+
+TURN 3AA (if player chose A then A):
+Morwen: "Comforting in a solemn way. The sky tells the truth, the ground accepts it, and we get to walk through the middle."
+
+---
+
+TURN 3AB (if player chose A then B):
+Morwen: "None needed. The sky gives what it has. The ground takes what it needs. Both are too ancient for manners."
+
+---
+
+TURN 3AC (if player chose A then C):
+Morwen: "They do. Tears for the dry earth, tears for the sleeping seeds, tears that become green things without asking permission."
+
+---
+
+TURN 3BA (if player chose B then A):
+Morwen: "Rare because most mirrors flatter. A puddle shows the gray sky exactly as it is and doesn't care if you wanted blue."
+
+---
+
+TURN 3BB (if player chose B then B):
+Morwen: "Depth without noise. A gray sky has seen more than a blue one. It carries the memory of every storm."
+
+---
+
+TURN 3BC (if player chose B then C):
+Morwen: "They suit it. Sweet season is bright, but the puddles remember the darker side of spring and keep it close."
+
+---
+
+TURN 3CA (if player chose C then A):
+Morwen: "Mercy from the weather. The mist says 'rest your eyes, the sharp edges can wait.' I appreciate the courtesy."
+
+---
+
+TURN 3CB (if player chose C then B):
+Morwen: "No. Some are veils, some are blankets, some are just fog that got lost. This morning's shroud is kind."
+
+---
+
+TURN 3CC (if player chose C then C):
+Morwen: "Nothing cruel, only softness. The mist hides the distance but not the path. That is a gentle kind of concealment."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I've been measuring the morning. Surface tension on the puddles is optimal, sprouting weeds are emerging at a rate of approximately one brave millimeter per hour, mist density is light but measurable, and Hoggy has displaced enough mud to suggest he is testing fluid dynamics with his body. The data is beautiful."
+
+PLAYER CHOICES:
+[1] "Puddle surface tension is underrated."
+[2] "Weed growth speed is impressive data."
+[3] "Hoggy is a fluid dynamics expert."
+
+---
+
+TURN 2A (if player chose A):
+Spectra: "Underrated and elegant. A puddle can hold the sky, support a leaf, and ripple when a frog blinks. Three jobs, zero complaints."
+
+PLAYER CHOICES:
+[1] "Multi-tasking puddles are efficient."
+[2] "Frog blinks are valid disturbances."
+[3] "Sky-holding is a big job."
+
+---
+
+TURN 2B (if player chose B):
+Spectra: "Impressive because they're not even trying to be fast. They're just converting water and sunlight into upward movement, one cell at a time."
+
+PLAYER CHOICES:
+[1] "Cell-by-cell progress is real."
+[2] "Water plus sun equals lift-off."
+[3] "Slow data is still good data."
+
+---
+
+TURN 2C (if player chose C):
+Spectra: "An expert in applied hog physics. His snout creates eddies, his hooves generate displacement waves, and his tail is basically a rudder."
+
+PLAYER CHOICES:
+[1] "Hog hooves make good waves."
+[2] "Snout eddies are adorable."
+[3] "Tail rudders are effective steering."
+
+---
+
+TURN 3AA (if player chose A then A):
+Spectra: "Efficient and wet. If puddles had a resume, it would be very long and slightly damp."
+
+---
+
+TURN 3AB (if player chose A then B):
+Spectra: "Valid and tiny. The disturbance is small, but the data ripples outward. Frogs are unwitting scientists."
+
+---
+
+TURN 3AC (if player chose A then C):
+Spectra: "Big and heavy. A puddle full of sky weighs exactly as much as the sky would weigh if it were the size of a puddle. I checked."
+
+---
+
+TURN 3BA (if player chose B then A):
+Spectra: "Real progress. The weed doesn't rush. It builds infrastructure underground, then launches. Very methodical."
+
+---
+
+TURN 3BB (if player chose B then B):
+Spectra: "Lift-off with minimal fuel. Sunlight is free, water is abundant, and the weed is essentially a green rocket with leaves."
+
+---
+
+TURN 3BC (if player chose B then C):
+Spectra: "Good data. Slow growth gives us more time to observe. Fast weeds would ruin the season with their impatience."
+
+---
+
+TURN 3CA (if player chose C then A):
+Spectra: "Good waves. Each hoofprint is a mini experiment in pressure distribution. Hoggy's methodology is sound."
+
+---
+
+TURN 3CB (if player chose C then B):
+Spectra: "Adorable and measurable. The snout creates a circular flow pattern that I have named a 'hogdy' in my notes."
+
+---
+
+TURN 3CC (if player chose C then C):
+Spectra: "Effective. He steers through mud with surprising precision. I would trust him to pilot a small boat, maybe."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"Listen, Dreamer. The rain has stopped, but its memory remains. Puddles hold stillness for the sky. Weeds rise slowly, asking nothing. The mist moves between the trees like a breath the island is trying to keep quiet. Hoggy stands in the mud and simply is. All of it is the practice of morning."
+
+PLAYER CHOICES:
+[1] "Stillness in puddles is peace."
+[2] "Weeds that ask nothing are wise."
+[3] "Hoggy standing in mud is practice too."
+
+---
+
+TURN 2A (if player chose A):
+Hush: "Peace because the puddle does not reach for anything. It receives the sky and lets it go when the wind touches it."
+
+PLAYER CHOICES:
+[1] "Receiving without holding is hard."
+[2] "Letting go is the puddle's way."
+[3] "Still water teaches patience."
+
+---
+
+TURN 2B (if player chose B):
+Hush: "Wise and humble. The weed does not announce its coming. It simply waits for water, then rises."
+
+PLAYER CHOICES:
+[1] "Waiting is its own strength."
+[2] "Humble growth fills the world."
+[3] "Weeds trust the rain."
+
+---
+
+TURN 2C (if player chose C):
+Hush: "It is practice. He stands where he is, muddy and content. No yesterday, no tomorrow, only hog and puddle."
+
+PLAYER CHOICES:
+[1] "Contentment needs no reason."
+[2] "Mud is just earth remembering water."
+[3] "Being where you are is enough."
+
+---
+
+TURN 3AA (if player chose A then A):
+Hush: "Hard, yes. We want to keep the beautiful reflection, but the puddle knows the sky will return another day."
+
+---
+
+TURN 3AB (if player chose A then B):
+Hush: "The puddle's way is not to cling. It holds what comes, releases what goes, and remains clear."
+
+---
+
+TURN 3AC (if player chose A then C):
+Hush: "It teaches without speaking. Watch a puddle long enough and you will learn everything about staying open."
+
+---
+
+TURN 3BA (if player chose B then A):
+Hush: "Strength without noise. The weed waits in darkness, trusting what it cannot see. That is courage."
+
+---
+
+TURN 3BB (if player chose B then B):
+Hush: "It fills the world quietly. If every seed tried to be loud, the soil would have no room to listen."
+
+---
+
+TURN 3BC (if player chose B then C):
+Hush: "Trust in the rain. The weed does not doubt the clouds. It simply prepares to receive."
+
+---
+
+TURN 3CA (if player chose C then A):
+Hush: "No reason needed. Contentment is not an argument. Hoggy is muddy and peaceful, and that is its own explanation."
+
+---
+
+TURN 3CB (if player chose C then B):
+Hush: "Yes. The earth holds the water, the water softens the earth, and together they remember how to make mud."
+
+---
+
+TURN 3CC (if player chose C then C):
+Hush: "Enough. More than enough. To be fully where you are is a gift the morning gives and we often refuse."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Fair Dreamer! The rains have blessed the realm with many a puddle, the weeds spring forth like green banners of conquest, and the mist hangs low as enchanted fog across the meadows. Hoggy hath discovered a muddy patch and doth lay claim to it with great royal snorting. A mild morning such as this calls for a quest of small wonders."
+
+PLAYER CHOICES:
+[1] "Puddles are tiny moats of wonder."
+[2] "Weed banners make a fine army."
+[3] "Misty meadows are enchanted enough."
+
+---
+
+TURN 2A (if player chose A):
+Sir Haunts-a-Lot: "Tiny moats, yes! Each puddle defends a small kingdom of grass. A brave leaf may sail across, but only if the wind allows."
+
+PLAYER CHOICES:
+[1] "Leaf boats are noble vessels."
+[2] "Small kingdoms deserve defense."
+[3] "Sailing on wind is true adventure."
+
+---
+
+TURN 2B (if player chose B):
+Sir Haunts-a-Lot: "A fine army, quietly conquering. They take the bare earth inch by inch and raise their leafy standards without battle."
+
+PLAYER CHOICES:
+[1] "Conquering without battle is wise."
+[2] "Leafy standards are cheerful flags."
+[3] "Weeds are patient knights."
+
+---
+
+TURN 2C (if player chose C):
+Sir Haunts-a-Lot: "Enchanted enough for any ghost knight. The mist turns a simple meadow into a realm of maybe. Perhaps a dragon sleeps there. Perhaps it is only fog."
+
+PLAYER CHOICES:
+[1] "Realms of maybe are exciting."
+[2] "Fog dragons are friendly."
+[3] "Enchantment doesn't need proof."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Haunts-a-Lot: "Noble and damp. A leaf boat carries no cargo but hope, and that is enough for any small sailor."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Haunts-a-Lot: "They do. A puddle moat guards a blade of grass as fiercely as a castle wall guards a king."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Haunts-a-Lot: "True adventure! The leaf knows not where the wind will blow, yet it sails with courage. A lesson for us all."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Haunts-a-Lot: "Wise and green. Why fight when you can simply grow and claim the field by being alive?"
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Haunts-a-Lot: "Cheerful flags indeed. Each weed waves its leaves as if saying 'the spring is ours, and we are many!'"
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Haunts-a-Lot: "Patient knights of the soil. They wear no armor, yet they outlast every frost and every drought."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Haunts-a-Lot: "Exciting in a mild way. A realm of maybe offers dragons one moment and breakfast the next. Both are good."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Haunts-a-Lot: "Friendly and misty. Fog dragons prefer naps to fire, and their wings are made of morning breath."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Haunts-a-Lot: "Proof is for lesser magics. True enchantment asks only that you walk through it and feel a little more wonder than before."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"H-hi, Dreamer. The morning is all misty and the puddles look like little soft mirrors. Some weeds are poking up near the path and I keep tiptoeing around them because they look so new. Hoggy made mud footprints and I followed them for a while because they looked friendly. The rain made everything smell clean."
+
+PLAYER CHOICES:
+[1] "Tiptoeing around new weeds is kind."
+[2] "Mud footprints can be friendly."
+[3] "Clean rain smell is comforting."
+
+---
+
+TURN 2A (if player chose A):
+Flutter: "Kind because they're just babies, kind of. New green things shouldn't be stepped on. They need a little space to be brave."
+
+PLAYER CHOICES:
+[1] "New things need space."
+[2] "Being careful is a soft gift."
+[3] "Tiny bravery deserves room."
+
+---
+
+TURN 2B (if player chose B):
+Flutter: "Friendly and round. Hoggy's footprints are like little muddy hugs the ground got. I like seeing where he's been."
+
+PLAYER CHOICES:
+[1] "Muddy hugs are sweet."
+[2] "Following footprints is safe fun."
+[3] "Hoggy leaves happy trails."
+
+---
+
+TURN 2C (if player chose C):
+Flutter: "Comforting. It smells like the sky washed the island and then hung it out to dry. I wish I could wrap myself in it."
+
+PLAYER CHOICES:
+[1] "Sky-washed islands smell nice."
+[2] "Rain smell is a soft blanket."
+[3] "Clean air feels safe."
+
+---
+
+TURN 3AA (if player chose A then A):
+Flutter: "They do. Everything small needs room to become bigger, and even ghosts can give room by floating carefully."
+
+---
+
+TURN 3AB (if player chose A then B):
+Flutter: "A soft gift. Not loud, not big, just choosing to be gentle where the ground is trying to grow."
+
+---
+
+TURN 3AC (if player chose A then C):
+Flutter: "It does. If a tiny weed can push up all that dirt, the least I can do is not step on its effort."
+
+---
+
+TURN 3BA (if player chose B then A):
+Flutter: "Sweet and squishy. The ground probably doesn't mind being hugged by Hoggy's feet. It's a friendly sort of mud."
+
+---
+
+TURN 3BB (if player chose B then B):
+Flutter: "Safe fun. I followed them until they stopped at a clover patch, and then I knew Hoggy was probably happy."
+
+---
+
+TURN 3BC (if player chose B then C):
+Flutter: "Happy trails that end in clover or puddles. Hoggy doesn't wander sad places. He finds the good spots."
+
+---
+
+TURN 3CA (if player chose C then A):
+Flutter: "Very nice. I can't really smell, but I imagine it would be like lying down in fresh air that just got hugged by rain."
+
+---
+
+TURN 3CB (if player chose C then B):
+Flutter: "A soft blanket of smell. It covers the island and makes everything feel tucked in and safe."
+
+---
+
+TURN 3CC (if player chose C then C):
+Flutter: "Safe, yes. Clean air means the island is taking care of itself, and that makes me feel like it can take care of us too."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Dreamer! Dreamer! It rained and now there are PUDDLES! Little weeds are popping up like green popcorn, the mist made the trees look all fuzzy, and Hoggy did a big sploot right in the middle of a mud puddle. I jumped over three weeds and waved at a puddle reflection of a cloud. Today is a splashy morning!"
+
+PLAYER CHOICES:
+[1] "Splashy mornings are the best mornings."
+[2] "Green popcorn is funny."
+[3] "Puddle clouds deserve a wave."
+
+---
+
+TURN 2A (if player chose A):
+Giggles: "Best because everything is wet and possible. You can splash, you can float a leaf, you can look at the sky on the ground. Puddles are tiny upside-down worlds!"
+
+PLAYER CHOICES:
+[1] "Upside-down worlds are exciting."
+[2] "Wet possibility is a good kind."
+[3] "Puddles should have parades."
+
+---
+
+TURN 2B (if player chose B):
+Giggles: "Funny because they pop up so fast. One day it's dirt, next day it's a weed party. The dirt must be very surprised."
+
+PLAYER CHOICES:
+[1] "Dirt surprise parties are cute."
+[2] "Weed parties need tiny hats."
+[3] "Pop-up plants are magic."
+
+---
+
+TURN 2C (if player chose C):
+Giggles: "They do deserve a wave! The cloud looked all soft and gray and probably lonely being stuck in a puddle. I waved and it rippled back at me."
+
+PLAYER CHOICES:
+[1] "Rippling back is polite."
+[2] "Clouds in puddles need friends."
+[3] "Waving at reflections is fun."
+
+---
+
+TURN 3AA (if player chose A then A):
+Giggles: "Exciting! What if there are tiny fish in there? What if the sky is actually a lake and we're all underneath it? Puddle thoughts!"
+
+---
+
+TURN 3AB (if player chose A then B):
+Giggles: "Good kind. When it's wet, you don't have to worry about dust. You can just be splashy and free."
+
+---
+
+TURN 3AC (if player chose A then C):
+Giggles: "They should! Little boats, little songs, little puddle kings and queens waving from their soggy castles."
+
+---
+
+TURN 3BA (if player chose B then A):
+Giggles: "Cute! The dirt was napping and then a green friend said 'surprise!' and the dirt was like 'whoa, guest!'"
+
+---
+
+TURN 3BB (if player chose B then B):
+Giggles: "Tiny hats made of smaller leaves! Or dewdrop crowns. Weed parties are very fashionable events."
+
+---
+
+TURN 3BC (if player chose B then C):
+Giggles: "Magic that happens every morning but still feels special. Pop, pop, pop, green friends everywhere!"
+
+---
+
+TURN 3CA (if player chose C then A):
+Giggles: "Polite puddle! It saw my wave and made little circles to say 'hello back!' Very good manners for water."
+
+---
+
+TURN 3CB (if player chose C then B):
+Giggles: "They do! Stuck in a puddle is like being in a tiny sky-jail. I visit them so they don't get bored."
+
+---
+
+TURN 3CC (if player chose C then C):
+Giggles: "So fun! You wave at the puddle cloud and the puddle cloud waves at you and then a Hoggy footprint waves too. Everyone waves!"
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH

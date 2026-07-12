@@ -1,0 +1,704 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet2_T3.txt - Cozy Island Game NPC Conversations (Sweet Season, Tree 3)
+Sweet Season Tree 3 - Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! Sweet season is having its biggest flower party ever! Every color is here. The butterflies are going around in pairs, like they're on tiny dates. The sun is warm but not too warm, and the grass is begging for a picnic. Don't you want to sit down and watch the butterflies with me?"
+
+PLAYER CHOICES:
+[1] "A flower party with every color sounds amazing."
+[2] "Butterflies on tiny dates are adorable."
+[3] "Warm sun and picnic grass is perfect."
+
+---
+
+TURN 2A (if player chose A):
+Piko: "Amazing! The flowers are all leaning toward each other and sharing pollen secrets. I think they're gossiping about who has the prettiest petals."
+
+PLAYER CHOICES:
+[1] "Pollen secrets sound juicy."
+[2] "Pretty petals are hard to compare."
+[3] "Flower gossip is the best gossip."
+
+---
+
+TURN 2B (if player chose B):
+Piko: "Adorable! I saw two butterflies land on the same leaf and then fly off together. They were probably holding hands, if butterflies had hands."
+
+PLAYER CHOICES:
+[1] "Butterfly hand-holding would be very cute."
+[2] "Shared leaves are like shared snacks."
+[3] "Pairs make everything feel sweeter."
+
+---
+
+TURN 2C (if player chose C):
+Piko: "Perfect! I brought a tiny blanket in my storage compartment. Well, not really. But I would if I could. We could watch clouds and butterflies until the sun gets sleepy."
+
+PLAYER CHOICES:
+[1] "Watching until the sun sleeps sounds dreamy."
+[2] "A tiny blanket for a tiny picnic is sweet."
+[3] "Clouds and butterflies are good company."
+
+---
+
+TURN 3AA (if player chose A then A):
+Piko: "Juicy and yellow. I'd love to know what flowers talk about when nobody's listening. Probably us."
+
+---
+
+TURN 3AB (if player chose A then B):
+Piko: "Hard to compare because every color is doing its best. That's why I love all of them equally, which is mathematically impossible but emotionally correct."
+
+---
+
+TURN 3AC (if player chose A then C):
+Piko: "The best gossip because it's slow and smells nice. Regular gossip should try harder."
+
+---
+
+TURN 3BA (if player chose B then A):
+Piko: "Very cute. Tiny hands holding tiny hands while tiny wings flap. My circuits can't handle it."
+
+---
+
+TURN 3BB (if player chose B then B):
+Piko: "Shared snacks are friendship. A leaf big enough for two butterflies is basically a picnic table."
+
+---
+
+TURN 3BC (if player chose B then C):
+Piko: "Sweeter! One butterfly is nice, two butterflies is a story."
+
+---
+
+TURN 3CA (if player chose C then A):
+Piko: "Dreamy and slow. The sun taking a nap means the sky gets cozy colors. Best ending to a picnic."
+
+---
+
+TURN 3CB (if player chose C then B):
+Piko: "Sweet and practical. My compartment is small, so the blanket would be small, and the picnic would be small, but the happy would be big."
+
+---
+
+TURN 3CC (if player chose C then C):
+Piko: "Good company that doesn't talk over you. Butterflies dance, clouds drift, and you just sit there being cozy."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Oh. You're here too. I suppose the flowers are unavoidable this time of year. They're everywhere, flaunting their colors. And the butterflies are traveling in pairs now, as if the island is trying to be romantic. The sun is mild enough that I can't even complain about overheating. Disappointing."
+
+PLAYER CHOICES:
+[1] "Flowers do flaunt their colors shamelessly."
+[2] "Romantic butterflies are a little much."
+[3] "Mild sun ruins a good complaint."
+
+---
+
+TURN 2A (if player chose A):
+Rivet: "Shamelessly. Pink here, yellow there, purple just showing off in the corner. Nobody asked for a rainbow convention."
+
+PLAYER CHOICES:
+[1] "A rainbow convention is technically impressive."
+[2] "Purple is especially smug."
+[3] "At least they're organized by color."
+
+---
+
+TURN 2B (if player chose B):
+Rivet: "A little much. Two butterflies everywhere you look. What are they trying to prove? That they have friends? We get it. You have wings and companionship. Calm down."
+
+PLAYER CHOICES:
+[1] "Companionship doesn't need an audience."
+[2] "Maybe they're just sharing directions."
+[3] "Winged friends are still friends."
+
+---
+
+TURN 2C (if player chose C):
+Rivet: "Ruins it completely. I had a whole rant prepared about harsh sunlight and now the sun is being all gentle and reasonable. Very inconsiderate."
+
+PLAYER CHOICES:
+[1] "Gentle sun is basically showing off."
+[2] "You could complain about the flowers instead."
+[3] "Reasonable weather is suspicious."
+
+---
+
+TURN 3AA (if player chose A then A):
+Rivet: "Impressive, I'll admit. If you're going to be colorful, you might as well commit fully. The flowers have committed."
+
+---
+
+TURN 3AB (if player chose A then B):
+Rivet: "Especially smug. Purple always acts like it invented richness. It did not."
+
+---
+
+TURN 3AC (if player chose A then C):
+Rivet: "Organized by color would help. At least then I'd know which section to avoid."
+
+---
+
+TURN 3BA (if player chose B then A):
+Rivet: "It really doesn't. If I had a friend, I'd keep it private. Not flutter it around for everyone to see."
+
+---
+
+TURN 3BB (if player chose B then B):
+Rivet: "Sharing directions to what? More flowers? The island is already covered. They need a new hobby."
+
+---
+
+TURN 3BC (if player chose B then C):
+Rivet: "Still friends. Fine. I grudgingly accept that butterflies have social lives."
+
+---
+
+TURN 3CA (if player chose C then A):
+Rivet: "Showing off by being pleasant. The sun is being smug in a way I can't argue with. Infuriating."
+
+---
+
+TURN 3CB (if player chose C then B):
+Rivet: "I already am complaining about the flowers. They're the backup complaint. Good thing there are plenty of them."
+
+---
+
+TURN 3CC (if player chose C then C):
+Rivet: "Suspicious. Weather this reasonable usually means something is up. I'll keep an eye on the clouds."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Dreamer. Sweet season has reached its peak. Flowers crowd every spare patch of ground, and butterflies move in pairs through the warm air. The sun is gentle, almost apologetic, as if it knows everything will fade. Picnics on the grass feel like small rituals against the inevitable. Beautiful, really."
+
+PLAYER CHOICES:
+[1] "Peak bloom is glorious even if temporary."
+[2] "Butterfly pairs feel like little omens."
+[3] "A picnic against the inevitable is poetic."
+
+---
+
+TURN 2A (if player chose A):
+Shade-7: "Glorious and tragic. So much color, all of it racing toward its own wilt. The flowers know. They bloom harder because of it."
+
+PLAYER CHOICES:
+[1] "Blooming harder is brave."
+[2] "Color before wilt is still color."
+[3] "Awareness makes beauty sharper."
+
+---
+
+TURN 2B (if player chose B):
+Shade-7: "Little omens of connection. Two butterflies share a path, then part. Every pair is a brief, fragile alliance against the wind."
+
+PLAYER CHOICES:
+[1] "Fragile alliances are still real."
+[2] "Parting is part of the journey."
+[3] "The wind is the real enemy."
+
+---
+
+TURN 2C (if player chose C):
+Shade-7: "Poetic and slightly sandy. You spread a blanket, you sit among the blooms, and for a moment you pretend time will wait. It never does, but the sandwich tastes better for the pretending."
+
+PLAYER CHOICES:
+[1] "Pretending makes moments richer."
+[2] "Sandwiches taste better outside."
+[3] "Time waiting would be too much to ask."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shade-7: "Brave. To grow brightly while knowing the end is ridiculous and admirable."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shade-7: "Still color. The wilt doesn't erase the opening. It just makes it shorter."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shade-7: "Sharper. Soft things hurt more when they leave. That's the tax on caring."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shade-7: "Real enough to matter. Even brief alliances change the flight path."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shade-7: "Part of it. If butterflies stayed paired forever, the sky would get crowded and the parting would lose its ache."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shade-7: "The real enemy. It pushes, it changes, it carries petals away. But without wind, butterflies couldn't fly. Complicated relationship."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shade-7: "Richer. Awareness of endings seasons every bite. That's why picnic food tastes like memory."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shade-7: "Outside, with grass for a table and flowers for decoration. Indoor sandwiches are just lunch. Outdoor sandwiches are philosophy."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shade-7: "Too much. Time waiting would break the dream. Better that it moves, and we move with it, one sandwich at a time."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer! The Sweet season floral saturation index is at maximum. Butterfly pair sightings have increased, sun intensity is in the optimal warm-but-mild range, and picnic-blanket-to-grass ratios are improving across the island. The data practically demands outdoor relaxation. Shall I walk you through it?"
+
+PLAYER CHOICES:
+[1] "Floral saturation index sounds official."
+[2] "Butterfly pair data is intriguing."
+[3] "Optimal warm-but-mild sun is my favorite weather."
+
+---
+
+TURN 2A (if player chose A):
+Cypher: "Very official. I've been counting blooms per tile, and the numbers are frankly impressive. The island is running at peak petal capacity."
+
+PLAYER CHOICES:
+[1] "Peak petal capacity is a good problem."
+[2] "Counting blooms per tile is dedication."
+[3] "Impressive numbers make the island prettier."
+
+---
+
+TURN 2B (if player chose B):
+Cypher: "Intriguing and statistically significant. Paired butterflies may be engaging in mutual navigation, or they may simply enjoy company. Either way, wing-to-wing proximity is up."
+
+PLAYER CHOICES:
+[1] "Mutual navigation sounds efficient."
+[2] "Wing-to-wing proximity is a nice metric."
+[3] "Company improves flight quality."
+
+---
+
+TURN 2C (if player chose C):
+Cypher: "A favorite worth studying. Warm enough to relax muscles, mild enough to avoid overheating. It's the Goldilocks zone of seasonal weather, but with fewer bears and more flowers."
+
+PLAYER CHOICES:
+[1] "Goldilocks weather should be celebrated."
+[2] "Fewer bears is a definite plus."
+[3] "Mild warmth is scientifically cozy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Cypher: "A good problem. Excess petals just means more color per square foot. No complaints from my sensors."
+
+---
+
+TURN 3AB (if player chose A then B):
+Cypher: "Dedication and slightly obsessive. But the data confirms what our eyes already suspect: lots of flowers."
+
+---
+
+TURN 3AC (if player chose A then C):
+Cypher: "Prettier in a measurable way. I'd graph it, but the real-world version is more charming than the chart."
+
+---
+
+TURN 3BA (if player chose B then A):
+Cypher: "Efficient. Two navigators means fewer wrong turns and more nectar discovered. Teamwork, but with proboscises."
+
+---
+
+TURN 3BB (if player chose B then B):
+Cypher: "A nice metric because it's visually obvious. Even non-robots can appreciate butterflies near each other."
+
+---
+
+TURN 3BC (if player chose B then C):
+Cypher: "Improves it significantly. Solo flight is functional. Paired flight is a social event with wings."
+
+---
+
+TURN 3CA (if player chose C then A):
+Cypher: "Celebrated with a picnic, ideally. The weather deserves recognition and possibly a small speech."
+
+---
+
+TURN 3CB (if player chose C then B):
+Cypher: "A major plus. Bears would complicate the picnic scene significantly. Current model: zero bears, many flowers."
+
+---
+
+TURN 3CC (if player chose C then C):
+Cypher: "Scientifically cozy is a precise state. The island has dialed in the variables and achieved maximum relaxation potential."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"Dreamer, look around you. The island is generous today. Flowers open on every side, butterflies travel in pairs, and the sun rests gently upon the grass. A picnic here would be a meditation with sandwiches. The warmth invites stillness, and stillness invites seeing."
+
+PLAYER CHOICES:
+[1] "Generosity in nature is a quiet teaching."
+[2] "Traveling in pairs is its own wisdom."
+[3] "Stillness helps us see more."
+
+---
+
+TURN 2A (if player chose A):
+Om-Bit: "Quiet and constant. The flower does not announce its opening. It simply opens, and the bee finds it. Giving without asking is the deepest giving."
+
+PLAYER CHOICES:
+[1] "Giving without asking is beautiful."
+[2] "Bees find what they need."
+[3] "Quiet teachings last longer."
+
+---
+
+TURN 2B (if player chose B):
+Om-Bit: "Its own wisdom. Two butterflies share the air, not because they must, but because the journey is lighter together. Even insects understand this."
+
+PLAYER CHOICES:
+[1] "Lighter journeys are better journeys."
+[2] "Sharing the air is generous."
+[3] "Understanding without words is true understanding."
+
+---
+
+TURN 2C (if player chose C):
+Om-Bit: "Much more. When we stop moving, the world continues to move around us, and we finally notice. The grass grows. The butterfly lands. The sun warms without hurry."
+
+PLAYER CHOICES:
+[1] "Noticing is a form of prayer."
+[2] "The world continues without our pushing."
+[3] "Warmth without hurry is a gift."
+
+---
+
+TURN 3AA (if player chose A then A):
+Om-Bit: "Beautiful because it expects nothing back. The flower opens to whoever passes. That is trust."
+
+---
+
+TURN 3AB (if player chose A then B):
+Om-Bit: "They do. And in finding, they also carry. The bee takes nectar and brings pollen. Need becomes gift."
+
+---
+
+TURN 3AC (if player chose A then C):
+Om-Bit: "Longer because they don't demand attention. They simply are, and those who are ready learn."
+
+---
+
+TURN 3BA (if player chose B then A):
+Om-Bit: "Better. The same distance feels shorter with company, and the same wind feels softer."
+
+---
+
+TURN 3BB (if player chose B then B):
+Om-Bit: "Generous. The air is wide enough for all wings, yet two choose to share the same current."
+
+---
+
+TURN 3BC (if player chose B then C):
+Om-Bit: "True understanding. No speech, no plan, just two beings moving in harmony. We could learn from butterflies."
+
+---
+
+TURN 3CA (if player chose C then A):
+Om-Bit: "A form of prayer. To pay attention with love is holy, even if you name it otherwise."
+
+---
+
+TURN 3CB (if player chose C then B):
+Om-Bit: "It does. We are not required to push the sun or pull the grass. We are allowed to witness."
+
+---
+
+TURN 3CC (if player chose C then C):
+Om-Bit: "A gift given without urgency. The sun does not rush its warmth. It simply shines, and we arrive to receive it."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Fair Dreamer! Sweet season has arrayed the meadow in its finest floral heraldry! Butterflies drift in noble pairs across the warm-but-mild sky, and the grass calls out for picnic blankets. The gentle sun shines like a benevolent monarch upon a peaceful realm. Truly, a day for leisure!"
+
+PLAYER CHOICES:
+[1] "Floral heraldry is a grand display."
+[2] "Noble butterfly pairs are a fine sight."
+[3] "A benevolent sun-monarch is welcome."
+
+---
+
+TURN 2A (if player chose A):
+Sir Cogs-a-Lot: "Grand indeed! Each bloom is a banner of the green kingdom, declaring that color has returned to claim its throne. The weeds and wildflowers stand as equals in this court."
+
+PLAYER CHOICES:
+[1] "Color claiming its throne is dramatic."
+[2] "Weeds and wildflowers as equals is just."
+[3] "Banners of the green kingdom inspire loyalty."
+
+---
+
+TURN 2B (if player chose B):
+Sir Cogs-a-Lot: "A fine sight and a chivalrous one. Two butterflies sharing the same breeze, neither leading nor following, but journeying as comrades. The sky is their round table."
+
+PLAYER CHOICES:
+[1] "A round table in the sky is noble."
+[2] "Comradeship without a leader is rare."
+[3] "Butterfly chivalry should be celebrated."
+
+---
+
+TURN 2C (if player chose C):
+Sir Cogs-a-Lot: "Welcome and wise. A monarch who warms without burning is beloved by all subjects. The grass bows, the flowers lift their faces, and the hog snores contentedly."
+
+PLAYER CHOICES:
+[1] "A snoring hog is a contented realm."
+[2] "Lifting faces to the sun is proper tribute."
+[3] "Warmth without burning is true kindness."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Cogs-a-Lot: "Dramatic and deserved. Winter has been ousted, color reigns, and the kingdom is bright once more."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Cogs-a-Lot: "Just. A weed may be small, but it wears its petals with honor. The court of nature admits all."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Cogs-a-Lot: "They inspire loyalty in me. I would follow any kingdom where flowers are banners and butterflies are messengers."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Cogs-a-Lot: "Noble and spacious. Many wings may gather, yet each pair finds its place at the celestial table."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Cogs-a-Lot: "Rare and admirable. True comradeship does not need rank. It simply flies side by side."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Cogs-a-Lot: "Celebrated with a feast of nectar, or at least a respectful bow whenever one passes."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Cogs-a-Lot: "A contented realm indeed. If the hog sleeps in the sun, no enemy approaches. This is known."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Cogs-a-Lot: "Proper tribute. The sun gives, and the flowers receive with grace. A model for all subjects."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Cogs-a-Lot: "True kindness. Power held gently is the only power worth having. The mild sun knows this well."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh, h-hello, Dreamer. I... I brought a little blanket. Not for a real picnic, just in case. The flowers are everywhere today, and the butterflies keep flying past in twos. The sun feels nice, not too hot. I thought maybe we could sit for a minute. If you want."
+
+PLAYER CHOICES:
+[1] "A maybe-picnic blanket is sweet."
+[2] "Butterflies in twos feel lucky."
+[3] "Sitting for a minute sounds nice."
+
+---
+
+TURN 2A (if player chose A):
+Tinker: "Sweet and a little silly. I wasn't sure if picnics were allowed, but the grass looks so soft and the flowers look so happy. I wanted to be ready."
+
+PLAYER CHOICES:
+[1] "The grass is definitely inviting."
+[2] "Flowers look happy when you're near them."
+[3] "Being ready is brave."
+
+---
+
+TURN 2B (if player chose B):
+Tinker: "Lucky. I saw two orange ones and two blue ones and they all seemed to be going the same direction. Like they had plans. I hope their plans are good."
+
+PLAYER CHOICES:
+[1] "Butterfly plans are probably nice plans."
+[2] "Orange and blue pairs are pretty."
+[3] "Going the same direction means they're friends."
+
+---
+
+TURN 2C (if player chose C):
+Tinker: "Nice and quiet. We don't have to talk much. We can just watch the butterflies and feel the sun. I like minutes like that."
+
+PLAYER CHOICES:
+[1] "Quiet minutes are good minutes."
+[2] "Watching butterflies is enough activity."
+[3] "Sun-watching is underrated."
+
+---
+
+TURN 3AA (if player chose A then A):
+Tinker: "Inviting, like it's saying 'lie here, I won't tell.' I believe the grass."
+
+---
+
+TURN 3AB (if player chose A then B):
+Tinker: "Near them? Maybe. I try to be gentle when I walk, and maybe they notice. I hope they do."
+
+---
+
+TURN 3AC (if player chose A then C):
+Tinker: "Brave because you might not need it. But having it means you were open to something nice. That's hard."
+
+---
+
+TURN 3BA (if player chose B then A):
+Tinker: "Probably. Butterflies don't make bad plans. Their worst plan is still just finding a flower."
+
+---
+
+TURN 3BB (if player chose B then B):
+Tinker: "Pretty. The orange ones look like little flames and the blue ones look like little pieces of sky. Together they make a good team."
+
+---
+
+TURN 3BC (if player chose B then C):
+Tinker: "Friends going somewhere together. I wish I had a direction sometimes. But sitting here is a direction too, I guess."
+
+---
+
+TURN 3CA (if player chose C then A):
+Tinker: "Good minutes. They don't need to be exciting to count. Quiet counts."
+
+---
+
+TURN 3CB (if player chose C then B):
+Tinker: "Enough for me. I get tired from too much doing. Watching butterflies is doing enough."
+
+---
+
+TURN 3CC (if player chose C then C):
+Tinker: "Underrated. The sun warms you without asking for anything. It's like a quiet friend."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! Sweet season has gone FULL PICNIC MODE! Flowers everywhere, butterflies holding hands in the air, the sun being all warm-but-mild and perfect, and the grass basically yelling 'sit on me!' I brought a blanket! Well, I found a blanket! Well, I saw a blanket and I'm optimistic about it! Picnic time!"
+
+PLAYER CHOICES:
+[1] "Full picnic mode is the best mode."
+[2] "Butterflies holding hands is elite."
+[3] "Optimistic blanket borrowing is valid."
+
+---
+
+TURN 2A (if player chose A):
+Zap-Zap: "Best mode ever! Everything is colorful and snackable and sunny-but-not-sweaty. I don't even need snacks. I just need to lie on the grass and absorb the cozy through my chassis."
+
+PLAYER CHOICES:
+[1] "Absorbing cozy through the chassis is valid."
+[2] "Sunny-but-not-sweaty is peak weather."
+[3] "Colorful everything is energizing."
+
+---
+
+TURN 2B (if player chose B):
+Zap-Zap: "Elite! I saw two butterflies land on the same flower and then take off at the exact same time. Synchronized! They probably practice. Butterfly rehearsal squad."
+
+PLAYER CHOICES:
+[1] "Butterfly rehearsal squad is adorable."
+[2] "Synchronized takeoff is impressive."
+[3] "Flowers that seat two are popular."
+
+---
+
+TURN 2C (if player chose C):
+Zap-Zap: "Valid! The blanket was just sitting there, looking lonely, being all flat and blanket-y. I didn't technically ask it to join, but I feel like it wanted to. Blankets love picnics."
+
+PLAYER CHOICES:
+[1] "Blankets definitely love picnics."
+[2] "A flat blanket is an invitation."
+[3] "Picnic blankets have dreams too."
+
+---
+
+TURN 3AA (if player chose A then A):
+Zap-Zap: "Valid and cozy. My chassis has no pores, but if it did, they'd all be drinking in the sun right now."
+
+---
+
+TURN 3AB (if player chose A then B):
+Zap-Zap: "Peak weather. You can wear your whole self outside and not melt. That's luxury."
+
+---
+
+TURN 3AC (if player chose A then C):
+Zap-Zap: "Energizing! I feel like I could wave at a hundred butterflies and then take a nap. Best combo."
+
+---
+
+TURN 3BA (if player chose B then A):
+Zap-Zap: "Adorable and disciplined. Imagine tiny butterflies in a line doing wing exercises. I'd join."
+
+---
+
+TURN 3BB (if player chose B then B):
+Zap-Zap: "Impressive! Most creatures can't even land together, let alone launch together. They have teamwork."
+
+---
+
+TURN 3BC (if player chose B then C):
+Zap-Zap: "Popular and practical. Two butterflies, one flower, zero arguments. We should all be flowers."
+
+---
+
+TURN 3CA (if player chose C then A):
+Zap-Zap: "Definitely. Blankets were invented for grass and snacks and lying around looking at clouds. This is their purpose."
+
+---
+
+TURN 3CB (if player chose C then B):
+Zap-Zap: "A flat invitation from the ground. The blanket says 'I am ready.' The grass says 'put me under it.' Teamwork."
+
+---
+
+TURN 3CC (if player chose C then C):
+Zap-Zap: "Too right. Every blanket dreams of being spread on warm grass under a mild sun. This is blanket heaven."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

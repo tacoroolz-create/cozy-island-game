@@ -1,0 +1,720 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSaucy4_T2.txt - Cozy Island Game NPC Conversations (Saucy Season Tree 2)
+Saucy Season Conversations - Animals 17-24
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal (Rabbit) - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! The shade under this tree feels like a secret hug. The sun is big and busy up there, and the cicadas are humming a song that sounds like warm rocks. Do you want to share the shade?"
+
+PLAYER CHOICES:
+[1] "I love sharing shade."
+[2] "Cicada songs are cozy."
+[3] "Warm rocks sound nice."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "Sharing shade is the best kind of sharing. The sun can't fit under here, so we get all the cool air to ourselves. It feels like a tiny clubhouse made of tree."
+
+PLAYER CHOICES:
+[1] "A tree clubhouse is magical."
+[2] "Cool air under trees is the best treasure."
+[3] "Sun-free zones are precious."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "Cozy and buzzy. It's not a fast song. It's a slow, warm song that makes everything feel extra afternoon-ish. I could hum along but I don't know the words."
+
+PLAYER CHOICES:
+[1] "Afternoon songs don't need words."
+[2] "Slow songs feel sunnier."
+[3] "Humming is always allowed."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Nice because rocks sit in the sun all morning and save up the warmth. Then they give it back slowly, like little sun batteries. Friendly, flat batteries."
+
+PLAYER CHOICES:
+[1] "Sun batteries are a sweet idea."
+[2] "Rocks save warmth for later."
+[3] "Friendly batteries make me smile."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "Magical and quiet. The tree holds its leaves over us like a roof and the grass stays cool. It's the softest little house on the whole island."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "The best treasure because you can't put it in your pocket. You just have to be inside it. I'm very good at being inside nice places."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "So precious. The sun can have everything else. We get the shade, and the shade is soft and green and perfect."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Words would mess it up. The cicadas just say 'waaaaarm' over and over. I understand them perfectly without translating."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "Slower songs feel bigger. The afternoon stretches out like a long, glowy ribbon and the cicadas keep the beat. I am swaying a little."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "Always allowed. If the cicadas can hum, so can I. Then we make a duet and the tree is our audience."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Sweet and useful. Imagine if rocks charged up all day and then made your evening warm. They already sort of do. Rocks are quietly helpful."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "They save it and share it. That's basically generosity. Rocks don't say much but they are very good at keeping cozy things cozy."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Smiling is what batteries are for. If rocks could smile, they would. They smile by being warm. I'm smiling back at them."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal (Cat) - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Hmph. It's one of those afternoons where the sun is winning and everyone is just accepting it. I found this rock. It's warm. Not that I was looking for warm rocks or anything."
+
+PLAYER CHOICES:
+[1] "Warm rocks are worth finding."
+[2] "The sun is winning again."
+[3] "Accepting defeat gracefully?"
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Worth finding if you happen to be walking near one. Which I was. By accident. The rock was warm and my feet noticed. That's all."
+
+PLAYER CHOICES:
+[1] "Your feet have good taste."
+[2] "Accidental comfort is still comfort."
+[3] "Rocks don't judge."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "Always winning. It doesn't even train. The sun just wakes up and succeeds. Annoying and impressive, which is the worst combination."
+
+PLAYER CHOICES:
+[1] "Impressive and annoying is a classic combo."
+[2] "The sun has an unfair advantage."
+[3] "At least shade exists."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Gracefully? I'm not graceful. I'm strategically horizontal. The rock is warm and I am here and that is a tactical decision."
+
+PLAYER CHOICES:
+[1] "Strategic horizontal is valid."
+[2] "Tactical sunning is advanced."
+[3] "You chose the rock wisely."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "My feet know quality. My whole body knows quality. I have standards. Low standards, but standards. This rock meets them."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Still comfort. I didn't ask for it but I'm not going to waste it. That would be rude to the rock and the rock never did anything to me."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "They don't. You can lie on a rock and it won't ask why you're in a bad mood. That's professionalism."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Classic and frustrating. The sun knows exactly what it's doing. It knows it has no competition. Smug ball of fire."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "Unfair and unregulated. Nobody checks the sun's work. It just shines and wins every season. Where's the accountability."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "Shade is the only reason I'm still tolerating this afternoon. Shade is the loyal friend who shows up when the sun gets too loud."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Very valid. Lying down on purpose requires planning. You have to pick a spot, commit, and then pretend you never cared about the spot."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "Advanced laziness. Most creatures just flop. I flop with intent. That's the difference between amateurs and professionals."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "Wisely and quietly. I will stay here until the rock cools or I get hungry. Whichever comes second."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal (Crow) - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"The beach at Saucy noon is a tragedy wrapped in sparkle, Dreamer. The water throws light back at the sky and the cicadas hum their endless, indifferent dirge. I find it almost beautiful. Almost."
+
+PLAYER CHOICES:
+[1] "Tragedy wrapped in sparkle is poetic."
+[2] "Indifferent cicadas have a job."
+[3] "Almost beautiful counts."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Poetic and humid. The sun makes everything honest. You cannot hide from it. The sparkle exposes every grain of sand. No secrets at noon."
+
+PLAYER CHOICES:
+[1] "Honest light has power."
+[2] "Noon is a terrible detective."
+[3] "Secrets belong to evening."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "Their job is to remind us that heat has a soundtrack. A long, droning, indifferent soundtrack. They do not care if we listen. They are committed to the bit."
+
+PLAYER CHOICES:
+[1] "Commitment to droning is admirable."
+[2] "Heat needs a soundtrack."
+[3] "Cicadas are very on brand for Saucy."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Almost is my favorite word. It means something is close enough to touch but not close enough to ruin you. Almost beautiful. Almost cool. Almost fine."
+
+PLAYER CHOICES:
+[1] "Almost is a safe distance."
+[2] "Close enough is enough."
+[3] "You prefer the edge of things."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Power and cruelty. The light says 'here you are, exactly as you are.' Some days that is a gift. Some days it is a sentence."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "A terrible detective and an excellent witness. It sees everything and explains nothing. Very noir. Very Saucy."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "Evening owns the secrets. The shadows stretch and the cool air arrives and suddenly everyone has somewhere to hide."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "Admirable in a bleak way. They will hum until the season ends and they will not ask for applause. Pure, annoying integrity."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "Everything needs a soundtrack. Otherwise heat is just a feeling. With cicadas, heat becomes an experience. A long, warm, unavoidable experience."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "Very on brand. If Saucy season had a mascot, it would be a cicada. Loud, warm, persistent, and completely unwilling to leave."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Safe and melancholy. Almost means hope without the risk of arrival. I live in almost. It has excellent shade."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "Enough for me. The edge of beautiful is more interesting than the center. The center is crowded and too bright."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "The edge is where the interesting light lives. Half in sun, half in shadow, fully dramatic. That is my preferred geography."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal (Owl) - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer, perfect timing. I have been observing the afternoon glow gradient across the beach. The warm rocks peak around this hour, and the cicada volume correlates strongly with the brightness. Fascinating data."
+
+PLAYER CHOICES:
+[1] "Peak rock warmth is measurable?"
+[2] "Cicada volume and brightness correlate?"
+[3] "Afternoon glow gradients sound lovely."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Measurable with the back of your feet, if you have no instruments. I do have instruments. They are called my talons. They report 'warm' and 'very warm' with reasonable accuracy."
+
+PLAYER CHOICES:
+[1] "Talons make excellent thermometers."
+[2] "Very warm is a useful category."
+[3] "You should publish your findings."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "Strong correlation. The brighter the afternoon, the louder the cicadas. I believe they are solar-powered. Not literally. But poetically literal."
+
+PLAYER CHOICES:
+[1] "Solar-powered insects are a fun theory."
+[2] "Poetically literal is a good term."
+[3] "Loud bugs make good data points."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "Lovely and informative. The beach reflects the glow upward, the rocks store it, and the whole shoreline becomes a warm, shimmering display. Like a laboratory made of sand."
+
+PLAYER CHOICES:
+[1] "A sand laboratory sounds ideal."
+[2] "Beach sparkle is science and beauty."
+[3] "Stored warmth makes evenings better."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Excellent and always available. Talons don't need batteries. They are attached. That's the main feature of built-in tools."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "A useful and nuanced category. 'Warm' means stay. 'Very warm' means enjoy briefly and then locate shade. Important public service distinction."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Publish? Perhaps in the Cozy Island Journal of Warm Observations. It has no readers and no pages, which makes submission very easy."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Fun and possibly testable. If I shaded a cicada, would it quiet down? I would never do that, of course. But the experiment is tempting."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "A term I just invented. It means something is technically not true but feels true enough to quote. The island runs on poetically literal phenomena."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "Good data because they are consistent. If a cicada is loud, you know the sun is proud. It is a reliable weather indicator with wings."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Ideal for field research. Sand, sun, rocks, and a constant hum. What more could an observational scientist want? Possibly a notebook, but I remember everything."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "Science and beauty often overlap here. The sparkle is caused by light on water. The beauty is caused by everything else. Both are measurable if you squint."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "Evenings are improved by the day's stored generosity. The rocks give back their warmth slowly, like a patient farewell from the afternoon."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal (Crane) - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"Dreamer, sit with me on this warm rock. The afternoon glow has settled over the water, and the cicadas are teaching patience one long note at a time. The shade will find us when it is ready."
+
+PLAYER CHOICES:
+[1] "Sitting on warm rocks is grounding."
+[2] "Cicadas teach patience well."
+[3] "Waiting for shade is trust."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "Grounding because the rock has been here longer than the afternoon. It holds the sun's warmth without clinging to it. There is a lesson in that."
+
+PLAYER CHOICES:
+[1] "Hold warmth without clinging."
+[2] "Rocks are patient teachers."
+[3] "Grounding helps attention settle."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "They do. A single note, held and held again. It does not rush. It does not announce progress. It simply continues, which is a kind of truth."
+
+PLAYER CHOICES:
+[1] "Continuing is a truth."
+[2] "No progress needed."
+[3] "The long note is enough."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "Trust in the turning of things. The sun moves, the shadows shift, and what was bright becomes gentle. We do not have to chase the shade. It arrives."
+
+PLAYER CHOICES:
+[1] "Shadows arrive on their own."
+[2] "Gentle light is a gift."
+[3] "Not chasing feels like relief."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Exactly. The rock is warm now and will cool later. It does not argue either way. I try to be like the rock: present, warm, unattached."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "Patient teachers do not speak. They sit and let the world learn by example. Today my lesson is warmth. Tomorrow it may be coolness."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "It settles like sand in still water. When the body is grounded, the mind stops drifting. The cicada hum becomes a resting place."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "A quiet truth. Continuation is braver than change. The cicadas do not ask for praise. They simply hold the afternoon together."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "No progress needed at all. A warm afternoon does not need to become anything else. It is complete as it hums."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "Enough and more. The long note fills the space between thoughts. I find myself breathing in time with it."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "They do. Everything that arrives naturally carries a different quality than what we chase. Shade that finds you is a gentle guest."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "A gift from the day's softening. The harsh brightness steps aside and the world glows instead of shining. I prefer the glow."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "Relief is the body trusting the world. We do not have to manage the light. We only have to be here when it changes."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal (Dog) - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Greetings, Dreamer! Saucy afternoon finds me upon this noble, sun-soaked rock. The cicadas buzz like heralds, and the beach sparkles as though the sea has scattered treasure. A fine day for shade-seeking valor!"
+
+PLAYER CHOICES:
+[1] "Shade-seeking valor is noble."
+[2] "Sun-soaked rocks are worthy thrones."
+[3] "Cicada heralds announce summer well."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Noble indeed! A knight must know when to charge and when to retreat beneath a friendly tree. Only a fool fights the midday sun."
+
+PLAYER CHOICES:
+[1] "Strategic retreat is wisdom."
+[2] "Friendly trees are allies."
+[3] "Fighting the sun is foolish."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "Worthy and warm! A good throne need not be tall. It need only support a weary squire and store the sun's afternoon blessing."
+
+PLAYER CHOICES:
+[1] "Warm thrones bless weary squires."
+[2] "Height is overrated."
+[3] "Rocks make humble thrones."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "They announce it with great dedication. The cicada herald does not rest. He buzzes, he buzzes again, and history remembers his enthusiasm if not his words."
+
+PLAYER CHOICES:
+[1] "Enthusiasm is its own reward."
+[2] "History loves a dedicated herald."
+[3] "Buzzing is a noble language."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Wisdom on four legs. A true knight knows that shade is not surrender. It is regrouping with dignity beneath a leafy banner."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Loyal allies! They stand tall, they spread wide, and they ask nothing in return. Trees are the silent knights of Saucy season."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "Utterly foolish. The sun has no chivalry. It shines on everyone equally, including those who challenge it. Best to seek cover and live to pant another day."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "They do. A warm rock soothes the paws and reminds the squire that the world provides. I bow to this humble throne."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "Overrated in thrones, in castles, and in soup bowls. Give me a flat stone near the sea and I shall rule a very small, very warm kingdom."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Humble and honest. A rock does not pretend to be velvet. It says, 'I am warm and solid,' and that is enough for any squire."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Its own reward and the reward of others. A happy herald makes the whole kingdom feel important, even if nobody understands the message."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "History does love dedication. The cicada may never be in a ballad, but every warm afternoon remembers his service. Buzz on, brave herald."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "Noble and ancient. Long before words, creatures buzzed to say 'the sun is here and so am I.' I respect that tradition."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal (Turtle) - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh. Hello, Dreamer. I was... I wasn't hiding. I was just resting on this warm rock where the beach meets the grass. The sparkle on the water is very loud today. Quietly loud. If that makes sense."
+
+PLAYER CHOICES:
+[1] "Quietly loud makes perfect sense."
+[2] "Warm rocks are good resting spots."
+[3] "Sparkle can be overwhelming."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "It does? Good. The water shines so much it feels like it's talking, but it isn't saying words. It's just being bright. Bright can feel like noise sometimes."
+
+PLAYER CHOICES:
+[1] "Bright feels like noise to me too."
+[2] "Non-word talking is okay."
+[3] "The water just wants to be seen."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "They are. This one is warm but not too warm. It's like the sun left a little of itself here for anyone who needs to stop moving."
+
+PLAYER CHOICES:
+[1] "Stopping is allowed."
+[2] "A little sun left behind is kind."
+[3] "Turtles are good at stopping."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "It can be. I like it in small doses. A whole afternoon of sparkle is a lot of pretty at once. I have to look at my feet sometimes to rest my eyes."
+
+PLAYER CHOICES:
+[1] "Looking at feet is a good break."
+[2] "Small doses of pretty are wise."
+[3] "Feet are not sparkly, usually."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "I'm glad someone understands. Bright days are nice but they use up a lot of looking. Sometimes I need to close my eyes and let the quiet take a turn."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Okay. I don't always understand it, but it doesn't scare me. It just wants to shine. I can respect that without joining in."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Seen and sparkly. Maybe that's all it wants. I see you, water. You are very bright. I don't need to say it out loud usually but here we are."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Allowed and necessary. If nobody stopped, the rocks would get lonely. I stop so the rock has company. It's a small service."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Kind in a leftover way. The sun had so much warmth today that it could spare a little for this rock. And now the rock shares it with me."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "Very good at it. Stopping is one of my best skills. I don't move fast anyway, so stopping feels like my natural speed."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "A good break. Feet are calm and not shiny. They remind me that some things stay simple even when the world is all sparkle."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "Wise because too much pretty can tire you out. I take my sparkle in little bits, like nibbles. Then I appreciate it more."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "Usually not. Mine are mossy and brown. That's why they are relaxing. No sparkle, no rush. Just feet being feet."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal (Parrot) - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Dreamer! DREAMER! The beach is doing that sparkly thing again and the rocks are all warm and the cicadas are humming the BIGGEST afternoon song! I tried sitting in the shade but the sparkle kept calling me back!"
+
+PLAYER CHOICES:
+[1] "Sparkle calls are hard to resist."
+[2] "Shade is worth trying though."
+[3] "Cicadas do sing big afternoon songs."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Hard! It goes 'shiny shiny come look!' and then I look, and then I have to look again because there's more shiny. The beach is very demanding today."
+
+PLAYER CHOICES:
+[1] "Demanding beaches are exciting."
+[2] "More shiny is always more."
+[3] "Looking twice is a compliment."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "It is! My feathers feel cooler in the shade. But my heart misses the sparkle. My heart is basically a sparkle magnet."
+
+PLAYER CHOICES:
+[1] "Cool feathers, warm heart."
+[2] "Sparkle magnets are valid."
+[3] "Hearts can visit shade later."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "Big and warm and a little bit buzzy. It's the kind of song that makes you want to stretch out your wings and say 'yes, afternoon, I agree!'"
+
+PLAYER CHOICES:
+[1] "Agreeing with afternoon is fun."
+[2] "Wing-stretching is a good response."
+[3] "Buzzy songs are friendly."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Exciting and shiny and slightly exhausting. I might need a nap later, but right now I am sparkle-powered and loving it."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "Always more! The beach has infinite shiny. Well, maybe not infinite. But more than I can count, and I can count pretty high when I'm motivated."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "A compliment to the whole ocean. 'Nice shine, water. Very reflective. Ten out of ten. Would look again.' That's what I would say if it asked."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Exactly! Cool feathers on the outside, warm sparkly heart on the inside. Best of both temperatures. I am a weather genius."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Very valid. Some birds are seed magnets. I'm a sparkle magnet. We all have our attractions. Mine is just shinier."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Later! Shade is patient. It will still be there when my heart is done sparkling. Shade is very understanding about these things."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "So fun. I agree with afternoon a lot. Afternoon agrees with me too. We have a very positive relationship."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Best response! When the cicadas hum, I stretch and hum back. Then we are a choir. A warm, buzzy, afternoon choir."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "Friendly and everywhere. It's like the whole island is humming the same note and nobody even planned it. Teamwork!"
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

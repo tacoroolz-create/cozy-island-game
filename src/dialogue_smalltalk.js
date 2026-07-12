@@ -110,12 +110,19 @@ const WRITTEN_TREE_CHANCE = 0.25;
 function chooseConversationTree(npc) {
     const name = npc.name;
     const written = () => {
-        // In Cool/Saucy/Yeesh, the season's hand-written variant takes over
-        // half the time (Sweet has none; first meetings keep the intro tree).
-        const seasonalBank = (typeof SEASONAL_DIALOGUES !== 'undefined' && typeof world !== 'undefined' && world)
-            ? SEASONAL_DIALOGUES[world.season] : null;
-        if (seasonalBank && seasonalBank[name] && npc.friendship > 0 && Math.random() < 0.5) {
-            return JSON.parse(JSON.stringify(seasonalBank[name]));
+        // Every season now has hand-written variants (Sweet + Tree-2/Tree-3 for
+        // all four). Half the time, swap in a random one of the season's trees:
+        // the base tree (SEASONAL_DIALOGUES) plus any variants (SEASONAL_VARIANTS).
+        if (typeof world !== 'undefined' && world && npc.friendship > 0 && Math.random() < 0.5) {
+            const season = world.season;
+            const trees = [];
+            const bank = (typeof SEASONAL_DIALOGUES !== 'undefined') ? SEASONAL_DIALOGUES[season] : null;
+            if (bank && bank[name]) trees.push(bank[name]);
+            const variants = (typeof SEASONAL_VARIANTS !== 'undefined') ? SEASONAL_VARIANTS[season] : null;
+            if (variants && variants[name]) trees.push(...variants[name]);
+            if (trees.length) {
+                return JSON.parse(JSON.stringify(trees[Math.floor(Math.random() * trees.length)]));
+            }
         }
         if (typeof WRITTEN_DIALOGUES !== 'undefined' && WRITTEN_DIALOGUES[name]) {
             return JSON.parse(JSON.stringify(WRITTEN_DIALOGUES[name]));

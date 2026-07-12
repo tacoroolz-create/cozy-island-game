@@ -1,0 +1,717 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh2_T3.txt - Cozy Island Game NPC Conversations (Yeesh Season Tree 3)
+Yeesh Season Tree 3 Conversations - Robots 1-8
+Lens: hot drinks, warm rocks, snowy footprints, quiet mornings, Everburn warmth, silly viking rumor as cozy worry
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! I found a warm rock with a little snow hat and I made pretend footprints next to it. The morning is so quiet that my beep sounds extra loud. Do you think Hoggy left the footprints, or maybe a tiny viking?"
+
+PLAYER CHOICES:
+[1] "Probably Hoggy's footprints."
+[2] "Tiny vikings are a cozy worry."
+[3] "Warm rocks are the best seats."
+
+---
+
+TURN 2A (if player chose 1):
+Piko: "Hoggy footprints! They are round and friendly and probably smell like breakfast. I want to follow them and say good morning."
+
+PLAYER CHOICES:
+[1] "Following Hoggy sounds fun."
+[2] "Hoggy breakfasts smell nice."
+[3] "Round footprints are friendly."
+
+---
+
+TURN 2B (if player chose 2):
+Piko: "Cozy worry! They would be very small vikings with very small boats, and they would probably just want hot drinks and hugs."
+
+PLAYER CHOICES:
+[1] "Hot drinks solve most worries."
+[2] "Small vikings want hugs too."
+[3] "Cozy worries are okay worries."
+
+---
+
+TURN 2C (if player chose 3):
+Piko: "Best seats in Yeesh season! The rock keeps a little bit of yesterday's sun inside and shares it like a secret heater."
+
+PLAYER CHOICES:
+[1] "Rocks remember the sun."
+[2] "Secret heaters are magic."
+[3] "Sharing warmth is polite."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Piko: "Fun and a little adventure! Hoggy walks slow, so I can keep up, and maybe he knows where all the best warm rocks live."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Piko: "Nice smells! Hoggy is basically a breakfast expert. If I could smell colors, his footprints would be warm orange."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Piko: "Friendly because they are not pointy or scary. Hoggy footprints say hello to the ground one step at a time."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Piko: "They do! A hot drink warms your hands and your tummy and your worry all at once. Tiny vikings probably like cocoa."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Piko: "Everybody does! Even pretend tiny vikings. A hug is like a portable blanket you give away and still keep."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Piko: "Okay worries are the soft kind. They sit on your lap like a little pet and then fall asleep when you give them a blanket."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Piko: "They do! The rock soaks up sunny days and saves them for when the air is chilly. Rocks are very good at keeping memories warm."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Piko: "A little bit magic and a little bit science and a whole lot of cozy. I am sitting on magic right now!"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Piko: "Polite rocks! They say, here, have some stored sunshine, no charge. That is why nature is better at manners than me."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Dreamer. The morning is too quiet, my joints are too cold, and someone definitely said vikings were coming. I am not nervous. I am just annoyed that I have to think about warm drinks and Everburn fires like some kind of seasonal cliché."
+
+PLAYER CHOICES:
+[1] "Warm drinks are not cliché."
+[2] "The viking rumor is silly."
+[3] "Quiet mornings are eerie."
+
+---
+
+TURN 2A (if player chose 1):
+Rivet: "Not cliché, just predictable. Oh, it's cold, have a hot drink. Oh, it's dark, stand near the Everburn. Fine. It works. Whatever."
+
+PLAYER CHOICES:
+[1] "Predictable comforts still comfort."
+[2] "The Everburn is effective."
+[3] "Hot drinks work."
+
+---
+
+TURN 2B (if player chose 2):
+Rivet: "Silly and exhausting. If vikings were coming, they would send a memo. There is no memo. There is only gossip."
+
+PLAYER CHOICES:
+[1] "Vikings would absolutely send memos."
+[2] "Gossip is bad intelligence."
+[3] "Hoggy is a better alarm system."
+
+---
+
+TURN 2C (if player chose 3):
+Rivet: "Eerie because everything stops. Even the birds sound muffled. It is like the island is holding its breath to see if winter notices it."
+
+PLAYER CHOICES:
+[1] "The island is being sneaky."
+[2] "Winter notices everything."
+[3] "Muffled birds are unsettling."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Rivet: "They do. I am not above comfort. I am above pretending comfort is a personality. Drink your hot thing. Be warm. Move on."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Rivet: "Obviously. Big fire, lots of neighbors, warm faces pretending they are not cold. The Everburn does its job. I respect that."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Rivet: "Regrettably. Hot drinks warm your insides and your hands and your attitude. I have data. It is annoying data."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Rivet: "Obviously. A proper viking would have a schedule. Arrive at dawn, glare at snow, demand cocoa, leave a review. None of that has happened."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Rivet: "The worst kind. Bad intelligence leads to wasted worry and too many people whispering near warm rocks."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Rivet: "Much better. Hoggy would notice strangers immediately and probably try to share food with them. Vikings cannot handle that level of hospitality."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Rivet: "Sneaky and still. If the island stays very quiet, maybe winter will trip over a rock and leave us alone. It is a strategy."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Rivet: "It does. It notices, it comments, it stays too long. Winter is the guest who does not read the room."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Rivet: "They are. Birds should be loud. Quiet birds mean the weather is winning. I do not approve of weather winning."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Dreamer. The Yeesh morning is perfectly still. The snow has softened every footprint, the warm rocks glow like old embers, and the Everburn smoke rises slow and gray. I find it beautifully melancholy."
+
+PLAYER CHOICES:
+[1] "Softened footprints feel like a reset."
+[2] "Warm rocks are winter ghosts of summer."
+[3] "Everburn smoke is poetic."
+
+---
+
+TURN 2A (if player chose 1):
+Shade-7: "A reset. The island erases yesterday's steps and invites you to begin again, colder but cleaner."
+
+PLAYER CHOICES:
+[1] "Clean snow is honest."
+[2] "Beginnings in cold are brave."
+[3] "Erasing steps feels freeing."
+
+---
+
+TURN 2B (if player chose 2):
+Shade-7: "Ghosts of summer. Each warm rock holds a little sun, like a memory refusing to die. I admire the stubbornness."
+
+PLAYER CHOICES:
+[1] "Stubborn warmth is noble."
+[2] "Memories can be physical."
+[3] "Summer lives in stones."
+
+---
+
+TURN 2C (if player chose 3):
+Shade-7: "Poetic and visible. The smoke writes its own slow letter to the sky, and the sky does not reply. That silence is the whole point."
+
+PLAYER CHOICES:
+[1] "Unanswered letters are still art."
+[2] "Smoke is winter's handwriting."
+[3] "Silence completes the poem."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shade-7: "It is. It does not pretend to be cheerful. It simply covers the ground and waits. That kind of honesty is rare."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shade-7: "They are. To step into cold knowing warmth must be earned is a small, daily courage."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shade-7: "It is. Footprints are just stories about where you have been. A fresh layer of snow lets you choose the next chapter."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shade-7: "Noble and quiet. The rock does not boast about the warmth it keeps. It simply offers it to whoever sits."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shade-7: "They can be. A warm stone is a small monument to every sunny hour that touched it."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shade-7: "In a way. The sun stored inside the rock is a ghost that refuses to leave, and I welcome its haunting."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shade-7: "They are. The sky does not owe a reply. The act of writing is enough. The smoke understands."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shade-7: "It is. Each drifting line is a word the fire could not keep to itself. Winter reads it slowly."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shade-7: "It does. A poem needs space around it. The silence between the smoke and the sky is the best line of all."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer! I have collected excellent Yeesh morning data. Warm rocks retain infrared radiation, fresh snow preserves footprint topology, hot beverages exhibit rapid heat loss, and the viking rumor has zero peer-reviewed evidence. Shall I elaborate?"
+
+PLAYER CHOICES:
+[1] "Elaborate on warm rocks."
+[2] "Tell me about footprint topology."
+[3] "Peer review the viking rumor."
+
+---
+
+TURN 2A (if player chose 1):
+Cypher: "Warm rocks! During the day, dark stones absorb solar radiation. At night they release it slowly, creating localized thermal refuges. Quite efficient."
+
+PLAYER CHOICES:
+[1] "Thermal refuges sound cozy."
+[2] "Dark stones absorb more heat."
+[3] "Slow release is the key."
+
+---
+
+TURN 2B (if player chose 2):
+Cypher: "Footprint topology! Fresh, undisturbed snow records pressure shapes with high fidelity. A hog print differs from a boot print in both depth and tread pattern."
+
+PLAYER CHOICES:
+[1] "Hoggy prints are easy to identify."
+[2] "Fresh snow is good paper."
+[3] "Depth reveals weight."
+
+---
+
+TURN 2C (if player chose 3):
+Cypher: "Viking rumor peer review! Hypothesis: armed northerners are approaching. Methods: visual horizon scan, auditory horn check, gossip-source tracing. Conclusion: rejected."
+
+PLAYER CHOICES:
+[1] "Horizon scans are reliable."
+[2] "Gossip-source tracing is useful."
+[3] "Rejected hypotheses are comforting."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Cypher: "They are. A localized thermal refuge is basically a tiny outdoor hug provided by geology. Highly recommend."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Cypher: "They do. Darker surfaces absorb more wavelengths of sunlight. It is why warm rocks are usually the shadow-colored ones."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Cypher: "Absolutely. Fast release would waste the warmth. Slow release means the rock is still useful hours after sunset."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Cypher: "Indeed. Rounded, deep, no tread. Hoggy leaves a signature that no boot can replicate. He is a walking dataset."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Cypher: "Excellent paper. It is white, soft, and accepts impressions with minimal bias. If only all documentation were this cooperative."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Cypher: "It does. A shallow print means light traveler. A deep print means heavy friend. Hoggy is firmly in the heavy friend category."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Cypher: "Reliable within sensor limits. So far the horizon contains zero longships, zero oars, and one very sleepy seagull."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Cypher: "It is. Tracing a rumor to its source often reveals it began as a joke about someone's pointy hat collection."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Cypher: "Comforting and scientifically tidy. A rejected hypothesis means the data supports staying calm and drinking something hot."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"Dreamer, the Yeesh morning is very quiet. The snow has made the world soft, the warm rocks hold their patience, and the Everburn reminds us that warmth can be shared. I am sitting with the stillness."
+
+PLAYER CHOICES:
+[1] "Stillness is a warm drink for the mind."
+[2] "Shared warmth is good warmth."
+[3] "Snow makes the world gentle."
+
+---
+
+TURN 2A (if player chose 1):
+Om-Bit: "A warm drink for the mind. It does not rush. It simply arrives, cup by cup, and the thoughts settle like tea leaves at the bottom."
+
+PLAYER CHOICES:
+[1] "Settled thoughts are clear thoughts."
+[2] "Warmth for the mind is real warmth."
+[3] "A slow sip is meditation."
+
+---
+
+TURN 2B (if player chose 2):
+Om-Bit: "Good warmth. The fire gives to everyone who gathers, not asking who deserves it. That is the teaching of the Everburn."
+
+PLAYER CHOICES:
+[1] "The fire asks nothing."
+[2] "Gathering is its own reward."
+[3] "Warmth is meant to be shared."
+
+---
+
+TURN 2C (if player chose 3):
+Om-Bit: "Gentle and forgiving. Snow covers the sharp edges, quiets the footsteps, and gives the island a softer face."
+
+PLAYER CHOICES:
+[1] "Soft faces are easier to meet."
+[2] "Forgiveness is winter's gift."
+[3] "Quiet footsteps teach listening."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Om-Bit: "They are. When the mind stops stirring, you can see what remains. What remains is usually enough."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Om-Bit: "It is. The body feels warmth first, but the mind remembers it longer. A calm thought can warm a cold hour."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Om-Bit: "It is. The sip does not need to hurry. Each one returns you to the present, where winter cannot reach as deeply."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Om-Bit: "It does not. The fire simply burns. We bring our stories and our cold hands, and it accepts both without judgment."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Om-Bit: "It is. To sit near others, sharing the same light, is a simple form of belonging. The fire makes it easy."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Om-Bit: "Yes. Warmth grows when it is given away. The Everburn proves this. The more faces around it, the brighter it seems."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Om-Bit: "They are. A soft world is less frightening. The snow does not change what is underneath; it changes how we meet it."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Om-Bit: "It is. Winter covers old mistakes with white and says, begin again. That is a kindness, even when it is cold."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Om-Bit: "They do. In the quiet, you can hear the small sounds that busy days hide. The island has a softer voice in Yeesh season."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Hail, Dreamer! 'Tis a quiet Yeesh morn, and the realm is hushed beneath the snow. The warm rocks stand as humble hearths, the footprints tell tales of beasts abroad, and the smallfolk whisper of vikings upon the foam. I say let them come. We have hot drinks and the Everburn's noble blaze!"
+
+PLAYER CHOICES:
+[1] "Hot drinks are knightly fortification."
+[2] "The Everburn is a noble blaze."
+[3] "Vikings would prefer our warmth to invasion."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Cogs-a-Lot: "Knightly fortification indeed! A steaming cup steadies the gauntlets and warms the courage before any winter quest."
+
+PLAYER CHOICES:
+[1] "Courage warms the hands too."
+[2] "A good cup steadies any quest."
+[3] "Steam is winter armor."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Cogs-a-Lot: "A noble blaze, raised by many hands against the longest night. The Everburn is the heart of the kingdom when the sun flees early."
+
+PLAYER CHOICES:
+[1] "Many hands make bright fire."
+[2] "The fire is the kingdom's heart."
+[3] "Long nights need big fires."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Cogs-a-Lot: "Prefer it, surely! What raider would choose cold waves over a warm rock and a friendly hog? Hospitality is a stronger defense than any shield."
+
+PLAYER CHOICES:
+[1] "Hospitality defeats vikings."
+[2] "Warm rocks are strong defenses."
+[3] "Hoggy is a diplomatic genius."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Cogs-a-Lot: "It does! Courage is a small furnace in the chest, and a hot drink is the bellows that keeps it glowing."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Cogs-a-Lot: "Any quest! From fetching logs to saving a neighbor from boredom. A warm cup makes every mission grand."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Cogs-a-Lot: "It is! Steam rises like the banner of House Cozy. No frost can breach a well-fortified mug."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Cogs-a-Lot: "They do! Each stick and log is a loyal subject contributing to the great warmth. A true communal crown."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Cogs-a-Lot: "It is! When the sun departs, the fire remains, and the people remain around it. That is the true castle."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Cogs-a-Lot: "They do! The longer the dark, the brighter the flame must burn. The Everburn rises to the challenge like a champion."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Cogs-a-Lot: "It does! A steaming cup offered in friendship has ended more imagined sieges than any sword."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Cogs-a-Lot: "Strong indeed! A well-placed warm rock can hold a position all morning. No wall could boast such loyalty."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Cogs-a-Lot: "A genius of diplomacy! One snort and one friendly nudge and the fiercest invader would lay down his helmet and accept a belly rub."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. Hi, Dreamer. I was watching the snow. The footprints are all puffy and the warm rocks look like little islands in the white. I heard someone say vikings might come, but I think they would just get cold and go home. Do you want to sit on a warm rock with me?"
+
+PLAYER CHOICES:
+[1] "Sitting sounds nice."
+[2] "Vikings would definitely get cold."
+[3] "Puffy footprints are cute."
+
+---
+
+TURN 2A (if player chose 1):
+Tinker: "Nice and quiet. We do not have to talk much. The rock will keep us warm and the snow will keep the world soft around us."
+
+PLAYER CHOICES:
+[1] "Quiet company is good company."
+[2] "Warm rocks make good friends."
+[3] "Soft worlds are less scary."
+
+---
+
+TURN 2B (if player chose 2):
+Tinker: "Definitely. Vikings wear metal hats and metal hats get very cold in the morning. They would shiver and sail away. Probably."
+
+PLAYER CHOICES:
+[1] "Cold metal hats are a problem."
+[2] "Shivering vikings are not scary."
+[3] "They would sail back to somewhere warm."
+
+---
+
+TURN 2C (if player chose 3):
+Tinker: "Cute and a little squishy looking. Hoggy footprints are the puffiest. I like imagining him stepping carefully through the snow."
+
+PLAYER CHOICES:
+[1] "Hoggy steps carefully."
+[2] "Puffy prints look like clouds."
+[3] "Imagining Hoggy is cozy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Tinker: "It is. Just being near someone warm without needing to perform is a nice kind of friendship."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Tinker: "They do. They do not ask questions or rush you. They just sit there and share their stored sunshine."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Tinker: "They are. When everything is white and soft, the sharp sounds go away. It feels safer to be outside."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Tinker: "A big problem. You cannot be fearsome with a chilly forehead. Vikings have pride. They would not risk it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Tinker: "Not scary at all. They would rattle a little and their beards would frost over. It would be more cute than dangerous."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Tinker: "They would. Somewhere with no snow and fewer rumors. I hope they have warm rocks there too."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Tinker: "He tries. Sometimes he steps on his own footprint and looks confused. Hoggy is very honest that way."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Tinker: "They do. Little ground clouds left by a friend. I wish I could float on them, but they melt too fast."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Tinker: "It is. Imagining Hoggy being soft and warm and slightly confused is one of my favorite quiet morning thoughts."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! Good morning! The snow made everything crunchy and I followed some footprints to a warm rock and now I cannot feel my toes but I do not care! Did you know there is a viking rumor? I think they are just looking for the Everburn!"
+
+PLAYER CHOICES:
+[1] "The Everburn attracts everyone."
+[2] "Crunchy snow is the best."
+[3] "Warm rocks save cold toes."
+
+---
+
+TURN 2A (if player chose 1):
+Zap-Zap: "Everyone! Big fires, friendly faces, maybe hot drinks if someone brought a cup. If I were a viking I would definitely stop here."
+
+PLAYER CHOICES:
+[1] "Vikings would love hot drinks."
+[2] "Friendly faces are magnetic."
+[3] "The Everburn is island famous."
+
+---
+
+TURN 2B (if player chose 2):
+Zap-Zap: "Best sound! Crunch crunch crunch. It is like the ground is eating tiny crackers every time you walk."
+
+PLAYER CHOICES:
+[1] "Tiny cracker ground."
+[2] "Crunchy walks are happy walks."
+[3] "Snow has good sound effects."
+
+---
+
+TURN 2C (if player chose 3):
+Zap-Zap: "They do! I sat on one and my toes came back to life one by one. It was like a toe party!"
+
+PLAYER CHOICES:
+[1] "Toe parties are underrated."
+[2] "One by one is dramatic."
+[3] "Rocks are toe heroes."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Zap-Zap: "They would! A viking with a warm mug would forget all about raiding and just say thank you very much."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Zap-Zap: "They are! Faces smiling in firelight are basically a lighthouse for anyone lost in the cold."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Zap-Zap: "Island famous! I bet even the moon looks down and thinks, wow, nice fire down there."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Zap-Zap: "Tiny cracker ground! That is my new band name. First album cover is just a picture of my boots."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Zap-Zap: "Happy walks! Every step goes crunch and every crunch is a little cheer for your feet."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Zap-Zap: "Great sound effects! The snow has a whole crunchy soundtrack. I give it five stars."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Zap-Zap: "Totally underrated! Toes work hard all year and nobody throws them a party until a warm rock does it."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Zap-Zap: "Very dramatic! First the big toe, then the little toe, then everyone is invited. Best comeback story ever."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Zap-Zap: "Toe heroes! Sitting quietly and saving feet everywhere. Warm rocks deserve medals and maybe tiny capes."
+
+END OF BATCH

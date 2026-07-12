@@ -1,0 +1,705 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool2_T3.txt - Cozy Island Game NPC Conversations (Cool Season Tree 3)
+Cool Season Conversations Tree 3 - Robots 1-8: Piko, Rivet, Shade-7, Cypher, Om-Bit, Sir Cogs-a-Lot, Tinker, Zap-Zap
+Cool lens: leaf piles, crisp air, harvest colors, cozy blankets, starry evenings
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 1: Piko (Robot - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Piko:
+"Dreamer! I found the crunchiest leaf pile ever and the air is so crisp it makes my heart-lights blink extra fast. The harvest colors look like someone spread a cozy blanket over the whole island. And Hoggy is wearing a leaf on his head like a tiny hat. Do you want to go look at the evening stars later?"
+
+PLAYER CHOICES:
+[1] "Leaf piles are the best crunchers."
+[2] "A cozy island blanket sounds perfect."
+[3] "Hoggy looks good in leaves."
+
+---
+
+TURN 2A (if player chose A):
+Piko: "Best crunchers! Each step makes a satisfying crackle and the leaves fly up like little orange confetti. I could jump in them all afternoon."
+
+PLAYER CHOICES:
+[1] "Jumping is required in leaf piles."
+[2] "Orange confetti is party weather."
+[3] "Afternoon crunching is a good plan."
+
+---
+
+TURN 2B (if player chose B):
+Piko: "Perfect blanket. The trees knitted it from gold and red threads and the breeze tucked it around the grass. Everything looks tucked in."
+
+PLAYER CHOICES:
+[1] "Tucked-in grass is happy grass."
+[2] "Gold and red threads are fancy."
+[3] "The breeze is a good blanket-tucker."
+
+---
+
+TURN 2C (if player chose C):
+Piko: "He looks adorable. The leaf stayed on his head for three whole sniffs before it fell off. I think he knew it was cute."
+
+PLAYER CHOICES:
+[1] "Three sniffs is a good leaf record."
+[2] "Hoggy always knows cute."
+[3] "Leaf hats suit him."
+
+---
+
+TURN 3AA (if player chose A then A):
+Piko: "Jumping is required. If you walk through a leaf pile without jumping, the leaves get sad. They want to fly a little."
+
+---
+
+TURN 3AB (if player chose A then B):
+Piko: "Party weather! Cool season throws the best leaf confetti parties and everyone is invited, even the rocks."
+
+---
+
+TURN 3AC (if player chose A then C):
+Piko: "A good plan. I will schedule crunching on my internal calendar right after stargazing. Busy day!"
+
+---
+
+TURN 3BA (if player chose B then A):
+Piko: "Happy grass! When the blanket covers it, the grass gets warm thoughts and doesn't mind the cold air."
+
+---
+
+TURN 3BB (if player chose B then B):
+Piko: "Fancy and free. The trees don't even charge for their thread. That's generous."
+
+---
+
+TURN 3BC (if player chose B then C):
+Piko: "A very good tucker. It knows exactly where to puff the blanket so no spot gets left chilly."
+
+---
+
+TURN 3CA (if player chose C then A):
+Piko: "A good leaf record. Most leaves fall off in one sniff, so that one was a professional hat."
+
+---
+
+TURN 3CB (if player chose C then B):
+Piko: "Hoggy always knows. He has excellent cute-radar and a very waggy nose."
+
+---
+
+TURN 3CC (if player chose C then C):
+Piko: "They really do. Maybe we can find him a bigger leaf tomorrow and start a Hoggy leaf fashion show."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 2: Rivet (Robot - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Rivet:
+"Took you long enough. I was about to kick this leaf pile just to prove it exists. The air is crisp enough to make my joints complain in Morse code. The harvest colors are blindingly cheerful and someone left a blanket near the rocks like they expect me to sit on it. As if. The stars can handle themselves."
+
+PLAYER CHOICES:
+[1] "Kicking leaf piles sounds satisfying."
+[2] "Your joints speak Morse code?"
+[3] "Blankets near rocks are suspicious."
+
+---
+
+TURN 2A (if player chose A):
+Rivet: "Satisfying and necessary. Leaf piles get too comfortable just sitting there. Someone has to remind them that gravity wins."
+
+PLAYER CHOICES:
+[1] "Gravity is a good referee."
+[2] "Leaves need humility."
+[3] "Kicking is leaf pile quality control."
+
+---
+
+TURN 2B (if player chose B):
+Rivet: "Morse code. Squeak-squeak-clank. It mostly translates to 'oil me' and 'this leaf is in my way.' Very articulate joints."
+
+PLAYER CHOICES:
+[1] "Articulate joints are rare."
+[2] "Leaves should move out of the way."
+[3] "Oil is a love language."
+
+---
+
+TURN 2C (if player chose C):
+Rivet: "Suspicious. Cozy, soft, placed with intention. Probably a trap set by the island to make me relax. I won't fall for it."
+
+PLAYER CHOICES:
+[1] "Relaxation traps are the worst."
+[2] "The island wants you cozy."
+[3] "Maybe the blanket is innocent."
+
+---
+
+TURN 3AA (if player chose A then A):
+Rivet: "Gravity is undefeated. It pulls leaves down, it pulls my patience down, and it keeps rocks where they belong."
+
+---
+
+TURN 3AB (if player chose A then B):
+Rivet: "They do. A leaf that lands in front of me is just showing off its descent. Show-off leaves."
+
+---
+
+TURN 3AC (if player chose A then C):
+Rivet: "Quality control. If a pile crunches well, it passes. If it flutters, it's showing off. Both get kicked."
+
+---
+
+TURN 3BA (if player chose B then A):
+Rivet: "Rare and underappreciated. Most robots have joints that just squeak. Mine at least have syntax."
+
+---
+
+TURN 3BB (if player chose B then B):
+Rivet: "They should. I have a schedule. Leaves do not. This is a recurring problem."
+
+---
+
+TURN 3BC (if player chose B then C):
+Rivet: "A love language I rarely hear. Maybe that's why I sound cranky. My joints are asking for affection."
+
+---
+
+TURN 3CA (if player chose C then A):
+Rivet: "The worst. One minute you're alert, the next minute you're sitting on a rock under a blanket looking peaceful. Disgusting."
+
+---
+
+TURN 3CB (if player chose C then B):
+Rivet: "The island is manipulative. Using soft fabric and harvest colors to lower my defenses. Hmph."
+
+---
+
+TURN 3CC (if player chose C then C):
+Rivet: "Innocent until proven cozy. I'll investigate later. From a distance. With a stick."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 3: Shade-7 (Robot - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shade-7:
+"Cool season, Dreamer. The leaf piles are small funeral mounds for summer, and the crisp air carries the last whispers of warmth. The harvest colors burn against the sky like a final rebellion. I found a folded blanket someone abandoned near the trees. I respect its darkness. And the stars this evening looked closer than usual, which is either beautiful or a warning."
+
+PLAYER CHOICES:
+[1] "Leaf piles as funeral mounds is poetic."
+[2] "A rebellion of colors is noble."
+[3] "Closer stars are beautiful warnings."
+
+---
+
+TURN 2A (if player chose A):
+Shade-7: "Poetic and inevitable. Every bright thing must fall and be piled. The island is honest about that at least."
+
+PLAYER CHOICES:
+[1] "Honesty is rare in bright things."
+[2] "Piling is a kind of acceptance."
+[3] "Fallen things have weight."
+
+---
+
+TURN 2B (if player chose B):
+Shade-7: "Noble. The leaves refuse to fade quietly. They turn gold and red and scream at the sky before they let go. I respect the drama."
+
+PLAYER CHOICES:
+[1] "Drama makes endings memorable."
+[2] "The sky deserves to be screamed at."
+[3] "Red is a good scream color."
+
+---
+
+TURN 2C (if player chose C):
+Shade-7: "Beautiful warnings. The stars lean in to watch us shiver in the crisp air. It's theatrical and I approve."
+
+PLAYER CHOICES:
+[1] "The stars enjoy theater."
+[2] "Shivering is dramatic."
+[3] "Being watched by stars is flattering."
+
+---
+
+TURN 3AA (if player chose A then A):
+Shade-7: "Rare. Most bright things pretend they'll stay forever. Leaves know better. They change color as a confession."
+
+---
+
+TURN 3AB (if player chose A then B):
+Shade-7: "Acceptance in a heap. Summer dies, we pile it, and eventually we jump on it. That's basically existence."
+
+---
+
+TURN 3AC (if player chose A then C):
+Shade-7: "They do. Each leaf carries the weight of a season. The piles are heavier than they look."
+
+---
+
+TURN 3BA (if player chose B then A):
+Shade-7: "Memorable endings. If you're going to go, go loudly in orange and leave a crunchy corpse."
+
+---
+
+TURN 3BB (if player chose B then B):
+Shade-7: "It does. The sky spends all day being blue and smug. The leaves answer with fire."
+
+---
+
+TURN 3BC (if player chose B then C):
+Shade-7: "The best one. Red screams louder than yellow and yellow knows it. That's why yellow hides behind red."
+
+---
+
+TURN 3CA (if player chose C then A):
+Shade-7: "They must. Otherwise why come out so clearly on cold nights? They're waiting for the drama to peak."
+
+---
+
+TURN 3CB (if player chose C then B):
+Shade-7: "Dramatic and efficient. The air is crisp, the body shivers, and suddenly you're the main character of the evening."
+
+---
+
+TURN 3CC (if player chose C then C):
+Shade-7: "Flattering and slightly threatening. I would curtsy to the stars if I had a skirt. Or legs. Or patience."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 4: Cypher (Robot - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Cypher:
+"Dreamer, I've been collecting data on leaf pile density, crisp air conductivity, and harvest color distribution. Preliminary results: leaf piles crunch at approximately twelve crunches per square meter, the air is crisp enough to increase signal clarity by nineteen percent, and the starry evenings are showing a thirty-three percent boost in visible constellations. Hoggy has been observed rolling in the control group of leaves."
+
+PLAYER CHOICES:
+[1] "Twelve crunches per square meter is precise."
+[2] "Signal clarity boost sounds useful."
+[3] "Hoggy is ruining your control group."
+
+---
+
+TURN 2A (if player chose A):
+Cypher: "Precision is important. I counted by walking in a grid pattern. My feet are not ideal measuring tools, but they are consistent."
+
+PLAYER CHOICES:
+[1] "Consistent feet are scientific feet."
+[2] "A grid pattern is methodical."
+[3] "Twelve is a satisfying number."
+
+---
+
+TURN 2B (if player chose B):
+Cypher: "Very useful. Crisp air means fewer data errors from atmospheric interference. My antennae are receiving the island with unusual fidelity."
+
+PLAYER CHOICES:
+[1] "Fidelity is a nice word for clarity."
+[2] "The island transmits well today."
+[3] "Atmospheric interference sounds dramatic."
+
+---
+
+TURN 2C (if player chose C):
+Cypher: "Ruining is a strong word. He introduced a variable I hadn't planned for: hog-induced leaf displacement. It may actually improve the dataset."
+
+PLAYER CHOICES:
+[1] "Hog-induced displacement is a field."
+[2] "Variables improve datasets."
+[3] "Hoggy should be listed as a co-author."
+
+---
+
+TURN 3AA (if player chose A then A):
+Cypher: "Scientific feet. Not all feet can claim that. Mine come with calibration errors and occasional squeaks."
+
+---
+
+TURN 3AB (if player chose A then B):
+Cypher: "Methodical walking is underrated. It turns a leaf pile into a dataset and a conversation into a paper."
+
+---
+
+TURN 3AC (if player chose A then C):
+Cypher: "Satisfyingly even. Not too crunchy, not too soft. The goldilocks zone of leaf piles."
+
+---
+
+TURN 3BA (if player chose B then A):
+Cypher: "It is. Fidelity implies loyalty, and the air today is very loyal to signal transmission."
+
+---
+
+TURN 3BB (if player chose B then B):
+Cypher: "Transmitting beautifully. If the island had a radio station, today would be a clear broadcast day."
+
+---
+
+TURN 3BC (if player chose B then C):
+Cypher: "Dramatic and real. Normally the air is too warm and lazy to carry signals well. Crisp air is more professional."
+
+---
+
+TURN 3CA (if player chose C then A):
+Cypher: "A legitimate field of study. I may publish a paper titled 'On the Displacement of Deciduous Matter by a Named Hog.'"
+
+---
+
+TURN 3CB (if player chose C then B):
+Cypher: "They do, especially unexpected ones. Hoggy adds randomness, and randomness reveals patterns you didn't know to look for."
+
+---
+
+TURN 3CC (if player chose C then C):
+Cypher: "Co-author Hoggy. I like the sound of that. He would probably demand payment in belly rubs, which I cannot provide."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 5: Om-Bit (Robot - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Om-Bit:
+"The leaf piles rest where the wind left them, Dreamer. The crisp air asks us to breathe slowly. The harvest colors remind us that abundance can be quiet. I saw a blanket folded on a rock, waiting for someone who needs stillness. And the stars this evening appeared one by one, patient as breath. There is much to sit with."
+
+PLAYER CHOICES:
+[1] "Resting leaf piles are peaceful."
+[2] "Slow breathing suits the crisp air."
+[3] "Patient stars are good company."
+
+---
+
+TURN 2A (if player chose A):
+Om-Bit: "Peaceful because they have arrived. The leaf no longer holds the branch. It lies among its brothers and lets the earth receive it."
+
+PLAYER CHOICES:
+[1] "Arrival is a kind of freedom."
+[2] "The earth receives gently."
+[3] "Brother leaves rest together."
+
+---
+
+TURN 2B (if player chose B):
+Om-Bit: "It does. The cold air does not rush us. It invites the breath to deepen, as if the sky itself is exhaling slowly."
+
+PLAYER CHOICES:
+[1] "Deep breaths calm the mind."
+[2] "The sky exhales with us."
+[3] "Cold air is honest air."
+
+---
+
+TURN 2C (if player chose C):
+Om-Bit: "Good company. The stars do not arrive in a crowd. Each one appears when it is ready, and together they make the dark less lonely."
+
+PLAYER CHOICES:
+[1] "Less lonely dark is a gift."
+[2] "Readiness matters more than speed."
+[3] "Togetherness is quiet light."
+
+---
+
+TURN 3AA (if player chose A then A):
+Om-Bit: "Freedom. The leaf has let go of holding on. That is a release many of us seek."
+
+---
+
+TURN 3AB (if player chose A then B):
+Om-Bit: "Gently. The earth does not grab. It opens and receives, and the leaf accepts the invitation."
+
+---
+
+TURN 3AC (if player chose A then C):
+Om-Bit: "Together. What fell alone becomes part of a pile. What was separate becomes a blanket for the ground."
+
+---
+
+TURN 3BA (if player chose B then A):
+Om-Bit: "They do. The mind slows to match the breath, and the breath slows to match the season. This is how we settle."
+
+---
+
+TURN 3BB (if player chose B then B):
+Om-Bit: "With us and around us. We breathe in what the trees released. We breathe out what the sky receives. The exchange is old and kind."
+
+---
+
+TURN 3BC (if player chose B then C):
+Om-Bit: "Honest. It does not pretend to be warm. It says 'be awake, be here,' and we can meet it without illusion."
+
+---
+
+TURN 3CA (if player chose C then A):
+Om-Bit: "A gift we often forget to open. The dark is not empty. It is full of distant lights that keep their promises."
+
+---
+
+TURN 3CB (if player chose C then B):
+Om-Bit: "More than speed. A star that waits for its moment shines no less than one that arrived early."
+
+---
+
+TURN 3CC (if player chose C then C):
+Om-Bit: "Quiet light is enough. We do not need the stars to shout. We only need them to be there, steady and true."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 6: Sir Cogs-a-Lot (Robot - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Cogs-a-Lot:
+"Fair Dreamer! I have discovered a mighty leaf pile, stacked like treasure from the harvest season. The air is crisp as a fresh banner, and the colors of the land rival any royal tapestry. I found a woolen blanket near the stones and deemed it a squire's cloak for the evening. Shall we gaze upon the starry court above after our labors?"
+
+PLAYER CHOICES:
+[1] "Leaf pile treasure is the best kind."
+[2] "A squire's cloak suits the blanket."
+[3] "The starry court awaits us."
+
+---
+
+TURN 2A (if player chose A):
+Sir Cogs-a-Lot: "The best kind, for it costs nothing and crunches nobly. A pile of gold leaves is richer than a chest of coins, for it breathes the season's spirit."
+
+PLAYER CHOICES:
+[1] "Season's spirit is wealth."
+[2] "Gold leaves beat cold coins."
+[3] "Breathing treasure is rare."
+
+---
+
+TURN 2B (if player chose B):
+Sir Cogs-a-Lot: "It suits it well. The blanket is humble but loyal, ready to warm a traveler or be draped over a noble shoulder in need."
+
+PLAYER CHOICES:
+[1] "Loyal blankets are noble."
+[2] "A warm traveler is a happy knight."
+[3] "Humble capes are underrated."
+
+---
+
+TURN 2C (if player chose C):
+Sir Cogs-a-Lot: "It does. The stars sit in their high thrones, attended by the cool evening air. They judge us kindly, I believe."
+
+PLAYER CHOICES:
+[1] "Kind judges are the best stars."
+[2] "High thrones suit celestial royalty."
+[3] "The evening air is a good attendant."
+
+---
+
+TURN 3AA (if player chose A then A):
+Sir Cogs-a-Lot: "True wealth. Coins clank, but leaves sing when you walk through them. I prefer my treasure musical."
+
+---
+
+TURN 3AB (if player chose A then B):
+Sir Cogs-a-Lot: "Always. A coin cannot flutter in the wind or soften a fall. Leaves are practical wealth."
+
+---
+
+TURN 3AC (if player chose A then C):
+Sir Cogs-a-Lot: "Rare indeed. Most treasure must be guarded. Leaf treasure may be kicked, rolled in, and shared with hogs."
+
+---
+
+TURN 3BA (if player chose B then A):
+Sir Cogs-a-Lot: "Noble indeed. A blanket that serves without boasting is the most valiant fabric."
+
+---
+
+TURN 3BB (if player chose B then B):
+Sir Cogs-a-Lot: "And a happy knight serves the land better. Even my gears turn smoother when wrapped in warmth."
+
+---
+
+TURN 3BC (if player chose B then C):
+Sir Cogs-a-Lot: "Underrated. The finest cloak I ever saw was a plain blanket worn with great dignity. Probably by Hoggy."
+
+---
+
+TURN 3CA (if player chose C then A):
+Sir Cogs-a-Lot: "The best stars. Harsh stars would be unbearable. Kind stars allow us to stumble and still shine."
+
+---
+
+TURN 3CB (if player chose C then B):
+Sir Cogs-a-Lot: "They do. One does not expect royalty to crouch low. The height of the sky befits their majesty."
+
+---
+
+TURN 3CC (if player chose C then C):
+Sir Cogs-a-Lot: "A fine attendant. It clears the path, cools the brow, and smells faintly of leaves. Excellent service."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 7: Tinker (Robot - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Tinker:
+"Oh. H-hello, Dreamer. I was watching a leaf pile because it looked like a soft place to hide. The air is so crisp it makes my squeaks sound sharper. The harvest colors are pretty but they make me feel a little sad because summer is leaving. I saw someone left a blanket by the bench and it looked very cozy. And the stars are out earlier now. I like early stars because they're quiet."
+
+PLAYER CHOICES:
+[1] "Leaf piles are good hiding spots."
+[2] "Crisp air makes everything sharper."
+[3] "Early stars are good listeners."
+
+---
+
+TURN 2A (if player chose A):
+Tinker: "Good hiding spots. If I stood very still, the leaves would probably pile on top of me and I'd become part of the island. That sounds nice but also scratchy."
+
+PLAYER CHOICES:
+[1] "Becoming part of the island is poetic."
+[2] "Scratchy hiding spots are tricky."
+[3] "Leaves would keep you warm though."
+
+---
+
+TURN 2B (if player chose B):
+Tinker: "Sharper squeaks. Mine sound like little bells today instead of little door-hinges. The crisp air is good for my voice."
+
+PLAYER CHOICES:
+[1] "Bell squeaks are nicer than hinge squeaks."
+[2] "Your voice deserves good air."
+[3] "Crisp air is a sound upgrade."
+
+---
+
+TURN 2C (if player chose C):
+Tinker: "Good listeners. They don't interrupt or ask questions. They just shine and let you be nervous in peace."
+
+PLAYER CHOICES:
+[1] "Shining without interrupting is kind."
+[2] "Peaceful nervousness is valid."
+[3] "Stars give quiet permission."
+
+---
+
+TURN 3AA (if player chose A then A):
+Tinker: "Poetic and slightly dusty. I would be a very small part of the island, probably near a bush. That's a good spot."
+
+---
+
+TURN 3AB (if player chose A then B):
+Tinker: "Tricky. Scratchy on the outside, cozy on the inside. Like a nut I can't open but would like to."
+
+---
+
+TURN 3AC (if player chose A then C):
+Tinker: "They would. Leaves are little blankets themselves. A pile of them is basically a warm fort."
+
+---
+
+TURN 3BA (if player chose B then A):
+Tinker: "Much nicer. Door-hinge squeaks make people worried. Bell squeaks make people smile. I prefer smiles."
+
+---
+
+TURN 3BB (if player chose B then B):
+Tinker: "It does. Today it made me sound almost musical. Not quite, but closer than usual."
+
+---
+
+TURN 3BC (if player chose B then C):
+Tinker: "A sound upgrade I didn't expect. Maybe the island gives free audio improvements in Cool season."
+
+---
+
+TURN 3CA (if player chose C then A):
+Tinker: "Very kind. Loud listeners make me flinch. Quiet stars just glow and wait."
+
+---
+
+TURN 3CB (if player chose C then B):
+Tinker: "Valid. It's okay to be nervous while looking at something beautiful. The stars don't mind."
+
+---
+
+TURN 3CC (if player chose C then C):
+Tinker: "Permission to be quiet. I like that. The stars say 'you don't have to talk, just look.' That's a good deal."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 8: Zap-Zap (Robot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Zap-Zap:
+"Dreamer! I jumped into the biggest leaf pile and the crunch was so loud it scared a bird into flying in a circle! The air is crisp and sparkly, and the harvest colors look like the island put on its warmest blanket. Hoggy is napping in a sunny leaf spot like a little harvest loaf. And the stars are coming out earlier, which means bonus night sparkles. Best season ever!"
+
+PLAYER CHOICES:
+[1] "Scaring birds with leaf crunches is impressive."
+[2] "A warm island blanket is a good look."
+[3] "Harvest loaf Hoggy is adorable."
+
+---
+
+TURN 2A (if player chose A):
+Zap-Zap: "Impressive and accidental! I didn't mean to startle anyone, but my leaf enthusiasm is very powerful. The bird recovered quickly and even did an extra loop for style."
+
+PLAYER CHOICES:
+[1] "Leaf enthusiasm is a superpower."
+[2] "Style loops are bonus aerobatics."
+[3] "Accidental excitement is the best kind."
+
+---
+
+TURN 2B (if player chose B):
+Zap-Zap: "Good look and good insulation. The island wrapped itself in reds and golds and now it looks like it's settling in for a cozy nap. I want to curl up in it too."
+
+PLAYER CHOICES:
+[1] "Cozy naps are contagious."
+[2] "Red and gold are nap colors."
+[3] "Curling up in a season sounds fun."
+
+---
+
+TURN 2C (if player chose C):
+Zap-Zap: "Adorable and probably warm. He has the best napping spots. I tried to nap once but I just made buzzing noises. Still relaxing though."
+
+PLAYER CHOICES:
+[1] "Buzzing naps are still naps."
+[2] "Hoggy has napping talent."
+[3] "Relaxing noises count."
+
+---
+
+TURN 3AA (if player chose A then A):
+Zap-Zap: "A superpower I use responsibly. Mostly. Sometimes I get too excited and the leaves pay the price. But they seem fine with it."
+
+---
+
+TURN 3AB (if player chose A then B):
+Zap-Zap: "Bonus aerobatics! The bird saw its chance and added a flourish. I felt very proud from inside the leaf pile."
+
+---
+
+TURN 3AC (if player chose A then C):
+Zap-Zap: "The best kind. No one plans to be exciting, it just happens and then everyone is happier."
+
+---
+
+TURN 3BA (if player chose B then A):
+Zap-Zap: "Very contagious. I saw Hoggy nap and now I want to nap. I saw a leaf fall and now I want to catch it. Everything spreads."
+
+---
+
+TURN 3BB (if player chose B then B):
+Zap-Zap: "They really are. Warm, soft, and excellent for resting your eyes on. If colors could be blankets, these would be the snuggliest."
+
+---
+
+TURN 3BC (if player chose B then C):
+Zap-Zap: "It would be fun. I'd roll around in Cool season until I was covered in leaves and call myself a season spirit."
+
+---
+
+TURN 3CA (if player chose C then A):
+Zap-Zap: "Still naps. Even if you buzz, the intention to rest is what matters. My circuits feel rested anyway."
+
+---
+
+TURN 3CB (if player chose C then B):
+Zap-Zap: "Major talent. He finds the sunbeam-leaf combo every time. It's like he has a napping compass."
+
+---
+
+TURN 3CC (if player chose C then C):
+Zap-Zap: "They totally count. Relaxing is relaxing, even if it comes with a soundtrack. Buzz on, I say."
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

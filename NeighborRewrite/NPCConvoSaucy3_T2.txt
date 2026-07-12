@@ -1,0 +1,710 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSaucy3_T2.txt - Cozy Island Game NPC Conversations (Saucy Season)
+Saucy Tree 2 Conversations - Ghosts 9-16
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer! I found a rock that is warm like a sleepy muffin. The afternoon glow made it all toasty, and the cicadas are humming a little song about it. Do you want to sit in the shade with me?"
+
+PLAYER CHOICES:
+[1] "Warm rocks are like sleepy muffins."
+[2] "Cicada songs are nice."
+[3] "Shade sitting sounds perfect."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "They are! The sun baked the rock gently and now it holds the warm like a hug. I want to pat it but I am a ghost so my hand goes through. I pat it with my heart instead."
+
+PLAYER CHOICES:
+[1] "Heart pats count too."
+[2] "Hugs from warm rocks are nice."
+[3] "Gentle baking is kind."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Nice and buzzy. The cicadas hum the same note over and over, but it sounds like they are saying 'cozy, cozy, cozy.' I think they are practicing."
+
+PLAYER CHOICES:
+[1] "Cozy cozy cozy is a good lyric."
+[2] "Practicing insects are cute."
+[3] "I will hum with them."
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Perfect because the shade is shaped like a friendly umbrella made of leaves. The afternoon glow peeking through is like little gold freckles."
+
+PLAYER CHOICES:
+[1] "Leaf umbrellas are friendly."
+[2] "Gold freckles are pretty."
+[3] "Shade friends stick together."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "Heart pats always count. My heart is very good at patting. It can pat warm rocks and friends and whole afternoons."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "They are. I wish I could feel the hug with my hands, but I feel it with my smile. My smile is very warm now."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Kind sun. It doesn't bake too hard. It leaves rocks warm and grass happy and everybody wanting to rest a little."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "Good lyric and good message. If I ever start a band, our first song will be 'Cozy Cozy Cozy' and it will be very short because that's the whole song."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "Cute and dedicated. They practice all day and never get tired. That is because they love the note."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "Then we can be a choir. You hum low, I hum high, and the cicadas hum in the middle. The trees will be our audience."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "Friendly and leafy. I want to thank the tree for sharing its shade. Maybe I will blow it a tiny ghost kiss."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Pretty and soft. Gold freckles make the shade feel fancy without being too bright. Like the afternoon wore jewelry."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Together and cozy. Shade is better with a friend. The warm air is better with a friend. Even the rock is happier with friends."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Saucy season makes a ghost consider serious shade-seeking. The cicadas are humming so loudly I can hear them through my own indifference. Not that I care what they think."
+
+PLAYER CHOICES:
+[1] "Shade-seeking is a valid hobby."
+[2] "Indifferent to cicadas takes skill."
+[3] "Saucy season makes everyone seek shade."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "Valid and necessary. I have narrowed my preferred shade to 'under a tree with attitude.' The kind of tree that doesn't beg for compliments."
+
+PLAYER CHOICES:
+[1] "Trees with attitude are rare."
+[2] "You deserve picky shade."
+[3] "Attitude shade is premium."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "Skill I was born with. I can ignore a cicada chorus while standing directly beneath it. It is called emotional distance and also being very airy."
+
+PLAYER CHOICES:
+[1] "Airy indifference is elegant."
+[2] "Emotional distance is healthy."
+[3] "Born with skills is lucky."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Even me, apparently. I am currently floating toward a shadow shaped like it knows what it's doing. I did not ask to be warm."
+
+PLAYER CHOICES:
+[1] "Shadows that know what they're doing are good."
+[2] "Nobody asked to be warm."
+[3] "Floating toward shade is graceful."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Rare and therefore valuable. A tree that minds its own business while still providing shade is the best kind of acquaintance."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "Deserve is a strong word. Let's say my standards are high and my temperature is higher. The shade should be honored."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "Premium and exclusive. I do not share my attitude shade with just anyone. Do not make me regret this."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Elegant and faint. I am mostly mist anyway, so indifference comes naturally. The cicadas cannot offend what they cannot see clearly."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "Healthy and strategic. If I got invested in every insect hum, I would never rest. Rest is important. Shade helps."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "Lucky or cursed, depending on the humidity. Today it feels like a curse with a nice view."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "Good and reassuring. I do not trust shadows that look confused. This one looks confident. I respect that."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "Nobody. Warmth is an unsolicited gift from the sun. I would return it if I knew where to send it."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Graceful and slow. I drift like I have somewhere better to be, even if that somewhere is just three feet to the left."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Saucy afternoon, Dreamer. The beach sparkle is almost tragic, how bright and brief it is. Warm rocks at the shore hold the day's last heat like a secret. I came to mourn the sunset in advance."
+
+PLAYER CHOICES:
+[1] "Beach sparkle is beautifully brief."
+[2] "Warm rocks hold good secrets."
+[3] "Mourning sunsets in advance is dramatic."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "Beautifully and cruelly. The water catches the light, throws it away, catches it again. A cycle of hope and loss. Very poetic."
+
+PLAYER CHOICES:
+[1] "Hope and loss is poetic."
+[2] "Cycles are honest."
+[3] "Brief beauty matters more."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "Good and warm. The stones remember the sun long after the sun has moved on. They are the faithful ex-lovers of daylight."
+
+PLAYER CHOICES:
+[1] "Faithful ex-lovers of daylight is a line."
+[2] "Stones remember kindly."
+[3] "Warmth after sunset is comfort."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "Dramatic and traditional. If I do not mourn the afternoon, who will? The flowers are too busy blooming. The rocks are too busy being warm."
+
+PLAYER CHOICES:
+[1] "You mourn beautifully."
+[2] "Busy nature needs a mourner."
+[3] "Drama gives the afternoon meaning."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "Poetic and painful. The best kind. I shall write it down before the tide erases my inspiration."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Honest because they never promise permanence. The sparkle returns, leaves, returns. Only fools expect it to stay forever."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "More because it does not overstay. If sparkle lasted all day, we would not stop to look. We would take it for granted, which is the real tragedy."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "A line and possibly a poem title. I may inscribe it on a leaf and let the wind publish it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "Kindly and quietly. They do not announce their warmth. They simply offer it to anyone who sits on them."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "Comfort and melancholy together. Like a hug from something that knows it cannot last but offers anyway."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Beautifully, I hope. Mourning should have grace. I mourn with my hair blowing and my gaze far away."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "It does. Someone must witness the light leaving. Otherwise the afternoon ends without applause, and that is rude."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "Meaning and a little perfume. Drama is the fragrance I wear to every occasion. It pairs well with warm rocks."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I have been observing Saucy afternoon phenomena. The cicadas hum in waves, warm rocks glow faintly after direct sun exposure, and the beach sparkle is caused by countless tiny water reflections. I am surrounded by evidence."
+
+PLAYER CHOICES:
+[1] "Evidence is comforting."
+[2] "Tiny water reflections are powerful."
+[3] "Waves of cicada sound must be charted."
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Comforting because it means the world is operating normally. Cicadas hum when it's warm, rocks store heat, sparkle happens at angles. Predictable magic."
+
+PLAYER CHOICES:
+[1] "Predictable magic is the best magic."
+[2] "Normal operation is reassuring."
+[3] "Warmth makes the rules clear."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "Powerful in numbers. One sparkle is a dot. A beach full of sparkles is a data point explosion. The sea is basically showing off its sample size."
+
+PLAYER CHOICES:
+[1] "Sample size is impressive."
+[2] "The sea shows off with science."
+[3] "Lots of tiny dots make a picture."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "They should be! I estimate the hum rises at noon, peaks in early afternoon, and softens as the warm rocks release their stored heat. I need more observation time. And maybe a snack."
+
+PLAYER CHOICES:
+[1] "Observation time is important."
+[2] "Snacks improve science."
+[3] "Heat release is a second act."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "Best magic because you can set your schedule by it. Warm means cicadas. Afternoon glow means long shadows. The island runs on reliable wonder."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "Reassuring and orderly. If cicadas suddenly stopped, I would worry. Their steady hum means all systems are nominal."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "Clear rules, yes. Heat invites sound, light invites sparkle, rocks invite sitting. The island is a very polite equation."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Impressive and statistically significant. The sea has been collecting sparkles for hours. That is dedication to the dataset."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "Science and showmanship. The sea does not know it is doing science, which makes its results even more pure. Unbiased glitter."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "A picture made of light. From far away the beach just shines. Up close it is thousands of tiny mirrors having a meeting."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Important and endless. I could watch the cicada wave for days. I probably will. Please bring water."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "They do. A well-fed scientist has better focus. I hypothesize that snacks increase attention span by a meaningful percentage."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "Second act and quieter. After the sun peaks, the warm rocks start their slow performance. They are the evening's opening band."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The afternoon glow has softened, Dreamer. The warm rocks release their heat slowly, the cicadas hum one long note, and the shade seems deeper than before. I am simply watching the day settle."
+
+PLAYER CHOICES:
+[1] "Watching the day settle is peaceful."
+[2] "Deep shade feels like a gift."
+[3] "One long cicada note is calming."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "Peaceful because it asks nothing. The day does not need me to finish it. It will end on its own, and the warm rocks will keep breathing out their heat."
+
+PLAYER CHOICES:
+[1] "Days ending on their own is freeing."
+[2] "Warm rocks breathe out heat."
+[3] "Peace needs no permission."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "A gift from the trees and the angle of the sun. The shade grew wider while we were not looking. It offers rest without announcement."
+
+PLAYER CHOICES:
+[1] "Rest without announcement is kind."
+[2] "Wide shade welcomes everyone."
+[3] "Gifts that grow are special."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "Calming because it does not hurry. The cicadas hold the note like a bowl holds water. Steady, full, present."
+
+PLAYER CHOICES:
+[1] "Steady presence is enough."
+[2] "Holding a note like water is a good image."
+[3] "No hurry is a practice."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "Freeing. I do not have to close the day. I only have to be here while it closes itself. That is a lighter job than I expected."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "They do. Slowly, gently, all afternoon. It is the rock's way of saying goodbye to the sun."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "Permission is for doing. Peace is for being. I simply am here, and the afternoon accepts my presence."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "Kind and quiet. It does not knock. It does not ask. It simply becomes available, and those who need it find it."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "Everyone. The shade does not check names. It spreads across grass and sand and rock and ghost alike."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "Special because they are not announced. The shade simply grew while we were busy with other things. A quiet expansion of comfort."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "Enough and rare. Steady presence is harder to find than excitement. I value it highly."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "Image and also truth. A held note contains itself. It does not spill. It simply is."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "Practice and result. When I stop hurrying, the afternoon does not hurry either. We agree to move slowly."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Good eve, fair Dreamer! Saucy season sends even a ghost knight on a quest for shade. The warm rocks of the beach bear the afternoon glow like shields of polished gold, and the cicadas hum a battlefield drone. 'Tis noble to seek coolness!"
+
+PLAYER CHOICES:
+[1] "Shade quests are noble."
+[2] "Gold shields of warm rock are grand."
+[3] "Cicada drones set a mood."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Noble and practical. A knight must know when to rest his spirit. Shade is the castle of the weary traveler, and I shall defend its borders with good posture."
+
+PLAYER CHOICES:
+[1] "Defending shade borders is chivalry."
+[2] "Good posture is always noble."
+[3] "Rest is a knight's duty."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Grand indeed! The sun has gilded the stones as a king gilds a throne. I have knelt upon such rocks and felt honored by their warmth."
+
+PLAYER CHOICES:
+[1] "Honored by warm rocks is humble."
+[2] "Sun as king is fitting."
+[3] "Kneeling on stones is devotion."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "A mood of distant banners and summer campaigns. The cicadas hum as if armies of warmth are marching across the meadow. I find it inspiring, if slightly sweaty."
+
+PLAYER CHOICES:
+[1] "Inspiring and slightly sweaty is honest."
+[2] "Warm armies marching is vivid."
+[3] "Summer campaigns need breaks."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Chivalry in every shadow. A true knight defends the comfort of others, especially when the comfort is a nice patch of shade."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "Always noble. Posture is the armor of the soul. Even in shade, one must stand, or float, with dignity."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "A duty often forgotten. A tired knight serves poorly. Better to rest beneath a leafy canopy and return refreshed."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Humble and warm. The rocks do not know they are thrones. They simply glow. I appreciate their modest royalty."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "Fitting and bright. The sun rules the sky with constancy and cheer. I bow to it before retreating to shade."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "Devotion to the season. My knees may pass through stone, but my intent is sincere. The rock feels honored, I am certain."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "Honest and relatable. Even ghosts may glisten in Saucy heat. A noble knight admits it and seeks refreshment."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "Vivid and slightly alarming. I picture warmth in little boots marching in rows. Fortunately they are harmless and musical."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "They do. A campaign without rest is folly. I declare a siesta for all knights, effective immediately."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh, Dreamer. I was... I was hiding from the bright part of the day. The shade here is soft and the warm rock behind me is like a gentle backrest. The beach sparkle is far away and very quiet from here."
+
+PLAYER CHOICES:
+[1] "Soft shade is a good hiding spot."
+[2] "Gentle rock backrests are nice."
+[3] "Faraway sparkle is peaceful."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "Good because it doesn't ask me to be brave. The shade just lets me be here. It covers me like a leaf blanket."
+
+PLAYER CHOICES:
+[1] "Leaf blankets are cozy."
+[2] "Shade that lets you just be is kind."
+[3] "You don't have to be brave every day."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Nice and solid. Rocks don't move away when you lean on them. They just stay warm and patient. I like patient things."
+
+PLAYER CHOICES:
+[1] "Patient things are good company."
+[2] "Warm patience is rare."
+[3] "Rocks make steady friends."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "Peaceful because I can watch it without it watching back. The sparkle stays on the water and I stay here. We have an agreement."
+
+PLAYER CHOICES:
+[1] "Agreements with sparkle are safe."
+[2] "Watching without being watched is gentle."
+[3] "Distance can be cozy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Cozy and green. I feel tucked in by the island. The leaves don't mind that I am small and quiet."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "Kind and quiet. The shade doesn't want anything from me. It just shares itself. That is the nicest kind of sharing."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "No. Some days are for watching from the shade. That is brave too, in a small way."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "Good company. They don't rush you. They don't ask questions. They just exist beside you."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Rare and warm. Most things hurry. Rocks don't. I find that very comforting."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "Steady and strong. I would like to be more like a rock. Quiet, warm, and always there."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "Safe and glittery. The sparkle keeps its distance and I keep mine. It works very well."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "Gentle and soft. I can look at the pretty water without worrying if it sees me looking."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "Cozy when you find the right distance. Far enough to feel safe, close enough to see the gold. I like this spot."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Dreamer! I am doing a VERY IMPORTANT shade-seeking mission! The cicadas are humming the mission music, the warm rocks are the mission seats, and the beach sparkle is the mission reward! Want to be my mission partner?"
+
+PLAYER CHOICES:
+[1] "Shade-seeking missions are essential."
+[2] "Cicada mission music is catchy."
+[3] "I want to be your mission partner."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "Essential and official. I have a plan: find shade, sit in it, admire warm rocks, collect beach sparkle in my eyes. Mission complete!"
+
+PLAYER CHOICES:
+[1] "Your plan is excellent."
+[2] "Sparkle in the eyes is good treasure."
+[3] "Sitting is a strong mission step."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Catchy and loud! The cicadas go 'hummmm hummmm' and I go 'heee heee' and together we are a summer orchestra. We should tour the island."
+
+PLAYER CHOICES:
+[1] "Summer orchestra needs more members."
+[2] "Humming and giggling pair well."
+[3] "Island tours are fun."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "Partner accepted! We will seek shade together and high-five the warm rocks. Ghost high-fives go right through, but the rocks know we mean it."
+
+PLAYER CHOICES:
+[1] "Ghost high-fives are sincere."
+[2] "Rocks know good intentions."
+[3] "Teamwork makes shade better."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Excellent and well-organized. I should write it down, but I don't have a notebook, so I will remember it with my whole giggly brain."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Good treasure and free. You just look at the sparkly water and your eyes fill up with tiny lights. Best inventory ever."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "Strong and restful. Every mission needs a sitting phase. Otherwise you are just walking around with no purpose."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "More members yes! We could invite Boo-Boo for bells, Sir Haunts-a-Lot for drums, and the cicadas already have the main part covered."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "They do. Humming is like a straight line and giggling is like a wiggly line. Together they make a fun shape."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "Fun and warm. We could roll from shade patch to shade patch and rate them. This patch gets five happy stars."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "Sincere even if invisible. The rock feels the intention. Intentions are warmer than hands anyway."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "They do. Rocks are very understanding. They have been listening to the island for a long time."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "So much better. Shade with a friend feels wider and softer and full of mission success. High-five, Dreamer!"
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH

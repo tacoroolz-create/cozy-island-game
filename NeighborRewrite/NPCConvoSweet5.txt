@@ -1,0 +1,712 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSweet5.txt - Cozy Island Game NPC Conversations (Sweet Season)
+Sweet Season Conversations - Monsters 25-32: Fluffernox, Grumble, Vesper, Gizmo, Ommmm, Lord Roar, Snug, Gigglegrow
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 25: Fluffernox (Monster - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Fluffernox:
+"Hiii, Dreamer! The flowers woke up and now everything smells like pink hugs. The rain made little puddles and the grass is all sparkly-new. Hoggy rolled in a clover patch and now he's wearing green polka dots. And the butterflies are opening the flower party!"
+
+PLAYER CHOICES:
+[1] "Pink hugs smell wonderful."
+[2] "Hoggy's green polka dots are adorable."
+[3] "Butterflies make excellent party openers."
+
+---
+
+TURN 2A (if player chose A):
+Fluffernox: "Wonderful! I tried to sniff a flower and I got pollen on my nose. Now my nose is yellow and fancy. I'm basically a flower too."
+
+PLAYER CHOICES:
+[1] "A yellow nose is very fancy."
+[2] "Being basically a flower is an honor."
+[3] "Pollen glitter suits you."
+
+---
+
+TURN 2B (if player chose B):
+Fluffernox: "Adorable! He didn't even notice. He's just trotting around being a happy green-spotted hog. Fashion found him."
+
+PLAYER CHOICES:
+[1] "Fashion that finds you is the best."
+[2] "Clover polka dots are spring's gift."
+[3] "Happy spotted hogs brighten the island."
+
+---
+
+TURN 2C (if player chose C):
+Fluffernox: "Excellent! They flit around and say 'hello, bloom, you are invited.' Then the bloom opens wider because it feels welcomed."
+
+PLAYER CHOICES:
+[1] "Welcomed blooms open bigger."
+[2] "Butterfly invitations are special delivery."
+[3] "Flower parties need good hosts."
+
+---
+
+TURN 3AA (if player chose A then A):
+Fluffernox: "Very fancy. I might add a little leaf behind my ear and become full spring outfit."
+
+---
+
+TURN 3AB (if player chose A then B):
+Fluffernox: "An honor! Flowers are soft and friendly and they smell like nice decisions. I'm happy to be one."
+
+---
+
+TURN 3AC (if player chose A then C):
+Fluffernox: "It does! Gold sparkles on my nose. I'm going to sneeze glitter later and it'll be magical."
+
+---
+
+TURN 3BA (if player chose B then A):
+Fluffernox: "Best kind! You don't have to shop. The island just puts leaves on you and says 'you're ready.'"
+
+---
+
+TURN 3BB (if player chose B then B):
+Fluffernox: "Spring's gift! Clover dots are like little green hugs pressed onto Hoggy. He's very loved by the lawn."
+
+---
+
+TURN 3BC (if player chose B then C):
+Fluffernox: "They do! Every time I see a spotted hog I feel like the day got warmer. Hoggy is portable sunshine with polka dots."
+
+---
+
+TURN 3CA (if player chose C then A):
+Fluffernox: "They do! A welcomed bloom is a happy bloom. Happy blooms probably smell extra pink."
+
+---
+
+TURN 3CB (if player chose C then B):
+Fluffernox: "Special delivery by flutter! They don't even need envelopes. They just land and say 'you're invited' with their wings."
+
+---
+
+TURN 3CC (if player chose C then C):
+Fluffernox: "Good hosts! They make sure every flower feels pretty and every petal gets attention. Butterflies are the best party planners."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 26: Grumble (Monster - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Grumble:
+"Hmph. It's you. I was merely observing that the flowers have become unbearably cheerful. The rain left puddles everywhere on purpose, I think. Hoggy is wallowing in mud and clover like it's a throne. And butterflies keep fluttering past my head. They're show-offs."
+
+PLAYER CHOICES:
+[1] "Cheerful flowers are hard to ignore."
+[2] "Hoggy's mud-clover throne suits him."
+[3] "Butterflies are natural show-offs."
+
+---
+
+TURN 2A (if player chose A):
+Grumble: "Hard to ignore and slightly aggressive. They don't just bloom. They bloom at you. 'Look at me, I'm pink.' Yes, I see you. Stop yelling."
+
+PLAYER CHOICES:
+[1] "Loud blooming is spring's fault."
+[2] "Pink is an assertive color."
+[3] "Flowers just want attention fairly."
+
+---
+
+TURN 2B (if player chose B):
+Grumble: "Suits him absurdly well. He's covered in green leaves and brown mud and he's never looked more pleased with himself. It's almost respectable."
+
+PLAYER CHOICES:
+[1] "Respectable mud is rare."
+[2] "Pleased hogs are tolerable."
+[3] "Clover crowns are unintentional royalty."
+
+---
+
+TURN 2C (if player chose C):
+Grumble: "Natural show-offs with excellent PR. Everyone loves a butterfly. They could get away with anything just by landing on a flower."
+
+PLAYER CHOICES:
+[1] "Butterfly PR is unfairly good."
+[2] "Landing on flowers is strategic."
+[3] "Show-offs can still be pretty."
+
+---
+
+TURN 3AA (if player chose A then A):
+Grumble: "Spring's fault. This whole season is just shouting colors at us. Fine. Some of them are acceptable."
+
+---
+
+TURN 3AB (if player chose A then B):
+Grumble: "Assertive and demanding. Pink does not whisper. It announces. I'd respect it more if it didn't wake me up."
+
+---
+
+TURN 3AC (if player chose A then C):
+Grumble: "Fairly? I suppose. They bloom, we look. It's a transaction. But do they have to be so smug about it?"
+
+---
+
+TURN 3BA (if player chose B then A):
+Grumble: "Rare. Mud is usually undignified. On Hoggy it's somehow... regal. I hate that I noticed."
+
+---
+
+TURN 3BB (if player chose B then B):
+Grumble: "Tolerable in small doses. His pleased face is alarmingly contagious. I am not pleased. I'm simply less annoyed."
+
+---
+
+TURN 3BC (if player chose B then C):
+Grumble: "Unintentional royalty. He didn't ask for a crown of clover. It just declared him king of the mud. Lucky hog."
+
+---
+
+TURN 3CA (if player chose C then A):
+Grumble: "Unfairly good. If I fluttered around and landed on flowers, people would swat me. Butterflies get applause. Double standard."
+
+---
+
+TURN 3CB (if player chose C then B):
+Grumble: "Strategic. They choose the prettiest platform and pose like tiny painted statues. Clever little winged performers."
+
+---
+
+TURN 3CC (if player chose C then C):
+Grumble: "Pretty, yes. I'm not blind. I can admit a butterfly is decorative even while I'm being mildly inconvenienced by its fluttering."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 27: Vesper (Monster - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Vesper:
+"Sweet season arrives, Dreamer. The flowers push through the wet earth like whispered secrets finally spoken. The rain leaves everything darker and richer before the sun returns. Hoggy wanders through the clover with petals clinging to his hide like small ghosts of color. And the morning fog makes the trees soft and uncertain. I find it honest."
+
+PLAYER CHOICES:
+[1] "Whispered flower secrets are beautiful."
+[2] "Petals as color-ghosts is poetic."
+[3] "Uncertain trees in fog are honest."
+
+---
+
+TURN 2A (if player chose A):
+Vesper: "Beautiful because they were buried. The earth held them in silence, and now the silence breaks into bloom. There's a kind of resurrection in every stem."
+
+PLAYER CHOICES:
+[1] "Buried beauty is patient."
+[2] "Silence breaking into bloom is powerful."
+[3] "Every stem is a small resurrection."
+
+---
+
+TURN 2B (if player chose B):
+Vesper: "Poetic and visible. Hoggy carries the spring on his back without knowing it. He is a slow, snorting bouquet, and the island arranged him."
+
+PLAYER CHOICES:
+[1] "Unknowing bouquets are charming."
+[2] "The island arranges its own art."
+[3] "Slow snorting bouquets are unique."
+
+---
+
+TURN 2C (if player chose C):
+Vesper: "Honest. The fog doesn't pretend the tree is solid or finished. It lets the world be half-seen, half-imagined. That takes courage."
+
+PLAYER CHOICES:
+[1] "Half-imagined worlds are more true."
+[2] "Fog lets things be unfinished."
+[3] "Courage is letting edges blur."
+
+---
+
+TURN 3AA (if player chose A then A):
+Vesper: "Patient. It waits in the dark, in the damp, without applause. Then one day it is simply here, and no one saw it coming."
+
+---
+
+TURN 3AB (if player chose A then B):
+Vesper: "Powerful. The quiet underground becomes color overnight. That is not gentle. That is transformation in disguise."
+
+---
+
+TURN 3AC (if player chose A then C):
+Vesper: "Every one. We walk over them without thinking, but each stem climbed through darkness to reach the light."
+
+---
+
+TURN 3BA (if player chose B then A):
+Vesper: "Charming because he doesn't pose. Real beauty is usually accidental. Hoggy is accidental art with mud."
+
+---
+
+TURN 3BB (if player chose B then B):
+Vesper: "It does. The spring doesn't need permission. It just puts petals where it wants and calls it decoration."
+
+---
+
+TURN 3BC (if player chose B then C):
+Vesper: "Unique to this island. I doubt any other realm has a hog-shaped floral arrangement wandering around being cheerful."
+
+---
+
+TURN 3CA (if player chose C then A):
+Vesper: "More true. What we imagine fills in what we cannot see. The fog trusts us to complete the picture."
+
+---
+
+TURN 3CB (if player chose C then B):
+Vesper: "It does. We are always asked to be finished, defined, sharp. Fog says no. Fog says becoming is enough."
+
+---
+
+TURN 3CC (if player chose C then C):
+Vesper: "It is. To let your edges blur is to admit you are not yet complete. Most things are terrified of that admission."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 28: Gizmo (Monster - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gizmo:
+"Dreamer! I've been analyzing Sweet season mechanics. Flower bloom rate correlates directly with soil moisture and warming air. The rain deposits measurable water across all surfaces. Hoggy's clover-rolling behavior has created a mobile floral distribution system. And butterfly activity is up by a statistically significant amount."
+
+PLAYER CHOICES:
+[1] "Explain flower bloom correlation."
+[2] "Hoggy as floral distribution is fascinating."
+[3] "Statistically significant butterflies sound official."
+
+---
+
+TURN 2A (if player chose A):
+Gizmo: "Simple: warmer soil plus retained moisture activates growth signals in dormant plants. The flowers are essentially waking up from a long nap and stretching."
+
+PLAYER CHOICES:
+[1] "Flowers stretch after napping."
+[2] "Growth signals are nature's alarm clock."
+[3] "Warm soil is a good wake-up call."
+
+---
+
+TURN 2B (if player chose B):
+Gizmo: "Fascinating and replicable. Hoggy rolls, clover detaches, Hoggy moves, clover relocates. He is an unintentional seed dispersal vehicle. Very efficient."
+
+PLAYER CHOICES:
+[1] "Unintentional vehicles are still useful."
+[2] "Hoggy is a seed delivery service."
+[3] "Efficient rolling improves the island."
+
+---
+
+TURN 2C (if player chose C):
+Gizmo: "Official! I've counted them twice. The data shows more butterflies per flower than in other seasons. Conclusion: spring is butterfly-positive."
+
+PLAYER CHOICES:
+[1] "Butterfly-positive is a good metric."
+[2] "Counting butterflies twice is thorough."
+[3] "Spring data supports joy."
+
+---
+
+TURN 3AA (if player chose A then A):
+Gizmo: "They do. First a yawn, then a stem, then a petal. Botanical morning routines are very orderly."
+
+---
+
+TURN 3AB (if player chose A then B):
+Gizmo: "Nature's alarm clock. It rings silently underground and the flowers respond by growing upward. Very effective design."
+
+---
+
+TURN 3AC (if player chose A then C):
+Gizmo: "Good call. Cold soil says 'stay asleep.' Warm soil says 'the meeting has started.' Flowers are punctual."
+
+---
+
+TURN 3BA (if player chose B then A):
+Gizmo: "Still useful. Intent doesn't matter if the outcome spreads clover around. The island benefits regardless of Hoggy's planning."
+
+---
+
+TURN 3BB (if player chose B then B):
+Gizmo: "A delivery service with built-in fertilizer. That's a premium logistics model. He could charge petals, if he understood commerce."
+
+---
+
+TURN 3BC (if player chose B then C):
+Gizmo: "It does. His rolling path creates clover clusters in new locations. It's passive landscaping via hog locomotion."
+
+---
+
+TURN 3CA (if player chose C then A):
+Gizmo: "A useful metric. Anything butterfly-positive is probably also human-positive. Correlation noted, causation suspected."
+
+---
+
+TURN 3CB (if player chose C then B):
+Gizmo: "Thorough. Butterfly counts can be unreliable due to movement, so I count, wait, count again, and average. Science requires patience."
+
+---
+
+TURN 3CC (if player chose C then C):
+Gizmo: "It does. The data strongly suggests that spring produces more visible joy per square meter. I'm still working on the unit of measurement."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 29: Ommmm (Monster - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Ommmm:
+"The island is breathing in, Dreamer. The rain returns to the earth, the flowers open because the world is gentle again, and the grass grows without rushing. Hoggy moves slowly through the clover, happy simply to be where he is. And the butterflies pass from bloom to bloom, not keeping anything. Everything is arriving."
+
+PLAYER CHOICES:
+[1] "Breathing in is a calm image."
+[2] "Hoggy being where he is is a gift."
+[3] "Butterflies not keeping anything is wise."
+
+---
+
+TURN 2A (if player chose A):
+Ommmm: "Yes. Sweet season is the island drawing a soft breath after the stillness before it. Inhale. The flowers rise. Exhale. The rain falls."
+
+PLAYER CHOICES:
+[1] "Inhaling flowers is a nice thought."
+[2] "Exhaling rain is generous."
+[3] "Seasons breathe like we do."
+
+---
+
+TURN 2B (if player chose B):
+Ommmm: "His gift. He does not hurry to the next patch. He is here, in this clover, with his snout and his warmth. Presence is enough."
+
+PLAYER CHOICES:
+[1] "Presence is always enough."
+[2] "Clover deserves full attention."
+[3] "Hoggy teaches by being."
+
+---
+
+TURN 2C (if player chose C):
+Ommmm: "Wise and light. They land, they sip, they move on. They do not build a house from the nectar. They receive and release."
+
+PLAYER CHOICES:
+[1] "Receiving and releasing is balance."
+[2] "No one owns the nectar."
+[3] "Moving on keeps the wings free."
+
+---
+
+TURN 3AA (if player chose A then A):
+Ommmm: "A nice thought. Imagine the island breathing in color and breathing out fragrance. That is spring."
+
+---
+
+TURN 3AB (if player chose A then B):
+Ommmm: "Generous. The rain falls so the flowers may drink. The island gives without asking to keep what it gives."
+
+---
+
+TURN 3AC (if player chose A then C):
+Ommmm: "They do. Everything expands and rests in rhythm. The seasons do not tire. They only change posture."
+
+---
+
+TURN 3BA (if player chose B then A):
+Ommmm: "Always. To be here, fully, is the simplest teaching. Hoggy does not explain it. He simply is it."
+
+---
+
+TURN 3BB (if player chose B then B):
+Ommmm: "It does. Every blade, every petal, every clover leaf. Attention is a kind of love, and Hoggy loves the clover."
+
+---
+
+TURN 3BC (if player chose B then C):
+Ommmm: "He does. He teaches by hoof and breath and warm patience. We can all learn from a hog who stays where he is."
+
+---
+
+TURN 3CA (if player chose C then A):
+Ommmm: "Balance. To hold too tightly is to stop the flow. To hold nothing is to miss the sweetness. Butterflies find the middle path."
+
+---
+
+TURN 3CB (if player chose C then B):
+Ommmm: "No one. The nectar belongs to the flower, the moment, and whoever is drinking. Ownership does not bloom."
+
+---
+
+TURN 3CC (if player chose C then C):
+Ommmm: "Free. A wing that clings cannot fly. A butterfly knows this without thinking. That is its practice."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 30: Lord Roar (Monster - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lord Roar:
+"Fair Dreamer! The spring has bestowed its verdant heraldry upon the land. The gentle rain has cleansed the grass and the wildflowers rise like bright pennants. My noble steed Hoggy wears a mantle of clover and seems most regal. And the butterflies ride the mild breeze like tiny courtiers. A fine season for gallant endeavors!"
+
+PLAYER CHOICES:
+[1] "Verdant heraldry is splendid."
+[2] "Hoggy's clover mantle is regal."
+[3] "Butterfly courtiers are elegant."
+
+---
+
+TURN 2A (if player chose A):
+Lord Roar: "Splendid! Every meadow becomes a field of green banners, and every bloom is a knight's favor pinned to the earth. The island is clearly mustering for a tournament of joy."
+
+PLAYER CHOICES:
+[1] "A tournament of joy is a worthy event."
+[2] "Green banners suit the season."
+[3] "Blooms as favors is romantic."
+
+---
+
+TURN 2B (if player chose B):
+Lord Roar: "Regal and fitting. A steed bedecked in clover is a steed favored by spring itself. I shall address him as Sir Hoggy the Cloven for the remainder of the day."
+
+PLAYER CHOICES:
+[1] "Sir Hoggy the Cloven has a fine ring."
+[2] "Spring's favor is high honor."
+[3] "Cloven-hoofed knights are noble."
+
+---
+
+TURN 2C (if player chose C):
+Lord Roar: "Elegant! They flutter about the court of flowers with perfect manners, bowing to each bloom as they alight. Their protocol is winged and impeccable."
+
+PLAYER CHOICES:
+[1] "Winged protocol is impressive."
+[2] "Bowing to blooms is polite."
+[3] "Courtiers with wings are efficient."
+
+---
+
+TURN 3AA (if player chose A then A):
+Lord Roar: "Worthy indeed! Let the jousting be joyful, the feasting be fragrant, and every participant wear a petal favor."
+
+---
+
+TURN 3AB (if player chose A then B):
+Lord Roar: "They do. Spring wears green with confidence. It is the color of beginnings, growth, and cheerful meadows."
+
+---
+
+TURN 3AC (if player chose A then C):
+Lord Roar: "Romantic and noble. The earth gives its colors as tokens, and we who walk upon it are all knights of the season."
+
+---
+
+TURN 3BA (if player chose B then A):
+Lord Roar: "A fine ring, yes! Sir Hoggy the Cloven, bearing clover upon his back and snorting with valiant delight."
+
+---
+
+TURN 3BB (if player chose B then B):
+Lord Roar: "High honor. Few steeds are crowned by meadows. It speaks well of his character and his fondness for rolling."
+
+---
+
+TURN 3BC (if player chose B then C):
+Lord Roar: "Noble indeed! Hooves may be cloven, but a heart can be whole. Sir Hoggy possesses both courage and appetite."
+
+---
+
+TURN 3CA (if player chose C then A):
+Lord Roar: "Impressive. To maintain etiquette while flying is a discipline unknown to grounded courtiers. I salute their grace."
+
+---
+
+TURN 3CB (if player chose C then B):
+Lord Roar: "Polite and proper. One must acknowledge the bloom before enjoying its nectar. Manners make the meadow."
+
+---
+
+TURN 3CC (if player chose C then C):
+Lord Roar: "Efficient and elegant. They arrive, pay respects, sip, and depart. A model courtier moves with purpose and beauty."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 31: Snug (Monster - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Snug:
+"Oh. Hi, Dreamer. I was under my rock and I could hear the rain falling on the grass. It sounded like tiny tapping. Hoggy walked by and I saw clover stuck to his back like little green stars. And a butterfly landed near my rock for a second. It was very colorful. I didn't move."
+
+PLAYER CHOICES:
+[1] "Tiny rain tapping is cozy."
+[2] "Clover stars on Hoggy are cute."
+[3] "Not moving near a butterfly is wise."
+
+---
+
+TURN 2A (if player chose A):
+Snug: "Cozy. Like the sky is gently knocking to say 'hello, earth, I brought water.' And the earth says 'thank you, come in.'"
+
+PLAYER CHOICES:
+[1] "Sky knocking politely is nice."
+[2] "Earth saying thank you is kind."
+[3] "Rain visits are cozy."
+
+---
+
+TURN 2B (if player chose B):
+Snug: "Cute. Little green shapes all over him. He looked like a walking meadow. I almost waved, but I stayed still."
+
+PLAYER CHOICES:
+[1] "Walking meadows are comforting."
+[2] "Staying still is a valid choice."
+[3] "Clover stars are lucky."
+
+---
+
+TURN 2C (if player chose C):
+Snug: "Wise, I think. If I had moved, it might have flown away. So I just watched it. We were both very quiet together."
+
+PLAYER CHOICES:
+[1] "Quiet together is a kind of friendship."
+[2] "Watching without moving is gentle."
+[3] "Butterflies appreciate stillness."
+
+---
+
+TURN 3AA (if player chose A then A):
+Snug: "Nice. The rain doesn't barge in. It taps first, waits for the ground to welcome it, then falls soft."
+
+---
+
+TURN 3AB (if player chose A then B):
+Snug: "Kind. The grass looks greener after, like it's saying 'thank you' with its color."
+
+---
+
+TURN 3AC (if player chose A then C):
+Snug: "They are. Rain visits, gives water, then leaves. It doesn't stay too long. Good guest behavior."
+
+---
+
+TURN 3BA (if player chose B then A):
+Snug: "Comforting. A meadow that moves around would be a nice thing to hide near. It smells green and friendly."
+
+---
+
+TURN 3BB (if player chose B then B):
+Snug: "Valid. Hoggy didn't see me, so my stillness worked. Sometimes being invisible is easier than saying hello."
+
+---
+
+TURN 3BC (if player chose B then C):
+Snug: "Lucky, maybe. I don't know if clover stars bring luck, but they look like they might. Hoggy seemed happy enough."
+
+---
+
+TURN 3CA (if player chose C then A):
+Snug: "A kind of friendship. We didn't touch or talk. We just existed near each other for a little while. That counts."
+
+---
+
+TURN 3CB (if player chose C then B):
+Snug: "Gentle. Moving would have made me big and sudden. Stillness made me part of the rock. Safer for both of us."
+
+---
+
+TURN 3CC (if player chose C then C):
+Snug: "They do, I think. Still things look like safe landings. I was still, so the butterfly could be still too. We matched."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 32: Gigglegrow (Monster - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gigglegrow:
+"Dreamer! Sweet season is bouncing everywhere! The flowers are popping up like little surprises and the rain made puddles that sparkle. Hoggy rolled in clover and he's all green-spotted and giggly. And the butterflies are doing loop-de-loops from bloom to bloom! I tried to bounce with them but they go too high!"
+
+PLAYER CHOICES:
+[1] "Flower surprises are the best."
+[2] "Green-spotted giggly Hoggy is adorable."
+[3] "Loop-de-loop butterflies are amazing."
+
+---
+
+TURN 2A (if player chose A):
+Gigglegrow: "Best! You walk along and suddenly 'hello, flower!' They're like the island hid presents in the grass and now it's giving them out."
+
+PLAYER CHOICES:
+[1] "Island presents are exciting."
+[2] "Flowers are cheerful surprises."
+[3] "Walking becomes a gift hunt."
+
+---
+
+TURN 2B (if player chose B):
+Gigglegrow: "Adorable! He's like a flower that snorts. I want to pat him but I'm worried my bounce will knock petals off."
+
+PLAYER CHOICES:
+[1] "Flower that snorts is a good description."
+[2] "Patting gently avoids petal loss."
+[3] "Snorting flowers are rare."
+
+---
+
+TURN 2C (if player chose C):
+Gigglegrow: "Amazing! They loop up, loop down, land for a sip, then loop again. It's like they're drawing happy shapes in the air."
+
+PLAYER CHOICES:
+[1] "Happy air shapes are fun."
+[2] "Sipping between loops is athletic."
+[3] "Butterfly loops make everything brighter."
+
+---
+
+TURN 3AA (if player chose A then A):
+Gigglegrow: "Exciting! Every flower could be a new color you didn't expect. The island is very good at presents."
+
+---
+
+TURN 3AB (if player chose A then B):
+Gigglegrow: "Cheerful! You can't be sad when a flower jumps out of the grass and says 'hi, I'm yellow!'"
+
+---
+
+TURN 3AC (if player chose A then C):
+Gigglegrow: "It does! I keep finding new ones and going 'oooh!' and then finding another one and going 'aaah!' It's a whole walk of noises."
+
+---
+
+TURN 3BA (if player chose B then A):
+Gigglegrow: "Right? He's all petals and snorts and happy. If flowers could snort, they'd sound like Hoggy."
+
+---
+
+TURN 3BB (if player chose B then B):
+Gigglegrow: "Gently! I can do a soft bounce if I try. But it's hard. Usually I just bounce normal and hope he has extra petals."
+
+---
+
+TURN 3BC (if player chose B then C):
+Gigglegrow: "Rare and special! Most flowers don't snort. Most hogs don't bloom. Hoggy does both. He's talented."
+
+---
+
+TURN 3CA (if player chose C then A):
+Gigglegrow: "Fun! If you watch long enough, the air looks like it has smiley lines drawn all over it by butterflies."
+
+---
+
+TURN 3CB (if player chose C then B):
+Gigglegrow: "Athletic and thirsty! I'd be dizzy after one loop. Butterflies do like fifty and don't even wobble."
+
+---
+
+TURN 3CC (if player chose C then C):
+Gigglegrow: "They do! Tiny wings making big loops and the whole island feels like a party. I love spring parties!"
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

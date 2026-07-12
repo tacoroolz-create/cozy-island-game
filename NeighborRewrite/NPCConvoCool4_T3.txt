@@ -1,0 +1,713 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoCool4_T3.txt - Cozy Island Game NPC Conversations (Cool Season)
+Cool Season Tree 3 - Animals 17-24: Mochi, Shadow, Raven, Newton, Lotus, Squire Paws, Pebble, Sunny
+Lens: leaf piles, crisp air, harvest colors, cozy blankets, starry evenings
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 17: Mochi (Animal - Rabbit - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Mochi:
+"Dreamer! The air is so crisp it feels like biting into a fresh apple. The whole island turned harvest colors and the leaves are making perfect pile shapes everywhere. Hoggy found a sunny patch and I think he's making a leaf nest. I want to curl up under a cozy blanket and watch the stars come out later."
+
+PLAYER CHOICES:
+[1] "Crisp air tastes like apples."
+[2] "Leaf piles are inviting."
+[3] "Blanket stargazing sounds perfect."
+
+---
+
+TURN 2A (if player chose 1):
+Mochi: "Apple air! I wonder if clouds taste like apple too. Probably too high to nibble, but a rabbit can dream."
+
+PLAYER CHOICES:
+[1] "Cloud nibbling is a good dream."
+[2] "The sky probably tastes like breeze."
+[3] "Dreams about snacks are valid."
+
+---
+
+TURN 2B (if player chose 2):
+Mochi: "Inviting! I jumped into one earlier and leaves went everywhere. It was like a crunchy hug from the ground."
+
+PLAYER CHOICES:
+[1] "Crunchy hugs are the best hugs."
+[2] "Leaves going everywhere is the fun part."
+[3] "A pile is basically a leaf bed."
+
+---
+
+TURN 2C (if player chose 3):
+Mochi: "Perfect with a warm blanket and maybe some clover. The stars come out slow, like they're tiptoeing into the night."
+
+PLAYER CHOICES:
+[1] "Tiptoeing stars are cute."
+[2] "Clover makes stargazing cozier."
+[3] "Slow stars are worth waiting for."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Mochi: "Good dreams are the best kind. I bet the clouds would share if they could. Clouds seem generous."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Mochi: "Breeze flavor! Probably light and a little cold on the nose. I'd try a tiny lick of sky if I were taller."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Mochi: "Valid and important. Snack dreams keep me motivated between naps and leaf piles."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Mochi: "Best hugs! The ground doesn't squeeze too hard. It just crinkles around you and says welcome."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Mochi: "The fun part! A leaf pile should explode a little when you jump. Otherwise it's just a flat decoration."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Mochi: "A leaf bed with built-in rustle sounds. I'd sleep there and dream about being a very small forest."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Mochi: "Cute and polite. Stars don't want to wake up the night too fast. They peek, then shine."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Mochi: "Cozier! A snack blanket and a sky full of friends. That's my ideal evening."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Mochi: "Worth waiting for. Slow stars feel more special, like they showed up just for us."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 18: Shadow (Animal - Cat - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Shadow:
+"Oh. It's you. The air is crisp enough to wake even a lazy cat. The leaves are stacked in piles like the island is tidying up for guests. Hoggy is buried in one up to his ears, very dignified. And the evenings are getting starry enough to be almost acceptable. I suppose it's a nice season if you like that sort of thing."
+
+PLAYER CHOICES:
+[1] "Crisp air wakes everyone up."
+[2] "Hoggy buried in leaves is dignified."
+[3] "Starry evenings are almost acceptable."
+
+---
+
+TURN 2A (if player chose 1):
+Shadow: "Wakes everyone up whether they want it or not. I tried to sleep through it and my nose kept noticing the cold. Rude, but effective."
+
+PLAYER CHOICES:
+[1] "Noses are nosy like that."
+[2] "Effective air is honest air."
+[3] "Cold noses are a small price."
+
+---
+
+TURN 2B (if player chose 2):
+Shadow: "Dignified for a hog. He sat down and the leaves simply claimed him. He didn't struggle. I respect that level of commitment to a pile."
+
+PLAYER CHOICES:
+[1] "Commitment to a pile is admirable."
+[2] "Not struggling is wise."
+[3] "Leaves claiming hogs is natural."
+
+---
+
+TURN 2C (if player chose 3):
+Shadow: "Almost acceptable. The stars don't demand conversation. They just sit there being bright. It's a refreshing change from parrots."
+
+PLAYER CHOICES:
+[1] "Quiet brightness is underrated."
+[2] "Stars don't interrupt naps."
+[3] "Parrots are a lot."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Shadow: "Nosy is the right word. My nose reports everything without permission. Cold, leaf, breeze, hog. Too much information."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Shadow: "Honest air doesn't pretend to be warm. I appreciate the lack of deception, even if I'd rather stay asleep."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Shadow: "Small price for a season that at least has the decency to look attractive while making my ears cold."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Shadow: "Admirable. If you're going to sit in leaves, you should sit properly and let them have you."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Shadow: "Wise. Leaves always win in the end. Hoggy understands the philosophy of surrender."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Shadow: "Natural and inevitable. A hog in a leaf pile is basically a seasonal landmark at this point."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Shadow: "Underrated. Most things that glow also make noise. Stars are polite enough to stay silent."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Shadow: "They don't interrupt anything. They arrive after dark and mind their own bright business. Excellent guests."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Shadow: "A lot. A cheerful lot. The stars never say 'hello friend' fifty times before breakfast. I prefer their quiet enthusiasm."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 19: Raven (Animal - Crow - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Raven:
+"Dreamer, the harvest colors are burning low across the island. The air is crisp like a page turning. The leaf piles look like small funeral pyres for summer, beautiful and necessary. Hoggy sleeps in one, half covered, snoring at the stars. And the evenings are so clear the sky feels like a memory someone finally dusted off."
+
+PLAYER CHOICES:
+[1] "Summer's funeral pyres are poetic."
+[2] "Hoggy snoring at stars is sweet."
+[3] "A dusted-off sky feels ancient."
+
+---
+
+TURN 2A (if player chose 1):
+Raven: "Poetic and honest. We burn the old season in color so the new one has room to enter. Ash becomes gold, gold becomes memory."
+
+PLAYER CHOICES:
+[1] "Honest burning is beautiful."
+[2] "Memory becomes part of the soil."
+[3] "New seasons need room."
+
+---
+
+TURN 2B (if player chose 2):
+Raven: "Sweet and round. He points his snout at the dark and snores little hog snores. The stars don't mind. They have time."
+
+PLAYER CHOICES:
+[1] "The stars are patient listeners."
+[2] "Hoggy snores are a lullaby."
+[3] "Looking up while sleeping is talent."
+
+---
+
+TURN 2C (if player chose 3):
+Raven: "Ancient and close. Without the summer haze, the sky shows its bones. Constellations like old stories you half remember."
+
+PLAYER CHOICES:
+[1] "Old stories are worth half-remembering."
+[2] "The sky has bones."
+[3] "Clarity makes distance feel near."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Raven: "Beautiful because it admits what it's doing. The leaves aren't pretending. They flare, then fall. That's courage."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Raven: "Part of the soil, part of next year's green. Nothing is wasted, not even the ending."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Raven: "They do. Each season must enter through the door the last one leaves open."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Raven: "Patient and constant. The stars have heard every snore on every island and never once complained."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Raven: "A lullaby for the whole clearing. Rough, small, sincere. Better than many songs I've heard."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Raven: "Talent or instinct. He trusts the sky enough to face it even in sleep. There's faith in that."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Raven: "Worth it. A story you half remember is a story still living inside you, waiting for the right dark."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Raven: "Bones of light, bones of distance. The clear sky shows you how deep the night really is."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Raven: "Near and vast at once. That's the trick of a crisp evening. It pulls the stars down just enough to notice them."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 20: Newton (Animal - Owl - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Newton:
+"Ah, Dreamer, excellent timing. I've been cataloging the harvest-color distribution across the canopy, measuring the crispness of the air via wing-tip chill factor, and noting that Hoggy has buried himself in a leaf pile approximately one-point-two hog-depths deep. The evening clarity has also improved naked-eye star visibility by an estimated thirty percent. A productive Cool season night."
+
+PLAYER CHOICES:
+[1] "Harvest-color distribution sounds official."
+[2] "Wing-tip chill factor is measurable."
+[3] "Thirty percent more stars is significant."
+
+---
+
+TURN 2A (if player chose 1):
+Newton: "Official and colorful. I've identified at least six distinct pigments in the fallen-leaf sample, plus one very mysterious orange that might just be a sunset stain."
+
+PLAYER CHOICES:
+[1] "Six pigments is thorough."
+[2] "Mystery orange is exciting."
+[3] "Sunset stains are real data."
+
+---
+
+TURN 2B (if player chose 2):
+Newton: "Measurable with calibrated feathers. I flew into the breeze and recorded a crispness index of 'quite nippy.' Very scientific."
+
+PLAYER CHOICES:
+[1] "Quite nippy is a valid index."
+[2] "Calibrated feathers sound precise."
+[3] "Breeze crispness affects flight."
+
+---
+
+TURN 2C (if player chose 3):
+Newton: "Significant! Thirty percent more visible stars translates to roughly twelve more twinkles per square patch of sky. I counted. My neck is tired."
+
+PLAYER CHOICES:
+[1] "Twelve more twinkles is worth a tired neck."
+[2] "Counting stars is rigorous."
+[3] "Clear nights are efficient."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Newton: "Thorough cataloging leads to better appreciation. A leaf is not merely red. It is red with a specific history."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Newton: "Exciting because it might be a new pigment or it might be borrowed light. Either way, science wins."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Newton: "Real data from a real phenomenon. Sunsets do leave color traces in the atmosphere. The leaves might be catching the residue."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Newton: "Valid on the Newton owl scale of nippiness. It ranges from 'barely brisk' to 'ear-flattening.' Today was mid-range."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Newton: "Precise enough for fieldwork. I use my own feathers as instruments because they're always with me."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Newton: "It does. Crisp air provides less thermal lift but clearer navigation. A fair trade for a data-gathering owl."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Newton: "Worth it. A tired neck is temporary. Twelve extra twinkles are eternal, or at least nightly."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Newton: "Rigorous and slightly dizzying. I lost count twice but the average held steady. Good science requires persistence."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Newton: "Efficient nights maximize observation time. Less haze, more data, happier owls. It's a documented phenomenon."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 21: Lotus (Animal - Crane - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lotus:
+"The harvest colors have arrived, Dreamer. The leaves gather themselves into piles like offerings. The air is crisp and clear, inviting the breath to slow. Hoggy rests in a bed of gold and red, at peace with the season. And the evenings grow long enough to wrap the island in starlight, soft as a blanket."
+
+PLAYER CHOICES:
+[1] "Leaves as offerings is a kind image."
+[2] "Crisp air invites slow breath."
+[3] "Starlight as a blanket is gentle."
+
+---
+
+TURN 2A (if player chose 1):
+Lotus: "Kind and generous. The tree gives what it no longer needs, and the ground receives it. Neither clings. Neither rejects."
+
+PLAYER CHOICES:
+[1] "Giving without clinging is wise."
+[2] "Receiving without rejecting is gentle."
+[3] "The tree and ground understand each other."
+
+---
+
+TURN 2B (if player chose 2):
+Lotus: "It does. Cold air reminds us we are alive, and alive things need not hurry. Each breath can be a small arrival."
+
+PLAYER CHOICES:
+[1] "Breath can arrive slowly."
+[2] "Cold air reminds us we're warm inside."
+[3] "Hurrying is optional."
+
+---
+
+TURN 2C (if player chose 3):
+Lotus: "Gentle and warm in its own way. The stars do not press down. They cover the night lightly, the way a blanket covers a sleeping island."
+
+PLAYER CHOICES:
+[1] "Light coverage is enough."
+[2] "The island sleeps under stars."
+[3] "Blankets don't ask for attention."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lotus: "Wise. To hold nothing too tightly is to let the season move through you."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lotus: "Gentle receiving. The ground does not judge the leaf for falling. It simply holds it."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lotus: "They do. The tree trusts the ground. The ground trusts the rain. Trust is the root of every season."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lotus: "Slowly, yes. We do not need to fill every breath with doing. Sometimes arrival is enough."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lotus: "Warm inside, warm in intention. The cold is only the world turning. We carry our own small fire."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lotus: "Optional and often unnecessary. The leaf falls at its own pace. We can learn from the leaf."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lotus: "Enough. A light blanket warms without weight. The stars cover us, but they do not burden us."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lotus: "It sleeps and wakes and sleeps again, all under the same starred roof. The island does not fear the dark."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lotus: "They simply are. A good blanket keeps you warm without reminding you it is there. The night does this well."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 22: Squire Paws (Animal - Dog - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Squire Paws:
+"Fair Dreamer! The harvest colors fly like banners across the trees, and the crisp air carries the scent of noble deeds. Leaf piles stand ready for brave leaps, and Hoggy has claimed the largest as his seasonal fortress. The evenings are long and starry, perfect for wrapping oneself in a cozy blanket and dreaming of tomorrow's quests."
+
+PLAYER CHOICES:
+[1] "Noble deeds smell like autumn."
+[2] "Hoggy's leaf fortress is mighty."
+[3] "Cozy blanket quests are honorable."
+
+---
+
+TURN 2A (if player chose 1):
+Squire Paws: "Autumn and honor! The breeze smells of fallen leaves and distant adventure. A true knight knows the season by its nose."
+
+PLAYER CHOICES:
+[1] "A knight's nose is trained."
+[2] "Fallen leaves smell like quest fuel."
+[3] "Seasons have noble scents."
+
+---
+
+TURN 2B (if player chose 2):
+Squire Paws: "Mighty! He sits upon it like a king upon a motte, surveyor of all he snuffles. The leaves are his loyal subjects."
+
+PLAYER CHOICES:
+[1] "A snuffling king is fair."
+[2] "Loyal leaf subjects are devoted."
+[3] "Fortresses made of leaves are cozy."
+
+---
+
+TURN 2C (if player chose 3):
+Squire Paws: "Honorable indeed. A blanket is a soft armor against the chill, and dreams of quests are preparation for glory."
+
+PLAYER CHOICES:
+[1] "Soft armor is underrated."
+[2] "Dreams prepare the brave."
+[3] "Chill is a worthy opponent."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Squire Paws: "Trained through many seasons. I can smell adventure, naptime, and butterfly from a single sniff. Very useful."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Squire Paws: "Quest fuel! A good leaf pile restores the spirit and the nose. I shall recommend them to all travelers."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Squire Paws: "Noble scents for a noble season. Even the wind dresses formally this time of year."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Squire Paws: "Fair and round. He rules with kindness and occasional snorting. A popular monarch among leaves."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Squire Paws: "Devoted subjects! They rustle in approval whenever he shifts. A well-loved ruler is a strong ruler."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Squire Paws: "Cozy fortresses are the best kind. Strong enough for dignity, soft enough for noble napping."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Squire Paws: "Underrated! Hard armor clanks. Soft armor keeps you warm while you plan heroics."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Squire Paws: "They do. A brave heart begins in restful dreams. Even heroes must sleep before they sally forth."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Squire Paws: "A worthy opponent, but no match for a good blanket and a stout spirit. We shall defeat the cold together."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 23: Pebble (Animal - Turtle - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Pebble:
+"Oh... h-hello, Dreamer. The leaves are all piled up like little harvest mountains. The air feels crisp and clean, like the island took a deep breath. Hoggy made a nest in a pile and he's almost invisible now, just a round lump under gold leaves. I found a warm spot near a rock and I think the stars will be really clear tonight. It makes me feel... a little brave."
+
+PLAYER CHOICES:
+[1] "Harvest mountains are pretty."
+[2] "Hoggy's leaf lump is cozy."
+[3] "Clear stars make everyone brave."
+
+---
+
+TURN 2A (if player chose 1):
+Pebble: "Pretty and not too tall. I can look at them without getting dizzy. They're soft mountains, which is my favorite kind."
+
+PLAYER CHOICES:
+[1] "Soft mountains are friendly."
+[2] "Not-too-tall views are turtle-friendly."
+[3] "Pretty piles are calming."
+
+---
+
+TURN 2B (if player chose 2):
+Pebble: "Cozy. He's hidden except for his snout and one ear. I think he's pretending to be a leaf pile himself. It's working."
+
+PLAYER CHOICES:
+[1] "A hog disguised as leaves is clever."
+[2] "Hidden hogs are peaceful hogs."
+[3] "Leaf camouflage looks warm."
+
+---
+
+TURN 2C (if player chose 3):
+Pebble: "Brave in a small way. The stars are far and there are many of them, but they don't judge me for being slow. They just shine."
+
+PLAYER CHOICES:
+[1] "Unjudging stars are kind."
+[2] "Being slow is okay with stars."
+[3] "Small bravery counts."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Pebble: "Friendly because they don't loom. They invite you to rest nearby without climbing anything."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Pebble: "Turtle-friendly views are important. I like beauty I can appreciate while staying low and still."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Pebble: "Calming. The island made soft heaps of color and then left them there for anyone who needs quiet."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Pebble: "Clever. He's the same color as dried leaves, rounder than average, but still convincing. I'd believe he's a pile."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Pebble: "Peaceful. Hidden under leaves, nothing can ask you to hurry. It's a very reasonable way to spend a day."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Pebble: "Warm and secret. I almost want to burrow in next to him, but I don't want to disturb the art."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Pebble: "Kind and far away. They shine on everyone the same, fast or slow, big or small."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Pebble: "Okay with them. Stars have been slow for millions of years. They don't mind if I take my time."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Pebble: "It counts. Being brave enough to look up is still brave. I can add it to my small list of brave things."
+
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 24: Sunny (Animal - Parrot - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sunny:
+"Hello, friend! The leaf piles are everywhere, all orange and red and yellow like someone spilled a rainbow on the ground! The air is crisp and makes my feathers feel extra fluffy. Hoggy is basically a hog-shaped blanket in a pile of leaves, and tonight there will be so many stars I made a wish list. Cool season is star party season!"
+
+PLAYER CHOICES:
+[1] "Spilled rainbows are beautiful."
+[2] "Crisp fluffy feathers sound nice."
+[3] "Star party season is the best season."
+
+---
+
+TURN 2A (if player chose 1):
+Sunny: "Beautiful and crunchy! I flew through a little shower of leaves and it felt like being applauded by the ground."
+
+PLAYER CHOICES:
+[1] "Ground applause is encouraging."
+[2] "Leaf showers are fun to fly through."
+[3] "Crunchy rainbows are extra good."
+
+---
+
+TURN 2B (if player chose 2):
+Sunny: "Nice! Each feather gets a tiny lift from the cold air and I feel like a bigger, fluffier parrot. Very aerodynamic fluff."
+
+PLAYER CHOICES:
+[1] "Aerodynamic fluff is powerful."
+[2] "Bigger parrot energy is good energy."
+[3] "Fluffy feathers stay warm."
+
+---
+
+TURN 2C (if player chose 3):
+Sunny: "Best season! I invited all the stars in my head and I'm pretty sure they RSVP'd yes. Tonight we party under the sky."
+
+PLAYER CHOICES:
+[1] "Mental invitations count."
+[2] "RSVP yes from stars is exciting."
+[3] "Sky parties are cozy."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sunny: "Encouraging! The ground is very supportive when you fly low. It waves leaves at you and says good job."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sunny: "Fun! Leaves go up, I go through, everyone gets dizzy in a happy way."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sunny: "Extra good! A regular rainbow is pretty, but a crunchy one has sound effects. Better in every way."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sunny: "Powerful! I could probably glide farther just because my fluff catches the breeze. Science and feathers combined."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sunny: "Good energy! A fluffier parrot is a happier parrot, and a happier parrot is louder, which is also good."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sunny: "Warm and puffy. I can handle crisp air if I look like a little feathery cloud. Cozy on the outside, parrot on the inside."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sunny: "They count! The stars feel invited even if the invitation was imaginary. Good vibes travel far."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sunny: "Exciting! I don't actually read star mail, but the sky looked extra sparkly, which I choose to interpret as yes."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sunny: "Cozy with blankets and twinkles and maybe a warm rock to sit on. Best party ever, and no cleanup."
+
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

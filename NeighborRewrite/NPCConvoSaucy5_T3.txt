@@ -1,0 +1,721 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoSaucy5_T3.txt - Cozy Island Game NPC Conversations (Saucy Season)
+Saucy Season Tree 3 Conversations - Monsters 25-32
+Lens: bright mornings, beach treasures, warm sand, cool rock pools, seagull greetings
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 25: Fluffernox (Monster - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Fluffernox:
+"Dreamer! The morning sun is already hugging the beach, and I found a tiny shell that looks like a smile. Do you think the seagulls say hello on purpose, or is it just lucky when they do?"
+
+PLAYER CHOICES:
+[1] "Seagull hellos are definitely lucky."
+[2] "Smiley shells are good treasure."
+[3] "Morning beach hugs are the best."
+
+---
+
+TURN 2A (if player chose 1):
+Fluffernox: "Lucky and friendly! I wave back every time just in case it was on purpose. I don't want to be rude to a bird."
+
+PLAYER CHOICES:
+[1] "Waving back is polite."
+[2] "Birds appreciate good manners."
+[3] "Lucky hellos make the morning brighter."
+
+---
+
+TURN 2B (if player chose 2):
+Fluffernox: "Good treasure because the sea made it and then gave it away. The ocean is very generous before breakfast."
+
+PLAYER CHOICES:
+[1] "Generous ocean is a good friend."
+[2] "I want a smiley shell too."
+[3] "Treasure before breakfast is extra special."
+
+---
+
+TURN 2C (if player chose 3):
+Fluffernox: "Best because the sand is warm but the air is still soft. It feels like the day is giving you a gentle high-five."
+
+PLAYER CHOICES:
+[1] "Gentle high-fives from the day."
+[2] "Soft air and warm sand is perfect."
+[3] "Beach mornings should last longer."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Fluffernox: "Polite and prepared. I keep my waving tentacle ready for any passing seagull. It is important to be approachable."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Fluffernox: "They do. Good manners are like little gifts you can give without running out. I have lots of manners saved up."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Fluffernox: "Brighter and bouncier. A lucky hello from a bird makes your whole walk feel chosen by the morning."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Fluffernox: "Good friend with watery pockets. It hands out shells and sparkly sand and doesn't ask for thank-yous."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Fluffernox: "I will find you one. We can go treasure hunting together and pick the smiliest shell on the whole beach."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Fluffernox: "Extra special because your pockets are still empty and your eyes are still sleepy. Everything feels like a surprise."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Fluffernox: "Gentle high-fives with no loud clap. The morning gives them out to anyone who shows up barefoot."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Fluffernox: "Perfect for fuzzy monsters. Warm on the bottom, soft on the top, happy everywhere in between."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Fluffernox: "Longer and slower. We could skip and find shells until the sun is all the way up. Beach mornings are worth stretching."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 26: Grumble (Monster - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Grumble:
+"The seagulls are being loud this morning, Dreamer. One of them looked at me like it expected conversation. I did not give it the satisfaction. Much."
+
+PLAYER CHOICES:
+[1] "Seagulls do look judgmental."
+[2] "Not giving satisfaction is your specialty."
+[3] "Maybe it just wanted to say good morning."
+
+---
+
+TURN 2A (if player chose 1):
+Grumble: "Judgmental and aerodynamic. They circle overhead with opinions they didn't ask permission to have."
+
+PLAYER CHOICES:
+[1] "Unasked opinions are annoying."
+[2] "Aerodynamic judgment is worse."
+[3] "You handled it with dignity."
+
+---
+
+TURN 2B (if player chose 2):
+Grumble: "Specialty and lifestyle. I have a whole system. If something wants my attention, I make it earn it through effort and silence."
+
+PLAYER CHOICES:
+[1] "Silence is a powerful tool."
+[2] "Effort should be earned."
+[3] "Your system seems effective."
+
+---
+
+TURN 2C (if player chose 3):
+Grumble: "Good morning is too cheerful before breakfast. The seagull has not earned morning cheer privileges. It is a stranger with wings."
+
+PLAYER CHOICES:
+[1] "Wings don't equal friendship."
+[2] "Cheer before breakfast is suspicious."
+[3] "Stranger birds should be cautious."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Grumble: "Annoying and frequent. If I wanted opinions I would ask for them. Which I wouldn't. So the seagull is double wrong."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Grumble: "Worse because it comes from above. You can't even argue properly. You just squint and hope it flies somewhere else."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Grumble: "Dignified and still. I stood there, unimpressed, radiating disinterest. The seagull eventually moved on to someone more rewarding."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Grumble: "Powerful and portable. I can take silence anywhere. It requires no equipment and never runs out of battery."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Grumble: "Earned through persistence and the courage to not immediately respond. Most things give up when ignored correctly."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Grumble: "Effective but exhausting. Maintaining disinterest in the face of cheerful birds takes more energy than people realize."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Grumble: "They don't. Just because you can fly doesn't mean I owe you conversation. The sky is not a social contract."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Grumble: "Suspicious and premature. Morning cheer should be scheduled after coffee, or whatever monsters drink. Probably tea."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Grumble: "Cautious is smart. A bird that cheerful has an agenda. Probably crumbs. I don't have any, so the conversation would disappoint us both."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 27: Vesper (Monster - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Vesper:
+"Morning on the shore, Dreamer. The rock pools hold their own small night, even while the sun climbs. I find the contrast dramatic."
+
+PLAYER CHOICES:
+[1] "Small nights in daylight are poetic."
+[2] "Rock pools are secret worlds."
+[3] "Dramatic contrast suits you."
+
+---
+
+TURN 2A (if player chose 1):
+Vesper: "Poetic and slightly sad. The pool gathers shadow and water and refuses to be cheerful about it. I respect that."
+
+PLAYER CHOICES:
+[1] "Refusing cheerfulness is brave."
+[2] "Shadow water has dignity."
+[3] "Sad beauty is still beauty."
+
+---
+
+TURN 2B (if player chose 2):
+Vesper: "Secret and cold. Tiny crabs hide there, pretending the day has not begun. It is the closest thing the beach has to a cave."
+
+PLAYER CHOICES:
+[1] "Crabs know good hiding spots."
+[2] "A beach cave is appealing."
+[3] "Pretending morning hasn't begun is relatable."
+
+---
+
+TURN 2C (if player chose 3):
+Vesper: "Suits me because I contain multitudes. Warm appreciation, cold observation, all wrapped in one elegant shadow."
+
+PLAYER CHOICES:
+[1] "Multitudes are powerful."
+[2] "Warm and cold together is art."
+[3] "Elegant shadow is a good look."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Vesper: "Brave in a quiet way. The whole beach is bright and loud, and the pool just sits there being dark. Defiance is beautiful."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Vesper: "Dignity without effort. It does not perform. It simply gathers what the light cannot reach and keeps it cool."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Vesper: "Still beauty. Beauty does not owe us happiness. Sometimes it owes us truth, and the truth here is dark and wet."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Vesper: "They do. They understand that some spaces should remain untouched by morning cheer. The pool is their sanctuary."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Vesper: "Appealing and damp. I would visit, though I might not fit. The crabs would stare. I would accept their judgment."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Vesper: "Relatable to any creature with complicated feelings about sunrise. The crabs and I understand each other without speaking."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Vesper: "Powerful and exhausting. Some days I feel like several people, and one of them is always sitting in a cool rock pool."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Vesper: "Art requires contrast. Warm sand, cool shadow, loud gull, quiet crab. The beach composes itself without asking permission."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Vesper: "Good and mysterious. Shadow is the most flattering light if you know how to wear it. I have been practicing for years."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 28: Gizmo (Monster - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gizmo:
+"Dreamer! I have been cataloging beach treasures by tide proximity. Shells near the water line are smoother, pebbles higher up are warmer, and seagull greetings correlate strongly with human presence. Fascinating."
+
+PLAYER CHOICES:
+[1] "Cataloging beaches is important work."
+[2] "Seagull-human correlation is a real study."
+[3] "Smooth shells near water are my favorite."
+
+---
+
+TURN 2A (if player chose 1):
+Gizmo: "Important because the beach changes every day. Today's smooth shell might be tomorrow's buried treasure. Documentation is preservation."
+
+PLAYER CHOICES:
+[1] "Documenting preserves the beach."
+[2] "Tomorrow's treasure changes today."
+[3] "Beach science is never boring."
+
+---
+
+TURN 2B (if player chose 2):
+Gizmo: "Real and observable. The gulls approach when people appear, vocalize, then evaluate snack potential. It's a greeting with an agenda."
+
+PLAYER CHOICES:
+[1] "Greeting with agenda is honest."
+[2] "Snack potential is a fair metric."
+[3] "Observation improves beach visits."
+
+---
+
+TURN 2C (if player chose 3):
+Gizmo: "Favorite and explainable. Constant water movement polishes the surface over time. It is mechanical affection from the sea."
+
+PLAYER CHOICES:
+[1] "Mechanical affection from the sea is poetic."
+[2] "Polishing takes patience."
+[3] "The sea has good technique."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gizmo: "Preserves what would otherwise be lost to tide and memory. A documented shell exists in two places at once: the beach and the record."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gizmo: "It changes constantly. The same beach never repeats itself exactly. That is why cataloging must be ongoing."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gizmo: "Never boring. Sand, water, wind, creatures, all interacting in measurable ways. The beach is a busy laboratory."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gizmo: "Honest and efficient. The gull does not pretend to be your friend without investigating your crumb situation."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gizmo: "Fair metric from the gull's perspective. Food is information. A person might be a resource. The gull gathers data."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gizmo: "Improves them greatly. Once you notice the pattern, every gull call becomes part of a larger understandable system."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gizmo: "Poetic and accurate. The sea rubs shells smooth the same way time softens sharp opinions. Slow, repeated, effective."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gizmo: "Patience over years. Some shells have been polished longer than I have existed. That is commitment to a craft."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gizmo: "Good technique. Water movement applies consistent pressure from many angles. The sea is a master of gradual refinement."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 29: Ommmm (Monster - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Ommmm:
+"The sand is warm this morning, Dreamer. I walked barefoot to the water's edge and let each step remind me that the day begins gently. The seagulls called without asking for anything."
+
+PLAYER CHOICES:
+[1] "Barefoot walking is grounding."
+[2] "Gentle beginnings are a gift."
+[3] "Calls that ask nothing are kind."
+
+---
+
+TURN 2A (if player chose 1):
+Ommmm: "Grounding because the earth touches you back. Warm sand says, 'I am here,' and the foot says, 'I notice.' That is a whole conversation."
+
+PLAYER CHOICES:
+[1] "Earth touches back is a good thought."
+[2] "Whole conversations can be wordless."
+[3] "Feet notice what minds forget."
+
+---
+
+TURN 2B (if player chose 2):
+Ommmm: "A gift we often rush past. The day offers a soft start, and we offer our hurry in return. I am trying to receive the softness."
+
+PLAYER CHOICES:
+[1] "Receiving softness is practice."
+[2] "Soft starts deserve attention."
+[3] "Hurry costs too much."
+
+---
+
+TURN 2C (if player chose 3):
+Ommmm: "Kind because they simply announce the morning. They do not demand response or company. They call, and the call is enough."
+
+PLAYER CHOICES:
+[1] "Enough is complete."
+[2] "Morning announcements are generous."
+[3] "Unanswered calls are still beautiful."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Ommmm: "Good thought and true. We are always touching the world. Barefoot or not, the earth holds us up without complaint."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Ommmm: "Wordless and deep. A foot on warm sand, a breath of salt air, a gull's call. These speak without needing translation."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Ommmm: "They do. The mind plans and worries. The foot only feels. Returning to the foot is returning to what is real."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Ommmm: "Practice and discipline. Softness is easy to miss because it does not demand entry. You must choose to let it in."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Ommmm: "They deserve it. The first moments of day shape the ones that follow. A gentle beginning is a wise investment."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Ommmm: "Too much sometimes. Hurry takes peace and gives us tasks. I prefer to pay slowly and keep some peace in reserve."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Ommmm: "Complete in itself. The gull does not wait for an answer. It greets the morning and moves on. That is freedom."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Ommmm: "Generous and free. They share the news that morning arrived, asking only that we hear if we choose to."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Ommmm: "Beautiful because they are not performing. They are simply being gulls. That simplicity is its own kind of perfection."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 30: Lord Roar (Monster (Dragon-like) - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Lord Roar:
+"Good morrow, Dreamer! The morn hath delivered warm sand, friendly gulls, and the promise of treasure upon the tide. I have already saluted three seagulls as fellow knights of the air."
+
+PLAYER CHOICES:
+[1] "Seagull knights are noble."
+[2] "Morning treasure promises are exciting."
+[3] "Warm sand deserves a royal welcome."
+
+---
+
+TURN 2A (if player chose 1):
+Lord Roar: "Noble and aerial. They patrol the shore with keen eyes and sharp cries. I would gladly serve beside them in any beach campaign."
+
+PLAYER CHOICES:
+[1] "Aerial patrols are valuable."
+[2] "Beach campaigns sound grand."
+[3] "Seagull knights have good voices."
+
+---
+
+TURN 2B (if player chose 2):
+Lord Roar: "Exciting and timeless. The sea delivers shells and stones and secrets with every wave. A true dragon never ignores a delivery."
+
+PLAYER CHOICES:
+[1] "Secrets from the sea are best."
+[2] "Shells make fine court gifts."
+[3] "Waves are reliable messengers."
+
+---
+
+TURN 2C (if player chose 3):
+Lord Roar: "Royal and sandy. I have knelt to test the warmth with my own claws. The sand accepts tribute in the form of admiration."
+
+PLAYER CHOICES:
+[1] "Admiring sand is humble."
+[2] "Warm claws are happy claws."
+[3] "Royal beach greetings are proper."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Lord Roar: "Valuable beyond measure. From above they spot all manner of beach happenings. I tip my imaginary helmet to their service."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Lord Roar: "Grand and slightly damp. Any campaign that ends with a sunset on warm sand is a victorious campaign."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Lord Roar: "Good voices for heraldry. Their cries carry across the shore like trumpets announcing the morning's arrival."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Lord Roar: "Best treasures because they come without explanation. A shell arrives, and you must invent its tale. Excellent entertainment."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Lord Roar: "Fine gifts for lords and ladies of the realm. I have awarded shells to several flowers and one very patient rock."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Lord Roar: "Reliable and rhythmic. Every wave is a page in the sea's ongoing correspondence. I read it with great interest."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Lord Roar: "Humble and appropriate. Even a dragon may kneel before the warmth of a well-made beach. It builds character."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Lord Roar: "Happy claws make happy dragons. Warm sand is like a gentle handshake from the earth itself. Very diplomatic."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Lord Roar: "Proper and required. A royal arrival on the beach should be announced with dignity, sand gratitude, and possibly a small bow to the tide."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 31: Snug (Monster - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Snug:
+"Oh. Hi, Dreamer. I was... I was looking at the rock pool. There's a little crab inside and he seems very busy. The morning light makes everything look like it's still deciding whether to wake up."
+
+PLAYER CHOICES:
+[1] "Busy crabs are fun to watch."
+[2] "Deciding to wake up is relatable."
+[3] "Rock pool light is soft and nice."
+
+---
+
+TURN 2A (if player chose 1):
+Snug: "Fun because they move so carefully. The crab checks every pebble like it might be important. I think that is good dedication."
+
+PLAYER CHOICES:
+[1] "Dedication to pebbles is admirable."
+[2] "Small tasks matter too."
+[3] "Careful moving is wise."
+
+---
+
+TURN 2B (if player chose 2):
+Snug: "Relatable because some mornings feel too bright too fast. The rock pool stays half asleep longer than the rest of the beach. I like that about it."
+
+PLAYER CHOICES:
+[1] "Half-asleep places are safe."
+[2] "Slow mornings are gentle."
+[3] "I also like slow-waking things."
+
+---
+
+TURN 2C (if player chose 3):
+Snug: "Soft and underwater. The light doesn't jump around like it does on the sand. It just rests on the surface and lets things be dim."
+
+PLAYER CHOICES:
+[1] "Resting light is peaceful."
+[2] "Dim is comforting."
+[3] "The pool keeps its own mood."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Snug: "Admirable and small. The crab treats every pebble like a possible home or snack. That is a respectful way to live."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Snug: "They do. Even a pebble might be a roof or a chair if you are small enough. The crab knows this."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Snug: "Wise because sudden moves scare away the quiet. The crab understands that slow is how you keep the morning from noticing you."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Snug: "Safe and still. You can hide there from the louder parts of the day without going very far."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Snug: "Gentle on the eyes and the thoughts. I wish the whole morning could be as slow as a rock pool."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Snug: "Me too. Slow-waking things are trustworthy. They don't rush you or make you feel like you're late."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Snug: "Peaceful because it doesn't try to be bright. It just lets the water decide how much light to keep."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Snug: "Comforting like a whisper. Bright places can be too much, but dim places hold you without asking questions."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Snug: "Its own mood, yes. Sometimes the pool is shiny, sometimes it is shadowy. It doesn't have to explain. It just is."
+
+---
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 32: Gigglegrow (Monster - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Gigglegrow:
+"Dreamer! Dreamer! I saw a seagull this morning and I waved and it looked at me and I think we are BEST FRIENDS now! Also the sand is warm and the rock pools are basically tiny splash parks!"
+
+PLAYER CHOICES:
+[1] "Best friends with seagulls is amazing."
+[2] "Tiny splash parks sound perfect."
+[3] "Warm sand happy feet!"
+
+---
+
+TURN 2A (if player chose 1):
+Gigglegrow: "Amazing because seagulls know everything about the beach. They see where the best shells are and they probably have opinions about clouds."
+
+PLAYER CHOICES:
+[1] "Cloud opinions are important."
+[2] "Seagull knowledge is elite."
+[3] "Best friends share secrets."
+
+---
+
+TURN 2B (if player chose 2):
+Gigglegrow: "Perfect for small monsters with big feet. The water is cool, the rocks are smooth, and splashing is basically free happiness."
+
+PLAYER CHOICES:
+[1] "Free happiness is the best deal."
+[2] "Cool water plus warm morning is magic."
+[3] "Splashing should be mandatory."
+
+---
+
+TURN 2C (if player chose 3):
+Gigglegrow: "Happy feet, happy monster, happy day! Warm sand feels like the beach is giving your toes little compliments."
+
+PLAYER CHOICES:
+[1] "Toe compliments are underrated."
+[2] "Happy feet lead to happy walks."
+[3] "The beach is a good friend."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Gigglegrow: "Important because clouds decide the whole mood. A seagull who understands clouds is basically a weather wizard."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Gigglegrow: "Elite knowledge from flying around all day. They have seen every beach from above. I would love a seagull tour."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Gigglegrow: "Secrets about where the sparkliest shells hide and which tide pools have the most crabs. Best-friend-level intel."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Gigglegrow: "Best deal ever. You don't need coins or coupons. You just need feet and a willingness to get a little splashy."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Gigglegrow: "Magic temperature science! Warm air, cool water, happy body. The beach knows how to mix the best things together."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Gigglegrow: "Mandatory for everyone first thing in the morning. Wake up, find a pool, do a splash. It's good for morale."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Gigglegrow: "Underrated and very real. When your toes are warm and wiggly, the rest of you joins the happy parade."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Gigglegrow: "They do. Happy feet can't help but walk toward more happy things. It's foot-based optimism."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Gigglegrow: "Good friend with sandy hugs and watery gifts. The beach always has something nice ready for visitors."
+
+---
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════

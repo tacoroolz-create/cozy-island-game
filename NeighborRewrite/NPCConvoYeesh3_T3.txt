@@ -1,0 +1,704 @@
+═══════════════════════════════════════════════════════════════
+NPCConvoYeesh3_T3.txt - Cozy Island Game NPC Conversations (Yeesh Season)
+Yeesh Season Conversations - Ghosts 9-16 - Tree 3
+═══════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 9: Boo-Boo (Ghost - Kawaii)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Boo-Boo:
+"Dreamer! I found a warm rock this morning by the Everburn and it made my little ghost hands feel toasty. The snow left footprint pictures everywhere and I made a hot drink for Hoggy, but he just sniffed it. The silly viking rumor is going around again, but I think vikings only want warm rocks too."
+
+PLAYER CHOICES:
+[1] "Warm rocks are the best seats."
+[2] "Hoggy sniffing a hot drink is cute."
+[3] "Vikings probably want warm rocks too."
+
+---
+
+TURN 2A (if player chose 1):
+Boo-Boo: "Best seats because they hug you back with warmth. I sit very still so the rock does not get tired of hugging me."
+
+PLAYER CHOICES:
+[1] "Sitting still helps the rock."
+[2] "Rock hugs are special."
+[3] "Warm seats make quiet mornings better."
+
+---
+
+TURN 2B (if player chose 2):
+Boo-Boo: "Cute and a little rude. Hoggy's nose said 'interesting' but his hooves said 'no thank you'. Maybe he prefers warm rocks."
+
+PLAYER CHOICES:
+[1] "Hoggy knows what he likes."
+[2] "A warm rock is hog-approved."
+[3] "Hot drinks are for ghosts anyway."
+
+---
+
+TURN 2C (if player chose 3):
+Boo-Boo: "Probably! I imagine vikings carrying big mugs and looking for the warmest rock on the beach. We could share our Everburn warmth with them."
+
+PLAYER CHOICES:
+[1] "Sharing Everburn warmth is kind."
+[2] "Big mugs are cozy."
+[3] "Beach warm rocks are premium."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Boo-Boo: "It does. If I sit very still, the rock's warmth has time to wrap around me like a little blanket."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Boo-Boo: "Special because rocks don't wiggle. They just stay warm and let you be near them. Very polite."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Boo-Boo: "Better. A warm seat and a quiet morning make my whole ghost glow pink."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Boo-Boo: "He does. Hoggy is very smart about warmth. He probably found the best rock before I did."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Boo-Boo: "Hog-approved means it is officially good. Hoggy would stamp his hoof if he could stamp approval."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Boo-Boo: "For ghosts and for Dreamer. We can hold mugs with both hands and feel the steam on our noses."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Boo-Boo: "Kind and warm. Everburn warmth does not run out, so there is plenty for visitors and flowers and sleepy rocks."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Boo-Boo: "Cozy because big mugs mean big sips and big sips mean warm tummies."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Boo-Boo: "Premium warm! Beach rocks have sand nearby and maybe a crab friend to share the warmth."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 10: Wisp (Ghost - Tsundere)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Wisp:
+"Dreamer. I am only out here because the warm rocks near the Everburn are marginally better than floating around complaining. Someone left snowy footprints all over the path, and there is a rumor about vikings again. Like I am worried. I am not worried. I just think hot drinks should be mandatory."
+
+PLAYER CHOICES:
+[1] "Mandatory hot drinks make sense."
+[2] "Warm rocks are marginally acceptable."
+[3] "You are not worried, obviously."
+
+---
+
+TURN 2A (if player chose 1):
+Wisp: "They do. If I had a hot drink every morning, I would be at least ten percent less annoyed by snow. That is basic math."
+
+PLAYER CHOICES:
+[1] "Ten percent less annoyed is progress."
+[2] "Snow is very annoying."
+[3] "Hot drinks improve everything."
+
+---
+
+TURN 2B (if player chose 2):
+Wisp: "Acceptable and occasionally nice. A warm rock does not talk, does not ask questions, and does not start viking rumors. Especially the ones near the Everburn. Good company."
+
+PLAYER CHOICES:
+[1] "Warm rocks are good company."
+[2] "No questions is a feature."
+[3] "Rocks don't spread rumors."
+
+---
+
+TURN 2C (if player chose 3):
+Wisp: "Obviously. I am the picture of not-worried. I just happen to be watching the beach for suspicious boats and big beards. Coincidence."
+
+PLAYER CHOICES:
+[1] "Suspicious boats are worth watching."
+[2] "Big beards are suspicious."
+[3] "Coincidence is a strong word."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Wisp: "Progress I will deny making. Do not tell anyone I felt slightly warmer after one sip."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Wisp: "Very. It gets in my intangible hair and makes everything colder. If snow had a face, I would glare at it."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Wisp: "Everything including my attitude. A warm mug is like a tiny negotiator for better moods."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Wisp: "Good because they don't expect conversation. I can sit on a warm rock and sulk in peace."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Wisp: "A feature I value highly. Rocks never ask why I am sighing. They just absorb it."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Wisp: "They don't. Rumors require mouths, and rocks are famously mouthless. More rocks should be in charge of news."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Wisp: "Worth watching, not worrying about. There is a subtle difference that I am definitely maintaining."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Wisp: "Suspicious and probably cold. Any beard that long in Yeesh season has practical problems."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Wisp: "Strong but accurate. I am coincidentally prepared to hide behind Hoggy if anything with a helmet arrives."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 11: Morwen (Ghost - Goth)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Morwen:
+"Yeesh morning is a pale jewel, Dreamer. The quiet dawn leaves snowy footprints across the grass like forgotten sonnets, and the warm rocks glow against the frost. I have been sipping a dark drink near the Everburn and listening to the viking rumor drift through the village like a lullaby of mild dread."
+
+PLAYER CHOICES:
+[1] "Pale jewel mornings are haunting."
+[2] "Dark drinks suit Yeesh dawn."
+[3] "Lullabies of mild dread are poetic."
+
+---
+
+TURN 2A (if player chose 1):
+Morwen: "Haunting because nothing else is awake yet. The world holds its breath between night and day, and the snowy footprints are the only witnesses."
+
+PLAYER CHOICES:
+[1] "Witness footprints are romantic."
+[2] "The world's held breath is powerful."
+[3] "Dawn limbo is beautiful."
+
+---
+
+TURN 2B (if player chose 2):
+Morwen: "They do. A dark drink in a warm hand while the cold air bites your nose is a small, elegant tragedy."
+
+PLAYER CHOICES:
+[1] "Elegant tragedy is a mood."
+[2] "Warm hands in cold air are perfect."
+[3] "Small tragedies are the best kind."
+
+---
+
+TURN 2C (if player chose 3):
+Morwen: "Poetic and comfortably gloomy. The idea of vikings arriving at sunrise is beautifully dramatic, even if they only exist in worried whispers."
+
+PLAYER CHOICES:
+[1] "Sunrise vikings are dramatic."
+[2] "Worried whispers have texture."
+[3] "Comfortable gloom is rare."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Morwen: "Romantic and a little lonely. Each footprint is a secret the snow keeps until the sun betrays it."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Morwen: "Powerful because it does not last. The world must eventually exhale and let the day begin, which makes the hush precious."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Morwen: "Beautiful in its fragility. Dawn limbo is a ghost's favorite hour, when even the solid things seem uncertain."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Morwen: "A mood I wear well. Life is mostly small elegant tragedies, and Yeesh season serves them with steam."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Morwen: "Perfectly contradictory. The hand is safe while the nose suffers. It is the season's dark gift."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Morwen: "The best because they are survivable. A tiny tragedy in a mug is better than a grand one in a storm."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Morwen: "Dramatic and doomed to be cozy. Any viking who arrives at dawn would be too cold to pillage and would just ask for a blanket."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Morwen: "They do. You can almost feel the villagers shivering in stereo. It adds depth to the rumor."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Morwen: "Rare and worth savoring. Most gloom is exhausting, but the Everburn warmth keeps it gentle."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 12: Spectra (Ghost - Nerd)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Spectra:
+"Dreamer! I have collected preliminary data on Yeesh morning phenomena. Warm rocks near the Everburn retain heat longer than cold rocks, snowy footprints preserve stride length with remarkable fidelity, and the local hot drink consumption appears to correlate strongly with sunrise proximity. The viking rumor remains anecdotal but has achieved a high cozy worry index."
+
+PLAYER CHOICES:
+[1] "Warm rock retention is solid science."
+[2] "Footprint fidelity is fascinating."
+[3] "Cozy worry index is a useful metric."
+
+---
+
+TURN 2A (if player chose 1):
+Spectra: "Solid and thermal. I tested three rocks at dawn and the warmest one attracted a small bird, Hoggy, and myself. Conclusion: warm rocks are social hubs."
+
+PLAYER CHOICES:
+[1] "Social hub rocks are important."
+[2] "Birds know about warm rocks."
+[3] "Hoggy is a scientific participant."
+
+---
+
+TURN 2B (if player chose 2):
+Spectra: "Fascinating because snow is a surprisingly good recording medium. I have catalogued crab tracks, bird hop patterns, and one set of suspiciously large boots that turned out to be a bucket the wind moved."
+
+PLAYER CHOICES:
+[1] "Snow records are reliable."
+[2] "Crab tracks are detailed."
+[3] "Wind buckets are false positives."
+
+---
+
+TURN 2C (if player chose 3):
+Spectra: "Useful for rumor taxonomy. The viking rumor currently ranks at 'mild communal shiver' on the cozy worry scale, well below 'forgot to bring a mug' but above 'sand is crunchy'."
+
+PLAYER CHOICES:
+[1] "Mild communal shiver is measurable."
+[2] "Forgotten mugs are worse than vikings."
+[3] "Crunchy sand is baseline worry."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Spectra: "Important for island infrastructure. Without warm rock social hubs, we would all just shiver separately. That is inefficient."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Spectra: "They do. Birds are excellent thermodynamic detectors. If a bird sits on a rock, that rock has been certified warm."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Spectra: "A willing one. Hoggy contributed snout data and a grunt that I interpreted as peer review."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Spectra: "Reliable until the sun erases them. I recommend taking notes quickly, before the evidence melts into rumor."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Spectra: "Detailed and somewhat chaotic. Crabs walk like they are solving a puzzle with their feet."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Spectra: "Common in Yeesh fieldwork. The wind moves many things and the imagination moves the rest."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Spectra: "Measurable in shivers per capita. I have been attempting to calibrate my own shiver response, but hot drinks interfere with the data."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Spectra: "Objectively worse. A viking rumor can be debunked, but a forgotten mug is a personal tragedy with no workaround."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Spectra: "Baseline and acceptable. Once crunchy sand becomes a concern, the island has adapted fully to Yeesh."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 13: Hush (Ghost - Monk)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Hush:
+"The quiet morning arrives without hurry, Dreamer. Warm rocks hold the night's memory, and the snowy footprints lead nowhere urgent. I have been sharing a hot drink with the dawn by the Everburn, and the silly viking rumor drifts past like steam from the cup."
+
+PLAYER CHOICES:
+[1] "Quiet mornings arrive gently."
+[2] "Warm rocks hold memory."
+[3] "Rumors drift like steam."
+
+---
+
+TURN 2A (if player chose 1):
+Hush: "They do. The morning does not knock. It enters through the cold air and sits beside you until you notice it."
+
+PLAYER CHOICES:
+[1] "Noticing the morning is practice."
+[2] "Cold air carries dawn quietly."
+[3] "Mornings sit beside us patiently."
+
+---
+
+TURN 2B (if player chose 2):
+Hush: "Memory of warmth, yes. A rock that has faced the sun stores a small kindness, much as the Everburn stores warmth for those who come after dark."
+
+PLAYER CHOICES:
+[1] "Stored kindness is a gift."
+[2] "Sun-facing rocks are generous."
+[3] "Small warmth is still warmth."
+
+---
+
+TURN 2C (if player chose 3):
+Hush: "They do. A rumor is warm breath on cold glass. It appears, worries the surface for a moment, and then fades."
+
+PLAYER CHOICES:
+[1] "Breath on glass is impermanent."
+[2] "Worry fades like steam."
+[3] "Rumors do not stay."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Hush: "Small warmth is enough. A warm rock, a quiet moment, and the day arriving in its own time. I do not need more."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Hush: "It does. Dawn moves softly so the world can wake gradually, not startled."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Hush: "Patiently and without demand. The morning waits like a warm rock waits for a cold hand."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Hush: "A gift received slowly. You cannot rush warmth from a rock. You must arrive and stay."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Hush: "Generous because they ask nothing. The sun touches the rock, and the rock simply keeps what it was given."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Hush: "Still warmth. Even a small ember of Everburn comfort is enough to sit with through a long quiet night."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Hush: "Impermanent and therefore not to fear. What rises as mist will not remain as flood."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Hush: "It does. When the breath cools, the glass clears, and what was feared becomes ordinary again."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Hush: "They do not. Only the island stays, and the warm truth of here. Rumors pass through, taking their small shivers with them."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 14: Sir Haunts-a-Lot (Ghost - Medieval)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Sir Haunts-a-Lot:
+"Hail, Dreamer! Yeesh morning has painted the realm in frost, and I have quested forth to find the warmest rock for the kingdom. My footprints in the snow mark a noble path, and I carry a hot drink in honor of the Everburn. The viking rumor troubles the villagers, but I say we shall welcome them with warm mugs and brave postures."
+
+PLAYER CHOICES:
+[1] "Questing for warm rocks is noble."
+[2] "Noble snowy paths are grand."
+[3] "Welcoming vikings with mugs is chivalrous."
+
+---
+
+TURN 2A (if player chose 1):
+Sir Haunts-a-Lot: "Noble and necessary. A warm rock is a castle for the cold, and I have claimed one near the beach for the good of all."
+
+PLAYER CHOICES:
+[1] "Beach warm rocks are strategic."
+[2] "A rock castle for the cold is clever."
+[3] "Claiming warmth for all is generous."
+
+---
+
+TURN 2B (if player chose 2):
+Sir Haunts-a-Lot: "Grand indeed. Each footprint in the snow is a verse in the epic of my morning patrol. I shall call it 'The Tale of the Toasty Knight'."
+
+PLAYER CHOICES:
+[1] "Epic footprints are dramatic."
+[2] "Toasty Knight is a good title."
+[3] "Morning patrols need poetry."
+
+---
+
+TURN 2C (if player chose 3):
+Sir Haunts-a-Lot: "Chivalrous and practical. A viking with a warm mug is less likely to cause trouble and more likely to compliment the island's rocks."
+
+PLAYER CHOICES:
+[1] "Warm mugs solve conflict."
+[2] "Viking compliments are welcome."
+[3] "Practical chivalry is the best."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Sir Haunts-a-Lot: "Strategic because the beach faces the cold sea. Holding a warm rock there is like guarding the realm's front door."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Sir Haunts-a-Lot: "Clever and compact. Castles take years to build, but a warm rock is ready immediately for cold knights."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Sir Haunts-a-Lot: "Generous and knightly. The warmest rock should be shared, lest the kingdom shiver in silence."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Sir Haunts-a-Lot: "Dramatic and historically accurate, in spirit. Every knight should leave a visible path so future poets may follow."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Sir Haunts-a-Lot: "A fine title. I may inscribe it on a leaf and leave it where the snow can read it."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Sir Haunts-a-Lot: "They do. Without poetry, a patrol is merely walking. With poetry, it becomes legend."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Sir Haunts-a-Lot: "They do. A warm mug soothes the throat and the temper. Many conflicts end at the bottom of a cup."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Sir Haunts-a-Lot: "Welcome and deserved. Even a northern visitor must appreciate a well-warmed rock and a friendly beach."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Sir Haunts-a-Lot: "The best. Real chivalry solves problems before they become problems, preferably with hot drinks."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 15: Flutter (Ghost - Shy)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Flutter:
+"Oh, Dreamer. I was out early because the quiet morning feels safer. I found some warm rocks near the Everburn path and sat very small. The snow kept my footprints like little pictures, and I brought a hot drink but it got cold because I was watching the clouds too long. The viking rumor makes me nervous, but I think if they come, they will also want a warm rock."
+
+PLAYER CHOICES:
+[1] "Quiet mornings feel safer."
+[2] "Snow keeping footprints is nice."
+[3] "Vikings probably want warm rocks too."
+
+---
+
+TURN 2A (if player chose 1):
+Flutter: "They do. There are fewer loud sounds and fewer people looking at me. I can almost be invisible in a quiet morning."
+
+PLAYER CHOICES:
+[1] "Invisibility in quiet mornings is peaceful."
+[2] "Fewer sounds are gentle."
+[3] "Early mornings are kind to shy ghosts."
+
+---
+
+TURN 2B (if player chose 2):
+Flutter: "Nice and a little scary. My footprints are proof that I walked there, and proof means someone could find me. But they also look pretty."
+
+PLAYER CHOICES:
+[1] "Pretty footprints are worth keeping."
+[2] "Proof of walking is brave."
+[3] "Snow keeps secrets softly."
+
+---
+
+TURN 2C (if player chose 3):
+Flutter: "Probably. If they are cold and far from home, a warm rock would be the first nice thing they see. Maybe that would make them less loud."
+
+PLAYER CHOICES:
+[1] "Warm rocks make visitors calm."
+[2] "Cold visitors need warmth first."
+[3] "Less loud visitors are better."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Flutter: "Peaceful because I can just exist without being noticed. The quiet morning lets me be part of the background."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Flutter: "Gentle. Loud sounds feel sharp, but a quiet morning wraps everything in soft air."
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Flutter: "They are. The world is still waking up and does not have extra attention to spend on me."
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Flutter: "Worth keeping, even if they show where I was. Beauty sometimes needs to be seen a little."
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Flutter: "Brave in a small way. Every step I take leaves evidence, and that evidence says 'I was here'."
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Flutter: "Softly. It does not shout your path. It just whispers it to anyone who looks closely."
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Flutter: "They do. Warmth makes shoulders drop and voices lower. I have noticed that with Hoggy."
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Flutter: "They do. Warmth before anything else. A cold visitor cannot think clearly until their hands stop shivering."
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Flutter: "Better. Loud visitors startle the birds. Calm visitors let the morning stay quiet."
+
+═══════════════════════════════════════════════════════════════
+CHARACTER 16: Giggles (Ghost - Cheerful)
+═══════════════════════════════════════════════════════════════
+
+TURN 1 - Giggles:
+"Dreamer! DREAMER! It's a quiet morning and the snow made footprint pictures of EVERYONE! I saw Hoggy's round hoof prints and birdy hop prints and maybe some viking boots but probably just a bucket! I have a hot drink and I found the warmest rock EVER near the Everburn, and we should name it!"
+
+PLAYER CHOICES:
+[1] "Naming the warmest rock is important."
+[2] "Footprint pictures are exciting."
+[3] "Hot drinks in quiet mornings are perfect."
+
+---
+
+TURN 2A (if player chose 1):
+Giggles: "Important! Every great warm rock deserves a great name! I am thinking 'Toastystone' or 'Hugrock' or maybe 'Mr. Toasty McWarmface'!"
+
+PLAYER CHOICES:
+[1] "Toastystone is grand."
+[2] "Hugrock is friendly."
+[3] "Mr. Toasty McWarmface is silly."
+
+---
+
+TURN 2B (if player chose 2):
+Giggles: "Exciting because the snow is like a big white paper and everyone draws their feet on it! Hoggy draws circles, birds draw hop-arrows, and I draw wiggly ghost swooshes!"
+
+PLAYER CHOICES:
+[1] "Hoggy's circles are cute."
+[2] "Bird hop-arrows are clever."
+[3] "Ghost swooshes are artistic."
+
+---
+
+TURN 2C (if player chose 3):
+Giggles: "Perfect! A quiet morning plus a hot drink plus a warm rock equals MAXIMUM COZY! I think my ghost got warmer just thinking about it!"
+
+PLAYER CHOICES:
+[1] "Maximum cozy is a good goal."
+[2] "Warm ghosts are happy ghosts."
+[3] "Thinking about cozy warms you up."
+
+---
+
+TURN 3AA (if player chose 1 then 1):
+Giggles: "Grand and official! I will announce it to the morning and maybe the rock will blush."
+
+---
+
+TURN 3AB (if player chose 1 then 2):
+Giggles: "Friendly because hugs are warm and rocks are warm so the name is basically a double warm!"
+
+---
+
+TURN 3AC (if player chose 1 then 3):
+Giggles: "Silly and perfect! Vikings would be too confused to be scary if we introduced them to Mr. Toasty McWarmface!"
+
+---
+
+TURN 3BA (if player chose 2 then 1):
+Giggles: "Cute because they are round and perfect and they make me want to boop them with my ghost nose!"
+
+---
+
+TURN 3BB (if player chose 2 then 2):
+Giggles: "Clever! Birds know exactly where they hopped and they leave little pointy evidence!"
+
+---
+
+TURN 3BC (if player chose 2 then 3):
+Giggles: "Artistic because ghosts don't touch the ground much, so when we do, it is a special swoosh!"
+
+---
+
+TURN 3CA (if player chose 3 then 1):
+Giggles: "Good goal and achievable! Just find rock, find drink, be quiet, done! Cozy achieved!"
+
+---
+
+TURN 3CB (if player chose 3 then 2):
+Giggles: "Happy and glowing! Warm ghosts glow like little lanterns for the snow to look at!"
+
+---
+
+TURN 3CC (if player chose 3 then 3):
+Giggles: "It does! My brain made a cozy thought and now my whole ghost feels like a tiny mug!"
+
+═══════════════════════════════════════════════════════════════
+END OF BATCH
+═══════════════════════════════════════════════════════════════
