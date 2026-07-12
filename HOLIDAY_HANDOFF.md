@@ -352,10 +352,47 @@ storyline is implemented," so this follows the same precedent as Peak
 Saucy's Tea Leaves/Lemon and Cool Valley's Chrysanthemum — offerings use any
 existing `'gift'`-category item instead.
 
+**Peak Yeesh** (on `main`, pushed to origin). Array slot 28 (was
+"Hat-Stacking Jubilee") in [src/daycycle.js](src/daycycle.js:73) renamed.
+Turned out lazier than the prior ranking guessed — reused three existing
+patterns instead of building anything new: `findEverburnSpot()`
+([src/game.js](src/game.js:2796)) reuses `findClearGroundNear` near the dock
+for a fire pit that appears at holiday start; `tryBuildEverburn()` consumes
+15 Sticks + 5 Logs to light it, same materials-consuming shape as Sweet
+Valley's altar (no new Yule Log/Evergreen Bough items). After dusk (18:00),
+Papa Yeesh spawns and wanders using Yogatron's exact wander tick, but with no
+dialogue tree — interacting (`tryTalkToPapaYeesh`) only shows a silent
+flavor line via `notify()`, per the outline's "does not speak when
+approached" rule. The real reward is automatic: `onPeakYeeshMidnight()` is
+called from [src/daycycle.js](src/daycycle.js:187)'s `onNewDay()` whenever
+yesterday's holiday was Peak Yeesh, and pays out based on
+`hog.yearGiftCount` — a new counter field on `Hog`
+([src/hog.js](src/hog.js:40)) incremented on every successful `feed()` call,
+serialized/deserialized, and reset after the reward fires. Sleeping before
+midnight skips the reward entirely: `trySleep()`
+([src/game.js](src/game.js:4444)) sets a `sleptPastMidnight` flag that
+`onPeakYeeshMidnight()` reads and clears — this is the first holiday to
+distinguish "the natural midnight clock rollover" from "the player used the
+sleep-skip," both of which call the same `onNewDay()`. 8 new furniture items
+(Yule Tree, Brick Fireplace, Garland, Wreath, Mistletoe Sprig, Candle Log,
+Holly Vase, Yule Goat Plush) were pure `ITEMS` data-table additions reusing
+the existing `home: {cls, placeOn, solid}` furniture system — one of them is
+handed out as the midnight reward if the IOU payout would exceed 20. Hoggy
+gets a "toasty" mood. The `getHolidayGreetingPrefix` comment bank was already
+pre-written and unwired at [src/dialogue.js:208](src/dialogue.js:208) — same
+situation Cool Valley's and Sweet Valley's banks were in, no changes needed.
+No new sprites — fire pit and Papa Yeesh fall back to colored shapes. Skipped:
+the outline's literal "drag the Yule Log to the fire pit" mechanic and
+separate Evergreen Bough harvesting (folded into the single
+materials-in-hand build interaction); the "feed the fire sticks all night"
+flavor upgrade; and Papa Yeesh literally routing between named neighbor
+homes (he wanders freely near the dock instead — cheaper than pathing to the
+housed-neighbor roster, same visual effect).
+
 ## Remaining, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
-decor primitive above).
+decor primitive above). Only two outlined holidays are left.
 
 1. **The Flealess Market** — needs three separate new subsystems: a
    barter-pay UI (the picker itself is reusable via `openMagicMenu`, but "any
@@ -364,25 +401,19 @@ decor primitive above).
    (`src/game.js` around L4880-4887 and L4989-4995 — currently only
    Garden Day's hoe gets a hardcoded exception, see
    `isUnbreakableToolToday` at L4849), and a statue/decor placement path
-   (nothing to reuse — no outdoor furniture/statue placement system exists).
-   The new plant type piece is cheap (confirmed: `PLANTS`/`SEED_TO_PLANT` in
-   gardening.js is a data-table addition, no new state machine), but the
-   other three pieces make this the most new plumbing of what's left.
-2. **Peak Yeesh** — needs 8 new furniture pieces (reuses the existing
-   furniture/decoration placement system, so each is a data-table item, not
-   new plumbing), a silent wandering NPC (Papa Yeesh), a "stay awake until
-   midnight" timing check, and reading back the player's yearly Hoggy-gift
-   count for the reward split. Its `getHolidayGreetingPrefix` comment bank is
-   already written ([src/dialogue.js:208](src/dialogue.js:208)), same
-   pre-written-but-unwired situation Cool Valley's and Sweet Valley's were
-   in. More moving parts than Flealess Market's individual pieces, but
-   nothing that needs a brand-new subsystem the way barter/unbreakable/decor
-   placement do.
-3. **Familiar Seller** — permanent named companion that follows the player
+   (nothing dedicated to reuse, though the outdoor decor primitive above —
+   `findClearGroundNear` + a static-prop draw, same shape as
+   `peakSaucyElder`/`peakYeesh`'s fire pit — covers "place a statue" well
+   enough that this may be cheaper than the original assessment guessed; the
+   new plant type piece is confirmed cheap too, a `PLANTS`/`SEED_TO_PLANT`
+   data-table addition in gardening.js). Re-verify the barter/unbreakable
+   pieces before starting, since Peak Yeesh's actual build came in easier
+   than its original ranking predicted.
+2. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection) — no existing "follow the player" or
-   "permanent named pet" system to reuse, unlike everything else on this
-   list.
+   "permanent named pet" system to reuse, unlike everything else built so
+   far.
 
 `Backwards Hats Day` (array[0]) is still unimplemented with no outline file —
 not ranked, since the skill's step 1 only considers `No` rows that have a

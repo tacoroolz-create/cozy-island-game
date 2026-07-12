@@ -70,7 +70,7 @@ const HOLIDAYS = [
     { name: 'Sweet Valley',           desc: 'A spring altar rises on the beach. Gather sticks and stones to build it, then offer a harvestable to honor the coming Island God.' },
     { name: 'Peak Saucy',             desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
     { name: 'Cool Valley',            desc: 'At dusk, neighbors gather for a memory walk to the shore. Leave offerings at memory stones and share sweet rice balls before the moon rises.' },
-    { name: 'Hat-Stacking Jubilee',   desc: 'The wearing of multiple hats is both encouraged and competitively scored.' }
+    { name: 'Peak Yeesh',             desc: 'The longest night. Build the Everburn bonfire near the dock, and watch for a silent visitor after dusk.' }
 ];
 
 // Day 1 of each season is still its own "season begins" holiday.
@@ -182,6 +182,13 @@ function onNewDay() {
         }
     } else if (isSeasonStart) {
         notify('Holiday! ' + world.season + ' season begins!', 4000);
+    }
+
+    // Peak Yeesh's reward resolves at the natural midnight rollover, so it has
+    // to check yesterday's holiday (today may be a different day entirely).
+    if (typeof onPeakYeeshMidnight === 'function') {
+        const yesterday = getHolidayForDay(day - 1);
+        if (yesterday && yesterday.name === 'Peak Yeesh') onPeakYeeshMidnight();
     }
 
     // Daily systems that hang off the calendar.

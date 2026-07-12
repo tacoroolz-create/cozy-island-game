@@ -38,6 +38,7 @@ class Hog {
         this.dailyFed = false;
         this.dailyRooted = false;   // once-per-day rooting dig near trees
         this.birthdayGiftGiven = false; // Hoggy's Birthday: community gift already triggered today
+        this.yearGiftCount = 0; // successful feeds since the last Peak Yeesh, for its midnight reward
         this.moveTimer = 0;
         this.frameTimer = 0;
         this.named = false;
@@ -209,6 +210,7 @@ class Hog {
         }
 
         this.dailyFed = true;
+        this.yearGiftCount = (this.yearGiftCount || 0) + 1;
         const liked = this.isLiked(itemId, item);
 
         if (liked) {
@@ -303,6 +305,7 @@ class Hog {
             dailyFed: this.dailyFed,
             dailyRooted: this.dailyRooted,
             birthdayGiftGiven: this.birthdayGiftGiven,
+            yearGiftCount: this.yearGiftCount,
             named: this.named,
             facing: this.facing,
             homeX: this.homeX,
@@ -317,6 +320,7 @@ class Hog {
         h.dailyFed = data.dailyFed || false;
         h.dailyRooted = data.dailyRooted || false;
         h.birthdayGiftGiven = data.birthdayGiftGiven || false;
+        h.yearGiftCount = data.yearGiftCount || 0;
         h.named = data.named || false;
         h.facing = data.facing || 'right';
         h.homeX = data.homeX || data.gridX;
@@ -524,6 +528,7 @@ function getHogHolidayMood() {
     if (name === 'Peak Saucy') return { emote: 'cozy', note: hog.name + ' flops near the bonfire, soaking up the longest day.' };
     if (name === 'Cool Valley') return { emote: 'moonlit', note: hog.name + ' sits quietly by the shore, watching the lanterns and the rising moon.' };
     if (name === 'Sweet Valley') return { emote: 'altar', note: hog.name + ' noses at the beach altar, hoping someone offers him something.' };
+    if (name === 'Peak Yeesh') return { emote: 'toasty', note: hog.name + ' curls up close to the Everburn, watching for a quiet visitor.' };
     return null;
 }
 
