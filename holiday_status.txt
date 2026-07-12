@@ -27,7 +27,7 @@ The Petal Path Maker           | Yes      | Implemented (path-artist + neighbors
 The Neighborhood Time Capsule  | Yes      | Implemented (historian buries a box; dig it up next cycle to hear it mangled)
 Sweet Valley                   | No       | Outline in Holidays/SweetValley.md
 Peak Saucy                     | Yes      | Implemented (bonfire elder hands out sweet tea, serve neighbors for friendship)
-Cool Valley                    | No       | Outline in Holidays/CoolValley.md
+Cool Valley                    | Yes      | Implemented (dusk elder shares rice balls, leave offerings at rock memory stones)
 Peak Yeesh                     | No       | Outline in Holidays/PeakYeesh.md
 
 (Re-audited July 10 against src/daycycle.js HOLIDAYS + per-holiday code.
@@ -348,3 +348,35 @@ follows that precedent instead of being the first exception) — Sweet Tea is
 a flavor-only held item, not a real ITEMS/RECIPES entry; also skipped the
 "both Sweet Tea and Lemonade" keepsake condition and the procession/pathing
 walk, per the outline's own "no complex multi-NPC pathing" constraint.)
+
+(July 11: Implemented Cool Valley. Array slot 27 (was "Jellybean Council")
+in src/daycycle.js renamed. Dusk-gated (spawns once world.timeMinutes passes
+5 PM on the holiday day, same threshold as Memory Lantern Night) via
+updateCoolValley/spawnCoolValley in src/game.js. findLanternShoreLine()
+(reused verbatim from Memory Lantern Night) lines 4 purely-ambient lanterns
+along the shore — no per-lantern memory text, since reading individual
+lines is already Memory Lantern Night's mechanic; these are just the "path
+to watch the moon rise" flavor from the outline. findMemoryStones() scans
+the whole map for existing rock/shiny_rock tiles (no new tile type, per the
+outline's own constraint) and picks 3 at random as "memory stones." A
+static elder (coolValleyElder, same static-prop shape as islandGod/
+peakSaucyElder) spawns near the dock and hands out a held Sweet Rice Ball
+on interact (heldSweetRiceBall, refillable all day, same pattern as Peak
+Saucy's tea); serving it to any present neighbor (tryServeRiceBall, checked
+before openDialogue at both interact call sites, same hook point as Peak
+Saucy) gives gainGift(2), with a one-time IOU reward after serving 3
+different neighbors. Facing a memory stone while holding any inventory
+item and interacting (tryLeaveMemoryOffering) consumes it as an offering
+(one-time per stone per day, generic flavor line, no neighbor tied since
+stones aren't personal); leaving all 3 offerings gives a one-time bonus
+IOU. Hoggy gets a "moonlit" mood; neighbor dialogue reuses the Cool Valley
+comment bank already sitting unused in src/dialogue.js's
+getHolidayGreetingPrefix (written in an earlier pass but never wired to a
+matching holiday.name until now). No new sprites — elder, lanterns, and
+stone offerings all fall back to colored shapes. Skipped: the outline's
+Chrysanthemum seasonal-flower item (offerings accept any inventory item
+instead, following the "flavor item, not a real crop" precedent every prior
+holiday has used) and a literal "high point" destination — this engine has
+no elevation/hill concept, so the moon-viewing gathering happens along the
+shore like Memory Lantern Night's instead, which fits the source
+tradition's waterside moon-viewing just as well.)

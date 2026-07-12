@@ -283,27 +283,61 @@ than being the first exception; also skipped the procession/pathing walk per
 the outline's own "no complex multi-NPC pathing" constraint, and the "both
 Sweet Tea and Lemonade" keepsake condition since there's only one drink type.
 
+**Cool Valley** (on `main`, pushed to origin). Array slot 27 (was "Jellybean
+Council") in [src/daycycle.js](src/daycycle.js:72) renamed. Dusk-gated (spawns
+once `world.timeMinutes` passes 5 PM, same threshold as Memory Lantern Night)
+via `updateCoolValley`/`spawnCoolValley` in
+[src/game.js](src/game.js:2517). `findLanternShoreLine()` is reused verbatim
+from Memory Lantern Night to line 4 purely-ambient lanterns along the shore —
+no per-lantern memory text, since reading individual lines is already Memory
+Lantern Night's mechanic; these are just the "path to watch the moon rise"
+flavor from the outline. `findMemoryStones()` scans the whole map for
+existing `rock`/`shiny_rock` tiles (no new tile type, per the outline's own
+constraint) and picks 3 at random as "memory stones." A static elder
+(`coolValleyElder`, same static-prop shape as `islandGod`/`peakSaucyElder`)
+spawns near the dock and hands out a held Sweet Rice Ball on interact
+(`heldSweetRiceBall`, refillable all day, same pattern as Peak Saucy's tea);
+serving it to any present neighbor (`tryServeRiceBall`, checked before
+`openDialogue` at both interact call sites, same hook point as Peak Saucy)
+gives `gainGift(2)`, with a one-time IOU reward after serving 3 different
+neighbors. Facing a memory stone while holding any inventory item and
+interacting (`tryLeaveMemoryOffering`) consumes it as an offering (one-time
+per stone per day, generic flavor line, no neighbor tied since stones aren't
+personal); leaving all 3 offerings gives a one-time bonus IOU. Hoggy gets a
+"moonlit" mood; neighbor dialogue reuses the Cool Valley comment bank already
+sitting unused in [src/dialogue.js](src/dialogue.js:197)'s
+`getHolidayGreetingPrefix` (written in an earlier pass but never wired to a
+matching `holiday.name` until now — worth checking `dialogue.js` for other
+pre-written-but-unwired banks before building the next holiday, since Peak
+Yeesh's bank is already there too at [src/dialogue.js:208](src/dialogue.js:208)).
+No new sprites — elder, lanterns, and stone offerings all fall back to
+colored shapes. Skipped: the outline's Chrysanthemum seasonal-flower item
+(offerings accept any inventory item instead, following the "flavor item,
+not a real crop" precedent every prior holiday has used) and a literal "high
+point" destination — this engine has no elevation/hill concept, so the
+moon-viewing gathering happens along the shore like Memory Lantern Night's
+instead, which fits the source tradition's waterside moon-viewing just as
+well.
+
 ## Remaining, ranked easiest → hardest to build
 Ranking based on how much new plumbing each needs vs. reusing existing systems
 (NPC roster, `gainGift` friendship, inventory, dialogue tree, the outdoor
 decor primitive above).
 
-1. **Cool Valley** — mostly reuses existing primitives: "memory stones" are
-   existing landmarks/tiles (no new tile type), lanterns can copy Memory
-   Lantern Night's shape almost verbatim, Sweet Rice Ball can be a flavor-only
-   held item like Peak Saucy's tea. Cleanest array slot (27), no ambiguity.
-2. **The Flealess Market** — 3 items, one of which is a whole new plant type
+1. **The Flealess Market** — 3 items, one of which is a whole new plant type
    (seed + growth stages). Confirmed in Peak Saucy's research that the
    crop-growth system (`PLANTS`/`SEED_TO_PLANT` in gardening.js) is a tiny
    data-table addition, not a new state machine — so this is less scary than
    it sounds, just more items than usual.
-3. **Peak Yeesh** — needs 8 new furniture pieces (reuses the existing
+2. **Peak Yeesh** — needs 8 new furniture pieces (reuses the existing
    furniture/decoration placement system, so each is a data-table item, not
    new plumbing), a silent wandering NPC (Papa Yeesh), a "stay awake until
    midnight" timing check, and reading back the player's yearly Hoggy-gift
-   count for the reward split. More moving parts than Cool Valley/Flealess
-   Market but nothing that needs a new subsystem.
-4. **Familiar Seller** — permanent named companion that follows the player
+   count for the reward split. Its `getHolidayGreetingPrefix` comment bank is
+   already written ([src/dialogue.js:208](src/dialogue.js:208)), same
+   pre-written-but-unwired situation Cool Valley's was in. More moving parts
+   than Flealess Market but nothing that needs a new subsystem.
+3. **Familiar Seller** — permanent named companion that follows the player
    forever, across saves. Biggest new system (persistent follower + naming
    input + per-year selection) — no existing "follow the player" or
    "permanent named pet" system to reuse, unlike everything else on this

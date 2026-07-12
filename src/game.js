@@ -1129,6 +1129,10 @@ function drawGame() {    // Handle continuous movement
     updatePeakSaucy();
     drawPeakSaucy();
 
+    // ===== COOL VALLEY: dusk memory walk =====
+    updateCoolValley();
+    drawCoolValley();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -2514,6 +2518,162 @@ function tryServeSweetTea(npc) {
     return true;
 }
 
+// ===== COOL VALLEY =====
+// Autumn-equinox remembrance holiday, dusk-gated like Memory Lantern Night
+// (same 5 PM threshold) so it reads as an evening gathering rather than an
+// all-day event. Reuses findLanternShoreLine() for a row of purely-ambient
+// lanterns (no per-lantern memory text — that's Memory Lantern Night's own
+// mechanic), existing rock/shiny_rock tiles as "memory stones" (no new tile
+// type, per the outline's own constraint) for a leave-an-offering loop, and
+// Peak Saucy's held-treat/serve shape for Sweet Rice Balls.
+const COOL_VALLEY_DUSK_HOUR = 17;
+const COOL_VALLEY_LANTERN_COUNT = 4;
+const COOL_VALLEY_STONE_COUNT = 3;
+const COOL_VALLEY_SERVE_THRESHOLD = 3;
+const COOL_VALLEY_ELDER_LINES = [
+    '"Sweet rice ball?" the elder offers. "Warm hands, warm memories."',
+    'The elder presses a rice ball into your hands. "Share it with someone you\'re glad is here."',
+    '"There\'s always another one," the elder says, handing you a fresh rice ball.'
+];
+const COOL_VALLEY_SERVE_LINES = [
+    ' takes it with both hands. "Thank you. This is a good night for this."',
+    ' eats it slow, watching the water. "Some nights just feel like remembering."',
+    ' smiles and looks toward the moon. "Perfect timing."',
+    ' savors it quietly. "You didn\'t have to, but I\'m glad you did."'
+];
+const COOL_VALLEY_OFFERING_LINES = [
+    'You leave it at the stone. It feels like saying hello to a good memory.',
+    'You set it down gently. The stone has heard a lot of stories, probably.',
+    'You leave it there, quiet and unhurried. No sadness in it, just remembering.'
+];
+let coolValley = null; // { day, elder:{x,y}, lanterns:[{x,y}], stones:[{x,y,offered}], served:Set, keepsakeGiven, offeringBonusGiven }
+let heldSweetRiceBall = false;
+
+// Every existing rock/shiny_rock tile on the map, shuffled and capped at `count`.
+function findMemoryStones(count) {
+    const found = [];
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x] && world.tiles[x][y];
+            if (t && (t.type === 'rock' || t.type === 'shiny_rock')) found.push({ x, y });
+        }
+    }
+    for (let i = found.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [found[i], found[j]] = [found[j], found[i]];
+    }
+    return found.slice(0, count);
+}
+
+function spawnCoolValley() {
+    if (!world) return;
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const elder = findClearGroundNear(dock.x, dock.y, 1, 12);
+    const lanterns = findLanternShoreLine(COOL_VALLEY_LANTERN_COUNT) || [];
+    const stones = findMemoryStones(COOL_VALLEY_STONE_COUNT).map(s => ({ x: s.x, y: s.y, offered: false }));
+    coolValley = { day: world.day, elder, lanterns, stones, served: new Set(), keepsakeGiven: false, offeringBonusGiven: false };
+    heldSweetRiceBall = false;
+    notify('Dusk settles and neighbors gather for Cool Valley\'s memory walk. An elder waits near the shore with sweet rice balls to share.', 5000);
+}
+
+function updateCoolValley() {
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (!holiday || holiday.name !== 'Cool Valley') {
+        if (coolValley) { coolValley = null; heldSweetRiceBall = false; }
+        return;
+    }
+    if (!world) return;
+    if (world.timeMinutes / 60 < COOL_VALLEY_DUSK_HOUR) return; // gathers at dusk
+    if (!coolValley || coolValley.day !== world.day) spawnCoolValley();
+}
+
+function drawCoolValley() {
+    if (!coolValley) return;
+    const TS = CONFIG.TILE_SIZE;
+    if (coolValley.elder) {
+        const sx = coolValley.elder.x * TS - cameraX, sy = coolValley.elder.y * TS - cameraY;
+        noStroke();
+        fill('#7E57C2');
+        rect(sx + TS * 0.2, sy + TS * 0.15, TS * 0.6, TS * 0.75, 3);
+        fill('#FFF9C4');
+        ellipse(sx + TS * 0.5, sy + TS * 0.15, TS * 0.3, TS * 0.3);
+    }
+    for (const lantern of coolValley.lanterns) {
+        const sx = lantern.x * TS - cameraX, sy = lantern.y * TS - cameraY;
+        noStroke();
+        fill('#FFD54F');
+        rect(sx + TS * 0.3, sy + TS * 0.25, TS * 0.4, TS * 0.5, 2);
+        fill(255, 240, 180, 80);
+        ellipse(sx + TS * 0.5, sy + TS * 0.5, TS * 1.2, TS * 1.2);
+    }
+    for (const stone of coolValley.stones) {
+        if (!stone.offered) continue;
+        const sx = stone.x * TS - cameraX, sy = stone.y * TS - cameraY;
+        noStroke();
+        fill('#F06292');
+        ellipse(sx + TS * 0.5, sy + TS * 0.15, TS * 0.35, TS * 0.25);
+    }
+}
+
+function isFacingCoolValleyElder() {
+    if (!coolValley || !coolValley.elder || !player) return false;
+    const facing = player.getFacingTile();
+    return !!facing && facing.x === coolValley.elder.x && facing.y === coolValley.elder.y;
+}
+
+function tryTalkToCoolValleyElder() {
+    if (!coolValley || !isFacingCoolValleyElder()) return false;
+    if (heldSweetRiceBall) {
+        notify('"You\'re already holding one — go find someone to share it with."', 3500);
+    } else {
+        heldSweetRiceBall = true;
+        notify(COOL_VALLEY_ELDER_LINES[Math.floor(Math.random() * COOL_VALLEY_ELDER_LINES.length)], 4000);
+    }
+    return true;
+}
+
+// Serving a held rice ball to a neighbor (tried before dialogue opens, same
+// hook point as Peak Saucy's tea / Lost Mail Day's delivery). No failure
+// state — any present neighbor can be served.
+function tryServeRiceBall(npc) {
+    if (!coolValley || !heldSweetRiceBall || !npc) return false;
+    heldSweetRiceBall = false;
+    coolValley.served.add(npc.id);
+    const line = COOL_VALLEY_SERVE_LINES[Math.floor(Math.random() * COOL_VALLEY_SERVE_LINES.length)];
+    notify(npc.name + line + ' Friendship +2.', 4500);
+    if (typeof npc.gainGift === 'function') npc.gainGift(2);
+    if (!coolValley.keepsakeGiven && coolValley.served.size >= COOL_VALLEY_SERVE_THRESHOLD) {
+        coolValley.keepsakeGiven = true;
+        inventory.addItem('iou', 1);
+        notify('Someone notices how many rice balls you\'ve shared tonight and presses an IOU into your hand. "For remembering with us."', 5000);
+    }
+    return true;
+}
+
+// Leaving an offering at an existing rock/shiny_rock "memory stone" — faces
+// the stone tile directly, same as facing any other solid interactable.
+function tryLeaveMemoryOffering() {
+    if (!coolValley || !player) return false;
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    const stone = coolValley.stones.find(s => s.x === facing.x && s.y === facing.y && !s.offered);
+    if (!stone) return false;
+    const active = (typeof inventory !== 'undefined') ? inventory.getActiveItem() : null;
+    if (!active) {
+        notify('An offering needs something in hand. You look at the quiet stone empty-handed.', 3500);
+        return true;
+    }
+    inventory.removeItem(active.id, 1);
+    stone.offered = true;
+    notify(COOL_VALLEY_OFFERING_LINES[Math.floor(Math.random() * COOL_VALLEY_OFFERING_LINES.length)], 4500);
+    if (!coolValley.offeringBonusGiven && coolValley.stones.every(s => s.offered)) {
+        coolValley.offeringBonusGiven = true;
+        inventory.addItem('iou', 1);
+        notify('Every memory stone along the walk is honored. The moon feels a little closer tonight.', 5000);
+    }
+    return true;
+}
+
 function drawDayNightOverlay() {
     const hour = world.timeMinutes / 60;
     let darkness = 0;
@@ -3243,6 +3403,7 @@ function mousePressed() {
             if (npc) {
                 if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return;
                 if (typeof tryServeSweetTea === 'function' && tryServeSweetTea(npc)) return;
+                if (typeof tryServeRiceBall === 'function' && tryServeRiceBall(npc)) return;
                 openDialogue(npc);
                 return;
             }
@@ -3272,6 +3433,9 @@ function mousePressed() {
         if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return;
         // Peak Saucy: talk to the bonfire elder for a cup of sweet tea
         if (typeof tryTalkToPeakSaucyElder === 'function' && tryTalkToPeakSaucyElder()) return;
+        // Cool Valley: talk to the elder for a rice ball, or leave an offering at a memory stone
+        if (typeof tryTalkToCoolValleyElder === 'function' && tryTalkToCoolValleyElder()) return;
+        if (typeof tryLeaveMemoryOffering === 'function' && tryLeaveMemoryOffering()) return;
         // Toast Toss interaction (only on holiday)
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
@@ -4528,6 +4692,7 @@ function keyPressed() {
                 if (npc) {
                     if (typeof tryDeliverLostMailLetter === 'function' && tryDeliverLostMailLetter(npc)) return false;
                     if (typeof tryServeSweetTea === 'function' && tryServeSweetTea(npc)) return false;
+                    if (typeof tryServeRiceBall === 'function' && tryServeRiceBall(npc)) return false;
                     openDialogue(npc);
                     return false;
                 }
@@ -4557,6 +4722,9 @@ function keyPressed() {
             if (typeof tryTalkToTourist === 'function' && tryTalkToTourist()) return false;
             // Peak Saucy: talk to the bonfire elder for a cup of sweet tea
             if (typeof tryTalkToPeakSaucyElder === 'function' && tryTalkToPeakSaucyElder()) return false;
+            // Cool Valley: talk to the elder for a rice ball, or leave an offering at a memory stone
+            if (typeof tryTalkToCoolValleyElder === 'function' && tryTalkToCoolValleyElder()) return false;
+            if (typeof tryLeaveMemoryOffering === 'function' && tryLeaveMemoryOffering()) return false;
             // Toast Toss interaction (only on holiday)
             if (typeof tryToastToss === 'function' && tryToastToss()) return false;
             // Garden Day: till soil with hoe before trying other interactions
