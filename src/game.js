@@ -6187,7 +6187,9 @@ function carveStarterPaths() {
 }
 
 // Step from (x0,y0) toward (x1,y1) one tile at a time, mostly along the larger
-// axis with an occasional perpendicular wobble, laying path on grass as it goes.
+// axis with an occasional perpendicular wobble, stamping a 3-wide swath of path
+// on grass as it goes. 3 wide gives a solid dirt center column with grass-framed
+// edge columns (a 1-wide path is all fringe and looks anemic).
 function carveMeanderingPath(x0, y0, x1, y1) {
     let x = x0, y = y0, guard = 0;
     const lay = (px, py) => {
@@ -6195,8 +6197,9 @@ function carveMeanderingPath(x0, y0, x1, y1) {
             ? world.tiles[px] && world.tiles[px][py] : null;
         if (t && t.type === 'grass') world.tiles[px][py] = { type: 'path', variant: 0 };
     };
+    const stamp = (cx, cy) => { for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) lay(cx + a, cy + b); };
     while ((x !== x1 || y !== y1) && guard++ < 500) {
-        lay(x, y);
+        stamp(x, y);
         const dx = x1 - x, dy = y1 - y;
         if (Math.abs(dx) >= Math.abs(dy)) {
             if (random() < 0.15 && dy !== 0) y += Math.sign(dy); else x += Math.sign(dx);
@@ -6204,7 +6207,7 @@ function carveMeanderingPath(x0, y0, x1, y1) {
             if (random() < 0.15 && dx !== 0) x += Math.sign(dx); else y += Math.sign(dy);
         }
     }
-    lay(x1, y1);
+    stamp(x1, y1);
 }
 
 function saveGame() {
