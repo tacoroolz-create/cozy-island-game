@@ -7326,6 +7326,17 @@ class World {
         const screenX = x * TS;
         const screenY = y * TS;
 
+        // Underground thicket: bottom-anchored 32px trees/boulders on 16px
+        // tiles. Deferred here so neighbouring wall bases can't clip them.
+        // variant 0-2 tree, 3-5 boulder, >=6 plain rock for breathing room.
+        if (tile.type === 'ug_wall') {
+            const key = tile.variant < 3 ? 'tiles.tree_full_underground'
+                      : tile.variant < 6 ? 'tiles.boulder' : null;
+            const spr = key && SPRITES[key];
+            if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
+            return;
+        }
+
         // Oak/fir share one overworld trunk; only the canopy on top varies by season.
         if (tile.type === 'tree' || tile.type === 'fir_tree') {
             const trunk = structureFrame('tiles.tree_trunk_overworld');
@@ -7523,23 +7534,14 @@ class World {
                 break;
             }
             case 'ug_wall': {
-                // The underground strip's boxing wall: a dark cavern base with
-                // scattered underground trees and boulders (variant 0-9). Big
-                // sprites are bottom-anchored and allowed to overlap into a
-                // dense thicket. variant >= 6 stays plain rock for breathing room.
+                // The underground strip's boxing wall: just the dark cavern base
+                // here. The scattered trees/boulders overflow their 16px tile
+                // (sprites are 32px wide), so they're deferred to the tall-
+                // decoration pass — otherwise the next column's base rect clips
+                // their right edge. See drawTallDecoration.
                 noStroke();
                 fill('#1E1A17');
                 rect(screenX, screenY, TS, TS);
-                const v = tile.variant;
-                if (v < 3) {
-                    const spr = SPRITES['tiles.tree_full_underground']; // 32x48
-                    if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
-                    else { fill('#22331F'); rect(screenX + 3, screenY, TS - 6, TS); }
-                } else if (v < 6) {
-                    const spr = SPRITES['tiles.boulder']; // 32x32
-                    if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
-                    else { fill('#3A352F'); ellipse(screenX + TS / 2, screenY + TS / 2, TS, TS * 0.8); }
-                }
                 break;
             }
             case 'grass_underworld': {
