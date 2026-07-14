@@ -100,7 +100,7 @@ const SPRITE_DEFS = {
     'tiles.bed_red':          'assets/tiles/bed_red.png',
     'tiles.sprout':           'assets/tiles/sprout.png',
     'tiles.soil':             'assets/tiles/soil.png',
-    'sprites.player':         'assets/sprites/orb.png',
+    'sprites.player':         'assets/sprites/player.png',
     'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
     // Underground building art + fortress scene props. Missing files hit the
     // error callback, get nulled, and colored fallbacks draw instead.
