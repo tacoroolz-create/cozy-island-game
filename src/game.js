@@ -71,6 +71,7 @@ function isNearSea(x, y, radius)   { return isNearZone(x, y, radius, 'sea'); }
 const SPRITES = {};
 const SPRITE_DEFS = {
     'tiles.grass':            'assets/tiles/grass.png',
+    'tiles.path':             'assets/tiles/path.png',
     'tiles.beach':            'assets/tiles/beach.png',
     'tiles.beach_edge':       'assets/tiles/beach_edge.png',
     'tiles.water':            'assets/tiles/water.png',
@@ -348,6 +349,8 @@ const ITEMS = {
     axe:         { name: 'Axe',         category: 'tool',     maxStack: 1, color: '#7CB342', desc: 'Chops wood faster.', durability: 3 },
     hoe:         { name: 'Hoe',         category: 'tool',     maxStack: 1, color: '#A1887F', desc: 'Tills soil.', durability: 3 },
     pickaxe:     { name: 'Pickaxe',     category: 'tool',     maxStack: 1, color: '#B0BEC5', desc: 'Mines rocks.', durability: 3 },
+    shovel:      { name: 'Shovel',      category: 'tool',     maxStack: 1, color: '#8B5A2B', desc: 'Carve a dirt path across the grass. Face grass and use.', unbreakable: true },
+    grass_seed:  { name: 'Grass Seed',  category: 'tool',     maxStack: 1, color: '#7CB342', desc: 'Scatter to turn a dirt path back into grass. Face a path and use.', unbreakable: true },
     sturdy_pickaxe: { name: 'Sturdy Pickaxe', category: 'tool', maxStack: 1, color: '#B0BEC5', desc: 'A pickaxe bartered from a traveling merchant. It never seems to dull.', unbreakable: true },
     // --- Treasure items (pulled from the water with a Gettin' Stick) ---
     glass_bottle:{ name: 'Glass Bottle',category: 'treasure', maxStack: 99, color: '#B3E5FC', desc: 'A barnacle-crusted bottle. Something inside?' },
@@ -4052,6 +4055,8 @@ function mousePressed() {
         if (typeof tryToastToss === 'function' && tryToastToss()) return;
         // Garden Day: till facing grass with hoe (swallows if tilled)
         if (typeof tryTillSoil === 'function' && tryTillSoil()) return;
+        // Shovel carves a path on faced grass; Grass Seed reverses it.
+        if (typeof tryPathTool === 'function' && tryPathTool()) return;
         // Dig a Hole Day: pickaxe the ground / deepen the hole
         if (typeof tryDigHole === 'function' && tryDigHole()) return;
         // Castle of Sticks Day: raise a twig tower on the clicked spot (sticks equipped)
@@ -4906,13 +4911,14 @@ function drawInteriorTile(tile, sx, sy, TS) {
     } else if (tile.type === 'home') {
         // Floor base, then the placed furniture / floor decoration on top.
         const grassSpr = SPRITES['tiles.grass'];
-        // grass.png is a large texture; sample one tile-sized patch instead of squashing it.
-        if (grassSpr) { image(grassSpr, sx, sy, TS, TS, 0, 0, TS, TS); } else { fill('#7CB342'); noStroke(); rect(sx, sy, TS, TS); }
+        // grass.png is a 48x48 autotile sheet; sample its neutral center cell (fringe-free).
+        if (grassSpr) { const o = grassSpr.width >= 48 ? 16 : 0; image(grassSpr, sx, sy, TS, TS, o, o, TS, TS); } else { fill('#7CB342'); noStroke(); rect(sx, sy, TS, TS); }
         drawHomeItem(tile.item, sx, sy, TS);
     } else if (tile.type === 'grass') {
         const spr = SPRITES['tiles.grass'];
         if (spr) {
-            image(spr, sx, sy, TS, TS, 0, 0, TS, TS);
+            const o = spr.width >= 48 ? 16 : 0;
+            image(spr, sx, sy, TS, TS, o, o, TS, TS);
         } else {
             fill('#7CB342');
             rect(sx, sy, TS, TS);
@@ -4933,7 +4939,7 @@ function drawInteriorTile(tile, sx, sy, TS) {
     } else if (tile.type === 'bed') {
         // Grass base first so no dark gaps around the sprite
         const grassSpr = SPRITES['tiles.grass'];
-        if (grassSpr) { image(grassSpr, sx, sy, TS, TS, 0, 0, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
+        if (grassSpr) { const o = grassSpr.width >= 48 ? 16 : 0; image(grassSpr, sx, sy, TS, TS, o, o, TS, TS); } else { fill('#7CB342'); rect(sx, sy, TS, TS); }
         const spr = SPRITES['tiles.' + tile.variant];
         if (spr) {
             // Bed sprite is 16x32 (2 tiles tall). Bottom-anchored so the base sits
@@ -5524,6 +5530,34 @@ function tryTillSoil() {
     return true;
 }
 
+// Shovel carves the faced grass tile into a dirt path; Grass Seed reverses a
+// path back to grass. Both are facing-based (like the hoe). Neighboring path/grass
+// tiles auto-redraw their fringe, so no hard edges appear while shaping.
+function tryPathTool() {
+    if (!player || !inventory) return false;
+    const active = inventory.getActiveItem();
+    if (!active || (active.id !== 'shovel' && active.id !== 'grass_seed')) return false;
+
+    const facing = player.getFacingTile ? player.getFacingTile() : null;
+    if (!facing || !facing.tile) return false;
+    // Never carve under a building or solid feature (tree, rock, pond, etc.).
+    if (typeof isSolidTile === 'function' && isSolidTile(facing.x, facing.y)) return false;
+    if (typeof buildingAt === 'function' && buildingAt(facing.x, facing.y)) return false;
+
+    if (active.id === 'shovel') {
+        if (facing.tile.type !== 'grass') return false;
+        facing.tile.type = 'path';
+        facing.tile.variant = 0;
+        notify('Carved a path.');
+    } else { // grass_seed
+        if (facing.tile.type !== 'path') return false;
+        facing.tile.type = 'grass';
+        facing.tile.variant = floor(random(3));
+        notify('Grass grows back over the path.');
+    }
+    return true;
+}
+
 // ===== HARVESTING =====
 function tryHarvest() {
     // Check all 4 adjacent tiles (up/down/left/right) for harvestable items
@@ -6107,6 +6141,7 @@ function startNewGame() {
     inventory = new Inventory();
     buildings = [];
     spawnPlayerShack();
+    carveStarterPaths();
     npcs = [];
     knownMagic = [];
     magicFlags = { mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 };
@@ -6133,6 +6168,43 @@ function spawnPlayerShack() {
     const b = new Building('shack', 52, 47, 'player');
     clearBuildingFootprint(b);
     buildings.push(b);
+}
+
+// Carve a couple of dirt paths from the player's shack door out to nearby
+// landmarks (the pond and the arrivals dock) at world gen. Only grass converts to
+// path, so ponds, beaches, buildings and decorations are left untouched. The path
+// tiles autotile their grassy fringe at draw time.
+function carveStarterPaths() {
+    const shack = buildings.find(b => b.type === 'shack' && b.owner === 'player');
+    if (!shack) return;
+    const door = shack.getDoorTile();
+    const start = { x: door.x, y: door.y + 1 }; // open tile just in front of the door
+    const targets = [
+        { x: ISLAND_POND_LANDING.x, y: ISLAND_POND_LANDING.y + 4 }, // grass just south of the pond
+        ISLAND_DOCK_ARRIVAL,                                        // the west-beach dock landing
+    ];
+    for (const t of targets) carveMeanderingPath(start.x, start.y, t.x, t.y);
+}
+
+// Step from (x0,y0) toward (x1,y1) one tile at a time, mostly along the larger
+// axis with an occasional perpendicular wobble, laying path on grass as it goes.
+function carveMeanderingPath(x0, y0, x1, y1) {
+    let x = x0, y = y0, guard = 0;
+    const lay = (px, py) => {
+        const t = (px >= 0 && px < CONFIG.WORLD_WIDTH && py >= 0 && py < CONFIG.WORLD_HEIGHT)
+            ? world.tiles[px] && world.tiles[px][py] : null;
+        if (t && t.type === 'grass') world.tiles[px][py] = { type: 'path', variant: 0 };
+    };
+    while ((x !== x1 || y !== y1) && guard++ < 500) {
+        lay(x, y);
+        const dx = x1 - x, dy = y1 - y;
+        if (Math.abs(dx) >= Math.abs(dy)) {
+            if (random() < 0.15 && dy !== 0) y += Math.sign(dy); else x += Math.sign(dx);
+        } else {
+            if (random() < 0.15 && dx !== 0) x += Math.sign(dx); else y += Math.sign(dy);
+        }
+    }
+    lay(x1, y1);
 }
 
 function saveGame() {
@@ -6599,6 +6671,32 @@ function drawCornerFill(sx, sy, TS, hx, vy, r, col) {
 // Cells are named for where the LAND (grass) sits, so e.g. the "East" cell has its
 // sand on the WEST — used when the beach is to the west of this grass tile.
 // Correction by charles: corner tile coordinates
+// Type of the tile at (x,y) on the active map, or null if out of bounds.
+function tileTypeAt(x, y) {
+    if (x < 0 || x >= CONFIG.WORLD_WIDTH || y < 0 || y >= CONFIG.WORLD_HEIGHT) return null;
+    const t = world.tiles[x] && world.tiles[x][y];
+    return t ? t.type : null;
+}
+
+// New terrain tiles (grass, path) ship as a 48x48 "9-tile" autotile sheet: a
+// neutral center cell (16,16) plus a soft transition fringe painted around the
+// outer ring. We composite the fringe per side: for each orthogonal neighbor that
+// is "foreign" (a different terrain we blend toward), overlay just that side's
+// fringe strip from the matching edge cell. Doing it per-side (not one whole
+// edge cell) means arbitrary shapes — 1-wide paths, corners, peninsulas — never
+// show a hard edge, since opposite/adjacent fringes stack. EDGE_FRINGE covers the
+// deepest wave of the hand-drawn border (~6px); inner strip pixels match the
+// center, so over-covering is invisible.
+const EDGE_FRINGE = 6;
+function drawEdgeFringe(sheet, x, y, screenX, screenY, TS, isForeign) {
+    if (!sheet || sheet.width < 48 || sheet.height < 48) return;
+    const S = EDGE_FRINGE;
+    if (isForeign(0, -1)) image(sheet, screenX, screenY, TS, S, 16, 0, 16, S);              // N
+    if (isForeign(0, 1))  image(sheet, screenX, screenY + TS - S, TS, S, 16, 48 - S, 16, S); // S
+    if (isForeign(-1, 0)) image(sheet, screenX, screenY, S, TS, 0, 16, S, 16);              // W
+    if (isForeign(1, 0))  image(sheet, screenX + TS - S, screenY, S, TS, 48 - S, 16, S, 16); // E
+}
+
 function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
     const edge = SPRITES['tiles.beach_edge'];
     if (!edge) return;
@@ -7356,15 +7454,19 @@ class World {
         // the texture tiles seamlessly across the island instead of repeating per tile.
         function drawGrass() {
             const g = SPRITES[seasonalGrassKey()] || SPRITES['tiles.grass'];
-            if (g) {
+            if (!g) { fill('#7CB342'); rect(screenX, screenY, TS, TS); return; }
+            if (g.width >= 48 && g.height >= 48) {
+                // 48x48 autotile sheet: neutral grass in the center, sandy fringe
+                // composited on any side facing beach (replaces the old beach_edge overlay).
+                image(g, screenX, screenY, TS, TS, 16, 16, TS, TS);
+                drawEdgeFringe(g, x, y, screenX, screenY, TS, (dx, dy) => tileTypeAt(x + dx, y + dy) === 'beach');
+            } else {
+                // Legacy single-tile / big-texture grass: sample by world position so it tiles.
                 const cols = Math.max(1, Math.floor(g.width / TS));
                 const rows = Math.max(1, Math.floor(g.height / TS));
                 const srcX = (((x % cols) + cols) % cols) * TS;
                 const srcY = (((y % rows) + rows) % rows) * TS;
                 image(g, screenX, screenY, TS, TS, srcX, srcY, TS, TS);
-            } else {
-                fill('#7CB342');
-                rect(screenX, screenY, TS, TS);
             }
         }
 
@@ -7572,9 +7674,33 @@ class World {
                         rect(screenX + 11, screenY + 5, 2, 4);
                     }
                 }
-                // Beach-edge overlay: a grass tile bordering beach draws a sand fringe
-                // (beach_edge.png) over the grass, on the side(s) facing the beach.
-                drawBeachEdgeOverlay(x, y, screenX, screenY, TS);
+                // Beach-edge overlay: a grass tile bordering beach draws a sand fringe over
+                // the grass. The 48x48 autotile grass sheet paints its own sand edge in
+                // drawGrass(), so only the legacy 16x16 (seasonal) grass needs beach_edge.png.
+                {
+                    const g = SPRITES[seasonalGrassKey()] || SPRITES['tiles.grass'];
+                    if (!(g && g.width >= 48 && g.height >= 48)) {
+                        drawBeachEdgeOverlay(x, y, screenX, screenY, TS);
+                    }
+                }
+                break;
+            }
+            case 'path': {
+                // Dirt path (48x48 autotile sheet): center dirt + grassy fringe on any side
+                // facing non-path terrain, so shaping paths never leaves a hard edge.
+                const p = SPRITES['tiles.path'];
+                if (p && p.width >= 48 && p.height >= 48) {
+                    image(p, screenX, screenY, TS, TS, 16, 16, TS, TS);
+                    drawEdgeFringe(p, x, y, screenX, screenY, TS, (dx, dy) => {
+                        const t = tileTypeAt(x + dx, y + dy);
+                        return t !== null && t !== 'path';
+                    });
+                } else if (p) {
+                    image(p, screenX, screenY, TS, TS);
+                } else {
+                    fill('#7A5A3A');
+                    rect(screenX, screenY, TS, TS);
+                }
                 break;
             }
             case 'tree':
