@@ -6355,6 +6355,8 @@ class Inventory {
 const CHAR_FW = 16;            // source frame width
 const CHAR_FH = 32;            // source frame height
 const WALK_FRAME_MS = 150;     // ms per animation frame
+// 3-frame walk rows play center→step→center→other-step (1,2,1,3 in 1-indexed art terms).
+const WALK_CYCLE_3 = [0, 1, 0, 2];
 const BOB_PATTERN = [0, -1, -2, -1]; // vertical bob offsets for still-image walk
 
 // Draw an image, optionally mirrored horizontally, optionally from a source rect.
@@ -6416,7 +6418,8 @@ function drawCharacterSprite(spr, dx, dy, facing, moving) {
         row = 0;
         flip = (facing === 'right');
     }
-    const frame = moving ? (phase % cols) : 0;
+    let frame = 0;
+    if (moving) frame = (cols === 3) ? WALK_CYCLE_3[phase % WALK_CYCLE_3.length] : (phase % cols);
     drawSpriteMaybeFlipped(spr, dx, dy, drawW, drawH, flip,
         frame * CHAR_FW, row * CHAR_FH, CHAR_FW, CHAR_FH);
     return true;
