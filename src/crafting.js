@@ -30,6 +30,10 @@ const RECIPES = [
         inputs: [ { id: 'log', count: 1 }, { id: 'fiber', count: 1 } ] },
     { output: 'pickaxe', cat: 'tools', name: 'Pickaxe', desc: 'Mines rocks faster.',
         inputs: [ { id: 'stone', count: 2 }, { id: 'stick', count: 1 } ] },
+    { output: 'shovel', cat: 'tools', name: 'Shovel', desc: 'Carve dirt paths across the grass.',
+        inputs: [ { id: 'log', count: 1 }, { id: 'stone', count: 1 } ] },
+    { output: 'grass_seed', cat: 'tools', name: 'Grass Seed', desc: 'Erase a dirt path back into grass.',
+        inputs: [ { id: 'fiber', count: 2 } ] },
 
     // --- CONSUMABLES ---
     { output: 'grilled_banana', cat: 'consumables', name: 'Grilled Banana', desc: 'A sweet, warm treat.',
