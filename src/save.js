@@ -446,6 +446,7 @@ function serializeGame() {
         npcs: npcs.map(n => n.serialize()),
         knownMagic: knownMagic || [],
         magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
+        almanacDiscovered: (typeof almanacDiscovered !== 'undefined') ? almanacDiscovered : {},
         quests: (typeof questSerialize === 'function') ? questSerialize() : null,
         club: (typeof clubSerialize === 'function') ? clubSerialize() : null,
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
@@ -532,6 +533,7 @@ function deserializeGame(data) {
 
     knownMagic = data.knownMagic || [];
     magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
+    if (typeof almanacDiscovered !== 'undefined') almanacDiscovered = data.almanacDiscovered || {};
     if (typeof questLoad === 'function') questLoad(data.quests); // defaults cover old saves
     if (typeof clubLoad === 'function') clubLoad(data.club);     // defaults cover old saves
 

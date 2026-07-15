@@ -610,6 +610,9 @@ function generateDialogue(personality, name) {
 function openDialogue(npc) {
     if (!npc || !npc.isPresent) return;
 
+    // Talking to a neighbor discovers them in the almanac (numeric id = roster NPC).
+    if (typeof npc.id === 'number' && typeof almDiscover === 'function') almDiscover('npc:' + npc.id);
+
     audioManager.playSFX('blip');
 
     // Backflip Day: greeting a neighbor makes them backflip.

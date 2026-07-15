@@ -23,6 +23,57 @@ const ALMANAC_ITEM_CATS = [
 let almNav = { sec: null, cat: null };
 let almSelectedIndex = 0;
 
+// ===== DISCOVERY =====
+// Everything in the almanac stays masked as "???" until the player discovers
+// it. Keys look like 'npc:3', 'item:seed', 'char:yogatron'. Holidays and a few
+// special characters are derived from existing state, so they aren't stored.
+let almanacDiscovered = {};
+function almDiscover(key) { almanacDiscovered[key] = true; }
+function almSeen(key) { return almanacDiscovered[key] === true; }
+
+function almHiddenRow() { return { kind: 'row', title: '???', sub: '???', right: '', swatch: '#555' }; }
+
+// An item counts as discovered once it's ever entered the inventory (recorded
+// on addItem); the current-count fallback catches saves from before this shipped.
+function almItemSeen(id) {
+    if (almSeen('item:' + id)) return true;
+    return (typeof inventory !== 'undefined' && inventory && inventory.countItem(id) > 0);
+}
+// The wild hog reveals once you've befriended or named it.
+function almCharHogSeen(h) {
+    h = h || almIslandEntities('hog');
+    return !!(h && (h.named || h.friendship > 0));
+}
+
+// First day a holiday ever occurs, given the season-anchored schedule.
+function almHolidayFirstDay(name) {
+    const si = SEASONAL_HOLIDAYS.findIndex(h => h.name === name);
+    if (si >= 0) return si * SEASON_LENGTH + 1; // day 1, 41, 81, 121
+    const k = HOLIDAYS.findIndex(h => h.name === name);
+    if (k < 0) return Infinity;
+    // Non-seasonal slot k first lands in season floor(k/6), day-of-season (k%6+1)*6+1.
+    return Math.floor(k / 6) * SEASON_LENGTH + ((k % 6) + 1) * HOLIDAY_INTERVAL + 1;
+}
+// You've "seen" a holiday once you've lived to (or past) its first occurrence.
+function almHolidayDiscovered(name) {
+    const today = (typeof world !== 'undefined' && world) ? world.day : 1;
+    return today >= almHolidayFirstDay(name);
+}
+
+// Overall discovery progress across every collectible in the almanac.
+function almPercentFilled() {
+    let total = 0, found = 0;
+    for (let i = 0; i < NPC_DEFS.length; i++) { total++; if (almSeen('npc:' + i)) found++; }
+    // Special characters: you (always), Mubaba, the hog, Yogatron.
+    total += 4; found += 1;
+    if (typeof magicFlags !== 'undefined' && magicFlags.mubabaMet) found++;
+    if (almCharHogSeen()) found++;
+    if (almSeen('char:yogatron')) found++;
+    for (const id in ITEMS) { total++; if (almItemSeen(id)) found++; }
+    for (const h of [...SEASONAL_HOLIDAYS, ...HOLIDAYS]) { total++; if (almHolidayDiscovered(h.name)) found++; }
+    return total ? Math.round(found / total * 100) : 0;
+}
+
 // The island's neighbor roster, regardless of which map is active (entity
 // globals hold the *active* map's lists — see MAP_ENTITY_FIELDS in game.js).
 function almIslandEntities(name) {
@@ -53,12 +104,14 @@ function getAlmanacEntries() {
         for (const id in ITEMS) {
             const it = ITEMS[id];
             if (it.category !== almNav.cat) continue;
+            if (!almItemSeen(id)) { entries.push(almHiddenRow()); continue; }
             const have = (typeof inventory !== 'undefined' && inventory) ? inventory.countItem(id) : 0;
             entries.push({ kind: 'row', title: it.name, sub: it.desc, right: have > 0 ? 'x' + have : '', swatch: it.color });
         }
     } else if (almNav.sec === 'neighbors') {
         const islanders = almIslandEntities('npcs');
         for (let i = 0; i < NPC_DEFS.length; i++) {
+            if (!almSeen('npc:' + i)) { entries.push(almHiddenRow()); continue; }
             const def = NPC_DEFS[i];
             const rec = islanders.find(n => n.id === i);
             const status = rec ? (rec.isPresent ? 'here' : 'away') : '—';
@@ -67,16 +120,20 @@ function getAlmanacEntries() {
     } else if (almNav.sec === 'npcs') {
         entries.push({ kind: 'row', title: PLAYER_NAME, sub: "The island dreamer. That's you!", right: '', swatch: '#4FC3F7' });
         const mubabaMet = (typeof magicFlags !== 'undefined') && magicFlags.mubabaMet;
-        entries.push({ kind: 'row', title: mubabaMet ? MUBABA_DEF.name : '???',
-            sub: mubabaMet ? 'Magic Merchant of the underground city.' : 'Someone lurks beneath the island...',
-            right: '', swatch: MUBABA_DEF.color });
+        entries.push(mubabaMet
+            ? { kind: 'row', title: MUBABA_DEF.name, sub: 'Magic Merchant of the underground city.', right: '', swatch: MUBABA_DEF.color }
+            : almHiddenRow());
         const islandHog = almIslandEntities('hog');
-        entries.push({ kind: 'row', title: (islandHog && islandHog.named) ? islandHog.name : 'Wild Hog',
-            sub: 'A friendly wild hog who loves snacks.', right: '', swatch: '#BC8F6F' });
-        entries.push({ kind: 'row', title: 'Yogatron', sub: 'Fitness Robot. Visits on Ab Appreciation Day.', right: '', swatch: '#FF6F00' });
+        entries.push(almCharHogSeen(islandHog)
+            ? { kind: 'row', title: islandHog.named ? islandHog.name : 'Wild Hog', sub: 'A friendly wild hog who loves snacks.', right: '', swatch: '#BC8F6F' }
+            : almHiddenRow());
+        entries.push(almSeen('char:yogatron')
+            ? { kind: 'row', title: 'Yogatron', sub: 'Fitness Robot. Visits on Ab Appreciation Day.', right: '', swatch: '#FF6F00' }
+            : almHiddenRow());
     } else if (almNav.sec === 'holidays') {
         const next = almNextHolidayDays();
         for (const h of [...SEASONAL_HOLIDAYS, ...HOLIDAYS]) {
+            if (!almHolidayDiscovered(h.name)) { entries.push(almHiddenRow()); continue; }
             entries.push({ kind: 'row', title: h.name, sub: h.desc,
                 right: next[h.name] !== undefined ? 'Day ' + next[h.name] : '', swatch: '#FFB74D' });
         }
@@ -154,7 +211,7 @@ function drawAlmanacTab(x, y, w, h) {
     if (almSelectedIndex >= entries.length) almSelectedIndex = Math.max(0, entries.length - 1);
 
     const listY = y + 16;
-    const listH = h - 16;
+    const listH = h - 16 - 11; // reserve a bottom strip for the discovery meter
     const hasInfoRows = entries.some(e => e.kind === 'row');
     const rowH = hasInfoRows ? 24 : 20;
     const maxRows = Math.floor(listH / rowH);
@@ -185,6 +242,13 @@ function drawAlmanacTab(x, y, w, h) {
         textSize(7);
         text((almSelectedIndex + 1) + '/' + entries.length, x + w, y + h);
     }
+
+    // Discovery meter, pinned to the bottom of every almanac view.
+    fill('#FFD54F');
+    textAlign(LEFT, BOTTOM);
+    textSize(8);
+    textFont('Courier New');
+    text('Percent filled: ' + almPercentFilled() + '%', x, y + h);
 }
 
 // A two-line info row: title + right-aligned note, description underneath.
@@ -268,7 +332,11 @@ function drawAlmanacCalendar(x, y, w, h) {
     } else {
         for (let d = day + 1; d <= day + HOLIDAY_INTERVAL; d++) {
             const hol = getHolidayForDay(d);
-            if (hol) { footer = '● Next: ' + hol.name + ' — Day ' + d + ' (' + (d - day) + 'd)'; break; }
+            if (hol) {
+                const label = almHolidayDiscovered(hol.name) ? hol.name : '???';
+                footer = '● Next: ' + label + ' — Day ' + d + ' (' + (d - day) + 'd)';
+                break;
+            }
         }
     }
     fill('#FFB74D');
