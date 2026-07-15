@@ -6493,9 +6493,13 @@ function drawSpriteMaybeFlipped(spr, dx, dy, dw, dh, flip, sx, sy, sw, sh) {
     pop();
 }
 
+const GHOST_FRAME_MS = 450;    // idle-float alternation cadence for ghosts
+
 // Draw a character sprite at (dx,dy) as a TS-wide x 2*TS-tall figure.
-// facing: 'down'|'up'|'left'|'right'. moving: bool. Returns false if no sprite.
-function drawCharacterSprite(spr, dx, dy, facing, moving) {
+// facing: 'down'|'up'|'left'|'right'. moving: bool.
+// idleAnim: alternate frames on a timer even when standing still (ghosts float).
+// Returns false if no sprite.
+function drawCharacterSprite(spr, dx, dy, facing, moving, idleAnim) {
     if (!spr) return false;
     const TS = CONFIG.TILE_SIZE;
     const drawW = TS, drawH = TS * 2;
@@ -6537,7 +6541,8 @@ function drawCharacterSprite(spr, dx, dy, facing, moving) {
         flip = (facing === 'right');
     }
     let frame = 0;
-    if (moving) frame = (cols === 3) ? WALK_CYCLE_3[phase % WALK_CYCLE_3.length] : (phase % cols);
+    if (idleAnim) frame = Math.floor(millis() / GHOST_FRAME_MS) % cols;
+    else if (moving) frame = (cols === 3) ? WALK_CYCLE_3[phase % WALK_CYCLE_3.length] : (phase % cols);
     drawSpriteMaybeFlipped(spr, dx, dy, drawW, drawH, flip,
         frame * CHAR_FW, row * CHAR_FH, CHAR_FW, CHAR_FH);
     return true;
