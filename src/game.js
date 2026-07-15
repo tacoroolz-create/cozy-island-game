@@ -6171,9 +6171,10 @@ function spawnPlayerShack() {
 }
 
 // Carve a couple of dirt paths from the player's shack door out to nearby
-// landmarks (the pond and the arrivals dock) at world gen. Only grass converts to
-// path, so ponds, beaches, buildings and decorations are left untouched. The path
-// tiles autotile their grassy fringe at draw time.
+// landmarks (the pond and the arrivals dock) at world gen. Paths plow through grass
+// and any grass decorations (trees, rocks, flowers) that fell on the route, but
+// leave sea, beach, ponds, docks and buildings untouched. The path tiles autotile
+// their grassy fringe at draw time.
 function carveStarterPaths() {
     const shack = buildings.find(b => b.type === 'shack' && b.owner === 'player');
     if (!shack) return;
@@ -6192,10 +6193,23 @@ function carveStarterPaths() {
 // edge columns (a 1-wide path is all fringe and looks anemic).
 function carveMeanderingPath(x0, y0, x1, y1) {
     let x = x0, y = y0, guard = 0;
+    // Grass and grass-based decorations the path may pave over. Sea/beach/pond/dock/
+    // building tiles aren't listed, so the path routes around them as before.
+    const CLEARABLE = new Set(['grass', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop', 'rosebush', 'tulip']);
     const lay = (px, py) => {
-        const t = (px >= 0 && px < CONFIG.WORLD_WIDTH && py >= 0 && py < CONFIG.WORLD_HEIGHT)
-            ? world.tiles[px] && world.tiles[px][py] : null;
-        if (t && t.type === 'grass') world.tiles[px][py] = { type: 'path', variant: 0 };
+        if (px < 0 || px >= CONFIG.WORLD_WIDTH || py < 0 || py >= CONFIG.WORLD_HEIGHT) return;
+        const row = world.tiles[px];
+        const t = row && row[py];
+        if (!t || !CLEARABLE.has(t.type)) return;
+        // Trees are 2-tall (trunk + canopy above). Clear both tiles so paving the
+        // trunk doesn't leave a canopy floating over the path; the paired tile drops
+        // back to grass and is re-paved by a later stamp if it's also on the route.
+        if (t.type === 'tree' || t.type === 'fir_tree') {
+            const trunkY = t.isTreeTop ? py + 1 : py;
+            if (trunkY - 1 >= 0) row[trunkY - 1] = { type: 'grass', variant: floor(random(3)) };
+            row[trunkY] = { type: 'grass', variant: floor(random(3)) };
+        }
+        row[py] = { type: 'path', variant: 0 };
     };
     const stamp = (cx, cy) => { for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) lay(cx + a, cy + b); };
     while ((x !== x1 || y !== y1) && guard++ < 500) {
