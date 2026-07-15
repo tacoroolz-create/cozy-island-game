@@ -114,7 +114,7 @@ class NPC {
             // tile size with bob + flip (un-flipped art faces left).
             const bob = moving ? BOB_PATTERN[Math.floor(millis() / WALK_FRAME_MS) % BOB_PATTERN.length] : 0;
             drawSpriteMaybeFlipped(spr, sx, topY + bob, w, h, this.facing === 'right');
-        } else if (!drawCharacterSprite(spr, sx, sy - TS, this.facing, moving)) {
+        } else if (!drawCharacterSprite(spr, sx, sy - TS, this.facing, moving, this.species === 'Ghost')) {
             fill(this.color);
             noStroke();
             rect(sx, topY, w, h);
