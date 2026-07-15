@@ -6698,6 +6698,19 @@ function drawEdgeFringe(sheet, x, y, screenX, screenY, TS, isForeign) {
     if (isForeign(0, 1))  image(sheet, screenX, screenY + TS - S, TS, S, 16, 48 - S, 16, S); // S
     if (isForeign(-1, 0)) image(sheet, screenX, screenY, S, TS, 0, 16, S, 16);              // W
     if (isForeign(1, 0))  image(sheet, screenX + TS - S, screenY, S, TS, 48 - S, 16, S, 16); // E
+
+    // Inside (concave) corners: a diagonal neighbor is foreign while both adjacent
+    // orthogonals match, so no edge strip covers that corner and it reads as a hard
+    // notch. Overlay the sheet's rounded inner-corner nub — grass filling the corner
+    // that eases back to the center. These live in a second 48-wide block (right half
+    // of a 96x48 sheet), so this only fires for sheets that ship them (dirt paths).
+    if (sheet.width >= 96) {
+        const IN = 48; // right block origin: grass field + dirt border with rounded inner corners
+        if (isForeign(-1, -1) && !isForeign(0, -1) && !isForeign(-1, 0)) image(sheet, screenX, screenY, S, S, IN + 40, 40, S, S);                     // NW
+        if (isForeign(1, -1)  && !isForeign(0, -1) && !isForeign(1, 0))  image(sheet, screenX + TS - S, screenY, S, S, IN + 2, 40, S, S);             // NE
+        if (isForeign(-1, 1)  && !isForeign(0, 1)  && !isForeign(-1, 0)) image(sheet, screenX, screenY + TS - S, S, S, IN + 40, 2, S, S);             // SW
+        if (isForeign(1, 1)   && !isForeign(0, 1)  && !isForeign(1, 0))  image(sheet, screenX + TS - S, screenY + TS - S, S, S, IN + 2, 2, S, S);     // SE
+    }
 }
 
 function drawBeachEdgeOverlay(x, y, screenX, screenY, TS) {
