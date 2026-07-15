@@ -7379,6 +7379,19 @@ class World {
             return;
         }
 
+        // Surface rock: 32px sprite on a 16px tile, anchored at its tile's bottom-left
+        // so it fills a 2x2 footprint (extends up and right) without hanging into — and
+        // being clipped against — its neighbours. Deferred here so base terrain can't
+        // clip it; the enclosing withBackflip still spins it on Backflip Day.
+        if (tile.type === 'rock') {
+            const spr = SPRITES['tiles.rock'];
+            if (!spr) return;
+            if (tile.depleted) tint(160, 160, 160);
+            image(spr, screenX, screenY - (spr.height - TS));
+            noTint();
+            return;
+        }
+
         const key = TALL_SPRITE_TILES[tile.type];
         if (!key) return;
         const f = structureFrame(key);
@@ -7759,24 +7772,17 @@ class World {
                 break;
             }
             case 'rock': {
-                // Draw grass base first, then rock sprite on top (sprite alone
-                // rotates on Backflip Day so the grass stays put).
+                // Grass base only (static). The 32px rock sprite overflows its 16px
+                // tile, so it's deferred to the tall-decoration pass (drawTallDecoration)
+                // — otherwise the next column's grass base clips its right edge. The
+                // sprite alone rotates on Backflip Day so the grass stays put.
                 drawBase('grass');
-                const spr = SPRITES['tiles.rock'];
-                withBackflip('tile:' + x + ',' + y, () => {
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    const offsetX = screenX - (spr.width - TS) / 2;
-                    const offsetY = screenY - (spr.height - TS);
-                    image(spr, offsetX, offsetY);
-                    noTint();
-                } else {
+                if (!SPRITES['tiles.rock']) {
                     fill(tile.depleted ? '#888' : '#9E9E9E');
                     ellipse(screenX + 8, screenY + 10, 10, 8);
                     fill(tile.depleted ? '#AAA' : '#BDBDBD');
                     ellipse(screenX + 6, screenY + 8, 4, 3);
                 }
-                });
                 break;
             }
             case 'shiny_rock': {
