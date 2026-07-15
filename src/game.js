@@ -146,6 +146,8 @@ const SPRITE_DEFS = {
     'tiles.poop':             'assets/sprites/poop.png',
     'tiles.waves':            'assets/sprites/waves.png',
     'tiles.pond':             'assets/sprites/pond.png',
+    'tiles.tunnel_surface':   'assets/tiles/tunnel_surface.png',
+    'tiles.tunnel_ug':        'assets/tiles/tunnel_ug.png',
     'tiles.dock':             'assets/tiles/dock.png',
 };
 
@@ -4002,6 +4004,8 @@ function mousePressed() {
         }
         // Try entering building first
         if (tryEnterBuilding()) return;
+        // Then the tunnel to/from the underground city
+        if (tryEnterTunnel()) return;
         // Check NPC talk, then harvest
         if (typeof npcAtFacing === 'function') {
             const npc = npcAtFacing();
@@ -4310,6 +4314,28 @@ function tryEnterBuilding() {
     gameState = STATE.INSIDE;
     audioManager.playSFX('door');
     notify("Entered " + buildingDisplayName(b));
+    return true;
+}
+
+// If the player is facing a tunnel (the hole between the surface and the
+// underground city), ask before dropping through. Reuses the dialogue advanced-
+// menu as a lightweight yes/no prompt (see openMagicMenu()); accepting runs the
+// same fall/bounce warp the ponds used (startPondWarp()).
+function tryEnterTunnel() {
+    const facing = player.getFacingTile();
+    if (!facing) return false;
+    const tile = facing.tile;
+    if (!tile || tile.type !== 'tunnel' || !tile.target) return false;
+    const dest = tile.target;
+    const goingDown = dest.map !== 'island';
+    const prompt = goingDown
+        ? "There's a hole in the ground. Wanna see what's inside?"
+        : "Light spills down from a hole above. Climb back up?";
+    openMagicMenu(prompt, [
+        { text: goingDown ? 'Yes, drop in' : 'Yes, climb up', action: () => { closeDialogue(); startPondWarp(dest); } },
+        { text: 'No, not now', action: () => closeDialogue() }
+    ]);
+    audioManager.playSFX('click');
     return true;
 }
 
@@ -5320,6 +5346,8 @@ function keyPressed() {
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // Check if facing a building - enter it
             if (tryEnterBuilding()) return false;
+            // Check if facing the tunnel to/from the underground city
+            if (tryEnterTunnel()) return false;
             // Check if facing an NPC - talk to them
             if (typeof npcAtFacing === 'function') {
                 const npc = npcAtFacing();
@@ -6171,7 +6199,7 @@ function spawnPlayerShack() {
 }
 
 // Carve a couple of dirt paths from the player's shack door out to nearby
-// landmarks (the pond and the arrivals dock) at world gen. Paths plow through grass
+// landmarks (the arrivals dock) at world gen. Paths plow through grass
 // and any grass decorations (trees, rocks, flowers) that fell on the route, but
 // leave sea, beach, ponds, docks and buildings untouched. The path tiles autotile
 // their grassy fringe at draw time.
@@ -6180,9 +6208,10 @@ function carveStarterPaths() {
     if (!shack) return;
     const door = shack.getDoorTile();
     const start = { x: door.x, y: door.y + 1 }; // open tile just in front of the door
+    // Only the dock gets a starter path. The tunnel to the underground city is
+    // deliberately left pathless so it reads as a natural oddity you stumble on.
     const targets = [
-        { x: ISLAND_POND_LANDING.x, y: ISLAND_POND_LANDING.y + 4 }, // grass just south of the pond
-        ISLAND_DOCK_ARRIVAL,                                        // the west-beach dock landing
+        ISLAND_DOCK_ARRIVAL, // the west-beach dock landing
     ];
     for (const t of targets) carveMeanderingPath(start.x, start.y, t.x, t.y);
 }
@@ -6771,6 +6800,15 @@ const ISLAND_POND_LANDING     = { x: 49, y: 41 }; // inner water tile, used as t
 const UNDERGROUND_POND_ORIGIN = { x: 74, y: 5 };   // top-left of the 6x6 underground pond
 const UNDERGROUND_POND_LANDING = { x: 76, y: 8 };  // inner water tile; used as the island pond's warp target
 
+// The hole-in-the-ground tunnels that replace the ponds as the route between
+// the surface and the underground city. Each is a solid 3x3 (48x48px) natural
+// feature — no path leads to it; interacting with it prompts a yes/no to travel
+// (see placeTunnel()/tryEnterTunnel()). Landings are a walkable tile just south
+// of the *far* tunnel, so you surface/emerge right beside the opposite hole.
+const ISLAND_TUNNEL_ORIGIN       = { x: 47, y: 39 }; // top-left of the 3x3 island tunnel
+const ISLAND_TUNNEL_LANDING      = { x: 48, y: 42 }; // grass just south of the island tunnel
+const UNDERGROUND_TUNNEL_LANDING = { x: 75, y: 11 }; // path just south of the underground tunnel
+
 // Mubaba waits inside his fortress (isPresent stays false, so this is never
 // drawn — see generateUnderground()/magic.js). The fortress is the 6th building
 // in the CSV row of 'b' markers (0-indexed: building 5).
@@ -6900,7 +6938,6 @@ class World {
         let buildingIndex = 0;
         const bSize = UNDERGROUND_BUILDING_SIZE;
         const tSize = UNDERGROUND_TREE_SIZE;
-        const pSize = UNDERGROUND_POND_SIZE;
 
         for (let r = 0; r < csv.length; r++) {
             const row = csv[r];
@@ -6948,12 +6985,13 @@ class World {
                         mark(c, r, bw, bh);
                     }
                 } else if (sym === 'p') {
-                    // 6x6 pond, bottom-left anchored in the CSV; convert to top-left for placePond.
+                    // The exit tunnel back to the surface: a 3x3 hole, bottom-left
+                    // anchored in the CSV; convert to top-left for placeTunnel.
                     const originX = wx;
-                    const originY = wy - pSize.h + 1;
-                    this.placePond(originX, originY, 'island',
-                                   ISLAND_POND_LANDING.x, ISLAND_POND_LANDING.y, 'down');
-                    mark(c, r, pSize.w, pSize.h);
+                    const originY = wy - 2;
+                    this.placeTunnel(originX, originY, 'island',
+                                     ISLAND_TUNNEL_LANDING.x, ISLAND_TUNNEL_LANDING.y, 'down');
+                    mark(c, r, 3, 3);
                 }
                 // '.' and anything else leave the solid ug_wall from initialization.
             }
@@ -7000,6 +7038,25 @@ class World {
                     tile.target = { map: targetMap, x: targetX, y: targetY, facing: facing || 'down' };
                 }
                 this.tiles[tx][ty] = tile;
+            }
+        }
+    }
+
+    // Lay a 3x3 impassable tunnel (a hole in the ground) at (originX, originY)
+    // (top-left corner). Every tile is solid so the player can't cross it; each
+    // carries the warp `target`, so facing any edge tile and interacting offers
+    // to travel (see tryEnterTunnel()). Drawn as one 48x48 image from tunnelOrigin.
+    placeTunnel(originX, originY, targetMap, targetX, targetY, facing) {
+        const T = 3;
+        for (let px = 0; px < T; px++) {
+            for (let py = 0; py < T; py++) {
+                const tx = originX + px, ty = originY + py;
+                if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
+                this.tiles[tx][ty] = {
+                    type: 'tunnel', solid: true,
+                    tunnelOrigin: (px === 0 && py === 0),
+                    target: { map: targetMap, x: targetX, y: targetY, facing: facing || 'down' }
+                };
             }
         }
     }
@@ -7129,12 +7186,11 @@ class World {
             }
         }
 
-        // Place a pond near-center, slightly above. The entire pond — water and banks —
-        // is a single 96×96 (6×6 tile) image drawn from the top-left tile (pondOrigin).
-        // Both the bank ring and the water are walkable; stepping into the water warps
-        // to the underground pond (see placePond()/checkPortalUnderfoot()).
-        this.placePond(ISLAND_POND_ORIGIN.x, ISLAND_POND_ORIGIN.y, 'underground',
-                       UNDERGROUND_POND_LANDING.x, UNDERGROUND_POND_LANDING.y, 'down');
+        // Place the tunnel to the underground city near-center, slightly above.
+        // It's an impassable 3x3 hole (no path leads to it — it reads as a natural
+        // oddity); interacting with it prompts to drop through (see tryEnterTunnel()).
+        this.placeTunnel(ISLAND_TUNNEL_ORIGIN.x, ISLAND_TUNNEL_ORIGIN.y, 'underground',
+                         UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
 
         // Place the arrivals dock on the west beach.
         this.placeDock(ISLAND_DOCK_ORIGIN.x, ISLAND_DOCK_ORIGIN.y);
@@ -7237,6 +7293,7 @@ class World {
         for (let x = x0; x < x1; x++) {
             for (let y = y0; y < y1; y++) {
                 this.drawPondOverlay(x, y, this.tiles[x][y]);
+                this.drawTunnelOverlay(x, y, this.tiles[x][y]);
                 this.drawDockOverlay(x, y, this.tiles[x][y]);
             }
         }
@@ -7288,6 +7345,20 @@ class World {
         } else {
             fill('#4A90C8');
             rect(screenX, screenY, TS * 6, TS * 6);
+        }
+    }
+
+    drawTunnelOverlay(x, y, tile) {
+        if (!tile || tile.type !== 'tunnel' || !tile.tunnelOrigin) return;
+        const spr = SPRITES[this.kind === 'underground' ? 'tiles.tunnel_ug' : 'tiles.tunnel_surface'];
+        const TS = CONFIG.TILE_SIZE;
+        const screenX = x * TS;
+        const screenY = y * TS;
+        if (spr) {
+            image(spr, screenX, screenY, TS * 3, TS * 3);
+        } else {
+            fill('#1A1A1A');
+            ellipse(screenX + TS * 1.5, screenY + TS * 1.5, TS * 2.5, TS * 2);
         }
     }
 
@@ -7938,6 +8009,12 @@ class World {
                 // The pond sprite is drawn later as one large overlay from pondOrigin.
                 // This pass only provides grass underneath the transparent PNG.
                 drawBase('grass');
+                break;
+            }
+            case 'tunnel': {
+                // The tunnel sprite is drawn later as one 48x48 overlay from
+                // tunnelOrigin; this pass just lays the matching ground beneath it.
+                drawBase(this.kind === 'underground' ? 'grass_underworld' : 'grass');
                 break;
             }
             case 'dock': {
