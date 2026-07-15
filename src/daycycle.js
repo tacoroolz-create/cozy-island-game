@@ -37,8 +37,10 @@ function freezeAtLateNight(w, prevMinutes) {
 }
 
 // ===== NONSENSICAL ISLAND HOLIDAYS =====
-// One unique community event every 6 days (day 1, 7, 13, 19 ...).
-// Year = SEASON_LENGTH * 4 = 160 days, so 160 / 6 = ~27 events.
+// Holidays fall on day-of-season 1, 7, 13, 19, 25, 31, 37 (every 6th day from
+// the season opener). Day-of-season 1 is that season's own festival (see
+// SEASONAL_HOLIDAYS); the other six slots draw from HOLIDAYS below, cycling
+// continuously so the mix drifts a little year to year.
 // Kept deterministic so players can learn the island calendar.
 const HOLIDAY_INTERVAL = 6;
 const HOLIDAYS = [
@@ -66,34 +68,39 @@ const HOLIDAYS = [
     { name: 'The Picnic Reset',       desc: 'A visiting organizer arranges every neighbor into one long communal picnic line.' },
     { name: 'The Returning Bird',     desc: 'A migrating bird returns, and one neighbor is convinced they are old friends.' },
     { name: 'The Petal Path Maker',   desc: 'A visiting path-artist connects the dock to your door with flower petals. Help fill it in.' },
-    { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' },
-    { name: 'Sweet Valley',           desc: 'A spring altar rises on the beach. Gather sticks and stones to build it, then offer a harvestable to honor the coming Island God.' },
-    { name: 'Peak Saucy',             desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
-    { name: 'Cool Valley',            desc: 'At dusk, neighbors gather for a memory walk to the shore. Leave offerings at memory stones and share sweet rice balls before the moon rises.' },
-    { name: 'Peak Yeesh',             desc: 'The longest night. Build the Everburn bonfire near the dock, and watch for a silent visitor after dusk.' }
+    { name: 'The Neighborhood Time Capsule', desc: 'A traveling historian buries a memory box. It stays buried until this holiday comes back around.' }
 ];
 
-// Day 1 of each season is still its own "season begins" holiday.
+// Season-opening festivals: each lands on day 1 of its season. Indexed to match
+// SEASONS order (Sweet, Saucy, Cool, Yeesh).
+const SEASONAL_HOLIDAYS = [
+    { name: 'Sweet Valley', desc: 'A spring altar rises on the beach. Gather sticks and stones to build it, then offer a harvestable to honor the coming Island God.' },
+    { name: 'Peak Saucy',   desc: 'A summer-solstice bonfire on the beach. Share cups of sweet tea with neighbors before the longest day ends.' },
+    { name: 'Cool Valley',  desc: 'At dusk, neighbors gather for a memory walk to the shore. Leave offerings at memory stones and share sweet rice balls before the moon rises.' },
+    { name: 'Peak Yeesh',   desc: 'The longest night. Build the Everburn bonfire near the dock, and watch for a silent visitor after dusk.' }
+];
+
+// True on day-of-season 1, 7, 13, 19, 25, 31, 37 (every HOLIDAY_INTERVAL days
+// from each season opener). The opener itself is a seasonal festival.
 function isHolidayDay(day) {
     if (day === undefined) day = world ? world.day : 1;
-    if (day === 1) return true; // first day of year / first season start
-    return day > 1 && (day % HOLIDAY_INTERVAL) === 1;
-}
-
-function getHolidayIndex(day) {
-    if (day === undefined) day = world ? world.day : 1;
-    // Index 0 is reserved for day 1 (year/season start); every subsequent
-    // HOLIDAY_INTERVAL day maps to the next entry in the HOLIDAYS list.
-    if (day <= 1) return 0;
-    return 1 + Math.floor((day - 2) / HOLIDAY_INTERVAL);
+    return ((day - 1) % SEASON_LENGTH) % HOLIDAY_INTERVAL === 0;
 }
 
 function getHolidayForDay(day) {
     if (day === undefined) day = world ? world.day : 1;
     if (!isHolidayDay(day)) return null;
-    const idx = getHolidayIndex(day);
-    const wrapped = idx % HOLIDAYS.length;
-    return HOLIDAYS[wrapped] || null;
+    const dayOfSeason0 = (day - 1) % SEASON_LENGTH; // 0..SEASON_LENGTH-1
+    if (dayOfSeason0 === 0) {
+        // Season opener → that season's own festival.
+        const seasonIdx = Math.floor((day - 1) / SEASON_LENGTH) % SEASONS.length;
+        return SEASONAL_HOLIDAYS[seasonIdx];
+    }
+    // One of the six non-opening slots this season; count continuously across
+    // seasons so the HOLIDAYS list drifts by a slot each year.
+    const seasonNum = Math.floor((day - 1) / SEASON_LENGTH);
+    const slot = dayOfSeason0 / HOLIDAY_INTERVAL - 1; // 0..5
+    return HOLIDAYS[(seasonNum * 6 + slot) % HOLIDAYS.length];
 }
 
 function getCurrentHoliday() {
@@ -180,8 +187,6 @@ function onNewDay() {
                 spawnTimeCapsuleHistorian();
             }
         }
-    } else if (isSeasonStart) {
-        notify('Holiday! ' + world.season + ' season begins!', 4000);
     }
 
     // Peak Yeesh's reward resolves at the natural midnight rollover, so it has

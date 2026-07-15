@@ -183,7 +183,6 @@ let nameEntryText = '';       // current text in the name-entry field
 let nameEntrySlot = 0;        // slot being named
 
 let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
-const YOGATRON_DAY_INDEX = 7; // 0-based holiday index matching HOLIDAYS order (day 43)
 let islandGod = null; // static giant turtle visitor for Day of the Island God
 let lostMail = null; // { day, letters: [{x,y,npcId,address,isPresent,delivered}], allDeliveredNotified }
 let heldLostMailLetter = null; // the Lost Mail Day letter currently in the player's hand, or null
