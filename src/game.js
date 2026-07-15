@@ -7351,10 +7351,17 @@ class World {
         // tiles. Deferred here so neighbouring wall bases can't clip them.
         // variant 0-2 tree, 3-5 boulder, >=6 plain rock for breathing room.
         if (tile.type === 'ug_wall') {
-            const key = tile.variant < 3 ? 'tiles.tree_full_underground'
-                      : tile.variant < 6 ? 'tiles.boulder' : null;
-            const spr = key && SPRITES[key];
-            if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS));
+            // variant 0-2 tree, 3-5 boulder, >=6 plain rock for breathing room.
+            if (tile.variant < 3) {
+                const spr = SPRITES['tiles.tree_full_underground'];
+                if (spr) image(spr, screenX - (spr.width - TS) / 2, screenY - (spr.height - TS)); // trunk centered
+            } else if (tile.variant < 6) {
+                // Boulder covers a 2x2 tile footprint, anchored at its tile's bottom-left
+                // (extends up and right) instead of centered, so it never hangs into — and
+                // gets clipped against — the neighbour to its left.
+                const spr = SPRITES['tiles.boulder'];
+                if (spr) image(spr, screenX, screenY - (spr.height - TS));
+            }
             return;
         }
 
