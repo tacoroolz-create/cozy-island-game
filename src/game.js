@@ -6699,6 +6699,14 @@ function drawEdgeFringe(sheet, x, y, screenX, screenY, TS, isForeign) {
     if (isForeign(-1, 0)) image(sheet, screenX, screenY, S, TS, 0, 16, S, 16);              // W
     if (isForeign(1, 0))  image(sheet, screenX + TS - S, screenY, S, TS, 48 - S, 16, S, 16); // E
 
+    // Outside (convex) corners: where two edge strips meet, the second strip's inner
+    // (dirt) half overwrites the first strip's grass, leaving a dirt bump poking into
+    // the grass. Repaint the corner with the sheet's proper wrapped-grass corner cell.
+    if (isForeign(0, -1) && isForeign(-1, 0)) image(sheet, screenX, screenY, S, S, 0, 0, S, S);                            // NW
+    if (isForeign(0, -1) && isForeign(1, 0))  image(sheet, screenX + TS - S, screenY, S, S, 48 - S, 0, S, S);              // NE
+    if (isForeign(0, 1)  && isForeign(-1, 0)) image(sheet, screenX, screenY + TS - S, S, S, 0, 48 - S, S, S);              // SW
+    if (isForeign(0, 1)  && isForeign(1, 0))  image(sheet, screenX + TS - S, screenY + TS - S, S, S, 48 - S, 48 - S, S, S); // SE
+
     // Inside (concave) corners: a diagonal neighbor is foreign while both adjacent
     // orthogonals match, so no edge strip covers that corner and it reads as a hard
     // notch. Overlay the sheet's rounded inner-corner nub — grass filling the corner
