@@ -1385,6 +1385,7 @@ function openYogatronDialogue() {
         ];
     }
 
+    if (typeof almDiscover === 'function') almDiscover('char:yogatron');
     dialogueState.active = true;
     dialogueState.npc = yogatron;
     dialogueState.currentNode = 'start';
@@ -6313,6 +6314,7 @@ class Inventory {
     addItem(itemId, count = 1, opts = {}) {
         const item = ITEMS[itemId];
         if (!item) return false;
+        if (typeof almDiscover === 'function') almDiscover('item:' + itemId);
 
         // Tools don't stack - each gets its own slot with durability.
         const isTool = item.category === 'tool';
