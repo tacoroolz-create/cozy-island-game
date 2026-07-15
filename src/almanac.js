@@ -76,9 +76,9 @@ function getAlmanacEntries() {
         entries.push({ kind: 'row', title: 'Yogatron', sub: 'Fitness Robot. Visits on Ab Appreciation Day.', right: '', swatch: '#FF6F00' });
     } else if (almNav.sec === 'holidays') {
         const next = almNextHolidayDays();
-        for (let i = 0; i < HOLIDAYS.length; i++) {
-            entries.push({ kind: 'row', title: HOLIDAYS[i].name, sub: HOLIDAYS[i].desc,
-                right: next[i] !== undefined ? 'Day ' + next[i] : '', swatch: '#FFB74D' });
+        for (const h of [...SEASONAL_HOLIDAYS, ...HOLIDAYS]) {
+            entries.push({ kind: 'row', title: h.name, sub: h.desc,
+                right: next[h.name] !== undefined ? 'Day ' + next[h.name] : '', swatch: '#FFB74D' });
         }
     } else if (almNav.sec === 'calendar') {
         // Calendar is drawn as a grid, not rows; only Back is navigable.
@@ -87,14 +87,16 @@ function getAlmanacEntries() {
     return entries;
 }
 
-// Next occurrence (absolute day, >= today) of each holiday index.
+// Next occurrence (absolute day, >= today) of each holiday, keyed by name.
 function almNextHolidayDays() {
     const next = {};
     const today = (typeof world !== 'undefined' && world) ? world.day : 1;
-    for (let d = today; d <= today + HOLIDAY_INTERVAL * HOLIDAYS.length; d++) {
-        if (!isHolidayDay(d)) continue;
-        const idx = getHolidayIndex(d) % HOLIDAYS.length;
-        if (next[idx] === undefined) next[idx] = d;
+    // A full year covers every seasonal opener; the extra HOLIDAYS span covers
+    // the non-seasonal rotation that drifts past a single year.
+    const horizon = SEASON_LENGTH * SEASONS.length + HOLIDAY_INTERVAL * HOLIDAYS.length;
+    for (let d = today; d <= today + horizon; d++) {
+        const hol = getHolidayForDay(d);
+        if (hol && next[hol.name] === undefined) next[hol.name] = d;
     }
     return next;
 }
