@@ -207,7 +207,7 @@ function checkArrivals() {
     const arrival = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
     npc.gridX = arrival.x;
     npc.gridY = arrival.y;
-    notify(npc.name + ' arrived on the island!');
+    announce('New neighbor: ' + npc.name + '!');
 }
 
 // Build shack for NPC on first night

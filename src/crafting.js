@@ -463,8 +463,8 @@ function craftingTabClick(x, y, w, h) {
         if (typeof gameState !== 'undefined' && gameState === STATE.MENU &&
             typeof menuTab !== 'undefined' && menuTab === 1) {
 
-            // Always let Escape / E close the menu, and Q/W switch tabs.
-            if (keyCode === ESCAPE || key === 'e' || key === 'E' ||
+            // Always let Escape / E close the menu, and Tab/Q/W switch tabs.
+            if (keyCode === ESCAPE || keyCode === TAB || key === 'e' || key === 'E' ||
                 key === 'q' || key === 'Q' || key === 'w' || key === 'W') {
                 // Reset crafting navigation when leaving the tab/menu.
                 if (keyCode === ESCAPE || key === 'e' || key === 'E') { craftNav = { cat: null, sub: null }; craftSelectedIndex = 0; }

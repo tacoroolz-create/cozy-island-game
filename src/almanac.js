@@ -353,8 +353,8 @@ function drawAlmanacCalendar(x, y, w, h) {
         if (typeof gameState !== 'undefined' && gameState === STATE.MENU &&
             typeof menuTab !== 'undefined' && menuTab === MENU_TABS.indexOf('Almanac')) {
 
-            // Always let Escape / E close the menu, and Q/W switch tabs.
-            if (keyCode === ESCAPE || key === 'e' || key === 'E' ||
+            // Always let Escape / E close the menu, and Tab/Q/W switch tabs.
+            if (keyCode === ESCAPE || keyCode === TAB || key === 'e' || key === 'E' ||
                 key === 'q' || key === 'Q' || key === 'w' || key === 'W') {
                 if (keyCode === ESCAPE || key === 'e' || key === 'E') { almNav = { sec: null, cat: null }; almSelectedIndex = 0; }
                 return orig.apply(this, arguments);
