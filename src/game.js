@@ -3324,17 +3324,8 @@ function drawDayNightOverlay() {
 }
 
 function drawUI() {
-    // Top bar with date/time
-    fill(0, 0, 0, 150);
-    rect(0, 0, width, 30);
-
-    fill(255);
-    textAlign(LEFT, CENTER);
-    textSize(12);
-    text(getDateString(), 10, 15);
-
-    textAlign(RIGHT, CENTER);
-    text('🕐 ' + world.getTimeString(), width - 10, 15);
+    // Top date/time bar removed: at the SNES-zoom resolution it collided with
+    // itself. Date/time now live in the Almanac / menu instead of on the HUD.
 
     // Save indicator
     if (world.showSaveIndicator) {
