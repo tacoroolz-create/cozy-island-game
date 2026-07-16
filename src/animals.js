@@ -537,6 +537,7 @@ function updateAnimals(dt) {
         groundLoot = groundLoot.filter(loot => {
             if (loot.x === player.x && loot.y === player.y) {
                 inventory.addItem(loot.id, loot.count);
+                if (typeof spawnItemPopup === 'function') spawnItemPopup(loot.id);
                 notify('Picked up: ' + ITEMS[loot.id].name);
                 return false;
             }
