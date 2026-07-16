@@ -154,6 +154,11 @@ const SPRITE_DEFS = {
     'tiles.tunnel_ug':        'assets/tiles/tunnel_ug.png',
     'tiles.dock':             'assets/tiles/dock.png',
     'ui.title':               'assets/ui/title.png',
+    'ui.menu_bg':             'assets/ui/menu_bg.png',
+    'ui.tab_selected':        'assets/ui/tab_selected.png',
+    'ui.tab_unselected':      'assets/ui/tab_unselected.png',
+    'ui.slot':                'assets/ui/inventory_slot.png',
+    'ui.slot_selected':       'assets/ui/inventory_slot_selected.png',
 };
 
 // Global game state
@@ -3517,22 +3522,31 @@ function menuLayout() {
 function drawMenuScreen() {
     const L = menuLayout();
 
-    // Dim overlay
-    fill(0, 0, 0, 200);
-    noStroke();
-    rect(0, 0, width, height);
-
-    // Panel
-    fill(20, 14, 10, 240);
-    stroke(180, 160, 120);
-    strokeWeight(1);
-    rect(L.panelX, L.panelY, L.panelW, L.panelH);
+    // Background: painted menu sprite fills the canvas; falls back to the old
+    // dim overlay + framed panel if the art failed to load.
+    const menuBg = SPRITES['ui.menu_bg'];
+    if (menuBg && menuBg.width) {
+        image(menuBg, 0, 0, width, height);
+    } else {
+        fill(0, 0, 0, 200);
+        noStroke();
+        rect(0, 0, width, height);
+        fill(20, 14, 10, 240);
+        stroke(180, 160, 120);
+        strokeWeight(1);
+        rect(L.panelX, L.panelY, L.panelW, L.panelH);
+    }
     noStroke();
 
     // ===== TAB BAR =====
+    const tabSel = SPRITES['ui.tab_selected'], tabUnsel = SPRITES['ui.tab_unselected'];
     for (let i = 0; i < MENU_TABS.length; i++) {
         const tx = L.panelX + i * L.tabW;
-        if (i === menuTab) {
+        const chip = i === menuTab ? tabSel : tabUnsel;
+        if (chip && chip.width) {
+            image(chip, tx, L.panelY, L.tabW, L.tabH);
+            fill(i === menuTab ? 255 : 200, i === menuTab ? 255 : 200, i === menuTab ? 200 : 200);
+        } else if (i === menuTab) {
             fill(80, 70, 50);
             rect(tx, L.panelY, L.tabW, L.tabH);
             fill(255, 255, 200);
@@ -3769,29 +3783,35 @@ function drawMenuSlot(slotIndex, x, y, size) {
     const isPendingSwap = mouseSelectedSlot === slotIndex;
     const isHotbar = slotIndex < 8;
 
-    // Background
-    if (isPendingSwap) {
-        fill(100, 255, 150, 200); // green highlight for pending swap
-    } else if (isSelected) {
-        fill(255, 255, 100, 180);
-    } else if (isHotbar && slotIndex === hotbarSlot) {
-        fill(100, 200, 255, 120);
+    // Background: painted slot sprite (base / selected), falls back to fills.
+    const slotImg = SPRITES[isSelected ? 'ui.slot_selected' : 'ui.slot'];
+    if (slotImg && slotImg.width) {
+        image(slotImg, x, y, size, size);
+        // State tints layered over the sprite frame.
+        noStroke();
+        if (isPendingSwap) fill(100, 255, 150, 90);
+        else if (isHotbar && slotIndex === hotbarSlot) fill(100, 200, 255, 70);
+        else fill(0, 0);
+        rect(x, y, size, size);
     } else {
-        fill(50, 40, 30, 180);
+        if (isPendingSwap) fill(100, 255, 150, 200);
+        else if (isSelected) fill(255, 255, 100, 180);
+        else if (isHotbar && slotIndex === hotbarSlot) fill(100, 200, 255, 120);
+        else fill(50, 40, 30, 180);
+        noStroke();
+        rect(x, y, size, size);
+        stroke(isSelected ? 255 : 150, isSelected ? 255 : 100, 100, 200);
+        strokeWeight(isSelected ? 2 : 1);
+        noFill();
+        rect(x, y, size, size);
     }
-    noStroke();
-    rect(x, y, size, size);
-
-    // Border
+    // Pending-swap always gets its bright border for clarity.
     if (isPendingSwap) {
         stroke(100, 255, 100);
         strokeWeight(2);
-    } else {
-        stroke(isSelected ? 255 : 150, isSelected ? 255 : 100, 100, 200);
-        strokeWeight(isSelected ? 2 : 1);
+        noFill();
+        rect(x, y, size, size);
     }
-    noFill();
-    rect(x, y, size, size);
     noStroke();
 
     // Item
