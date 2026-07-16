@@ -853,6 +853,9 @@ function draw() {
             }
             break;
     }
+
+    // Sleep transition wipe, on top of whatever state drew.
+    updateSleepFade();
 }
 
 function drawStartBackdrop() {
@@ -4756,8 +4759,45 @@ function isNightTime() {
 }
 
 // If the player is adjacent to a bed inside a building and it's night, skip to 6 AM.
+// ===== SLEEP FADE =====
+// A black wipe over the whole screen when the player sleeps: fade out, run the
+// day-advance at full black so the change isn't jarring, then fade back in.
+let sleepFadeAlpha = 0;     // 0 = clear, 255 = black
+let sleepFadeState = null;  // 'out' | 'in' | null
+let sleepFadeAction = null; // deferred work, run once at full black
+const SLEEP_FADE_SPEED = 10; // alpha/frame — ~0.4s each way at 60fps
+
+function sleepFadeActive() { return sleepFadeState !== null; }
+
+function startSleepFade(action) {
+    sleepFadeState = 'out';
+    sleepFadeAction = action;
+}
+
+// Draw + advance the fade. Called at the very end of draw() so it sits on top.
+function updateSleepFade() {
+    if (sleepFadeState === 'out') {
+        sleepFadeAlpha = Math.min(255, sleepFadeAlpha + SLEEP_FADE_SPEED);
+        if (sleepFadeAlpha >= 255) {
+            if (sleepFadeAction) { sleepFadeAction(); sleepFadeAction = null; }
+            sleepFadeState = 'in';
+        }
+    } else if (sleepFadeState === 'in') {
+        sleepFadeAlpha = Math.max(0, sleepFadeAlpha - SLEEP_FADE_SPEED);
+        if (sleepFadeAlpha <= 0) sleepFadeState = null;
+    }
+    if (sleepFadeAlpha > 0) {
+        push();
+        noStroke();
+        fill(0, sleepFadeAlpha);
+        rect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
+        pop();
+    }
+}
+
 function trySleep() {
     if (!insideBuilding || !world) return false;
+    if (sleepFadeActive()) return false; // already mid-transition
     const b = insideBuilding;
 
     // Find the bed tile
@@ -4787,6 +4827,13 @@ function trySleep() {
         return false;
     }
 
+    // Fade to black, advance the day at the darkest point, then fade back in.
+    startSleepFade(() => finishSleep(b, bedX, bedY));
+    return true;
+}
+
+// The actual day-advance, run at full black by the sleep fade.
+function finishSleep(b, bedX, bedY) {
     // Skip to next day 6:00 AM
     world.day++;
     world.timeMinutes = 6 * 60;
@@ -4811,7 +4858,6 @@ function trySleep() {
             player.y = wakeY;
         }
     }
-    return true;
 }
 
 // ===== INTERIOR RENDERING =====
@@ -6815,6 +6861,21 @@ const ISLAND_TUNNEL_ORIGIN       = { x: 47, y: 39 }; // top-left of the 3x3 isla
 const ISLAND_TUNNEL_LANDING      = { x: 48, y: 42 }; // grass just south of the island tunnel
 const UNDERGROUND_TUNNEL_LANDING = { x: 75, y: 11 }; // path just south of the underground tunnel
 
+// The island tunnel doesn't exist at the start of the game — the earth breaks
+// open overnight on the 3rd day of the first Saucy season (day 41 = Saucy day 1).
+const TUNNEL_REVEAL_DAY = 43;
+
+// Open the island tunnel if it isn't already there. Idempotent, so it's safe to
+// call on the reveal morning (see onNewDay) and again on load as a backstop.
+function revealIslandTunnel() {
+    const m = (typeof maps !== 'undefined' && maps.island) ? maps.island : world;
+    if (!m || !m.tiles || !m.tiles[ISLAND_TUNNEL_ORIGIN.x]) return;
+    const t = m.tiles[ISLAND_TUNNEL_ORIGIN.x][ISLAND_TUNNEL_ORIGIN.y];
+    if (t && t.type === 'tunnel') return;
+    m.placeTunnel(ISLAND_TUNNEL_ORIGIN.x, ISLAND_TUNNEL_ORIGIN.y, 'underground',
+                  UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
+}
+
 // Mubaba waits inside his fortress (isPresent stays false, so this is never
 // drawn — see generateUnderground()/magic.js). The fortress is the 6th building
 // in the CSV row of 'b' markers (0-indexed: building 5).
@@ -7195,8 +7256,12 @@ class World {
         // Place the tunnel to the underground city near-center, slightly above.
         // It's an impassable 3x3 hole (no path leads to it — it reads as a natural
         // oddity); interacting with it prompts to drop through (see tryEnterTunnel()).
-        this.placeTunnel(ISLAND_TUNNEL_ORIGIN.x, ISLAND_TUNNEL_ORIGIN.y, 'underground',
-                         UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
+        // It only exists from its reveal day on (see revealIslandTunnel); a fresh
+        // island generates without it. Saved tiles restore it on load past that day.
+        if (this.day >= TUNNEL_REVEAL_DAY) {
+            this.placeTunnel(ISLAND_TUNNEL_ORIGIN.x, ISLAND_TUNNEL_ORIGIN.y, 'underground',
+                             UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
+        }
 
         // Place the arrivals dock on the west beach.
         this.placeDock(ISLAND_DOCK_ORIGIN.x, ISLAND_DOCK_ORIGIN.y);

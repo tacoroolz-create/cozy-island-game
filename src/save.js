@@ -532,6 +532,8 @@ function deserializeGame(data) {
     }
 
     knownMagic = data.knownMagic || [];
+    // Backstop: if a save is already past the reveal day, make sure the tunnel exists.
+    if (world.day >= TUNNEL_REVEAL_DAY && typeof revealIslandTunnel === 'function') revealIslandTunnel();
     magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
     if (typeof almanacDiscovered !== 'undefined') almanacDiscovered = data.almanacDiscovered || {};
     if (typeof questLoad === 'function') questLoad(data.quests); // defaults cover old saves
