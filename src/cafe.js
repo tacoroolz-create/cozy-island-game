@@ -167,6 +167,8 @@ function openStanDialogue() {
     dialogueState.npc = STAN_NPC;
     dialogueState.currentNode = 'start';
     dialogueState.textRevealed = 0;
+    dialogueState.page = 0;
+    dialogueState.pageComplete = false;
     dialogueState.selectedChoice = 0;
     dialogueState.choicesVisible = false;
     dialogueState.advancedMenu = false;

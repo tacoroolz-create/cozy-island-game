@@ -13,7 +13,9 @@ let dialogueState = {
     active: false,
     npc: null,
     currentNode: null,
-    textRevealed: 0,
+    textRevealed: 0,       // chars revealed within the CURRENT page
+    page: 0,               // JRPG pagination: which 3-line page we're showing
+    pageComplete: false,   // current page's typewriter finished
     selectedChoice: 0,
     choicesVisible: false,
     advancedMenu: false,
@@ -647,6 +649,8 @@ function openDialogue(npc) {
     dialogueState.npc = npc;
     dialogueState.currentNode = 'start';
     dialogueState.textRevealed = 0;
+    dialogueState.page = 0;
+    dialogueState.pageComplete = false;
     dialogueState.selectedChoice = 0;
     dialogueState.choicesVisible = false;
     dialogueState.advancedMenu = false;
@@ -701,6 +705,8 @@ function openAdvancedMenu(npc) {
             dialogueState.advancedMenu = false;
             dialogueState.currentNode = 'start';
             dialogueState.textRevealed = 0;
+            dialogueState.page = 0;
+            dialogueState.pageComplete = false;
             dialogueState.selectedChoice = 0;
             dialogueState.choicesVisible = false;
             npc.gainTalk();
@@ -765,20 +771,72 @@ function getNodeText(node) {
     return node.text;
 }
 
+// Layout constants shared by update + draw so page boundaries agree.
+const DIALOGUE_LINES_PER_PAGE = 3;
+const DIALOGUE_BODY_SIZE = 12;
+const DIALOGUE_BODY_LINE_H = 14;
+
+// Wrap the current node's body text and split it into pages of
+// DIALOGUE_LINES_PER_PAGE lines (classic JRPG paging). Called by both
+// updateDialogue (typewriter gating) and drawDialogueScreen (render) so both
+// agree on where pages break. Mutates p5 text state (size/font) as a side
+// effect of measuring — callers reset what they need. Returns null if no node.
+function getDialogueBody() {
+    const tree = getDialogueTree();
+    const node = tree ? tree[dialogueState.currentNode] : null;
+    if (!node) return null;
+    const portrait = (typeof npcSlug === 'function' && dialogueState.npc)
+        ? SPRITES['portraits.' + npcSlug(dialogueState.npc.name)] : null;
+    const hasPortrait = !!(portrait && portrait.width);
+    const textX = hasPortrait ? 80 : 38;
+    const textMaxW = width - textX - 10;
+    textFont(DIALOGUE_FONT);
+    textSize(DIALOGUE_BODY_SIZE);
+    const lines = wrapTextLines(getNodeText(node), textMaxW);
+    const pages = [];
+    for (let i = 0; i < lines.length; i += DIALOGUE_LINES_PER_PAGE) {
+        pages.push(lines.slice(i, i + DIALOGUE_LINES_PER_PAGE));
+    }
+    if (pages.length === 0) pages.push([]);
+    return { node, portrait, hasPortrait, textX, textMaxW, lines, pages };
+}
+
+// Total characters in a page (array of wrapped lines).
+function dialoguePageChars(page) {
+    return page.reduce((sum, l) => sum + l.length, 0);
+}
+
 function updateDialogue(dt) {
     if (!dialogueState.active || dialogueState.advancedMenu) return;
-    if (!dialogueState.choicesVisible) {
-        // Typewriter effect — reveal ~30 chars/sec
-        const tree = getDialogueTree();
-        const node = tree ? tree[dialogueState.currentNode] : null;
-        if (node) {
-            const fullText = getNodeText(node);
-            dialogueState.textRevealed += (30 * dt) / 1000;
-            if (dialogueState.textRevealed >= fullText.length) {
-                dialogueState.textRevealed = fullText.length;
-                dialogueState.choicesVisible = true;
-            }
-        }
+    if (dialogueState.pageComplete) return; // waiting for input to page/choose
+    const body = getDialogueBody();
+    if (!body) return;
+    const page = body.pages[dialogueState.page] || [];
+    const pageChars = dialoguePageChars(page);
+    // Typewriter effect — reveal ~30 chars/sec within the current page.
+    dialogueState.textRevealed += (30 * dt) / 1000;
+    if (dialogueState.textRevealed >= pageChars) {
+        dialogueState.textRevealed = pageChars;
+        dialogueState.pageComplete = true;
+        // Last page? the choices open. Otherwise we wait for a page advance.
+        if (dialogueState.page >= body.pages.length - 1) dialogueState.choicesVisible = true;
+    }
+}
+
+// Enter/click before choices are up: finish typing the current page, or if it's
+// already done, flip to the next page (JRPG "▼ more").
+function advanceDialoguePage() {
+    const body = getDialogueBody();
+    if (!body) return;
+    const page = body.pages[dialogueState.page] || [];
+    if (!dialogueState.pageComplete) {
+        dialogueState.textRevealed = dialoguePageChars(page);
+        dialogueState.pageComplete = true;
+        if (dialogueState.page >= body.pages.length - 1) dialogueState.choicesVisible = true;
+    } else if (dialogueState.page < body.pages.length - 1) {
+        dialogueState.page++;
+        dialogueState.textRevealed = 0;
+        dialogueState.pageComplete = false;
     }
 }
 
@@ -890,34 +948,25 @@ function drawDialogueScreen() {
     }
 
     // ===== Normal branching dialogue =====
-    const tree = getDialogueTree();
-    if (!tree) return;
-    const node = tree[dialogueState.currentNode];
-    if (!node) return;
+    const body = getDialogueBody();
+    if (!body) return;
+    const node = body.node;
 
     // --- Layout metrics ---
     // A 64x64 portrait sits in the left gutter when one is loaded for this NPC;
     // the text column shifts right to clear it. No portrait -> the old 24-wide
     // colored-swatch layout.
-    const portrait = (typeof npcSlug === 'function' && dialogueState.npc)
-        ? SPRITES['portraits.' + npcSlug(dialogueState.npc.name)] : null;
-    const hasPortrait = !!(portrait && portrait.width);
-    const textX = hasPortrait ? 80 : 38;
+    const { portrait, hasPortrait, textX, textMaxW } = body;
     const topPad = 24;                 // space for the name/portrait header
-    const textMaxW = width - textX - 10;
-    const bodySize = 12, bodyLineH = 14;
+    const bodyLineH = DIALOGUE_BODY_LINE_H;
+    const bodyH = DIALOGUE_LINES_PER_PAGE * bodyLineH;   // fixed 3-line page
     const choiceSize = 11, choiceLineH = 13, choiceGap = 5, markerW = 14;
     const footerH = 14;
 
     textFont(DIALOGUE_FONT);
 
-    // Measure the full body text so the panel can grow to fit it.
-    textSize(bodySize);
-    const fullText = getNodeText(node);
-    const bodyLines = wrapTextLines(fullText, textMaxW);
-    const bodyH = bodyLines.length * bodyLineH;
-
     // Pre-wrap each choice (so long options also wrap, never trailing off-screen).
+    // Choices only ever appear once we're on the final page.
     textSize(choiceSize);
     const choiceBlocks = (node.choices || []).map(ch => {
         const lines = wrapTextLines(ch.text, textMaxW - markerW);
@@ -927,9 +976,9 @@ function drawDialogueScreen() {
         ? choiceBlocks.reduce((sum, b) => sum + b.h + choiceGap, 0)
         : 0;
 
-    // Size the panel to fit header + body + choices + footer (with a sane cap).
+    // Fixed-height panel (JRPG box): header + 3 body lines + choices + footer.
     let panelH = topPad + bodyH + 8 + choicesH + footerH;
-    panelH = Math.max(120, Math.min(panelH, height - 24));
+    panelH = Math.min(panelH, height - 8);
     const panelY = height - panelH;
 
     drawDialoguePanelBg(panelY, panelH);
@@ -956,18 +1005,20 @@ function drawDialogueScreen() {
     textSize(14);
     text(dialogueState.npc.name, textX, panelY + 6);
 
-    // Body text (typewriter) \u2014 drawn line-by-line with our own wrapping so it
-    // exactly matches the measured height and is never clipped by the choices.
-    const visibleText = fullText.substring(0, Math.floor(dialogueState.textRevealed));
-    textSize(bodySize);
+    // Body text \u2014 only the current page's (up to 3) lines, typewriter-revealed.
+    const pageLines = body.pages[dialogueState.page] || [];
+    textSize(DIALOGUE_BODY_SIZE);
     fill(230);
     textAlign(LEFT, TOP);
-    const visLines = wrapTextLines(visibleText, textMaxW);
-    for (let i = 0; i < visLines.length; i++) {
-        text(visLines[i], textX, panelY + topPad + i * bodyLineH);
+    let remaining = Math.floor(dialogueState.textRevealed);
+    for (let i = 0; i < pageLines.length; i++) {
+        const ln = pageLines[i];
+        const shown = remaining >= ln.length ? ln : ln.substring(0, Math.max(0, remaining));
+        text(shown, textX, panelY + topPad + i * bodyLineH);
+        remaining -= ln.length;
     }
 
-    // Choices
+    // Choices (only on the final page, once fully revealed)
     dialogueState._choiceRects = [];
     if (dialogueState.choicesVisible) {
         textSize(choiceSize);
@@ -994,20 +1045,19 @@ function drawDialogueScreen() {
         textSize(8);
         text('Arrows/WASD: choose \u00B7 Enter/click: select \u00B7 Esc: exit', width - 4, height - 4);
     } else {
+        // Blinking "\u25BC more" once the page finishes typing, plus a page counter.
+        if (dialogueState.pageComplete && (frameCount % 60) < 40) {
+            fill(255, 255, 100);
+            textAlign(RIGHT, BOTTOM);
+            textSize(10);
+            text('\u25BC', width - 6, panelY + topPad + bodyH + 2);
+        }
         fill(120);
         textAlign(RIGHT, BOTTOM);
         textSize(8);
-        text('Enter/click: continue', width - 4, height - 4);
+        const counter = body.pages.length > 1 ? '  (' + (dialogueState.page + 1) + '/' + body.pages.length + ')' : '';
+        text('Enter/click: continue' + counter, width - 4, height - 4);
     }
-}
-
-// Reveal the full body text immediately (skip the typewriter), showing choices.
-function revealDialogueText() {
-    const tree = getDialogueTree();
-    const node = tree ? tree[dialogueState.currentNode] : null;
-    if (!node) return;
-    dialogueState.textRevealed = getNodeText(node).length;
-    dialogueState.choicesVisible = true;
 }
 
 // Apply the choice at index i (friendship + advance/close).
@@ -1030,6 +1080,8 @@ function selectDialogueChoice(i) {
     } else {
         dialogueState.currentNode = choice.next;
         dialogueState.textRevealed = 0;
+        dialogueState.page = 0;
+        dialogueState.pageComplete = false;
         dialogueState.selectedChoice = 0;
         dialogueState.choicesVisible = false;
     }
@@ -1051,7 +1103,7 @@ function handleDialogueClick(mx, my) {
     }
 
     if (!dialogueState.choicesVisible) {
-        revealDialogueText();
+        advanceDialoguePage();
         return true;
     }
 
@@ -1092,9 +1144,9 @@ function handleDialogueKey(keyCode, key) {
     }
 
     if (!dialogueState.choicesVisible) {
-        // Skip the typewriter and show the choices.
+        // Finish the current page, or advance to the next page.
         if (keyCode === ENTER || keyCode === RETURN) {
-            revealDialogueText();
+            advanceDialoguePage();
             return true;
         } else if (keyCode === ESCAPE) {
             closeDialogue();
