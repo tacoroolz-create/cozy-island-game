@@ -24,8 +24,12 @@ const CONFIG = {
     TILE_SIZE: 16,
     WORLD_WIDTH: 100,
     WORLD_HEIGHT: 100,
-    CANVAS_WIDTH: 640,
-    CANVAS_HEIGHT: 384,
+    // Internal render resolution. Kept low (SNES-ish: 20x12 tiles) so tiles read
+    // large; CSS stretches this buffer to the window as a pure pixelated zoom.
+    // Must stay 5:3 or the index.html aspect ratio needs updating too.
+    // ponytail: tune this pair for zoom level — 400x240 = gentler, 256x192 = tighter.
+    CANVAS_WIDTH: 320,
+    CANVAS_HEIGHT: 192,
     DAY_LENGTH_MINUTES: 30
 };
 
