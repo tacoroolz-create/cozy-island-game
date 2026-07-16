@@ -330,6 +330,7 @@ function drawFriendsTab(x, y, w, h) {
         text('Day ' + npc.daysOnIsland + shelterLabel, x + 22, rowY + 20);
 
         rowY += 28;
-        if (rowY > y + h - 20) break;
     }
+    // Report full content height so the menu can scroll the list.
+    if (typeof menuContentH !== 'undefined') menuContentH = rowY - y;
 }

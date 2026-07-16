@@ -333,19 +333,20 @@ function drawGardeningTab(x, y, w, h) {
         textSize(7);
         text('x' + s.count + '  -> ' + plantName, x + 12, ry + 9);
         ry += 20;
-        if (ry > y + h - 12) break;
     }
 
-    // Footer hint
+    // Footer hint (flows after the list so it scrolls with the content)
     fill(120);
     textSize(7);
-    textAlign(LEFT, BOTTOM);
+    textAlign(LEFT, TOP);
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    ry += 4;
     if (holiday && holiday.name === 'Garden Day') {
-        text('Tip: till grass with a hoe to make soil. Hoes never break today!', x, y + h - 2);
+        text('Tip: till grass with a hoe to make soil. Hoes never break today!', x, ry);
     } else {
-        text('Tip: till grass with a hoe to make soil.', x, y + h - 2);
+        text('Tip: till grass with a hoe to make soil.', x, ry);
     }
+    if (typeof menuContentH !== 'undefined') menuContentH = ry + 12 - y;
 }
 
 // Collect distinct seed item ids + counts currently in inventory.
