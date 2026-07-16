@@ -626,7 +626,7 @@ function spawnSnakes() {
             gave: false                      // one gift per dart
         });
     }
-    notify("It's Snake Run Day! Snakes are darting between the island's trees and rocks.", 4000);
+    announce('Snake Run Day begins!', 4000);
 }
 
 function updateSnakes(dt) {
@@ -747,7 +747,7 @@ function spawnTurtleCrossing() {
         });
     }
     turtleCrossing = { day: world.day, y: row.y, startX: row.startX, endX: row.endX, list, helped: false };
-    notify("It's Turtle Crossing Guard Day! A wave of turtles is crawling across the island — stand near one to help it along safely.", 4500);
+    announce('Turtle Crossing Guard Day begins!', 4500);
 }
 
 function updateTurtleCrossing(dt) {
@@ -851,7 +851,7 @@ function spawnReturningBird() {
     friend.stationary = true;
     friend.gridX = stops[0].x;
     friend.gridY = stops[0].y;
-    notify('A bird has returned to the island — ' + friend.name + ' swears they know it.', 4500);
+    announce('The Returning Bird has arrived!', 4500);
 }
 
 function updateReturningBird() {

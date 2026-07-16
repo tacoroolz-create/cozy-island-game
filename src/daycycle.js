@@ -144,10 +144,14 @@ function onNewDay() {
         onNewSeason();
     }
 
+    // The one day-start readout: today's date + holiday (if any). Everything
+    // else that used to fire at sunrise is routine chatter and stays suppressed.
+    const holidayToday = isFestival ? getHolidayForDay(day) : null;
+    announce('Day ' + day + '  ·  ' + world.season + (holidayToday ? '  ·  ' + holidayToday.name : ''), 4000);
+
     if (isFestival) {
         const holiday = getHolidayForDay(day);
         if (holiday) {
-            notify('Holiday! Today is ' + holiday.name + '!', 4000);
             if (holiday.name === 'Toast Toss Tournament' && typeof spawnToastTargets === 'function') {
                 spawnToastTargets();
                 if (typeof inventory !== 'undefined') {
@@ -215,7 +219,7 @@ function onNewDay() {
 
 function onNewSeason() {
     // Notify and dispatch callbacks. The actual season value is updated before this is called.
-    notify('New season: ' + world.season + '!');
+    announce('New season: ' + world.season + '!');
 
     for (const cb of newSeasonCallbacks) {
         try { cb(); } catch(e) {}

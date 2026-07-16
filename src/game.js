@@ -705,9 +705,20 @@ const HARVEST_TYPES = {
 // ===== NOTIFICATIONS =====
 let notifications = [];
 
-function notify(text, duration = 2000) {
+// When true, the event readout only shows "important" messages: the day's
+// date/holiday and non-daily events (new neighbors, holiday event beginnings).
+// All the routine chatter (pickups, swaps, animal spawns, how-to tips) is
+// suppressed. Flip to false to bring every notify() back.
+let MINIMAL_NOTIFICATIONS = true;
+
+function notify(text, duration = 2000, important = false) {
+    if (MINIMAL_NOTIFICATIONS && !important) return;
     notifications.push({ text, life: duration, maxLife: duration, y: height + 20 });
+    if (notifications.length > 3) notifications.shift(); // keep the stack short
 }
+
+// Curated, always-shown events (day date/holiday, new neighbors, holiday starts).
+function announce(text, duration = 3000) { notify(text, duration, true); }
 
 function updateNotifications(dt) {
     for (let i = notifications.length - 1; i >= 0; i--) {
@@ -717,24 +728,24 @@ function updateNotifications(dt) {
             notifications.splice(i, 1);
         } else {
             // Anchor bottom-left, stack upward
-            const targetY = height - 18 - i * 14;
+            const targetY = height - 12 - i * 10;
             n.y += (targetY - n.y) * 0.15;
         }
     }
 }
 
 function drawNotifications() {
-    textSize(10);
+    textSize(7);
     textFont('Courier New');
     textAlign(LEFT, CENTER);
     for (const n of notifications) {
         const alpha = n.life < 500 ? map(n.life, 0, 500, 0, 255) : 255;
         noStroke();
-        fill(0, 0, 0, alpha * 0.7);
-        const tw = textWidth(n.text) + 10;
-        rect(8, n.y, tw, 12);
+        fill(0, 0, 0, alpha * 0.6);
+        const tw = Math.min(textWidth(n.text) + 8, width - 12);
+        rect(6, n.y, tw, 9);
         fill(255, 255, 200, alpha);
-        text(n.text, 13, n.y + 6);
+        text(n.text, 10, n.y + 5);
     }
 }
 
@@ -5466,6 +5477,12 @@ function keyPressed() {
     } else if (gameState === STATE.MENU) {
         if (key === 'e' || key === 'E' || keyCode === ESCAPE) {
             gameState = insideBuilding ? STATE.INSIDE : STATE.PLAYING;
+            return false;
+        } else if (keyCode === TAB) {
+            // Tab / Shift+Tab cycle through the menu tabs.
+            const dir = keyIsDown(SHIFT) ? -1 : 1;
+            menuTab = (menuTab + dir + MENU_TABS.length) % MENU_TABS.length;
+            menuScroll = 0;
             return false;
         } else if (key === 'q' || key === 'Q') {
             menuTab = (menuTab - 1 + MENU_TABS.length) % MENU_TABS.length;
