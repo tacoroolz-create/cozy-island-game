@@ -948,10 +948,6 @@ function drawDialogueScreen() {
         }
         if (startRow > 0) { fill(150); text('▲', width - 16, panelY + 22); }
         if (startRow + maxRows < total) { fill(150); text('▼', width - 16, panelY + 22 + (maxRows - 1) * 14); }
-        fill(120);
-        textAlign(RIGHT, BOTTOM);
-        textSize(7);
-        text('Arrows/WASD: select  Enter/click: confirm  Esc: cancel', width - 4, height - 4);
         return;
     }
 
@@ -1048,10 +1044,6 @@ function drawDialogueScreen() {
             dialogueState._choiceRects.push(rect_);
             cy += blk.h + choiceGap;
         }
-        fill(120);
-        textAlign(RIGHT, BOTTOM);
-        textSize(8);
-        text('Arrows/WASD: choose \u00B7 Enter/click: select \u00B7 Esc: exit', width - 4, height - 4);
     } else {
         // Blinking "\u25BC more" once the page finishes typing, plus a page counter.
         if (dialogueState.pageComplete && (frameCount % 60) < 40) {
@@ -1060,11 +1052,12 @@ function drawDialogueScreen() {
             textSize(10);
             text('\u25BC', width - 6, panelY + topPad + bodyH + 2);
         }
-        fill(120);
-        textAlign(RIGHT, BOTTOM);
-        textSize(8);
-        const counter = body.pages.length > 1 ? '  (' + (dialogueState.page + 1) + '/' + body.pages.length + ')' : '';
-        text('Enter/click: continue' + counter, width - 4, height - 4);
+        if (body.pages.length > 1) {
+            fill(120);
+            textAlign(RIGHT, BOTTOM);
+            textSize(8);
+            text('(' + (dialogueState.page + 1) + '/' + body.pages.length + ')', width - 4, height - 4);
+        }
     }
 }
 
