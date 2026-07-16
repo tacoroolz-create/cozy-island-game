@@ -888,13 +888,21 @@ function mouseMovedRecently() {
 }
 
 function drawDialoguePanelBg(panelY, panelH) {
-    fill(0, 0, 0, 200);
-    noStroke();
-    rect(0, panelY, width, panelH);
-    stroke(180, 160, 120);
+    // Classic JRPG box: deep blue-black fill, inset a few px from the screen so
+    // it reads as a floating panel, with a double-line border (outer light /
+    // inner shadow). Top corners rounded; bottom sits flush to the screen edge.
+    const inset = 3;
+    const x = inset, w = width - inset * 2;
+    const r = 4;
     strokeWeight(1);
+    // Fill
+    fill(10, 14, 40, 236);
+    stroke(230, 236, 255);
+    rect(x, panelY, w, panelH, r, r, 0, 0);
+    // Inner shadow line, one px in, sells the border depth.
     noFill();
-    rect(0, panelY, width, panelH);
+    stroke(40, 50, 90);
+    rect(x + 2, panelY + 2, w - 4, panelH - 2, r, r, 0, 0);
     noStroke();
 }
 
