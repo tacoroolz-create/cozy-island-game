@@ -980,9 +980,9 @@ function drawDialogueScreen() {
         const lines = wrapTextLines(ch.text, textMaxW - markerW);
         return { text: ch.text, lines, h: Math.max(choiceLineH, lines.length * choiceLineH) };
     });
-    const choicesH = dialogueState.choicesVisible
-        ? choiceBlocks.reduce((sum, b) => sum + b.h + choiceGap, 0)
-        : 0;
+    // Reserve choice space for the whole node, not just once choices show —
+    // otherwise the box lurches taller the instant the neighbor stops talking.
+    const choicesH = choiceBlocks.reduce((sum, b) => sum + b.h + choiceGap, 0);
 
     // Fixed-height panel (JRPG box): header + 3 body lines + choices + footer.
     let panelH = topPad + bodyH + 8 + choicesH + footerH;
