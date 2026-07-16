@@ -558,10 +558,10 @@ function drawMagicTab(x, y, w, h) {
         }
 
         rowY += 32;
-        if (rowY > y + h - 16) break;
     }
 
     fill(120);
     textSize(7);
-    text('Press M in the world to cast', x, y + h - 10);
+    text('Press M in the world to cast', x, rowY + 2);
+    if (typeof menuContentH !== 'undefined') menuContentH = rowY + 14 - y;
 }

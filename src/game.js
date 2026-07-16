@@ -433,6 +433,8 @@ const ITEMS = {
 let inventory = null;
 let invSelectedSlot = 0;       // Currently selected slot in inventory view
 let hotbarSlot = 0;            // Active hotbar slot (1-8)
+let menuScroll = 0;            // Vertical scroll offset (px) of the menu content viewport
+let menuContentH = 0;          // Full height of the current tab's content; set by the tab, 0 = fits
 
 // ===== BUILDINGS =====
 let buildings = [];
@@ -3462,177 +3464,143 @@ function drawDurabilityPips(slot, x, y, size) {
     }
 }
 
+// Single source of truth for menu geometry, shared by drawing + hit-testing.
+// Full-screen single-column layout that fits the SNES-zoom canvas (320x192).
+function menuLayout() {
+    const pad = 4;
+    const tabH = 13;
+    const hintH = 11;
+    const panelX = pad, panelY = pad;
+    const panelW = width - pad * 2;
+    const panelH = height - pad * 2;
+    const contentX = panelX + 4;
+    const contentY = panelY + tabH + 3;
+    const contentW = panelW - 8;
+    const contentViewH = panelH - tabH - 3 - hintH - 2;
+    const tabW = panelW / MENU_TABS.length;
+    return { pad, tabH, hintH, panelX, panelY, panelW, panelH,
+             contentX, contentY, contentW, contentViewH, tabW };
+}
+
 function drawMenuScreen() {
+    const L = menuLayout();
+
     // Dim overlay
     fill(0, 0, 0, 200);
     noStroke();
     rect(0, 0, width, height);
 
-    // ===== LAYOUT =====
-    // Left panel: tabs + content (inventory grid, crafting, etc.)
-    // Right panel: player portrait + info
-    const pad = 8;
-    const tabH = 16;
-    const leftX = pad;
-    const leftY = pad + 20; // below top bar
-    const leftW = 320;
-    const leftH = height - leftY - pad - 20; // leave room for bottom hint
-
-    // Right panel
-    const rightX = leftX + leftW + pad;
-    const rightW = width - rightX - pad;
-    const rightY = leftY;
-    const rightH = leftH;
-
-    // ===== DRAW LEFT PANEL =====
-    fill(20, 14, 10, 235);
+    // Panel
+    fill(20, 14, 10, 240);
     stroke(180, 160, 120);
     strokeWeight(1);
-    rect(leftX, leftY, leftW, leftH);
+    rect(L.panelX, L.panelY, L.panelW, L.panelH);
     noStroke();
 
     // ===== TAB BAR =====
-    const tabW = leftW / MENU_TABS.length;
     for (let i = 0; i < MENU_TABS.length; i++) {
-        const tx = leftX + i * tabW;
+        const tx = L.panelX + i * L.tabW;
         if (i === menuTab) {
             fill(80, 70, 50);
-            rect(tx, leftY, tabW, tabH);
+            rect(tx, L.panelY, L.tabW, L.tabH);
             fill(255, 255, 200);
         } else {
             fill(40, 30, 20);
-            rect(tx, leftY, tabW, tabH);
+            rect(tx, L.panelY, L.tabW, L.tabH);
             fill(150);
         }
         textAlign(CENTER, CENTER);
-        textSize(7);
+        textSize(6);
         textFont('Courier New');
-        text(MENU_TABS[i], tx + tabW / 2, leftY + tabH / 2);
+        text(MENU_TABS[i], tx + L.tabW / 2, L.panelY + L.tabH / 2);
     }
 
-    // Tab content area
-    const contentY = leftY + tabH + 4;
-    const contentH = leftH - tabH - 8;
-
-    // ===== TAB CONTENT =====
+    // ===== TAB CONTENT (clipped + vertically scrollable) =====
+    menuContentH = 0; // tabs that overflow set this to their full height
+    drawingContext.save();
+    drawingContext.beginPath();
+    drawingContext.rect(L.contentX, L.contentY, L.contentW, L.contentViewH);
+    drawingContext.clip();
+    push();
+    translate(0, -menuScroll);
+    const cx = L.contentX, cy = L.contentY, cw = L.contentW, ch = L.contentViewH;
     switch(menuTab) {
-        case 0: drawInventoryTab(leftX + 4, contentY, leftW - 8, contentH); break;
+        case 0: drawInventoryTab(cx, cy, cw, ch); break;
         case 1:
-            if (typeof drawCraftingTab === 'function') drawCraftingTab(leftX + 4, contentY, leftW - 8, contentH);
+            if (typeof drawCraftingTab === 'function') drawCraftingTab(cx, cy, cw, ch);
             break;
         case 2:
-            drawPlaceholderTab(leftX + 4, contentY, 'Treasure', 'Use a Gettin Stick to pull treasure from the water. Sea creatures are coming soon!', leftW - 8);
+            drawPlaceholderTab(cx, cy, 'Treasure', 'Use a Gettin Stick to pull treasure from the water. Sea creatures are coming soon!', cw);
             break;
         case 3:
-            if (typeof drawGardeningTab === 'function') drawGardeningTab(leftX + 4, contentY, leftW - 8, contentH);
-            else drawPlaceholderTab(leftX + 4, contentY, 'Gardening', 'Plant seeds in fertile soil.', leftW - 8);
+            if (typeof drawGardeningTab === 'function') drawGardeningTab(cx, cy, cw, ch);
+            else drawPlaceholderTab(cx, cy, 'Gardening', 'Plant seeds in fertile soil.', cw);
             break;
         case 4:
-            if (typeof drawMagicTab === 'function') drawMagicTab(leftX + 4, contentY, leftW - 8, contentH);
+            if (typeof drawMagicTab === 'function') drawMagicTab(cx, cy, cw, ch);
             break;
         case 5:
-            if (typeof drawFriendsTab === 'function') drawFriendsTab(leftX + 4, contentY, leftW - 8, contentH);
+            if (typeof drawFriendsTab === 'function') drawFriendsTab(cx, cy, cw, ch);
             break;
         case 6:
-            if (typeof drawAlmanacTab === 'function') drawAlmanacTab(leftX + 4, contentY, leftW - 8, contentH);
+            if (typeof drawAlmanacTab === 'function') drawAlmanacTab(cx, cy, cw, ch);
             break;
-        case 7: drawSettingsTab(leftX + 4, contentY, leftW - 8, contentH); break;
+        case 7: drawSettingsTab(cx, cy, cw, ch); break;
     }
+    pop();
+    drawingContext.restore();
 
-    // ===== DRAW RIGHT PANEL =====
-    fill(20, 14, 10, 235);
-    stroke(180, 160, 120);
-    rect(rightX, rightY, rightW, rightH);
-    noStroke();
+    // Clamp scroll now that we know this tab's content height.
+    const maxScroll = Math.max(0, (menuContentH || L.contentViewH) - L.contentViewH);
+    menuScroll = constrain(menuScroll, 0, maxScroll);
 
-    // Player portrait
-    const portraitSize = min(rightW - 12, 48);
-    const px = rightX + (rightW - portraitSize) / 2;
-    const py = rightY + 8;
-    fill(40, 30, 20);
-    rect(px, py, portraitSize, portraitSize);
-    stroke(200, 180, 140);
-    noFill();
-    rect(px, py, portraitSize, portraitSize);
-    noStroke();
-
-    const pSpr = SPRITES['sprites.player'];
-    if (pSpr) {
-        // Draw a single (animated) frame, aspect-correct, centered in the box.
-        // Works for both a 16x32 still and a multi-frame horizontal strip.
-        const cols = Math.max(1, Math.floor(pSpr.width / CHAR_FW));
-        const frame = Math.floor(millis() / WALK_FRAME_MS) % cols;
-        const boxW = portraitSize - 4, boxH = portraitSize - 4;
-        const scale = Math.min(boxW / CHAR_FW, boxH / CHAR_FH);
-        const dw = CHAR_FW * scale, dh = CHAR_FH * scale;
-        const ox = px + 2 + (boxW - dw) / 2, oy = py + 2 + (boxH - dh) / 2;
-        image(pSpr, ox, oy, dw, dh, frame * CHAR_FW, 0, CHAR_FW, CHAR_FH);
-    } else {
-        fill(0, 100, 255);
-        rect(px + 2, py + 2, portraitSize - 4, portraitSize - 4);
-    }
-
-    // Player info
-    fill(255, 255, 200);
-    textAlign(CENTER, TOP);
-    textSize(10);
-    textFont('Courier New');
-    text(PLAYER_NAME, rightX + rightW / 2, py + portraitSize + 4);
-
-    fill(200);
-    textSize(8);
-    text('Day ' + world.day, rightX + rightW / 2, py + portraitSize + 18);
-    text(world.season + ' Season', rightX + rightW / 2, py + portraitSize + 30);
-    text(world.getTimeString(), rightX + rightW / 2, py + portraitSize + 42);
-
-    // Selected item info (for inventory tab)
-    if (menuTab === 0) {
-        const selected = inventory.slots[invSelectedSlot];
-        const infoY = py + portraitSize + 56;
-        fill(0, 0, 0, 120);
-        rect(rightX + 4, infoY, rightW - 8, 60);
-        if (selected) {
-            const item = ITEMS[selected.id];
-            fill(255, 255, 200);
-            textAlign(LEFT, TOP);
-            textSize(9);
-            text(item.name, rightX + 8, infoY + 4);
-            fill(200);
-            textSize(7);
-            text('x' + selected.count, rightX + 8, infoY + 16);
-            text(item.desc, rightX + 8, infoY + 28, rightW - 16);
-            // Show durability for tools
-            if (typeof selected.durability === 'number') {
-                const maxDur = item.durability || 3;
-                fill(selected.durability > 1 ? '#7CB342' : '#FFD93D');
-                text('Durability: ' + selected.durability + '/' + maxDur, rightX + 8, infoY + 44);
-                fill(150);
-                text('Category: ' + item.category, rightX + 8, infoY + 52);
-            } else {
-                fill(150);
-                text('Category: ' + item.category, rightX + 8, infoY + 52);
-            }
-        } else {
-            fill(150);
-            textAlign(CENTER, TOP);
-            textSize(8);
-            text('Empty slot', rightX + rightW / 2, infoY + 24);
-        }
+    // Scrollbar (only when there's overflow)
+    if (maxScroll > 0) {
+        const trackH = L.contentViewH;
+        const thumbH = Math.max(12, trackH * L.contentViewH / menuContentH);
+        const thumbY = L.contentY + (trackH - thumbH) * (menuScroll / maxScroll);
+        fill(120, 100, 70);
+        rect(L.panelX + L.panelW - 3, thumbY, 2, thumbH);
     }
 
     // ===== BOTTOM HINT =====
     fill(150);
     textAlign(CENTER, BOTTOM);
-    textSize(8);
+    textSize(7);
     textFont('Courier New');
-    text('E to close  ·  Click tabs to switch  ·  Click items to swap', width / 2, height - 4);
+    let hint = 'E close · scroll wheel · click tabs';
+    if (menuTab === 0) {
+        const sel = inventory.slots[invSelectedSlot];
+        if (sel && ITEMS[sel.id]) hint = ITEMS[sel.id].name + ' x' + sel.count + ' · E close · click to swap';
+    }
+    text(hint, width / 2, height - 3);
 }
 
 // ===== INVENTORY TAB =====
+const INV_SLOT_SIZE = 16, INV_SLOT_GAP = 2, INV_COLS = 8;
+
+// Offset of a slot's top-left relative to the inventory content origin.
+// Single source of truth shared by drawInventoryTab (rendering) and
+// getInventorySlotRect (hit-testing) so the two can never drift apart.
+function inventorySlotOffset(slotIndex) {
+    const step = INV_SLOT_SIZE + INV_SLOT_GAP;
+    if (slotIndex < INV_HOTBAR_SIZE) {
+        return { dx: slotIndex * step, dy: 12 };
+    }
+    const catIdx = Math.floor((slotIndex - INV_HOTBAR_SIZE) / INV_SLOTS_PER_CAT);
+    const slotInCat = (slotIndex - INV_HOTBAR_SIZE) % INV_SLOTS_PER_CAT;
+    const row = Math.floor(slotInCat / INV_COLS), col = slotInCat % INV_COLS;
+    const catLabelDy = 36 + catIdx * 54;    // hotbar(12+16+8=36) then 54 per section
+    return { dx: col * step, dy: catLabelDy + 12 + row * step };
+}
+
+function inventoryContentHeight() {
+    // Bottom of the last category's second slot row, plus a little padding.
+    return 48 + (INV_CATEGORIES.length - 1) * 54 + 2 * (INV_SLOT_SIZE + INV_SLOT_GAP) + 6;
+}
+
 function drawInventoryTab(x, y, w, h) {
-    const slotSize = 16;
-    const gap = 2;
-    const cols = 8;
+    menuContentH = inventoryContentHeight();
 
     // Hotbar label
     fill(200);
@@ -3642,34 +3610,27 @@ function drawInventoryTab(x, y, w, h) {
     text('Hotbar', x, y);
 
     // Hotbar (8 slots)
-    const hbY = y + 12;
     for (let i = 0; i < INV_HOTBAR_SIZE; i++) {
-        drawMenuSlot(i, x + i * (slotSize + gap), hbY, slotSize);
+        const o = inventorySlotOffset(i);
+        drawMenuSlot(i, x + o.dx, y + o.dy, INV_SLOT_SIZE);
     }
 
     // Category sections
-    let sectionY = hbY + slotSize + 8;
     const sectionLabels = ['Materials', 'Gifts', 'Tools', 'Treasure', 'Blocks'];
-
     for (let cat = 0; cat < INV_CATEGORIES.length; cat++) {
         const catStart = INV_HOTBAR_SIZE + cat * INV_SLOTS_PER_CAT;
 
-        // Section label
+        // Section label (sits 12px above the first slot row of the category)
         fill(180);
         textAlign(LEFT, TOP);
         textSize(8);
         textFont('Courier New');
-        text(sectionLabels[cat], x, sectionY);
+        text(sectionLabels[cat], x, y + 36 + cat * 54);
 
-        // 16 slots = 2 rows of 8
-        const catY = sectionY + 12;
         for (let i = 0; i < INV_SLOTS_PER_CAT; i++) {
-            const row = Math.floor(i / cols);
-            const col = i % cols;
-            drawMenuSlot(catStart + i, x + col * (slotSize + gap), catY + row * (slotSize + gap), slotSize);
+            const o = inventorySlotOffset(catStart + i);
+            drawMenuSlot(catStart + i, x + o.dx, y + o.dy, INV_SLOT_SIZE);
         }
-
-        sectionY = catY + 2 * (slotSize + gap) + 6;
     }
 }
 
@@ -3852,47 +3813,24 @@ let mouseSelectedSlot = null; // pending slot for click-to-swap
 // Compute the screen-space rect for a given inventory slot index,
 // or null if it's not in a clickable area (only hotbar + inventory tab).
 function getInventorySlotRect(slotIndex) {
-    const pad = 8;
-    const leftX = pad;
-    const leftY = pad + 20;
-    const leftW = 320;
-    const slotSize = 16;
-    const gap = 2;
-    const cols = 8;
-
-    // Hotbar slots (0-7)
-    if (slotIndex < INV_HOTBAR_SIZE) {
-        const hbY = leftY + tabH_menu() + 4 + 12;
-        return { x: leftX + 4 + slotIndex * (slotSize + gap), y: hbY, w: slotSize, h: slotSize };
-    }
-
-    // Category slots (8+)
-    const catIdx = Math.floor((slotIndex - INV_HOTBAR_SIZE) / INV_SLOTS_PER_CAT);
-    const slotInCat = (slotIndex - INV_HOTBAR_SIZE) % INV_SLOTS_PER_CAT;
-    const hbY = leftY + tabH_menu() + 4 + 12;
-    let sectionY = hbY + slotSize + 8;
-    const catY = sectionY + 12;
-
-    const row = Math.floor(slotInCat / cols);
-    const col = slotInCat % cols;
-
-    // Each category section spans: label (12) + 2 rows of slots + 6px spacing.
-    // This must match the stride used in drawInventoryTab, which advances
-    // sectionY by catY(+12 label) + 2 rows + 6 between sections.
-    const catSectionH = 12 + 2 * (slotSize + gap) + 6;
-    const slotY = catY + row * (slotSize + gap) + catIdx * catSectionH;
-
-    return { x: leftX + 4 + col * (slotSize + gap), y: slotY, w: slotSize, h: slotSize };
+    const L = menuLayout();
+    const o = inventorySlotOffset(slotIndex);
+    // Content is drawn translated by -menuScroll inside the viewport, so screen
+    // position must subtract it too.
+    return { x: L.contentX + o.dx, y: L.contentY + o.dy - menuScroll,
+             w: INV_SLOT_SIZE, h: INV_SLOT_SIZE };
 }
-
-// Helper to get the tab height used in drawMenuScreen
-function tabH_menu() { return 16; }
 
 // Find which inventory slot the mouse is over, or -1 if none.
 function getSlotAtMouse() {
     // Only active when menu is open and on inventory tab
     if (typeof gameState === 'undefined' || gameState !== STATE.MENU) return -1;
     if (typeof menuTab === 'undefined' || menuTab !== 0) return -1;
+
+    // Ignore clicks outside the scroll viewport (a slot scrolled out of view
+    // must not be clickable through the tab bar / hint strip).
+    const L = menuLayout();
+    if (mouseY < L.contentY || mouseY > L.contentY + L.contentViewH) return -1;
 
     for (let i = 0; i < INV_TOTAL; i++) {
         const r = getInventorySlotRect(i);
@@ -4139,22 +4077,19 @@ function mousePressed() {
 
     // ===== MENU: tab switching + inventory swaps + crafting =====
     if (gameState === STATE.MENU) {
-        const pad = 8;
-        const leftX = pad;
-        const leftY = pad + 20;
-        const leftW = 320;
-        const tabH = 16;
-        const leftH = height - leftY - pad - 20; // match drawMenuScreen
-        const contentH = leftH - tabH - 8;
+        const L = menuLayout();
+        // Content top in screen space (content is drawn scrolled inside the viewport).
+        const contentTop = L.contentY - menuScroll;
+        const sx = L.contentX;
 
         // --- Tab bar clicks ---
-        const tabW = leftW / MENU_TABS.length;
         for (let i = 0; i < MENU_TABS.length; i++) {
-            const tx = leftX + i * tabW;
-            if (mouseX >= tx && mouseX < tx + tabW &&
-                mouseY >= leftY && mouseY < leftY + tabH) {
+            const tx = L.panelX + i * L.tabW;
+            if (mouseX >= tx && mouseX < tx + L.tabW &&
+                mouseY >= L.panelY && mouseY < L.panelY + L.tabH) {
                 if (menuTab !== i) audioManager.playSFX('click');
                 menuTab = i;
+                menuScroll = 0;           // reset scroll when switching tabs
                 mouseSelectedSlot = null; // reset swap selection on tab change
                 return;
             }
@@ -4195,14 +4130,12 @@ function mousePressed() {
 
         // --- Crafting tab: branching menu clicks (categories / recipes) ---
         if (menuTab === 1 && typeof craftingTabClick === 'function') {
-            const contentY = leftY + tabH + 4;
-            if (craftingTabClick(leftX + 4, contentY, leftW - 8, contentH)) return;
+            if (craftingTabClick(sx, contentTop, L.contentW, L.contentViewH)) return;
         }
 
         // --- Settings tab: clickable action rows ---
         if (menuTab === 7) {
-            const contentY = leftY + tabH + 4;
-            const sx = leftX + 4;
+            const contentY = contentTop;
             // "▶ Save Game" row at y + 50
             const saveY = contentY + 50;
             if (mouseY >= saveY - 4 && mouseY < saveY + 11 &&
@@ -4264,6 +4197,26 @@ function mousePressed() {
             return;
         }
         return;
+    }
+}
+
+// Mouse wheel scrolls the menu content viewport. Clamping happens in
+// drawMenuScreen once the current tab's content height is known.
+function mouseWheel(e) {
+    if (gameState === STATE.MENU) {
+        menuScroll += (e && e.delta ? e.delta : 0);
+        return false; // don't scroll the page behind the canvas
+    }
+}
+
+// Keep the keyboard-selected inventory slot inside the scroll viewport.
+function menuRevealSelectedSlot() {
+    if (menuTab !== 0) return;
+    const L = menuLayout();
+    const o = inventorySlotOffset(invSelectedSlot);
+    if (o.dy < menuScroll) menuScroll = o.dy;
+    else if (o.dy + INV_SLOT_SIZE > menuScroll + L.contentViewH) {
+        menuScroll = o.dy + INV_SLOT_SIZE - L.contentViewH;
     }
 }
 
@@ -5375,6 +5328,7 @@ function keyPressed() {
             gameState = STATE.MENU;
             menuTab = 0;
             invSelectedSlot = 0;
+            menuScroll = 0;
             audioManager.playSFX('click');
             return false;
         } else if (key === 'm' || key === 'M') {
@@ -5463,6 +5417,7 @@ function keyPressed() {
             gameState = STATE.MENU;
             menuTab = 0;
             invSelectedSlot = 0;
+            menuScroll = 0;
             audioManager.playSFX('click');
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
@@ -5495,21 +5450,25 @@ function keyPressed() {
             return false;
         } else if (key === 'q' || key === 'Q') {
             menuTab = (menuTab - 1 + MENU_TABS.length) % MENU_TABS.length;
+            menuScroll = 0;
             return false;
         } else if (key === 'w' || key === 'W') {
             menuTab = (menuTab + 1) % MENU_TABS.length;
+            menuScroll = 0;
             return false;
         } else if (keyCode === UP_ARROW) {
-            if (menuTab === 0) invSelectedSlot = (invSelectedSlot - 8 + INV_TOTAL) % INV_TOTAL;
+            if (menuTab === 0) { invSelectedSlot = (invSelectedSlot - 8 + INV_TOTAL) % INV_TOTAL; menuRevealSelectedSlot(); }
+            else menuScroll -= 16;
             return false;
         } else if (keyCode === DOWN_ARROW) {
-            if (menuTab === 0) invSelectedSlot = (invSelectedSlot + 8) % INV_TOTAL;
+            if (menuTab === 0) { invSelectedSlot = (invSelectedSlot + 8) % INV_TOTAL; menuRevealSelectedSlot(); }
+            else menuScroll += 16;
             return false;
         } else if (keyCode === LEFT_ARROW) {
-            if (menuTab === 0) invSelectedSlot = (invSelectedSlot - 1 + INV_TOTAL) % INV_TOTAL;
+            if (menuTab === 0) { invSelectedSlot = (invSelectedSlot - 1 + INV_TOTAL) % INV_TOTAL; menuRevealSelectedSlot(); }
             return false;
         } else if (keyCode === RIGHT_ARROW) {
-            if (menuTab === 0) invSelectedSlot = (invSelectedSlot + 1) % INV_TOTAL;
+            if (menuTab === 0) { invSelectedSlot = (invSelectedSlot + 1) % INV_TOTAL; menuRevealSelectedSlot(); }
             return false;
         } else if (keyCode === ENTER || keyCode === RETURN) {
             // In inventory tab: swap selected slot with active hotbar slot
@@ -6156,6 +6115,7 @@ function handleStartMenuSelection() {
         case 2: // Settings - go straight to menu settings tab
             gameState = STATE.MENU;
             menuTab = 6;
+            menuScroll = 0;
             break;
     }
 }
