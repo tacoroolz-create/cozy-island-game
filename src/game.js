@@ -153,6 +153,7 @@ const SPRITE_DEFS = {
     'tiles.tunnel_surface':   'assets/tiles/tunnel_surface.png',
     'tiles.tunnel_ug':        'assets/tiles/tunnel_ug.png',
     'tiles.dock':             'assets/tiles/dock.png',
+    'ui.title':               'assets/ui/title.png',
 };
 
 // Global game state
@@ -865,21 +866,36 @@ function draw() {
 }
 
 function drawStartBackdrop() {
-    // Gradient sky background
+    // Painted title screen (320x192, fills the canvas). Falls back to the old
+    // gradient + text title if the sprite failed to load.
+    const title = SPRITES['ui.title'];
+    if (title && title.width) {
+        image(title, 0, 0, width, height);
+        return;
+    }
     for (let y = 0; y < height; y++) {
         const inter = map(y, 0, height, 0, 1);
         const c = lerpColor(color('#87CEEB'), color('#FFB6C1'), inter);
         stroke(c);
         line(0, y, width, y);
     }
-    // Title
+    noStroke();
     fill(255);
     textAlign(CENTER, CENTER);
     textSize(32);
     textFont('Courier New');
-    text('Cozy Island', width / 2, 60);
-    textSize(16);
-    text('🏝️ ✧ Sweet Dreams ✧ 🏝️', width / 2, 85);
+    text('Cozy Island', width / 2, 40);
+}
+
+// Menu row y-positions: stacked in the lower third of the title art.
+function startMenuRowY(i) { return 108 + i * 18; }
+
+// Draw menu text with a 1px dark shadow so it stays legible over the art.
+function drawStartLabel(str, cx, cy, col) {
+    fill(0, 0, 0, 180);
+    text(str, cx + 1, cy + 1);
+    fill(col);
+    text(str, cx, cy);
 }
 
 function drawStartScreen() {
@@ -888,39 +904,39 @@ function drawStartScreen() {
 
     drawStartBackdrop();
 
-    // Main menu options
+    // Main menu options, overlaid on the painting.
     textAlign(CENTER, CENTER);
-    textSize(20);
+    textFont('Courier New');
+    textSize(13);
     for (let i = 0; i < startMenuOptions.length; i++) {
-        if (i === selectedMenuOption) {
-            fill(255, 255, 100);
-            text('▶ ' + startMenuOptions[i] + ' ◀', width / 2, 150 + i * 40);
-        } else {
-            fill(255);
-            text('  ' + startMenuOptions[i], width / 2, 150 + i * 40);
-        }
+        const sel = i === selectedMenuOption;
+        drawStartLabel(sel ? '▶ ' + startMenuOptions[i] + ' ◀' : startMenuOptions[i],
+                       width / 2, startMenuRowY(i), sel ? color(255, 255, 100) : color(255));
     }
 
     // Instructions
-    textSize(12);
-    fill(200);
-    text('Use arrows or click to select, Enter to confirm', width / 2, height - 30);
+    textSize(8);
+    drawStartLabel('Arrows or click to select · Enter to confirm', width / 2, height - 8, color(220));
 }
 
 // Y position of slot-picker row i (0..2 = slots, 3 = Back).
-function slotRowY(i) { return 150 + i * 46; }
+function slotRowY(i) { return 46 + i * 30; }
 
 function drawSlotSelect() {
     drawStartBackdrop();
 
+    // Dim the art a touch so the slot list reads clearly.
+    fill(0, 0, 0, 110);
+    noStroke();
+    rect(0, 0, width, height);
+
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(18);
+    textSize(12);
     textFont('Courier New');
-    text(startMode === 'new' ? 'New Game — choose a slot' : 'Load Game — choose a slot', width / 2, 120);
+    drawStartLabel(startMode === 'new' ? 'New Game — choose a slot' : 'Load Game — choose a slot', width / 2, 22, color(255));
 
     const slots = getAllSaveSlots();
-    textSize(14);
     for (let i = 0; i < SAVE_SLOT_COUNT; i++) {
         const info = slots[i];
         const y = slotRowY(i);
@@ -928,10 +944,10 @@ function drawSlotSelect() {
         const selected = i === slotSelectIndex;
 
         // Row plate
-        const plateW = 320, plateH = 38;
-        if (selected) fill(255, 255, 255, 60); else fill(255, 255, 255, 25);
+        const plateW = 260, plateH = 26;
+        if (selected) fill(255, 255, 255, 70); else fill(255, 255, 255, 30);
         noStroke();
-        rect(width / 2 - plateW / 2, y - plateH / 2, plateW, plateH, 6);
+        rect(width / 2 - plateW / 2, y - plateH / 2, plateW, plateH, 5);
 
         // Label
         let label, sub;
@@ -946,11 +962,11 @@ function drawSlotSelect() {
 
         fill(selected ? color(255, 255, 120) : (selectable ? color(255) : color(180, 180, 180, 160)));
         textAlign(CENTER, BOTTOM);
-        textSize(14);
+        textSize(11);
         text((selected ? '▶ ' : '') + label, width / 2, y - 1);
         fill(selectable ? 220 : 150, selectable ? 220 : 150, selectable ? 230 : 160, 220);
         textAlign(CENTER, TOP);
-        textSize(9);
+        textSize(7);
         text(sub, width / 2, y + 1);
     }
 
@@ -958,30 +974,32 @@ function drawSlotSelect() {
     const by = slotRowY(SAVE_SLOT_COUNT);
     fill(slotSelectIndex === SAVE_SLOT_COUNT ? color(255, 255, 120) : color(255));
     textAlign(CENTER, CENTER);
-    textSize(15);
+    textSize(12);
     text((slotSelectIndex === SAVE_SLOT_COUNT ? '▶ ' : '') + 'Back', width / 2, by);
 
-    textSize(11);
-    fill(200);
-    text('Arrows/click to choose · Enter to confirm · Esc to go back', width / 2, height - 26);
+    textSize(7);
+    drawStartLabel('Arrows/click · Enter to confirm · Esc to go back', width / 2, height - 6, color(210));
 }
 
 function drawNameEntry() {
     drawStartBackdrop();
+    fill(0, 0, 0, 110);
+    noStroke();
+    rect(0, 0, width, height);
 
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(18);
+    textSize(12);
     textFont('Courier New');
-    text('Name your island save', width / 2, 130);
+    drawStartLabel('Name your island save', width / 2, 40, color(255));
 
     // Text field
-    const boxW = 320, boxH = 40;
-    const bx = width / 2 - boxW / 2, by = 170;
+    const boxW = 220, boxH = 26;
+    const bx = width / 2 - boxW / 2, by = 78;
     fill(255, 255, 255, 40);
     stroke(255);
     strokeWeight(1);
-    rect(bx, by, boxW, boxH, 6);
+    rect(bx, by, boxW, boxH, 5);
     noStroke();
 
     // Blinking cursor
@@ -989,21 +1007,20 @@ function drawNameEntry() {
     const shown = nameEntryText + (showCursor ? '_' : '');
     fill(255, 255, 180);
     textAlign(LEFT, CENTER);
-    textSize(18);
-    text(shown || (showCursor ? '_' : ''), bx + 10, by + boxH / 2);
+    textSize(13);
+    text(shown || (showCursor ? '_' : ''), bx + 8, by + boxH / 2);
 
     // Placeholder hint when empty
     if (!nameEntryText) {
         fill(220, 220, 220, 120);
         textAlign(RIGHT, CENTER);
-        textSize(11);
-        text('default: Save ' + (nameEntrySlot + 1), bx + boxW - 10, by + boxH / 2);
+        textSize(8);
+        text('default: Save ' + (nameEntrySlot + 1), bx + boxW - 8, by + boxH / 2);
     }
 
-    fill(200);
     textAlign(CENTER, CENTER);
-    textSize(11);
-    text('Type a name · Enter to begin · Esc to go back', width / 2, height - 26);
+    textSize(7);
+    drawStartLabel('Type a name · Enter to begin · Esc to go back', width / 2, height - 6, color(210));
 }
 
 // Friendly short timestamp for the slot list.
@@ -3890,8 +3907,8 @@ function mousePressed() {
         if (startView === 'slots') {
             for (let i = 0; i <= SAVE_SLOT_COUNT; i++) {
                 const oy = slotRowY(i);
-                if (mouseY >= oy - 20 && mouseY < oy + 20 &&
-                    mouseX >= width / 2 - 160 && mouseX < width / 2 + 160) {
+                if (mouseY >= oy - 14 && mouseY < oy + 14 &&
+                    mouseX >= width / 2 - 130 && mouseX < width / 2 + 130) {
                     slotSelectIndex = i;
                     chooseSlot(i);
                     return;
@@ -3900,11 +3917,13 @@ function mousePressed() {
             return;
         }
 
-        // Main menu options at y = 150 + i*40, centered horizontally.
+        // Main menu options, centered horizontally (matches startMenuRowY).
+        textSize(13);
+        textFont('Courier New');
         for (let i = 0; i < startMenuOptions.length; i++) {
-            const oy = 150 + i * 40;
+            const oy = startMenuRowY(i);
             const tw = textWidth(startMenuOptions[i]) + 40; // generous hit area
-            if (mouseY >= oy - 14 && mouseY < oy + 14 &&
+            if (mouseY >= oy - 9 && mouseY < oy + 9 &&
                 mouseX >= width / 2 - tw / 2 && mouseX < width / 2 + tw / 2) {
                 selectedMenuOption = i;
                 handleStartMenuSelection();
