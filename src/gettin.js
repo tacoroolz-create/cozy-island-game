@@ -195,10 +195,12 @@ function updateCasting(dt) {
                 // Tools pulled from the water get lowered durability (1 or 2).
                 if (c.isTool) {
                     const ok = inventory.addItem(c.id, 1, { durability: 1 + Math.floor(Math.random() * 2) });
+                    if (ok && typeof spawnItemPopup === 'function') spawnItemPopup(c.id);
                     if (ok) notify("Pulled up: " + c.name + " (worn)!");
                     else notify("Inventory full — lost the " + c.name + "!");
                 } else {
                     const ok = inventory.addItem(c.id, 1);
+                    if (ok && typeof spawnItemPopup === 'function') spawnItemPopup(c.id);
                     if (ok) notify("Pulled up: " + c.name + "!");
                     else notify("Inventory full — lost the " + c.name + "!");
                 }
