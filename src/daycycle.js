@@ -124,6 +124,13 @@ function onNewDay() {
     const isSeasonStart = (day > 1) && ((day - 1) % SEASON_LENGTH === 0);
     const isFestival = isHolidayDay(day);
 
+    // The earth breaks open overnight on the reveal day: the underground tunnel
+    // appears and the player wakes to the news.
+    if (day === TUNNEL_REVEAL_DAY && typeof revealIslandTunnel === 'function') {
+        revealIslandTunnel();
+        notify('You heard the earth move in the night.', 5000);
+    }
+
     // Yesterday's tournament target comes down with the sunrise.
     if (typeof clearToastTargets === 'function') clearToastTargets();
     // Clean Your Room Day: reset yesterday's chore, lock the door if it's today.
