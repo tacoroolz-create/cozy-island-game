@@ -1153,6 +1153,10 @@ function drawGame() {    // Handle continuous movement
     updateToastProjectile(deltaTime);
     drawToastProjectile();
 
+    // Harvested-item popups floating over the player's head
+    updateItemPopups(deltaTime);
+    drawItemPopups();
+
     // Backflip Day animation timers
     updateBackflips(deltaTime);
 
@@ -5699,12 +5703,14 @@ function tryHarvest() {
             // randomQty: roll 1-3 of the chosen item; otherwise use its fixed count (default 1).
             const qty = harvestDef.randomQty ? (1 + floor(random(3))) : (chosen.count || 1);
             inventory.addItem(chosen.id, qty);
+            spawnItemPopup(chosen.id);
             gotItems.push(qty + 'x ' + ITEMS[chosen.id].name);
         }
     } else {
         for (const drop of harvestDef.drops) {
             if (random() <= drop.chance) {
                 inventory.addItem(drop.id, drop.count);
+                spawnItemPopup(drop.id);
                 gotItems.push(drop.count + 'x ' + ITEMS[drop.id].name);
             }
         }
@@ -6130,6 +6136,44 @@ function drawToastProjectile() {
     if (spr) image(spr, -8, -8, 16, 16);
     else { fill('#D2B48C'); noStroke(); rect(-6, -6, 12, 12); }
     pop();
+}
+
+// ===== HARVEST ITEM POPUPS =====
+// A gained item's sprite floats up from the top of the player's head, travels
+// 32px upward at 50% opacity, then fades out.
+let itemPopups = [];
+function spawnItemPopup(itemId) {
+    if (!itemId || !ITEMS[itemId]) return;
+    itemPopups.push({ id: itemId, t: 0, dur: 900 });
+}
+function updateItemPopups(dt) {
+    if (itemPopups.length === 0) return;
+    for (const p of itemPopups) p.t += dt;
+    itemPopups = itemPopups.filter(p => p.t < p.dur);
+}
+function drawItemPopups() {
+    if (itemPopups.length === 0 || !player) return;
+    const TS = CONFIG.TILE_SIZE;
+    const cx = player.x * TS - cameraX + TS / 2;   // player horizontal center
+    const headTop = player.y * TS - cameraY - TS;  // top of the 2-tall player sprite
+    for (const p of itemPopups) {
+        const t = p.t / p.dur;
+        const y = headTop - 32 * t;                                    // rise 32px
+        const alpha = 0.5 * (t < 0.6 ? 1 : 1 - (t - 0.6) / 0.4);       // hold 50%, fade last 40%
+        const spr = SPRITES['items.' + p.id];
+        push();
+        if (spr) {
+            tint(255, alpha * 255);
+            image(spr, cx - 8, y - 8, 16, 16);
+        } else {
+            noStroke();
+            const c = color(ITEMS[p.id].color || '#FFF');
+            c.setAlpha(alpha * 255);
+            fill(c);
+            rect(cx - 6, y - 6, 12, 12);
+        }
+        pop();
+    }
 }
 
 function handleStartMenuSelection() {

@@ -147,6 +147,7 @@ function harvestPlant(x, y) {
     }
     // Fully grown â give crop.
     inventory.addItem(def.crop, 1);
+    if (typeof spawnItemPopup === 'function') spawnItemPopup(def.crop);
     notify("Harvested: " + ITEMS[def.crop].name + "!");
     delete gardenPlots[plotKey(x, y)];
     return true;
