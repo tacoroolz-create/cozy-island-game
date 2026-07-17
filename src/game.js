@@ -3510,9 +3510,9 @@ function menuLayout() {
     const panelX = pad, panelY = pad;
     const panelW = width - pad * 2;
     const panelH = height - pad * 2;
-    const contentX = panelX + 4;
+    const contentX = panelX + 12;   // +8px inset so text/slots clear the painted frame
     const contentY = panelY + tabH + 3;
-    const contentW = panelW - 8;
+    const contentW = panelW - 24;
     const contentViewH = panelH - tabH - 3 - hintH - 2;
     const tabW = panelW / MENU_TABS.length;
     return { pad, tabH, hintH, panelX, panelY, panelW, panelH,
