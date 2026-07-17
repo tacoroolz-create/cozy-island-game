@@ -459,7 +459,7 @@ const BUILDING_TIERS = {
     // w/h = exterior footprint in tiles. doorWidth = how many bottom-center tiles
     // act as the entrance. interiorW/interiorFloorRows = interior size (floor rows
     // are in addition to INTERIOR_WALL_HEIGHT wall rows on top).
-    shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 5, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x80 sprite
+    shack: { spriteKey: 'sprites.shack', name: 'Shack', w: 8, h: 8, doorWidth: 2, interiorW: 7, interiorFloorRows: 4 },  // 128x128 sprite
     house: { spriteKey: 'sprites.house', name: 'House', w: 4, h: 4 },   // 64x64 sprite
     // --- Underground city buildings ---
     // Types without sprite files yet: Building.draw falls back to a colored
@@ -6283,7 +6283,7 @@ function startNewGame() {
 
 // Spawn the player's starter shack just beside the spawn point
 function spawnPlayerShack() {
-    // Shack exterior is 8x5 tiles. Place it just right of the player spawn (50,50),
+    // Shack exterior is 8x8 tiles. Place it just right of the player spawn (50,50),
     // so the player stands clear of it and the door faces open ground.
     const b = new Building('shack', 52, 47, 'player');
     clearBuildingFootprint(b);
