@@ -35,6 +35,7 @@ class Hog {
         this.gridX = x;
         this.gridY = y;
         this.friendship = 0;
+        this.treated = false;       // has been given his first treat -> unlocks AI chat
         this.dailyFed = false;
         this.dailyRooted = false;   // once-per-day rooting dig near trees
         this.birthdayGiftGiven = false; // Hoggy's Birthday: community gift already triggered today
@@ -210,6 +211,7 @@ class Hog {
         }
 
         this.dailyFed = true;
+        this.treated = true;   // first treat given -> he can now hold a conversation
         this.yearGiftCount = (this.yearGiftCount || 0) + 1;
         const liked = this.isLiked(itemId, item);
 
@@ -245,6 +247,13 @@ class Hog {
             this.pendingGift = null;
             this.feed(gift);
         }
+    }
+
+    // Whether an empty-handed interaction should root (vs. open chat) right now.
+    canRoot() {
+        return this.named && !this.dailyRooted &&
+            this.currentRoutine() === 'morning' &&
+            !!findNearestTree(this.gridX, this.gridY, 2);
     }
 
     // Once per day, interact without an item to have him root up a surprise
@@ -302,6 +311,7 @@ class Hog {
             gridX: this.gridX,
             gridY: this.gridY,
             friendship: this.friendship,
+            treated: this.treated,
             dailyFed: this.dailyFed,
             dailyRooted: this.dailyRooted,
             birthdayGiftGiven: this.birthdayGiftGiven,
@@ -317,6 +327,7 @@ class Hog {
         const h = new Hog(data.gridX, data.gridY);
         h.name = data.name || 'Hog';
         h.friendship = data.friendship || 0;
+        h.treated = data.treated || false;
         h.dailyFed = data.dailyFed || false;
         h.dailyRooted = data.dailyRooted || false;
         h.birthdayGiftGiven = data.birthdayGiftGiven || false;
@@ -595,8 +606,11 @@ function tryHogHolidayGreeting() {
 
         const active = inventory.getActiveItem();
         if (!active) {
-            // No item: try to root (morning near trees only)
-            if (hog && hog.root()) return true;
+            // No item: daily rooting takes priority when eligible; otherwise, once
+            // he's been treated, an empty-handed hello opens a full conversation.
+            if (hog && hog.canRoot()) { hog.root(); return true; }
+            if (hog && hog.treated && typeof openHogChat === 'function') { openHogChat(hog); return true; }
+            if (hog && hog.root()) return true;   // not treated: emits the right guidance
             notify('You need an item in hand to give ' + (hog && hog.name ? hog.name : 'the hog') + '.');
             return true;
         }
