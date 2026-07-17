@@ -3553,7 +3553,7 @@ function drawMenuScreen() {
         } else {
             fill(40, 30, 20);
             rect(tx, L.panelY, L.tabW, L.tabH);
-            fill(150);
+            fill(255);
         }
         textAlign(CENTER, CENTER);
         textSize(6);
@@ -3610,7 +3610,7 @@ function drawMenuScreen() {
     }
 
     // ===== BOTTOM HINT =====
-    fill(150);
+    fill(255);
     textAlign(CENTER, BOTTOM);
     textSize(7);
     textFont('Courier New');
@@ -3649,7 +3649,7 @@ function drawInventoryTab(x, y, w, h) {
     menuContentH = inventoryContentHeight();
 
     // Hotbar label
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(8);
     textFont('Courier New');
@@ -3667,7 +3667,7 @@ function drawInventoryTab(x, y, w, h) {
         const catStart = INV_HOTBAR_SIZE + cat * INV_SLOTS_PER_CAT;
 
         // Section label (sits 12px above the first slot row of the category)
-        fill(180);
+        fill(255);
         textAlign(LEFT, TOP);
         textSize(8);
         textFont('Courier New');
@@ -3686,12 +3686,12 @@ function drawCraftingTab(x, y, w, h) {
         _drawCraftingTabImpl(x, y, w, h);
         return;
     }
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Crafting', x, y);
-    fill(120);
+    fill(255);
     textSize(8);
     text('Crafting recipes will appear here.', x, y + 16);
     text('(Not yet implemented)', x, y + 28);
@@ -3699,12 +3699,12 @@ function drawCraftingTab(x, y, w, h) {
 
 function drawPlaceholderTab(x, y, title, desc, w) {
     const wrapW = w || 304; // default to the menu content width so text wraps
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text(title, x, y);
-    fill(120);
+    fill(255);
     textSize(8);
     // Wrap the description within the panel; measure its height to place the footer.
     text(desc, x, y + 16, wrapW, 60);
@@ -3714,12 +3714,12 @@ function drawPlaceholderTab(x, y, title, desc, w) {
 
 // ===== MAGIC TAB =====
 function drawMagicTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Magic Tricks', x, y);
-    fill(120);
+    fill(255);
     textSize(8);
     text('Learn magic from neighbors to unlock tricks.', x, y + 16);
     text('(Not yet implemented)', x, y + 28);
@@ -3727,12 +3727,12 @@ function drawMagicTab(x, y, w, h) {
 
 // ===== FRIENDS TAB =====
 function drawFriendsTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Friendships', x, y);
-    fill(120);
+    fill(255);
     textSize(8);
     text('Neighbors will appear here once they arrive.', x, y + 16);
     text('(Not yet implemented)', x, y + 28);
@@ -3740,13 +3740,13 @@ function drawFriendsTab(x, y, w, h) {
 
 // ===== SETTINGS TAB =====
 function drawSettingsTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Settings', x, y);
 
-    fill(180);
+    fill(255);
     textSize(8);
     text('S - Save Game', x, y + 20);
     text('ESC - Pause Game', x, y + 32);
