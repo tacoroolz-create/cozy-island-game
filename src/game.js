@@ -97,6 +97,7 @@ const SPRITE_DEFS = {
     'tiles.rock':             'assets/tiles/rock.png',
     'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
     'tiles.weeds':            'assets/tiles/weeds.png',
+    'tiles.tall_grass':       'assets/tiles/tall_grass.png',
     'tiles.bird_poop':        'assets/tiles/bird_poop.png',
     'tiles.rosebush':         'assets/tiles/rosebush.png',
     'tiles.tulip':            'assets/tiles/tulip.png',
@@ -359,6 +360,7 @@ const ITEMS = {
     magnet:      { name: 'Magnet',      category: 'material', maxStack: 99, color: '#607D8B', desc: 'A magic rock you chipped off of a shiny rock.' },
     crystal:     { name: 'Crystal',     category: 'material', maxStack: 99, color: '#B98DFF', desc: 'A magic rock you chipped off of a shiny rock.' },
     seed:        { name: 'Seed',        category: 'material', maxStack: 99, color: '#8BC34A', desc: 'A generic seed for planting.' },
+    grain_seed:  { name: 'Grain Seed',  category: 'material', maxStack: 99, color: '#D4A017', desc: 'Seeds shaken loose from wild tall grass.' },
     rose_seed:   { name: 'Rose Seed',   category: 'material', maxStack: 99, color: '#E53935', desc: 'A red rose seed.' },
     tulip_bulb:  { name: 'Tulip Bulb',  category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A white tulip bulb.' },
     flea_lily_seed: { name: 'Flea Lily Seed', category: 'material', maxStack: 99, color: '#8E24AA', desc: 'A rare seed bartered from the Flealess Market. Plant it on tilled soil.' },
@@ -713,6 +715,10 @@ const HARVEST_TYPES = {
     rock:        { drops: [{id:'stone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Rock' },
     shiny_rock:  { drops: [{id:'stone', chance:1.0}, {id:'magnet', chance:0.8}, {id:'crystal', chance:0.4}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Shiny Rock' },
     weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
+    // Tall grass sprouts on grass each morning and grows 0->3 over four days; only
+    // the mature (growth 3) patch is harvestable (see tryHarvest gate), yielding
+    // fiber + grain seeds, then vanishing.
+    tall_grass:  { drops: [{id:'fiber', count:1, chance:1.0}, {id:'grain_seed', count:1, chance:1.0}], disappears: true, tool: null, name: 'Tall Grass' },
     // Bird poop gives exactly 1 of a single randomly chosen seed type, then disappears.
     bird_poop:   { drops: [{id:'seed', chance:1.0}, {id:'rose_seed', chance:1.0}, {id:'tulip_bulb', chance:1.0}], pickOne: true, disappears: true, name: 'Bird Poop' },
     // Rosebushes and tulips are destructible pickups: harvest yields 1 rose/tulip and removes the plant.
@@ -4636,6 +4642,7 @@ function debugSkipDay() {
     if (typeof onNewDay === 'function') onNewDay();
     if (typeof refreshHarvestables === 'function') refreshHarvestables();
     if (typeof spawnBirdPoop === 'function') spawnBirdPoop(3 + floor(random(3)));
+    if (typeof growTallGrass === 'function') growTallGrass();
     notify('Debug: skipped to Day ' + world.day);
 }
 
@@ -4846,6 +4853,7 @@ function finishSleep(b, bedX, bedY) {
     // Refresh harvestables and spawn new bird poop at sunrise
     refreshHarvestables();
     spawnBirdPoop(3 + floor(random(3)));
+    growTallGrass();
 
     // Wake up just outside the bed
     // Move player to a free adjacent tile if they're currently standing in the bed tile
@@ -5661,6 +5669,8 @@ function tryHarvest() {
         const harvestDef = HARVEST_TYPES[tile.type];
         // Tree tops are not harvestable - only the solid trunk tile below.
         if (!harvestDef || tile.depleted || tile.isTreeTop) continue;
+        // Tall grass is only harvestable once fully grown (growth 3).
+        if (tile.type === 'tall_grass' && (tile.growth || 0) < 3) continue;
 
         // Prefer the tile we're facing
         if (dirName === player.facing) {
@@ -5804,6 +5814,32 @@ function refreshHarvestables() {
             if (tile.depleted) {
                 tile.depleted = false;
                 tile.respawnAt = null;
+            }
+        }
+    }
+}
+
+// Each morning: existing tall grass grows one stage (0..3), and every open grass
+// tile has a 1-in-TALL_GRASS_SPAWN_ODDS chance to sprout a fresh stage-0 patch.
+// ponytail: rolls all ~10k tiles once/day; 1/20 across the grass interior carpets
+// the island fast. Raise TALL_GRASS_SPAWN_ODDS if it's too dense.
+const TALL_GRASS_SPAWN_ODDS = 20;
+function growTallGrass() {
+    if (!world) return;
+    const px = player ? player.x : -1;
+    const py = player ? player.y : -1;
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const tile = world.tiles[x][y];
+            if (!tile) continue;
+            if (tile.type === 'tall_grass') {
+                tile.growth = Math.min(3, (tile.growth || 0) + 1);
+            } else if (tile.type === 'grass' && random() < 1 / TALL_GRASS_SPAWN_ODDS) {
+                if (isNearBeach(x, y, NONBEACH_BEACH_BUFFER)) continue;
+                if (isSolidTile(x, y)) continue;
+                if (buildingAt(x, y)) continue;
+                if (x === px && y === py) continue;
+                world.tiles[x][y] = { type: 'tall_grass', variant: 0, growth: 0 };
             }
         }
     }
@@ -6323,7 +6359,7 @@ function carveMeanderingPath(x0, y0, x1, y1) {
     let x = x0, y = y0, guard = 0;
     // Grass and grass-based decorations the path may pave over. Sea/beach/pond/dock/
     // building tiles aren't listed, so the path routes around them as before.
-    const CLEARABLE = new Set(['grass', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop', 'rosebush', 'tulip']);
+    const CLEARABLE = new Set(['grass', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'tall_grass', 'bird_poop', 'rosebush', 'tulip']);
     const lay = (px, py) => {
         if (px < 0 || px >= CONFIG.WORLD_WIDTH || py < 0 || py >= CONFIG.WORLD_HEIGHT) return;
         const row = world.tiles[px];
@@ -7217,7 +7253,9 @@ class World {
         // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
         const CELL = 10;
-        const decorations = ['tree', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'bird_poop'];
+        // Tall grass no longer seeds at world gen — it sprouts each morning (see
+        // growTallGrass). Trees/rocks/bird poop still scatter here.
+        const decorations = ['tree', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'bird_poop'];
 
         for (let cx = 0; cx < CONFIG.WORLD_WIDTH; cx += CELL) {
             for (let cy = 0; cy < CONFIG.WORLD_HEIGHT; cy += CELL) {
@@ -7237,7 +7275,6 @@ class World {
                     if (type === 'tree' || type === 'fir_tree') this.placeTree(tx, ty, type);
                     else if (type === 'rock') this.tiles[tx][ty] = { type: 'rock', variant: floor(random(2)) };
                     else if (type === 'shiny_rock') this.tiles[tx][ty] = { type: 'shiny_rock', variant: 0 };
-                    else if (type === 'weeds') this.tiles[tx][ty] = { type: 'weeds', variant: floor(random(2)) };
                     else if (type === 'bird_poop') this.tiles[tx][ty] = { type: 'bird_poop', variant: 0 };
                 }
             }
@@ -7452,6 +7489,7 @@ class World {
             // Sunrise: refresh harvestables and spawn new bird poop.
             refreshHarvestables();
             spawnBirdPoop(3 + floor(random(3)));
+            growTallGrass();
             // Sunrise: animals spawn (handled by checkAnimalSunEvents too, but ensure on wrap)
             if (typeof onAnimalNewDay === 'function') onAnimalNewDay();
             if (typeof onHogNewDay === 'function') onHogNewDay();
@@ -8056,6 +8094,24 @@ class World {
                     rect(screenX + 7, screenY + 4, 1, 10);
                     rect(screenX + 11, screenY + 7, 1, 6);
                     rect(screenX + 13, screenY + 5, 1, 9);
+                }
+                break;
+            }
+            case 'tall_grass': {
+                // Grass base, then the growth frame from the horizontal 4-frame
+                // strip (64x16). Frame index = growth stage (0..3).
+                drawBase('grass');
+                const spr = SPRITES['tiles.tall_grass'];
+                const g = tile.growth || 0;
+                if (spr && spr.width) {
+                    const frames = Math.max(1, Math.round(spr.width / spr.height));
+                    const fi = Math.min(g, frames - 1);
+                    const fw = spr.width / frames;
+                    image(spr, screenX, screenY, TS, TS, fi * fw, 0, fw, spr.height);
+                } else {
+                    fill('#7CB342');
+                    const h = 4 + g * 3;
+                    rect(screenX + 7, screenY + TS - h - 2, 2, h);
                 }
                 break;
             }
