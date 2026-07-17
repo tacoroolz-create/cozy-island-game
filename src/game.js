@@ -3545,7 +3545,7 @@ function drawMenuScreen() {
         const chip = i === menuTab ? tabSel : tabUnsel;
         if (chip && chip.width) {
             image(chip, tx, L.panelY, L.tabW, L.tabH);
-            fill(i === menuTab ? 255 : 200, i === menuTab ? 255 : 200, i === menuTab ? 200 : 200);
+            fill(255);
         } else if (i === menuTab) {
             fill(80, 70, 50);
             rect(tx, L.panelY, L.tabW, L.tabH);
