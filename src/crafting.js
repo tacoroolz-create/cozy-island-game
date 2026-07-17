@@ -270,7 +270,7 @@ function craftItem(recipeIndex) {
 // recipe level it shows each recipe with its ingredient list and material blocks.
 function drawCraftingTab(x, y, w, h) {
     // Header + breadcrumb
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
@@ -285,7 +285,7 @@ function drawCraftingTab(x, y, w, h) {
     }
     text(crumb, x, y);
 
-    fill(120);
+    fill(255);
     textSize(7);
     text('↑↓ select  ⏎ open/craft', x + w - 92, y + 2);
 

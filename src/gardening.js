@@ -285,13 +285,13 @@ function drawSproutPlaceholder(sx, sy, TS) {
 // ===== GARDENING TAB =====
 // Placeholder content for the Gardening menu tab (lists available seeds + instructions).
 function drawGardeningTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Gardening', x, y);
 
-    fill(120);
+    fill(255);
     textSize(7);
     text('Plant seeds on tilled soil. Water daily.', x, y + 12);
     text('Harvest when fully grown!', x, y + 22);
@@ -300,7 +300,7 @@ function drawGardeningTab(x, y, w, h) {
     const seeds = collectAvailableSeeds();
     const listY = y + 36;
     if (seeds.length === 0) {
-        fill(150);
+        fill(255);
         textSize(8);
         text('No seeds in inventory.', x, listY);
         text('Find seeds by harvesting flowers,', x, listY + 10);
@@ -314,7 +314,7 @@ function drawGardeningTab(x, y, w, h) {
         return;
     }
 
-    fill(180);
+    fill(255);
     textSize(8);
     text('Your seeds:', x, listY);
     let ry = listY + 12;
@@ -327,17 +327,17 @@ function drawGardeningTab(x, y, w, h) {
         noStroke();
         rect(x, ry, 8, 8);
         // Label
-        fill(220);
+        fill(255);
         textSize(8);
         text(it ? it.name : s.id, x + 12, ry);
-        fill(140);
+        fill(255);
         textSize(7);
         text('x' + s.count + '  -> ' + plantName, x + 12, ry + 9);
         ry += 20;
     }
 
     // Footer hint (flows after the list so it scrolls with the content)
-    fill(120);
+    fill(255);
     textSize(7);
     textAlign(LEFT, TOP);
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;

@@ -277,14 +277,14 @@ function updateEntities(dt) {
 
 // Friends tab rendering
 function drawFriendsTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Friendships', x, y);
 
     if (npcs.length === 0) {
-        fill(120);
+        fill(255);
         textSize(8);
         text('Neighbors will arrive over time.', x, y + 16);
         text('At least 1 new neighbor per season.', x, y + 28);
@@ -307,7 +307,7 @@ function drawFriendsTab(x, y, w, h) {
         text(npc.name, x + 22, rowY);
 
         // Friendship hearts (0-10 display, 300 max)
-        fill(120);
+        fill(255);
         textSize(7);
         let hearts = '';
         const filledHearts = Math.floor(npc.friendship / 30);
@@ -317,7 +317,7 @@ function drawFriendsTab(x, y, w, h) {
         fill(npc.friendship >= 300 ? '#FFD700' : npc.friendship >= 90 ? '#E91E63' : '#888');
         text(hearts, x + 22, rowY + 10);
 
-        fill(100);
+        fill(255);
         textSize(6);
         let shelterLabel = npc.hasHome ? '  Has shack' : '  Homeless';
         if (!npc.hasHome && npc.daysOnIsland >= 3) {
