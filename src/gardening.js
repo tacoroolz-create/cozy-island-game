@@ -228,20 +228,27 @@ function drawGardenOverlay() {
             const sx = x * TS - cameraX;
             const sy = y * TS - cameraY;
 
-            // Stage 0 (freshly planted): show a little sprout.
-            // Uses the 'tiles.sprout' sprite if one has been added, otherwise a
-            // drawn placeholder (stem + two leaves).
-            if (plot.stage === 0) {
-                const sproutSpr = (typeof SPRITES !== 'undefined') ? SPRITES['tiles.sprout'] : null;
-                if (sproutSpr) {
-                    image(sproutSpr, sx, sy, TS, TS);
-                } else {
-                    drawSproutPlaceholder(sx, sy, TS);
-                }
+            // Growth sprite: a horizontal strip with one 16x16 frame per stage
+            // (48x16 = 3 frames for the current 3-stage plants). Frame = stage.
+            // ponytail: one shared strip for every plant, so all crops grow with
+            // the same art (per-plant color is lost). Add per-plant strips if it
+            // ever matters. Falls back to the drawn placeholder/bloom below.
+            const growSpr = (typeof SPRITES !== 'undefined') ? SPRITES['tiles.sprout'] : null;
+            if (growSpr && growSpr.width) {
+                const frames = Math.max(1, Math.round(growSpr.width / growSpr.height));
+                const fi = Math.min(plot.stage, frames - 1);
+                const fw = growSpr.width / frames;
+                image(growSpr, sx, sy, TS, TS, fi * fw, 0, fw, growSpr.height);
                 continue;
             }
 
-            // Later stages: growing bloom.
+            // No sprite: stage 0 is a drawn sprout placeholder...
+            if (plot.stage === 0) {
+                drawSproutPlaceholder(sx, sy, TS);
+                continue;
+            }
+
+            // ...later stages are a growing bloom.
             const cx = sx + TS / 2;
             const cy = sy + TS / 2 + 2;
             const ratio = (plot.stage + 1) / def.stages; // 0.33..1
