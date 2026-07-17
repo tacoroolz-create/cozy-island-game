@@ -506,14 +506,14 @@ function castTeleport(trick) {
 
 // Magic tab rendering (menu). Shadows the older stub in game.js (loads later).
 function drawMagicTab(x, y, w, h) {
-    fill(200);
+    fill(255);
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
     text('Magic Tricks', x, y);
 
     if (knownMagic.length === 0) {
-        fill(120);
+        fill(255);
         textSize(8);
         text('Mubaba, in the underground city,', x, y + 16);
         text('teaches magic tricks — for a price,', x, y + 28);
@@ -537,12 +537,12 @@ function drawMagicTab(x, y, w, h) {
         text(trick.name, x + 16, rowY);
 
         // Desc
-        fill(150);
+        fill(255);
         textSize(7);
         text(trick.desc, x + 16, rowY + 10);
 
         // Cost
-        fill(120);
+        fill(255);
         textSize(7);
         text('Cost: ' + costLabel(trick.cost), x + 16, rowY + 20);
 
@@ -552,7 +552,7 @@ function drawMagicTab(x, y, w, h) {
             textSize(7);
             text('Ready!', x + w - 40, rowY);
         } else {
-            fill(150);
+            fill(255);
             textSize(7);
             text('No materials', x + w - 60, rowY);
         }
@@ -560,7 +560,7 @@ function drawMagicTab(x, y, w, h) {
         rowY += 32;
     }
 
-    fill(120);
+    fill(255);
     textSize(7);
     text('Press M in the world to cast', x, rowY + 2);
     if (typeof menuContentH !== 'undefined') menuContentH = rowY + 14 - y;

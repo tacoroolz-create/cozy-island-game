@@ -3746,36 +3746,19 @@ function drawSettingsTab(x, y, w, h) {
     textFont('Courier New');
     text('Settings', x, y);
 
-    fill(255);
-    textSize(8);
-    text('S - Save Game', x, y + 20);
-    text('ESC - Pause Game', x, y + 32);
-
     // Clickable action rows (hit-tested in mousePressed with matching offsets).
-    fill('#7CB342');
     textSize(9);
     text('▶ Save Game', x, y + 50);
-    fill('#FF8A80');
     text('▶ Save and Quit to Menu', x, y + 66);
 
-    fill('#82B1FF');
-    textSize(9);
     text('▶ Music Volume: ' + Math.round(audioManager.musicVolume * 100) + '% (click to cycle)', x, y + 86);
     text('▶ SFX Volume: ' + Math.round(audioManager.sfxVolume * 100) + '% (click to cycle)', x, y + 98);
-    fill(audioManager.muted ? '#FF8A80' : '#82B1FF');
     text('▶ Mute: ' + (audioManager.muted ? 'ON' : 'OFF'), x, y + 110);
 
     // Debug Mode toggle (also togglable with the backtick key).
-    fill(debugMode ? '#7CFC8A' : '#9E9E9E');
-    textSize(9);
     text((debugMode ? '■' : '□') + ' Debug Mode: ' + (debugMode ? 'ON' : 'OFF'), x, y + 130);
-    fill(120);
     textSize(7);
     text('(cheats + coord overlay; key: `)', x, y + 142);
-
-    fill(255, 255, 100);
-    textSize(8);
-    text('Press S to save · click a row above to act', x, y + h - 14);
 }
 
 function drawMenuSlot(slotIndex, x, y, size) {
