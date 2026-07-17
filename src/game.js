@@ -335,6 +335,13 @@ function isSolidTile(x, y) {
     if (tile.solid !== undefined) return tile.solid;
     if (TILE_SOLID.has(tile.type)) return true;
     if (typeof animalAt === 'function' && animalAt(x, y)) return true;
+    // A surface rock's 32px sprite fills a 2x2 footprint anchored at its
+    // bottom-left tile (extends up + right); block the 3 overhang tiles too.
+    for (const [ax, ay] of [[x - 1, y], [x, y + 1], [x - 1, y + 1]]) {
+        if (ax < 0 || ay < 0 || ax >= CONFIG.WORLD_WIDTH || ay >= CONFIG.WORLD_HEIGHT) continue;
+        const t = world.tiles[ax][ay];
+        if (t && t.type === 'rock') return true;
+    }
     return false;
 }
 
