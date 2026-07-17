@@ -43,7 +43,7 @@ const CONFIG = {
 // closest whole-tile step to +10%). The grass interior is unchanged (still starts at
 // edge 11), so all of the added land becomes beach: the beach ring thickens from 3 to 5.
 const ISLAND = { SEA_MARGIN: 6, BEACH_THICKNESS: 5 };
-// Non-beach decorations (trees, rocks, weeds, flowers, bird poop) must keep at
+// Non-beach decorations (trees, rocks, tall grass, bird poop) must keep at
 // least this many tiles of clearance from the beach, so they never render across
 // the grass/sand seam where the edge tiles can't blend them.
 const NONBEACH_BEACH_BUFFER = 10;
@@ -96,7 +96,6 @@ const SPRITE_DEFS = {
     'tiles.sea_overworld':    'assets/tiles/sea_overworld.png',
     'tiles.rock':             'assets/tiles/rock.png',
     'tiles.shiny_rock':       'assets/tiles/shiny_rock.png',
-    'tiles.weeds':            'assets/tiles/weeds.png',
     'tiles.tall_grass':       'assets/tiles/tall_grass.png',
     'tiles.bird_poop':        'assets/tiles/bird_poop.png',
     'tiles.rosebush':         'assets/tiles/rosebush.png',
@@ -714,7 +713,6 @@ const HARVEST_TYPES = {
     palm_tree:   { drops: [{id:'fiber', chance:1.0}, {id:'palm_frond', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 12, tool: null, name: 'Palm Tree' },
     rock:        { drops: [{id:'stone', chance:1.0}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Rock' },
     shiny_rock:  { drops: [{id:'stone', chance:1.0}, {id:'magnet', chance:0.8}, {id:'crystal', chance:0.4}], pickOne: true, randomQty: true, respawnHours: 24, tool: null, name: 'Shiny Rock' },
-    weeds:       { drops: [{id:'fiber', count:2, chance:1.0}, {id:'bean', count:1, chance:0.3}], respawnHours: 6,  tool: null, name: 'Tall Grass' },
     // Tall grass sprouts on grass each morning and grows 0->3 over four days; only
     // the mature (growth 3) patch is harvestable (see tryHarvest gate), yielding
     // fiber + grain seeds, then vanishing.
@@ -6359,7 +6357,7 @@ function carveMeanderingPath(x0, y0, x1, y1) {
     let x = x0, y = y0, guard = 0;
     // Grass and grass-based decorations the path may pave over. Sea/beach/pond/dock/
     // building tiles aren't listed, so the path routes around them as before.
-    const CLEARABLE = new Set(['grass', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'weeds', 'tall_grass', 'bird_poop', 'rosebush', 'tulip']);
+    const CLEARABLE = new Set(['grass', 'tree', 'fir_tree', 'rock', 'shiny_rock', 'tall_grass', 'bird_poop', 'rosebush', 'tulip']);
     const lay = (px, py) => {
         if (px < 0 || px >= CONFIG.WORLD_WIDTH || py < 0 || py >= CONFIG.WORLD_HEIGHT) return;
         const row = world.tiles[px];
@@ -8080,23 +8078,6 @@ class World {
                 }
                 break;
             }
-            case 'weeds': {
-                // Draw grass base first, then weeds sprite on top
-                drawBase('grass');
-                const spr = SPRITES['tiles.weeds'];
-                if (spr) {
-                    if (tile.depleted) tint(160, 160, 160);
-                    image(spr, screenX, screenY, TS, TS);
-                    noTint();
-                } else {
-                    fill(tile.depleted ? '#8A9E8A' : '#558B2F');
-                    rect(screenX + 3, screenY + 6, 1, 8);
-                    rect(screenX + 7, screenY + 4, 1, 10);
-                    rect(screenX + 11, screenY + 7, 1, 6);
-                    rect(screenX + 13, screenY + 5, 1, 9);
-                }
-                break;
-            }
             case 'tall_grass': {
                 // Grass base, then the growth frame from the horizontal 4-frame
                 // strip (64x16). Frame index = growth stage (0..3).
@@ -8305,6 +8286,11 @@ class World {
                 // v5 saves may still have removed flower/water decorations.
                 // (Tulips are now valid harvestable content again.)
                 if (tile.type === 'flower' || tile.type === 'water') {
+                    this.tiles[x][y] = { type: 'grass', variant: 0 };
+                }
+                // Legacy 'weeds' tiles are gone; tall grass replaces them. Old
+                // patches revert to plain grass (they'll re-sprout via growTallGrass).
+                if (tile.type === 'weeds') {
                     this.tiles[x][y] = { type: 'grass', variant: 0 };
                 }
             }

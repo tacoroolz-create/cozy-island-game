@@ -311,7 +311,7 @@ function drawGardeningTab(x, y, w, h) {
         textSize(8);
         text('No seeds in inventory.', x, listY);
         text('Find seeds by harvesting flowers,', x, listY + 10);
-        text('bird poop, or weeds.', x, listY + 20);
+        text('bird poop, or tall grass.', x, listY + 20);
         // Garden Day extra hint
         const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
         if (holiday && holiday.name === 'Garden Day') {
