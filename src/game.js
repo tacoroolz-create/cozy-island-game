@@ -4916,7 +4916,7 @@ function drawInterior() {
     textAlign(LEFT, TOP);
     textSize(10);
     textFont('Courier New');
-    text('🕐 ' + world.getTimeString(), 8, 15);
+    text(world.getTimeString(), 8, 15);
     fill(200);
     textSize(8);
     text(BUILDING_TIERS[b.type] ? BUILDING_TIERS[b.type].name : b.type, 8, 28);
