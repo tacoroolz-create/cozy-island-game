@@ -167,6 +167,7 @@ const SPRITE_DEFS = {
     'ui.tab_unselected':      'assets/ui/tab_unselected.png',
     'ui.slot':                'assets/ui/inventory_slot.png',
     'ui.slot_selected':       'assets/ui/inventory_slot_selected.png',
+    'ui.pixelfont':           'assets/ui/pixelfont.png',
 };
 
 // Global game state
@@ -3574,10 +3575,9 @@ function drawMenuScreen() {
             rect(tx, L.panelY, L.tabW, L.tabH);
             fill(255);
         }
-        textAlign(CENTER, CENTER);
-        textSize(6);
-        textFont('Courier New');
-        text(MENU_TABS[i], tx + L.tabW / 2, L.panelY + L.tabH / 2);
+        const tabColor = (i === menuTab && !(chip && chip.width)) ? [255, 255, 200] : [255, 255, 255];
+        pixelText(MENU_TABS[i], tx + L.tabW / 2, L.panelY + L.tabH / 2,
+            { align: 'center', valign: 'middle', color: tabColor });
     }
 
     // ===== TAB CONTENT (clipped + vertically scrollable) =====
@@ -3629,16 +3629,12 @@ function drawMenuScreen() {
     }
 
     // ===== BOTTOM HINT =====
-    fill(255);
-    textAlign(CENTER, BOTTOM);
-    textSize(7);
-    textFont('Courier New');
     let hint = 'E close · scroll wheel · click tabs';
     if (menuTab === 0) {
         const sel = inventory.slots[invSelectedSlot];
         if (sel && ITEMS[sel.id]) hint = ITEMS[sel.id].name + ' x' + sel.count + ' · E close · click to swap';
     }
-    text(hint, width / 2, height - 3);
+    pixelText(hint, width / 2, height - 2, { align: 'center', valign: 'bottom' });
 }
 
 // ===== INVENTORY TAB =====
@@ -3668,11 +3664,7 @@ function drawInventoryTab(x, y, w, h) {
     menuContentH = inventoryContentHeight();
 
     // Hotbar label
-    fill(255);
-    textAlign(LEFT, TOP);
-    textSize(8);
-    textFont('Courier New');
-    text('Hotbar', x, y);
+    pixelText('Hotbar', x, y);
 
     // Hotbar (8 slots)
     for (let i = 0; i < INV_HOTBAR_SIZE; i++) {
@@ -3686,11 +3678,7 @@ function drawInventoryTab(x, y, w, h) {
         const catStart = INV_HOTBAR_SIZE + cat * INV_SLOTS_PER_CAT;
 
         // Section label (sits 12px above the first slot row of the category)
-        fill(255);
-        textAlign(LEFT, TOP);
-        textSize(8);
-        textFont('Courier New');
-        text(sectionLabels[cat], x, y + 36 + cat * 54);
+        pixelText(sectionLabels[cat], x, y + 36 + cat * 54);
 
         for (let i = 0; i < INV_SLOTS_PER_CAT; i++) {
             const o = inventorySlotOffset(catStart + i);
@@ -3821,11 +3809,7 @@ function drawMenuSlot(slotIndex, x, y, size) {
     if (slot) {
         drawItemIcon(slot.id, x, y, size);
         if (slot.count > 1) {
-            fill(255);
-            textAlign(RIGHT, BOTTOM);
-            textSize(7);
-            textFont('Courier New');
-            text(slot.count, x + size - 1, y + size);
+            pixelText(slot.count, x + size - 1, y + size + 1, { align: 'right', valign: 'bottom' });
         }
         // Durability pips for tools
         if (typeof slot.durability === 'number') {
@@ -3835,10 +3819,7 @@ function drawMenuSlot(slotIndex, x, y, size) {
 
     // Hotbar number
     if (isHotbar) {
-        fill(255, 120);
-        textAlign(LEFT, TOP);
-        textSize(6);
-        text(slotIndex + 1, x + 1, y + 1);
+        pixelText(slotIndex + 1, x + 1, y + 1, { alpha: 150 });
     }
 }
 
