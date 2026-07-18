@@ -4,10 +4,11 @@
 // on top of the p5 canvas — the game's own dialogue box is multiple-choice only,
 // so a real <input> is the native, lazy way to let the player type.
 //
-// SETUP: install Ollama (https://ollama.com), then `ollama pull gemma3:4b`.
+// SETUP: install Ollama (https://ollama.com), then pull the model named in
+// HOG_CHAT_MODEL below (e.g. `ollama pull gemma3:4b-it-q4_K_M`).
 // Ollama runs a background server on localhost:11434; nothing else to configure.
 // Swap the model below for whatever you've pulled.
-const HOG_CHAT_MODEL = 'gemma3:4b';
+const HOG_CHAT_MODEL = 'gemma3:4b-it-q4_K_M';
 const OLLAMA_URL = 'http://localhost:11434/api/chat';
 
 // Conversation history for the CURRENT chat only. Reset every time the panel
