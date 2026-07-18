@@ -399,6 +399,11 @@ function hogAt(x, y) {
     return hog && hog.gridX === x && hog.gridY === y;
 }
 
+// Guarded: hog_chat.js may not be loaded yet / at all.
+function hogChatIsOpen() {
+    return typeof isHogChatOpen === 'function' && isHogChatOpen();
+}
+
 function hogAtFacing() {
     const facing = player.getFacingTile();
     if (!facing) return null;
@@ -623,7 +628,7 @@ function tryHogHolidayGreeting() {
         const origKey = window.keyPressed;
         window.keyPressed = function () {
             if ((keyCode === ENTER || keyCode === RETURN) && tryHogGift()) {
-                if (hog && getHogHolidayMood()) tryHogHolidayGreeting();
+                if (hog && getHogHolidayMood() && !hogChatIsOpen()) tryHogHolidayGreeting();
                 return false;
             }
             return origKey.apply(this, arguments);
@@ -634,7 +639,7 @@ function tryHogHolidayGreeting() {
         const origMouse = window.mousePressed;
         window.mousePressed = function () {
             if (tryHogGift()) {
-                if (hog && getHogHolidayMood()) tryHogHolidayGreeting();
+                if (hog && getHogHolidayMood() && !hogChatIsOpen()) tryHogHolidayGreeting();
                 return false;
             }
             return origMouse.apply(this, arguments);
