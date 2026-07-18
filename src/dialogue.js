@@ -4,7 +4,7 @@
 // Conversation typeface. 'Silkscreen' is the pixel webfont pulled in by the
 // Google Fonts <link> in index.html; the fallbacks cover the moment before it
 // loads (and offline). Swap the first name here to change the whole dialogue box.
-const DIALOGUE_FONT = 'Silkscreen, "Courier New", monospace';
+const DIALOGUE_FONT = '"Pixelify Sans", "Courier New", monospace';
 
 // Add dialogue state to STATE if not present
 if (typeof STATE !== 'undefined' && !STATE.DIALOGUE) STATE.DIALOGUE = 'dialogue';
@@ -29,7 +29,11 @@ let dialogueState = {
 // comment per NPC so the same character isn't random from sentence to sentence.
 function getHolidayGreetingPrefix(name) {
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
-    if (!holiday) return '';
+    const tod = (typeof getTimeOfDay === 'function') ? getTimeOfDay() : 'afternoon';
+    if (!holiday) {
+        // No holiday: still inject a small time-of-day observational prefix occasionally.
+        return getTimeOfDayPrefix(name, tod);
+    }
     let comments;
     if (holiday.name === 'Garden Day') {
         comments = [
@@ -362,6 +366,46 @@ function getHolidayGreetingPrefix(name) {
     }
     const idx = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % comments.length;
     return comments[idx] + ' ';
+}
+
+// ===== TIME-OF-DAY OBSERVATIONAL PREFIX =====
+// Short, spoken-word-only comments that neighbors prepend when there's no holiday.
+// Deterministic per NPC name so the same character doesn't feel random sentence to sentence.
+function getTimeOfDayPrefix(name, tod) {
+    const pools = {
+        morning: [
+            "The birds are already having meetings out there.",
+            "Morning dew makes everything look freshly delivered.",
+            "Sun's up and so am I, unfortunately cheerfully.",
+            "Smells like breakfast and good decisions out here.",
+            "Early enough that even my shadow is still yawning."
+        ],
+        afternoon: [
+            "The sun is doing its very best today.",
+            "Perfect weather for standing in one place and thinking.",
+            "Everything looks a little too bright, in a nice way.",
+            "Afternoon light makes the grass look edible. Don't eat it.",
+            "I was just admiring how loud the cicadas can be when they try."
+        ],
+        evening: [
+            "The sunset is being dramatic again. I approve.",
+            "Evening breeze just walked through and didn't close the door.",
+            "Light's getting all golden and smug.",
+            "Birds are doing their last fly-bys before bed.",
+            "Air smells like salt and the end of a good day."
+        ],
+        night: [
+            "The crickets are holding a very long concert.",
+            "Moon's out, stars are out, I'm out. Seems fair.",
+            "Quiet tonight. The kind of quiet that listens back.",
+            "Night air tastes like secrets and slightly cold sand.",
+            "I saw a firefly blink at me. I blinked back. We're friends now."
+        ]
+    };
+    const list = pools[tod] || pools.afternoon;
+    const idx = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % list.length;
+    // Only inject ~35% of the time so it doesn't dominate every chat.
+    return Math.random() < 0.35 ? list[idx] + ' ' : '';
 }
 
 // ===== PER-CHARACTER DIALOGUE TREES =====
