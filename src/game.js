@@ -3525,18 +3525,19 @@ function drawDurabilityPips(slot, x, y, size) {
 // Full-screen single-column layout that fits the SNES-zoom canvas (320x192).
 function menuLayout() {
     const pad = 4;
-    const tabH = 13;
     const hintH = 11;
+    const tabColW = 68;             // vertical tab column down the right edge (fits "Inventory")
     const panelX = pad, panelY = pad;
     const panelW = width - pad * 2;
     const panelH = height - pad * 2;
-    const contentX = panelX + 12;   // +8px inset so text/slots clear the painted frame
-    const contentY = panelY + tabH + 3;
-    const contentW = panelW - 24;
-    const contentViewH = panelH - tabH - 3 - hintH - 2;
-    const tabW = panelW / MENU_TABS.length;
-    return { pad, tabH, hintH, panelX, panelY, panelW, panelH,
-             contentX, contentY, contentW, contentViewH, tabW };
+    const tabX = panelX + panelW - tabColW;
+    const tabRowH = panelH / MENU_TABS.length;
+    const contentX = panelX + 10;   // inset so text/slots clear the painted frame
+    const contentY = panelY + 4;
+    const contentW = tabX - contentX - 4;   // stop short of the tab column
+    const contentViewH = panelH - hintH - 4 - 2;
+    return { pad, hintH, tabColW, panelX, panelY, panelW, panelH,
+             tabX, tabRowH, contentX, contentY, contentW, contentViewH };
 }
 
 function drawMenuScreen() {
@@ -3558,25 +3559,23 @@ function drawMenuScreen() {
     }
     noStroke();
 
-    // ===== TAB BAR =====
+    // ===== TAB BAR (vertical, down the right edge) =====
     const tabSel = SPRITES['ui.tab_selected'], tabUnsel = SPRITES['ui.tab_unselected'];
     for (let i = 0; i < MENU_TABS.length; i++) {
-        const tx = L.panelX + i * L.tabW;
+        const ty = L.panelY + i * L.tabRowH;
         const chip = i === menuTab ? tabSel : tabUnsel;
+        let tabColor = [255, 255, 255];
         if (chip && chip.width) {
-            image(chip, tx, L.panelY, L.tabW, L.tabH);
-            fill(255);
+            image(chip, L.tabX, ty, L.tabColW, L.tabRowH);
         } else if (i === menuTab) {
             fill(80, 70, 50);
-            rect(tx, L.panelY, L.tabW, L.tabH);
-            fill(255, 255, 200);
+            rect(L.tabX, ty, L.tabColW, L.tabRowH);
+            tabColor = [255, 255, 200];
         } else {
             fill(40, 30, 20);
-            rect(tx, L.panelY, L.tabW, L.tabH);
-            fill(255);
+            rect(L.tabX, ty, L.tabColW, L.tabRowH);
         }
-        const tabColor = (i === menuTab && !(chip && chip.width)) ? [255, 255, 200] : [255, 255, 255];
-        pixelText(MENU_TABS[i], tx + L.tabW / 2, L.panelY + L.tabH / 2,
+        pixelText(MENU_TABS[i], L.tabX + L.tabColW / 2, ty + L.tabRowH / 2,
             { align: 'center', valign: 'middle', color: tabColor });
     }
 
@@ -3625,7 +3624,7 @@ function drawMenuScreen() {
         const thumbH = Math.max(12, trackH * L.contentViewH / menuContentH);
         const thumbY = L.contentY + (trackH - thumbH) * (menuScroll / maxScroll);
         fill(120, 100, 70);
-        rect(L.panelX + L.panelW - 3, thumbY, 2, thumbH);
+        rect(L.contentX + L.contentW + 1, thumbY, 2, thumbH);
     }
 
     // ===== BOTTOM HINT =====
@@ -3634,7 +3633,7 @@ function drawMenuScreen() {
         const sel = inventory.slots[invSelectedSlot];
         if (sel && ITEMS[sel.id]) hint = ITEMS[sel.id].name + ' x' + sel.count + ' · E close · click to swap';
     }
-    pixelText(hint, width / 2, height - 2, { align: 'center', valign: 'bottom' });
+    pixelText(hint, L.contentX + L.contentW / 2, height - 2, { align: 'center', valign: 'bottom' });
 }
 
 // ===== INVENTORY TAB =====
@@ -4121,9 +4120,9 @@ function mousePressed() {
 
         // --- Tab bar clicks ---
         for (let i = 0; i < MENU_TABS.length; i++) {
-            const tx = L.panelX + i * L.tabW;
-            if (mouseX >= tx && mouseX < tx + L.tabW &&
-                mouseY >= L.panelY && mouseY < L.panelY + L.tabH) {
+            const ty = L.panelY + i * L.tabRowH;
+            if (mouseX >= L.tabX && mouseX < L.tabX + L.tabColW &&
+                mouseY >= ty && mouseY < ty + L.tabRowH) {
                 if (menuTab !== i) audioManager.playSFX('click');
                 menuTab = i;
                 menuScroll = 0;           // reset scroll when switching tabs
