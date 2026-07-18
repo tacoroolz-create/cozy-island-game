@@ -21,24 +21,50 @@ function st(opener, pairs) {
 }
 
 // ---- Ambient lines: { text, ask, reply } with {player}/{other}/{season} slots ----
+// Morning lines: birds, dew, sunrise, soft light, new-day optimism.
 const AMBIENT_MORNING = [
     { text: "Up with the sun, {player}? The island smells like dew and possibility this early.", ask: "What's the plan today?", reply: "Oh, the usual: wander, snack, admire the sea, repeat. It's a rigorous schedule." },
     { text: "Morning! I heard the birds arguing before dawn. I think the little one won.", ask: "Birds argue?", reply: "Constantly. Mostly about who saw the sunrise first. Nobody ever agrees." },
-    { text: "There's something about a morning here. Everything feels un-decided yet, you know?", ask: "I know exactly what you mean.", reply: "I figured you would. You have morning-person eyes. Take that as a compliment." }
+    { text: "There's something about a morning here. Everything feels un-decided yet, you know?", ask: "I know exactly what you mean.", reply: "I figured you would. You have morning-person eyes. Take that as a compliment." },
+    { text: "The sunrise painted the beach pink again. I keep meaning to thank it, but it never stays long enough.", ask: "Pink beach mornings are special.", reply: "They are. You can't put them in your pocket, but you can walk through them, and that's almost the same." },
+    { text: "Early enough that even the crabs are still deciding if today is worth walking sideways for.", ask: "Did they decide?", reply: "Most of them said yes. One went back to its hole. I respect both choices." },
+    { text: "The dew is sitting on the grass like tiny glass chairs. I keep wanting to sit on one, but that seems rude.", ask: "Tiny chairs for tiny guests?", reply: "Exactly. The dew has invited all the ants to breakfast, and I am far too large for the table." },
+    { text: "I saw the first bird of the morning do a little hop, then a bigger hop, then fly away like it had finally made up its mind.", ask: "Morning hops are good luck?", reply: "On this island, everything that moves at dawn is good luck. Even me, apparently." }
 ];
+
+// Afternoon lines: sun, shade, heat, animal behavior, bright colors.
 const AMBIENT_AFTERNOON = [
+    { text: "The sun is so bright today. Maybe we should plant a shade tree.", ask: "Where would you put it?", reply: "Right between me and the sun. That's the only architecture I believe in." },
     { text: "Perfect napping weather, if you ask me. Not that anyone ever asks me.", ask: "I'm asking you!", reply: "Then my official ruling is: yes. Find a warm patch of grass and report back." },
     { text: "Afternoon, {player}. I've been standing here so long a butterfly tried to claim me as territory.", ask: "Did you let it?", reply: "We negotiated. It gets my left shoulder on weekdays. Fair is fair." },
-    { text: "Busy day! And by busy I mean I watched a cloud for two hours. It was shaped like a spoon.", ask: "A spoon cloud? Nice.", reply: "It slowly became a ladle. Honestly? Riveting. Best show on the island." }
+    { text: "Busy day! And by busy I mean I watched a cloud for two hours. It was shaped like a spoon.", ask: "A spoon cloud? Nice.", reply: "It slowly became a ladle. Honestly? Riveting. Best show on the island." },
+    { text: "The sun is being very generous right now. I think it's trying to win our approval.", ask: "Has it won yours?", reply: "Partially. I'd vote for it if it promised to add a little more shade to the ballot." },
+    { text: "Hoggy found a cool spot under a bush earlier. I almost asked to join him, but I'm not ready for that level of friendship.", ask: "Hoggy's good company?", reply: "Hoggy is excellent company. He doesn't judge, he doesn't rush, and he occasionally shares shade." },
+    { text: "The beach is glowing so hard it looks like it's showing off. I don't blame it.", ask: "Glowing beaches are hard to ignore.", reply: "Exactly. If I were a beach, I'd glow too. It's the best time of day to be sand." },
+    { text: "I saw a cicada singing on a tree earlier. It sounded like a tiny kettle that had something to say.", ask: "What did it say?", reply: "I think it was mostly 'hello, hello, warm, hello.' Repetitive, but sincere." }
 ];
+
+// Evening lines: golden hour, sunset, winding down, dinner, cooling air.
 const AMBIENT_EVENING = [
     { text: "The light gets all golden around now. Even the rocks look like they're posing.", ask: "It's my favorite hour.", reply: "Mine too. Don't tell the morning I said that. The morning gets jealous." },
     { text: "Evening already? Days on this island slip by like minnows. Fast and a little shiny.", ask: "What did today slip by with?", reply: "A good stretch, a better snack, and one truly excellent smell I never identified." },
-    { text: "Almost dinnertime, {player}. I can practically hear the whole island's stomachs growling in chorus.", ask: "What's on your menu?", reply: "Whatever's closest, garnished with whatever's second closest. Island cooking!" }
+    { text: "Almost dinnertime, {player}. I can practically hear the whole island's stomachs growling in chorus.", ask: "What's on your menu?", reply: "Whatever's closest, garnished with whatever's second closest. Island cooking!" },
+    { text: "The sunset is taking its time tonight. I appreciate a sky that knows how to make an exit.", ask: "Long sunsets are the best.", reply: "They give you time to think about your day, your snacks, and whether you've thanked enough clouds." },
+    { text: "The shadows are stretching out like the island is yawning before bed.", ask: "Yawns are contagious.", reply: "Tell me about it. I yawned twice just watching that tree shadow reach the path." },
+    { text: "The birds are doing their last loops before settling in. It's like they're saying goodnight to the whole sky.", ask: "Bird goodnights are cute.", reply: "Very. They don't need words. They just fly in a circle and land with a little feather-fluff. Perfect manners." },
+    { text: "Evening breeze tastes like salt and warm sand. I keep breathing deeper than I need to.", ask: "Deep breathing is allowed.", reply: "Good. Because I am currently breathing enough for two people and maybe one seagull." }
 ];
+
+// Night lines: stars, moon, crickets, quiet, secrets, late thoughts.
 const AMBIENT_NIGHT = [
+    { text: "I love the sound of the crickets chirping. It's like the island is whispering itself to sleep.", ask: "Do you sleep much?", reply: "A little. But mostly I stand here and listen to the whispering. It's better than counting sheep." },
     { text: "Out late, {player}? The island keeps a different set of secrets after dark.", ask: "Like what?", reply: "The waves talk slower. The stars lean closer. And somebody — no names — sleep-hums." },
-    { text: "Can't sleep either, huh? The moon's too good tonight to waste on being unconscious.", ask: "It really is.", reply: "Stand here a minute and look up with me. There. That's the whole conversation." }
+    { text: "Can't sleep either, huh? The moon's too good tonight to waste on being unconscious.", ask: "It really is.", reply: "Stand here a minute and look up with me. There. That's the whole conversation." },
+    { text: "The stars are doing that thing where they look close enough to borrow a cup of sugar.", ask: "Would you lend them sugar?", reply: "Of course. Stars deserve sweet things. I'd leave a whole bowl on the roof if I could reach it." },
+    { text: "The moonlight made a little silver path on the water. I keep thinking it's an invitation, but I can't swim that well.", ask: "Silver paths are tempting.", reply: "They are. I walked to the edge and dipped a toe in. The water said no thank you, very politely." },
+    { text: "Everything sounds softer at night. Even my own thoughts stopped yelling.", ask: "Soft thoughts are nice.", reply: "Very. They sit in little corners and hum. I am currently having the softest thought I've had all week." },
+    { text: "I saw a firefly blink twice and then stop, like it forgot what it was going to say.", ask: "Maybe it got shy.", reply: "Could be. Fireflies are brave until you look directly at them. Then they pretend to be a regular bug." },
+    { text: "The island at night feels like it's holding its breath so we can hear the waves.", ask: "Waves are loud enough already.", reply: "True. But nighttime waves sound deeper, like they're telling stories to the sand. I don't interrupt." }
 ];
 const AMBIENT_GENERIC = [
     { text: "You know what I like about you, {player}? You stop and talk. Most folks just wave.", ask: "I like our talks too.", reply: "See? That's exactly the thing I mean. Off you go, now — but come back soon." },
@@ -69,12 +95,30 @@ const AMBIENT_NEW = [
 ];
 
 function makeAmbientTree(npc) {
-    const hour = (typeof world !== 'undefined' && world) ? Math.floor((world.timeMinutes || 0) / 60) : 12;
-    const timePool = hour >= 5 && hour < 11 ? AMBIENT_MORNING
-        : hour >= 11 && hour < 17 ? AMBIENT_AFTERNOON
-        : hour >= 17 && hour < 21 ? AMBIENT_EVENING
-        : AMBIENT_NIGHT;
+    const tod = (typeof getTimeOfDay === 'function') ? getTimeOfDay() : 'afternoon';
+    let timePool = AMBIENT_AFTERNOON;
+    if (tod === 'morning') timePool = AMBIENT_MORNING;
+    else if (tod === 'evening') timePool = AMBIENT_EVENING;
+    else if (tod === 'night') timePool = AMBIENT_NIGHT;
+
+    // Observational modifiers: if birds/crabs/cicadas are active right now, bias toward them.
+    let observational = [];
+    if (tod === 'morning') {
+        observational = AMBIENT_MORNING.filter(l => l.text.includes('bird') || l.text.includes('crab') || l.text.includes('dew'));
+    } else if (tod === 'afternoon') {
+        observational = AMBIENT_AFTERNOON.filter(l => l.text.includes('cicada') || l.text.includes('butterfly') || l.text.includes('shade'));
+    } else if (tod === 'evening') {
+        observational = AMBIENT_EVENING.filter(l => l.text.includes('sunset') || l.text.includes('shadow') || l.text.includes('birds'));
+    } else if (tod === 'night') {
+        observational = AMBIENT_NIGHT.filter(l => l.text.includes('cricket') || l.text.includes('star') || l.text.includes('moon'));
+    }
+
     let pool = timePool.concat(AMBIENT_GENERIC);
+    // 40% chance to pick from observational subset when available so time-of-day feels intentional.
+    if (observational.length > 0 && Math.random() < 0.4) {
+        pool = observational.concat(AMBIENT_GENERIC);
+    }
+
     const seasonLine = (typeof world !== 'undefined' && world && AMBIENT_SEASON[world.season]) || null;
     if (seasonLine) pool = pool.concat([seasonLine]);
     const others = (typeof npcs !== 'undefined') ? npcs.filter(n => n.isPresent && n !== npc && n.id !== 'mubaba') : [];

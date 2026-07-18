@@ -242,6 +242,22 @@ function getTimeString() {
     return displayHours + ':' + minutes.toString().padStart(2, '0') + ' ' + ampm;
 }
 
+// Time-of-day buckets used by dialogue and ambient systems.
+// Returns one of: 'night', 'morning', 'afternoon', 'evening'.
+function getTimeOfDay() {
+    if (!world) return 'afternoon';
+    const hour = world.timeMinutes / 60;
+    if (hour >= 21 || hour < 5) return 'night';
+    if (hour >= 5 && hour < 11) return 'morning';
+    if (hour >= 11 && hour < 17) return 'afternoon';
+    return 'evening';
+}
+
+function getTimeOfDayLabel() {
+    const tod = getTimeOfDay();
+    return { night: 'night', morning: 'morning', afternoon: 'afternoon', evening: 'evening' }[tod];
+}
+
 // Enhanced lighting overlay with season tints
 function drawEnhancedDayNightOverlay() {
     const hour = world.timeMinutes / 60;

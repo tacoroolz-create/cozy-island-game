@@ -142,6 +142,8 @@ const SPRITE_DEFS = {
     'items.palm_frond':       'assets/sprites/palm_frond.png',
     'items.gettin_stick':     'assets/sprites/gettin_stick.png',
     'items.glass_bottle':     'assets/sprites/glass_bottle.png',
+    'items.broken_watch':     'assets/sprites/broken_watch.png',
+    'items.pocket_watch':     'assets/sprites/pocket_watch.png',
     'items.gold_coin':        'assets/sprites/gold_coin.png',
     'items.shovel':           'assets/sprites/shovel.png',
     'items.iou':              'assets/sprites/iou.png',
@@ -365,6 +367,8 @@ const ITEMS = {
     tulip_bulb:  { name: 'Tulip Bulb',  category: 'material', maxStack: 99, color: '#F5F5F5', desc: 'A white tulip bulb.' },
     flea_lily_seed: { name: 'Flea Lily Seed', category: 'material', maxStack: 99, color: '#8E24AA', desc: 'A rare seed bartered from the Flealess Market. Plant it on tilled soil.' },
     bird_poop:   { name: 'Bird Poop',   category: 'material', maxStack: 99, color: '#E0E0E0', desc: 'May contain seeds.' },
+    broken_watch: { name: 'Broken Watch', category: 'treasure', maxStack: 99, color: '#B08D57', desc: "Waterlogged and stopped. Five might make one that works." },
+    pocket_watch: { name: 'Pocket Watch', category: 'treasure', maxStack: 1,  color: '#FFD54F', desc: 'Ticking again. Shows the time while you are outdoors.' },
     rose:        { name: 'Rose',        category: 'gift',     maxStack: 99, color: '#E53935', desc: 'A freshly picked red rose.' },
     tulip:       { name: 'Tulip',       category: 'gift',     maxStack: 99, color: '#F5F5F5', desc: 'A freshly picked tulip.' },
     thatch:      { name: 'Thatch',      category: 'block',    maxStack: 99, color: '#D4A76A', desc: 'Building material.' },
@@ -3385,6 +3389,18 @@ function drawDayNightOverlay() {
 function drawUI() {
     // Top date/time bar removed: at the SNES-zoom resolution it collided with
     // itself. Date/time now live in the Almanac / menu instead of on the HUD.
+
+    // Pocket Watch: carrying one puts the clock back on the outdoor HUD.
+    if (inventory.hasItem('pocket_watch', 1)) {
+        const t = world.getTimeString();
+        textAlign(LEFT, TOP);
+        textSize(10);
+        const w = textWidth(t) + 8;
+        fill(0, 0, 0, 150);
+        rect(6, 6, w, 16);
+        fill(255, 255, 200);
+        text(t, 10, 10);
+    }
 
     // Save indicator
     if (world.showSaveIndicator) {

@@ -46,6 +46,7 @@ const TREASURE_POOL = [
     { id: 'iron_ingot',   name: 'Iron Ingot',   weight: 16 },
     { id: 'gold_coin',    name: 'Gold Coin',    weight: 12 },
     { id: 'old_radio',    name: 'Old Radio',    weight:  6 },
+    { id: 'broken_watch', name: 'Broken Watch', weight: 10 },
     // Waterlogged tools — found with reduced durability.
     { id: 'axe',     name: 'Rusty Axe',     weight: 3, isTool: true },
     { id: 'hoe',     name: 'Rusty Hoe',     weight: 3, isTool: true },
