@@ -277,17 +277,17 @@ function drawCraftingTab(x, y, w, h) {
     let crumb = 'Crafting';
     if (craftNav.cat) {
         const cat = CRAFT_CATEGORIES.find(c => c.id === craftNav.cat);
-        crumb += ' › ' + (cat ? cat.name : craftNav.cat);
+        crumb += ' > ' + (cat ? cat.name : craftNav.cat);
         if (craftNav.sub && cat && cat.subs) {
             const sub = cat.subs.find(s => s.id === craftNav.sub);
-            crumb += ' › ' + (sub ? sub.name : craftNav.sub);
+            crumb += ' > ' + (sub ? sub.name : craftNav.sub);
         }
     }
     text(crumb, x, y);
 
     fill(255);
     textSize(7);
-    text('↑↓ select  ⏎ open/craft', x + w - 92, y + 2);
+    text('▲▼ select  ▶ open/craft', x + w - 92, y + 2);
 
     const entries = getCraftEntries();
     const listY = y + 16;
@@ -298,7 +298,7 @@ function drawCraftingTab(x, y, w, h) {
 
     // Recipe rows are taller (show ingredients); nav rows are compact.
     const atRecipeLevel = entries.some(e => e.kind === 'recipe');
-    const rowH = atRecipeLevel ? 30 : 20;
+    const rowH = atRecipeLevel ? 36 : 20;
 
     const maxRows = Math.floor(listH / rowH);
     // Simple scroll window so long lists (furniture) stay reachable.
@@ -360,7 +360,7 @@ function drawNavRow(entry, x, ry, w, rowH, selected) {
     if (entry.kind === 'cat' || entry.kind === 'sub') {
         fill(150);
         textAlign(RIGHT, CENTER);
-        text('›', x + w - 8, ry + (rowH - 2) / 2);
+        text('▶', x + w - 8, ry + (rowH - 2) / 2);
     }
 }
 
@@ -390,20 +390,20 @@ function drawRecipeRow(recipe, x, ry, w, rowH, selected) {
     textAlign(LEFT, TOP);
     textSize(9);
     textFont('Courier New');
-    text(recipe.name, x + 6, ry + 2);
+    text(recipe.name, x + 6, ry + 1);
     fill(craftable ? 170 : 100);
     textSize(7);
-    text(recipe.desc, x + 6, ry + 12, w - 6, 12);
+    text(recipe.desc, x + 6, ry + 13, w - 6, 12);
 
     const ingText = recipe.inputs.map(inp => {
         const it = ITEMS[inp.id];
         const owned = inventory.countItem(inp.id);
         const name = it ? it.name : inp.id;
-        return (owned >= inp.count ? '' : '⚠ ') + inp.count + ' ' + name;
+        return (owned >= inp.count ? '' : '! ') + inp.count + ' ' + name;
     }).join(' + ');
     fill(craftable ? 200 : 120, craftable ? 230 : 100, craftable ? 200 : 120);
     textSize(7);
-    text(ingText, x + 6, ry + 21, w - 6, 9);
+    text(ingText, x + 6, ry + 24, w - 6, 9);
 
     // Material blocks on the right.
     const blockSz = 7, gap = 2;
@@ -427,7 +427,7 @@ function craftingTabClick(x, y, w, h) {
     const listY = y + 16;
     const listH = h - 16;
     const atRecipeLevel = entries.some(e => e.kind === 'recipe');
-    const rowH = atRecipeLevel ? 30 : 20;
+    const rowH = atRecipeLevel ? 36 : 20;
     const maxRows = Math.floor(listH / rowH);
     let startRow = 0;
     if (entries.length > maxRows) {
