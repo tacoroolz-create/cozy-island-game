@@ -32,6 +32,9 @@ const RECIPES = [
         inputs: [ { id: 'stone', count: 2 }, { id: 'stick', count: 1 } ] },
     { output: 'shovel', cat: 'tools', name: 'Shovel', desc: 'Carve dirt paths across the grass.',
         inputs: [ { id: 'log', count: 1 }, { id: 'stone', count: 1 } ] },
+    { output: 'pocket_watch', cat: 'tools', name: 'Pocket Watch',
+        desc: 'Five broken watches, one working one. Shows the time while outdoors.',
+        inputs: [ { id: 'broken_watch', count: 5 } ] },
     { output: 'grass_seed', cat: 'tools', name: 'Grass Seed', desc: 'Erase a dirt path back into grass.',
         inputs: [ { id: 'fiber', count: 2 } ] },
 
