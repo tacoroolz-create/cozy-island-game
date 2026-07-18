@@ -47,6 +47,11 @@ const TREASURE_POOL = [
     { id: 'gold_coin',    name: 'Gold Coin',    weight: 12 },
     { id: 'old_radio',    name: 'Old Radio',    weight:  6 },
     { id: 'broken_watch', name: 'Broken Watch', weight: 10 },
+    // Atlas pages — four colors, all four together summon Yarbo's ship.
+    { id: 'atlas_1', name: 'Crimson Atlas', weight: 4 },
+    { id: 'atlas_2', name: 'Scarlet Atlas', weight: 4 },
+    { id: 'atlas_3', name: 'Maroon Atlas',  weight: 4 },
+    { id: 'atlas_4', name: 'Pale Atlas',    weight: 4 },
     // Waterlogged tools — found with reduced durability.
     { id: 'axe',     name: 'Rusty Axe',     weight: 3, isTool: true },
     { id: 'hoe',     name: 'Rusty Hoe',     weight: 3, isTool: true },
