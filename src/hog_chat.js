@@ -66,10 +66,10 @@ function ensureHogChatDom() {
         'display:none', 'flex-direction:column', 'z-index:500',
         'background:rgba(10,14,40,0.94)', 'border:2px solid rgb(230,236,255)',
         'border-radius:6px', 'box-shadow:0 0 0 2px rgba(40,50,90,1) inset',
-        // Readable body font — pixel fonts (Silkscreen) blur when the container
-        // is CSS-scaled and tire the eyes over long AI text. Keep Silkscreen only
-        // for the little name header below, as flavor.
-        'font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif', 'color:#eef', 'overflow:hidden'
+        // Body font: Pixelify Sans — a pixel font designed to stay legible for
+        // running text, so the chat keeps the game's look without the eye strain
+        // of Silkscreen. Falls back to a readable sans before the webfont loads.
+        'font-family:"Pixelify Sans","Trebuchet MS",system-ui,sans-serif', 'color:#eef', 'overflow:hidden'
     ].join(';');
 
     const header = document.createElement('div');
