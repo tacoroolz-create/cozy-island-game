@@ -143,6 +143,12 @@ const SPRITE_DEFS = {
     'items.gettin_stick':     'assets/sprites/gettin_stick.png',
     'items.glass_bottle':     'assets/sprites/glass_bottle.png',
     'items.broken_watch':     'assets/sprites/broken_watch.png',
+    'items.atlas_1':          'assets/sprites/atlas_1.png',
+    'items.atlas_2':          'assets/sprites/atlas_2.png',
+    'items.atlas_3':          'assets/sprites/atlas_3.png',
+    'items.atlas_4':          'assets/sprites/atlas_4.png',
+    'sprites.yarbo':          'assets/sprites/npcs/yarbo.png',
+    'sprites.yarbos_ship':    'assets/sprites/yarbos_ship.png',
     'items.pocket_watch':     'assets/sprites/pocket_watch.png',
     'items.gold_coin':        'assets/sprites/gold_coin.png',
     'items.shovel':           'assets/sprites/shovel.png',
@@ -369,6 +375,10 @@ const ITEMS = {
     bird_poop:   { name: 'Bird Poop',   category: 'material', maxStack: 99, color: '#E0E0E0', desc: 'May contain seeds.' },
     broken_watch: { name: 'Broken Watch', category: 'treasure', maxStack: 99, color: '#B08D57', desc: "Waterlogged and stopped. Five might make one that works." },
     pocket_watch: { name: 'Pocket Watch', category: 'treasure', maxStack: 1,  color: '#FFD54F', desc: 'Ticking again. Shows the time while you are outdoors.' },
+    atlas_1:     { name: 'Crimson Atlas', category: 'treasure', maxStack: 99, color: '#AA253D', desc: "This looks pretty cool, but you don't know what it all means." },
+    atlas_2:     { name: 'Scarlet Atlas', category: 'treasure', maxStack: 99, color: '#E40000', desc: "This looks pretty cool, but you don't know what it all means." },
+    atlas_3:     { name: 'Maroon Atlas',  category: 'treasure', maxStack: 99, color: '#850000', desc: "This looks pretty cool, but you don't know what it all means." },
+    atlas_4:     { name: 'Pale Atlas',    category: 'treasure', maxStack: 99, color: '#BBDCE8', desc: "This looks pretty cool, but you don't know what it all means." },
     rose:        { name: 'Rose',        category: 'gift',     maxStack: 99, color: '#E53935', desc: 'A freshly picked red rose.' },
     tulip:       { name: 'Tulip',       category: 'gift',     maxStack: 99, color: '#F5F5F5', desc: 'A freshly picked tulip.' },
     thatch:      { name: 'Thatch',      category: 'block',    maxStack: 99, color: '#D4A76A', desc: 'Building material.' },
@@ -1256,6 +1266,10 @@ function drawGame() {    // Handle continuous movement
     // ===== PEAK YEESH: Everburn bonfire + silent Papa Yeesh visitor =====
     updatePeakYeesh();
     drawPeakYeesh();
+
+    // ===== YARBO: ship at the dock on even days once all 4 atlases are found =====
+    updateYarbo();
+    drawYarbo();
 
     // ===== THE FLEALESS MARKET: traveling merchant near the dock =====
     updateFlealessMarket();
@@ -3109,6 +3123,50 @@ const FLEALESS_MARKET_OFFERS = [
     { key: 'seed',   label: 'Mystery Seeds',    cost: { fiber: 10, pinecone: 5 }, give: () => inventory.addItem('flea_lily_seed', 3),
       line: 'The merchant presses a few seeds into your hand. "Not from around here, if you catch my meaning."' }
 ];
+// ===== YARBO'S SHIP =====
+// Once all four atlas pages are in the inventory, Yarbo's ship moors at the
+// dock on even-numbered days and Yarbo wanders within 10 tiles of it.
+const YARBO_RADIUS = 10;
+let yarbo = null; // { x, y, facing, lastMoveAt }
+
+function isYarboVisiting() {
+    return !!world && world.day % 2 === 0 &&
+        [1, 2, 3, 4].every(n => inventory.hasItem('atlas_' + n, 1));
+}
+
+function updateYarbo() {
+    if (!isYarboVisiting()) { yarbo = null; return; }
+    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    if (!yarbo) {
+        const spot = findClearGroundNear(dock.x, dock.y, 1, YARBO_RADIUS);
+        if (!spot) return;
+        yarbo = { x: spot.x, y: spot.y, facing: 'down', lastMoveAt: 0 };
+        notify('A strange ship has moored at the dock.', 4500);
+        return;
+    }
+    // Gentle wander, same cadence as Papa Yeesh, leashed to the dock.
+    if (Math.random() >= 0.005) return;
+    const dirs = [[0,-1,'up'],[0,1,'down'],[-1,0,'left'],[1,0,'right']];
+    const d = dirs[Math.floor(Math.random() * 4)];
+    const nx = yarbo.x + d[0], ny = yarbo.y + d[1];
+    if (Math.abs(nx - dock.x) > YARBO_RADIUS || Math.abs(ny - dock.y) > YARBO_RADIUS) return;
+    if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) return;
+    if (isSolidTile(nx, ny) || buildingAt(nx, ny)) return;
+    if (typeof npcAt === 'function' && npcAt(nx, ny)) return;
+    yarbo.x = nx; yarbo.y = ny; yarbo.facing = d[2]; yarbo.lastMoveAt = millis();
+}
+
+function drawYarbo() {
+    if (!yarbo) return;
+    const TS = CONFIG.TILE_SIZE;
+    const sx = yarbo.x * TS - cameraX, sy = yarbo.y * TS - cameraY;
+    const moving = (millis() - (yarbo.lastMoveAt || 0)) < 300;
+    if (!drawCharacterSprite(SPRITES['sprites.yarbo'], sx, sy - TS, yarbo.facing, moving)) {
+        fill('#5D4037');
+        rect(sx, sy - TS, TS, TS * 2);
+    }
+}
+
 let flealessMerchant = null; // { x, y }
 let flealessMarket = null;   // { day, bought: {statue,tool,seed} }
 
@@ -7525,6 +7583,13 @@ class World {
         const screenX = x * TS;
         const screenY = y * TS;
         const w = TS * ISLAND_DOCK_W, h = TS * ISLAND_DOCK_H;
+        // Yarbo's ship moors over the dock's seaward end. Drawn HERE, between the
+        // base tiles (beach/waves/sea, pass 1) and the pier planks, so the draw
+        // order is beach → waves → sea → ship → dock without a separate pass.
+        if (typeof isYarboVisiting === 'function' && isYarboVisiting()) {
+            const shipSpr = SPRITES['sprites.yarbos_ship'];
+            if (shipSpr) image(shipSpr, screenX, screenY, TS * 6, TS * 4);
+        }
         if (spr) {
             image(spr, screenX, screenY, w, h);
         } else {
