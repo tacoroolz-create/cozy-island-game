@@ -66,15 +66,18 @@ function ensureHogChatDom() {
         'display:none', 'flex-direction:column', 'z-index:500',
         'background:rgba(10,14,40,0.94)', 'border:2px solid rgb(230,236,255)',
         'border-radius:6px', 'box-shadow:0 0 0 2px rgba(40,50,90,1) inset',
-        'font-family:Silkscreen,"Courier New",monospace', 'color:#eef', 'overflow:hidden'
+        // Readable body font — pixel fonts (Silkscreen) blur when the container
+        // is CSS-scaled and tire the eyes over long AI text. Keep Silkscreen only
+        // for the little name header below, as flavor.
+        'font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif', 'color:#eef', 'overflow:hidden'
     ].join(';');
 
     const header = document.createElement('div');
-    header.style.cssText = 'padding:6px 10px;font-size:13px;color:#ffdca8;border-bottom:1px solid #2a3560;flex:0 0 auto';
+    header.style.cssText = 'padding:6px 10px;font-family:Silkscreen,monospace;font-size:14px;color:#ffdca8;border-bottom:1px solid #2a3560;flex:0 0 auto';
     root.appendChild(header);
 
     const log = document.createElement('div');
-    log.style.cssText = 'flex:1 1 auto;overflow-y:auto;padding:8px 10px;font-size:12px;line-height:1.5;display:flex;flex-direction:column;gap:6px';
+    log.style.cssText = 'flex:1 1 auto;overflow-y:auto;padding:10px 12px;font-size:16px;line-height:1.6;display:flex;flex-direction:column;gap:8px';
     root.appendChild(log);
 
     const bar = document.createElement('div');
@@ -83,7 +86,7 @@ function ensureHogChatDom() {
     input.type = 'text';
     input.maxLength = 200;
     input.placeholder = 'Say something to Hoggy…  (Esc to leave)';
-    input.style.cssText = 'flex:1;background:#05070f;border:1px solid #3a4780;border-radius:4px;color:#eef;font-family:inherit;font-size:12px;padding:6px 8px;outline:none';
+    input.style.cssText = 'flex:1;background:#05070f;border:1px solid #3a4780;border-radius:4px;color:#eef;font-family:inherit;font-size:15px;padding:7px 9px;outline:none';
     bar.appendChild(input);
     root.appendChild(bar);
 
@@ -124,6 +127,10 @@ function openHogChat(h) {
     if (typeof audioManager !== 'undefined' && audioManager) audioManager.playSFX('oink', 0.6);
     appendHogChatLine('hog', h.name + ' trots over and looks at you expectantly.');
     setTimeout(() => el.input.focus(), 0);
+}
+
+function isHogChatOpen() {
+    return !!(hogChatEl && hogChatEl.root.style.display === 'flex');
 }
 
 function closeHogChat() {
