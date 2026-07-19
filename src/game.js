@@ -5683,9 +5683,11 @@ function updateCamera() {
     const TS = CONFIG.TILE_SIZE;
     // Hard-clamp the camera inside the world. Only the horizon peek may push
     // cameraY above the north edge (< 0), where drawSky fills the gap.
-    cameraX = constrain(player.x * TS - CONFIG.CANVAS_WIDTH / 2, 0, CONFIG.WORLD_WIDTH * TS - CONFIG.CANVAS_WIDTH);
-    cameraY = constrain(player.y * TS - CONFIG.CANVAS_HEIGHT / 2, 0, CONFIG.WORLD_HEIGHT * TS - CONFIG.CANVAS_HEIGHT)
-            + horizonPeekY * TS;
+    // Round to whole pixels: fractional camera positions make tiles render at
+    // subpixel offsets, which shows as seam lines between them.
+    cameraX = Math.round(constrain(player.x * TS - CONFIG.CANVAS_WIDTH / 2, 0, CONFIG.WORLD_WIDTH * TS - CONFIG.CANVAS_WIDTH));
+    cameraY = Math.round(constrain(player.y * TS - CONFIG.CANVAS_HEIGHT / 2, 0, CONFIG.WORLD_HEIGHT * TS - CONFIG.CANVAS_HEIGHT)
+            + horizonPeekY * TS);
 }
 
 function updateHorizonPeek(dt) {
