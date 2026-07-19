@@ -1167,6 +1167,10 @@ function drawGame() {    // Handle continuous movement
     if (deltaTime) updateNotifications(deltaTime);
     updateWarpAnim();
 
+    // ===== WEATHER: pick/advance today's particles + gust envelope before the
+    // world draws, so tree/crop wind lean uses this frame's gust value.
+    updateWeather(deltaTime);
+
     // Draw world
     world.draw();
 
@@ -1205,6 +1209,9 @@ function drawGame() {    // Handle continuous movement
     // Redraw tree canopy the player is standing under so foliage occludes
     // them (see World.drawTreeCanopyOverPlayer()).
     if (world) world.drawTreeCanopyOverPlayer();
+
+    // ===== WEATHER: particles over the world, under the day/night overlay =====
+    drawWeather();
 
     // Day/night overlay
     drawDayNightOverlay();
@@ -6117,6 +6124,145 @@ function drawFireflies() {
     }
 }
 
+// ===== WEATHER: deterministic daily rain / wind / snow / crigeon =====
+// Cosmetic only — today's weather regenerates from (world.day, world.season),
+// so nothing is saved and SAVE_VERSION stays put. Particles live in screen
+// space on the 320x192 canvas. Wind days add an intermittent gust envelope
+// (windGust 0..1) that leans trees (drawTallDecoration) and crops
+// (drawGardenOverlay in gardening.js) via weatherWindShear().
+const WEATHER_TABLE = { // [kind, chance] rows rolled in order, per season
+    Sweet: [['rain', 0.30], ['wind', 0.10], ['crigeon', 0.05]],
+    Saucy: [['wind', 0.30], ['rain', 0.10], ['crigeon', 0.05]],
+    Cool:  [['wind', 0.30], ['rain', 0.10], ['crigeon', 0.05]],
+    Yeesh: [['snow', 0.35], ['rain', 0.15], ['wind', 0.10], ['crigeon', 0.05]],
+};
+const WEATHER_COUNTS = { rain: 80, snow: 50, crigeon: 40, wind: 26 };
+let weatherToday = null;  // { day, kind } — memory only, never saved
+let weatherParts = [];    // screen-space particles for today's weather
+let windGust = 0;         // 0..1 gust envelope on wind days
+let _gustStart = 0, _gustEnd = 0, _gustNext = 0;
+
+// Deterministic 0..1 roll for a given day+salt (fract-of-sine hash, no RNG state).
+function weatherRoll(day, salt) {
+    const s = Math.sin(day * 127.1 + salt * 311.7) * 43758.5453;
+    return s - Math.floor(s);
+}
+
+function getCurrentWeather() {
+    if (!world || currentMapId !== 'island') return 'clear';
+    if (!weatherToday || weatherToday.day !== world.day) {
+        let kind = 'clear';
+        const rows = WEATHER_TABLE[world.season] || [];
+        for (let i = 0; i < rows.length; i++) {
+            if (weatherRoll(world.day, i + 1) < rows[i][1]) { kind = rows[i][0]; break; }
+        }
+        weatherToday = { day: world.day, kind };
+        weatherParts = [];
+    }
+    return weatherToday.kind;
+}
+
+function spawnWeatherParts(kind) {
+    const n = WEATHER_COUNTS[kind] || 0;
+    weatherParts = [];
+    for (let i = 0; i < n; i++) {
+        weatherParts.push({
+            x: random(CONFIG.CANVAS_WIDTH),
+            y: random(CONFIG.CANVAS_HEIGHT),
+            phase: random(TWO_PI),
+            speed: random(0.7, 1.3),
+        });
+    }
+}
+
+function updateWeather(dt) {
+    const kind = getCurrentWeather();
+    // Gust envelope on wind days: 0.5-1.5s sine ramp, then 2-5s of calm.
+    if (kind === 'wind') {
+        const now = millis();
+        if (now >= _gustNext) {
+            _gustStart = now;
+            _gustEnd = now + random(500, 1500);
+            _gustNext = _gustEnd + random(2000, 5000);
+        }
+        windGust = now < _gustEnd
+            ? Math.sin(Math.PI * (now - _gustStart) / (_gustEnd - _gustStart))
+            : 0;
+    } else {
+        windGust = 0;
+    }
+    if (kind === 'clear') { weatherParts = []; return; }
+    if (weatherParts.length === 0) spawnWeatherParts(kind);
+
+    const W = CONFIG.CANVAS_WIDTH, H = CONFIG.CANVAS_HEIGHT;
+    const step = (dt || 16.7) / 16.7; // motion in 60fps-frame units
+    const t = millis() / 1000;
+    for (const p of weatherParts) {
+        if (kind === 'rain') {
+            p.y += 2.4 * p.speed * step;
+            p.x -= 0.4 * step;
+        } else if (kind === 'snow') {
+            p.y += 0.5 * p.speed * step;
+            p.x += Math.sin(t * p.speed + p.phase) * 0.3 * step;
+        } else if (kind === 'crigeon') {
+            p.y -= 0.35 * p.speed * step;
+            p.x += Math.sin(t * 0.8 + p.phase) * 0.25 * step;
+        } else if (kind === 'wind') {
+            p.x += (1.5 + 6 * windGust) * p.speed * step;
+            p.y += Math.sin(t + p.phase) * 0.15 * step;
+        }
+        // Recycle off-screen particles back onto the opposite edge.
+        if (p.y > H + 4) { p.y = -4; p.x = random(W); }
+        if (p.y < -6) { p.y = H + 4; p.x = random(W); }
+        if (p.x > W + 10) { p.x = -8; p.y = random(H); }
+        if (p.x < -10) { p.x = W + 8; p.y = random(H); }
+    }
+}
+
+function drawWeather() {
+    const kind = getCurrentWeather();
+    if (kind === 'clear' || weatherParts.length === 0) return;
+    if (kind === 'rain') {
+        stroke(100, 181, 246, 70); // soft blue streaks
+        strokeWeight(1);
+        for (const p of weatherParts) line(p.x, p.y, p.x + 0.7, p.y + 4);
+        noStroke();
+    } else if (kind === 'snow') {
+        noStroke();
+        for (const p of weatherParts) {
+            const r = 1 + (p.speed - 0.7); // 1..1.6px flakes
+            fill(255, 255, 255, 170);
+            ellipse(p.x, p.y, r + 1, r + 1);
+            fill(255, 255, 255, 230);
+            ellipse(p.x, p.y, r, r);
+        }
+    } else if (kind === 'crigeon') {
+        // Whimsical dream specs: rise lazily, fade out toward the sky.
+        noStroke();
+        for (const p of weatherParts) {
+            const a = Math.min(1, p.y / (CONFIG.CANVAS_HEIGHT * 0.35));
+            fill(179, 157, 219, 70 * a);  // lavender halo
+            ellipse(p.x, p.y, 3, 3);
+            fill(149, 117, 205, 200 * a); // purple core
+            ellipse(p.x, p.y, 1.5, 1.5);
+        }
+    } else if (kind === 'wind') {
+        if (windGust <= 0.05) return; // streaks only during gusts
+        stroke(235, 235, 235, 60 * windGust);
+        strokeWeight(1);
+        for (const p of weatherParts) line(p.x, p.y, p.x + 6 + 8 * windGust, p.y);
+        noStroke();
+    }
+}
+
+// Shear angle (radians) for the current gust; 0 unless today is a wind day.
+// Callers shear around a sprite's base line so roots stay planted:
+//   push(); translate(0, baseY); shearX(-weatherWindShear()); translate(0, -baseY);
+function weatherWindShear() {
+    if (windGust <= 0 || !weatherToday || weatherToday.kind !== 'wind') return 0;
+    return windGust * 0.10 * (0.8 + 0.2 * Math.sin(millis() / 130));
+}
+
 // ===== BEACH FLOTSAM: overnight driftwood piles on the beach =====
 // Day-keyed like lostMail: fresh piles each morning, uncollected ones wash
 // away at the next rollover. Walk over a pile to collect it (groundLoot-style
@@ -7907,9 +8053,17 @@ class World {
                 const overlaps = pLeft < cRight && pRight > cLeft && pTop < cBottom && pBottom > cTop;
                 if (!overlaps) continue;
 
+                const lean = weatherWindShear(); // match drawTallDecoration's gust shear
+                if (lean) {
+                    push();
+                    translate(0, screenY + TS);
+                    shearX(-lean);
+                    translate(0, -(screenY + TS));
+                }
                 if (tile.depleted) tint(160, 160, 160);
                 image(top, offsetX, offsetY, top.width, top.height);
                 noTint();
+                if (lean) pop();
             }
         }
     }
@@ -7946,11 +8100,19 @@ class World {
             if (!trunk) return;
             const offsetX = screenX - (trunk.w - TS) / 2;
             const offsetY = screenY - (trunk.h - TS);
+            const lean = weatherWindShear();
+            if (lean) { // gust: shear trunk+canopy around the base so roots stay put
+                push();
+                translate(0, screenY + TS);
+                shearX(-lean);
+                translate(0, -(screenY + TS));
+            }
             if (tile.depleted) tint(160, 160, 160);
             image(trunk.img, offsetX, offsetY, trunk.w, trunk.h, trunk.sx, 0, trunk.w, trunk.h);
             const top = structureFrame(seasonalTreeTopKey());
             if (top) image(top.img, offsetX, offsetY, top.w, top.h, top.sx, 0, top.w, top.h);
             noTint();
+            if (lean) pop();
             return;
         }
 
@@ -7971,11 +8133,19 @@ class World {
         if (!key) return;
         const f = structureFrame(key);
         if (!f) return;
+        const lean = weatherWindShear(); // palm/banana/rosebush sway too
+        if (lean) {
+            push();
+            translate(0, screenY + TS);
+            shearX(-lean);
+            translate(0, -(screenY + TS));
+        }
         if (tile.depleted) tint(160, 160, 160);
         const offsetX = screenX - (f.w - TS) / 2;
         const offsetY = screenY - (f.h - TS);
         image(f.img, offsetX, offsetY, f.w, f.h, f.sx, 0, f.w, f.h);
         noTint();
+        if (lean) pop();
     }
 
     // Dynamic sun shadows for everything visible: tall flora (same sprites
