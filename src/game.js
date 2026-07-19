@@ -1170,6 +1170,9 @@ function drawGame() {    // Handle continuous movement
     // Draw world
     world.draw();
 
+    // ===== SEASONAL GROUND CLUTTER: under buildings, NPCs, and the player =====
+    drawGroundClutter();
+
     // Draw buildings (after world, before player for depth)
     for (const b of buildings) {
         b.draw();
@@ -5927,6 +5930,122 @@ function spawnBirdPoop(targetCount) {
     }
     if (spawned > 0 && player) {
         notify('The birds have been busy overnight...');
+    }
+}
+
+// ===== SEASONAL GROUND CLUTTER: tiny per-season grass decorations =====
+// Non-solid, non-interactive scatter on grass tiles that makes each season
+// read differently. Season-keyed like fireflies are day-keyed: regenerates
+// lazily whenever world.season changes (or on first draw after load/worldgen),
+// never saved. Optional sprite hooks: SPRITES['fx.clutter_<kind>'], 16x16.
+const CLUTTER_KINDS = {
+    Sweet: ['wildflower', 'grass_tuft'],
+    Saucy: ['dried_grass', 'pebble', 'twig'],
+    Cool:  ['fallen_leaf', 'acorn'],
+    Yeesh: ['frost', 'bare_twig', 'bud'],
+};
+const CLUTTER_COUNT = 160; // scattered over the whole island, a few per screen
+let groundClutter = null; // { season, items: [{x, y, ox, oy, kind, variant}] }
+
+function spawnGroundClutter() {
+    if (!world) return;
+    const kinds = CLUTTER_KINDS[world.season] || [];
+    const items = [];
+    let attempts = 0;
+    while (items.length < CLUTTER_COUNT && attempts < CLUTTER_COUNT * 5 && kinds.length > 0) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const t = world.tiles[x][y];
+        if (!t || t.type !== 'grass') continue;
+        items.push({
+            x, y,
+            ox: floor(random(4, 13)), // sub-tile pixel offset so scatter looks organic
+            oy: floor(random(4, 13)),
+            kind: kinds[floor(random(kinds.length))],
+            variant: floor(random(3)),
+        });
+    }
+    groundClutter = { season: world.season, items };
+}
+
+function drawGroundClutter() {
+    if (!world || currentMapId !== 'island') return;
+    if (!groundClutter || groundClutter.season !== world.season) spawnGroundClutter();
+    if (!groundClutter || groundClutter.items.length === 0) return;
+    const TS = CONFIG.TILE_SIZE;
+    for (const c of groundClutter.items) {
+        const sx = c.x * TS - cameraX + c.ox;
+        const sy = c.y * TS - cameraY + c.oy;
+        if (sx < -TS || sx > CONFIG.CANVAS_WIDTH + TS || sy < -TS || sy > CONFIG.CANVAS_HEIGHT + TS) continue;
+        const spr = SPRITES['fx.clutter_' + c.kind];
+        if (spr) {
+            image(spr, c.x * TS - cameraX, c.y * TS - cameraY, TS, TS);
+            continue;
+        }
+        noStroke();
+        switch (c.kind) {
+            case 'wildflower':
+                fill(['#F48FB1', '#FFF59D', '#CE93D8'][c.variant]);
+                ellipse(sx, sy, 3, 3);
+                fill('#FFEE58');
+                ellipse(sx, sy, 1.5, 1.5);
+                break;
+            case 'grass_tuft':
+                stroke('#66BB6A'); strokeWeight(1);
+                line(sx - 2, sy + 2, sx - 3, sy - 2);
+                line(sx, sy + 2, sx, sy - 3);
+                line(sx + 2, sy + 2, sx + 3, sy - 2);
+                noStroke();
+                break;
+            case 'dried_grass':
+                stroke('#C8B26A'); strokeWeight(1);
+                line(sx - 2, sy + 2, sx - 4, sy - 1);
+                line(sx, sy + 2, sx + 1, sy - 2);
+                line(sx + 2, sy + 2, sx + 4, sy);
+                noStroke();
+                break;
+            case 'pebble':
+                fill('#9E9E9E');
+                ellipse(sx, sy, 4, 3);
+                fill('#BDBDBD');
+                ellipse(sx - 1, sy - 1, 1.5, 1.5);
+                break;
+            case 'twig':
+                stroke('#A1887F'); strokeWeight(1);
+                line(sx - 3, sy + 1, sx + 3, sy - 1);
+                noStroke();
+                break;
+            case 'fallen_leaf':
+                fill(['#E07B39', '#C62828', '#8D6E63'][c.variant]);
+                ellipse(sx, sy, 5, 3);
+                break;
+            case 'acorn':
+                fill('#8D6E63');
+                ellipse(sx, sy + 1, 3, 4);
+                fill('#5D4037');
+                ellipse(sx, sy - 1, 3.5, 2);
+                break;
+            case 'frost':
+                stroke(255, 255, 255, 170); strokeWeight(1);
+                line(sx - 2, sy, sx + 2, sy);
+                line(sx, sy - 2, sx, sy + 2);
+                noStroke();
+                break;
+            case 'bare_twig':
+                stroke('#7B6F63'); strokeWeight(1);
+                line(sx - 2, sy + 2, sx + 2, sy - 2);
+                line(sx, sy, sx + 2, sy + 1);
+                noStroke();
+                break;
+            case 'bud':
+                stroke('#5D4037'); strokeWeight(1);
+                line(sx, sy + 2, sx, sy);
+                noStroke();
+                fill('#6D4C41');
+                ellipse(sx, sy - 1, 2, 3);
+                break;
+        }
     }
 }
 
