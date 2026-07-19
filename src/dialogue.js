@@ -408,6 +408,46 @@ function getTimeOfDayPrefix(name, tod) {
     return Math.random() < 0.35 ? list[idx] + ' ' : '';
 }
 
+// ===== WEATHER OBSERVATIONAL PREFIX =====
+// Independent of holiday/time-of-day/smalltalk: always checked, purely additive.
+// Spoken words only — no asterisks or stage directions.
+const WEATHER_COMMENTS = {
+    rain: [
+        "Listen to that rain. The whole island sounds freshly rinsed.",
+        "Puddles everywhere today. I stepped in one on purpose.",
+        "My feathers are soaked and honestly? Worth it.",
+        "Gentle rain like this makes even the beach smell green."
+    ],
+    wind: [
+        "Hold onto your hat! Mine's already three trees over.",
+        "The palms are leaning like they're eavesdropping on the sea.",
+        "This wind keeps finishing my sentences for me.",
+        "Every gust today has somewhere very important to be."
+    ],
+    snow: [
+        "Snow makes everything so quiet. Even my thoughts are whispering.",
+        "I left a trail of footprints and I'm weirdly proud of it.",
+        "Soft snow on the sand. What a strange, lovely island we have.",
+        "Caught a snowflake earlier. It melted. We had a moment."
+    ],
+    crigeon: [
+        "The purple specs are rising again. I always wave, just in case.",
+        "Crigeon dreams drifting up from the ground. The island must be sleeping well.",
+        "One of those little purple lights followed me all morning. Flattering, honestly.",
+        "The ground is exhaling dreams today. Try not to step on any wishes."
+    ]
+};
+
+// Deterministic line per NPC per day for the current weather, or null on clear days.
+function getWeatherComment(npcName) {
+    if (typeof getCurrentWeather !== 'function') return null;
+    const lines = WEATHER_COMMENTS[getCurrentWeather()];
+    if (!lines) return null;
+    const day = (typeof world !== 'undefined' && world) ? (world.day || 0) : 0;
+    const hash = (npcName || '').split('').reduce((a, c) => a + c.charCodeAt(0), day);
+    return lines[Math.abs(hash) % lines.length];
+}
+
 // ===== PER-CHARACTER DIALOGUE TREES =====
 // Built from the CharacterDraft.txt cast. Each character gets at least 5 nodes.
 
@@ -736,6 +776,11 @@ function openDialogue(npc) {
         if (world && world.islandName && Math.random() < 0.3) {
             tree.start.text = 'Another fine day on ' + world.islandName + '! ' + tree.start.text;
         }
+        // Weather comment: additive standalone prefix, independent of everything above.
+        const weatherComment = getWeatherComment(npc.name);
+        if (weatherComment) {
+            tree.start.text = weatherComment + ' ' + tree.start.text;
+        }
     }
 }
 
@@ -760,6 +805,11 @@ function openAdvancedMenu(npc) {
                 const holidayPrefix = getHolidayGreetingPrefix(npc.name);
                 if (holidayPrefix && !tree.start.text.startsWith(holidayPrefix.trim())) {
                     tree.start.text = holidayPrefix + tree.start.text;
+                }
+                // Weather comment: same additive prefix when re-entering Talk.
+                const weatherComment = getWeatherComment(npc.name);
+                if (weatherComment && !tree.start.text.startsWith(weatherComment)) {
+                    tree.start.text = weatherComment + ' ' + tree.start.text;
                 }
             }
         } },
