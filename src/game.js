@@ -1281,6 +1281,14 @@ function drawGame() {    // Handle continuous movement
     updateFamiliar(deltaTime);
     drawFamiliar();
 
+    // ===== BEACH FLOTSAM: overnight driftwood piles on the beach =====
+    updateFlotsam();
+    drawFlotsam();
+
+    // ===== FIREFLY SWARMS: evening glow over tall grass (Sweet/Saucy) =====
+    updateFireflies();
+    drawFireflies();
+
     // Update entities
     if (typeof updateEntities === 'function') updateEntities(deltaTime);
     if (typeof updateAnimals === 'function') updateAnimals(deltaTime);
@@ -5919,6 +5927,148 @@ function spawnBirdPoop(targetCount) {
     }
     if (spawned > 0 && player) {
         notify('The birds have been busy overnight...');
+    }
+}
+
+// ===== FIREFLY SWARMS: evening glow over tall grass in Sweet & Saucy =====
+// Cosmetic only — no collision, no save. Day-keyed like lostMail/touristTime:
+// regenerates each evening, vanishes at sunrise/season change/off-island.
+const FIREFLY_START_HOUR = 19;
+const FIREFLY_SWARM_COUNT = 10; // tall-grass clusters that get a swarm
+const FIREFLY_PER_SWARM = 4;
+let fireflies = null; // { day, flies: [{x,y,phase,speed,radius}] } — x/y world pixels
+
+function spawnFireflies() {
+    if (!world) return;
+    const spots = [];
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (t && t.type === 'tall_grass') spots.push({ x, y });
+        }
+    }
+    const flies = [];
+    for (let i = 0; i < FIREFLY_SWARM_COUNT && spots.length > 0; i++) {
+        const spot = spots.splice(floor(random(spots.length)), 1)[0];
+        for (let j = 0; j < FIREFLY_PER_SWARM; j++) {
+            flies.push({
+                x: (spot.x + 0.5 + random(-1, 1)) * CONFIG.TILE_SIZE,
+                y: (spot.y + 0.5 + random(-1, 1)) * CONFIG.TILE_SIZE,
+                phase: random(TWO_PI),
+                speed: random(0.3, 0.8),
+                radius: random(4, 10),
+            });
+        }
+    }
+    fireflies = { day: world.day, flies };
+}
+
+function updateFireflies() {
+    if (!world || currentMapId !== 'island' ||
+        (world.season !== 'Sweet' && world.season !== 'Saucy') ||
+        world.timeMinutes / 60 < FIREFLY_START_HOUR) {
+        fireflies = null;
+        return;
+    }
+    if (!fireflies || fireflies.day !== world.day) spawnFireflies();
+}
+
+function drawFireflies() {
+    if (!fireflies || fireflies.flies.length === 0) return;
+    const t = millis() / 1000;
+    const spr = SPRITES['fx.firefly']; // optional sprite hook, 8x8
+    noStroke();
+    for (const f of fireflies.flies) {
+        // Lazy drift: a little sin/cos orbit around the spawn point.
+        const sx = f.x + Math.cos(f.phase + t * f.speed) * f.radius - cameraX;
+        const sy = f.y + Math.sin((f.phase + t * f.speed) * 1.7) * f.radius - cameraY;
+        if (sx < -8 || sx > CONFIG.CANVAS_WIDTH + 8 || sy < -8 || sy > CONFIG.CANVAS_HEIGHT + 8) continue;
+        const glow = 0.55 + 0.45 * Math.sin(f.phase * 3 + t * (f.speed + 1.5));
+        if (spr) {
+            push();
+            tint(255, 255 * glow);
+            image(spr, sx - 4, sy - 4, 8, 8);
+            pop();
+        } else {
+            fill(190, 230, 90, 60 * glow);
+            ellipse(sx, sy, 7, 7); // halo
+            fill(230, 255, 140, 230 * glow);
+            ellipse(sx, sy, 3, 3); // core
+        }
+    }
+}
+
+// ===== BEACH FLOTSAM: overnight driftwood piles on the beach =====
+// Day-keyed like lostMail: fresh piles each morning, uncollected ones wash
+// away at the next rollover. Walk over a pile to collect it (groundLoot-style
+// auto-pickup). Not saved — regenerates on load.
+const FLOTSAM_DROPS = [
+    { id: 'stick', min: 1, max: 3 },
+    { id: 'log',   min: 1, max: 2 },
+    { id: 'fiber', min: 1, max: 2 },
+];
+let flotsam = null; // { day, piles: [{x,y,id,count}] }
+
+function spawnFlotsam() {
+    if (!world) return;
+    const piles = [];
+    const targetCount = 4 + floor(random(3)); // 4-6 piles
+    let attempts = 0;
+    const px = player ? player.x : -1;
+    const py = player ? player.y : -1;
+    while (piles.length < targetCount && attempts < 500) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const tile = world.tiles[x][y];
+        if (!tile || tile.type !== 'beach') continue;
+        if (isSolidTile(x, y)) continue;
+        if (buildingAt(x, y)) continue;
+        if (x === px && y === py) continue;
+        if (piles.some(p => p.x === x && p.y === y)) continue;
+        const drop = FLOTSAM_DROPS[floor(random(FLOTSAM_DROPS.length))];
+        piles.push({ x, y, id: drop.id, count: drop.min + floor(random(drop.max - drop.min + 1)) });
+    }
+    flotsam = { day: world.day, piles };
+    if (piles.length > 0 && player) {
+        notify('The tide left some flotsam on the beach overnight...');
+    }
+}
+
+function updateFlotsam() {
+    if (!world || currentMapId !== 'island') return;
+    if (!flotsam || flotsam.day !== world.day) spawnFlotsam();
+    if (!flotsam || !player) return;
+    flotsam.piles = flotsam.piles.filter(p => {
+        if (p.x === player.x && p.y === player.y) {
+            inventory.addItem(p.id, p.count);
+            if (typeof spawnItemPopup === 'function') spawnItemPopup(p.id);
+            notify('Picked up: ' + ITEMS[p.id].name + (p.count > 1 ? ' x' + p.count : ''));
+            return false;
+        }
+        return true;
+    });
+}
+
+function drawFlotsam() {
+    if (currentMapId !== 'island' || !flotsam || flotsam.piles.length === 0) return;
+    const TS = CONFIG.TILE_SIZE;
+    for (const p of flotsam.piles) {
+        const sx = p.x * TS - cameraX;
+        const sy = p.y * TS - cameraY;
+        if (sx < -TS || sx > CONFIG.CANVAS_WIDTH || sy < -TS || sy > CONFIG.CANVAS_HEIGHT) continue;
+        const spr = SPRITES['items.' + p.id]; // optional sprite hook
+        if (spr) {
+            image(spr, sx, sy, TS, TS);
+        } else {
+            // Colored-shape fallback: a small washed-up pile in the item's color.
+            noStroke();
+            fill(ITEMS[p.id].color);
+            ellipse(sx + TS / 2, sy + TS / 2 + 2, TS * 0.7, TS * 0.35);
+            ellipse(sx + TS / 2 - 2, sy + TS / 2 - 1, TS * 0.45, TS * 0.3);
+            fill(255, 255, 255, 40);
+            ellipse(sx + TS / 2 + 2, sy + TS / 2, TS * 0.25, TS * 0.15);
+        }
     }
 }
 
