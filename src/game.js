@@ -1171,6 +1171,9 @@ function drawGame() {    // Handle continuous movement
     // world draws, so tree/crop wind lean uses this frame's gust value.
     updateWeather(deltaTime);
 
+    // ===== SKY / HORIZON: screen-space backdrop behind the island =====
+    drawSky();
+
     // Draw world
     world.draw();
 
@@ -3460,6 +3463,168 @@ function drawDayNightOverlay() {
         fill(r, g, b, darkness * 255);
         rect(0, 0, width, height);
     }
+}
+
+// ===== SCREEN-SPACE SKY / HORIZON =====
+// Drawn behind the world so the square island no longer floats in a black void.
+// Screen-space (or subtle parallax) so it stays visible outside the world edges.
+// Colored-shape fallbacks only; optional sprite hooks for later Pixsplat art:
+//   SPRITES['fx.sky_gradient']  - full-screen day/night gradient texture
+//   SPRITES['fx.cloud']         - single cloud sprite to stamp instead of ovals
+//   SPRITES['fx.star']          - tiny star sprite to stamp instead of points
+function drawSky() {
+    if (!world || world.kind !== 'island') return; // only surface world
+    if (insideBuilding) return; // don't draw sky while indoors
+
+    const W = width, H = height;
+    const hour = world.timeMinutes / 60;
+
+    // --- palette targets by time of day (top sky / horizon / ocean horizon band) ---
+    let topColor, horizonColor, oceanColor;
+    const t = hour;
+    if (t < 5) {
+        // deep night
+        topColor = color(10, 15, 35);
+        horizonColor = color(20, 25, 45);
+        oceanColor = color(15, 20, 40);
+    } else if (t < 7) {
+        // dawn
+        const p = map(t, 5, 7, 0, 1);
+        topColor = lerpColor(color(10, 15, 35), color(70, 130, 200), p);
+        horizonColor = lerpColor(color(20, 25, 45), color(255, 160, 90), p);
+        oceanColor = lerpColor(color(15, 20, 40), color(90, 140, 180), p);
+    } else if (t < 17) {
+        // day
+        topColor = color(90, 170, 230);
+        horizonColor = color(200, 230, 255);
+        oceanColor = color(110, 170, 200);
+    } else if (t < 20) {
+        // dusk
+        const p = map(t, 17, 20, 0, 1);
+        topColor = lerpColor(color(90, 170, 230), color(30, 35, 65), p);
+        horizonColor = lerpColor(color(200, 230, 255), color(240, 120, 70), p);
+        oceanColor = lerpColor(color(110, 170, 200), color(50, 60, 90), p);
+    } else {
+        // night
+        topColor = color(10, 15, 35);
+        horizonColor = color(20, 25, 45);
+        oceanColor = color(15, 20, 40);
+    }
+
+    // --- full-screen gradient (fallback shapes; optional sprite hook) ---
+    const gradSpr = SPRITES['fx.sky_gradient'];
+    if (gradSpr) {
+        // Tint by top/horizon average so the texture still shifts with time.
+        const tintC = lerpColor(topColor, horizonColor, 0.5);
+        tint(red(tintC), green(tintC), blue(tintC), 220);
+        image(gradSpr, 0, 0, W, H);
+        noTint();
+    } else {
+        // Vertical gradient: draw strips and lerp between top and horizon colors.
+        noStroke();
+        const horizonY = H * 0.58;
+        const steps = 48;
+        for (let i = 0; i < steps; i++) {
+            const y0 = (i / steps) * horizonY;
+            const y1 = ((i + 1) / steps) * horizonY;
+            const c = lerpColor(topColor, horizonColor, i / steps);
+            fill(c);
+            rect(0, y0, W, y1 - y0 + 1);
+        }
+        // Soft horizon band below the gradient.
+        fill(horizonColor);
+        rect(0, horizonY, W, H - horizonY);
+    }
+
+    // --- distant flat ocean horizon line below the island beach edge ---
+    // World sea starts at tile edge ISLAND.SEA_MARGIN. Convert that world Y
+    // to screen space; if it's below the visible screen, fall back to a
+    // comfortable horizon line near the bottom.
+    const seaStartWorldY = ISLAND.SEA_MARGIN * CONFIG.TILE_SIZE;
+    let horizonScreenY = seaStartWorldY - cameraY;
+    if (horizonScreenY < H * 0.35) horizonScreenY = H * 0.78; // island fills view
+    if (horizonScreenY > H * 0.92) horizonScreenY = H * 0.82; // don't clip too low
+    const bandH = H - horizonScreenY;
+    if (bandH > 0) {
+        const oceanSpr = SPRITES['fx.sky_gradient']; // reuse if present, else shapes
+        if (gradSpr && false) {
+            // Placeholder branch kept for symmetry; currently uses shape fallback.
+        }
+        noStroke();
+        // Slightly darker ocean horizon band.
+        fill(oceanColor);
+        rect(0, horizonScreenY, W, bandH);
+        // Subtle lighter line where the sky meets the ocean.
+        fill(lerpColor(horizonColor, oceanColor, 0.5));
+        rect(0, horizonScreenY, W, max(1, bandH * 0.08));
+    }
+
+    // --- parallax clouds (very subtle, 1-2 layers) ---
+    // Parallax moves opposite to camera so they feel far away. Uses shape fallbacks
+    // with an optional SPRITES['fx.cloud'] hook.
+    drawSkyClouds(0.08, 0.12, 0.7);
+    drawSkyClouds(0.18, 0.25, 0.45);
+
+    // --- faint stars at night ---
+    if (hour < 5.5 || hour >= 19.5) {
+        drawSkyStars();
+    }
+}
+
+function drawSkyClouds(baseYRel, parallaxFactor, alphaScale) {
+    const W = width, H = height;
+    const cloudSpr = SPRITES['fx.cloud'];
+    const layerSeed = floor(baseYRel * 1000);
+    const layerY = H * baseYRel - cameraY * parallaxFactor;
+    const count = 6;
+    randomSeed(12345 + layerSeed);
+    for (let i = 0; i < count; i++) {
+        const cx = ((i * 137.5 + layerSeed * 37) % W + W + (cameraX * parallaxFactor * -0.5) % W) % W;
+        const cy = layerY + (i % 3 - 1) * 14;
+        const cw = 32 + (i * 7) % 24;
+        const ch = 8 + (i * 5) % 7;
+        const dayAlpha = (hour >= 6 && hour < 18) ? 200 : 90;
+        const c = color(255, alpha(dayAlpha * alphaScale));
+        if (cloudSpr) {
+            tint(c);
+            image(cloudSpr, cx - cw / 2, cy - ch / 2, cw, ch);
+            noTint();
+        } else {
+            noStroke();
+            fill(c);
+            ellipse(cx, cy, cw, ch);
+            ellipse(cx + cw * 0.25, cy - ch * 0.2, cw * 0.7, ch * 0.8);
+            ellipse(cx - cw * 0.25, cy - ch * 0.1, cw * 0.6, ch * 0.7);
+        }
+    }
+    randomSeed(); // restore p5 default randomness
+}
+
+function drawSkyStars() {
+    const W = width, H = height;
+    const starSpr = SPRITES['fx.star'];
+    const starCount = 28;
+    const fade = (hour >= 19.5)
+        ? map(min(hour, 22), 19.5, 22, 0, 1)
+        : map(max(hour, 4.5), 4.5, 5.5, 1, 0);
+    if (fade <= 0) return;
+    randomSeed(98765);
+    for (let i = 0; i < starCount; i++) {
+        const sx = (i * 61.7) % W;
+        const sy = (i * 23.3) % (H * 0.55);
+        const twinkle = 0.7 + 0.3 * sin((millis() / 800) + i * 1.7);
+        const a = 180 * fade * twinkle;
+        if (starSpr) {
+            tint(255, a);
+            image(starSpr, sx, sy, 3, 3);
+            noTint();
+        } else {
+            noStroke();
+            fill(255, a);
+            rect(sx, sy, 2, 2);
+        }
+    }
+    randomSeed();
 }
 
 function drawUI() {
