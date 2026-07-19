@@ -8602,6 +8602,21 @@ class World {
                 }
                 break;
             }
+            case 'soil': {
+                // Tilled grass. Prefer the sprite; fall back to a plain dark-brown tile.
+                const spr = SPRITES['tiles.soil'];
+                if (spr) {
+                    image(spr, screenX, screenY, TS, TS);
+                } else {
+                    fill('#5D4037');
+                    rect(screenX, screenY, TS, TS);
+                    fill('#4E342E');
+                    ellipse(screenX + TS / 2, screenY + TS / 2, TS - 4, TS - 4);
+                    fill('#6D4C41');
+                    rect(screenX + 2, screenY + TS / 2 - 1, TS - 4, 1);
+                }
+                break;
+            }
             case 'path': {
                 // Dirt path (48x48 autotile sheet): center dirt + grassy fringe on any side
                 // facing non-path terrain, so shaping paths never leaves a hard edge.
