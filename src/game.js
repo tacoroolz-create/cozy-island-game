@@ -191,8 +191,7 @@ let cameraY = 0;
 // ===== HORIZON PEEK =====
 // When the player stands still on the outer beach edge, the camera slowly
 // shifts to reveal more sky, hinting at the ocean beyond the island.
-let horizonPeekX = 0; // accumulated screen-space offset (-tiles*TS..0)
-let horizonPeekY = 0;
+let horizonPeekY = 0; // camera pan above the north edge, in tiles (-HORIZON_PEEK_MAX_TILES..0)
 const HORIZON_PEEK_SPEED = 0.08;  // tiles per second of stillness
 const HORIZON_PEEK_MAX_TILES = 5; // max camera overshoot in tiles
 
@@ -3484,238 +3483,25 @@ function drawDayNightOverlay() {
 }
 
 // ===== SKY / HORIZON =====
-// Screen-space backdrop behind the island. No gameplay effect, no save state.
-// The horizon band sits at the bottom of the screen to suggest distant ocean
-// beyond the square island. Sky colors shift with the day/night cycle.
-let skyClouds = null; // lazy-initialized array of {x, y, w, speed, parallax }
-
-function initSkyClouds() {
-    skyClouds = [];
-    for (let i = 0; i < 5; i++) {
-        skyClouds.push({
-            x: random(CONFIG.CANVAS_WIDTH),
-            y: random(20, CONFIG.CANVAS_HEIGHT * 0.35),
-            w: random(40, 90),
-            speed: random(0.3, 0.8) * (random() < 0.5 ? 1 : -1),
-            parallax: random(0.2, 0.5),
-        });
-    }
-}
-
-function skyColorsForHour(hour) {
-    // Returns [topR, topG, topB, bottomR, bottomG, bottomB]
-    if (hour < 5) {
-        // deep night
-        return [15, 18, 45, 25, 28, 55];
-    } else if (hour < 7) {
-        // dawn
-        const t = map(hour, 5, 7, 0, 1);
-        return [
-            lerp(15, 100, t), lerp(18, 160, t), lerp(45, 200, t),
-            lerp(25, 200, t), lerp(28, 120, t), lerp(55, 100, t)
-        ];
-    } else if (hour < 17) {
-        // day
-        return [100, 180, 230, 200, 235, 255];
-    } else if (hour < 20) {
-        // dusk
-        const t = map(hour, 17, 20, 0, 1);
-        return [
-            lerp(100, 40, t), lerp(180, 30, t), lerp(230, 70, t),
-            lerp(200, 80, t), lerp(235, 40, t), lerp(255, 60, t)
-        ];
-    } else {
-        // night
-        return [15, 18, 45, 25, 28, 55];
-    }
-}
-
+// Placeholder for the hand-drawn day/night horizon backgrounds:
+//   SPRITES['fx.sky_day'] / SPRITES['fx.sky_night']  (canvas width x 5 tiles, 320x80)
+// Drawn ONLY while the horizon peek pans the camera above the island's north
+// edge (cameraY < 0). Every other frame this function is a single comparison.
 function drawSky() {
-    if (!world) return;
-
-    const W = CONFIG.CANVAS_WIDTH;
-    const H = CONFIG.CANVAS_HEIGHT;
-    const TS = CONFIG.TILE_SIZE;
-    const worldW = CONFIG.WORLD_WIDTH * TS;
-    const worldH = CONFIG.WORLD_HEIGHT * TS;
-    // ponytail: camera fully inside the world = map covers the whole screen,
-    // so none of this backdrop is visible. Skip all of it (this is most frames).
-    if (cameraX >= 0 && cameraY >= 0 && cameraX + W <= worldW && cameraY + H <= worldH) return;
+    if (cameraY >= 0 || !world) return;
+    const revealH = -cameraY; // pixels of sky revealed, up to 5 tiles
     const hour = world.timeMinutes / 60;
-    const [tr, tg, tb, br, bg, bb] = skyColorsForHour(hour);
-
-    // Vertical gradient sky
-    noStroke();
-    const steps = 8;
-    for (let i = 0; i < steps; i++) {
-        const t0 = i / steps;
-        const t1 = (i + 1) / steps;
-        const r = lerp(tr, br, (t0 + t1) / 2);
-        const g = lerp(tg, bg, (t0 + t1) / 2);
-        const b = lerp(tb, bb, (t0 + t1) / 2);
-        fill(r, g, b);
-        rect(0, t0 * H * 0.65, W, (t1 - t0) * H * 0.65 + 1);
-    }
-
-    // Distant ocean horizon band below the sky gradient
-    fill(lerp(br, 80, 0.3), lerp(bg, 120, 0.3), lerp(bb, 160, 0.4));
-    rect(0, H * 0.65, W, H * 0.35);
-
-    // Slow parallax clouds
-    if (!skyClouds) initSkyClouds();
-    const cloudSpr = SPRITES['fx.cloud']; // optional sprite hook
-    fill(255, 255, 255, hour < 6 || hour > 19 ? 40 : 70);
-    for (const c of skyClouds) {
-        c.x += c.speed;
-        if (c.x > W + c.w) c.x = -c.w;
-        if (c.x < -c.w) c.x = W + c.w;
-        const cy = c.y;
-        if (cloudSpr) {
-            push();
-            tint(255, hour < 6 || hour > 19 ? 40 : 70);
-            image(cloudSpr, c.x, cy, c.w, c.w * 0.35);
-            pop();
-        } else {
-            ellipse(c.x + c.w / 2, cy, c.w, c.w * 0.28);
-            ellipse(c.x + c.w * 0.25, cy + 2, c.w * 0.5, c.w * 0.22);
-            ellipse(c.x + c.w * 0.75, cy + 2, c.w * 0.5, c.w * 0.22);
-        }
-    }
-
-    // Stars at night
-    if (hour < 5 || hour > 20) {
+    const day = hour >= 6 && hour < 19;
+    const spr = SPRITES[day ? 'fx.sky_day' : 'fx.sky_night'];
+    if (spr) {
+        // Sprite bottom pinned to the world's north edge, sliding in with the pan.
+        image(spr, 0, revealH - spr.height, CONFIG.CANVAS_WIDTH, spr.height);
+    } else {
         noStroke();
-        fill(255, 255, 240, 180);
-        for (let i = 0; i < 12; i++) {
-            const sx = ((i * 53) % W);
-            const sy = ((i * 17) % (H * 0.45));
-            const twinkle = 0.6 + 0.4 * Math.sin(millis() / 800 + i);
-            ellipse(sx, sy, 2 * twinkle, 2 * twinkle);
-        }
-    }
-
-    // Random horizon events: dragon, ship, etc. Only visible while peeking.
-    drawHorizonEvents();
-
-    // Sky/horizon belongs to the NORTH edge only. Everything from the island's
-    // top row downward is open sea, so the east/west/south edges keep reading as
-    // ocean going all the way out instead of showing sky.
-    // ponytail: one screen-space cover rect, not per-tile out-of-bounds sea tiles.
-    const topY = Math.round(-cameraY);
-    if (topY < H) {
-        const y0 = Math.max(0, topY);
-        const seaSpr = SPRITES['tiles.sea_overworld'];
-        if (seaSpr) {
-            const frames = Math.max(1, Math.floor(seaSpr.width / TS));
-            const f = floor(frameCount / 8) % frames;
-            // Align to the world tile grid so this water lines up with the map's sea tiles.
-            const offX = ((-cameraX % TS) + TS) % TS;
-            const offY = ((-cameraY % TS) + TS) % TS;
-            for (let sy = y0 - ((y0 - offY) % TS + TS) % TS; sy < H; sy += TS) {
-                for (let sx = offX - TS; sx < W; sx += TS) {
-                    // ponytail: skip tiles the map draw will fully cover anyway
-                    if (sx + cameraX >= 0 && sx + TS + cameraX <= worldW &&
-                        sy + cameraY >= 0 && sy + TS + cameraY <= worldH) continue;
-                    image(seaSpr, sx, Math.max(sy, y0), TS, TS - Math.max(0, y0 - sy),
-                          f * TS, Math.max(0, y0 - sy), TS, TS - Math.max(0, y0 - sy));
-                }
-            }
-        } else {
-            noStroke();
-            fill('#4A90C8');
-            rect(0, y0, W, H - y0);
-        }
+        fill(day ? '#87B7E0' : '#141C3A');
+        rect(0, 0, CONFIG.CANVAS_WIDTH, revealH);
     }
 }
-
-let horizonEvents = null; // { day, events: [{kind,x,y,phase,speed}] }
-
-function initHorizonEvents() {
-    const kinds = ['dragon', 'ship', 'balloon', 'flock', 'cloud_whale'];
-    const events = [];
-    for (let i = 0; i < 3; i++) {
-        events.push({
-            kind: kinds[floor(random(kinds.length))],
-            x: random(CONFIG.CANVAS_WIDTH),
-            y: random(10, CONFIG.CANVAS_HEIGHT * 0.4),
-            phase: random(TWO_PI),
-            speed: random(2, 6) * (random() < 0.5 ? 1 : -1),
-            scale: random(0.6, 1.2),
-        });
-    }
-    horizonEvents = { day: world.day, events };
-}
-
-function drawHorizonEvents() {
-    if (!world || currentMapId !== 'island') return;
-    if (!horizonEvents || horizonEvents.day !== world.day) initHorizonEvents();
-
-    // Only show events if the camera has peeked far enough to reveal sky.
-    // Peek magnitude in tiles; require at least 2 tiles of overshoot.
-    const peekAmt = Math.sqrt(horizonPeekX * horizonPeekX + horizonPeekY * horizonPeekY);
-    if (peekAmt < 1.5) return;
-
-    const fade = constrain(map(peekAmt, 1.5, HORIZON_PEEK_MAX_TILES, 0, 1), 0, 1);
-    const t = millis() / 1000;
-
-    noStroke();
-    for (const e of horizonEvents.events) {
-        // Move across the horizon
-        e.x += e.speed * 0.15;
-        if (e.x > CONFIG.CANVAS_WIDTH + 40) e.x = -40;
-        if (e.x < -40) e.x = CONFIG.CANVAS_WIDTH + 40;
-
-        const bob = Math.sin(t + e.phase) * 3;
-        const ex = e.x;
-        const ey = e.y + bob;
-
-        const spr = SPRITES['fx.horizon_' + e.kind];
-        if (spr) {
-            push();
-            tint(255, 255 * fade);
-            image(spr, ex - 16 * e.scale, ey - 8 * e.scale, 32 * e.scale, 16 * e.scale);
-            pop();
-        } else {
-            push();
-            translate(ex, ey);
-            scale(e.scale);
-            const a = 200 * fade;
-            fill(80, 60, 60, a);
-            // Simple silhouette shapes per kind
-            switch (e.kind) {
-                case 'dragon':
-                    ellipse(0, 0, 24, 8);
-                    ellipse(-8, 3, 8, 5);
-                    triangle(8, 0, 18, -4, 16, 4);
-                    break;
-                case 'ship':
-                    rect(-12, 2, 24, 6);
-                    triangle(0, 2, 0, -10, 8, 2);
-                    break;
-                case 'balloon':
-                    ellipse(0, -4, 10, 12);
-                    rect(-1, 2, 2, 8);
-                    break;
-                case 'flock':
-                    ellipse(-6, 0, 4, 2);
-                    ellipse(0, -2, 4, 2);
-                    ellipse(6, 1, 4, 2);
-                    break;
-                case 'cloud_whale':
-                    ellipse(0, 0, 28, 10);
-                    ellipse(-10, -4, 12, 8);
-                    break;
-            }
-            pop();
-        }
-    }
-}
-
-// Optional Pixsplat sprite hooks:
-//   SPRITES['fx.cloud']         - single cloud sprite to stamp instead of ovals
-//   SPRITES['fx.star']          - tiny star sprite to stamp instead of points
-//   SPRITES['fx.sky_gradient']  - full-screen day/night gradient texture
-//   SPRITES['fx.horizon_*']     - silhouette sprites for horizon events
 
 function drawUI() {
     // Top date/time bar removed: at the SNES-zoom resolution it collided with
@@ -5895,43 +5681,32 @@ function keyPressed() {
 
 function updateCamera() {
     const TS = CONFIG.TILE_SIZE;
-    // Center camera on player, then add the horizon peek offset
-    cameraX = player.x * TS - CONFIG.CANVAS_WIDTH / 2 + horizonPeekX * TS;
-    cameraY = player.y * TS - CONFIG.CANVAS_HEIGHT / 2 + horizonPeekY * TS;
-
-    // Soft clamp: allow limited overshoot so the sky shows at edges, but
-    // never so far that the world floats entirely off screen.
-    const pad = HORIZON_PEEK_MAX_TILES * TS;
-    cameraX = constrain(cameraX, -pad, CONFIG.WORLD_WIDTH * TS - CONFIG.CANVAS_WIDTH + pad);
-    cameraY = constrain(cameraY, -pad, CONFIG.WORLD_HEIGHT * TS - CONFIG.CANVAS_HEIGHT + pad);
+    // Hard-clamp the camera inside the world. Only the horizon peek may push
+    // cameraY above the north edge (< 0), where drawSky fills the gap.
+    cameraX = constrain(player.x * TS - CONFIG.CANVAS_WIDTH / 2, 0, CONFIG.WORLD_WIDTH * TS - CONFIG.CANVAS_WIDTH);
+    cameraY = constrain(player.y * TS - CONFIG.CANVAS_HEIGHT / 2, 0, CONFIG.WORLD_HEIGHT * TS - CONFIG.CANVAS_HEIGHT)
+            + horizonPeekY * TS;
 }
 
 function updateHorizonPeek(dt) {
     if (!player || !world || currentMapId !== 'island') {
-        horizonPeekX = 0;
         horizonPeekY = 0;
         return;
     }
 
-    // The user wants the horizon to appear only at the TOP/north edge of the island.
-    // Standing still on the outermost north beach tile while facing up reveals sky.
-    const northBeachEdge = ISLAND.SEA_MARGIN;
-    const onNorthEdge = player.y === northBeachEdge && player.facing === 'up';
-
+    // Standing still on the outermost north beach tile while facing up pans
+    // the camera up to HORIZON_PEEK_MAX_TILES to reveal the sky backdrop.
+    const onNorthEdge = player.y === ISLAND.SEA_MARGIN && player.facing === 'up';
     const moving = keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) ||
                     keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68);
 
     if (onNorthEdge && !moving) {
-        const maxPeek = HORIZON_PEEK_MAX_TILES;
-        horizonPeekY = lerp(horizonPeekY, -maxPeek, 0.05);
-        horizonPeekX = lerp(horizonPeekX, 0, 0.1);
+        horizonPeekY = lerp(horizonPeekY, -HORIZON_PEEK_MAX_TILES, 0.05);
         return;
     }
 
-    // Not at north edge or keys held: drift back to center
-    horizonPeekX = lerp(horizonPeekX, 0, 0.12);
+    // Otherwise drift back to center
     horizonPeekY = lerp(horizonPeekY, 0, 0.12);
-    if (Math.abs(horizonPeekX) < 0.01) horizonPeekX = 0;
     if (Math.abs(horizonPeekY) < 0.01) horizonPeekY = 0;
 }
 
