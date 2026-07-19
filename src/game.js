@@ -188,6 +188,14 @@ let debugMode = false;       // dev overlay + cheats (toggle with backtick `)
 let cameraX = 0;
 let cameraY = 0;
 
+// ===== HORIZON PEEK =====
+// When the player stands still on the outer beach edge, the camera slowly
+// shifts to reveal more sky, hinting at the ocean beyond the island.
+let horizonPeekX = 0; // accumulated screen-space offset (-tiles*TS..0)
+let horizonPeekY = 0;
+const HORIZON_PEEK_SPEED = 0.08;  // tiles per second of stillness
+const HORIZON_PEEK_MAX_TILES = 5; // max camera overshoot in tiles
+
 // UI state
 let selectedMenuOption = 1; // Default-highlight "Load" on the start menu
 
@@ -1116,6 +1124,12 @@ function handleMovement() {
     }
 }
 
+// Return the edge margin in tiles. 0 = not at an edge.
+function edgeMarginTiles(x, y) {
+    const margin = Math.min(x, y, CONFIG.WORLD_WIDTH - 1 - x, CONFIG.WORLD_HEIGHT - 1 - y);
+    return margin;
+}
+
 // Movement inside a building - clamped to interior dimensions, walls block
 function handleInteriorMovement() {
     if (gameState !== STATE.INSIDE || !player || !insideBuilding) return;
@@ -1170,6 +1184,10 @@ function drawGame() {    // Handle continuous movement
     // ===== WEATHER: pick/advance today's particles + gust envelope before the
     // world draws, so tree/crop wind lean uses this frame's gust value.
     updateWeather(deltaTime);
+
+    // ===== HORIZON PEEK: reveal sky when player stands still at the beach edge =====
+    updateHorizonPeek(deltaTime);
+    updateCamera(); // re-apply peek offset after it drifts
 
     // ===== SKY / HORIZON: screen-space backdrop behind the island =====
     drawSky();
@@ -3569,12 +3587,99 @@ function drawSky() {
             ellipse(sx, sy, 2 * twinkle, 2 * twinkle);
         }
     }
+
+    // Random horizon events: dragon, ship, etc. Only visible while peeking.
+    drawHorizonEvents();
+}
+
+let horizonEvents = null; // { day, events: [{kind,x,y,phase,speed}] }
+
+function initHorizonEvents() {
+    const kinds = ['dragon', 'ship', 'balloon', 'flock', 'cloud_whale'];
+    const events = [];
+    for (let i = 0; i < 3; i++) {
+        events.push({
+            kind: kinds[floor(random(kinds.length))],
+            x: random(CONFIG.CANVAS_WIDTH),
+            y: random(10, CONFIG.CANVAS_HEIGHT * 0.4),
+            phase: random(TWO_PI),
+            speed: random(2, 6) * (random() < 0.5 ? 1 : -1),
+            scale: random(0.6, 1.2),
+        });
+    }
+    horizonEvents = { day: world.day, events };
+}
+
+function drawHorizonEvents() {
+    if (!world || currentMapId !== 'island') return;
+    if (!horizonEvents || horizonEvents.day !== world.day) initHorizonEvents();
+
+    // Only show events if the camera has peeked far enough to reveal sky.
+    // Peek magnitude in tiles; require at least 2 tiles of overshoot.
+    const peekAmt = Math.sqrt(horizonPeekX * horizonPeekX + horizonPeekY * horizonPeekY);
+    if (peekAmt < 1.5) return;
+
+    const fade = constrain(map(peekAmt, 1.5, HORIZON_PEEK_MAX_TILES, 0, 1), 0, 1);
+    const t = millis() / 1000;
+
+    noStroke();
+    for (const e of horizonEvents.events) {
+        // Move across the horizon
+        e.x += e.speed * 0.15;
+        if (e.x > CONFIG.CANVAS_WIDTH + 40) e.x = -40;
+        if (e.x < -40) e.x = CONFIG.CANVAS_WIDTH + 40;
+
+        const bob = Math.sin(t + e.phase) * 3;
+        const ex = e.x;
+        const ey = e.y + bob;
+
+        const spr = SPRITES['fx.horizon_' + e.kind];
+        if (spr) {
+            push();
+            tint(255, 255 * fade);
+            image(spr, ex - 16 * e.scale, ey - 8 * e.scale, 32 * e.scale, 16 * e.scale);
+            pop();
+        } else {
+            push();
+            translate(ex, ey);
+            scale(e.scale);
+            const a = 200 * fade;
+            fill(80, 60, 60, a);
+            // Simple silhouette shapes per kind
+            switch (e.kind) {
+                case 'dragon':
+                    ellipse(0, 0, 24, 8);
+                    ellipse(-8, 3, 8, 5);
+                    triangle(8, 0, 18, -4, 16, 4);
+                    break;
+                case 'ship':
+                    rect(-12, 2, 24, 6);
+                    triangle(0, 2, 0, -10, 8, 2);
+                    break;
+                case 'balloon':
+                    ellipse(0, -4, 10, 12);
+                    rect(-1, 2, 2, 8);
+                    break;
+                case 'flock':
+                    ellipse(-6, 0, 4, 2);
+                    ellipse(0, -2, 4, 2);
+                    ellipse(6, 1, 4, 2);
+                    break;
+                case 'cloud_whale':
+                    ellipse(0, 0, 28, 10);
+                    ellipse(-10, -4, 12, 8);
+                    break;
+            }
+            pop();
+        }
+    }
 }
 
 // Optional Pixsplat sprite hooks:
 //   SPRITES['fx.cloud']         - single cloud sprite to stamp instead of ovals
 //   SPRITES['fx.star']          - tiny star sprite to stamp instead of points
 //   SPRITES['fx.sky_gradient']  - full-screen day/night gradient texture
+//   SPRITES['fx.horizon_*']     - silhouette sprites for horizon events
 
 function drawUI() {
     // Top date/time bar removed: at the SNES-zoom resolution it collided with
@@ -5753,13 +5858,50 @@ function keyPressed() {
 }
 
 function updateCamera() {
-    // Center camera on player
-    cameraX = player.x * CONFIG.TILE_SIZE - CONFIG.CANVAS_WIDTH / 2;
-    cameraY = player.y * CONFIG.TILE_SIZE - CONFIG.CANVAS_HEIGHT / 2;
-    
-    // Clamp camera to world bounds
-    cameraX = constrain(cameraX, 0, CONFIG.WORLD_WIDTH * CONFIG.TILE_SIZE - CONFIG.CANVAS_WIDTH);
-    cameraY = constrain(cameraY, 0, CONFIG.WORLD_HEIGHT * CONFIG.TILE_SIZE - CONFIG.CANVAS_HEIGHT);
+    const TS = CONFIG.TILE_SIZE;
+    // Center camera on player, then add the horizon peek offset
+    cameraX = player.x * TS - CONFIG.CANVAS_WIDTH / 2 + horizonPeekX * TS;
+    cameraY = player.y * TS - CONFIG.CANVAS_HEIGHT / 2 + horizonPeekY * TS;
+
+    // Soft clamp: allow limited overshoot so the sky shows at edges, but
+    // never so far that the world floats entirely off screen.
+    const pad = HORIZON_PEEK_MAX_TILES * TS;
+    cameraX = constrain(cameraX, -pad, CONFIG.WORLD_WIDTH * TS - CONFIG.CANVAS_WIDTH + pad);
+    cameraY = constrain(cameraY, -pad, CONFIG.WORLD_HEIGHT * TS - CONFIG.CANVAS_HEIGHT + pad);
+}
+
+function updateHorizonPeek(dt) {
+    if (!player || !world || currentMapId !== 'island') {
+        horizonPeekX = 0;
+        horizonPeekY = 0;
+        return;
+    }
+
+    const margin = edgeMarginTiles(player.x, player.y);
+    if (margin === 0) {
+        // Player is on the outer beach edge. If no movement keys are held,
+        // gradually peek outward in the facing direction.
+        const moving = keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) ||
+                        keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68);
+        if (!moving) {
+            const maxPeek = HORIZON_PEEK_MAX_TILES;
+            const step = HORIZON_PEEK_SPEED * dt / 1000; // dt is ms
+
+            if (player.facing === 'up'    && player.y <= margin) horizonPeekY = lerp(horizonPeekY, -maxPeek, 0.05);
+            else if (player.facing === 'down'  && player.y >= CONFIG.WORLD_HEIGHT - 1 - margin) horizonPeekY = lerp(horizonPeekY, maxPeek, 0.05);
+            else horizonPeekY = lerp(horizonPeekY, 0, 0.1);
+
+            if (player.facing === 'left'  && player.x <= margin) horizonPeekX = lerp(horizonPeekX, -maxPeek, 0.05);
+            else if (player.facing === 'right' && player.x >= CONFIG.WORLD_WIDTH - 1 - margin) horizonPeekX = lerp(horizonPeekX, maxPeek, 0.05);
+            else horizonPeekX = lerp(horizonPeekX, 0, 0.1);
+            return;
+        }
+    }
+    // Not at edge or keys held: drift back to center
+    horizonPeekX = lerp(horizonPeekX, 0, 0.12);
+    horizonPeekY = lerp(horizonPeekY, 0, 0.12);
+    if (Math.abs(horizonPeekX) < 0.01) horizonPeekX = 0;
+    if (Math.abs(horizonPeekY) < 0.01) horizonPeekY = 0;
 }
 
 // ===== TILLING / GARDEN DAY HELPERS =====
