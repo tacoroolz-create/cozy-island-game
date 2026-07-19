@@ -324,23 +324,6 @@ function drawCraftingTab(x, y, w, h) {
         }
     }
 
-    // Footer: "need" hint when a uncraftable recipe is selected.
-    const sel = entries[craftSelectedIndex];
-    if (sel && sel.kind === 'recipe' && !canCraft(sel.recipe)) {
-        const need = sel.recipe.inputs
-            .filter(inp => inventory.countItem(inp.id) < inp.count)
-            .map(inp => {
-                const it = ITEMS[inp.id];
-                const name = it ? it.name : inp.id;
-                return (inp.count - inventory.countItem(inp.id)) + ' more ' + name;
-            }).join(', ');
-        if (need) {
-            fill('#FF8A80');
-            textAlign(LEFT, BOTTOM);
-            textSize(8);
-            text('Need: ' + need, x, y + h - 2);
-        }
-    }
 }
 
 // A compact navigation row (category / sub-category / back).
@@ -402,11 +385,12 @@ function drawRecipeRow(recipe, x, ry, w, rowH, selected) {
         rect(bx, by, blockSz, blockSz);
         drawItemIcon(inp.id, bx, by, blockSz);
         if (!has) { fill(0, 0, 0, 120); rect(bx, by, blockSz, blockSz); }
+        // Requirement count only: green when we have enough, red when short.
         fill(has ? '#C8E6A0' : '#FF8A80');
         textAlign(CENTER, TOP);
         textSize(7);
         textFont('Courier New');
-        text(owned + '/' + inp.count, bx + blockSz / 2, by + blockSz + 1);
+        text(inp.count, bx + blockSz / 2, by + blockSz + 1);
         bx += blockSz + gap;
     }
 

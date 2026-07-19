@@ -3535,6 +3535,12 @@ function drawSky() {
 
     const W = CONFIG.CANVAS_WIDTH;
     const H = CONFIG.CANVAS_HEIGHT;
+    const TS = CONFIG.TILE_SIZE;
+    const worldW = CONFIG.WORLD_WIDTH * TS;
+    const worldH = CONFIG.WORLD_HEIGHT * TS;
+    // ponytail: camera fully inside the world = map covers the whole screen,
+    // so none of this backdrop is visible. Skip all of it (this is most frames).
+    if (cameraX >= 0 && cameraY >= 0 && cameraX + W <= worldW && cameraY + H <= worldH) return;
     const hour = world.timeMinutes / 60;
     const [tr, tg, tb, br, bg, bb] = skyColorsForHour(hour);
 
@@ -3599,7 +3605,6 @@ function drawSky() {
     if (topY < H) {
         const y0 = Math.max(0, topY);
         const seaSpr = SPRITES['tiles.sea_overworld'];
-        const TS = CONFIG.TILE_SIZE;
         if (seaSpr) {
             const frames = Math.max(1, Math.floor(seaSpr.width / TS));
             const f = floor(frameCount / 8) % frames;
@@ -3608,6 +3613,9 @@ function drawSky() {
             const offY = ((-cameraY % TS) + TS) % TS;
             for (let sy = y0 - ((y0 - offY) % TS + TS) % TS; sy < H; sy += TS) {
                 for (let sx = offX - TS; sx < W; sx += TS) {
+                    // ponytail: skip tiles the map draw will fully cover anyway
+                    if (sx + cameraX >= 0 && sx + TS + cameraX <= worldW &&
+                        sy + cameraY >= 0 && sy + TS + cameraY <= worldH) continue;
                     image(seaSpr, sx, Math.max(sy, y0), TS, TS - Math.max(0, y0 - sy),
                           f * TS, Math.max(0, y0 - sy), TS, TS - Math.max(0, y0 - sy));
                 }
