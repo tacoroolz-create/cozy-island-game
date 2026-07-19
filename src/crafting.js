@@ -389,38 +389,37 @@ function drawRecipeRow(recipe, x, ry, w, rowH, selected) {
         rect(x, ry, w, rowH - 2); noStroke();
     }
 
+    // Ingredient icons on the right: sprite in a colored block + owned/needed count.
+    const blockSz = 14, gap = 3;
+    const blocksW = recipe.inputs.length * (blockSz + gap);
+    let bx = x + w - blocksW - 6;
+    const by = ry + 3;
+    for (const inp of recipe.inputs) {
+        const owned = inventory.countItem(inp.id);
+        const has = owned >= inp.count;
+        noStroke();
+        fill(has ? itemColor(inp.id) : '#444');
+        rect(bx, by, blockSz, blockSz);
+        drawItemIcon(inp.id, bx, by, blockSz);
+        if (!has) { fill(0, 0, 0, 120); rect(bx, by, blockSz, blockSz); }
+        fill(has ? '#C8E6A0' : '#FF8A80');
+        textAlign(CENTER, TOP);
+        textSize(7);
+        textFont('Courier New');
+        text(owned + '/' + inp.count, bx + blockSz / 2, by + blockSz + 1);
+        bx += blockSz + gap;
+    }
+
+    // Name + description, kept clear of the icon column.
+    const textW = w - 12 - blocksW;
     fill(craftable ? 255 : 140, craftable ? 255 : 140, craftable ? 200 : 140);
     textAlign(LEFT, TOP);
     textSize(9);
     textFont('Courier New');
-    text(recipe.name, x + 6, ry + 1);
+    text(recipe.name, x + 6, ry + 1, textW, 11);
     fill(craftable ? 170 : 100);
     textSize(7);
-    text(recipe.desc, x + 6, ry + 13, w - 6, 12);
-
-    const ingText = recipe.inputs.map(inp => {
-        const it = ITEMS[inp.id];
-        const owned = inventory.countItem(inp.id);
-        const name = it ? it.name : inp.id;
-        return (owned >= inp.count ? '' : '! ') + inp.count + ' ' + name;
-    }).join(' + ');
-    fill(craftable ? 200 : 120, craftable ? 230 : 100, craftable ? 200 : 120);
-    textSize(7);
-    text(ingText, x + 6, ry + 24, w - 6, 9);
-
-    // Material blocks on the right.
-    const blockSz = 7, gap = 2;
-    const blocksW = recipe.inputs.length * (blockSz + gap);
-    let bx = x + w - blocksW - 6;
-    const by = ry + 4;
-    for (const inp of recipe.inputs) {
-        const has = inventory.hasItem(inp.id, inp.count);
-        fill(has ? itemColor(inp.id) : '#444');
-        noStroke();
-        rect(bx, by, blockSz, blockSz);
-        if (!has) { fill(0, 0, 0, 120); rect(bx, by, blockSz, blockSz); }
-        bx += blockSz + gap;
-    }
+    text(recipe.desc, x + 6, ry + 13, textW, 20);
 }
 
 // Hit-test a mouse click within the crafting list and activate the row.
