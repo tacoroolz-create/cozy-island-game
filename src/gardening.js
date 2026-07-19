@@ -228,6 +228,16 @@ function drawGardenOverlay() {
             const sx = x * TS - cameraX;
             const sy = y * TS - cameraY;
 
+            // Wind-day gusts lean the plant, sheared around the tile's base so
+            // it stays rooted (same trick as trees in drawTallDecoration).
+            const lean = weatherWindShear();
+            if (lean) {
+                push();
+                translate(0, sy + TS);
+                shearX(-lean);
+                translate(0, -(sy + TS));
+            }
+
             // Growth sprite: a horizontal strip with one 16x16 frame per stage
             // (48x16 = 3 frames for the current 3-stage plants). Frame = stage.
             // ponytail: one shared strip for every plant, so all crops grow with
@@ -239,33 +249,31 @@ function drawGardenOverlay() {
                 const fi = Math.min(plot.stage, frames - 1);
                 const fw = growSpr.width / frames;
                 image(growSpr, sx, sy, TS, TS, fi * fw, 0, fw, growSpr.height);
-                continue;
-            }
-
-            // No sprite: stage 0 is a drawn sprout placeholder...
-            if (plot.stage === 0) {
+            } else if (plot.stage === 0) {
+                // No sprite: stage 0 is a drawn sprout placeholder...
                 drawSproutPlaceholder(sx, sy, TS);
-                continue;
+            } else {
+                // ...later stages are a growing bloom.
+                const cx = sx + TS / 2;
+                const cy = sy + TS / 2 + 2;
+                const ratio = (plot.stage + 1) / def.stages; // 0.33..1
+                const r = Math.max(1.5, ratio * (TS / 2 - 2));
+
+                noStroke();
+                // Stem
+                fill('#558B2F');
+                rect(cx - 0.5, cy - r + 1, 1, r);
+                // Bloom
+                fill(def.color);
+                ellipse(cx, cy - r + 1, r * 2, r * 2);
+                // Mature sparkle (a brighter center)
+                if (plot.stage >= def.stages - 1) {
+                    fill('#FFD93D');
+                    ellipse(cx, cy - r + 1, r * 0.6, r * 0.6);
+                }
             }
 
-            // ...later stages are a growing bloom.
-            const cx = sx + TS / 2;
-            const cy = sy + TS / 2 + 2;
-            const ratio = (plot.stage + 1) / def.stages; // 0.33..1
-            const r = Math.max(1.5, ratio * (TS / 2 - 2));
-
-            noStroke();
-            // Stem
-            fill('#558B2F');
-            rect(cx - 0.5, cy - r + 1, 1, r);
-            // Bloom
-            fill(def.color);
-            ellipse(cx, cy - r + 1, r * 2, r * 2);
-            // Mature sparkle (a brighter center)
-            if (plot.stage >= def.stages - 1) {
-                fill('#FFD93D');
-                ellipse(cx, cy - r + 1, r * 0.6, r * 0.6);
-            }
+            if (lean) pop();
         }
     }
 }
