@@ -118,6 +118,18 @@ const SPRITE_DEFS = {
     'sprites.ug_stimmy_tims':     'assets/sprites/buildings/stimmy_tims.png',
     'sprites.ug_bottomless_pit':  'assets/sprites/buildings/bottomless_pit.png',
     'sprites.magic_circle':       'assets/sprites/effects/magic_circle.png',
+    // Horizon-peek sky backdrops (320x80, see drawSky). Clouds drift across
+    // the day sky; stars twinkle at night. Rain variants staged for a future
+    // weather system, not wired up yet.
+    'fx.sky_day':                 'assets/sprites/effects/sky_day.png',
+    'fx.sky_night':               'assets/sprites/effects/sky_night.png',
+    'fx.sky_rain':                'assets/sprites/effects/sky_rain.png',
+    'fx.cloud1':                  'assets/sprites/effects/cloud1.png',
+    'fx.cloud2':                  'assets/sprites/effects/cloud2.png',
+    'fx.cloud3':                  'assets/sprites/effects/cloud3.png',
+    'fx.cloud1_rain':             'assets/sprites/effects/cloud1_rain.png',
+    'fx.cloud2_rain':             'assets/sprites/effects/cloud2_rain.png',
+    'fx.stars':                   'assets/sprites/effects/stars.png',
     'sprites.turtle':         'assets/sprites/turtle.png',
     'sprites.island_god':     'assets/sprites/island_god.png',
     'sprites.seagull':        'assets/sprites/seagull.png',
@@ -3483,23 +3495,73 @@ function drawDayNightOverlay() {
 }
 
 // ===== SKY / HORIZON =====
-// Placeholder for the hand-drawn day/night horizon backgrounds:
-//   SPRITES['fx.sky_day'] / SPRITES['fx.sky_night']  (canvas width x 5 tiles, 320x80)
-// Drawn ONLY while the horizon peek pans the camera above the island's north
-// edge (cameraY < 0). Every other frame this function is a single comparison.
+// Hand-drawn day/night horizon backdrop: SPRITES['fx.sky_day'] / 'fx.sky_night'
+// (320x80 = canvas width x 5 tiles). Drawn ONLY while the horizon peek pans
+// the camera above the island's north edge (cameraY < 0). Every other frame
+// this function is a single comparison.
+const SKY_H = 80;
+
+// Cloud drift is stateless: each cloud's x is a function of time, so no
+// per-cloud update/spawn bookkeeping is needed.
+const SKY_CLOUDS = [
+    { key: 'fx.cloud1', y: 0,  w: 40, period: 21000 },
+    { key: 'fx.cloud2', y: 30, w: 46, period: 28000 },
+    { key: 'fx.cloud3', y: 12, w: 32, period: 17000 },
+];
+
+// Star positions are randomized once on first night view and then reused
+// (they only need to look scattered, not persist across reloads).
+let skyStarField = null;
+
 function drawSky() {
     if (cameraY >= 0 || !world) return;
     const revealH = -cameraY; // pixels of sky revealed, up to 5 tiles
     const hour = world.timeMinutes / 60;
     const day = hour >= 6 && hour < 19;
+    const topY = revealH - SKY_H; // sprite bottom pinned to the north edge, sliding in with the pan
     const spr = SPRITES[day ? 'fx.sky_day' : 'fx.sky_night'];
-    if (spr) {
-        // Sprite bottom pinned to the world's north edge, sliding in with the pan.
-        image(spr, 0, revealH - spr.height, CONFIG.CANVAS_WIDTH, spr.height);
-    } else {
+    if (!spr) {
         noStroke();
         fill(day ? '#87B7E0' : '#141C3A');
         rect(0, 0, CONFIG.CANVAS_WIDTH, revealH);
+        return;
+    }
+    image(spr, 0, topY, CONFIG.CANVAS_WIDTH, SKY_H);
+    if (day) drawSkyClouds(topY);
+    else drawSkyStars(topY);
+}
+
+function drawSkyClouds(topY) {
+    const t = millis();
+    for (const c of SKY_CLOUDS) {
+        const img = SPRITES[c.key];
+        if (!img) continue;
+        const travel = CONFIG.CANVAS_WIDTH + c.w;
+        const x = ((t % c.period) / c.period) * travel - c.w;
+        image(img, x, topY + c.y, c.w, c.w);
+    }
+}
+
+// fx.stars is a 16x32 sheet: 4 star variants (rows) x 2 twinkle frames
+// (cols), 8x8 per cell.
+function drawSkyStars(topY) {
+    const img = SPRITES['fx.stars'];
+    if (!img) return;
+    if (!skyStarField) {
+        skyStarField = [];
+        for (let i = 0; i < 24; i++) {
+            skyStarField.push({
+                x: Math.floor(random(CONFIG.CANVAS_WIDTH)),
+                y: Math.floor(random(SKY_H - 8)),
+                variant: Math.floor(random(4)),
+                phase: Math.floor(random(1000)),
+            });
+        }
+    }
+    const t = millis();
+    for (const s of skyStarField) {
+        const frame = Math.floor((t + s.phase) / 900) % 2;
+        image(img, s.x, topY + s.y, 8, 8, frame * 8, s.variant * 8, 8, 8);
     }
 }
 
