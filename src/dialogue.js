@@ -410,6 +410,10 @@ function getTimeOfDayPrefix(name, tod) {
 // never a stack, and half the time none at all so they keep feeling fresh.
 function getFlavorPrefix(npc, firstChatToday) {
     if (firstChatToday) return '';
+    // A neighbor posted at their hangout always opens with what they're doing
+    // — it's grounded in what the player can see, so it beats the random pool.
+    const activity = getActivityComment(npc);
+    if (activity) return activity + ' ';
     if (Math.random() < 0.5) return '';
     const candidates = [];
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
@@ -453,6 +457,91 @@ const WEATHER_COMMENTS = {
         "The earth is dreaming in purple today. I hope it's a nice dream."
     ]
 };
+
+// ===== HANGOUT ACTIVITY OPENERS =====
+// When a neighbor is standing at their scheduled hangout (entities.js daily
+// schedules), the conversation opens with what they're doing there — the
+// routine becomes character. Keyed by hangout spot id; each spot belongs to
+// one personality, so the lines are written in that personality's voice.
+// 'home_night' covers anyone at their shack door after dark.
+const HANGOUT_LINES = {
+    cloud_watch: [ // nerds
+        "See that big one? Cumulus, mostly, but the left half is definitely a rabbit riding a bicycle.",
+        "I've catalogued nine clouds today. Two were duplicates. The sky thinks I wouldn't notice.",
+        "Cloud-watching is serious research. The data just happens to be fluffy.",
+        "That one's shaped like the concept of Tuesday. Hard to explain. Stand here long enough and you'll see it.",
+        "Shh — this cloud is about to become a different cloud. This is the good part."
+    ],
+    sunny_beach: [ // cheerful
+        "Morning beach! Best beach! Afternoon beach is fine too, but THIS is the good stuff.",
+        "I've been saying good morning to the waves. They keep waving back!",
+        "The sun and I got here at basically the same time. We're carpooling.",
+        "Sand between the toes, sun on the face! I recommend both.",
+        "I did my morning laps around the beach! Okay, one lap. Okay, half. It was a great half!"
+    ],
+    dusk_shore: [ // goths
+        "The sea keeps rewriting the same poem. I keep listening. We understand each other.",
+        "I come here for the gray hour, when the water forgets which color it is.",
+        "Don't mind me. The horizon and I are having a moment.",
+        "Every wave is a small ending. That's not sad. Endings are my favorite part.",
+        "The moon will be along soon. I like to be early. It notices."
+    ],
+    dock_watch: [ // medieval
+        "Hail, traveler! I stand watch over the dock. No boat shall arrive unannounced on my watch.",
+        "A knight guards the gate. We have no gate, so I guard the dock. Adaptability is chivalry.",
+        "All quiet on the western waters. The realm may picnic in peace.",
+        "I have saluted three gulls and one suspicious wave this morn. Vigilance!",
+        "Should a vessel appear, I shall greet it with honor. Should it be a log, I shall salute it anyway."
+    ],
+    meditation: [ // monks
+        "I am counting my breaths. I keep losing count. That, too, is the practice.",
+        "Sit with me a moment. The grass is very good at being grass. We're learning from it.",
+        "The morning asked for stillness. I said nothing. We agreed.",
+        "I have been here since the dew. The dew left. I stayed. No hard feelings.",
+        "Listen. That silence between the waves? That's the island breathing."
+    ],
+    flower_meadow: [ // kawaii
+        "A butterfly landed on my head earlier! I haven't moved since. This is my life now.",
+        "The flowers are extra flowery today! I told them. They blushed. Or that's just petals.",
+        "I'm picking a favorite flower. It keeps changing. They're all winning.",
+        "Shh, the tulips are napping. Okay, they're always napping. Aren't they adorable?",
+        "I came to smell one flower. That was hours ago. No regrets!"
+    ],
+    sunny_knoll: [ // tsundere
+        "I'm not sunbathing. I'm conducting a warmth inspection. Somebody has to.",
+        "Leaf count is at four hundred twelve. Not that I care. The trees would just miscount it themselves.",
+        "This is MY sunny spot. But I suppose there's room to stand nearby. If you must.",
+        "I'm only here because the light is acceptable. Don't read into it.",
+        "The breeze is doing a decent job today. I said decent. Don't tell it I said anything."
+    ],
+    quiet_grove: [ // shy
+        "Oh! Um. Hello. The birds were just getting used to me.",
+        "This is a good bush. Quiet. Doesn't ask questions. You can share it.",
+        "I've been watching a sparrow argue with a twig. Don't tell anyone. It's our secret.",
+        "It's peaceful here. You found me, though. That's... actually kind of nice.",
+        "If we stand very still, sometimes the birds forget we're people."
+    ],
+    home_night: [ // anyone at their shack door after dark
+        "Just getting some night air before bed. The stars are being very thorough tonight.",
+        "Long day. Good day. The shack and I are both ready to call it.",
+        "I always take one last look at the island before turning in. Still there. Good.",
+        "The crickets are singing me in. Five more minutes, then bed.",
+        "Home sweet shack. You should get some rest too, Dreamer."
+    ]
+};
+
+// Deterministic line per NPC per day about their current activity, or null if
+// they aren't posted anywhere right now (traveling, wandering, or off-map).
+function getActivityComment(npc) {
+    if (!npc || !npc._atPost || !npc._sched) return null;
+    let key = npc._sched.spot;
+    if (!key && npc._sched.bucket === 'night' && npc.hasHome) key = 'home_night';
+    const lines = HANGOUT_LINES[key];
+    if (!lines) return null;
+    const day = (typeof world !== 'undefined' && world) ? (world.day || 0) : 0;
+    const hash = npc.name.split('').reduce((a, c) => a + c.charCodeAt(0), day);
+    return lines[Math.abs(hash) % lines.length];
+}
 
 // Deterministic line per NPC per day for the current weather, or null on clear days.
 function getWeatherComment(npcName) {
