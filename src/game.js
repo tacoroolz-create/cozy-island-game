@@ -5877,27 +5877,22 @@ function updateHorizonPeek(dt) {
         return;
     }
 
-    const margin = edgeMarginTiles(player.x, player.y);
-    if (margin === 0) {
-        // Player is on the outer beach edge. If no movement keys are held,
-        // gradually peek outward in the facing direction.
-        const moving = keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) ||
-                        keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68);
-        if (!moving) {
-            const maxPeek = HORIZON_PEEK_MAX_TILES;
-            const step = HORIZON_PEEK_SPEED * dt / 1000; // dt is ms
+    // The user wants the horizon to appear only at the TOP/north edge of the island.
+    // Standing still on the outermost north beach tile while facing up reveals sky.
+    const northBeachEdge = ISLAND.SEA_MARGIN;
+    const onNorthEdge = player.y === northBeachEdge && player.facing === 'up';
 
-            if (player.facing === 'up'    && player.y <= margin) horizonPeekY = lerp(horizonPeekY, -maxPeek, 0.05);
-            else if (player.facing === 'down'  && player.y >= CONFIG.WORLD_HEIGHT - 1 - margin) horizonPeekY = lerp(horizonPeekY, maxPeek, 0.05);
-            else horizonPeekY = lerp(horizonPeekY, 0, 0.1);
+    const moving = keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) ||
+                    keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68);
 
-            if (player.facing === 'left'  && player.x <= margin) horizonPeekX = lerp(horizonPeekX, -maxPeek, 0.05);
-            else if (player.facing === 'right' && player.x >= CONFIG.WORLD_WIDTH - 1 - margin) horizonPeekX = lerp(horizonPeekX, maxPeek, 0.05);
-            else horizonPeekX = lerp(horizonPeekX, 0, 0.1);
-            return;
-        }
+    if (onNorthEdge && !moving) {
+        const maxPeek = HORIZON_PEEK_MAX_TILES;
+        horizonPeekY = lerp(horizonPeekY, -maxPeek, 0.05);
+        horizonPeekX = lerp(horizonPeekX, 0, 0.1);
+        return;
     }
-    // Not at edge or keys held: drift back to center
+
+    // Not at north edge or keys held: drift back to center
     horizonPeekX = lerp(horizonPeekX, 0, 0.12);
     horizonPeekY = lerp(horizonPeekY, 0, 0.12);
     if (Math.abs(horizonPeekX) < 0.01) horizonPeekX = 0;
