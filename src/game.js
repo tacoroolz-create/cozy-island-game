@@ -3599,6 +3599,7 @@ function drawSky() {
     if (topY < H) {
         const y0 = Math.max(0, topY);
         const seaSpr = SPRITES['tiles.sea_overworld'];
+        const TS = CONFIG.TILE_SIZE;
         if (seaSpr) {
             const frames = Math.max(1, Math.floor(seaSpr.width / TS));
             const f = floor(frameCount / 8) % frames;
