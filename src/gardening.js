@@ -37,6 +37,22 @@ const PLANTS = {
         seed: 'flea_lily_seed',
         crop: 'flea_lily_bloom',
         color: '#8E24AA'
+    },
+    rose: {
+        name: 'Rose',
+        stages: 3,
+        daysPerStage: 1,
+        seed: 'rose_seed',
+        crop: 'rose',
+        color: '#E53935'
+    },
+    tulip: {
+        name: 'Tulip',
+        stages: 3,
+        daysPerStage: 1,
+        seed: 'tulip_bulb',
+        crop: 'tulip',
+        color: '#F5F5F5'
     }
 };
 
@@ -49,7 +65,9 @@ const SEED_RANDOM_ID = 'seed_random';
 const SEED_TO_PLANT = {
     seed: 'wildflower',       // generic seed -> wildflower
     berry: 'berry_bush',       // berry -> berry bush
-    flea_lily_seed: 'flea_lily' // Flealess Market seed -> flea lily
+    flea_lily_seed: 'flea_lily', // Flealess Market seed -> flea lily
+    rose_seed: 'rose',
+    tulip_bulb: 'tulip'
 };
 
 // ===== PLOTS =====
