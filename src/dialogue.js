@@ -827,12 +827,25 @@ function giveGift(npc) {
         closeDialogue();
         return;
     }
-    // Generic gift value based on category
     const item = ITEMS[active.id];
-    let value = item.category === 'food' ? 9 : item.category === 'material' ? 3 : 15;
+    if (!item) {
+        notify('That item cannot be given.');
+        closeDialogue();
+        return;
+    }
     inventory.removeItem(active.id, 1);
-    npc.gainGift(value);
-    notify('Gave ' + item.name + ' to ' + npc.name + '! (+' + value + ' friendship)');
+    const result = getGiftValue(npc, active.id);
+    npc.gainGift(result.value);
+
+    const reactionWords = {
+        loved: 'loved it',
+        liked: 'liked it',
+        neutral: 'accepted it',
+        disliked: 'did not want it'
+    };
+    const word = reactionWords[result.reaction] || 'accepted it';
+    const sign = result.value >= 0 ? '+' : '';
+    notify('Gave ' + item.name + ' to ' + npc.name + '! They ' + word + ' (' + sign + result.value + ' friendship)');
     closeDialogue();
 }
 
