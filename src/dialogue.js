@@ -29,11 +29,7 @@ let dialogueState = {
 // comment per NPC so the same character isn't random from sentence to sentence.
 function getHolidayGreetingPrefix(name) {
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
-    const tod = (typeof getTimeOfDay === 'function') ? getTimeOfDay() : 'afternoon';
-    if (!holiday) {
-        // No holiday: still inject a small time-of-day observational prefix occasionally.
-        return getTimeOfDayPrefix(name, tod);
-    }
+    if (!holiday) return '';
     let comments;
     if (holiday.name === 'Garden Day') {
         comments = [
@@ -404,8 +400,28 @@ function getTimeOfDayPrefix(name, tod) {
     };
     const list = pools[tod] || pools.afternoon;
     const idx = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % list.length;
-    // Only inject ~35% of the time so it doesn't dominate every chat.
-    return Math.random() < 0.35 ? list[idx] + ' ' : '';
+    return list[idx] + ' ';
+}
+
+// ===== FLAVOR PREFIX PICKER =====
+// The single gate for conversation-opening flavor. The first chat of the day
+// always opens with the plain dialogue tree — no prefixes. Repeat chats get AT
+// MOST one flavor comment (holiday, time-of-day, weather, or island name),
+// never a stack, and half the time none at all so they keep feeling fresh.
+function getFlavorPrefix(npc, firstChatToday) {
+    if (firstChatToday) return '';
+    if (Math.random() < 0.5) return '';
+    const candidates = [];
+    const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
+    if (holiday) candidates.push(getHolidayGreetingPrefix(npc.name));
+    const tod = (typeof getTimeOfDay === 'function') ? getTimeOfDay() : 'afternoon';
+    candidates.push(getTimeOfDayPrefix(npc.name, tod));
+    const weatherComment = getWeatherComment(npc.name);
+    if (weatherComment) candidates.push(weatherComment + ' ');
+    if (typeof world !== 'undefined' && world && world.islandName) {
+        candidates.push('Another fine day on ' + world.islandName + '! ');
+    }
+    return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
 // ===== WEATHER OBSERVATIONAL PREFIX =====
@@ -467,14 +483,11 @@ function makeCharacterTree(name, species, personality, description) {
         }
     }
 
-    // Check for an active island holiday and inject flavor.
+    // An active island holiday adds a topic choice (any greeting flavor is
+    // handled centrally by getFlavorPrefix, not baked into the tree).
     const holiday = (typeof getCurrentHoliday === 'function') ? getCurrentHoliday() : null;
-    let holidayPrefix = '';
-    let holidayComment = '';
     let holidayChoices = [];
     if (holiday) {
-        holidayComment = getHolidayGreetingPrefix(name).trim();
-        holidayPrefix = holidayComment ? holidayComment + ' ' : '';
         holidayChoices = [{ text: `What happens on ${holiday.name}?`, next: 'holiday', friendshipDelta: 0 }];
     }
 
@@ -507,7 +520,7 @@ function makeCharacterTree(name, species, personality, description) {
 
     return {
         start: {
-            text: `${holidayPrefix}${greeting} What do you want to talk about?`,
+            text: `${greeting} What do you want to talk about?`,
             choices: startChoices
         },
         holiday: {
@@ -757,7 +770,9 @@ function openDialogue(npc) {
         npc._dialogueTree.start.text = cc + ' ' + npc._dialogueTree.start.text;
     }
 
-    // Apply talk friendship gain (once per day)
+    // Apply talk friendship gain (once per day). Capture first-chat-of-the-day
+    // before the flag flips: that chat opens with the plain tree, no flavor.
+    const firstChatToday = !npc.dailyTalked;
     npc.gainTalk();
 
     // Inject stink prefix into the start node text for this conversation
@@ -766,21 +781,11 @@ function openDialogue(npc) {
         tree.start.text = stinkPrefix + tree.start.text;
     }
 
-    // Inject a holiday greeting prefix for all conversations on a holiday.
+    // At most one flavor comment (holiday / time-of-day / weather / island
+    // name) per conversation — see getFlavorPrefix.
     if (tree && tree.start) {
-        const holidayPrefix = getHolidayGreetingPrefix(npc.name);
-        if (holidayPrefix) {
-            tree.start.text = holidayPrefix + tree.start.text;
-        }
-        // Once the island has a voted-in name, neighbors drop it now and then.
-        if (world && world.islandName && Math.random() < 0.3) {
-            tree.start.text = 'Another fine day on ' + world.islandName + '! ' + tree.start.text;
-        }
-        // Weather comment: additive standalone prefix, independent of everything above.
-        const weatherComment = getWeatherComment(npc.name);
-        if (weatherComment) {
-            tree.start.text = weatherComment + ' ' + tree.start.text;
-        }
+        const flavor = getFlavorPrefix(npc, firstChatToday);
+        if (flavor) tree.start.text = flavor + tree.start.text;
     }
 }
 
@@ -799,19 +804,8 @@ function openAdvancedMenu(npc) {
             dialogueState.selectedChoice = 0;
             dialogueState.choicesVisible = false;
             npc.gainTalk();
-            // Re-apply holiday greeting to the start node when re-entering talk.
-            const tree = getDialogueTree();
-            if (tree && tree.start) {
-                const holidayPrefix = getHolidayGreetingPrefix(npc.name);
-                if (holidayPrefix && !tree.start.text.startsWith(holidayPrefix.trim())) {
-                    tree.start.text = holidayPrefix + tree.start.text;
-                }
-                // Weather comment: same additive prefix when re-entering Talk.
-                const weatherComment = getWeatherComment(npc.name);
-                if (weatherComment && !tree.start.text.startsWith(weatherComment)) {
-                    tree.start.text = weatherComment + ' ' + tree.start.text;
-                }
-            }
+            // No flavor re-injection here: the tree already got its (at most
+            // one) flavor prefix when the conversation opened.
         } },
         { text: 'Give Gift', action: () => { dialogueState.advancedMenu = false; giveGift(npc); } },
         { text: 'Challenge to Game', action: () => { dialogueState.advancedMenu = false; startMinigame(npc); } },
