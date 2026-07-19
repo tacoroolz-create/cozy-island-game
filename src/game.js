@@ -3590,6 +3590,33 @@ function drawSky() {
 
     // Random horizon events: dragon, ship, etc. Only visible while peeking.
     drawHorizonEvents();
+
+    // Sky/horizon belongs to the NORTH edge only. Everything from the island's
+    // top row downward is open sea, so the east/west/south edges keep reading as
+    // ocean going all the way out instead of showing sky.
+    // ponytail: one screen-space cover rect, not per-tile out-of-bounds sea tiles.
+    const topY = Math.round(-cameraY);
+    if (topY < H) {
+        const y0 = Math.max(0, topY);
+        const seaSpr = SPRITES['tiles.sea_overworld'];
+        if (seaSpr) {
+            const frames = Math.max(1, Math.floor(seaSpr.width / TS));
+            const f = floor(frameCount / 8) % frames;
+            // Align to the world tile grid so this water lines up with the map's sea tiles.
+            const offX = ((-cameraX % TS) + TS) % TS;
+            const offY = ((-cameraY % TS) + TS) % TS;
+            for (let sy = y0 - ((y0 - offY) % TS + TS) % TS; sy < H; sy += TS) {
+                for (let sx = offX - TS; sx < W; sx += TS) {
+                    image(seaSpr, sx, Math.max(sy, y0), TS, TS - Math.max(0, y0 - sy),
+                          f * TS, Math.max(0, y0 - sy), TS, TS - Math.max(0, y0 - sy));
+                }
+            }
+        } else {
+            noStroke();
+            fill('#4A90C8');
+            rect(0, y0, W, H - y0);
+        }
+    }
 }
 
 let horizonEvents = null; // { day, events: [{kind,x,y,phase,speed}] }
