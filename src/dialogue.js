@@ -413,28 +413,28 @@ function getTimeOfDayPrefix(name, tod) {
 // Spoken words only — no asterisks or stage directions.
 const WEATHER_COMMENTS = {
     rain: [
-        "Listen to that rain. The whole island sounds freshly rinsed.",
-        "Puddles everywhere today. I stepped in one on purpose.",
-        "My feathers are soaked and honestly? Worth it.",
-        "Gentle rain like this makes even the beach smell green."
+        "Everything smells louder in the rain. Is that normal?",
+        "I left a cup outside and now it has a tiny sky in it.",
+        "The grass is drinking very noisily today.",
+        "My feet are having a splash party without asking me."
     ],
     wind: [
-        "Hold onto your hat! Mine's already three trees over.",
-        "The palms are leaning like they're eavesdropping on the sea.",
-        "This wind keeps finishing my sentences for me.",
-        "Every gust today has somewhere very important to be."
+        "The trees are doing a group lean. I think they're practicing for something.",
+        "Hold onto your hat, Dreamer. The sky is in a hurry.",
+        "I tried to whistle into the wind and it whistled back, but better.",
+        "My shadow keeps blowing away. I have to chase it between gusts."
     ],
     snow: [
-        "Snow makes everything so quiet. Even my thoughts are whispering.",
-        "I left a trail of footprints and I'm weirdly proud of it.",
-        "Soft snow on the sand. What a strange, lovely island we have.",
-        "Caught a snowflake earlier. It melted. We had a moment."
+        "The world got a fresh coat of quiet.",
+        "I caught a snowflake on my tongue. It tasted like a very small cloud.",
+        "Everything is wearing the same white sweater. Even the rocks look cozy.",
+        "The footprints are the loudest thing out here."
     ],
     crigeon: [
-        "The purple specs are rising again. I always wave, just in case.",
-        "Crigeon dreams drifting up from the ground. The island must be sleeping well.",
-        "One of those little purple lights followed me all morning. Flattering, honestly.",
-        "The ground is exhaling dreams today. Try not to step on any wishes."
+        "The ground is sending up purple bubbles again. I love when it does that.",
+        "Little violet sparkles are escaping the dirt. The island is sighing.",
+        "Crigeon days make my shoes feel lighter. Not flying-light, just happy-light.",
+        "The earth is dreaming in purple today. I hope it's a nice dream."
     ]
 };
 
