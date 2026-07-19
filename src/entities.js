@@ -4,39 +4,80 @@
 // The 32-neighbor rewrite roster (NeighborRewrite/CharacterDraft.txt):
 // 8 robots, 8 ghosts, 8 animals, 8 monsters.
 const NPC_DEFS = [
-    { name: 'Piko', personality: 'custom', species: 'Robot', color: '#F48FB1' },
-    { name: 'Rivet', personality: 'custom', species: 'Robot', color: '#B71C1C' },
-    { name: 'Shade-7', personality: 'custom', species: 'Robot', color: '#263238' },
-    { name: 'Cypher', personality: 'custom', species: 'Robot', color: '#00838F' },
-    { name: 'Om-Bit', personality: 'custom', species: 'Robot', color: '#C0A062' },
-    { name: 'Sir Cogs-a-Lot', personality: 'custom', species: 'Robot', color: '#D4AF37' },
-    { name: 'Tinker', personality: 'custom', species: 'Robot', color: '#8D6E63' },
-    { name: 'Zap-Zap', personality: 'custom', species: 'Robot', color: '#FDD835' },
-    { name: 'Boo-Boo', personality: 'custom', species: 'Ghost', color: '#F8BBD0' },
-    { name: 'Wisp', personality: 'custom', species: 'Ghost', color: '#BA68C8' },
-    { name: 'Morwen', personality: 'custom', species: 'Ghost', color: '#78909C' },
-    { name: 'Spectra', personality: 'custom', species: 'Ghost', color: '#4DB6AC' },
-    { name: 'Hush', personality: 'custom', species: 'Ghost', color: '#B0BEC5' },
-    { name: 'Sir Haunts-a-Lot', personality: 'custom', species: 'Ghost', color: '#9E9E9E' },
-    { name: 'Flutter', personality: 'custom', species: 'Ghost', color: '#E1BEE7' },
-    { name: 'Giggles', personality: 'custom', species: 'Ghost', color: '#FFF176' },
-    { name: 'Mochi', personality: 'custom', species: 'Animal (Rabbit)', color: '#FFE0E0' },
-    { name: 'Shadow', personality: 'custom', species: 'Animal (Cat)', color: '#212121' },
-    { name: 'Raven', personality: 'custom', species: 'Animal (Crow)', color: '#37474F' },
-    { name: 'Newton', personality: 'custom', species: 'Animal (Owl)', color: '#ECEFF1' },
-    { name: 'Lotus', personality: 'custom', species: 'Animal (Crane)', color: '#E0F7FA' },
-    { name: 'Squire Paws', personality: 'custom', species: 'Animal (Dog)', color: '#8D6E63' },
-    { name: 'Pebble', personality: 'custom', species: 'Animal (Turtle)', color: '#A5D6A7' },
-    { name: 'Sunny', personality: 'custom', species: 'Animal (Parrot)', color: '#FFEB3B' },
-    { name: 'Fluffernox', personality: 'custom', species: 'Monster', color: '#FFCCBC' },
-    { name: 'Grumble', personality: 'custom', species: 'Monster', color: '#78909C' },
-    { name: 'Vesper', personality: 'custom', species: 'Monster', color: '#263238' },
-    { name: 'Gizmo', personality: 'custom', species: 'Monster', color: '#90A4AE' },
-    { name: 'Ommmm', personality: 'custom', species: 'Monster', color: '#4CAF50' },
-    { name: 'Lord Roar', personality: 'custom', species: 'Monster (Dragon-like)', color: '#7B1FA2' },
-    { name: 'Snug', personality: 'custom', species: 'Monster', color: '#B3E5FC' },
-    { name: 'Gigglegrow', personality: 'custom', species: 'Monster', color: '#FFD54F' },
+    { name: 'Piko', personality: 'kawaii', species: 'Robot', color: '#F48FB1' },
+    { name: 'Rivet', personality: 'tsundere', species: 'Robot', color: '#B71C1C' },
+    { name: 'Shade-7', personality: 'goth', species: 'Robot', color: '#263238' },
+    { name: 'Cypher', personality: 'nerd', species: 'Robot', color: '#00838F' },
+    { name: 'Om-Bit', personality: 'monk', species: 'Robot', color: '#C0A062' },
+    { name: 'Sir Cogs-a-Lot', personality: 'medieval', species: 'Robot', color: '#D4AF37' },
+    { name: 'Tinker', personality: 'shy', species: 'Robot', color: '#8D6E63' },
+    { name: 'Zap-Zap', personality: 'cheerful', species: 'Robot', color: '#FDD835' },
+    { name: 'Boo-Boo', personality: 'kawaii', species: 'Ghost', color: '#F8BBD0' },
+    { name: 'Wisp', personality: 'tsundere', species: 'Ghost', color: '#BA68C8' },
+    { name: 'Morwen', personality: 'goth', species: 'Ghost', color: '#78909C' },
+    { name: 'Spectra', personality: 'nerd', species: 'Ghost', color: '#4DB6AC' },
+    { name: 'Hush', personality: 'monk', species: 'Ghost', color: '#B0BEC5' },
+    { name: 'Sir Haunts-a-Lot', personality: 'medieval', species: 'Ghost', color: '#9E9E9E' },
+    { name: 'Flutter', personality: 'shy', species: 'Ghost', color: '#E1BEE7' },
+    { name: 'Giggles', personality: 'cheerful', species: 'Ghost', color: '#FFF176' },
+    { name: 'Mochi', personality: 'kawaii', species: 'Animal (Rabbit)', color: '#FFE0E0' },
+    { name: 'Shadow', personality: 'tsundere', species: 'Animal (Cat)', color: '#212121' },
+    { name: 'Raven', personality: 'goth', species: 'Animal (Crow)', color: '#37474F' },
+    { name: 'Newton', personality: 'nerd', species: 'Animal (Owl)', color: '#ECEFF1' },
+    { name: 'Lotus', personality: 'monk', species: 'Animal (Crane)', color: '#E0F7FA' },
+    { name: 'Squire Paws', personality: 'medieval', species: 'Animal (Dog)', color: '#8D6E63' },
+    { name: 'Pebble', personality: 'shy', species: 'Animal (Turtle)', color: '#A5D6A7' },
+    { name: 'Sunny', personality: 'cheerful', species: 'Animal (Parrot)', color: '#FFEB3B' },
+    { name: 'Fluffernox', personality: 'kawaii', species: 'Monster', color: '#FFCCBC' },
+    { name: 'Grumble', personality: 'tsundere', species: 'Monster', color: '#78909C' },
+    { name: 'Vesper', personality: 'goth', species: 'Monster', color: '#263238' },
+    { name: 'Gizmo', personality: 'nerd', species: 'Monster', color: '#90A4AE' },
+    { name: 'Ommmm', personality: 'monk', species: 'Monster', color: '#4CAF50' },
+    { name: 'Lord Roar', personality: 'medieval', species: 'Monster (Dragon-like)', color: '#7B1FA2' },
+    { name: 'Snug', personality: 'shy', species: 'Monster', color: '#B3E5FC' },
+    { name: 'Gigglegrow', personality: 'cheerful', species: 'Monster', color: '#FFD54F' },
 ];
+
+// ===== PERSONALITY-BASED ITEM PREFERENCES =====
+// Loved gifts come from the neighbor's personality. Liked gifts come from their
+// species group. Everything else is neutral, except obvious junk (tools, blocks,
+// raw materials) which is disliked. Value caps at +30 for loved, +20 for liked,
+// +5 for neutral, -5 for disliked.
+const PERSONALITY_LOVED_ITEMS = {
+    kawaii:   ['flea_lily_bloom', 'rose', 'tulip', 'berry_jam', 'donut'],
+    tsundere: ['coffee', 'grilled_banana', 'iron_ingot', 'gold_coin', 'crystal'],
+    goth:     ['crystal', 'cicada_shell', 'moonflower', 'old_radio', 'pocket_watch'],
+    nerd:     ['pocket_watch', 'glass_bottle', 'atlas_1', 'atlas_2', 'atlas_3', 'atlas_4', 'metal_rod'],
+    monk:     ['seashell', 'turtle_egg', 'mushroom', 'grain_seed', 'truffle'],
+    medieval: ['gold_coin', 'iron_ingot', 'thatch', 'pocket_watch', 'flealess_statue'],
+    shy:      ['mushroom', 'feather', 'berry', 'bean', 'seashell'],
+    cheerful: ['banana', 'fruit_salad', 'donut', 'protein_shake', 'berry_jam']
+};
+const SPECIES_LIKED_CATEGORIES = {
+    Robot:    ['material', 'treasure'],
+    Ghost:    ['gift', 'treasure'],
+    Animal:   ['gift', 'food'],
+    Monster:  ['treasure', 'gift']
+};
+function getNpcSpeciesGroup(species) {
+    if (!species) return 'Monster';
+    if (species.startsWith('Animal')) return 'Animal';
+    return species;
+}
+function getGiftValue(npc, itemId) {
+    const item = ITEMS[itemId];
+    if (!item || !npc) return { value: 0, reaction: 'neutral' };
+    // Disliked: tools, blocks, raw unprocessed materials.
+    if (item.category === 'tool' || item.category === 'block' || item.category === 'material') {
+        return { value: -5, reaction: 'disliked' };
+    }
+    const loved = PERSONALITY_LOVED_ITEMS[npc.personality] || [];
+    if (loved.includes(itemId)) return { value: 30, reaction: 'loved' };
+    const group = getNpcSpeciesGroup(npc.species);
+    const likedCats = SPECIES_LIKED_CATEGORIES[group] || [];
+    if (likedCats.includes(item.category)) return { value: 20, reaction: 'liked' };
+    return { value: 5, reaction: 'neutral' };
+}
 
 // Mubaba: the underground city's magic merchant (July3rdReview C4). Not part
 // of the island neighbor roster — he lives on the underground map, keyed by
@@ -47,6 +88,70 @@ const MUBABA_DEF = {
     name: 'Mubaba', personality: 'custom', species: 'Magic Merchant',
     color: '#8a5ac2', wTiles: 2, hTiles: 5, stationary: true, hasHome: true
 };
+
+// ===== DAILY SCHEDULES =====
+// Neighbors follow the day: night (9pm-5am) is spent at home (standing at the
+// shack door); daytime buckets send them to a personality hangout spot, or
+// wandering if their schedule (or a full spot) leaves them free.
+//
+// Each hangout has fixed slot tiles; a slot is "occupied" when a present
+// neighbor holds a claim on it, so two neighbors never compete for one tile.
+// Beach spots sit mid-ring (edge distance 8), clear of palms (edge < 8) and
+// the grass seam. Interior spots may collide with trees/player buildings on a
+// given save — claiming skips blocked slots, and a fully-blocked spot just
+// means that neighbor wanders instead.
+const HANGOUT_SPOTS = {
+    // Nerds narrate cloud shapes (Cypher, Spectra, Newton) — north shore lookout.
+    cloud_watch:   { slots: [[40, 8], [44, 8], [48, 8], [52, 8]], facing: 'up' },
+    // Cheerful folks love sunny mornings on the beach (Zap-Zap, Sunny) — south shore.
+    sunny_beach:   { slots: [[42, 91], [46, 91], [50, 91], [54, 91]], facing: 'down' },
+    // Goths recite poems near the water and hum to the moon after sunset
+    // (Shade-7, Raven, Morwen, Vesper) — east shore.
+    dusk_shore:    { slots: [[91, 42], [91, 46], [91, 50], [91, 54]], facing: 'right' },
+    // Medieval types stand proud watch where boats arrive (Sir Cogs-a-Lot,
+    // Sir Haunts-a-Lot, Lord Roar) — west grass line by the dock.
+    dock_watch:    { slots: [[12, 46], [12, 49], [12, 52], [12, 55]], facing: 'left' },
+    // Monks sit very still together (Om-Bit, Hush, Lotus, Ommmm) — quiet NE grass.
+    meditation:    { slots: [[70, 26], [72, 26], [70, 28], [72, 28]], facing: 'up' },
+    // Kawaii neighbors watch butterflies near flowers (Piko, Mochi) — west meadow.
+    flower_meadow: { slots: [[28, 32], [30, 32], [28, 34], [30, 34]], facing: 'down' },
+    // Tsunderes claim sunny spots and "count leaves" (Shadow, Rivet) — east knoll.
+    sunny_knoll:   { slots: [[66, 62], [68, 62], [66, 64], [68, 64]], facing: 'down' },
+    // Shy ones linger near bushes watching birds (Tinker, Pebble, Snug) — SW grove.
+    quiet_grove:   { slots: [[26, 66], [28, 66], [26, 68], [28, 68]], facing: 'down' }
+};
+
+// Per-personality daytime plan: morning/afternoon/evening each name a hangout
+// or null (free wander). Night is always "go home" for anyone with a shack.
+const PERSONALITY_SCHEDULE = {
+    nerd:     { morning: null,            afternoon: 'cloud_watch',   evening: null },
+    cheerful: { morning: 'sunny_beach',   afternoon: null,            evening: null },
+    goth:     { morning: null,            afternoon: 'dusk_shore',    evening: 'dusk_shore' },
+    monk:     { morning: 'meditation',    afternoon: null,            evening: 'meditation' },
+    kawaii:   { morning: null,            afternoon: 'flower_meadow', evening: null },
+    tsundere: { morning: null,            afternoon: 'sunny_knoll',   evening: null },
+    shy:      { morning: 'quiet_grove',   afternoon: null,            evening: 'quiet_grove' },
+    medieval: { morning: 'dock_watch',    afternoon: 'dock_watch',    evening: null }
+};
+
+// A slot is occupied if another present neighbor holds a claim on it.
+function hangoutSlotTaken(spotId, sx, sy, self) {
+    return npcs.some(n => n !== self && n.isPresent && n._sched &&
+        n._sched.spot === spotId && n._sched.slot &&
+        n._sched.slot[0] === sx && n._sched.slot[1] === sy);
+}
+
+// First free, walkable slot of a spot, or null if all taken/blocked.
+function claimHangoutSlot(spotId, npc) {
+    const spot = HANGOUT_SPOTS[spotId];
+    if (!spot) return null;
+    for (const [sx, sy] of spot.slots) {
+        if (isSolidTile(sx, sy) || buildingAt(sx, sy)) continue;
+        if (hangoutSlotTaken(spotId, sx, sy, npc)) continue;
+        return [sx, sy];
+    }
+    return null;
+}
 
 let npcs = [];
 
@@ -77,8 +182,76 @@ class NPC {
         this.lastMoveAt = 0;
     }
 
+    // Re-plan when the time-of-day bucket changes: claim a hangout slot,
+    // head home for the night, or go free-wander.
+    updateSchedule() {
+        if (typeof getTimeOfDay !== 'function') return;
+        const bucket = getTimeOfDay();
+        if (this._sched && this._sched.bucket === bucket) return;
+        this._sched = { bucket, spot: null, slot: null, facing: null };
+        this._target = null;
+        this._atPost = false;
+        if (bucket === 'night') {
+            if (this.hasHome) {
+                // Stand just outside the shack door (footprint is 8x8, door
+                // bottom-center) — starts and ends every day at home.
+                const dims = (typeof BUILDING_TIERS !== 'undefined' && BUILDING_TIERS.shack) || { w: 8, h: 8 };
+                this._target = [this.hutX + Math.floor(dims.w / 2), this.hutY + dims.h];
+                this._sched.facing = 'down';
+            }
+            return;
+        }
+        const plan = PERSONALITY_SCHEDULE[this.personality];
+        const spotId = plan ? plan[bucket] : null;
+        if (!spotId) return; // free wander this bucket
+        const slot = claimHangoutSlot(spotId, this);
+        if (slot) {
+            this._sched.spot = spotId;
+            this._sched.slot = slot;
+            this._sched.facing = HANGOUT_SPOTS[spotId].facing;
+            this._target = slot;
+        }
+    }
+
+    // One greedy step toward _target, throttled to a stroll pace.
+    // ponytail: greedy walk + random sidestep when blocked, no pathfinding —
+    // good enough on open island terrain; A* if they ever get stuck in pens.
+    stepTowardTarget() {
+        if (millis() - (this.lastMoveAt || 0) < 350) return;
+        const [tx, ty] = this._target;
+        const dx = Math.sign(tx - this.gridX), dy = Math.sign(ty - this.gridY);
+        if (dx === 0 && dy === 0) {
+            this._target = null;
+            this._atPost = true;
+            if (this._sched && this._sched.facing) this.facing = this._sched.facing;
+            return;
+        }
+        // Prefer the longer axis, fall back to the other, then jiggle randomly.
+        const primary = Math.abs(tx - this.gridX) >= Math.abs(ty - this.gridY) ? [dx, 0] : [0, dy];
+        const secondary = primary[0] === 0 ? [dx, 0] : [0, dy];
+        const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+        const jiggle = dirs[Math.floor(Math.random() * 4)];
+        for (const [mx, my] of [primary, secondary, jiggle]) {
+            if (mx === 0 && my === 0) continue;
+            const nx = this.gridX + mx, ny = this.gridY + my;
+            if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) continue;
+            if (isSolidTile(nx, ny) || buildingAt(nx, ny)) continue;
+            this.gridX = nx;
+            this.gridY = ny;
+            this.facing = mx > 0 ? 'right' : mx < 0 ? 'left' : my > 0 ? 'down' : 'up';
+            this.lastMoveAt = millis();
+            return;
+        }
+    }
+
     update(dt, gameTime) {
         if (this.stationary) return; // shopkeepers stay put
+        // Daily schedule only applies to roster neighbors on the island map.
+        if (typeof this.id === 'number' && (typeof currentMapId === 'undefined' || currentMapId === 'island')) {
+            this.updateSchedule();
+        }
+        if (this._target) { this.stepTowardTarget(); return; }
+        if (this._atPost) return; // holding a hangout slot / home post until the next bucket
         // Simple wander behavior — move randomly within home radius
         if (Math.random() < 0.005) {
             const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
