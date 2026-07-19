@@ -1,6 +1,7 @@
 // ===== ANIMALS (birds + crabs) =====
 // Birds appear at sunrise, wander for ~3 game hours, accept seeds as gifts,
-// then disappear and leave a feather. Crabs appear at sunrise on the beach edge,
+// then most disappear and leave a feather (a couple linger and roost in the
+// treetops at sunset). Crabs appear at sunrise on the beach edge,
 // wander along the beach all day, and return to the water at sundown.
 
 let birds = [];
@@ -455,13 +456,91 @@ function dropSeagullFeathers() {
     if (dropped > 0) notify('Seagulls dropped a few feathers.');
 }
 
+const BIRD_LINGER_COUNT = 2; // a few birds skip the 9 AM departure and roost at sunset
+
 function despawnBirds() {
-    for (const bird of birds) {
+    // Most birds leave at 9 AM; a couple linger all day and tuck into the
+    // treetops at sunset (see roostBirds).
+    const leaving = birds.slice(BIRD_LINGER_COUNT);
+    for (const bird of leaving) {
         // Leave feather at last occupied tile
         groundLoot.push({ x: bird.gridX, y: bird.gridY, id: 'feather', count: 1, sprKey: 'items.feather' });
     }
+    birds = birds.slice(0, BIRD_LINGER_COUNT);
+    if (leaving.length > 0) notify('Most of the birds flew away, leaving feathers behind.');
+}
+
+// ===== SLEEPING BIRDS: lingering birds roost on tree canopies overnight =====
+// Purely visual — no collision, no interaction, no save. At sunset any still-
+// active birds settle on the nearest canopy tile (isTreeTop) and doze there
+// until sunrise. Regenerates lazily, so loading mid-night still gets sleepers.
+let sleepingBirds = null; // { perched: [{x, y, variant, phase}] }
+
+function roostBirds() {
+    if (!world || (typeof currentMapId !== 'undefined' && currentMapId !== 'island')) return;
+    const canopies = [];
+    for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+        for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+            const t = world.tiles[x][y];
+            if (t && t.isTreeTop) canopies.push({ x, y });
+        }
+    }
+    // Loaded mid-night with no active birds? A couple of default sleepers.
+    const roosters = birds.length > 0 ? birds : new Array(BIRD_LINGER_COUNT).fill(null);
+    const perched = [];
+    const used = new Set();
+    for (const bird of roosters) {
+        const open = canopies.filter(c => !used.has(c.x + ',' + c.y));
+        if (open.length === 0) break;
+        let spot;
+        if (bird) {
+            // Nearest open canopy to where the bird ended its day
+            spot = open.reduce((best, c) =>
+                (Math.abs(c.x - bird.gridX) + Math.abs(c.y - bird.gridY) <
+                 Math.abs(best.x - bird.gridX) + Math.abs(best.y - bird.gridY)) ? c : best);
+        } else {
+            spot = open[floor(random(open.length))];
+        }
+        used.add(spot.x + ',' + spot.y);
+        perched.push({ x: spot.x, y: spot.y, variant: bird ? bird.variant : floor(random(2)), phase: random(1000) });
+    }
+    sleepingBirds = { perched };
+    if (birds.length > 0 && perched.length > 0) {
+        notify('The last birds tucked themselves into the treetops for the night.');
+    }
     birds = [];
-    notify('The birds flew away, leaving feathers behind.');
+}
+
+function drawSleepingBirds() {
+    if (!sleepingBirds || sleepingBirds.perched.length === 0) return;
+    if (typeof currentMapId !== 'undefined' && currentMapId !== 'island') return;
+    const TS = CONFIG.TILE_SIZE;
+    const spr = SPRITES['fx.sleeping_bird']; // optional sprite hook, 16x16
+    const t = millis();
+    for (const b of sleepingBirds.perched) {
+        const sx = b.x * TS - cameraX;
+        const sy = b.y * TS - cameraY;
+        if (sx < -TS || sx > CONFIG.CANVAS_WIDTH || sy < -TS || sy > CONFIG.CANVAS_HEIGHT) continue;
+        const breathe = Math.sin(t * 0.0015 + b.phase) * 0.6; // slow sleepy rise-and-fall
+        if (spr) {
+            image(spr, sx, sy + breathe, TS, TS);
+        } else {
+            // Puffed-up ball with a tucked head and a wing shadow
+            noStroke();
+            fill(b.variant === 0 ? '#ECE6DA' : '#CFD8DC');
+            ellipse(sx + 8, sy + 9 + breathe, 9, 7);
+            fill(b.variant === 0 ? '#CBBFA8' : '#A7B4BA');
+            ellipse(sx + 10, sy + 10 + breathe, 4, 3);
+        }
+        // Drifting "z" every few seconds
+        if (Math.floor((t + b.phase * 10) / 3000) % 2 === 0) {
+            const zt = ((t + b.phase * 10) % 3000) / 3000;
+            fill(255, 255, 255, 160 * (1 - zt));
+            textAlign(CENTER, CENTER);
+            textSize(6);
+            text('z', sx + 12, sy + 2 + breathe - zt * 5);
+        }
+    }
 }
 
 function despawnSeagulls() {
@@ -583,6 +662,7 @@ function drawAnimals() {
     drawSnakes();
     drawTurtleCrossing();
     drawReturningBird();
+    drawSleepingBirds();
     drawGroundLoot();
 }
 
@@ -978,6 +1058,15 @@ function checkAnimalSunEvents() {
         despawnTurtles();
         despawnButterflies();
         despawnCicadas();
+    }
+
+    // Sleeping birds: lazy state check (not crossing-based) so loading or
+    // returning to the island mid-night still populates the treetops.
+    const isNight = hour >= SUNSET_HOUR || hour < SUNRISE_HOUR;
+    if (isNight && !sleepingBirds) {
+        roostBirds();
+    } else if (!isNight && sleepingBirds) {
+        sleepingBirds = null; // dawn: they wake and rejoin the sky
     }
 
     _lastAnimalHour = hour;
