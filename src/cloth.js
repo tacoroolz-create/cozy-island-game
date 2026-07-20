@@ -17,6 +17,23 @@ const BANNER_COLORS = [
     { name: 'Purple', hex: '#6A1B9A' }, { name: 'Cream',  hex: '#EFE3C8' }
 ];
 
+// assets/sprites/carpet.png is a 5x2 sheet of 16x16 carpets; `cell` indexes it
+// left-to-right, top-to-bottom. Colors mirror each cell so the inventory swatch
+// matches the art before the sheet finishes loading.
+const CARPET_SHEET_COLS = 5;
+const CARPET_VARIANTS = [
+    { id: 'carpet_blue',   name: 'Blue Carpet',   hex: '#56619E', cell: 0 },
+    { id: 'carpet_green',  name: 'Green Carpet',  hex: '#519757', cell: 1 },
+    { id: 'carpet_maroon', name: 'Maroon Carpet', hex: '#973E4F', cell: 2 },
+    { id: 'carpet_red',    name: 'Red Carpet',    hex: '#BE545A', cell: 3 },
+    { id: 'carpet_sand',   name: 'Sand Carpet',   hex: '#C5AE79', cell: 4 },
+    { id: 'carpet_black',  name: 'Black Carpet',  hex: '#191919', cell: 5 },
+    { id: 'carpet_white',  name: 'White Carpet',  hex: '#C2C2C2', cell: 6 },
+    { id: 'carpet_mauve',  name: 'Mauve Carpet',  hex: '#837B85', cell: 7 },
+    { id: 'carpet_slate',  name: 'Slate Carpet',  hex: '#5A5267', cell: 8 },
+    { id: 'carpet_rust',   name: 'Rust Carpet',   hex: '#B96B46', cell: 9 }
+];
+
 let clothState = { tunnelRoped: false, flags: [] };  // flags: [{x, y, text, color}]
 
 // --- Items & recipes ---
@@ -25,8 +42,15 @@ let clothState = { tunnelRoped: false, flags: [] };  // flags: [{x, y, text, col
         desc: 'A bolt of woven plant fiber. The start of most soft things.' };
     ITEMS.rope = { name: 'Rope', category: 'material', maxStack: 99, color: '#B08D57',
         desc: 'Braided cloth, strong enough to climb. The deep places want a lot of it.' };
+    // ponytail: plain 'carpet' predates the color sheet — kept (no recipe) so a
+    // save holding one still renders. Delete once no save has any.
     ITEMS.carpet = { name: 'Carpet', category: 'block', maxStack: 99, color: '#8D6E63',
         desc: 'A woven carpet for a cozy floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } };
+    for (const v of CARPET_VARIANTS) {
+        ITEMS[v.id] = { name: v.name, category: 'block', maxStack: 99, color: v.hex,
+            desc: 'A woven carpet for a cozy floor.', home: { cls: 'decoration', placeOn: 'floor', solid: false } };
+    }
+    SPRITE_DEFS['items.carpet_sheet'] = 'assets/sprites/carpet.png';
     ITEMS.banner = { name: 'Blank Banner', category: 'block', maxStack: 99, color: '#EFE3C8',
         desc: 'Undyed cloth on a batten. Hang it on a wall or plant it outside, then name it.',
         home: { cls: 'decoration', placeOn: 'wall', solid: false },
@@ -37,11 +61,32 @@ let clothState = { tunnelRoped: false, flags: [] };  // flags: [{x, y, text, col
             inputs: [ { id: 'fiber', count: FIBER_PER_CLOTH } ] },
         { output: 'rope', cat: 'home', sub: 'expansion', name: 'Rope', desc: 'Braided cloth. Strong enough to climb down.',
             inputs: [ { id: 'cloth', count: 2 } ] },
-        { output: 'carpet', cat: 'home', sub: 'decoration', name: 'Carpet', desc: 'A woven carpet for the floor.',
-            inputs: [ { id: 'cloth', count: 4 } ] },
+        { output: 'carpet_blue', cat: 'home', sub: 'decoration', name: 'Carpet', desc: 'A woven carpet. Ten colors — pick one.',
+            inputs: [ { id: 'cloth', count: 4 } ], variants: CARPET_VARIANTS },
         { output: 'banner', cat: 'home', sub: 'decoration', name: 'Blank Banner', desc: 'Wall banner or outdoor flag. You choose the word.',
             inputs: [ { id: 'cloth', count: 2 }, { id: 'stick', count: 1 } ] }
     );
+})();
+
+// Cut the carpet sheet into one sprite per color, so every generic draw path
+// (hotbar, inventory, crafting icon, placed floor tile) finds items.carpet_*.
+// Wraps setup() the way crafting.js wraps keyPressed — p5's preload has finished
+// by then, so the sheet is fully loaded.
+(function sliceCarpetSheetOnSetup() {
+    const orig = window.setup;
+    if (typeof orig !== 'function') { setTimeout(sliceCarpetSheetOnSetup, 0); return; }
+    window.setup = function () {
+        orig.apply(this, arguments);
+        const sheet = SPRITES['items.carpet_sheet'];
+        if (!sheet || !sheet.width) return;   // missing art: items fall back to their color
+        const cw = Math.floor(sheet.width / CARPET_SHEET_COLS);
+        const ch = cw;
+        for (const v of CARPET_VARIANTS) {
+            const cx = (v.cell % CARPET_SHEET_COLS) * cw;
+            const cy = Math.floor(v.cell / CARPET_SHEET_COLS) * ch;
+            SPRITES['items.' + v.id] = sheet.get(cx, cy, cw, ch);
+        }
+    };
 })();
 
 // --- Authoring: word, then color ---

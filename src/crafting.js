@@ -149,8 +149,12 @@ function getActiveRecipes() {
 
 // ===== NAVIGATION STATE =====
 // craftNav.cat / craftNav.sub are null until the player drills in.
-let craftNav = { cat: null, sub: null };
+let craftNav = { cat: null, sub: null, variantOf: null };
 let craftSelectedIndex = 0;
+// Batch size for the next craft, adjusted with the left/right arrows at the
+// recipe level. Never applies to remodels (they're one-shot by nature).
+let craftQty = 1;
+const CRAFT_QTY_MAX = 99;
 
 // Build the list of on-screen entries for the current navigation level.
 // Each entry: { kind: 'cat'|'sub'|'back'|'recipe', name, ... }
@@ -160,6 +164,16 @@ function getCraftEntries() {
     if (craftNav.cat === null) {
         for (const c of CRAFT_CATEGORIES) {
             entries.push({ kind: 'cat', id: c.id, name: c.name, hasSub: !!c.subs });
+        }
+        return entries;
+    }
+    // Inside a recipe's color list (e.g. carpets): one row per variant, each a
+    // normal recipe row whose output is that color.
+    if (craftNav.variantOf) {
+        entries.push({ kind: 'back', name: '◀ Back' });
+        for (const v of craftNav.variantOf.variants) {
+            entries.push({ kind: 'recipe', name: v.name,
+                recipe: { ...craftNav.variantOf, output: v.id, name: v.name, variants: null, swatch: v.hex } });
         }
         return entries;
     }
@@ -182,6 +196,7 @@ function getCraftEntries() {
 
 // Step back up one navigation level. Returns true if it moved.
 function craftBack() {
+    if (craftNav.variantOf) { craftNav.variantOf = null; craftSelectedIndex = 0; return true; }
     if (craftNav.sub !== null) { craftNav.sub = null; craftSelectedIndex = 0; return true; }
     if (craftNav.cat !== null) { craftNav.cat = null; craftSelectedIndex = 0; return true; }
     return false;
@@ -202,7 +217,12 @@ function craftActivate(i) {
     } else if (en.kind === 'back') {
         craftBack();
     } else if (en.kind === 'recipe') {
-        craftRecipe(en.recipe);
+        if (en.recipe.variants) {
+            craftNav.variantOf = en.recipe;   // pick a color first
+            craftSelectedIndex = 0;
+        } else {
+            craftRecipe(en.recipe, craftQty);
+        }
     }
 }
 
@@ -223,8 +243,18 @@ function itemColor(id) {
 // ===== CRAFT ACTION =====
 // Crafts a single recipe object. Consumes inputs, grants the output (or applies
 // a remodel), and notifies. Returns true on success.
-function craftRecipe(recipe) {
+function craftRecipe(recipe, qty = 1) {
     if (!recipe) return false;
+
+    // Batch: craft one at a time until the run is done or the materials are.
+    // Remodels are always singular.
+    if (qty > 1 && !recipe.isRemodel) {
+        let made = 0;
+        while (made < qty && canCraft(recipe) && craftRecipe(recipe, 1)) made++;
+        if (made === 0) return false;
+        if (made < qty) notify('Made ' + made + ' of ' + qty + ' — ran out.');
+        return true;
+    }
 
     if (!canCraft(recipe)) {
         notify("Not enough materials for " + recipe.name + ".");
@@ -290,7 +320,16 @@ function drawCraftingTab(x, y, w, h) {
 
     fill(255);
     textSize(7);
-    text('▲▼ select  ▶ open/craft', x + w - 92, y + 2);
+    const atRecipes = getCraftEntries().some(e => e.kind === 'recipe');
+    text(atRecipes ? '▲▼ select  ◀▶ qty  Enter craft' : '▲▼ select  ▶ open',
+         x + w - 118, y + 2);
+    if (atRecipes && craftQty > 1) {
+        fill('#C8E6A0');
+        textSize(9);
+        textAlign(RIGHT, TOP);
+        text('x' + craftQty, x + w, y + 11);
+        textAlign(LEFT, TOP);
+    }
 
     const entries = getCraftEntries();
     const listY = y + 16;
@@ -394,16 +433,24 @@ function drawRecipeRow(recipe, x, ry, w, rowH, selected) {
         bx += blockSz + gap;
     }
 
+    // Color swatch for variant rows (carpets), so the list reads at a glance.
+    let indent = 6;
+    if (recipe.swatch) {
+        const sw = 14;
+        drawItemIcon(recipe.output, x + 6, ry + 3, sw);   // falls back to the item color
+        indent = 6 + sw + 4;
+    }
+
     // Name + description, kept clear of the icon column.
-    const textW = w - 12 - blocksW;
+    const textW = w - 6 - indent - blocksW;
     fill(craftable ? 255 : 140, craftable ? 255 : 140, craftable ? 200 : 140);
     textAlign(LEFT, TOP);
     textSize(9);
     textFont('Courier New');
-    text(recipe.name, x + 6, ry + 1, textW, 11);
+    text(recipe.name, x + indent, ry + 1, textW, 11);
     fill(craftable ? 170 : 100);
     textSize(7);
-    text(recipe.desc, x + 6, ry + 13, textW, 20);
+    text(recipe.desc, x + indent, ry + 13, textW, 20);
 }
 
 // Hit-test a mouse click within the crafting list and activate the row.
@@ -453,7 +500,7 @@ function craftingTabClick(x, y, w, h) {
             if (keyCode === ESCAPE || keyCode === TAB || key === 'e' || key === 'E' ||
                 key === 'q' || key === 'Q' || key === 'w' || key === 'W') {
                 // Reset crafting navigation when leaving the tab/menu.
-                if (keyCode === ESCAPE || key === 'e' || key === 'E') { craftNav = { cat: null, sub: null }; craftSelectedIndex = 0; }
+                if (keyCode === ESCAPE || key === 'e' || key === 'E') { craftNav = { cat: null, sub: null, variantOf: null }; craftSelectedIndex = 0; craftQty = 1; }
                 return orig.apply(this, arguments);
             }
 
@@ -470,12 +517,21 @@ function craftingTabClick(x, y, w, h) {
                 craftActivate(craftSelectedIndex);
                 return false;
             } else if (keyCode === LEFT_ARROW || keyCode === BACKSPACE) {
-                craftBack();
+                // At the recipe level the left/right arrows set the batch size;
+                // Backspace and the '◀ Back' row still step back a level.
+                if (keyCode === LEFT_ARROW && entries.some(e => e.kind === 'recipe')) {
+                    craftQty = Math.max(1, craftQty - 1);
+                } else {
+                    craftBack();
+                }
                 return false;
             } else if (keyCode === RIGHT_ARROW) {
-                // Descend into the highlighted category/sub if applicable.
                 const en = entries[craftSelectedIndex];
-                if (en && (en.kind === 'cat' || en.kind === 'sub')) craftActivate(craftSelectedIndex);
+                if (en && (en.kind === 'cat' || en.kind === 'sub')) {
+                    craftActivate(craftSelectedIndex);   // descend
+                } else if (entries.some(e => e.kind === 'recipe')) {
+                    craftQty = Math.min(CRAFT_QTY_MAX, craftQty + 1);
+                }
                 return false;
             }
             return false;
