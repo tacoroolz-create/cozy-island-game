@@ -1860,7 +1860,9 @@ function findClearGroundNear(cx, cy, minR, maxR) {
             const ty = Math.round(cy + r * Math.sin(rad));
             if (tx < 1 || tx >= CONFIG.WORLD_WIDTH - 1 || ty < 1 || ty >= CONFIG.WORLD_HEIGHT - 1) continue;
             const t = world.tiles[tx] && world.tiles[tx][ty];
-            if (!t || (t.type !== 'grass' && t.type !== 'beach')) continue;
+            // Dock planks count as standable ground — visiting NPCs (merchants,
+            // tourists, arrivals) can post up on the pier.
+            if (!t || (t.type !== 'grass' && t.type !== 'beach' && t.type !== 'dock')) continue;
             if (isSolidTile(tx, ty) || buildingAt(tx, ty)) continue;
             if (typeof npcAt === 'function' && npcAt(tx, ty)) continue;
             return { x: tx, y: ty };

@@ -301,7 +301,7 @@ function spawnSeagulls(count) {
         const x = floor(random(CONFIG.WORLD_WIDTH));
         const y = floor(random(CONFIG.WORLD_HEIGHT));
         const tile = world.tiles[x][y];
-        if (!tile || (tile.type !== 'beach' && tile.type !== 'grass')) continue;
+        if (!tile || (tile.type !== 'beach' && tile.type !== 'grass' && tile.type !== 'dock')) continue;
         if (isSolidTile(x, y)) continue;
         if (buildingAt(x, y)) continue;
         if (x === px && y === py) continue;
