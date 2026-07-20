@@ -15,6 +15,7 @@ let placedCutouts = [];  // [{ x, y, name }] — island map only, 1x2 tiles, bot
 const QUESTS_PER_DAY = 3;
 const CUTOUT_QUEST_GOAL = 10;
 const QUEST_FRIENDSHIP = 15;
+const QUEST_REWARD_IOUS = 2;
 
 // Things a player can reasonably gather by hand.
 const QUEST_FETCH_ITEMS = [
@@ -120,8 +121,12 @@ function completeQuest(giverName) {
     const giver = npcs.find(n => n.name === giverName);
     if (giver) giver.friendship = Math.min(300, giver.friendship + QUEST_FRIENDSHIP);
     const rewardId = QUEST_REWARD_ITEMS[Math.floor(Math.random() * QUEST_REWARD_ITEMS.length)];
+    const gotIous = inventory.addItem('iou', QUEST_REWARD_IOUS);
+    const iouNote = gotIous ? ' and ' + QUEST_REWARD_IOUS + ' IOUs' : '';
     if (inventory.addItem(rewardId, 1)) {
-        notify(giverName + ' gave you a ' + ITEMS[rewardId].name + '! (+' + QUEST_FRIENDSHIP + ' friendship)');
+        notify(giverName + ' gave you a ' + ITEMS[rewardId].name + iouNote + '! (+' + QUEST_FRIENDSHIP + ' friendship)');
+    } else if (gotIous) {
+        notify(giverName + ' gave you ' + QUEST_REWARD_IOUS + ' IOUs! (+' + QUEST_FRIENDSHIP + ' friendship)');
     } else {
         notify('+' + QUEST_FRIENDSHIP + ' friendship with ' + giverName + ' (pockets too full for the gift!)');
     }
