@@ -8490,12 +8490,16 @@ class World {
                         const nx = x + dx, ny = y + dy;
                         if (nx < 0 || nx >= CONFIG.WORLD_WIDTH || ny < 0 || ny >= CONFIG.WORLD_HEIGHT) return 'sea';
                         const t = world.tiles[nx][ny];
-                        return t ? t.type : 'sea';
+                        if (!t) return 'sea';
+                        // The pier is a structure laid OVER the coast: its landward
+                        // columns sit on sand, its seaward ones on water. Judge a dock
+                        // tile by the terrain underneath it so the shoreline runs
+                        // straight through the dock band instead of jogging around it.
+                        if (t.type === 'dock') return islandZone(nx, ny);
+                        return t.type;
                     }
                     function isLandType(type) {
-                        // The dock is a structure OVER water — sea beside it must not
-                        // grow a sandy shoreline.
-                        return type !== 'sea' && type !== 'pond_water' && type !== 'pond_shore' && type !== 'dock';
+                        return type !== 'sea' && type !== 'pond_water' && type !== 'pond_shore';
                     }
                     const northLand = isLandType(seaNeighborType(0, -1));
                     const southLand = isLandType(seaNeighborType(0, 1));
