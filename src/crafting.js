@@ -22,12 +22,12 @@ const RECIPES = [
         output: 'gettin_stick', cat: 'tools',
         name: "Gettin' Stick",
         desc: "A stick with a magnet on it. Pulls treasure from the water! (3 uses)",
-        inputs: [ { id: 'magnet', count: 1 }, { id: 'stick', count: 1 }, { id: 'fiber', count: 1 } ]
+        inputs: [ { id: 'magnet', count: 1 }, { id: 'stick', count: 1 }, { id: 'fiber', count: 5 } ]
     },
     { output: 'axe', cat: 'tools', name: 'Axe', desc: 'Chops wood faster.',
         inputs: [ { id: 'log', count: 1 }, { id: 'stick', count: 1 }, { id: 'stone', count: 1 } ] },
     { output: 'hoe', cat: 'tools', name: 'Hoe', desc: 'Tills soil for gardening.',
-        inputs: [ { id: 'log', count: 1 }, { id: 'fiber', count: 1 } ] },
+        inputs: [ { id: 'log', count: 1 }, { id: 'fiber', count: 5 } ] },
     { output: 'pickaxe', cat: 'tools', name: 'Pickaxe', desc: 'Mines rocks faster.',
         inputs: [ { id: 'stone', count: 2 }, { id: 'stick', count: 1 } ] },
     { output: 'shovel', cat: 'tools', name: 'Shovel', desc: 'Carve dirt paths across the grass.',
@@ -36,7 +36,7 @@ const RECIPES = [
         desc: 'Five broken watches, one working one. Shows the time while outdoors.',
         inputs: [ { id: 'broken_watch', count: 5 } ] },
     { output: 'grass_seed', cat: 'tools', name: 'Grass Seed', desc: 'Erase a dirt path back into grass.',
-        inputs: [ { id: 'fiber', count: 2 } ] },
+        inputs: [ { id: 'fiber', count: 10 } ] },
 
     // --- CONSUMABLES ---
     { output: 'grilled_banana', cat: 'consumables', name: 'Grilled Banana', desc: 'A sweet, warm treat.',
@@ -48,23 +48,23 @@ const RECIPES = [
 
     // --- HOME IMPROVEMENT: Expansion (building materials) ---
     { output: 'thatch', cat: 'home', sub: 'expansion', name: 'Thatch', desc: 'A bundle of building material.',
-        inputs: [ { id: 'fiber', count: 2 }, { id: 'log', count: 1 } ] },
+        inputs: [ { id: 'fiber', count: 10 }, { id: 'log', count: 1 } ] },
 
     // --- HOME IMPROVEMENT: Furniture (solid floor pieces) ---
     { output: 'chair', cat: 'home', sub: 'furniture', name: 'Wooden Chair', desc: 'A simple wooden chair.',
-        inputs: [ { id: 'log', count: 2 }, { id: 'fiber', count: 1 } ] },
+        inputs: [ { id: 'log', count: 2 }, { id: 'fiber', count: 5 } ] },
     { output: 'armchair', cat: 'home', sub: 'furniture', name: 'Armchair', desc: 'A cushioned armchair.',
-        inputs: [ { id: 'log', count: 2 }, { id: 'fiber', count: 3 } ] },
+        inputs: [ { id: 'log', count: 2 }, { id: 'fiber', count: 15 } ] },
     { output: 'stool', cat: 'home', sub: 'furniture', name: 'Stool', desc: 'A little round stool.',
-        inputs: [ { id: 'log', count: 1 }, { id: 'fiber', count: 1 } ] },
+        inputs: [ { id: 'log', count: 1 }, { id: 'fiber', count: 5 } ] },
     { output: 'bench', cat: 'home', sub: 'furniture', name: 'Wooden Bench', desc: 'A long wooden bench.',
-        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 1 } ] },
+        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 5 } ] },
     { output: 'end_table', cat: 'home', sub: 'furniture', name: 'End Table', desc: 'A small bedside table.',
         inputs: [ { id: 'log', count: 2 }, { id: 'stick', count: 1 } ] },
     { output: 'coffee_table', cat: 'home', sub: 'furniture', name: 'Coffee Table', desc: 'A low center table.',
         inputs: [ { id: 'log', count: 3 }, { id: 'stick', count: 1 } ] },
     { output: 'bookshelf', cat: 'home', sub: 'furniture', name: 'Bookshelf', desc: 'Tall shelves of books.',
-        inputs: [ { id: 'log', count: 4 }, { id: 'fiber', count: 1 } ] },
+        inputs: [ { id: 'log', count: 4 }, { id: 'fiber', count: 5 } ] },
     { output: 'dresser', cat: 'home', sub: 'furniture', name: 'Dresser', desc: 'A drawer dresser.',
         inputs: [ { id: 'log', count: 4 }, { id: 'stone', count: 1 } ] },
     { output: 'cabinet', cat: 'home', sub: 'furniture', name: 'Side Cabinet', desc: 'A storage cabinet.',
@@ -72,34 +72,34 @@ const RECIPES = [
     { output: 'floor_lamp', cat: 'home', sub: 'furniture', name: 'Floor Lamp', desc: 'A warm standing lamp.',
         inputs: [ { id: 'stick', count: 2 }, { id: 'crystal', count: 1 } ] },
     { output: 'potted_plant', cat: 'home', sub: 'furniture', name: 'Potted Plant', desc: 'A leafy plant in a pot.',
-        inputs: [ { id: 'fiber', count: 2 }, { id: 'stone', count: 1 }, { id: 'seed', count: 1 } ] },
+        inputs: [ { id: 'fiber', count: 10 }, { id: 'stone', count: 1 }, { id: 'seed', count: 1 } ] },
     { output: 'fireplace', cat: 'home', sub: 'furniture', name: 'Fireplace', desc: 'A cozy stone fireplace.',
         inputs: [ { id: 'stone', count: 4 }, { id: 'log', count: 1 } ] },
 
     // --- HOME IMPROVEMENT: Decoration (wall hangings & rugs) ---
     { output: 'tapestry', cat: 'home', sub: 'decoration', name: 'Wall Tapestry', desc: 'A woven wall hanging.',
-        inputs: [ { id: 'fiber', count: 3 } ] },
+        inputs: [ { id: 'cloth', count: 2 } ] },
     { output: 'painting', cat: 'home', sub: 'decoration', name: 'Framed Painting', desc: 'Art for the wall.',
-        inputs: [ { id: 'fiber', count: 1 }, { id: 'log', count: 1 }, { id: 'crystal', count: 1 } ] },
+        inputs: [ { id: 'fiber', count: 5 }, { id: 'log', count: 1 }, { id: 'crystal', count: 1 } ] },
     { output: 'window', cat: 'home', sub: 'decoration', name: 'Window', desc: 'A glass window for the wall.',
         inputs: [ { id: 'stone', count: 1 }, { id: 'crystal', count: 1 } ] },
     { output: 'drapes', cat: 'home', sub: 'decoration', name: 'Drapes', desc: 'Flowing curtains.',
-        inputs: [ { id: 'fiber', count: 4 } ] },
+        inputs: [ { id: 'cloth', count: 2 } ] },
     { output: 'wall_clock', cat: 'home', sub: 'decoration', name: 'Wall Clock', desc: 'A ticking wall clock.',
         inputs: [ { id: 'stone', count: 1 }, { id: 'stick', count: 1 }, { id: 'crystal', count: 1 } ] },
     { output: 'wall_shelf', cat: 'home', sub: 'decoration', name: 'Wall Shelf', desc: 'A floating trinket shelf.',
         inputs: [ { id: 'log', count: 2 } ] },
     { output: 'round_rug', cat: 'home', sub: 'decoration', name: 'Round Rug', desc: 'A soft round floor rug.',
-        inputs: [ { id: 'fiber', count: 3 } ] },
+        inputs: [ { id: 'cloth', count: 2 } ] },
     { output: 'runner_rug', cat: 'home', sub: 'decoration', name: 'Runner Rug', desc: 'A long floor runner.',
-        inputs: [ { id: 'fiber', count: 4 } ] },
+        inputs: [ { id: 'cloth', count: 3 } ] },
 
     // --- ISLAND BUILDING ---
     {
         output: 'neighbor_shack', cat: 'island',
         name: "Neighbor's Shack",
         desc: 'A small shelter for a homeless neighbor. Equip it and click outside to place.',
-        inputs: [ { id: 'log', count: 15 }, { id: 'stone', count: 10 }, { id: 'fiber', count: 8 } ]
+        inputs: [ { id: 'log', count: 15 }, { id: 'stone', count: 10 }, { id: 'fiber', count: 40 } ]
     }
 ];
 
@@ -109,13 +109,13 @@ const REMODEL_RECIPES = [
     {
         id: 'expand_width', cat: 'home', sub: 'expansion',
         name: 'Expand Width +1', desc: 'Add 1 tile of interior width.',
-        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 2 } ],
+        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 10 } ],
         action: function(b) { b.expandInterior(1, 0); }
     },
     {
         id: 'expand_height', cat: 'home', sub: 'expansion',
         name: 'Expand Height +1', desc: 'Add 1 tile of interior height.',
-        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 2 } ],
+        inputs: [ { id: 'log', count: 3 }, { id: 'fiber', count: 10 } ],
         action: function(b) { b.expandInterior(0, 1); }
     },
     {

@@ -448,6 +448,7 @@ function serializeGame() {
         magicFlags: (typeof magicFlags !== 'undefined') ? magicFlags : {},
         almanacDiscovered: (typeof almanacDiscovered !== 'undefined') ? almanacDiscovered : {},
         quests: (typeof questSerialize === 'function') ? questSerialize() : null,
+        cloth: (typeof clothSerialize === 'function') ? clothSerialize() : null,
         club: (typeof clubSerialize === 'function') ? clubSerialize() : null,
         birds: birds.map(b => ({ type: b.type, gridX: b.gridX, gridY: b.gridY, variant: b.variant, friendship: b.friendship })),
         crabs: crabs.map(c => ({ type: c.type, gridX: c.gridX, gridY: c.gridY, variant: c.variant })),
@@ -537,6 +538,7 @@ function deserializeGame(data) {
     magicFlags = Object.assign({ mubabaQuest: false, mubabaMet: false, usurperBanished: false, domStep: 0 }, data.magicFlags || {});
     if (typeof almanacDiscovered !== 'undefined') almanacDiscovered = data.almanacDiscovered || {};
     if (typeof questLoad === 'function') questLoad(data.quests); // defaults cover old saves
+    if (typeof clothLoad === 'function') clothLoad(data.cloth);
     if (typeof clubLoad === 'function') clubLoad(data.club);     // defaults cover old saves
 
     birds = [];

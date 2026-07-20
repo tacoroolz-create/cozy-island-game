@@ -1221,6 +1221,7 @@ function drawGame() {    // Handle continuous movement
 
     // Draw NPCs
     if (typeof drawCutouts === 'function') drawCutouts();
+    if (typeof drawFlags === 'function') drawFlags();
     if (typeof drawEntities === 'function') drawEntities();
 
     // Draw animals (birds/crabs)
@@ -4256,6 +4257,8 @@ function mousePressed() {
                     if (tryPlaceMovedTree(tx, ty, outdoor.tree, active.id)) return;
                 } else if (outdoor.cutout) {
                     if (tryPlaceCutout(tx, ty, outdoor.cutout, active.id)) return;
+                } else if (outdoor.flag) {
+                    if (tryPlaceFlag(tx, ty, active.id)) return;
                 } else if (tryPlaceNeighborShack(tx, ty, outdoor.type)) return;
             }
         }
@@ -4265,6 +4268,13 @@ function mousePressed() {
             const tx = Math.floor((mouseX + cameraX) / TS);
             const ty = Math.floor((mouseY + cameraY) / TS);
             if (tryPickupCutoutAt(tx, ty)) return;
+        }
+        // Same for a planted flag (cloth.js).
+        if (typeof tryPickupFlagAt === 'function') {
+            const TS = CONFIG.TILE_SIZE;
+            const tx = Math.floor((mouseX + cameraX) / TS);
+            const ty = Math.floor((mouseY + cameraY) / TS);
+            if (tryPickupFlagAt(tx, ty)) return;
         }
         // Use the selected hotbar item on a clicked adjacent tile (e.g. plant a seed).
         if (typeof tryUseActiveItemAt === 'function') {
@@ -4517,6 +4527,8 @@ function tryEnterTunnel() {
     if (!tile || tile.type !== 'tunnel' || !tile.target) return false;
     const dest = tile.target;
     const goingDown = dest.map !== 'island';
+    // The first descent has to be roped (cloth.js); climbing back up is free.
+    if (goingDown && typeof ropeReadyForDescent === 'function' && !ropeReadyForDescent()) return true;
     const prompt = goingDown
         ? "There's a hole in the ground. Wanna see what's inside?"
         : "Light spills down from a hole above. Climb back up?";
@@ -5166,7 +5178,11 @@ function drawInteriorTile(tile, sx, sy, TS) {
         rect(sx + TS / 2 - 1, sy, 1, TS / 2);
         // Hung wall decoration (tapestry, painting, window, etc.)
         if (tile.deco && ITEMS[tile.deco]) {
-            drawWallDeco(tile.deco, sx, sy, TS);
+            if (tile.deco === 'banner' && typeof drawBanner === 'function') {
+                drawBanner(tile, sx, sy, TS);
+            } else {
+                drawWallDeco(tile.deco, sx, sy, TS);
+            }
         }
     } else if (tile.type === 'home') {
         // Floor base, then the placed furniture / floor decoration on top.
@@ -5460,6 +5476,8 @@ function tryPlaceHomeItemInside(tx, ty) {
         if (tile.type !== 'wall') { notify(item.name + ' must hang on a wall.'); return true; }
         if (tile.deco) { notify('That wall spot is taken.'); return true; }
         tile.deco = active.id;
+        // A blank banner gets its word and color the moment it goes up (cloth.js).
+        if (active.id === 'banner' && typeof authorWallBanner === 'function') authorWallBanner(tile);
     } else {
         // Floor placement: only on an empty grass floor tile, not the door.
         const door = b.getInteriorDoorPos();
@@ -5489,6 +5507,8 @@ function tryPickupHomeInside(tx, ty) {
     if (tile.type === 'wall' && tile.deco) {
         const id = tile.deco;
         delete tile.deco;
+        delete tile.decoText;   // a reclaimed banner goes back to blank
+        delete tile.decoColor;
         inventory.addItem(id, 1);
         notify('Took down ' + (ITEMS[id] ? ITEMS[id].name : id) + '.');
         roomCleaned();
