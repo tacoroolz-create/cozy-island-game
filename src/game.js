@@ -360,6 +360,9 @@ function isSolidTile(x, y) {
     if (x < 0 || x >= CONFIG.WORLD_WIDTH || y < 0 || y >= CONFIG.WORLD_HEIGHT) return true;
     const tile = world.tiles[x][y];
     if (!tile) return true;
+    // The dock is a walkable pier. Checked before tile.solid so old saves, which
+    // stored solid:true on every dock tile, become walkable too.
+    if (tile.type === 'dock') return false;
     if (tile.solid !== undefined) return tile.solid;
     if (TILE_SOLID.has(tile.type)) return true;
     if (typeof animalAt === 'function' && animalAt(x, y)) return true;
@@ -7811,14 +7814,14 @@ class World {
     }
 
     // Lay the west-beach dock at (originX, originY) (top-left corner): an
-    // ISLAND_DOCK_W x ISLAND_DOCK_H solid pier, drawn as one image (see
-    // drawDockOverlay()). Blocks movement like a rock/tree.
+    // ISLAND_DOCK_W x ISLAND_DOCK_H walkable pier, drawn as one image (see
+    // drawDockOverlay()). Walkable end to end — see isSolidTile().
     placeDock(originX, originY) {
         for (let px = 0; px < ISLAND_DOCK_W; px++) {
             for (let py = 0; py < ISLAND_DOCK_H; py++) {
                 const tx = originX + px, ty = originY + py;
                 if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: true };
+                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: false };
             }
         }
     }
@@ -8822,17 +8825,10 @@ class World {
             case 'dock': {
                 // The dock sprite is drawn later as one large overlay from dockOrigin.
                 // This pass only provides sand/water underneath the transparent PNG.
-                if (islandZone(x, y) === 'beach') drawBase('beach');
-                else {
-                    // Same animated open-water frames as the surrounding sea, so the
-                    // water under the dock doesn't read as a flat blue rectangle.
-                    const seaSpr = SPRITES['tiles.sea_overworld'];
-                    if (seaSpr) {
-                        const frames = Math.max(1, Math.floor(seaSpr.width / TS));
-                        const oceanFrame = floor(frameCount / 8) % frames;
-                        image(seaSpr, screenX, screenY, TS, TS, oceanFrame * TS, 0, TS, TS);
-                    } else { fill('#4A90C8'); noStroke(); rect(screenX, screenY, TS, TS); }
-                }
+                // Render whatever the tile would be without the pier, so the shoreline
+                // waves autotile straight through the dock instead of stopping at it
+                // (isLandType() already treats 'dock' as water for that purpose).
+                this.drawTile(x, y, { type: islandZone(x, y) === 'beach' ? 'beach' : 'sea' });
                 break;
             }
             case 'pond_water': {
