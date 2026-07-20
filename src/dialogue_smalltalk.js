@@ -79,6 +79,182 @@ const AMBIENT_GOSSIP = [
     { text: "Don't spread this around, but I saw {other} talking to a seagull. At length. The seagull seemed persuaded.", ask: "Persuaded of WHAT?", reply: "That's the part that worries me. If the gulls start organizing, we all answer to {other}." },
     { text: "I've been meaning to visit {other}, but then I remember how far away 'over there' is.", ask: "It's a five minute walk...", reply: "A five minute walk THERE, {player}. And then — and nobody thinks about this — five minutes BACK." }
 ];
+
+// ---- Named relationship gossip: only fires when {other} is a present neighbor
+// the speaker actually has a dynamic with. Keeps generic gossip from feeling
+// like filler and makes the island seem lived-in when two specific characters
+// cross paths in conversation. Format matches ambient lines: {text, ask, reply}.
+const RELATIONSHIP_GOSSIP = {
+    "Sir Cogs-a-Lot": {
+        "Sir Haunts-a-Lot": [
+            { text: "Sir Haunts-a-Lot challenged me to a courtesy duel at dawn. We bowed for three hours. My hinges are stiff, but my honor is intact.", ask: "Who won?", reply: "Nobody wins a bowing contest, Dreamer. You simply keep bowing until one of you remembers breakfast. He remembered first. I claim victory by appetite." },
+            { text: "The other knight claims his transparency makes him harder to defeat in combat. I pointed out that it also makes him harder to see at noon, which is hardly fair play.", ask: "Will there be a rematch?", reply: "Next month we hold the First Annual Courtesy-Off. Categories include bowing, door-holding, and complimenting clouds. I intend to sweep the cloud round." }
+        ]
+    },
+    "Sir Haunts-a-Lot": {
+        "Sir Cogs-a-Lot": [
+            { text: "Sir Cogs-a-Lot insists his armor is shinier than mine. I pointed out that I am transparent, so shininess is relative. He did not appreciate the logic.", ask: "Is it a real rivalry?", reply: "Real enough to schedule monthly. Next we compete at who can hold a door open longest. I intend to win by walking through it as a ghost." },
+            { text: "He keeps calling me 'fair traveler' even though we have traveled together at least forty times. The knight never forgets a formality, even when it makes no sense.", ask: "Does it bother you?", reply: "It would bother a lesser spirit. I find it comforting. A rival who greets you politely is a rival you can trust to cheat with dignity." }
+        ]
+    },
+    "Lord Roar": {
+        "Squire Paws": [
+            { text: "Squire Paws believes I once fought a dragon. I have never corrected him. It is good for a squire to have confidence in his knight's fictional past.", ask: "Did you fight a dragon?", reply: "I chased a particularly large seagull once. In the right light, with enough enthusiasm, a seagull is basically a small dragon. Squire Paws was impressed." },
+            { text: "My squire keeps asking for dragon-slaying tips. I keep giving him seagull-avoidance advice and hoping he does not notice the difference.", ask: "Has he noticed?", reply: "Not yet. He is very loyal. Loyalty, I have learned, is the art of accepting dragon stories without investigating seagulls too closely." }
+        ]
+    },
+    "Squire Paws": {
+        "Lord Roar": [
+            { text: "Lord Roar tells me tales of dragon battles. I know they're mostly seagulls, but the way he tells them, every seagull sounds heroic.", ask: "Have you met a real dragon?", reply: "I met a lizard near the warm rocks. It did not breathe fire, but it looked at me with great importance. I saluted it." },
+            { text: "The Lord says a true knight never reveals how many dragons he has fought. I think that means the number is flexible, which is also a kind of wisdom.", ask: "Do you believe him?", reply: "I believe in the story. A knight needs a story, and a squire needs a knight. The seagulls are welcome to disagree." }
+        ]
+    },
+    "Shade-7": {
+        "Raven": [
+            { text: "Raven and I are composing a poem about the moon. It has seventeen stanzas and no rhymes. Rhymes are too... hopeful.", ask: "What's it called?", reply: "We haven't decided. 'The Long Gray Maybe' is the current title. Raven thinks it's too cheerful." },
+            { text: "The poetry circle meets by moonlight. Raven brings the gloom, I bring the mechanical precision. Together we achieve a mood best described as 'damp midnight.'", ask: "Can I join?", reply: "You may attend as a silent observer. If you smile, we will pause and pretend we were never there. That is the goth way." }
+        ],
+        "Morwen": [
+            { text: "Morwen says the goths of this island know a little magic. I told her we don't, but she keeps leaving moonflower petals in patterns that almost mean something.", ask: "Do you know magic?", reply: "I know how to look mysterious in dim light. If that counts as magic, then yes. Otherwise, Morwen is just being dramatic. As usual." },
+            { text: "Morwen and I once tried to cast a spell to make the sunset last longer. The sunset ignored us, but a nearby crab walked sideways in a very deliberate way. We took it as a sign.", ask: "What did it mean?", reply: "It meant the crab had somewhere to be. We decided the spell worked on a crab, which is better than nothing." }
+        ],
+        "Vesper": [
+            { text: "Vesper told me the moon whispers secrets to robots who stand still enough. I stood still all night. The moon only said hello. It was enough.", ask: "What kind of secrets?", reply: "Small ones. Tide times, good rocks for sitting, which clouds are pretending to be sheep. The moon is more practical than people think." }
+        ]
+    },
+    "Raven": {
+        "Morwen": [
+            { text: "Morwen claims the goths of this island know a little magic. I think we only know how to sit very still and look like we planned it.", ask: "Do you know magic?", reply: "I know how to make a silence feel important. If silence is magic, then I am practically a sorceress. Otherwise, no." },
+            { text: "Morwen and I trade poems about the sea. Hers end with the word 'forever.' Mine end with the sound of a wave. We agree both are acceptable endings.", ask: "Who writes better endings?", reply: "The sea writes the best endings. We are just taking notes and pretending to understand." }
+        ],
+        "Shade-7": [
+            { text: "Shade-7 takes the poetry circle very seriously. She once recited a line about entropy and I had to look away because it was so beautifully depressing.", ask: "Was it good?", reply: "It was excellent. I will deny this if asked directly. The circle operates on plausible deniability and excellent eyeliner." }
+        ]
+    },
+    "Morwen": {
+        "Vesper": [
+            { text: "Vesper and I hold a poetry circle by moonlight. We don't invite the cheerful ones. Their optimism throws off the meter.", ask: "Can I come?", reply: "You may listen from the shadows. But if you giggle, we will stop and pretend we were never there. That is the goth way." },
+            { text: "Vesper believes the shadows at dusk hold messages. I believe the shadows are just tired light. We wrote a poem together called 'Maybe Both, Probably Neither.'", ask: "Is it finished?", reply: "It is never finished. That is the point. A finished poem would be far too decisive for either of us." }
+        ],
+        "Raven": [
+            { text: "Raven says our magic, if we have any, lives in our feathers and our frowns. I told her that's not magic, that's branding. She took it as a compliment.", ask: "Is it branding?", reply: "Everything is branding if you are mysterious enough. The moon has excellent branding. We are merely inspired by it." }
+        ],
+        "Shade-7": [
+            { text: "Shade-7 brought a metal flower to the poetry circle. It did not wilt. I found that both impressive and slightly offensive to the concept of decay.", ask: "Did you keep it?", reply: "I placed it where the moonlight hits it. Now it casts a shadow that looks like a frown. We are all very proud." }
+        ]
+    },
+    "Vesper": {
+        "Shade-7": [
+            { text: "Shade-7 swears robots make better goths because we can dim our own eyes. I told her my eyes are already shadow. She said that was 'trying too hard.'", ask: "Were you offended?", reply: "Deeply. I will write a poem about it. It will have no title, only a sigh." }
+        ],
+        "Morwen": [
+            { text: "Morwen and I once stayed up all night waiting for the moon to do something dramatic. It just rose, very slowly. We agreed it was worth the wait.", ask: "What did you expect?", reply: "A gesture. A whisper. A small cloud parting like a curtain. The moon gave us steady light, which is the most reliable kind of drama." }
+        ]
+    },
+    "Grumble": {
+        "Fluffernox": [
+            { text: "I definitely do not like Fluffernox. I just happened to straighten the flowers near her house. Twice. Because chaos offends me, not because she's soft.", ask: "You sure about that?", reply: "I am one hundred percent sure that I am not going to answer that. Now stop smiling. It makes your face look friendly." },
+            { text: "Fluffernox said my fang is 'cute.' I told her it's terrifying. She agreed it could be both. I have been thinking about that for three days and I don't like it.", ask: "Is it both?", reply: "It is neither. It is a fang. It bites things. Metaphorically. Mostly marshmallows. Not that I eat marshmallows because she likes them." }
+        ]
+    },
+    "Fluffernox": {
+        "Grumble": [
+            { text: "Grumble says she's terrifying, but she left a perfectly smooth stone by my door. It had a little flower next to it. Terrifying monsters don't do that.", ask: "Maybe she likes you?", reply: "She would deny it very loudly and then straighten my doormat. That's how I know. Some people show love by pretending not to." },
+            { text: "Grumble told me my horns are 'not that cute.' She said it while adjusting a leaf behind my ear. I am choosing to believe she has complicated feelings.", ask: "Complicated how?", reply: "Complicated like a monster who wants to be scary but also wants everyone to have nice flowers. That's my favorite kind of complicated." }
+        ]
+    },
+    "Cypher": {
+        "Newton": [
+            { text: "Newton and I have a friendly disagreement. He says clouds are for watching. I say clouds are for classifying. We compromised by doing both at the same time.", ask: "Who's right?", reply: "We are both right, which is statistically unlikely. The dream island may be inflating our accuracy. I am choosing not to investigate." },
+            { text: "Newton insists the cloud shaped like a sheep is actually two clouds in disguise. I find his paranoia refreshing and possibly correct.", ask: "Two clouds?", reply: "Two small clouds wearing one big cloud costume. It would explain the irregular fluff distribution. We are drafting a formal inquiry." }
+        ]
+    },
+    "Newton": {
+        "Gizmo": [
+            { text: "Gizmo thinks rocks are secretly enthusiastic. I think rocks are simply round. We are writing a joint paper called 'On the Possible Motivations of Inanimate Objects.'", ask: "Any conclusions?", reply: "Preliminary finding: rocks do not move unless pushed. Gizmo is drafting a rebuttal involving 'hidden determination.' I admire his commitment." }
+        ],
+        "Cypher": [
+            { text: "Cypher says my cloud observations lack rigor because I use words like 'majestic.' I told him 'majestic' is a measurement of emotional height. He wrote it down.", ask: "Is it a measurement?", reply: "It is now. Cypher added it to his spreadsheet. I have never felt more academically validated in my life." }
+        ]
+    },
+    "Gizmo": {
+        "Newton": [
+            { text: "Newton refuses to believe rocks are enthusiastic. I asked him why round rocks roll downhill then. He said gravity. I said that's just what enthusiastic rocks call their motivation.", ask: "Can you prove it?", reply: "I rolled a rock. It went downhill very quickly. Newton called it gravity. I called it passion. We agreed to disagree at high volume." }
+        ]
+    },
+    "Om-Bit": {
+        "Lotus": [
+            { text: "Lotus and I sit very still together. We do not speak. We do not need to. The grass grows at us and we accept it.", ask: "Is that a friendship?", reply: "It is a deeper friendship than words could hold. Also, she once shared a very good sitting spot with me. That is the highest monk gift." }
+        ],
+        "Hush": [
+            { text: "Hush and I once had a conversation that lasted an entire afternoon. Neither of us spoke. It was one of the best conversations I have had on this island.", ask: "What did you talk about?", reply: "The wind, mostly. And how water finds its level without trying. We did not say these things out loud. We simply understood them together." }
+        ]
+    },
+    "Lotus": {
+        "Hush": [
+            { text: "Hush and I trade silences. His are very quiet. Mine have a little tide in them. We both agree that noise is overrated.", ask: "Who has the better silence?", reply: "Silence cannot be ranked. It simply is. Though I will say his silence is excellent. Do not tell him I said so. Silence prefers modesty." }
+        ]
+    },
+    "Hush": {
+        "Om-Bit": [
+            { text: "Om-Bit and I sat on the grass for so long that a beetle walked across my foot and I did not move. He nodded once. It was the highest praise.", ask: "Why didn't you move?", reply: "Moving would have interrupted the beetle's journey. It was on its way somewhere important. We are all on our way somewhere important." }
+        ]
+    },
+    "Tinker": {
+        "Pebble": [
+            { text: "Pebble and I have an understanding. We stand near bushes and do not make eye contact with anyone. It is the most comfortable arrangement.", ask: "Do you ever talk?", reply: "We exchange small waves. Very small. If you blinked, you would miss them. That is the perfect size for us." }
+        ],
+        "Flutter": [
+            { text: "Flutter showed me the best corner between two trees. It has soft light and very few visitors. I go there when the world feels too bright.", ask: "Is it a secret?", reply: "It is a shared secret. That is the safest kind. If too many people know, it stops being soft. So far, it is still very soft." }
+        ]
+    },
+    "Pebble": {
+        "Flutter": [
+            { text: "Flutter showed me the best corner between two trees. It has soft light and very few visitors. I am considering moving in permanently.", ask: "A corner roommate?", reply: "Only in spirit. I am still a turtle with a shell. But spiritually, I live in that corner now, and Flutter is my quiet landlord." }
+        ]
+    },
+    "Flutter": {
+        "Tinker": [
+            { text: "Tinker and I found a spot where two bushes make a little doorway. We stand there sometimes and pretend we're in a secret house made of leaves.", ask: "Do you invite others?", reply: "Only people who understand that secret houses are mostly for being quiet in. You would understand. You have quiet eyes." }
+        ]
+    },
+    "Rivet": {
+        "Shadow": [
+            { text: "Shadow keeps claiming my sunny knoll. I told her I don't care, which is obviously a lie because I care very much and have been plotting leaf-based revenge.", ask: "Revenge with leaves?", reply: "I will place one slightly damp leaf on her spot. She will be annoyed. I will pretend I didn't notice. This is how tsunderes negotiate." }
+        ]
+    },
+    "Shadow": {
+        "Rivet": [
+            { text: "Rivet glares at me whenever I take the sunny knoll. I pretend not to see her. Seeing people proves they exist, and I have no interest in confirming Rivet today.", ask: "Do you two get along?", reply: "We exist in a state of competitive warmth. It is not friendship. It is a temperature-based rivalry. I am winning." }
+        ]
+    },
+    "Piko": {
+        "Mochi": [
+            { text: "Mochi and I have a butterfly-watching pact. She doesn't hop too loud, and I don't beep too bright. The butterflies seem grateful.", ask: "Pacts are serious.", reply: "Very serious. We shook on it. Well, I extended my hand and she touched it with her nose. That is the rabbit equivalent of a sworn oath." }
+        ]
+    },
+    "Mochi": {
+        "Piko": [
+            { text: "Piko glows when she's happy. I asked her if she could glow less near the flowers because they get jealous. She said she would try. She failed.", ask: "Flowers get jealous?", reply: "Only of Piko. She is the pinkest thing on the island. If I were a flower, I would also want to be her friend." }
+        ]
+    },
+    "Zap-Zap": {
+        "Sunny": [
+            { text: "Sunny and I are organizing the island's first 'Hello Marathon.' The goal is to say hello to every tree before lunch. Trees don't reply, but we believe they're listening.", ask: "Every tree?", reply: "Every. Single. One. We are very committed. Sunny does the flying loop, I do the ground greeting. Teamwork makes the island scream with friendliness." }
+        ],
+        "Giggles": [
+            { text: "Giggles and I counted how many hellos fit in one conversation. We got to forty-three before a butterfly interrupted. Butterflies have no respect for science.", ask: "Forty-three is a lot.", reply: "It is the current record. Giggles wants to try for fifty. I said we should pace ourselves. Then we both laughed for no reason." }
+        ]
+    },
+    "Sunny": {
+        "Giggles": [
+            { text: "Giggles and I are trying to set the island hello record. We're at forty-three. Zap-Zap says we can hit fifty, but I think my beak needs a break.", ask: "Fifty hellos?", reply: "Fifty hellos in one chat! It's ambitious, but with the right friend and enough water breaks, anything is possible." }
+        ],
+        "Zap-Zap": [
+            { text: "Zap-Zap and I high-fived so hard yesterday that a nearby crab jumped. We apologized to the crab. It waved a claw. We're calling it forgiveness.", ask: "Crab forgiveness?", reply: "Crab forgiveness is the best kind. It comes sideways and unexpected, just like crabs. We are very honored." }
+        ]
+    }
+};
 const AMBIENT_SEASON = {
     'Sweet': { text: "Sweet season suits this island. Everything's blooming like it's showing off.", ask: "It does smell amazing.", reply: "Right? I take one deep breath in the morning and I'm set for the whole day." },
     'Saucy': { text: "Saucy season again. The air's got attitude and frankly, so do I.", ask: "The season fits you.", reply: "It really does. I feel ten percent bolder from now until the season turns. Watch out, island." },
@@ -122,12 +298,29 @@ function makeAmbientTree(npc) {
     const seasonLine = (typeof world !== 'undefined' && world && AMBIENT_SEASON[world.season]) || null;
     if (seasonLine) pool = pool.concat([seasonLine]);
     const others = (typeof npcs !== 'undefined') ? npcs.filter(n => n.isPresent && n !== npc && n.id !== 'mubaba') : [];
-    if (others.length > 0) pool = pool.concat(AMBIENT_GOSSIP);
+
+    // Named relationship gossip gets first pick: if the speaker has something
+    // specific to say about a present neighbor, use that and skip the generic pool.
+    let relationshipOther = null;
+    if (others.length > 0) {
+        const speakerGossip = RELATIONSHIP_GOSSIP[npc.name];
+        if (speakerGossip) {
+            const related = others.filter(o => speakerGossip[o.name]);
+            if (related.length > 0) {
+                relationshipOther = related[Math.floor(Math.random() * related.length)];
+                pool = speakerGossip[relationshipOther.name];
+            }
+        }
+    }
+    // If no relationship line is available, fall back to the generic {other} gossip pool.
+    if (!relationshipOther && others.length > 0) {
+        pool = pool.concat(AMBIENT_GOSSIP);
+    }
     if (npc.friendship >= 150) pool = pool.concat(AMBIENT_BESTIES);
     else if (npc.friendship < 30) pool = pool.concat(AMBIENT_NEW);
 
     const line = pool[Math.floor(Math.random() * pool.length)];
-    const other = others.length > 0 ? others[Math.floor(Math.random() * others.length)].name : 'someone';
+    const other = relationshipOther ? relationshipOther.name : (others.length > 0 ? others[Math.floor(Math.random() * others.length)].name : 'someone');
     const playerName = (typeof PLAYER_NAME !== 'undefined') ? PLAYER_NAME : 'Dreamer';
     const fill = s => s.replace(/\{player\}/g, playerName).replace(/\{other\}/g, other).replace(/\{season\}/g, (world && world.season) || '');
 
