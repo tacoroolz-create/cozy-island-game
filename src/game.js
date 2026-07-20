@@ -360,9 +360,11 @@ function isSolidTile(x, y) {
     if (x < 0 || x >= CONFIG.WORLD_WIDTH || y < 0 || y >= CONFIG.WORLD_HEIGHT) return true;
     const tile = world.tiles[x][y];
     if (!tile) return true;
-    // The dock is a walkable pier. Checked before tile.solid so old saves, which
-    // stored solid:true on every dock tile, become walkable too.
-    if (tile.type === 'dock') return false;
+    // Only the pier's deck is walkable: dock.png's top row is empty and its bottom
+    // row is the south face/pilings, so standing on either reads as walking on
+    // water. Checked before tile.solid so old saves (solid:true everywhere) follow
+    // this too.
+    if (tile.type === 'dock') return y < DOCK_DECK_Y0 || y > DOCK_DECK_Y1;
     if (tile.solid !== undefined) return tile.solid;
     if (TILE_SOLID.has(tile.type)) return true;
     if (typeof animalAt === 'function' && animalAt(x, y)) return true;
@@ -7600,6 +7602,11 @@ const UNDERGROUND_POND_SIZE = { w: 6, h: 6 };
 const ISLAND_DOCK_ORIGIN  = { x: 0, y: 48 };
 const ISLAND_DOCK_W = 8, ISLAND_DOCK_H = 4;
 const ISLAND_DOCK_ARRIVAL = { x: ISLAND_DOCK_ORIGIN.x + ISLAND_DOCK_W, y: ISLAND_DOCK_ORIGIN.y + 2 };
+// The 8x4 sprite only draws 3 tile rows of pier: row 0 is empty, row 1 is the
+// railing/back edge, row 2 is solid planking, row 3 is the south face and pilings.
+// Rows 1-2 are the deck anyone can stand on; see isSolidTile().
+const DOCK_DECK_Y0 = ISLAND_DOCK_ORIGIN.y + 1;
+const DOCK_DECK_Y1 = ISLAND_DOCK_ORIGIN.y + 2;
 
 // Eight foundation pads where underground buildings can stand (2 rows x 4 cols).
 // Each pad is PAD_W x PAD_H tiles; (x,y) is its top-left corner.
@@ -7816,14 +7823,14 @@ class World {
     }
 
     // Lay the west-beach dock at (originX, originY) (top-left corner): an
-    // ISLAND_DOCK_W x ISLAND_DOCK_H walkable pier, drawn as one image (see
-    // drawDockOverlay()). Walkable end to end — see isSolidTile().
+    // ISLAND_DOCK_W x ISLAND_DOCK_H pier, drawn as one image (see
+    // drawDockOverlay()). Only the two deck rows are walkable — see isSolidTile().
     placeDock(originX, originY) {
         for (let px = 0; px < ISLAND_DOCK_W; px++) {
             for (let py = 0; py < ISLAND_DOCK_H; py++) {
                 const tx = originX + px, ty = originY + py;
                 if (tx < 0 || tx >= CONFIG.WORLD_WIDTH || ty < 0 || ty >= CONFIG.WORLD_HEIGHT) continue;
-                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: false };
+                this.tiles[tx][ty] = { type: 'dock', dockOrigin: (px === 0 && py === 0), solid: (py !== 1 && py !== 2) };
             }
         }
     }
