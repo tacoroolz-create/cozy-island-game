@@ -139,6 +139,8 @@ const SPRITE_DEFS = {
     'items.crystal':          'assets/sprites/crystal.png',
     'items.stick':            'assets/sprites/stick.png',
     'items.fiber':            'assets/sprites/fiber.png',
+    'items.cloth':            'assets/sprites/cloth.png',
+    'items.rope':             'assets/sprites/rope.png',
     'items.bean':             'assets/sprites/bean.png',
     'items.berry':            'assets/sprites/berry.png',
     'items.banana':           'assets/sprites/banana.png',
