@@ -105,6 +105,7 @@ const SPRITE_DEFS = {
     'tiles.bed_red':          'assets/tiles/bed_red.png',
     'tiles.sprout':           'assets/tiles/sprout.png',
     'tiles.soil':             'assets/tiles/soil.png',
+    'tiles.seasonal_decor':   'assets/tiles/seasonal_decor.png', // 64x32: 4 seasons x 2 anim frames
     'sprites.player':         'assets/sprites/player.png',
     'sprites.mubaba':         'assets/sprites/npcs/mubaba.png',
     // Underground building art + fortress scene props. Missing files hit the
@@ -1215,6 +1216,7 @@ function drawGame() {    // Handle continuous movement
 
     // ===== SEASONAL GROUND CLUTTER: under buildings, NPCs, and the player =====
     drawGroundClutter();
+    drawSeasonalDecor();
 
     // Draw buildings (after world, before player for depth)
     for (const b of buildings) {
@@ -6208,6 +6210,62 @@ function drawGroundClutter() {
                 ellipse(sx, sy - 1, 2, 3);
                 break;
         }
+    }
+}
+
+// ===== SEASONAL DECOR: animated hero flora scattered on grass each season =====
+// Purely cosmetic overlay (like groundClutter): it never writes to world.tiles,
+// so construction, hoe-tilling, and shovel-pathing all ignore it. Draw-time skips
+// any tile that's no longer plain grass or has a building, so tilling/pathing/
+// building a decorated tile visually clears the decoration too. Season-keyed,
+// regenerated lazily on season change / first draw after load; never saved.
+// Sprite sheet tiles.seasonal_decor is 64x32: four 16x16 decos, each 2 frames.
+const SEASONAL_DECOR_FRAMES = {
+    Sweet: { col: 0, row: 0 }, // green clover
+    Saucy: { col: 2, row: 0 }, // magenta flowers
+    Cool:  { col: 0, row: 1 }, // mushrooms
+    Yeesh: { col: 2, row: 1 }, // frost blooms
+};
+const SEASONAL_DECOR_COUNT = 45;
+const SEASONAL_DECOR_FRAME_MS = 550;
+let seasonalDecor = null; // { season, items: [{x, y, phase}] }
+
+function spawnSeasonalDecor() {
+    if (!world) return;
+    const items = [];
+    let attempts = 0;
+    while (items.length < SEASONAL_DECOR_COUNT && attempts < SEASONAL_DECOR_COUNT * 8) {
+        attempts++;
+        const x = floor(random(CONFIG.WORLD_WIDTH));
+        const y = floor(random(CONFIG.WORLD_HEIGHT));
+        const t = world.tiles[x][y];
+        if (!t || t.type !== 'grass') continue;
+        if (isNearBeach(x, y, NONBEACH_BEACH_BUFFER)) continue;
+        if (buildingAt(x, y)) continue;
+        items.push({ x, y, phase: floor(random(2)) });
+    }
+    seasonalDecor = { season: world.season, items };
+}
+
+function drawSeasonalDecor() {
+    if (!world || currentMapId !== 'island') return;
+    if (!seasonalDecor || seasonalDecor.season !== world.season) spawnSeasonalDecor();
+    if (!seasonalDecor || seasonalDecor.items.length === 0) return;
+    const cell = SEASONAL_DECOR_FRAMES[world.season];
+    const sheet = SPRITES['tiles.seasonal_decor'];
+    if (!cell || !sheet || !sheet.width) return;
+    const TS = CONFIG.TILE_SIZE;
+    const frame = Math.floor(millis() / SEASONAL_DECOR_FRAME_MS);
+    for (const it of seasonalDecor.items) {
+        const t = world.tiles[it.x][it.y];
+        if (!t || t.type !== 'grass' || buildingAt(it.x, it.y)) continue; // tilled/pathed/built → gone
+        const dx = it.x * TS - cameraX;
+        const dy = it.y * TS - cameraY;
+        if (dx < -TS || dx > CONFIG.CANVAS_WIDTH + TS || dy < -TS || dy > CONFIG.CANVAS_HEIGHT + TS) continue;
+        const f = (frame + it.phase) % 2;
+        const sx = (cell.col + f) * TS;
+        const sy = cell.row * TS;
+        image(sheet, dx, dy, TS, TS, sx, sy, TS, TS);
     }
 }
 
