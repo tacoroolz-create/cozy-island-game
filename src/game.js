@@ -33,6 +33,11 @@ const CONFIG = {
     DAY_LENGTH_MINUTES: 30
 };
 
+// Scale the world render pass is drawn at. 1 during play; the map editor drops it
+// below 1 to zoom out (see mapeditor.js), which widens the tile range World.draw()
+// has to cover.
+let worldViewScale = 1;
+
 // Island shape: the island is a centered rectangle. Tiles within SEA_MARGIN of the
 // world edge are open ocean; the next BEACH_THICKNESS ring is sandy beach; everything
 // inside that is grass. "Edge distance" is measured to the nearest world edge, so the
@@ -934,6 +939,8 @@ function draw() {
             } else if (gameState === 'shackPicker') {
                 drawGame();
                 drawShackPicker();
+            } else if (gameState === 'editor' && typeof drawEditor === 'function') {
+                drawEditor();
             }
             break;
     }
@@ -4043,7 +4050,8 @@ function drawPauseMenu() {
     textSize(16);
     text('ESC - Resume', width / 2, 120);
     text('S - Save Game', width / 2, 145);
-    text('M - Mute (TBD)', width / 2, 170);
+    // Outdoors only — there's no terrain to paint inside a building.
+    if (!insideBuilding) text('E - Edit Terrain', width / 2, 170);
 }
 
 // ===== MOUSE CLICK-TO-SWAP FOR INVENTORY =====
@@ -8114,8 +8122,8 @@ class World {
         const MARGIN = 6;
         const x0 = max(0, floor(cameraX / CONFIG.TILE_SIZE) - MARGIN);
         const y0 = max(0, floor(cameraY / CONFIG.TILE_SIZE) - MARGIN);
-        const x1 = min(CONFIG.WORLD_WIDTH, floor(cameraX / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_WIDTH / CONFIG.TILE_SIZE) + MARGIN);
-        const y1 = min(CONFIG.WORLD_HEIGHT, floor(cameraY / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_HEIGHT / CONFIG.TILE_SIZE) + MARGIN);
+        const x1 = min(CONFIG.WORLD_WIDTH, floor(cameraX / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_WIDTH / worldViewScale / CONFIG.TILE_SIZE) + MARGIN);
+        const y1 = min(CONFIG.WORLD_HEIGHT, floor(cameraY / CONFIG.TILE_SIZE) + ceil(CONFIG.CANVAS_HEIGHT / worldViewScale / CONFIG.TILE_SIZE) + MARGIN);
 
         // Pass 1: draw base terrain and solid tile bottoms.
         for (let x = x0; x < x1; x++) {

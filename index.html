@@ -128,7 +128,10 @@
             'src/hog_chat.js',
             'src/games.js',
             // Dreamers Almanac (needs crafting.js drawNavRow + entities/daycycle data)
-            'src/almanac.js'
+            'src/almanac.js',
+            // Terrain map editor. MUST load last: it wraps the p5 key/mouse handlers
+            // and needs to see the versions every other module installed.
+            'src/mapeditor.js'
         ].forEach(function (src) {
             document.write('<script src="' + src + '?v=' + v + '"><\/script>');
         });
