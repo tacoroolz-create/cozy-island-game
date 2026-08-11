@@ -35,5 +35,9 @@ build/
 # Claude Code local state / worktrees
 .claude/worktrees/
 
+# Obsidian per-user workspace layout (churns constantly)
+Notes/.obsidian/workspace.json
+Notes/.obsidian/workspace-mobile.json
+
 # Editor backups
 *.bak

@@ -1,20 +1,21 @@
 ---
 name: implement-holiday
-description: Implement one of the Cozy Island Game's outlined-but-unbuilt holidays from Holidays/*.md into working code. Use when the user says "implement the next holiday", "build [holiday name]", "work on the holiday overhaul", or references holiday_status.txt / the Holidays folder.
+description: Implement one of the Cozy Island Game's outlined-but-unbuilt holidays from Notes/Holidays/*.md into working code. Use when the user says "implement the next holiday", "build [holiday name]", "work on the holiday overhaul", or references holiday_status.txt / the Holidays folder.
 ---
 
 # Implement a Cozy Island Game holiday
 
-Turns one design outline in `Holidays/*.md` into working code, following the
-pattern established by "Day of the Island God" (see `HOLIDAY_HANDOFF.md` for
-full context on that build).
+Turns one design outline in `Notes/Holidays/*.md` into working code, following the
+pattern established by "Day of the Island God" (see `Notes/Holidays/HOLIDAY_HANDOFF.md`
+for full context on that build).
 
 ## Steps
 
-1. **Read `holiday_status.txt`** to find holidays marked `No` with an outline
-   file, and **read the matching outline** in `Holidays/<Name>.md`.
+1. **Read `Notes/Holidays/holiday_status.txt`** to find holidays marked `No`
+   with an outline file, and **read the matching outline** in
+   `Notes/Holidays/<Name>.md`.
 
-2. **Find the array slot.** `holiday_status.txt`'s row order matches
+2. **Find the array slot.** `Notes/Holidays/holiday_status.txt`'s row order matches
    `HOLIDAYS` in `src/daycycle.js` positionally — same index in both. Confirm
    by counting, don't assume names match (the array still holds the old
    placeholder name, e.g. "Pinecone Prom", until you rename it).
@@ -22,8 +23,8 @@ full context on that build).
 3. **Pick the laziest holiday first, not the first in the list.** Rank
    candidates by how much new plumbing they need vs. reusing what's already
    there (NPC roster + dialogue, `gainGift` friendship, inventory, animal
-   spawn system). `HOLIDAY_HANDOFF.md` has a ranked list from the first pass —
-   check it before re-deriving the ranking from scratch, but re-verify since
+   spawn system). `Notes/Holidays/HOLIDAY_HANDOFF.md` has a ranked list from the
+   first pass — check it before re-deriving the ranking from scratch, but re-verify since
    it goes stale as holidays get built.
 
 4. **Reuse the temporary-NPC template**, don't invent a new one:
@@ -49,7 +50,7 @@ full context on that build).
    holiday warrants one — it's a one-line addition and keeps his coverage
    consistent across holidays.
 
-8. **Update `holiday_status.txt`**: flip the row to `Yes` with a one-line
+8. **Update `Notes/Holidays/holiday_status.txt`**: flip the row to `Yes` with a one-line
    note of what was built, and append a dated note at the bottom (see the
    existing July 11 entries for the format).
 

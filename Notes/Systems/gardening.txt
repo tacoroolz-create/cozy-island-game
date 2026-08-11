@@ -1,0 +1,37 @@
+Gardening:
+Crops - grain, vine berry, yam, root, sage, sweet herb, saucy herb, cool herb, yeesh herb, dirt fish, gourd, 
+Flowers - rose, tulip, glory, sun, moon, dusk
+Landscape - hedge, bubble, bulb tree, 
+grain seeds come from long grass and bird poop. cooking ingredient and fills bird feeder
+vine berry comes from berry seeds and bird poop. cooking ingredient, edible plain
+yam is cooking ingredient
+root is cooking ingredient, hoggy favorite
+herb is 1 seed, crop depends on season. Sweet is for animals, saucy is for robots, cool for ghosts, yeesh for monsters
+Sage is for inner temple
+gourd is for Cool season decoration and pie
+dirt fish ia an animated plant that squirms around in the soil. You can throw them in the pond and they make the pond animated.
+hedge is solid square bush, bubble is round, bulb tree is a bush covered in colorful circles that comes in many colors.
+each crop should produce seasonal variants
+grain
+sweet is wheat
+saucy is corn
+cool is amaranth
+yeesh is rice
+berry - 
+sweet raspberry
+saucy atrawberry
+cool grape
+yeesh blueberry
+root - 
+sqeet beet
+aaucy potato
+cool carrot
+yeesh yam
+gourd - 
+sweet squash
+saucy melon
+cool pumpkin
+yeeah zuchini
+
+
+
