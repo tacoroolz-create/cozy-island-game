@@ -12,3 +12,9 @@
   immediately.
 - Charles verifies changes in-browser himself — don't launch the game to
   self-verify, just report what changed.
+- **Design notes live in the `Notes/` Obsidian vault.** It's the first place
+  to look when searching for design docs, worldbuilding, character/NPC writing,
+  holidays, story arcs, reviews, etc., and the first place to put any new notes
+  or docs — organized under its existing subfolders (Characters, World, Story,
+  Holidays, Art, Systems, Reviews, Meta). Only runtime files stay in the repo
+  root (game code, assets, `underworld.csv`). Notes use Obsidian `[[wikilinks]]`.
