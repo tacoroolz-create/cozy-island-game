@@ -1,52 +1,88 @@
 # Cozy Island 3D 🏝️
 
-A self-contained 3D prototype of the original Cozy Island Game, built with **Three.js** in a new `3D/` folder inside the main project.
-
-## Goal
-
-Replicate the core island loop in a low-poly / pixel-textured 3D style inspired by *Harvest Moon 64* and early *Animal Crossing*:
-- Procedural rectangular island (sea, beach, grass)
-- Third-person exploration (WASD + mouse camera)
-- Harvestable environment (trees, rocks, flowers)
-- Day/night cycle with dynamic sun/moon lighting
-- Inventory + item drops
-- Local save/load
+A self-contained 3D version of the Cozy Island Game, built with **Three.js** in
+the `3D/` folder. Aiming at a Nintendo-64-era *Animal Crossing* / *Harvest Moon
+64* look: low-poly flat-shaded geometry, a chunky low-res framebuffer, blob
+shadows, and a village you can actually walk around.
 
 ## Run
 
 ```bash
-cd "Cozy Island Game/3D"
-./START_SERVER_3D.sh
-# open http://localhost:8766
+cd "Cozy Island Game/3D" && ./START_SERVER_3D.sh
 ```
 
-Or double-click `START_SERVER_3D.command` on macOS.
+Then open **http://localhost:8766/3D/**. Or double-click `START_SERVER_3D.command`.
+
+`serve.py` serves the repo root (so the 2D game's `assets/sprites/*.png` resolve
+for inventory icons) and sends `Cache-Control: no-store` — without that the
+browser happily reruns yesterday's ES modules, because a `?v=` on the page URL
+doesn't bust a module's sibling imports.
 
 ## Controls
 
 | Input | Action |
 |-------|--------|
-| W / A / S / D or Arrows | Move |
+| W A S D / Arrows | Move (relative to the camera) |
+| Shift | Run |
 | Mouse drag | Orbit camera |
 | Mouse wheel | Zoom |
-| Space | Harvest / interact |
-| E | Toggle menu |
-| Shift | Run |
+| Space / Enter | Talk, harvest, read, pick up |
+| E | Menu (pockets, today, controls) |
+| Esc | Close menu |
+| P | Toggle the retro pixel filter |
 
-## Scope notes
+## What's on the island
 
-This is a **3D prototype** of the original 2D p5.js game. It does not yet include:
-- Full NPC dialogue system
-- Crafting / recipes
-- Interiors / buildings
-- Holidays / calendar events
-- Full animal behaviors
-- Minigames
+- **A round island** with a wobbled coastline, sand, rolling meadow, and a pond.
+- **The dock** on the west shore — a walkable pier over the water, with a
+  moored rowboat. You start on its sandy apron.
+- **The village plaza**: a stone well and a notice board that posts the day's
+  holiday.
+- **Dreamer's Shack**, plus homes for **Mochi, Grumble, Newton, Lotus** and
+  **Sunny** — each with the roof colour, species and personality from the 2D
+  game's roster.
+- **Hoggy**, wandering the 2D game's routine: rooting in the morning, the beach
+  midday, the pond at dusk. Feed him a berry, banana, shell or flower.
+- **Dirt paths** linking the dock, the plaza and every front door.
+- Trees in groves (with open meadows between), beach palms, rocks, flowers,
+  shells and sticks — all harvestable, all dropping items you walk over to pick up.
+- The full day/night cycle, seasons and holiday calendar from `daycycle.js`,
+  with a moving sun and moon, stars, drifting clouds and seasonal foliage tints.
 
-Those systems are tracked on the `cozy-3d` kanban board for follow-up work.
+Neighbours wander near their homes during the day and go inside at 10pm.
+
+## How it fits together
+
+| File | Owns |
+|------|------|
+| `src/island.js` | The island's shape and layout, as pure math. No Three.js. |
+| `src/world.js` | Terrain mesh, water, buildings, instanced props, collision. |
+| `src/npc.js` | The shared chibi character rig, neighbours, Hoggy, dialogue. |
+| `src/player.js` | Movement, camera, interaction targeting. |
+| `src/main.js` | Renderer, sky and lighting, the game loop. |
+| `src/daycycle.js` | Clock, seasons, the holiday calendar. |
+| `src/input.js` `src/ui.js` `src/save.js` | Keys/mouse, HUD, localStorage. |
+
+`island.js` is deliberately dependency-free: terrain vertices, prop placement,
+NPC pathing and the player's footing all read the same `heightAt()`, so they
+can't disagree — and it runs under plain node, which is what the test uses.
+
+## Test
+
+```bash
+node 3D/test/island.test.mjs
+```
+
+Covers the camera-relative movement basis and the island layout (nothing
+underwater, pads level, paths walkable end to end, spawn reachable).
+
+## Not here yet
+
+Interiors, crafting, minigames, the underground city, the full written dialogue
+system, animals beyond Hoggy. Neighbour lines here are a small 3D-only pool —
+the real dialogue system lives in the 2D game's `src/dialogue*.js`.
 
 ## Tech
 
-- [Three.js](https://threejs.org/) r160 (CDN module import map)
+- Three.js r160, vendored at `vendor/three.module.js` (no CDN, runs offline)
 - No build step; pure ES modules
-- Reuses existing 2D asset filenames where available

@@ -43,7 +43,7 @@ export class WorldClock {
     constructor(config, options = {}) {
         this.config = config;
         this.day = options.day ?? 1;
-        this.minutes = options.minutes ?? 6 * 60; // start at 6:00 AM
+        this.minutes = options.minutes ?? 8 * 60; // start at 8:00 AM, village awake
         this.season = options.season ?? this.getSeasonForDay(this.day);
         this.holiday = options.holiday ?? this.getHolidayForDay(this.day);
         this.callbacks = { newDay: [], newSeason: [], newHoliday: [] };

@@ -7,8 +7,7 @@
     <script type="importmap">
     {
         "imports": {
-            "three": "./vendor/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            "three": "./vendor/three.module.js"
         }
     }
     </script>
@@ -17,94 +16,106 @@
         html, body {
             width: 100%; height: 100%;
             overflow: hidden;
-            background: #2c1810;
+            background: #14202b;
             font-family: 'Courier New', Courier, monospace;
             color: #fff;
+            user-select: none;
         }
         #error-banner {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 99999;
-            background: #b00020;
-            color: #fff;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+            background: #b00020; color: #fff;
             font: 13px/1.4 'Courier New', monospace;
-            padding: 10px 14px;
-            white-space: pre-wrap;
-            max-height: 50vh;
-            overflow: auto;
-            display: none;
+            padding: 10px 14px; white-space: pre-wrap;
+            max-height: 50vh; overflow: auto; display: none;
         }
         #error-banner.visible { display: block; }
-        #game-container {
-            position: relative;
-            width: 100vw; height: 100vh;
-        }
+        #game-container { position: relative; width: 100vw; height: 100vh; }
         canvas { display: block; width: 100%; height: 100%; }
+        /* The N64 look: render small, upscale with hard pixel edges. */
+        canvas.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+
         #ui-layer {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; inset: 0;
             pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            display: flex; flex-direction: column; justify-content: space-between;
             padding: 16px;
-            text-shadow: 1px 1px 0 #000;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.65);
         }
-        #top-bar, #bottom-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
-        }
+        #top-bar, #bottom-bar { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         #bottom-bar { align-items: flex-end; }
         .panel {
-            background: rgba(44, 24, 16, 0.78);
+            background: rgba(38, 26, 18, 0.8);
             border: 2px solid #d4a373;
             border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 14px;
-            line-height: 1.4;
-            min-width: 140px;
+            padding: 8px 12px;
+            font-size: 14px; line-height: 1.4;
         }
-        .panel h2 { font-size: 16px; margin-bottom: 4px; color: #ffe4b5; }
         #prompt {
-            color: #ffd700;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.2s;
+            background: rgba(38, 26, 18, 0.86);
+            border: 2px solid #ffd700;
+            color: #ffe9a3; font-weight: bold;
+            opacity: 0; transform: translateY(-4px);
+            transition: opacity 0.15s, transform 0.15s;
         }
-        #prompt.visible { opacity: 1; }
-        #inventory-bar {
-            display: flex;
-            gap: 6px;
-        }
+        #prompt.visible { opacity: 1; transform: none; }
+
+        #inventory-bar { display: flex; gap: 6px; }
         .slot {
-            width: 44px; height: 44px;
-            background: rgba(44, 24, 16, 0.85);
-            border: 2px solid #d4a373;
-            border-radius: 6px;
+            width: 46px; height: 46px;
+            background: rgba(38, 26, 18, 0.86);
+            border: 2px solid #d4a373; border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
             position: relative;
         }
-        .slot img { width: 32px; height: 32px; image-rendering: pixelated; }
-        .slot .qty {
-            position: absolute; bottom: 2px; right: 4px;
-            font-size: 12px; color: #fff;
+        .slot img { width: 34px; height: 34px; image-rendering: pixelated; }
+        .slot.noicon::before {
+            content: attr(data-label);
+            font-size: 12px; color: #ffe4b5; text-transform: uppercase;
         }
+        .slot .qty { position: absolute; bottom: 1px; right: 4px; font-size: 12px; }
+
+        #dialogue {
+            position: absolute; left: 50%; bottom: 96px;
+            transform: translate(-50%, 12px);
+            width: min(680px, calc(100vw - 48px));
+            background: rgba(30, 22, 16, 0.94);
+            border: 3px solid #d4a373; border-radius: 12px;
+            padding: 14px 18px 16px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.15s, transform 0.15s;
+        }
+        #dialogue.visible { opacity: 1; transform: translate(-50%, 0); }
+        #dialogue-name { color: #ffd88a; font-size: 15px; font-weight: bold; margin-bottom: 6px; }
+        #dialogue-text { font-size: 16px; line-height: 1.55; }
+        #dialogue-hint { margin-top: 10px; font-size: 12px; color: #b9a68e; text-align: right; }
+
+        #toast {
+            position: absolute; left: 50%; top: 84px; transform: translate(-50%, -6px);
+            background: rgba(30, 22, 16, 0.9); border: 2px solid #8fd0e8;
+            border-radius: 8px; padding: 8px 14px; font-size: 14px;
+            opacity: 0; transition: opacity 0.25s, transform 0.25s;
+        }
+        #toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
         #menu {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(44, 24, 16, 0.94);
-            border: 3px solid #d4a373;
-            border-radius: 12px;
-            padding: 24px 32px;
-            display: none;
-            pointer-events: auto;
-            min-width: 280px;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(30, 22, 16, 0.96);
+            border: 3px solid #d4a373; border-radius: 12px;
+            padding: 20px 28px; display: none; pointer-events: auto;
+            min-width: 320px; max-width: 460px; max-height: 76vh; overflow: auto;
         }
         #menu.visible { display: block; }
-        #menu h1 { font-size: 20px; color: #ffe4b5; margin-bottom: 12px; }
-        #menu p { margin: 6px 0; }
+        #menu h1 { font-size: 20px; color: #ffe4b5; margin-bottom: 10px; }
+        #menu h2 { font-size: 14px; color: #ffd88a; margin: 12px 0 4px; }
+        #menu ul { list-style: none; font-size: 14px; line-height: 1.6; }
+        #menu p { font-size: 14px; line-height: 1.5; }
+        #menu .dim { color: #b9a68e; }
+        #boot-status {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(30, 22, 16, 0.92); border: 2px solid #d4a373;
+            border-radius: 8px; padding: 16px 24px; color: #ffe4b5;
+            font-size: 16px; z-index: 100; white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
@@ -129,29 +140,34 @@
     })();
     </script>
     <div id="game-container">
-        <div id="boot-status" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(44,24,16,0.9);border:2px solid #d4a373;border-radius:8px;padding:16px 24px;color:#ffe4b5;font-size:16px;z-index:100;">Loading Cozy Island 3D... 🏝️</div>
+        <div id="boot-status">Growing an island… 🏝️</div>
         <div id="ui-layer">
             <div id="top-bar">
-                <div id="clock" class="panel">Day 1 — 6:00 AM · Sweet · Sweet Valley</div>
-                <div id="season" class="panel" style="display:none;">Sweet Valley</div>
-                <div class="panel" id="prompt">Press Space to interact</div>
+                <div id="clock" class="panel">Day 1 — 6:00 AM</div>
+                <div class="panel" id="prompt">Space — interact</div>
             </div>
             <div id="bottom-bar">
                 <div id="inventory-bar"></div>
                 <div class="panel">
-                    <div>WASD / Arrows — move</div>
-                    <div>Mouse — camera</div>
-                    <div>Space — interact</div>
-                    <div>E — menu</div>
+                    <div>WASD — move · Shift — run</div>
+                    <div>Drag — camera · Wheel — zoom</div>
+                    <div>Space — interact · E — menu</div>
                 </div>
             </div>
         </div>
+        <div id="toast"></div>
+        <div id="dialogue">
+            <div id="dialogue-name"></div>
+            <div id="dialogue-text"></div>
+            <div id="dialogue-hint">Space to continue</div>
+        </div>
         <div id="menu">
-            <h1>Menu</h1>
-            <p>Inventory and settings will live here.</p>
-            <p>Press <strong>E</strong> to close.</p>
+            <h1>Cozy Island 🏝️</h1>
+            <div id="menu-body"></div>
         </div>
     </div>
+    <!-- python3 -m http.server revalidates on mtime, so no cache-buster needed
+         (and a query on main.js wouldn't bust its sub-imports anyway). -->
     <script type="module" src="src/main.js"></script>
 </body>
 </html>

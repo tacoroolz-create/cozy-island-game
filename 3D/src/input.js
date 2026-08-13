@@ -1,68 +1,82 @@
-// Cozy Island 3D — input handling
+// Cozy Island 3D — keyboard and mouse
+//
+// Per-frame deltas (mouse.dx/dy, wheel) are cleared by endFrame() *after* the
+// game has read them. Clearing at the top of the frame is what killed the
+// camera in the first prototype.
+const SWALLOW = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
+
 export class Input {
-    constructor() {
+    constructor(canvas) {
         this.keys = {};
         this.mouse = { x: 0, y: 0, dx: 0, dy: 0, down: false };
         this.wheel = 0;
         this.interactPressed = false;
-        this.interactKeyDown = false;
-        this.menuToggle = false;
         this.menuOpen = false;
+        this.pixelToggled = false;
 
         window.addEventListener('keydown', (e) => {
+            if (SWALLOW.has(e.code)) e.preventDefault(); // stop the page scrolling
+            if (e.repeat) return;
             this.keys[e.code] = true;
-            if (e.code === 'Space') {
-                if (!this.interactKeyDown) this.interactPressed = true;
-                this.interactKeyDown = true;
-            }
-            if (e.code === 'KeyE') {
-                this.menuToggle = true;
-                this.menuOpen = !this.menuOpen;
-            }
+            if (e.code === 'Space' || e.code === 'Enter') this.interactPressed = true;
+            if (e.code === 'KeyE') this.menuOpen = !this.menuOpen;
+            if (e.code === 'Escape') this.menuOpen = false;
+            if (e.code === 'KeyP') this.pixelToggled = true;
         });
 
-        window.addEventListener('keyup', (e) => {
-            this.keys[e.code] = false;
-            if (e.code === 'Space') this.interactKeyDown = false;
-        });
+        window.addEventListener('keyup', (e) => { this.keys[e.code] = false; });
+        // Keys stick down if the window loses focus mid-stride.
+        window.addEventListener('blur', () => { this.keys = {}; this.mouse.down = false; });
 
+        const target = canvas ?? window;
+        target.addEventListener('mousedown', (e) => { if (e.button === 0) this.mouse.down = true; });
+        window.addEventListener('mouseup', () => { this.mouse.down = false; });
         window.addEventListener('mousemove', (e) => {
             if (this.mouse.down) {
-                this.mouse.dx += e.movementX;
-                this.mouse.dy += e.movementY;
+                this.mouse.dx += e.movementX || 0;
+                this.mouse.dy += e.movementY || 0;
             }
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
         });
+        window.addEventListener('contextmenu', (e) => e.preventDefault());
+        window.addEventListener('wheel', (e) => { this.wheel += e.deltaY * 0.0012; }, { passive: true });
 
-        window.addEventListener('mousedown', () => { this.mouse.down = true; });
-        window.addEventListener('mouseup', () => { this.mouse.down = false; });
-
-        window.addEventListener('wheel', (e) => {
-            this.wheel += e.deltaY * 0.001;
+        // Touch drag orbits the camera, so it's at least pannable on a tablet.
+        let last = null;
+        target.addEventListener('touchstart', (e) => { last = e.touches[0]; }, { passive: true });
+        target.addEventListener('touchmove', (e) => {
+            if (!last) return;
+            const t = e.touches[0];
+            this.mouse.dx += t.clientX - last.clientX;
+            this.mouse.dy += t.clientY - last.clientY;
+            this.mouse.down = true;
+            last = t;
         }, { passive: true });
-
-        // Unlock pointer on menu
-        document.addEventListener('pointerlockchange', () => {});
+        target.addEventListener('touchend', () => { last = null; this.mouse.down = false; }, { passive: true });
     }
 
-    update() {
-        // Reset per-frame impulses (interact is consumed by player)
-        this.menuToggle = false;
+    endFrame() {
         this.mouse.dx = 0;
         this.mouse.dy = 0;
         this.wheel = 0;
     }
 
-    forward() { return this.keys['KeyW'] || this.keys['ArrowUp']; }
-    back() { return this.keys['KeyS'] || this.keys['ArrowDown']; }
-    left() { return this.keys['KeyA'] || this.keys['ArrowLeft']; }
-    right() { return this.keys['KeyD'] || this.keys['ArrowRight']; }
-    run() { return this.keys['ShiftLeft'] || this.keys['ShiftRight']; }
+    forward() { return !!(this.keys['KeyW'] || this.keys['ArrowUp']); }
+    back()    { return !!(this.keys['KeyS'] || this.keys['ArrowDown']); }
+    left()    { return !!(this.keys['KeyA'] || this.keys['ArrowLeft']); }
+    right()   { return !!(this.keys['KeyD'] || this.keys['ArrowRight']); }
+    run()     { return !!(this.keys['ShiftLeft'] || this.keys['ShiftRight']); }
 
     consumeInteract() {
         const v = this.interactPressed;
         this.interactPressed = false;
+        return v;
+    }
+
+    consumePixelToggle() {
+        const v = this.pixelToggled;
+        this.pixelToggled = false;
         return v;
     }
 }

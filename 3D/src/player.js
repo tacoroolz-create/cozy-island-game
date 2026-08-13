@@ -1,145 +1,172 @@
-// Cozy Island 3D — player controller, camera, and interaction
+// Cozy Island 3D — player movement, camera, interaction
 import * as THREE from 'three';
+import { makeCharacter, makeBlobShadow } from './npc.js';
+import { LANDMARKS, WATER_LEVEL, moveVector } from './island.js';
+
+const WALK = 4.4;
+const RUN = 7.6;
+const RADIUS = 0.34;
 
 export class Player {
-    constructor(config, scene, world, camera) {
-        this.config = config;
+    constructor(scene, world, camera) {
         this.world = world;
         this.camera = camera;
-        this.radius = 0.25;
-        this.speed = 3.5;
-        this.runSpeed = 6.0;
-        this.facing = { x: 0, z: 1 };
-        this.velocity = new THREE.Vector3();
 
-        this.group = new THREE.Group();
-        const body = new THREE.Mesh(
-            new THREE.CapsuleGeometry(0.2, 0.5, 4, 8),
-            new THREE.MeshStandardMaterial({ color: 0xffc0cb, roughness: 0.7 })
-        );
-        body.position.y = 0.5;
-        body.castShadow = true;
-        this.group.add(body);
-        // simple hat/crown
-        const hat = new THREE.Mesh(
-            new THREE.ConeGeometry(0.25, 0.25, 8),
-            new THREE.MeshStandardMaterial({ color: 0x4b0082 })
-        );
-        hat.position.y = 0.9;
-        this.group.add(hat);
-        this.group.position.set(0, 0, 0);
-        scene.add(this.group);
+        const built = makeCharacter({ body: 0xf28ba0, accent: 0x4b3fa0, species: 'person' });
+        this.group = built.group;
+        this.limbs = built.limbs;
+        this.shadow = makeBlobShadow(0.5);
+        scene.add(this.group, this.shadow);
 
-        // Camera orbit state
-        this.cameraYaw = Math.PI / 4;
-        this.cameraPitch = 0.45;
-        this.cameraDistance = 9;
-        this.minCameraDistance = 3;
-        this.maxCameraDistance = 18;
+        // Start on the dock apron, so the first thing you do is walk into town.
+        this.pos = new THREE.Vector3();
+        this.smoothY = 0;
+        this.placeAt(LANDMARKS.dockLanding.x + 3, LANDMARKS.dockLanding.z);
+        this.facing = new THREE.Vector3(1, 0, 0);
+        this.phase = 0;
+
+        this.cameraYaw = -Math.PI / 2;   // looking east, down the path into town
+        this.cameraPitch = 0.42;
+        this.cameraDistance = 11;
+        this.camAt = new THREE.Vector3().copy(this.pos);
 
         this.inventory = {};
         this.prompt = '';
+        this.target = null;   // prop the prompt refers to
     }
 
-    update(dt, input) {
-        // Camera orbit input
+    /** Put the player on the closest legal footing to (x,z). */
+    placeAt(x, z) {
+        const spot = this.world.nearestStandable(x, z, 14, RADIUS);
+        if (!spot) return false;
+        this.pos.set(spot.x, this.world.groundHeightAt(spot.x, spot.z), spot.z);
+        this.smoothY = this.pos.y;
+        return true;
+    }
+
+    update(dt, input, actors) {
         if (input.mouse.down) {
-            this.cameraYaw -= input.mouse.dx * 0.005;
-            this.cameraPitch = THREE.MathUtils.clamp(this.cameraPitch - input.mouse.dy * 0.005, 0.1, 1.2);
+            this.cameraYaw -= input.mouse.dx * 0.006;
+            this.cameraPitch = THREE.MathUtils.clamp(this.cameraPitch - input.mouse.dy * 0.005, 0.12, 1.15);
         }
-        this.cameraDistance = THREE.MathUtils.clamp(this.cameraDistance + input.wheel * 3, this.minCameraDistance, this.maxCameraDistance);
+        this.cameraDistance = THREE.MathUtils.clamp(this.cameraDistance + input.wheel * 4, 5, 22);
 
-        // Movement relative to camera yaw
-        const forward = input.forward() ? 1 : (input.back() ? -1 : 0);
-        const right = input.right() ? 1 : (input.left() ? -1 : 0);
-        let moved = false;
-        if (forward !== 0 || right !== 0) {
-            const angle = Math.atan2(right, forward) - this.cameraYaw + Math.PI / 2;
-            const len = (input.run() ? this.runSpeed : this.speed) * dt;
-            const vx = Math.cos(angle) * len;
-            const vz = Math.sin(angle) * len;
-            this.tryMove(vx, vz);
-            this.facing.x = Math.cos(angle);
-            this.facing.z = Math.sin(angle);
-            // Rotate body to face movement
-            this.group.rotation.y = Math.atan2(this.facing.x, this.facing.z);
-            moved = true;
-        }
+        this.move(dt, input);
+        this.updateCamera(dt);
+        this.aim(actors);
 
-        // Update camera position
-        const target = this.group.position.clone().add(new THREE.Vector3(0, 1.2, 0));
-        const dx = Math.cos(this.cameraPitch) * Math.sin(this.cameraYaw);
-        const dz = Math.cos(this.cameraPitch) * Math.cos(this.cameraYaw);
-        const dy = Math.sin(this.cameraPitch);
-        const camPos = target.clone().add(new THREE.Vector3(dx, dy, dz).multiplyScalar(this.cameraDistance));
-        // simple collision push: if camPos is below ground, raise it
-        if (camPos.y < 1.5) camPos.y = 1.5;
-        this.camera.position.copy(camPos);
-        this.camera.lookAt(target);
-
-        // Interaction (only when not moving or menu closed)
-        if (!input.menuOpen) {
-            this.updateInteractionPrompt();
-            if (input.consumeInteract()) {
-                this.interact();
-            }
-        } else {
-            this.prompt = '';
-            input.consumeInteract(); // swallow inputs while menu is open
-        }
-
-        // Collect drops underfoot
-        const tx = this.world.worldToTileX(this.group.position.x);
-        const tz = this.world.worldToTileZ(this.group.position.z);
-        const drops = this.world.collectDropsAt(tx, tz);
-        for (const itemId of drops) {
-            this.addItem(itemId, 1);
-        }
+        for (const item of this.world.collectDropsNear(this.pos)) this.addItem(item, 1);
     }
 
-    tryMove(dx, dz) {
-        const pos = this.group.position;
-        const newX = pos.x + dx;
-        const newZ = pos.z + dz;
-        // Collide separately
-        if (!this.collides(newX, pos.z)) pos.x = newX;
-        if (!this.collides(pos.x, newZ)) pos.z = newZ;
-    }
+    move(dt, input) {
+        const fwd = (input.forward() ? 1 : 0) - (input.back() ? 1 : 0);
+        const strafe = (input.right() ? 1 : 0) - (input.left() ? 1 : 0);
+        const v = moveVector(this.cameraYaw, fwd, strafe);
+        const moving = !!v;
 
-    collides(x, z) {
-        if (this.world.isSolidWorld(x - this.radius, z - this.radius)) return true;
-        if (this.world.isSolidWorld(x + this.radius, z - this.radius)) return true;
-        if (this.world.isSolidWorld(x - this.radius, z + this.radius)) return true;
-        if (this.world.isSolidWorld(x + this.radius, z + this.radius)) return true;
-        return false;
-    }
-
-    getFacingTile() {
-        const px = this.group.position.x;
-        const pz = this.group.position.z;
-        const tx = this.world.worldToTileX(px + this.facing.x * 0.7);
-        const tz = this.world.worldToTileZ(pz + this.facing.z * 0.7);
-        return { tx, tz };
-    }
-
-    updateInteractionPrompt() {
-        const { tx, tz } = this.getFacingTile();
-        const dec = this.world.decorationAt(tx, tz);
-        if (dec) {
-            this.prompt = `Press Space to harvest ${dec.type}`;
-        } else {
-            this.prompt = '';
+        if (v) {
+            const speed = input.run() ? RUN : WALK;
+            this.step(v.x * speed * dt, v.z * speed * dt);
+            this.facing.set(v.x, 0, v.z);
         }
+
+        // Face the direction of travel, easing so turns don't snap.
+        if (moving) {
+            const want = Math.atan2(this.facing.x, this.facing.z);
+            let d = want - this.group.rotation.y;
+            while (d > Math.PI) d -= Math.PI * 2;
+            while (d < -Math.PI) d += Math.PI * 2;
+            this.group.rotation.y += d * Math.min(1, dt * 14);
+        }
+
+        this.phase += dt * (moving ? (input.run() ? 13 : 9) : 1.4);
+        const swing = Math.sin(this.phase) * (moving ? 0.62 : 0.06);
+        this.limbs.legs[0].rotation.x = swing;
+        this.limbs.legs[1].rotation.x = -swing;
+        this.limbs.arms[0].rotation.x = -swing * 0.8;
+        this.limbs.arms[1].rotation.x = swing * 0.8;
+
+        // Follow the ground, smoothed so slopes and the dock step read gently.
+        const ground = this.world.groundHeightAt(this.pos.x, this.pos.z);
+        this.smoothY += (ground - this.smoothY) * Math.min(1, dt * 12);
+        this.pos.y = this.smoothY;
+        this.group.position.copy(this.pos);
+        if (moving) this.group.position.y += Math.abs(Math.sin(this.phase)) * 0.045;
+        this.shadow.position.set(this.pos.x, ground + 0.03, this.pos.z);
     }
 
-    getInteractionPrompt() { return this.prompt; }
+    /** Slide along obstacles instead of sticking to them. */
+    step(dx, dz) {
+        if (this.world.canStand(this.pos.x + dx, this.pos.z, RADIUS)) this.pos.x += dx;
+        if (this.world.canStand(this.pos.x, this.pos.z + dz, RADIUS)) this.pos.z += dz;
+    }
 
-    interact() {
-        const { tx, tz } = this.getFacingTile();
-        const dec = this.world.decorationAt(tx, tz);
-        if (dec) {
-            this.world.harvest(tx, tz);
+    updateCamera(dt) {
+        // Follow a lagged point rather than the player directly — less seasick.
+        this.camAt.lerp(this.pos, Math.min(1, dt * 7));
+        const look = this.camAt.clone().add(new THREE.Vector3(0, 1.15, 0));
+        const cp = Math.cos(this.cameraPitch);
+        const offset = new THREE.Vector3(
+            cp * Math.sin(this.cameraYaw),
+            Math.sin(this.cameraPitch),
+            cp * Math.cos(this.cameraYaw)
+        ).multiplyScalar(this.cameraDistance);
+
+        const camPos = look.clone().add(offset);
+        // Never let the camera drop through the ground or under the sea.
+        const floor = Math.max(this.world.groundHeightAt(camPos.x, camPos.z), WATER_LEVEL) + 1.4;
+        if (camPos.y < floor) camPos.y = floor;
+        this.camera.position.lerp(camPos, Math.min(1, dt * 12));
+        this.camera.lookAt(look);
+    }
+
+    /** Work out what Space would act on right now, and phrase the prompt. */
+    aim(actors) {
+        const f = { x: this.facing.x, z: this.facing.z };
+        let best = null, bestScore = Infinity;
+
+        for (const a of actors) {
+            if (a.group && a.group.visible === false) continue;
+            const dx = a.pos.x - this.pos.x, dz = a.pos.z - this.pos.z;
+            const d = Math.hypot(dx, dz);
+            if (d > 3.0) continue;
+            const dot = d < 0.001 ? 1 : (dx * f.x + dz * f.z) / d;
+            if (dot < 0.1 && d > 1.3) continue;
+            const score = d - dot * 1.4 - 0.8; // characters win ties against scenery
+            if (score < bestScore) { bestScore = score; best = { actor: a, score }; }
         }
+
+        const prop = this.world.interactableNear(this.pos, f);
+        if (prop) {
+            const d = Math.hypot(prop.x - this.pos.x, prop.z - this.pos.z);
+            const dot = d < 0.001 ? 1 : ((prop.x - this.pos.x) * f.x + (prop.z - this.pos.z) * f.z) / d;
+            const score = d - dot * 1.4;
+            if (score < bestScore) { bestScore = score; best = { prop, score }; }
+        }
+
+        this.target = best;
+        if (!best) { this.prompt = ''; return; }
+        if (best.actor) this.prompt = `Space — talk to ${best.actor.name}`;
+        else this.prompt = `Space — ${best.prop.label}`;
+    }
+
+    /** Returns a dialogue {name, text} to show, or null. */
+    interact(hour) {
+        const t = this.target;
+        if (!t) return null;
+
+        if (t.actor) {
+            // Hoggy takes gifts; neighbours just talk.
+            return t.actor.interact ? t.actor.interact(this.inventory) : t.actor.talk(hour);
+        }
+
+        const p = t.prop;
+        if (p.item) {
+            this.world.harvest(p);
+            return null; // the drop speaks for itself
+        }
+        if (p.line) return { name: p.label, text: p.line };
+        return null;
     }
 
     addItem(itemId, qty) {
