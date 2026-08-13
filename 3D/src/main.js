@@ -4,6 +4,7 @@ import { Input } from './input.js';
 import { World } from './world.js';
 import { Player } from './player.js';
 import { UI } from './ui.js';
+import { WorldClock } from './daycycle.js';
 import { loadGame, saveGame } from './save.js';
 
 const CONFIG = {
@@ -53,58 +54,99 @@ const moonLight = new THREE.DirectionalLight(0xaaccff, 0.25);
 moonLight.position.set(-50, 80, -50);
 scene.add(moonLight);
 
-// Game time state (mirrors 2D day cycle)
-const gameTime = {
-    day: 1,
-    minutes: 6 * 60, // start at 6:00 AM
-    season: 'Sweet Valley',
-    holiday: '—',
-};
-
-// Try to load an existing save
+// World clock + persistence
+const gameTime = new WorldClock(CONFIG);
 if (loadGame(player, gameTime)) {
-    console.log('Loaded save — Day', gameTime.day, gameTime.minutes);
+    console.log('Loaded save —', gameTime.dateString);
 }
 
-function updateDayCycle(dt) {
-    const minutesPerSecond = 24 * 60 / CONFIG.DAY_LENGTH_SECONDS;
-    const prevDay = gameTime.day;
-    gameTime.minutes += dt * minutesPerSecond;
-    if (gameTime.minutes >= 24 * 60) {
-        gameTime.minutes -= 24 * 60;
-        gameTime.day++;
-    }
-    if (gameTime.day !== prevDay) {
-        saveGame(player, gameTime);
-    }
-    const dayProgress = gameTime.minutes / (24 * 60);
-    updateLighting(dayProgress);
-}
+gameTime.on('newDay', (snapshot) => {
+    console.log('New day!', snapshot);
+    saveGame(player, gameTime);
+});
 
-function updateLighting(progress) {
-    // Sun angle: rise at ~0.05, set at ~0.55 for a simple arc
+function updateLighting() {
+    const progress = gameTime.progress;
+    const hour = gameTime.hour;
+
+    // Sun arc: sunrise ~5.5h (0.23), noon ~12h (0.5), sunset ~18.5h (0.77)
+    // Map day progress to an angle where noon is at PI/2.
     const angle = (progress - 0.25) * Math.PI * 2;
     const r = 120;
-    sunLight.position.set(Math.cos(angle) * r, Math.sin(angle) * r, 30);
-    moonLight.position.set(-Math.cos(angle) * r, Math.max(10, -Math.sin(angle) * r), -30);
 
-    // Sky color interpolation
-    const c = new THREE.Color();
-    if (progress < 0.2 || progress > 0.8) {
-        c.set(0x1a1a3a); // night
-    } else if (progress < 0.3 || progress > 0.7) {
-        c.set(0xffb347); // dawn/dusk
+    // Sun position follows a smooth arc; below-horizon at night.
+    const sunY = Math.sin(angle) * r;
+    const sunX = Math.cos(angle) * r;
+    sunLight.position.set(sunX, sunY, 30);
+
+    // Moon opposite the sun, gently arcing.
+    const moonAngle = angle + Math.PI;
+    const moonY = Math.max(10, Math.sin(moonAngle) * r);
+    moonLight.position.set(Math.cos(moonAngle) * r, moonY, -30);
+
+    // Smooth sky + fog gradient keyed to hour.
+    const sky = skyColorForHour(hour, gameTime.season);
+    scene.background = sky;
+    scene.fog.color = sky;
+
+    // Daylight factor 0..1 based on sun elevation.
+    const daylight = THREE.MathUtils.clamp(Math.sin(angle), 0, 1);
+
+    // Ambient dims at night; warmer at dawn/dusk; cool at night.
+    const ambientNight = new THREE.Color(0x3a3a55);
+    const ambientDay = new THREE.Color(0xffffff);
+    const ambientColor = ambientNight.clone().lerp(ambientDay, daylight);
+    ambientLight.color.copy(ambientColor);
+    ambientLight.intensity = 0.12 + daylight * 0.48;
+
+    sunLight.intensity = daylight * 1.5;
+    sunLight.color.setHSL(0.09 + daylight * 0.04, 0.7, 0.65 + daylight * 0.25);
+
+    moonLight.intensity = (1 - daylight) * 0.35;
+}
+
+function skyColorForHour(hour, season) {
+    // Color stops in hex.
+    const NIGHT = new THREE.Color(0x1a1a3a);
+    const PRE_DAWN = new THREE.Color(0x4a3b5c);
+    const DAWN = new THREE.Color(0xffa07a);
+    const DAY = new THREE.Color(0x87CEEB);
+    const DUSK = new THREE.Color(0xff8c42);
+    const PRE_NIGHT = new THREE.Color(0x2d2d5a);
+
+    let c = new THREE.Color();
+    if (hour < 4) {
+        c.copy(NIGHT);
+    } else if (hour < 6) {
+        c.copy(NIGHT).lerp(PRE_DAWN, map(hour, 4, 6, 0, 1));
+    } else if (hour < 8) {
+        c.copy(PRE_DAWN).lerp(DAWN, map(hour, 6, 8, 0, 1));
+    } else if (hour < 10) {
+        c.copy(DAWN).lerp(DAY, map(hour, 8, 10, 0, 1));
+    } else if (hour < 16) {
+        c.copy(DAY);
+    } else if (hour < 18.5) {
+        c.copy(DAY).lerp(DUSK, map(hour, 16, 18.5, 0, 1));
+    } else if (hour < 20.5) {
+        c.copy(DUSK).lerp(PRE_NIGHT, map(hour, 18.5, 20.5, 0, 1));
     } else {
-        c.set(0x87CEEB); // day
+        c.copy(PRE_NIGHT).lerp(NIGHT, map(hour, 20.5, 22, 0, 1));
     }
-    scene.background = c;
-    scene.fog.color = c;
 
-    // Ambient intensity
-    const daylight = Math.max(0, Math.sin((progress - 0.25) * Math.PI * 2));
-    ambientLight.intensity = 0.15 + daylight * 0.45;
-    sunLight.intensity = daylight * 1.4;
-    moonLight.intensity = (1 - daylight) * 0.3;
+    // Subtle season tint.
+    if (season === 'Cool') {
+        c.b = Math.min(1, c.b + 0.04);
+        c.r = Math.max(0, c.r - 0.03);
+    } else if (season === 'Yeesh') {
+        c.b = Math.min(1, c.b + 0.07);
+        c.g = Math.max(0, c.g - 0.02);
+    }
+    return c;
+}
+
+function map(value, start1, stop1, start2, stop2) {
+    const t = (value - start1) / (stop1 - start1);
+    return start2 + t * (stop2 - start2);
 }
 
 function animate() {
@@ -113,7 +155,8 @@ function animate() {
 
     input.update();
     player.update(dt, input);
-    updateDayCycle(dt);
+    gameTime.update(dt);
+    updateLighting();
     ui.updateClock(gameTime);
     ui.updatePrompt(player.getInteractionPrompt());
     ui.updateInventory(player.inventory);
@@ -133,7 +176,7 @@ window.addEventListener('beforeunload', () => {
 });
 
 // Boot
-updateLighting(gameTime.minutes / (24 * 60));
+updateLighting();
 animate();
 
 // Expose for debugging

@@ -1,5 +1,5 @@
 // Cozy Island 3D — persistence
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 export function saveGame(player, gameTime) {
     const data = {
@@ -7,8 +7,6 @@ export function saveGame(player, gameTime) {
         inventory: player.inventory,
         day: gameTime.day,
         minutes: gameTime.minutes,
-        season: gameTime.season,
-        holiday: gameTime.holiday,
         playerPos: { x: player.group.position.x, z: player.group.position.z },
     };
     localStorage.setItem('cozy-island-3d-save', JSON.stringify(data));
@@ -19,12 +17,14 @@ export function loadGame(player, gameTime) {
     if (!raw) return false;
     try {
         const data = JSON.parse(raw);
-        if (!data || data.version !== SAVE_VERSION) return false;
+        if (!data) return false;
+        if (data.version !== SAVE_VERSION) return false; // migration point for future versions
         player.inventory = data.inventory || {};
         gameTime.day = data.day ?? 1;
         gameTime.minutes = data.minutes ?? 6 * 60;
-        gameTime.season = data.season ?? 'Sweet Valley';
-        gameTime.holiday = data.holiday ?? '—';
+        // Season/holiday are always recomputed from the day so they stay deterministic.
+        gameTime.season = gameTime.getSeasonForDay(gameTime.day);
+        gameTime.holiday = gameTime.getHolidayForDay(gameTime.day);
         if (data.playerPos) {
             player.group.position.x = data.playerPos.x;
             player.group.position.z = data.playerPos.z;

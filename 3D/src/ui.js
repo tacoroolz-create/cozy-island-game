@@ -10,13 +10,7 @@ export class UI {
     }
 
     updateClock(gameTime) {
-        const h = Math.floor(gameTime.minutes / 60);
-        const m = Math.floor(gameTime.minutes % 60);
-        const ampm = h >= 12 ? 'PM' : 'AM';
-        const displayH = h % 12 || 12;
-        const displayM = m.toString().padStart(2, '0');
-        this.clockEl.textContent = `Day ${gameTime.day} — ${displayH}:${displayM} ${ampm}`;
-        this.seasonEl.textContent = `${gameTime.season} · ${gameTime.holiday}`;
+        this.clockEl.textContent = gameTime.dateString;
     }
 
     updatePrompt(text) {
