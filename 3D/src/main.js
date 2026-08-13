@@ -7,6 +7,22 @@ import { UI } from './ui.js';
 import { WorldClock } from './daycycle.js';
 import { loadGame, saveGame } from './save.js';
 
+function hideBootStatus() {
+    const el = document.getElementById('boot-status');
+    if (el) el.style.display = 'none';
+}
+
+function showBootError(text) {
+    const el = document.getElementById('boot-status');
+    if (el) {
+        el.style.background = '#b00020';
+        el.style.color = '#fff';
+        el.textContent = 'Failed to start:\n' + text;
+    }
+}
+
+try {
+
 const CONFIG = {
     TILE_SIZE: 16,
     WORLD_WIDTH: 100,
@@ -181,3 +197,10 @@ animate();
 
 // Expose for debugging
 window.COZY3D = { scene, camera, player, world, gameTime, saveGame, loadGame };
+hideBootStatus();
+
+} catch (err) {
+    console.error('Cozy Island 3D failed to boot:', err);
+    showBootError(err.message || String(err));
+    throw err;
+}

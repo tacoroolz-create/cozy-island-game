@@ -7,7 +7,7 @@
     <script type="importmap">
     {
         "imports": {
-            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three": "./vendor/three.module.js",
             "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
         }
     }
@@ -21,6 +21,20 @@
             font-family: 'Courier New', Courier, monospace;
             color: #fff;
         }
+        #error-banner {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 99999;
+            background: #b00020;
+            color: #fff;
+            font: 13px/1.4 'Courier New', monospace;
+            padding: 10px 14px;
+            white-space: pre-wrap;
+            max-height: 50vh;
+            overflow: auto;
+            display: none;
+        }
+        #error-banner.visible { display: block; }
         #game-container {
             position: relative;
             width: 100vw; height: 100vh;
@@ -94,7 +108,28 @@
     </style>
 </head>
 <body>
+    <div id="error-banner"></div>
+    <script>
+    (function () {
+        function showBanner(text) {
+            var box = document.getElementById('error-banner');
+            box.classList.add('visible');
+            box.textContent = '⚠ Game error:\n' + text;
+        }
+        window.addEventListener('error', function (e) {
+            var where = (e.filename || '?') + ':' + (e.lineno || '?') + ':' + (e.colno || '?');
+            console.error('[GAME ERROR]', e.message, 'at', where, e.error || '');
+            showBanner(e.message + '\n  at ' + where);
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+            var reason = (e.reason && (e.reason.stack || e.reason.message)) || String(e.reason);
+            console.error('[GAME ERROR] Unhandled rejection:', reason);
+            showBanner('Unhandled promise rejection:\n' + reason);
+        });
+    })();
+    </script>
     <div id="game-container">
+        <div id="boot-status" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(44,24,16,0.9);border:2px solid #d4a373;border-radius:8px;padding:16px 24px;color:#ffe4b5;font-size:16px;z-index:100;">Loading Cozy Island 3D... 🏝️</div>
         <div id="ui-layer">
             <div id="top-bar">
                 <div id="clock" class="panel">Day 1 — 6:00 AM · Sweet · Sweet Valley</div>
