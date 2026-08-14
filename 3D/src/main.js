@@ -242,15 +242,19 @@ function animate() {
         }
     }
 
-    if (!paused && !interior.active) {
-        gameTime.update(dt);
-        player.update(dt, input, actors);
-        for (const a of actors) a.update(dt, world, gameTime.hour);
-        world.update(dt, elapsed);
-        clouds.rotation.y += dt * 0.004;
+    if (!paused) {
+        if (interior.active) {
+            interior.update(dt, input, world);
+        } else {
+            gameTime.update(dt);
+            player.update(dt, input, actors);
+            for (const a of actors) a.update(dt, world, gameTime.hour);
+            world.update(dt, elapsed);
+            clouds.rotation.y += dt * 0.004;
+        }
     } else {
         // Still let the camera orbit while reading, so you can look around.
-        player.updateCamera(dt);
+        if (!interior.active) player.updateCamera(dt);
     }
 
     updateLighting();
