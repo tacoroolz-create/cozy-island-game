@@ -122,6 +122,7 @@ function makeFlatTile(geo, mat, scene, max) {
     };
 }
 
+const lambert = (color, opts = {}) => new THREE.MeshLambertMaterial({ color, ...opts });
 
 // ---------------------------------------------------------------- world
 

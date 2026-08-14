@@ -132,10 +132,16 @@
             box.classList.add('visible');
             box.textContent = '⚠ Game error:\n' + text;
         }
+        var reported = false;
         window.addEventListener('error', function (e) {
             var where = (e.filename || '?') + ':' + (e.lineno || '?') + ':' + (e.colno || '?');
             console.error('[GAME ERROR]', e.message, 'at', where, e.error || '');
-            showBanner(e.message + '\n  at ' + where);
+            // Prefer the stack: main.js wraps boot in try/catch and rethrows, so
+            // e.filename/lineno point at the rethrow, not where it actually broke.
+            var stack = e.error && e.error.stack;
+            if (reported) return;   // the first error is the real one
+            reported = true;
+            showBanner(stack ? e.message + '\n' + stack : e.message + '\n  at ' + where);
         });
         window.addEventListener('unhandledrejection', function (e) {
             var reason = (e.reason && (e.reason.stack || e.reason.message)) || String(e.reason);
