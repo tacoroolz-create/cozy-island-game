@@ -26,10 +26,22 @@ doesn't bust a module's sibling imports.
 | Shift | Run |
 | Mouse drag | Orbit camera |
 | Mouse wheel | Zoom |
-| Space / Enter | Talk, harvest, read, pick up |
-| E | Menu (pockets, today, controls) |
+| Space / Enter | Talk, gift, harvest, chop, till, plant, water, ship, enter house |
+| E | Menu (wallet, held tool, pockets, today, controls) |
 | Esc | Close menu |
+| Tab / Q | Cycle held tool/seed |
+| 1 / 2 / 3 | Select tool slot directly |
 | P | Toggle the retro pixel filter |
+
+## New in this build
+
+- **Tool belt:** axe, hoe, watering can. Tab or 1/2/3 to switch.
+- **Farming:** till grass into soil, plant seasonal seeds, water daily, harvest crops.
+- **Chopping trees:** equip the axe and Space near a broadleaf tree to get logs + occasional berries.
+- **Shipping bin:** sell produce and foraged goods for G.
+- **Friendship:** talk to neighbours once per day (+3) and give held gifts (+5–30) to raise friendship.
+- **House interiors:** walk up to any house and press Space to enter a minimal room with a bed and table. Sleep to skip to 6 AM.
+- **Persistence:** soil, crops, inventory, wallet, and friendships are saved.
 
 ## What's on the island
 

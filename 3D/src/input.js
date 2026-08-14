@@ -13,6 +13,8 @@ export class Input {
         this.interactPressed = false;
         this.menuOpen = false;
         this.pixelToggled = false;
+        this.toolCycleDir = 0;
+        this.toolSelect = null;
 
         window.addEventListener('keydown', (e) => {
             if (SWALLOW.has(e.code)) e.preventDefault(); // stop the page scrolling
@@ -22,6 +24,10 @@ export class Input {
             if (e.code === 'KeyE') this.menuOpen = !this.menuOpen;
             if (e.code === 'Escape') this.menuOpen = false;
             if (e.code === 'KeyP') this.pixelToggled = true;
+            if (e.code === 'Tab' || e.code === 'KeyQ') this.toolCycleDir = 1;
+            if (e.code === 'Digit1') this.toolSelect = 0;
+            if (e.code === 'Digit2') this.toolSelect = 1;
+            if (e.code === 'Digit3') this.toolSelect = 2;
         });
 
         window.addEventListener('keyup', (e) => { this.keys[e.code] = false; });
@@ -79,4 +85,17 @@ export class Input {
         this.pixelToggled = false;
         return v;
     }
+
+    consumeToolCycle() {
+        const v = this.toolCycleDir;
+        this.toolCycleDir = 0;
+        return v;
+    }
+
+    consumeToolSelect() {
+        const v = this.toolSelect;
+        this.toolSelect = null;
+        return v;
+    }
 }
+

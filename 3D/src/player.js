@@ -1,6 +1,8 @@
 // Cozy Island 3D — player movement, camera, interaction
 import * as THREE from 'three';
 import { makeCharacter, makeBlobShadow } from './npc.js';
+import { Inventory, ITEMS } from './items.js';
+import * as Farming from './farming.js';
 import { LANDMARKS, WATER_LEVEL, moveVector } from './island.js';
 
 const WALK = 4.4;
@@ -30,7 +32,7 @@ export class Player {
         this.cameraDistance = 11;
         this.camAt = new THREE.Vector3().copy(this.pos);
 
-        this.inventory = {};
+        this.inventory = new Inventory();
         this.prompt = '';
         this.target = null;   // prop the prompt refers to
     }
@@ -55,7 +57,7 @@ export class Player {
         this.updateCamera(dt);
         this.aim(actors);
 
-        for (const item of this.world.collectDropsNear(this.pos)) this.addItem(item, 1);
+        for (const item of this.world.collectDropsNear(this.pos)) this.inventory.add(item, 1);
     }
 
     move(dt, input) {
@@ -146,8 +148,46 @@ export class Player {
 
         this.target = best;
         if (!best) { this.prompt = ''; return; }
-        if (best.actor) this.prompt = `Space — talk to ${best.actor.name}`;
-        else this.prompt = `Space — ${best.prop.label}`;
+        if (best.actor) {
+            const gift = best.actor.giftPrompt ? best.actor.giftPrompt(this.inventory) : null;
+            this.prompt = gift || `Space — talk to ${best.actor.name}`;
+            return;
+        }
+        // Tool-aware prop prompts
+        const tool = this.inventory.activeTool();
+        if (best.prop.kind === 'tree' && tool === 'axe' && !best.prop.stump) {
+            this.prompt = 'Space — chop the tree';
+            return;
+        }
+        if (best.prop.kind === 'shipping-bin') {
+            const activeId = this.inventory.activeItem();
+            const def = activeId ? ITEMS[activeId] : null;
+            if (def && def.value) {
+                this.prompt = `Space — ship ${def.name} for ${def.value}G`;
+                return;
+            }
+        }
+        const farm = this.world.facingFarmTile(this.pos, f);
+        if (tool === 'hoe' && !Farming.hasSoil(farm.gx, farm.gz)) {
+            this.prompt = 'Space — till the soil';
+            return;
+        }
+        if (tool === 'watering_can' && Farming.hasSoil(farm.gx, farm.gz) && !Farming.isWatered(farm.gx, farm.gz)) {
+            this.prompt = 'Space — water the crop';
+            return;
+        }
+        if (tool && Farming.isSeed(tool) && Farming.canPlantHere(farm.gx, farm.gz)) {
+            const name = ITEMS[tool] ? ITEMS[tool].name : tool;
+            this.prompt = `Space — plant ${name}`;
+            return;
+        }
+        if (Farming.canHarvestHere(farm.gx, farm.gz)) {
+            const plot = Farming.getPlot(farm.gx, farm.gz);
+            const def = plot ? ITEMS[plot.cropId] : null;
+            this.prompt = def ? `Space — harvest ${def.name}` : 'Space — harvest crop';
+            return;
+        }
+        this.prompt = `Space — ${best.prop.label}`;
     }
 
     /** Returns a dialogue {name, text} to show, or null. */
@@ -156,11 +196,42 @@ export class Player {
         if (!t) return null;
 
         if (t.actor) {
-            // Hoggy takes gifts; neighbours just talk.
-            return t.actor.interact ? t.actor.interact(this.inventory) : t.actor.talk(hour);
+            // If holding a gift, neighbours accept it; otherwise talk. Hoggy always eats gifts.
+            return t.actor.interact ? t.actor.interact(this.inventory, hour) : t.actor.talk(hour);
         }
 
         const p = t.prop;
+
+        // Enter houses (handled by main.js interior instance)
+        if (p.kind === 'home' || p.kind === 'house') {
+            if (this.onEnterHouse) this.onEnterHouse(p.kind === 'home' ? 'player' : p.label);
+            return null;
+        }
+
+        // Shipping bin takes the active item.
+        if (p.kind === 'shipping-bin') {
+            const sold = this.world.shipHeldItem(this.inventory);
+            if (sold) return { name: 'Shipping Bin', text: `Shipped ${ITEMS[sold.id].name} for ${sold.value}G.` };
+            const active = this.inventory.activeItem();
+            const def = active ? ITEMS[active] : null;
+            if (!def || !def.value) return { name: 'Shipping Bin', text: 'Hold something worth money and try again.' };
+            return { name: 'Shipping Bin', text: `You don't have a ${def.name} to ship.` };
+        }
+
+        // Tools: axe, hoe, can, seeds. Try tool first, fall through to harvest.
+        const toolResult = this.useTool();
+        if (toolResult) return toolResult;
+
+        // Harvest farm crop if mature (no tool needed).
+        const f = { x: this.facing.x, z: this.facing.z };
+        const farm = this.world.facingFarmTile(this.pos, f);
+        const cropId = Farming.canHarvestHere(farm.gx, farm.gz) ? Farming.harvest(farm.gx, farm.gz) : null;
+        if (cropId) {
+            this.inventory.add(cropId, 1);
+            this.world.farmDirty = true;
+            return { name: 'Harvest', text: `Harvested a ${ITEMS[cropId].name}!` };
+        }
+
         if (p.item) {
             this.world.harvest(p);
             return null; // the drop speaks for itself
@@ -169,7 +240,48 @@ export class Player {
         return null;
     }
 
-    addItem(itemId, qty) {
-        this.inventory[itemId] = (this.inventory[itemId] || 0) + qty;
+    /** Quick add for collectables; tools/money go through this.inventory directly. */
+    addItem(itemId, qty) { this.inventory.add(itemId, qty); }
+    get money() { return this.inventory.wallet; }
+
+    cycleTool(dir) { this.inventory.cycleActive(dir); }
+
+    /** Dispatch a tool/seed use on the facing tile. Returns a result string or null. */
+    useTool() {
+        const f = { x: this.facing.x, z: this.facing.z };
+        const tool = this.inventory.activeTool();
+        if (!tool) return null;
+
+        if (tool === 'axe') {
+            const tree = this.world.chopTree(this.pos, f);
+            if (tree) return { name: 'Axe', text: 'Timber! The tree drops a log at your feet.' };
+            return null;
+        }
+        if (tool === 'hoe') {
+            if (this.world.tillSoil(this.pos, f)) return { name: 'Hoe', text: 'You turn the grass into soft soil.' };
+            const farm = this.world.facingFarmTile(this.pos, f);
+            if (Farming.hasSoil(farm.gx, farm.gz)) return { name: 'Hoe', text: 'This spot is already tilled.' };
+            return { name: 'Hoe', text: 'You can only till grass here.' };
+        }
+        if (tool === 'watering_can') {
+            if (this.world.waterCrop(this.pos, f)) return { name: 'Watering Can', text: 'The soil darkens with water.' };
+            const farm = this.world.facingFarmTile(this.pos, f);
+            if (!Farming.hasSoil(farm.gx, farm.gz)) return { name: 'Watering Can', text: 'There is no soil to water.' };
+            if (Farming.isWatered(farm.gx, farm.gz)) return { name: 'Watering Can', text: 'It is already watered.' };
+            return null;
+        }
+        if (Farming.isSeed(tool)) {
+            const cropId = this.world.plantSeed(this.pos, f, tool);
+            if (cropId) {
+                this.inventory.remove(tool, 1);
+                return { name: 'Seed', text: `Planted ${ITEMS[cropId]?.name || cropId}.` };
+            }
+            const farm = this.world.facingFarmTile(this.pos, f);
+            if (!Farming.hasSoil(farm.gx, farm.gz)) return { name: 'Seed', text: 'Plant seeds in tilled soil.' };
+            if (Farming.hasPlot(farm.gx, farm.gz)) return { name: 'Seed', text: 'Something is already growing there.' };
+            return null;
+        }
+        return null;
     }
 }
+

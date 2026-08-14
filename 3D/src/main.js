@@ -6,7 +6,10 @@ import { Player } from './player.js';
 import { populate } from './npc.js';
 import { UI } from './ui.js';
 import { WorldClock } from './daycycle.js';
+import * as Farming from './farming.js';
 import { loadGame, saveGame } from './save.js';
+import { Interior } from './interior.js';
+import { ITEMS } from './items.js';
 
 const boot = document.getElementById('boot-status');
 const setBoot = (t) => { if (boot) boot.textContent = t; };
@@ -46,8 +49,12 @@ const world = new World(scene);
 const input = new Input(renderer.domElement);
 const player = new Player(scene, world, camera);
 const ui = new UI();
+const interior = new Interior(scene, camera, player);
+interior.world = world; // so sleep can call neighbor.onNewDay
+player.onEnterHouse = (kind) => interior.enter(kind);
 const rng = Math.random;
 const { neighbors, hog } = populate(world, scene, rng);
+world.neighbors = neighbors;
 const actors = [...neighbors, hog];
 
 // ---------------------------------------------------------------- sky
@@ -113,7 +120,7 @@ scene.add(clouds);
 // ---------------------------------------------------------------- clock + save
 
 const gameTime = new WorldClock(CONFIG);
-if (loadGame(player, gameTime, hog)) console.log('Loaded save —', gameTime.dateString);
+if (loadGame(player, gameTime, hog, neighbors)) console.log('Loaded save —', gameTime.dateString);
 world.setSeason(gameTime.season);
 refreshNoticeBoard();
 
@@ -209,19 +216,29 @@ function animate() {
 
     if (input.consumePixelToggle()) { pixelated = !pixelated; applyResolution(); }
 
+    const cycle = input.consumeToolCycle();
+    if (cycle) player.cycleTool(cycle);
+    const select = input.consumeToolSelect();
+    if (select !== null) {
+        player.inventory.activeIndex = Math.min(select, player.inventory.tools.length - 1);
+    }
+
     const paused = input.menuOpen || dialogueOpen;
 
     if (input.consumeInteract()) {
         if (dialogueOpen) {
             dialogueOpen = false;
             ui.hideDialogue();
+        } else if (interior.active) {
+            const line = interior.interact(gameTime, world);
+            if (line) { dialogueOpen = true; ui.showDialogue(line); }
         } else if (!input.menuOpen) {
             const line = player.interact(gameTime.hour);
             if (line) { dialogueOpen = true; ui.showDialogue(line); }
         }
     }
 
-    if (!paused) {
+    if (!paused && !interior.active) {
         gameTime.update(dt);
         player.update(dt, input, actors);
         for (const a of actors) a.update(dt, world, gameTime.hour);
@@ -234,7 +251,7 @@ function animate() {
 
     updateLighting();
     ui.updateClock(gameTime);
-    ui.updatePrompt(paused ? '' : player.prompt);
+    ui.updatePrompt(paused ? '' : (interior.active ? interior.updatePrompt(player) : player.prompt));
     ui.updateInventory(player.inventory);
     ui.updateMenu(input.menuOpen, player, gameTime);
     ui.tick(dt);
@@ -244,16 +261,16 @@ function animate() {
 }
 
 window.addEventListener('resize', applyResolution);
-window.addEventListener('beforeunload', () => saveGame(player, gameTime, hog));
+window.addEventListener('beforeunload', () => saveGame(player, gameTime, hog, neighbors));
 // Mobile/tab-switch never fires beforeunload reliably.
 document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') saveGame(player, gameTime, hog);
+    if (document.visibilityState === 'hidden') saveGame(player, gameTime, hog, neighbors);
 });
 
 updateLighting();
 animate();
 
-window.COZY3D = { scene, camera, player, world, gameTime, neighbors, hog, saveGame, loadGame, WATER_LEVEL };
+window.COZY3D = { scene, camera, player, world, gameTime, neighbors, hog, saveGame, loadGame, WATER_LEVEL, ITEMS, Farming, interior };
 if (boot) boot.style.display = 'none';
 
 } catch (err) {

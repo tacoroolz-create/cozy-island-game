@@ -1,29 +1,38 @@
 // Cozy Island 3D — persistence
-export const SAVE_VERSION = 3; // 3: height-field island, positions are world units
+import * as Farming from './farming.js';
+export const SAVE_VERSION = 4; // 4: adds inventory/wallet, farm plots, neighbor friendships
 const KEY = 'cozy-island-3d-save';
 
-export function saveGame(player, gameTime, hog) {
+export function saveGame(player, gameTime, hog, neighbors = []) {
     try {
         localStorage.setItem(KEY, JSON.stringify({
             version: SAVE_VERSION,
-            inventory: player.inventory,
+            inventory: player.inventory.serialize(),
             day: gameTime.day,
             minutes: gameTime.minutes,
             pos: { x: player.pos.x, z: player.pos.z },
             hogFriendship: hog ? hog.friendship : 0,
+            farm: Farming.serialize(),
+            friendships: Object.fromEntries(neighbors.map(n => [n.name, n.friendship])),
         }));
     } catch (e) {
         console.warn('Save failed:', e); // private browsing / quota
     }
 }
 
-export function loadGame(player, gameTime, hog) {
+export function loadGame(player, gameTime, hog, neighbors = []) {
     const raw = localStorage.getItem(KEY);
     if (!raw) return false;
     try {
         const data = JSON.parse(raw);
         if (!data || data.version !== SAVE_VERSION) return false; // migration point
-        player.inventory = data.inventory || {};
+        if (data.inventory) player.inventory.deserialize(data.inventory);
+        if (data.farm) Farming.deserialize(data.farm);
+        if (data.friendships) {
+            for (const n of neighbors) {
+                if (data.friendships[n.name] !== undefined) n.friendship = data.friendships[n.name];
+            }
+        }
         gameTime.day = data.day ?? 1;
         gameTime.minutes = data.minutes ?? 8 * 60;
         // Season/holiday always recompute from the day so they stay deterministic.

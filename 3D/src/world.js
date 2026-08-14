@@ -8,6 +8,8 @@ import {
     smoothstep, clamp01, mulberry32,
     heightAt, groundHeightAt, onDock, distToPaths, sandiness, zoneAt,
 } from './island.js';
+import * as Farming from './farming.js';
+import { ITEMS } from './items.js';
 
 export { WATER_LEVEL, LANDMARKS, DOCK, NEIGHBORS, heightAt, distToPaths, zoneAt } from './island.js';
 
@@ -78,7 +80,48 @@ function makeProps(scene, max, parts) {
     };
 }
 
-const lambert = (color, opts = {}) => new THREE.MeshLambertMaterial({ color, ...opts });
+
+// ---------------------------------------------------------------- farming visuals
+
+const SOIL_COLOR = new THREE.Color(0x8d6e4a);
+const WATERED_COLOR = new THREE.Color(0x6a8fbb);
+
+function makeFlatTile(geo, mat, scene, max) {
+    const mesh = new THREE.InstancedMesh(geo, mat, max);
+    mesh.count = 0;
+    mesh.receiveShadow = true;
+    mesh.frustumCulled = false;
+    scene.add(mesh);
+    const dummy = new THREE.Object3D();
+    return {
+        mesh,
+        add(x, z) {
+            const i = mesh.count;
+            if (i >= max) return -1;
+            dummy.position.set(x, 0, z);
+            dummy.rotation.set(-Math.PI / 2, 0, 0);
+            dummy.scale.set(1, 1, 1);
+            dummy.updateMatrix();
+            mesh.setMatrixAt(i, dummy.matrix);
+            mesh.count = i + 1;
+            mesh.instanceMatrix.needsUpdate = true;
+            return i;
+        },
+        clear() {
+            mesh.count = 0;
+            mesh.instanceMatrix.needsUpdate = true;
+        },
+        setColor(i, color) {
+            if (!mesh.instanceColor) {
+                const colors = new Float32Array(max * 3);
+                mesh.setAttribute('instanceColor', new THREE.InstancedBufferAttribute(colors, 3));
+            }
+            mesh.setColorAt(i, color);
+            if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+        },
+    };
+}
+
 
 // ---------------------------------------------------------------- world
 
@@ -89,6 +132,8 @@ export class World {
         this.props = [];        // { kind, x, z, y, r, solid, label, item, set, idx }
         this.drops = [];
         this.spacing = new Set();
+        this.farmDirty = true;
+        this.shippingBin = null;
 
         this.buildTerrain();
         this.buildWater();
@@ -96,6 +141,8 @@ export class World {
         this.buildPlaza();
         this.buildHouses();
         this.scatterProps();
+        this.buildFarm();
+        this.buildShippingBin();
     }
 
     // -- terrain -------------------------------------------------------
@@ -275,6 +322,53 @@ export class World {
         chimney.castShadow = true;
         g.add(chimney);
         return g;
+    }
+
+
+    // -- farm ------------------------------------------------------------
+
+    buildFarm() {
+        const soilGeo = new THREE.PlaneGeometry(Farming.GRID * 0.95, Farming.GRID * 0.95);
+        this.soilMesh = makeFlatTile(soilGeo, lambert(SOIL_COLOR, { transparent: true, opacity: 0.92, flatShading: true }), this.scene, 600);
+
+        const wateredGeo = new THREE.PlaneGeometry(Farming.GRID * 0.55, Farming.GRID * 0.55);
+        this.wateredMesh = makeFlatTile(wateredGeo, lambert(WATERED_COLOR, { transparent: true, opacity: 0.65, flatShading: true }), this.scene, 600);
+
+        const stemGeo = new THREE.CylinderGeometry(0.06, 0.08, 0.4, 5);
+        stemGeo.translate(0, 0.2, 0);
+        const headGeo = new THREE.DodecahedronGeometry(0.24, 0);
+        headGeo.translate(0, 0.5, 0);
+        this.crops = makeProps(this.scene, 500, [
+            { geo: stemGeo, mat: lambert(0x5d8c3a, { flatShading: true }), shadow: false },
+            { geo: headGeo, mat: lambert(0xffffff), shadow: false },
+        ]);
+    }
+
+    buildShippingBin() {
+        const g = new THREE.Group();
+        const boxMat = lambert(0x8b5a2b);
+        const slatMat = lambert(0x6d4c33);
+        for (let i = 0; i < 3; i++) {
+            const b = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.35, 1.0), boxMat);
+            b.position.set(0, i * 0.38 + 0.18, 0);
+            b.castShadow = true; b.receiveShadow = true;
+            g.add(b);
+            for (const dx of [-0.55, 0.55]) {
+                const s = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.25, 0.8), slatMat);
+                s.position.set(dx, i * 0.38 + 0.3, 0);
+                g.add(s);
+            }
+        }
+        const { x: hx, z: hz } = LANDMARKS.playerHome;
+        const x = hx + 5.5, z = hz + 3.5;
+        const y = heightAt(x, z);
+        g.position.set(x, y, z);
+        g.rotation.y = 0.3;
+        this.scene.add(g);
+        this.shippingBin = this.addProp({
+            kind: 'shipping-bin', x, z, y, r: 1.4, solid: true,
+            label: 'Ship your goods',
+        });
     }
 
     buildHouses() {
@@ -504,6 +598,19 @@ export class World {
         return true;
     }
 
+    /** True if a solid prop overlaps the disc at (x,z). */
+    solidAt(x, z, radius = 0.35) {
+        for (const p of this.props) {
+            if (!p.solid) continue;
+            if (p.hw !== undefined) {
+                if (Math.abs(x - p.x) < p.hw + radius && Math.abs(z - p.z) < p.hd + radius) return true;
+            } else if (Math.hypot(x - p.x, z - p.z) < p.r + radius) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Closest legal footing to (x,z), searching outward in rings. Anything
      * that places a body — spawns, save-loading, an actor that wandered into
@@ -555,6 +662,98 @@ export class World {
         return prop;
     }
 
+
+    // -- farm actions --------------------------------------------------
+
+    /** Return the plot and soil grid in front of pos, or null. */
+    facingFarmTile(pos, facing) {
+        const reach = 2.2;
+        const tx = pos.x + facing.x * reach;
+        const tz = pos.z + facing.z * reach;
+        const { gx, gz } = Farming.worldToGrid(tx, tz);
+        return { gx, gz, x: Farming.gridToWorld(gx, gz).x, z: Farming.gridToWorld(gx, gz).z };
+    }
+
+    /** Try to chop a tree. Returns true if a tree was felled. */
+    chopTree(pos, facing) {
+        let best = null, bestScore = Infinity;
+        for (const p of this.props) {
+            if (p.kind !== 'tree' || p.stump) continue;
+            const dx = p.x - pos.x, dz = p.z - pos.z;
+            const d = Math.hypot(dx, dz);
+            if (d > 2.8) continue;
+            const dot = d < 0.001 ? 1 : (dx * facing.x + dz * facing.z) / d;
+            if (dot < 0.1 && d > 1.4) continue;
+            const score = d - dot * 1.3;
+            if (score < bestScore) { bestScore = score; best = p; }
+        }
+        if (!best) return null;
+        this.fellTree(best);
+        return best;
+    }
+
+    fellTree(prop) {
+        if (prop.set && prop.idx !== undefined) prop.set.hide(prop.idx);
+        // Stump: tiny cylinder at ground level.
+        const stump = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.26, 0.3, 7), lambert(0x6b4428));
+        stump.position.set(prop.x, prop.y + 0.15, prop.z);
+        stump.castShadow = true; stump.receiveShadow = true;
+        this.scene.add(stump);
+        prop.stump = stump;
+        prop.solid = false;
+        prop.label = 'Inspect the stump';
+        prop.line = 'A clean cut. This will grow back someday.';
+        delete prop.item;
+        this.spawnDrop('log', prop.x, prop.y, prop.z);
+        if (this.rng() < 0.4) this.spawnDrop('berry', prop.x + 0.5, prop.y, prop.z + 0.3);
+    }
+
+    /** Till the soil at the grid cell in front of the player. */
+    tillSoil(pos, facing) {
+        const t = this.facingFarmTile(pos, facing);
+        if (!Farming.canTillHere(this, t.gx, t.gz)) return false;
+        Farming.till(t.gx, t.gz);
+        this.farmDirty = true;
+        return true;
+    }
+
+    /** Plant the active seed at the facing soil cell. */
+    plantSeed(pos, facing, seedId) {
+        const t = this.facingFarmTile(pos, facing);
+        const cropId = Farming.plant(t.gx, t.gz, seedId);
+        if (!cropId) return false;
+        this.farmDirty = true;
+        return cropId;
+    }
+
+    waterCrop(pos, facing) {
+        const t = this.facingFarmTile(pos, facing);
+        if (!Farming.canWaterHere(t.gx, t.gz) || Farming.isWatered(t.gx, t.gz)) return false;
+        Farming.water(t.gx, t.gz);
+        this.farmDirty = true;
+        return true;
+    }
+
+    harvestCrop(pos, facing) {
+        const t = this.facingFarmTile(pos, facing);
+        const cropId = Farming.harvest(t.gx, t.gz);
+        if (!cropId) return false;
+        this.farmDirty = true;
+        return cropId;
+    }
+
+    /** Sell one of the held item from inventory, if it has value. Returns profit or null. */
+    shipHeldItem(inventory) {
+        const active = inventory.activeItem();
+        if (!active) return null;
+        const def = ITEMS[active];
+        const value = def && def.value ? def.value : 0;
+        if (!value || !inventory.has(active, 1)) return null;
+        inventory.remove(active, 1);
+        inventory.earn(value);
+        return { id: active, value };
+    }
+
     spawnDrop(itemId, x, y, z) {
         const mesh = new THREE.Mesh(
             new THREE.BoxGeometry(0.3, 0.3, 0.3),
@@ -594,6 +793,8 @@ export class World {
     }
 
     update(dt, elapsed) {
+        if (this.farmDirty) this.refreshFarm();
+
         // Gentle swell on the water plane.
         const pos = this.water.geometry.attributes.position;
         const base = this.waterBaseY;
@@ -611,9 +812,51 @@ export class World {
             d.mesh.rotation.y += dt * 1.6;
         }
     }
+
+    refreshFarm() {
+        this.farmDirty = false;
+        this.soilMesh.clear();
+        this.wateredMesh.clear();
+        for (const plot of Farming.allPlots()) {
+            const { x, z } = Farming.gridToWorld(plot.gx, plot.gz);
+            const y = heightAt(x, z);
+            const soilIdx = this.soilMesh.add(x, z);
+            this.soilMesh.mesh.position.y = y + 0.02;
+            if (soilIdx >= 0 && Farming.isWatered(plot.gx, plot.gz)) {
+                this.wateredMesh.add(x, z);
+                this.wateredMesh.mesh.position.y = y + 0.03;
+            }
+        }
+        // Rebuild crop instanced mesh
+        this.crops.meshes.forEach(m => m.count = 0);
+        const dummy = new THREE.Object3D();
+        let i = 0;
+        for (const plot of Farming.allPlots()) {
+            if (i >= 500) break;
+            const def = Farming.getCropDef(plot.cropId);
+            if (!def) continue;
+            const { x, z } = Farming.gridToWorld(plot.gx, plot.gz);
+            const y = heightAt(x, z);
+            const ratio = (plot.stage + 1) / def.stages;
+            const s = 0.5 + ratio * 0.9;
+            dummy.position.set(x, y, z);
+            dummy.rotation.set(0, this.rng() * 0.5, 0);
+            dummy.scale.set(s, s, s);
+            dummy.updateMatrix();
+            for (const m of this.crops.meshes) {
+                m.setMatrixAt(i, dummy.matrix);
+                if (m.material.color) m.setColorAt(i, new THREE.Color(def.color));
+                m.count = i + 1;
+                m.instanceMatrix.needsUpdate = true;
+                if (m.instanceColor) m.instanceColor.needsUpdate = true;
+            }
+            i++;
+        }
+    }
 }
 
 const DROP_COLORS = {
     log: 0x8b5a2b, stone: 0x9d9a92, fiber: 0xff7bac, seashell: 0xffe6ea,
     stick: 0x8b6b45, banana: 0xffe066, berry: 0xd94f6a,
+    turnip: 0xffffff, tomato: 0xe84a3c, corn: 0xffd54f, strawberry: 0xd94f6a,
 };

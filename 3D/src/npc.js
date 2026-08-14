@@ -1,6 +1,7 @@
 // Cozy Island 3D — characters: the shared chibi rig, neighbours, and Hoggy 🐗
 import * as THREE from 'three';
 import { NEIGHBORS } from './world.js';
+import { ITEMS } from './items.js';
 
 const lambert = (color, opts = {}) => new THREE.MeshLambertMaterial({ color, ...opts });
 
@@ -216,12 +217,70 @@ export class Neighbor {
         this.target = { ...this.pos };
         this.lineIdx = Math.floor(rng() * 3);
         this.indoors = false;
+        this.friendship = 0;
+        this.talkedToday = false;
+        this.giftedToday = false;
     }
 
     retarget(world) {
         const spot = randomSpotNear(world, this.data.home.x, this.data.home.z, 11, this.rng);
         this.target = spot;
         this.wait = 1.5 + this.rng() * 4;
+    }
+
+    giftValue(itemId) {
+        // Personality-based simple gifts
+        const loved = {
+            kawaii: new Set(['berry', 'banana', 'flower']),
+            tsundere: new Set(['log', 'stone']),
+            nerd: new Set(['seashell', 'stick']),
+            monk: new Set(['fiber', 'flower']),
+            cheerful: new Set(['banana', 'berry']),
+        };
+        if (loved[this.data.personality]?.has(itemId)) return 30;
+        const def = ITEMS[itemId];
+        if (def && def.value > 0) return 15;
+        return 5;
+    }
+
+    giftPrompt(inventory) {
+        // Only prompt gift if player is holding a non-tool item
+        const active = inventory.activeItem();
+        if (!active || active.startsWith('tool') || ITEMS[active]?.tool) return null;
+        if (inventory.has(active, 1)) return `Space — give ${ITEMS[active]?.name || active} to ${this.name}`;
+        return null;
+    }
+
+    /** Talk to or gift the neighbour. Inventory needed for gift checks. */
+    interact(inventory, hour) {
+        const active = inventory.activeItem();
+        if (active && !ITEMS[active]?.tool && inventory.has(active, 1)) {
+            if (this.giftedToday) return { name: this.name, text: "One gift per day, Dreamer. You're going to spoil me." };
+            inventory.remove(active, 1);
+            const gain = this.giftValue(active);
+            this.friendship += gain;
+            this.giftedToday = true;
+            return { name: this.name, text: `For me? ${ITEMS[active]?.name || active}! That's... okay, that's really nice. (+${gain})` };
+        }
+        return this.talk(hour);
+    }
+
+    talk(hour) {
+        if (!this.talkedToday) {
+            this.friendship += 3;
+            this.talkedToday = true;
+        }
+        if (hour >= 20 || hour < 6) {
+            return { name: this.name, text: `${NIGHT_LINES[this.data.personality]} (Friendship ${this.friendship})` };
+        }
+        const pool = GREETINGS[this.data.personality];
+        this.lineIdx = (this.lineIdx + 1) % pool.length;
+        return { name: this.name, text: `${pool[this.lineIdx]} (Friendship ${this.friendship})` };
+    }
+
+    onNewDay() {
+        this.talkedToday = false;
+        this.giftedToday = false;
     }
 
     update(dt, world, hour) {
@@ -256,14 +315,6 @@ export class Neighbor {
         this.shadow.position.set(this.pos.x, y + 0.03, this.pos.z);
     }
 
-    talk(hour) {
-        if (hour >= 20 || hour < 6) {
-            return { name: this.name, text: NIGHT_LINES[this.data.personality] };
-        }
-        const pool = GREETINGS[this.data.personality];
-        this.lineIdx = (this.lineIdx + 1) % pool.length;
-        return { name: this.name, text: pool[this.lineIdx] };
-    }
 }
 
 // ---------------------------------------------------------------- Hoggy
