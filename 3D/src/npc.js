@@ -283,6 +283,22 @@ export class Neighbor {
         this.giftedToday = false;
     }
 
+    serialize() {
+        return {
+            friendship: this.friendship,
+            talkedToday: this.talkedToday,
+            giftedToday: this.giftedToday,
+            indoors: this.indoors,
+        };
+    }
+
+    deserialize(data) {
+        if (typeof data.friendship === 'number') this.friendship = data.friendship;
+        if (typeof data.talkedToday === 'boolean') this.talkedToday = data.talkedToday;
+        if (typeof data.giftedToday === 'boolean') this.giftedToday = data.giftedToday;
+        if (typeof data.indoors === 'boolean') this.indoors = data.indoors;
+    }
+
     update(dt, world, hour) {
         // Home and out of sight overnight. Must be awake by the hour the day
         // starts at, or you spawn into an empty village.

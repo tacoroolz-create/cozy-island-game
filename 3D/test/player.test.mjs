@@ -8,7 +8,8 @@ const main = fs.readFileSync(base + 'main.js', 'utf8');
 const world = fs.readFileSync(base + 'world.js', 'utf8');
 
 // Player.interact dispatches tools and farm harvest.
-assert.match(player, /useTool\(\)/, 'player.interact calls useTool');
+assert.match(player, /useTool\(day\)/, 'player.interact calls useTool(day)');
+assert.match(player, /interact\(hour, day = 0\)/, 'player.interact accepts day');
 assert.match(player, /Farming\.harvest\(/, 'player.interact calls Farming.harvest');
 assert.match(player, /shipHeldItem\(/, 'player.interact calls shipHeldItem');
 assert.match(player, /onEnterHouse/, 'player.interact handles house entry');

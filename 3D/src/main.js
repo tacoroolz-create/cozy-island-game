@@ -125,7 +125,11 @@ world.setSeason(gameTime.season);
 refreshNoticeBoard();
 
 gameTime.on('newDay', () => {
-    saveGame(player, gameTime, hog);
+    Farming.onNewDay();
+    world.farmDirty = true;
+    world.regrowTrees(gameTime.day);
+    for (const n of neighbors) n.onNewDay();
+    saveGame(player, gameTime, hog, neighbors);
     world.setSeason(gameTime.season);
     refreshNoticeBoard();
     ui.showToast(`Day ${gameTime.day} · ${gameTime.season}` +
@@ -233,7 +237,7 @@ function animate() {
             const line = interior.interact(gameTime, world);
             if (line) { dialogueOpen = true; ui.showDialogue(line); }
         } else if (!input.menuOpen) {
-            const line = player.interact(gameTime.hour);
+            const line = player.interact(gameTime.hour, gameTime.day);
             if (line) { dialogueOpen = true; ui.showDialogue(line); }
         }
     }

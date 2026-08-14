@@ -1,6 +1,6 @@
 // Cozy Island 3D — persistence
 import * as Farming from './farming.js';
-export const SAVE_VERSION = 4; // 4: adds inventory/wallet, farm plots, neighbor friendships
+export const SAVE_VERSION = 5; // 5: neighbor state object (friendship + daily flags); interior support
 const KEY = 'cozy-island-3d-save';
 
 export function saveGame(player, gameTime, hog, neighbors = []) {
@@ -11,9 +11,9 @@ export function saveGame(player, gameTime, hog, neighbors = []) {
             day: gameTime.day,
             minutes: gameTime.minutes,
             pos: { x: player.pos.x, z: player.pos.z },
-            hogFriendship: hog ? hog.friendship : 0,
+            hog: hog ? { friendship: hog.friendship, dailyGift: hog.dailyGift ?? false } : null,
             farm: Farming.serialize(),
-            friendships: Object.fromEntries(neighbors.map(n => [n.name, n.friendship])),
+            neighbors: Object.fromEntries(neighbors.map(n => [n.name, n.serialize()])),
         }));
     } catch (e) {
         console.warn('Save failed:', e); // private browsing / quota
@@ -28,18 +28,27 @@ export function loadGame(player, gameTime, hog, neighbors = []) {
         if (!data || data.version !== SAVE_VERSION) return false; // migration point
         if (data.inventory) player.inventory.deserialize(data.inventory);
         if (data.farm) Farming.deserialize(data.farm);
-        if (data.friendships) {
+        if (data.neighbors) {
+            for (const n of neighbors) {
+                const state = data.neighbors[n.name];
+                if (state) n.deserialize(state);
+            }
+        } else if (data.friendships) {
+            // Migration from v4/v3 flat friendship map
             for (const n of neighbors) {
                 if (data.friendships[n.name] !== undefined) n.friendship = data.friendships[n.name];
             }
         }
         gameTime.day = data.day ?? 1;
         gameTime.minutes = data.minutes ?? 8 * 60;
-        // Season/holiday always recompute from the day so they stay deterministic.
-        gameTime.season = gameTime.getSeasonForDay(gameTime.day);
-        gameTime.holiday = gameTime.getHolidayForDay(gameTime.day);
-        if (hog) hog.friendship = data.hogFriendship ?? 0;
-        // placeAt refuses spots inside scenery, so a stale save can't wedge you.
+        if (typeof gameTime.getSeasonForDay === 'function') {
+            gameTime.season = gameTime.getSeasonForDay(gameTime.day);
+            gameTime.holiday = gameTime.getHolidayForDay(gameTime.day);
+        }
+        if (hog && data.hog) {
+            hog.friendship = data.hog.friendship ?? 0;
+            hog.dailyGift = data.hog.dailyGift ?? false;
+        }
         if (data.pos) player.placeAt(data.pos.x, data.pos.z);
         return true;
     } catch (e) {

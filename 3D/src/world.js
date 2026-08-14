@@ -380,7 +380,7 @@ export class World {
         this.scene.add(mine);
         this.addProp({
             kind: 'home', x: home.x, z: home.z, y: hy, hw: 2.5, hd: 2.3, solid: true, r: 3.4,
-            label: "Dreamer's Shack", line: 'Home. The lamp is on and the bed is made. (Interiors are still being built.)',
+            label: "Dreamer's Shack", line: 'Home. The lamp is on, the bed is made, and Space opens the door.',
         });
 
         for (const n of NEIGHBORS) {
@@ -674,8 +674,8 @@ export class World {
         return { gx, gz, x: Farming.gridToWorld(gx, gz).x, z: Farming.gridToWorld(gx, gz).z };
     }
 
-    /** Try to chop a tree. Returns true if a tree was felled. */
-    chopTree(pos, facing) {
+    /** Try to chop a tree. Returns the prop if hit/felled, null if nothing. */
+    chopTree(pos, facing, day = 0) {
         let best = null, bestScore = Infinity;
         for (const p of this.props) {
             if (p.kind !== 'tree' || p.stump) continue;
@@ -688,11 +688,15 @@ export class World {
             if (score < bestScore) { bestScore = score; best = p; }
         }
         if (!best) return null;
-        this.fellTree(best);
-        return best;
+        best.hits = (best.hits || 0) + 1;
+        if (best.hits < 3) {
+            return { prop: best, fell: false, remaining: 3 - best.hits };
+        }
+        this.fellTree(best, day);
+        return { prop: best, fell: true };
     }
 
-    fellTree(prop) {
+    fellTree(prop, day = 0) {
         if (prop.set && prop.idx !== undefined) prop.set.hide(prop.idx);
         // Stump: tiny cylinder at ground level.
         const stump = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.26, 0.3, 7), lambert(0x6b4428));
@@ -702,10 +706,29 @@ export class World {
         prop.stump = stump;
         prop.solid = false;
         prop.label = 'Inspect the stump';
-        prop.line = 'A clean cut. This will grow back someday.';
+        prop.line = 'A clean cut. This will grow back in a few days.';
         delete prop.item;
+        prop.felledDay = day;
         this.spawnDrop('log', prop.x, prop.y, prop.z);
-        if (this.rng() < 0.4) this.spawnDrop('berry', prop.x + 0.5, prop.y, prop.z + 0.3);
+        if (this.rng() < 0.35) this.spawnDrop('berry', prop.x + 0.5, prop.y, prop.z + 0.3);
+        if (this.rng() < 0.25) this.spawnDrop('seed', prop.x - 0.3, prop.y, prop.z + 0.5);
+    }
+
+    regrowTrees(day) {
+        for (const p of this.props) {
+            if (p.kind !== 'tree' || !p.stump) continue;
+            if (typeof p.felledDay !== 'number' || day - p.felledDay < 5) continue;
+            this.scene.remove(p.stump);
+            p.stump.geometry.dispose();
+            p.stump = null;
+            p.hits = 0;
+            delete p.felledDay;
+            p.solid = true;
+            p.label = 'Shake the tree';
+            p.line = 'The leaves rustle.';
+            p.item = 'berry';
+            if (p.set && p.idx !== undefined) p.set.show(p.idx);
+        }
     }
 
     /** Till the soil at the grid cell in front of the player. */

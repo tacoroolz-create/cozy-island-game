@@ -1,9 +1,10 @@
 // Cozy Island 3D — minimal house interior scene 🏠
 import * as THREE from 'three';
-import * as Farming from './farming.js';
 
 
 const lambert = (color, opts = {}) => new THREE.MeshLambertMaterial({ color, ...opts });
+const WALK = 4.0;
+const ROOM_BOUNDS = { minX: -3.5, maxX: 3.5, minZ: -2.5, maxZ: 2.5 };
 
 export class Interior {
     constructor(scene, camera, player) {
@@ -72,10 +73,10 @@ export class Interior {
         this.savedPos = this.player.pos.clone();
         this.player.pos.copy(this.playerInPos);
         this.player.facing.set(0, 0, 1);
-        this.player.group.visible = false;
-        this.player.shadow.visible = false;
-        this.camera.position.set(0, 4.5, 7);
-        this.camera.lookAt(0, 0.8, 0);
+        this.player.group.visible = true;
+        this.player.shadow.visible = true;
+        this.camera.position.set(0, 6.5, 6.5);
+        this.camera.lookAt(0, 0, 0);
     }
 
     exit() {
@@ -83,9 +84,30 @@ export class Interior {
         this.group.visible = false;
         if (this.savedPos) {
             this.player.pos.copy(this.savedPos);
-            this.player.group.visible = true;
-            this.player.shadow.visible = true;
         }
+    }
+
+    update(dt, input, world) {
+        if (!this.active) return;
+        const p = this.player;
+        const move = { x: 0, z: 0 };
+        if (input.moveForward) move.z += 1;
+        if (input.moveBack) move.z -= 1;
+        if (input.moveLeft) move.x -= 1;
+        if (input.moveRight) move.x += 1;
+        if (move.x || move.z) {
+            const len = Math.hypot(move.x, move.z);
+            move.x /= len; move.z /= len;
+            p.facing.set(move.x, 0, move.z);
+            p.pos.x += move.x * WALK * dt;
+            p.pos.z += move.z * WALK * dt;
+            p.pos.x = Math.max(ROOM_BOUNDS.minX, Math.min(ROOM_BOUNDS.maxX, p.pos.x));
+            p.pos.z = Math.max(ROOM_BOUNDS.minZ, Math.min(ROOM_BOUNDS.maxZ, p.pos.z));
+            p.pos.y = 0;
+        }
+        // Keep camera above and behind player
+        this.camera.position.set(p.pos.x * 0.3, 6.5, p.pos.z * 0.3 + 6.5);
+        this.camera.lookAt(p.pos.x, 0.8, p.pos.z);
     }
 
     updatePrompt(player) {
@@ -121,13 +143,7 @@ export class Interior {
         if (!best) return null;
         if (best.kind === 'bed') {
             if (gameTime.hour >= 20 || gameTime.hour < 6) {
-                gameTime.minutes = 6 * 60;
-                gameTime.day++;
-                gameTime.season = gameTime.getSeasonForDay(gameTime.day);
-                gameTime.holiday = gameTime.getHolidayForDay(gameTime.day);
-                Farming.onNewDay();
-                world.farmDirty = true;
-                if (world.neighbors) for (const n of world.neighbors) n.onNewDay();
+                gameTime.dispatch('newDay');
                 this.exit();
                 return { name: 'Bed', text: 'You sleep soundly and wake to a new day.' };
             }

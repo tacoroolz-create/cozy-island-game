@@ -191,7 +191,7 @@ export class Player {
     }
 
     /** Returns a dialogue {name, text} to show, or null. */
-    interact(hour) {
+    interact(hour, day = 0) {
         const t = this.target;
         if (!t) return null;
 
@@ -219,7 +219,7 @@ export class Player {
         }
 
         // Tools: axe, hoe, can, seeds. Try tool first, fall through to harvest.
-        const toolResult = this.useTool();
+        const toolResult = this.useTool(day);
         if (toolResult) return toolResult;
 
         // Harvest farm crop if mature (no tool needed).
@@ -247,15 +247,16 @@ export class Player {
     cycleTool(dir) { this.inventory.cycleActive(dir); }
 
     /** Dispatch a tool/seed use on the facing tile. Returns a result string or null. */
-    useTool() {
+    useTool(day = 0) {
         const f = { x: this.facing.x, z: this.facing.z };
         const tool = this.inventory.activeTool();
         if (!tool) return null;
 
         if (tool === 'axe') {
-            const tree = this.world.chopTree(this.pos, f);
-            if (tree) return { name: 'Axe', text: 'Timber! The tree drops a log at your feet.' };
-            return null;
+            const result = this.world.chopTree(this.pos, f, day);
+            if (!result) return null;
+            if (!result.fell) return { name: 'Axe', text: `Thwack! ${result.remaining} more swings to fell it.` };
+            return { name: 'Axe', text: 'Timber! The tree drops a log at your feet.' };
         }
         if (tool === 'hoe') {
             if (this.world.tillSoil(this.pos, f)) return { name: 'Hoe', text: 'You turn the grass into soft soil.' };
