@@ -1,7 +1,7 @@
 // ===== VERSIONED SAVE SYSTEM =====
 // Migration-safe save/load with version numbering
 
-const SAVE_VERSION = 24;
+const SAVE_VERSION = 25;
 const SAVE_KEY = 'cozyIslandSave';          // legacy single-slot key (migrated to slot 0)
 
 // ===== MULTI-SLOT SAVES =====
@@ -416,6 +416,13 @@ const MIGRATIONS = [
     // it regenerates from the corrected underworld.csv.
     function(data) {
         if (data.extraMaps) delete data.extraMaps.underground;
+        return data;
+    },
+    // v24 -> v25: floating islands. Existing saves are standing on island 0 —
+    // the original island, unchanged. The descent starts the first time they
+    // walk off the end of the pier.
+    function(data) {
+        if (data.world) { data.world.depth = 0; data.world.biome = null; }
         return data;
     }
     // Future migrations go here

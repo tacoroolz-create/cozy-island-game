@@ -171,6 +171,13 @@ const SPRITE_DEFS = {
     'sprites.yarbos_ship':    'assets/sprites/yarbos_ship.png',
     'items.pocket_watch':     'assets/sprites/pocket_watch.png',
     'items.gold_coin':        'assets/sprites/gold_coin.png',
+    'items.fruit_salad':      'assets/sprites/fruit_salad.png',
+    'items.floor_lamp':       'assets/sprites/floor_lamp.png',
+    'items.potted_bush':      'assets/sprites/potted_bush.png',
+    'items.potted_tree':      'assets/sprites/potted_tree.png',
+    'items.potted_fir_tree':  'assets/sprites/potted_fir_tree.png',
+    'items.mistletoe_sprig':  'assets/sprites/mistletoe_sprig.png',
+    'items.holly_vase':       'assets/sprites/holly_vase.png',
     'items.shovel':           'assets/sprites/shovel.png',
     'items.iou':              'assets/sprites/iou.png',
     'sprites.yogatron':       'assets/sprites/yogatron.png',
@@ -240,7 +247,7 @@ let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
 let islandGod = null; // static giant turtle visitor for Day of the Island God
 let lostMail = null; // { day, letters: [{x,y,npcId,address,isPresent,delivered}], allDeliveredNotified }
 let heldLostMailLetter = null; // the Lost Mail Day letter currently in the player's hand, or null
-const TILE_SOLID = new Set(['sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target', 'ug_wall', 'ug_pit']);
+const TILE_SOLID = new Set(['void', 'sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target', 'ug_wall', 'ug_pit']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
 // deferred pass after all base terrain so the next column's base can't clip the
@@ -465,6 +472,7 @@ const ITEMS = {
     cabinet:      { name: 'Side Cabinet',  category: 'block', maxStack: 99, color: '#8D6E63', desc: 'A cozy little storage cabinet.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
     floor_lamp:   { name: 'Floor Lamp',    category: 'block', maxStack: 99, color: '#FFE082', desc: 'A warm standing lamp.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
     potted_plant: { name: 'Potted Plant',  category: 'block', maxStack: 99, color: '#4CAF50', desc: 'A leafy plant in a clay pot.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
+    potted_bush:  { name: 'Potted Bush',   category: 'block', maxStack: 99, color: '#558B2F', desc: 'A round bush in a little pot.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
     fireplace:    { name: 'Fireplace',     category: 'block', maxStack: 99, color: '#B0BEC5', desc: 'A stone fireplace to warm the room.', home: { cls: 'furniture', placeOn: 'floor', solid: true } },
     // --- Decoration (8) — visual objects on the wall (or rugs on the floor) ---
     tapestry:     { name: 'Wall Tapestry', category: 'block', maxStack: 99, color: '#AD1457', desc: 'A woven tapestry to hang on the wall.', home: { cls: 'decoration', placeOn: 'wall', solid: false } },
@@ -1122,6 +1130,7 @@ function formatSaveTime(ts) {
 
 function handleMovement() {
     if (gameState !== STATE.PLAYING || !player || warpAnim) return;
+    if (typeof fallBlocksInput === 'function' && fallBlocksInput()) return;
     
     const now = millis();
     if (now - lastMoveTime < MOVE_COOLDOWN) return;
@@ -1218,6 +1227,9 @@ function drawGame() {    // Handle continuous movement
     // ===== SKY / HORIZON: screen-space backdrop behind the island =====
     drawSky();
 
+    // ===== FLOATING ISLANDS: the void behind/around a biome island =====
+    if (typeof drawIslandVoidBackdrop === 'function') drawIslandVoidBackdrop();
+
     // Draw world
     world.draw();
 
@@ -1267,6 +1279,9 @@ function drawGame() {    // Handle continuous movement
 
     // Draw UI
     drawUI();
+
+    // ===== FLOATING ISLANDS: fall fade + "step off?" prompt =====
+    if (typeof updateIslandFall === 'function') { updateIslandFall(); drawIslandFallUI(); }
 
     // Draw notifications on top
     drawNotifications();
@@ -4716,6 +4731,14 @@ function travelTo(targetId, x, y, facing) {
     insideBuilding = null;
     if (typeof x === 'number') player.x = x;
     if (typeof y === 'number') player.y = y;
+    // A portal's landing coords are fixed, but the map under them isn't (a biome
+    // island puts void where island 0 had land). Never strand the player in a
+    // solid tile — slide them to the nearest open one.
+    if (isSolidTile(player.x, player.y) || buildingAt(player.x, player.y)) {
+        const open = findOpenTileNear(player.x, player.y);
+        player.x = open.x;
+        player.y = open.y;
+    }
     if (facing) player.facing = facing;
     gameState = STATE.PLAYING;
     if (typeof invalidateFertileCache === 'function') invalidateFertileCache();
@@ -5530,6 +5553,9 @@ function tryPickupHomeInside(tx, ty) {
 }
 
 function keyPressed() {
+    // ===== FALLING TO THE NEXT ISLAND: the prompt owns every key while open =====
+    if (typeof handleFallPromptKey === 'function' && handleFallPromptKey(keyCode, key)) return false;
+
     // ===== DEBUG HOTKEYS (only while playing/inside, so menus/typing are safe) =====
     if (gameState === STATE.PLAYING || gameState === STATE.INSIDE) {
         if (handleDebugKey(keyCode, key)) return false;
@@ -7389,6 +7415,10 @@ class Player {
         const newX = constrain(this.x + dx, 0, CONFIG.WORLD_WIDTH - 1);
         const newY = constrain(this.y + dy, 0, CONFIG.WORLD_HEIGHT - 1);
 
+        // Stepping toward the void (or off the end of the pier on island 0)
+        // asks whether to fall to the next island down. See islands.js.
+        if (typeof promptFallAt === 'function' && promptFallAt(this, newX, newY)) return;
+
         // Collision check using per-tile solidity
         if (world && world.tiles[newX] && world.tiles[newX][newY]) {
             if (isSolidTile(newX, newY)) {
@@ -7647,6 +7677,9 @@ const TUNNEL_REVEAL_DAY = 43;
 function revealIslandTunnel() {
     const m = (typeof maps !== 'undefined' && maps.island) ? maps.island : world;
     if (!m || !m.tiles || !m.tiles[ISLAND_TUNNEL_ORIGIN.x]) return;
+    // Only island 0 has the tunnel at these fixed coords; biome islands below
+    // get their own tunnel placed on arrival (see fallToNextIsland).
+    if (m.depth) return;
     const t = m.tiles[ISLAND_TUNNEL_ORIGIN.x][ISLAND_TUNNEL_ORIGIN.y];
     if (t && t.type === 'tunnel') return;
     m.placeTunnel(ISLAND_TUNNEL_ORIGIN.x, ISLAND_TUNNEL_ORIGIN.y, 'underground',
@@ -8983,6 +9016,8 @@ class World {
             season: this.season,
             timeMinutes: this.timeMinutes,
             islandName: this.islandName || '',
+            depth: this.depth || 0,
+            biome: this.biome || null,
             tiles: this.tiles
         };
     }
@@ -8992,6 +9027,8 @@ class World {
         this.season = data.season;
         this.timeMinutes = data.timeMinutes;
         this.islandName = data.islandName || '';
+        this.depth = data.depth || 0;
+        this.biome = data.biome || null;
         this.tiles = data.tiles;
         // Tree migration: ensure all tree tiles (trunk and top) are solid 2-tall stacks.
         for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
