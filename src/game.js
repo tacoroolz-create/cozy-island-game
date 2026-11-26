@@ -247,7 +247,7 @@ let yogatron = null; // temporary holiday visitor for Ab Appreciation Day
 let islandGod = null; // static giant turtle visitor for Day of the Island God
 let lostMail = null; // { day, letters: [{x,y,npcId,address,isPresent,delivered}], allDeliveredNotified }
 let heldLostMailLetter = null; // the Lost Mail Day letter currently in the player's hand, or null
-const TILE_SOLID = new Set(['void', 'sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'toast_target', 'ug_wall', 'ug_pit']);
+const TILE_SOLID = new Set(['void', 'sea', 'water', 'pond_water', 'tree', 'fir_tree', 'banana_tree', 'palm_tree', 'rock', 'shiny_rock', 'rosebush', 'cliff', 'toast_target', 'ug_wall', 'ug_pit']);
 
 // Tiles whose sprite is wider/taller than a single tile. These are drawn in a
 // deferred pass after all base terrain so the next column's base can't clip the
@@ -8978,6 +8978,31 @@ class World {
                 // Legacy bank tile (pre single-image pond). Newer ponds bake banks into
                 // the pond image, so just show grass under any leftover shore tiles.
                 drawBase('grass');
+                break;
+            }
+            case 'snow': {
+                // No snow sheet yet. Grass underneath, with a cool white wash,
+                // so the peak reads as snow without a flat rectangle.
+                drawBase('grass');
+                noStroke();
+                fill(232, 242, 248, 170);
+                rect(screenX, screenY, TS, TS);
+                break;
+            }
+            case 'cliff': {
+                // 1x1 impassable stone. The rock sprite scaled to one tile, so a
+                // maze reads as rock instead of a flat gray wall.
+                drawBase('grass');
+                const rock = SPRITES['tiles.rock'];
+                if (rock) {
+                    image(rock, screenX, screenY, TS, TS);
+                } else {
+                    noStroke();
+                    fill('#7A756C');
+                    rect(screenX, screenY, TS, TS);
+                    fill('#5E5A52');
+                    rect(screenX, screenY + TS - 3, TS, 3);
+                }
                 break;
             }
             case 'toast_target': {

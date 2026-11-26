@@ -1,17 +1,14 @@
-// ===== FLOATING ISLANDS: THE INFINITE DESCENT =====
-// See WorldRedesign/08_FLOATING_ISLANDS.md. The world is a one-way chain of
-// islands floating in a void. Walk into the void at any edge, confirm, and you
-// fall to the next island down. You can never go back up.
+// ===== FLOATING ISLANDS =====
+// See WorldRedesign/08_FLOATING_ISLANDS.md and src/island_maps.js.
+// Depth 0 is the original island — beach, dock, sea, pond, tunnel — unchanged.
+// Depth 1+ are the authored biome maps. The coast is solid sky. The way down
+// is the shoot tile on that map; the ladder tile is the way back up, once the
+// climbs are wired. Layouts live in island_maps.js as coordinates.
 //
 // ponytail: there is no island *stack*. Only one island is ever live — the
-// existing `maps.island` slot, regenerated in place on each fall. Since the
-// descent is one-way by design, keeping dead islands in memory (and in the
-// save) would buy nothing, and every `currentMapId === 'island'` check across
-// the codebase keeps working untouched. Add a stack only if backtracking
-// ever becomes a thing (the whole point is that it doesn't).
-//
-// Depth 0 is the original island — beach, dock, sea, pond, tunnel — unchanged.
-// Depth 1+ are the biome islands generated below.
+// existing `maps.island` slot, regenerated in place on each fall. The maps
+// are fixed, so regenerating one redraws the same place. A stack is what
+// makes a return climb bring back the shells you left. Add it with the climbs.
 
 // Each island is still drawn on the engine's 100x100 tile grid; the island's
 // *land* is a centered square and everything outside it is void. So land size
@@ -69,6 +66,28 @@ function islandBiomeFor(depth) {
     return ISLAND_BIOMES[(depth - 1) % ISLAND_BIOMES.length];
 }
 
+// A size-by-size block of plain grass, away from the shack yard, for the
+// underground tunnel mouth. Returns the top-left, or null.
+function findOpenGrass(w, size) {
+    const b = w.mapBounds;
+    if (!b) return null;
+    for (let y = b.y0; y <= b.y1 - size + 1; y++) {
+        for (let x = b.x0; x <= b.x1 - size + 1; x++) {
+            if (w.home && x > w.home.x - 4 && x < w.home.x + 12 && y > w.home.y - 4 && y < w.home.y + 14) continue;
+            let ok = true;
+            for (let dy = 0; dy < size && ok; dy++) {
+                for (let dx = 0; dx < size; dx++) {
+                    const t = w.tiles[x + dx][y + dy];
+                    if (!t || t.type !== 'grass' || t.solid || t.link) ok = false;
+                    if (ok && typeof buildingAt === 'function' && buildingAt(x + dx, y + dy)) ok = false;
+                }
+            }
+            if (ok) return { x: x, y: y };
+        }
+    }
+    return null;
+}
+
 function islandDepth() { return (world && world.depth) || 0; }
 function onBiomeIsland() { return !!(world && world.biome && currentMapId === 'island'); }
 
@@ -82,54 +101,46 @@ function isVoidTile(x, y) {
 
 // ===== GENERATION =====
 
-// Fill `w.tiles` with a floating island for `biome`. Mirrors World.generateWorld()
-// but with a void ring instead of an ocean, and a per-biome decoration mix.
+// Blit an authored map onto the engine grid, centered. Cells outside the map
+// are void. Impassable coordinates are kept on the world in grid space.
 function generateBiomeIsland(w, biome) {
-    const m = islandVoidMargin(biome.land);
-    const lo = m, hi = ISLAND_GRID - m - 1;
+    const grid = buildIslandGrid(biome.id);
+    if (grid.errors && grid.errors.length && typeof console !== 'undefined') {
+        console.warn(grid.errors.join('\n'));
+    }
+    const ox = Math.floor((ISLAND_GRID - grid.w) / 2);
+    const oy = Math.floor((ISLAND_GRID - grid.h) / 2);
     w.tiles = [];
     for (let x = 0; x < ISLAND_GRID; x++) {
         w.tiles[x] = [];
         for (let y = 0; y < ISLAND_GRID; y++) {
-            const onLand = x >= lo && x <= hi && y >= lo && y <= hi;
-            w.tiles[x][y] = onLand
-                ? { type: 'grass', variant: Math.floor(Math.random() * 3) }
-                : { type: 'void', variant: 0, solid: true };
+            w.tiles[x][y] = { type: 'void', variant: 0, solid: true };
         }
     }
-    // Nibble the corners so the island reads as a landmass, not a box.
-    const bite = Math.max(3, Math.floor(biome.land * 0.18));
-    for (const [cx, cy] of [[lo, lo], [hi, lo], [lo, hi], [hi, hi]]) {
-        const sx = cx === lo ? 1 : -1, sy = cy === lo ? 1 : -1;
-        for (let i = 0; i < bite; i++) {
-            const run = bite - i - Math.floor(Math.random() * 2);
-            for (let j = 0; j < run; j++) {
-                const x = cx + sx * i, y = cy + sy * j;
-                if (x < 0 || x >= ISLAND_GRID || y < 0 || y >= ISLAND_GRID) continue;
-                w.tiles[x][y] = { type: 'void', variant: 0, solid: true };
-            }
+    for (let x = 0; x < grid.w; x++) {
+        for (let y = 0; y < grid.h; y++) {
+            const src = grid.cells[x][y];
+            if (src.type === 'void') continue;
+            const tile = { type: src.type, variant: 0, solid: src.solid };
+            if (src.canopy) tile.isTreeTop = true;
+            if (src.link) tile.link = src.link;
+            if (src.type === 'tall_grass') tile.growth = 3;
+            w.tiles[ox + x][oy + y] = tile;
         }
     }
-
-    // Scatter decorations, keeping a clear band inside the edge so nothing
-    // renders half-over the void, and leaving the middle open for buildings.
-    const EDGE_CLEAR = 3;
-    for (const [type, count] of biome.decor) {
-        let placed = 0;
-        for (let tries = 0; placed < count && tries < count * 40; tries++) {
-            const x = lo + EDGE_CLEAR + Math.floor(Math.random() * (biome.land - EDGE_CLEAR * 2));
-            const y = lo + EDGE_CLEAR + Math.floor(Math.random() * (biome.land - EDGE_CLEAR * 2));
-            if (!w.tiles[x] || !w.tiles[x][y] || w.tiles[x][y].type !== 'grass') continue;
-            if (type === 'tree' || type === 'fir_tree') {
-                const before = w.tiles[x][y].type;
-                w.placeTree(x, y, type);
-                if (w.tiles[x][y].type === before) continue;
-            } else {
-                w.tiles[x][y] = { type, variant: Math.floor(Math.random() * 2) };
-            }
-            placed++;
-        }
-    }
+    function shift(p) { return p ? { x: p.x + ox, y: p.y + oy } : null; }
+    w.mapOrigin = { x: ox, y: oy };
+    w.mapBounds = { x0: ox, y0: oy, x1: ox + grid.w - 1, y1: oy + grid.h - 1 };
+    w.links = {};
+    for (const name in grid.links) w.links[name] = shift(grid.links[name]);
+    w.home = shift(grid.home);
+    w.lots = grid.lots.map(shift);
+    w.landmarks = grid.buildings.map(function (b) {
+        return { type: b.type, x: b.x + ox, y: b.y + oy, w: b.w, h: b.h };
+    });
+    w.impassable = grid.impassable.map(function (c) {
+        return { x: c.x + ox, y: c.y + oy, type: c.type };
+    });
 }
 
 // ===== THE FALL =====
@@ -150,7 +161,13 @@ function promptFallAt(p, nx, ny) {
     const here = world.tiles[p.x] && world.tiles[p.x][p.y];
     if (!target) return false;
     const dir = nx > p.x ? 'right' : nx < p.x ? 'left' : ny > p.y ? 'down' : 'up';
-    if (target.type === 'void') { fallPrompt = { dir }; return true; }
+    // Biome coasts are sky. Stepping into the void only asks to fall when you
+    // are standing on that island's shoot. Every other edge just stops you.
+    if (target.type === 'void') {
+        if (onBiomeIsland() && here && here.link === 'shoot') fallPrompt = { dir };
+        else if (!onBiomeIsland()) fallPrompt = { dir };
+        return true;
+    }
     // Island 0 is the original island: it has a real ocean, not a void ring, so
     // its one way down is the end of the pier — "the last link to above."
     if (islandDepth() === 0 && target.type === 'sea' && here && here.type === 'dock') {
@@ -219,32 +236,43 @@ function fallToNextIsland(dir) {
     insideBuilding = null;
     loadMapEntities(next);   // fresh empties for every per-map entity global
 
-    // Arrive on the far side from the edge you stepped off.
-    const arrival = islandArrivalPoint(biome, dir);
+    // Land on the ladder yard, just south of where the shack's door will be.
+    const arrival = next.links.spawn || islandArrivalPoint(biome, dir);
     player.x = arrival.x;
     player.y = arrival.y;
 
-    // The player's shack and every follower's shack are rebuilt here.
+    // The player's shack, the map's landmark buildings, and follower shacks.
     buildings = [];
-    const shack = new Building('shack', clampToLand(biome, player.x + 3), clampToLand(biome, player.y - 3), 'player');
-    clearBuildingFootprint(shack);
-    buildings.push(shack);
+    if (next.home) {
+        const shack = new Building('shack', next.home.x, next.home.y, 'player');
+        clearBuildingFootprint(shack);
+        buildings.push(shack);
+    }
+    for (const mark of next.landmarks || []) {
+        buildings.push(new Building(mark.type, mark.x, mark.y, null));
+    }
 
     npcs = followers;
-    for (const npc of npcs) {
+    for (let i = 0; i < npcs.length; i++) {
+        const npc = npcs[i];
         npc.hasHome = false;
         npc.hutX = null;
         npc.hutY = null;
-        npc.gridX = clampToLand(biome, player.x + Math.floor(Math.random() * 16 - 8));
-        npc.gridY = clampToLand(biome, player.y + Math.floor(Math.random() * 16 - 8));
+        const lot = next.lots[i];
+        npc.gridX = lot ? lot.x : arrival.x;
+        npc.gridY = lot ? lot.y : arrival.y;
         buildNpcShack(npc);
     }
 
     // The underground city is a pocket dimension, not a rung on the chain — its
     // tunnel mouth reopens on every island once the player has found it.
+    // Park it on open grass so it doesn't erase a pond or a shack pad.
     if (typeof TUNNEL_REVEAL_DAY !== 'undefined' && world.day >= TUNNEL_REVEAL_DAY) {
-        next.placeTunnel(clampToLand(biome, arrival.x - 6), clampToLand(biome, arrival.y + 4),
-                         'underground', UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
+        const mouth = findOpenGrass(next, 3);
+        if (mouth) {
+            next.placeTunnel(mouth.x, mouth.y, 'underground',
+                             UNDERGROUND_TUNNEL_LANDING.x, UNDERGROUND_TUNNEL_LANDING.y, 'down');
+        }
     }
 
     if (typeof invalidateFertileCache === 'function') invalidateFertileCache();

@@ -1,54 +1,81 @@
-// Runnable check for src/islands.js generation + fall geometry: node tools/test_islands.js
-// Stubs the p5/game globals the file touches at load time (none) and at call time.
+// Runnable check for the authored island maps: node tools/test_islands.js
+// Confirms each biome is a connected place, the coast is void, the shoot and
+// the ladder sit on the coast, and the impassable list matches the solid cells.
 const fs = require('fs'), vm = require('vm');
 const ctx = {
-    CONFIG: { CANVAS_WIDTH: 320, CANVAS_HEIGHT: 192, WORLD_WIDTH: 100, WORLD_HEIGHT: 100 },
+    CONFIG: { CANVAS_WIDTH: 320, CANVAS_HEIGHT: 192, WORLD_WIDTH: 100, WORLD_HEIGHT: 100, TILE_SIZE: 16 },
     currentMapId: 'island', world: null, npcs: [], buildings: [], maps: {},
     millis: () => 0, notify: () => {}, lerp: (a, b, t) => a + (b - a) * t,
     console,
 };
 vm.createContext(ctx);
-// Top-level `const`/`function` in a vm context aren't context properties, so
-// hand them back with a trailing expression.
-const { ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, islandArrivalPoint, islandVoidMargin } =
-    vm.runInContext(fs.readFileSync('src/islands.js', 'utf8') +
-        '\n;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, islandArrivalPoint, islandVoidMargin })', ctx);
+const src = fs.readFileSync('src/island_maps.js', 'utf8') + '\n' + fs.readFileSync('src/islands.js', 'utf8');
+const exported = vm.runInContext(src + `
+;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable, islandMapSpecs })
+`, ctx);
+
+const { ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable } = exported;
 
 let fails = 0;
 const ok = (c, m) => { if (!c) { console.error('FAIL: ' + m); fails++; } };
 
 for (const b of ISLAND_BIOMES) {
-    const w = { tiles: [], placeTree(x, y, t) { this.tiles[x][y] = { type: t, solid: true }; } };
-    generateBiomeIsland(w, b);
+    const grid = buildIslandGrid(b.id);
+    ok(grid.errors.length === 0, b.id + ' layout errors:\n  ' + grid.errors.join('\n  '));
+    ok(grid.links.shoot && grid.links.ladder && grid.links.spawn, b.id + ' has a shoot, a ladder, and a spawn');
 
-    let land = 0, voidCount = 0, decor = 0;
-    for (let x = 0; x < ISLAND_GRID; x++) for (let y = 0; y < ISLAND_GRID; y++) {
-        const t = w.tiles[x][y];
-        ok(!!t, b.id + ' has a tile at ' + x + ',' + y);
-        if (t.type === 'void') voidCount++; else { land++; if (t.type !== 'grass') decor++; }
+    const reach = islandReachable(grid, grid.links.spawn);
+    const reached = {};
+    reach.forEach(p => { reached[p.x + ',' + p.y] = true; });
+    function canReach(name) {
+        const p = grid.links[name];
+        ok(!!p, b.id + ' has link ' + name);
+        if (!p) return;
+        ok(!!reached[p.x + ',' + p.y], b.id + ' can walk from the yard to ' + name + ' at ' + p.x + ',' + p.y);
     }
-    ok(land + voidCount === ISLAND_GRID * ISLAND_GRID, b.id + ' covers the grid');
-    // Corner bites eat some land, but the island must stay close to its spec.
-    ok(land > b.land * b.land * 0.8 && land <= b.land * b.land,
-        b.id + ' land area ' + land + ' near ' + (b.land * b.land));
-    const wanted = b.decor.reduce((s, d) => s + d[1], 0);
-    ok(decor >= wanted * 0.8, b.id + ' placed ' + decor + '/' + wanted + ' decorations');
+    canReach('shoot');
+    canReach('ladder');
+    Object.keys(grid.links).forEach(name => {
+        if (name === 'spawn' || name === 'shoot' || name === 'ladder') return;
+        canReach(name);
+    });
 
-    // The whole border must be void, or the player could never step off.
+    // Impassable coordinates are exactly the solid, non-void cells.
+    const solids = [];
+    let land = 0;
+    for (let x = 0; x < grid.w; x++) {
+        for (let y = 0; y < grid.h; y++) {
+            const c = grid.cells[x][y];
+            if (c.type === 'void') continue;
+            land++;
+            if (c.solid) solids.push(x + ',' + y + ' ' + (c.building || c.type));
+        }
+    }
+    ok(land > 200, b.id + ' has a real footprint (' + land + ' land tiles)');
+    const listed = grid.impassable.map(c => c.x + ',' + c.y + ' ' + c.type).sort();
+    ok(listed.length === solids.length, b.id + ' impassable count ' + listed.length + ' vs solid cells ' + solids.length);
+    const solidSet = {};
+    solids.forEach(s => { solidSet[s] = true; });
+    listed.forEach(s => { if (!solidSet[s]) ok(false, b.id + ' lists a solid that is not on the map: ' + s); });
+
+    const w = { tiles: [] };
+    generateBiomeIsland(w, b);
+    ok(w.impassable.length === grid.impassable.length, b.id + ' world impassable list copied');
+    // The engine grid's border stays void, so the island reads as floating.
     for (let i = 0; i < ISLAND_GRID; i++) {
         ok(w.tiles[0][i].type === 'void' && w.tiles[ISLAND_GRID - 1][i].type === 'void' &&
            w.tiles[i][0].type === 'void' && w.tiles[i][ISLAND_GRID - 1].type === 'void',
            b.id + ' border is void at ' + i);
     }
-    // Arrival points must land on solid ground, opposite the edge you fell from.
-    for (const dir of ['up', 'down', 'left', 'right']) {
-        const a = islandArrivalPoint(b, dir);
-        ok(w.tiles[a.x][a.y].type !== 'void', b.id + ' arrival from ' + dir + ' is on land');
-    }
-    const m = islandVoidMargin(b.land);
-    ok(islandArrivalPoint(b, 'up').y > ISLAND_GRID / 2 && islandArrivalPoint(b, 'down').y < ISLAND_GRID / 2,
-        b.id + ' arrives opposite the edge fallen from');
-    ok(m >= 0, b.id + ' margin');
+    const spawn = w.links.spawn;
+    ok(spawn && w.tiles[spawn.x][spawn.y].type !== 'void' && !w.tiles[spawn.x][spawn.y].solid,
+        b.id + ' spawn is walkable ground');
+    // Every listed impassable cell is solid on the blitted world.
+    w.impassable.forEach(c => {
+        const t = w.tiles[c.x][c.y];
+        if (!t || !t.solid || t.type === 'void') ok(false, b.id + ' impassable ' + c.x + ',' + c.y + ' (' + c.type + ') is not a solid tile');
+    });
 }
+
 console.log(fails ? fails + ' FAILURES' : 'islands: all checks passed');
 process.exit(fails ? 1 : 0);
