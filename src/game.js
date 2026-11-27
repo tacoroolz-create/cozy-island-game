@@ -7018,6 +7018,7 @@ function startNewGame() {
     inventory = new Inventory();
     buildings = [];
     spawnPlayerShack();
+    if (typeof ensureBeachGettin === 'function') ensureBeachGettin();
     carveStarterPaths();
     npcs = [];
     knownMagic = [];

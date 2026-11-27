@@ -21,37 +21,37 @@ const ISLAND_GRID = CONFIG.WORLD_WIDTH;   // 100 — the engine grid every islan
 const ISLAND_BIOMES = [
     {
         id: 'meadow', name: 'The Meadow', land: 50,
-        blurb: 'Flowers all the way to the edge. Nothing here wants anything from you.',
+        blurb: 'The pond is the whole of it. Flowers, and nothing that wants anything from you.',
         sky: [150, 195, 230],
         decor: [['tulip', 16], ['rosebush', 8], ['tree', 4], ['bird_poop', 4]],
     },
     {
         id: 'woods', name: 'The Woods', land: 56,
-        blurb: 'Dappled light. Something moves and it is only ever a bird.',
+        blurb: 'The creek runs beside the yard. The trees are the walls.',
         sky: [128, 178, 205],
         decor: [['tree', 44], ['fir_tree', 16], ['rock', 8], ['shiny_rock', 3]],
     },
     {
         id: 'town', name: 'The Town', land: 80,
-        blurb: 'Room enough for everyone who jumped after you.',
+        blurb: 'Stimmy Tim\'s is open on the landing. The fountain is the square.',
         sky: [205, 185, 150],
         decor: [['tree', 12], ['rosebush', 4], ['bird_poop', 6]],
     },
     {
         id: 'city', name: 'The City', land: 60,
-        blurb: 'Cozy-urban. The clock tower has not been built yet.',
+        blurb: 'The Black Goddess, the Electric Temple, and the Recycle Bin share the landing.',
         sky: [175, 160, 185],
         decor: [['rock', 14], ['tree', 6], ['shiny_rock', 4]],
     },
     {
         id: 'deep_woods', name: 'The Deep Woods', land: 60,
-        blurb: 'Spooky, but the cozy kind. The trees lean in to listen.',
+        blurb: 'Mubaba\'s Fortress stands beside the yard. The pit is south of the door.',
         sky: [95, 105, 135],
         decor: [['fir_tree', 46], ['tree', 14], ['rock', 8], ['shiny_rock', 2]],
     },
     {
         id: 'mountain', name: 'The Mountain', land: 56,
-        blurb: 'Look up. Everything you left is up there, small and gold.',
+        blurb: 'The overlook is the snow beside the yard. Everything you left is up there.',
         sky: [120, 150, 190],
         decor: [['rock', 56], ['shiny_rock', 8], ['fir_tree', 14]],
     },
@@ -89,6 +89,24 @@ function findOpenGrass(w, size) {
 }
 
 function islandDepth() { return (world && world.depth) || 0; }
+
+// The beach is the original island. Its shop is the Gettin' Place, inland of
+// the dock, on grass. Added for a new game and for a save that predates it.
+function ensureBeachGettin() {
+    if (typeof world === 'undefined' || !world || world.biome) return;
+    if (currentMapId !== 'island') return;
+    if (typeof buildings === 'undefined' || !buildings) return;
+    if (buildings.some(function (b) { return b.type === 'ug_gettin'; })) return;
+    const gx = 14, gy = 44, w = 8, h = 8;
+    for (let dy = 0; dy < h; dy++) {
+        for (let dx = 0; dx < w; dx++) {
+            if (typeof buildingAt === 'function' && buildingAt(gx + dx, gy + dy)) return;
+        }
+    }
+    const shop = new Building('ug_gettin', gx, gy, null);
+    if (typeof clearBuildingFootprint === 'function') clearBuildingFootprint(shop);
+    buildings.push(shop);
+}
 function onBiomeIsland() { return !!(world && world.biome && currentMapId === 'island'); }
 
 // Tiles outside the land square are void. Land is centered on the grid.

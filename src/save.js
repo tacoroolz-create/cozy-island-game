@@ -531,6 +531,7 @@ function deserializeGame(data) {
             buildings.push(Building.deserialize(bd));
         }
     }
+    if (typeof ensureBeachGettin === 'function') ensureBeachGettin();
 
     npcs = [];
     if (data.npcs) {

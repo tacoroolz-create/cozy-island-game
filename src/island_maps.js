@@ -18,160 +18,150 @@ function islandMapSpecs() {
     return {
         meadow: {
             w: 42, h: 32,
-            home: [8, 14],
+            // Yard on the west. The pond sits just east of the door, on the
+            // first screen, so the meadow is a pond and not another lawn.
+            home: [14, 14],
             ground: [
-                [6, 8, 28, 16],
-                [14, 3, 12, 8],
-                [16, 22, 10, 8],
-                [2, 12, 8, 8],
-                [30, 12, 8, 8]
+                [4, 4, 34, 24],
+                [8, 0, 6, 6],
+                [8, 26, 8, 6]
             ],
-            // Pond in the northeast lobe. Windmill is a pair of cliff posts
-            // on the west lobe; the skip-city ladder stands beside it.
-            water: [[28, 9, 6, 4]],
-            cliff: [[3, 14, 2, 2]],
+            water: [[24, 18, 6, 4]],
+            cliff: [[6, 16, 2, 2]],
             path: [
-                [18, 3, 2, 27],
-                [20, 10, 8, 2],
-                [2, 16, 4, 2]
+                [10, 0, 2, 32],
+                [23, 18, 1, 6],
+                [4, 16, 8, 2]
             ],
-            tulip: [[12, 10], [16, 12], [24, 16], [32, 14], [33, 16], [22, 20]],
-            rose: [[27, 20], [31, 18]],
-            tall: [[10, 10], [34, 14], [22, 20]],
-            tree: [[24, 14], [26, 18], [34, 16]],
-            shoot: [18, 3],
-            ladder: [18, 29],
-            skip: { 'skip-city': [4, 17] }
+            tulip: [[8, 10], [12, 8], [26, 16], [30, 16], [26, 22], [32, 20]],
+            rose: [[28, 22], [32, 18]],
+            tall: [[8, 12], [32, 22], [26, 24]],
+            tree: [[28, 12], [32, 14], [30, 24]],
+            shoot: [10, 0],
+            ladder: [10, 31],
+            skip: { 'skip-city': [8, 17] }
         },
         woods: {
             w: 44, h: 34,
-            home: [6, 16],
+            // The creek runs down the east side of the yard. You land looking at it.
+            home: [12, 16],
             ground: [
                 [2, 4, 40, 24],
-                [16, 0, 10, 6],
-                [16, 26, 12, 7]
+                [6, 0, 8, 6],
+                [6, 28, 8, 6]
             ],
-            // Creek in two runs with a log bridge between them.
-            water: [[22, 6, 2, 8], [24, 16, 2, 8]],
+            water: [[22, 4, 2, 8], [22, 16, 2, 8]],
             path: [
-                [18, 0, 2, 33],
-                [18, 14, 8, 2]
+                [8, 0, 2, 34],
+                [18, 13, 6, 2],
+                [21, 20, 1, 4]
             ],
-            tree: [[4, 8], [4, 12], [10, 8], [14, 10], [28, 8], [32, 8], [36, 10],
-                   [28, 12], [34, 14], [30, 18], [36, 18], [28, 22], [34, 22], [38, 20]],
-            fir: [[8, 10], [38, 12], [30, 26]],
-            tall: [[16, 8], [20, 20], [20, 24]],
-            shiny: [[36, 16], [14, 14]],
-            shoot: [18, 0],
-            ladder: [18, 32]
+            tree: [[4, 8], [4, 12], [28, 8], [32, 8], [36, 10],
+                   [28, 12], [34, 14], [26, 18], [36, 18], [28, 22], [34, 22], [38, 20]],
+            fir: [[4, 18], [38, 12], [10, 30]],
+            tall: [[6, 10], [26, 14], [30, 26]],
+            shiny: [[36, 16], [4, 22]],
+            shoot: [8, 0],
+            ladder: [8, 33]
         },
         town: {
             w: 48, h: 40,
-            home: [4, 8],
-            lots: [[4, 24], [28, 24]],
-            // Stimmy Tim's sits on the east side of the square. Footprint 8x5.
-            buildings: [{ type: 'ug_stimmy_tims', x: 30, y: 8, w: 8, h: 5 }],
+            home: [8, 18],
+            lots: [[36, 8], [36, 26]],
+            // Stimmy Tim's, the cafe. The door opens on the same row you land on.
+            buildings: [{ type: 'ug_stimmy_tims', x: 18, y: 21, w: 8, h: 5 }],
             ground: [
                 [2, 4, 44, 32],
-                [18, 0, 8, 6],
-                [18, 34, 10, 5]
+                [30, 0, 6, 6],
+                [30, 34, 8, 6]
             ],
-            water: [[16, 12, 3, 3]],
+            water: [[28, 18, 3, 3]],
             path: [
-                [20, 0, 2, 39],
-                [4, 20, 40, 2],
-                [14, 10, 14, 8],
-                [30, 13, 8, 1]
+                [32, 0, 2, 40],
+                [17, 26, 16, 2]
             ],
-            tulip: [[14, 11], [26, 11], [15, 16], [26, 16]],
-            rose: [[14, 14], [26, 14]],
-            tree: [[40, 10], [42, 16], [40, 28]],
-            shoot: [20, 0],
-            ladder: [20, 38]
+            tulip: [[28, 16], [30, 22], [26, 24], [34, 16]],
+            rose: [[26, 18], [34, 20]],
+            tree: [[2, 10], [2, 20], [2, 30]],
+            shoot: [32, 0],
+            ladder: [32, 39]
         },
         city: {
             w: 46, h: 36,
-            home: [4, 20],
-            // Three shops around a path plaza. Clock is a narrow cliff tower;
-            // its base is the ladder that will reach the mountain.
+            home: [4, 16],
+            // The club's door is on the landing row. Temple and recycle bin
+            // share that same frontage. The clock stands between them.
             buildings: [
-                { type: 'ug_black_goddess', x: 6, y: 6, w: 8, h: 8 },
+                { type: 'ug_black_goddess', x: 14, y: 16, w: 8, h: 8 },
                 { type: 'ug_electric_temple', x: 30, y: 6, w: 8, h: 8 },
-                { type: 'ug_recycle_bin', x: 18, y: 16, w: 8, h: 8 }
+                { type: 'ug_recycle_bin', x: 28, y: 16, w: 8, h: 8 }
             ],
             ground: [
-                [2, 4, 42, 26],
-                [18, 0, 8, 6],
-                [18, 28, 10, 7]
+                [2, 4, 42, 28],
+                [34, 0, 6, 6],
+                [34, 30, 8, 6]
             ],
             cliff: [[22, 6, 2, 6]],
             path: [
-                [20, 0, 2, 35],
-                [4, 14, 38, 2],
-                [14, 6, 18, 8]
+                [36, 0, 2, 36],
+                [13, 24, 24, 2]
             ],
-            tree: [[4, 18], [40, 18], [40, 26]],
-            shoot: [20, 0],
-            ladder: [20, 34],
+            tree: [[4, 8], [42, 10], [42, 28]],
+            shoot: [36, 0],
+            ladder: [36, 35],
             skip: { 'skip-mountain': [22, 12] }
         },
         deep_woods: {
             w: 46, h: 36,
-            home: [16, 20],
+            home: [6, 16],
+            // Fortress door on the landing row. Pit to the south, temple north.
             buildings: [
-                { type: 'ug_mubaba_fortress', x: 16, y: 6, w: 8, h: 8 },
-                { type: 'ug_inner_temple', x: 32, y: 8, w: 8, h: 8 },
-                { type: 'ug_bottomless_pit', x: 4, y: 18, w: 4, h: 4 }
+                { type: 'ug_mubaba_fortress', x: 16, y: 16, w: 8, h: 8 },
+                { type: 'ug_inner_temple', x: 30, y: 6, w: 8, h: 8 },
+                { type: 'ug_bottomless_pit', x: 8, y: 28, w: 4, h: 4 }
             ],
             ground: [
                 [2, 4, 42, 26],
-                [18, 0, 8, 6],
-                [12, 30, 2, 5],
-                [18, 30, 10, 5],
-                [12, 31, 16, 4]
+                [30, 0, 6, 6],
+                [6, 28, 14, 8],
+                [30, 28, 6, 8]
             ],
             path: [
-                [12, 4, 2, 28],
-                [18, 0, 4, 4],
-                [12, 31, 12, 2],
-                [20, 32, 4, 3]
+                [32, 0, 2, 36],
+                [15, 24, 18, 2]
             ],
-            fir: [[6, 8], [8, 12], [6, 28], [28, 16], [42, 12], [40, 20], [38, 28]],
-            tree: [[10, 8], [8, 16], [28, 28], [28, 18]],
-            shiny: [[10, 14], [30, 18]],
-            shoot: [20, 0],
-            ladder: [22, 34],
-            // Standing just east of the pit. The pit itself is the building.
-            skip: { 'skip-beach': [8, 20] }
+            fir: [[4, 8], [4, 12], [40, 12], [40, 20], [12, 32]],
+            tree: [[4, 18], [42, 8], [16, 32], [40, 24]],
+            shiny: [[4, 22], [40, 26]],
+            shoot: [32, 0],
+            ladder: [32, 35],
+            skip: { 'skip-beach': [14, 30] }
         },
         mountain: {
             w: 44, h: 36,
-            home: [4, 20],
+            home: [4, 18],
             ground: [
                 [2, 6, 40, 24],
-                [12, 1, 18, 8],
-                [16, 28, 12, 7]
+                [24, 0, 8, 8],
+                [24, 28, 10, 8]
             ],
-            snow: [[14, 3, 14, 8]],
-            // A rock ring with a gate to the north and a gate to the south.
-            // The path runs through both gates, so the peak is a walk.
+            // The overlook is the snow just east of the yard, not a hike away.
+            snow: [[14, 20, 8, 6]],
             cliff: [
-                [12, 4, 6, 1], [22, 4, 8, 1],
-                [12, 12, 6, 1], [22, 12, 8, 1],
-                [12, 4, 1, 9], [29, 4, 1, 9],
-                [8, 16, 8, 1], [24, 18, 10, 1],
-                [16, 22, 2, 1], [20, 22, 8, 1]
+                [16, 6, 6, 1], [26, 6, 8, 1],
+                [16, 14, 6, 1], [26, 14, 8, 1],
+                [16, 6, 1, 9], [33, 6, 1, 9]
             ],
             path: [
-                [18, 1, 2, 34],
-                [14, 18, 6, 2]
+                [26, 0, 2, 36],
+                [13, 26, 14, 2]
             ],
-            fir: [[6, 10], [8, 14], [34, 10], [36, 16], [34, 24]],
-            shiny: [[32, 20], [14, 26]],
-            shoot: [18, 1],
-            ladder: [18, 34],
-            skip: { 'skip-meadow': [20, 8] },
-            overlook: [22, 6]
+            fir: [[6, 10], [8, 14], [36, 10], [38, 16], [36, 24]],
+            shiny: [[38, 20], [28, 30]],
+            shoot: [26, 0],
+            ladder: [26, 35],
+            skip: { 'skip-meadow': [16, 22] },
+            overlook: [18, 22]
         }
     };
 }

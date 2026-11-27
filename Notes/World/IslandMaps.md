@@ -32,6 +32,14 @@ Skips are marked and walkable, and do not travel yet:
 | Mountain | `skip-meadow` | On the snow, the melt |
 | Mountain | `overlook` | The middle of the snow |
 
-Shops are real buildings: Stimmy Tim's on the Town square; the Black Goddess, the Electric Temple, and the Recycle Bin in the City; Mubaba's Fortress, the Inner Temple, and the Bottomless Pit in the Deep Woods.
+Each island is one section of the old map, and its place stands beside the door you land at:
+
+- Beach — the Gettin' Place, inland of the dock
+- Meadow — the pond, east of the yard
+- Woods — the creek, east of the yard
+- Town — Stimmy Tim's cafe, door on the landing row, fountain just east
+- City — the Black Goddess (the club) on the landing row, with the Electric Temple, the Recycle Bin, and the clock
+- Deep woods — Mubaba's Fortress on the landing row, the Bottomless Pit south of the yard, the Inner Temple north
+- Mountain — the overlook, the snow east of the yard
 
 `node tools/test_islands.js` checks that every pad stays grass, every mouth touches the void, the yard can walk to every mouth, and the impassable list matches the solid cells.
