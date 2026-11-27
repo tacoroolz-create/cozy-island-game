@@ -139,12 +139,11 @@ function islandMapSpecs() {
         city: {
             w: 46, h: 36,
             home: [4, 16],
-            // The club's door is on the landing row. Temple and recycle bin
-            // share that same frontage. The clock stands between them.
+            // The club's door is on the landing row. The temple shares that
+            // frontage. The clock stands between them.
             buildings: [
                 { type: 'ug_black_goddess', x: 14, y: 16, w: 8, h: 8 },
-                { type: 'ug_electric_temple', x: 30, y: 6, w: 8, h: 8 },
-                { type: 'ug_recycle_bin', x: 28, y: 16, w: 8, h: 8 }
+                { type: 'ug_electric_temple', x: 30, y: 6, w: 8, h: 8 }
             ],
             ground: [
                 [2, 4, 42, 28],
@@ -188,30 +187,24 @@ function islandMapSpecs() {
             skip: { 'skip-beach': [14, 30] }
         },
         mountain: {
-            w: 44, h: 36,
-            home: [4, 18],
-            ground: [
-                [2, 6, 40, 24],
-                [24, 0, 8, 8],
-                [24, 28, 10, 8]
-            ],
-            // The overlook is the snow just east of the yard, not a hike away.
-            snow: [[14, 20, 8, 6]],
-            cliff: [
-                [16, 6, 6, 1], [26, 6, 8, 1],
-                [16, 14, 6, 1], [26, 14, 8, 1],
-                [16, 6, 1, 9], [33, 6, 1, 9]
-            ],
-            path: [
-                [26, 0, 2, 36],
-                [13, 26, 14, 2]
-            ],
-            fir: [[6, 10], [8, 14], [36, 10], [38, 16], [36, 24]],
-            shiny: [[38, 20], [28, 30]],
-            shoot: [26, 0],
-            ladder: [26, 35],
-            skip: { 'skip-meadow': [16, 22] },
-            overlook: [18, 22]
+            w: 58, h: 50,
+            // Oval of dirt in the sky. Grass is the yards. The Recycle Bin
+            // sits just east of the door. Snow on the north ridge is the
+            // overlook. The four lots are homes for ghosts who already have
+            // a shack: north, east, south, and southwest.
+            disc: { cx: 29, cy: 25, rx: 25, ry: 20 },
+            dirt: true,
+            home: [12, 19],
+            lots: [[23, 7], [40, 18], [28, 32], [18, 31]],
+            buildings: [{ type: 'ug_recycle_bin', x: 22, y: 18, w: 8, h: 8 }],
+            snow: [[33, 10, 6, 4]],
+            cliff: [[34, 14, 6, 1], [8, 17, 4, 1]],
+            fir: [[16, 16], [36, 16], [20, 14], [38, 30], [34, 28], [16, 34], [42, 14]],
+            shiny: [[18, 16], [40, 12], [44, 32]],
+            shoot: [29, 5],
+            ladder: [29, 44],
+            skip: { 'skip-meadow': [33, 11] },
+            overlook: [35, 11]
         }
     };
 }
@@ -362,6 +355,17 @@ function buildIslandGrid(id) {
             errors.push(id + ' ' + b.type + ' has no walkable step at ' + doorX + ',' + doorY);
         }
     });
+
+    // Open ground becomes dirt. Yards, tree tiles, snow, and building
+    // footprints stay what they are, so the mountain is more dirt than grass.
+    if (spec.dirt) {
+        for (let y = 0; y < H; y++) {
+            for (let x = 0; x < W; x++) {
+                const c = cells[x][y];
+                if (c.type === 'grass' && !c.pad && !c.solid) c.type = 'path';
+            }
+        }
+    }
 
     function markLink(p, name) {
         if (!p) return;

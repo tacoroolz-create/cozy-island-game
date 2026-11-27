@@ -39,7 +39,7 @@ const ISLAND_BIOMES = [
     },
     {
         id: 'city', name: 'The City', land: 60,
-        blurb: 'The Black Goddess, the Electric Temple, and the Recycle Bin share the landing.',
+        blurb: 'The Black Goddess and the Electric Temple share the landing.',
         sky: [175, 160, 185],
         decor: [['rock', 14], ['tree', 6], ['shiny_rock', 4]],
     },
@@ -51,9 +51,9 @@ const ISLAND_BIOMES = [
     },
     {
         id: 'mountain', name: 'The Mountain', land: 56,
-        blurb: 'The overlook is the snow beside the yard. Everything you left is up there.',
+        blurb: 'Dirt underfoot, snow on the ridge. The Recycle Bin is east of the door.',
         sky: [120, 150, 190],
-        decor: [['rock', 56], ['shiny_rock', 8], ['fir_tree', 14]],
+        decor: [['fir_tree', 7], ['shiny_rock', 3]],
     },
 ];
 
@@ -80,6 +80,10 @@ function findOpenGrass(w, size) {
                     const t = w.tiles[x + dx][y + dy];
                     if (!t || t.type !== 'grass' || t.solid || t.link) ok = false;
                     if (ok && typeof buildingAt === 'function' && buildingAt(x + dx, y + dy)) ok = false;
+                    if (ok && (w.lots || []).some(function (lot) {
+                        return x + dx >= lot.x - 1 && x + dx <= lot.x + 8 &&
+                               y + dy >= lot.y - 1 && y + dy <= lot.y + 10;
+                    })) ok = false;
                 }
             }
             if (ok) return { x: x, y: y };
@@ -252,6 +256,25 @@ function neighborIsAnimal(npc) {
     return !!(species && String(species).indexOf('Animal') === 0);
 }
 
+function neighborIsGhost(npc) {
+    const species = npc && npc.species;
+    if (typeof getNpcSpeciesGroup === 'function') return getNpcSpeciesGroup(species) === 'Ghost';
+    return species === 'Ghost';
+}
+
+// Meadow yards are for animals. Mountain yards are for ghosts.
+function residentGroup(biomeId) {
+    if (biomeId === 'meadow') return 'Animal';
+    if (biomeId === 'mountain') return 'Ghost';
+    return null;
+}
+
+function neighborGroup(npc) {
+    if (neighborIsAnimal(npc)) return 'Animal';
+    if (neighborIsGhost(npc)) return 'Ghost';
+    return '';
+}
+
 // Stamp a shack on a reserved yard. The lot origin is the shack's corner,
 // and the neighbor stands on the grass at the door.
 function placeNeighborShack(npc, lot) {
@@ -305,24 +328,25 @@ function fallToNextIsland(dir) {
     }
 
     npcs = followers;
-    // The meadow's yards belong to animal neighbors who already had a shack.
-    // That home is the test: the player built it for them. Anyone else waits
-    // at the landing. The other islands still rebuild a shack for every follower.
-    let animalLot = 0;
+    // Meadow yards are for animals, mountain yards for ghosts. The test is
+    // the same: they already had a shack. Anyone else waits at the landing.
+    // The other islands still rebuild a shack for every follower.
+    const residents = residentGroup(biome.id);
+    let yard = 0;
     for (let i = 0; i < npcs.length; i++) {
         const npc = npcs[i];
-        const settledAnimal = biome.id === 'meadow' && npc.hasHome && neighborIsAnimal(npc);
+        const settledHere = residents && npc.hasHome && neighborGroup(npc) === residents;
         npc.hasHome = false;
         npc.hutX = null;
         npc.hutY = null;
-        if (settledAnimal) {
-            const lot = next.lots[animalLot++];
+        if (settledHere) {
+            const lot = next.lots[yard++];
             if (lot) {
                 placeNeighborShack(npc, lot);
                 continue;
             }
         }
-        if (biome.id === 'meadow') {
+        if (residents) {
             npc.gridX = arrival.x;
             npc.gridY = arrival.y;
             continue;

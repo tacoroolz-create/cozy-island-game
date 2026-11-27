@@ -38,14 +38,16 @@ The meadow is an oval of grass with sky at the corners. The pond sits east of th
 
 The woods are an oval of trees with sky at the corners. The creek bends in east of the door, and a path crosses it. Trees ring the clearing. While you stand there, the screen carries a thin green shade. Mubaba's Fortress stays on the deep woods. A save already in the woods keeps the tiles it stored.
 
+The mountain is an oval of dirt with sky at the corners. Grass is the yards. The Recycle Bin sits east of the door, and the snow on the north ridge is the overlook. Four clear yards are the ghost neighbors' lots: north, east, south, and southwest. A ghost who already has a shack gets one of those yards when the mountain is made. A save already on the mountain keeps the tiles it stored.
+
 Each island below is one section of the old map, and its place stands beside the door you land at:
 
 - Beach — the Gettin' Place, inland of the dock
 - Meadow — the pond, east of the yard, and the animal yards around it
 - Woods — the creek, bending east of the yard, with the path across it
 - Town — Stimmy Tim's cafe, door on the landing row, fountain just east
-- City — the Black Goddess (the club) on the landing row, with the Electric Temple, the Recycle Bin, and the clock
+- City — the Black Goddess (the club) on the landing row, with the Electric Temple and the clock
 - Deep woods — Mubaba's Fortress on the landing row, the Bottomless Pit south of the yard, the Inner Temple north
-- Mountain — the overlook, the snow east of the yard
+- Mountain — the Recycle Bin east of the door, snow on the north ridge, and the ghost yards
 
 `node tools/test_islands.js` checks that every pad stays grass, every mouth touches the void, the yard can walk to every mouth, and the impassable list matches the solid cells.

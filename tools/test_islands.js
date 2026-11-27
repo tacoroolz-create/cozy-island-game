@@ -97,6 +97,39 @@ for (const b of ISLAND_BIOMES) {
         }
         ok(waterSky === 0, 'woods creek does not touch the sky (' + waterSky + ')');
     }
+    if (b.id === 'mountain') {
+        ok(grid.cells[0][0].type === 'void' && grid.cells[grid.w - 1][grid.h - 1].type === 'void',
+            'mountain corners are sky');
+        let dirt = 0, turf = 0;
+        for (let x = 0; x < grid.w; x++) {
+            for (let y = 0; y < grid.h; y++) {
+                const t = grid.cells[x][y].type;
+                if (t === 'path') dirt++;
+                else if (t === 'grass') turf++;
+            }
+        }
+        ok(dirt > turf, 'mountain is more dirt than grass (' + dirt + ' dirt, ' + turf + ' grass)');
+        ok(grid.lots.length === 4, 'mountain has four ghost yards');
+        ok(grid.buildings.some(function (bld) { return bld.type === 'ug_recycle_bin'; }),
+            'mountain has the recycle bin');
+        const bin = grid.buildings.find(function (bld) { return bld.type === 'ug_recycle_bin'; });
+        const step = bin && grid.cells[bin.x + Math.floor(bin.w / 2)][bin.y + bin.h];
+        ok(step && !step.solid && step.type !== 'void', 'recycle bin door is walkable');
+        grid.lots.forEach(function (lot, i) {
+            for (let dy = -1; dy <= 10; dy++) {
+                for (let dx = -1; dx <= 8; dx++) {
+                    const c = grid.cells[lot.x + dx][lot.y + dy];
+                    ok(c && c.type === 'grass' && !c.solid, 'mountain yard ' + i + ' is grass at ' + (lot.x + dx) + ',' + (lot.y + dy));
+                }
+            }
+            const door = (lot.x + 4) + ',' + (lot.y + 8);
+            ok(!!reached[door], 'mountain yard ' + i + ' door is reachable');
+        });
+    }
+    if (b.id === 'city') {
+        ok(!grid.buildings.some(function (bld) { return bld.type === 'ug_recycle_bin'; }),
+            'the recycle bin has left the city');
+    }
     const listed = grid.impassable.map(c => c.x + ',' + c.y + ' ' + c.type).sort();
     ok(listed.length === solids.length, b.id + ' impassable count ' + listed.length + ' vs solid cells ' + solids.length);
     const solidSet = {};
