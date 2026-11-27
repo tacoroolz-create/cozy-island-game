@@ -11,7 +11,8 @@ const ctx = {
 vm.createContext(ctx);
 const src = fs.readFileSync('src/island_maps.js', 'utf8') + '\n' + fs.readFileSync('src/islands.js', 'utf8');
 const exported = vm.runInContext(src + `
-;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable, islandMapSpecs })
+;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable, islandMapSpecs,
+    promptFallAt, peekFall() { return fallPrompt; }, clearFall() { fallPrompt = null; } })
 `, ctx);
 
 const { ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable } = exported;
@@ -76,6 +77,23 @@ for (const b of ISLAND_BIOMES) {
         if (!t || !t.solid || t.type === 'void') ok(false, b.id + ' impassable ' + c.x + ',' + c.y + ' (' + c.type + ') is not a solid tile');
     });
 }
+
+// The original pier is drawn from the left edge of the grid. Stepping past
+// that end has to offer the fall; walking along the planks must not.
+ctx.world = { depth: 0, biome: null, tiles: [] };
+for (let x = 0; x < 3; x++) {
+    ctx.world.tiles[x] = [];
+    for (let y = 48; y <= 51; y++) ctx.world.tiles[x][y] = { type: x < 2 ? 'dock' : 'sea' };
+}
+ok(exported.promptFallAt({ x: 0, y: 49 }, -1, 49) && exported.peekFall() && exported.peekFall().dir === 'left',
+    'stepping off the seaward end of the pier offers the fall');
+exported.clearFall();
+ok(exported.promptFallAt({ x: 1, y: 49 }, 2, 49) && exported.peekFall() && exported.peekFall().dir === 'right',
+    'stepping from the pier onto the sea offers the fall');
+exported.clearFall();
+ok(!exported.promptFallAt({ x: 0, y: 49 }, 1, 49) && !exported.peekFall(),
+    'walking along the pier stays on the pier');
+exported.clearFall();
 
 console.log(fails ? fails + ' FAILURES' : 'islands: all checks passed');
 process.exit(fails ? 1 : 0);

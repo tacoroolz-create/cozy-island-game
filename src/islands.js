@@ -154,13 +154,25 @@ const FALL_DROP_MS = 1400;
 function fallBlocksInput() { return !!(fallPrompt || fallAnim); }
 
 // Called from Player.move() with the tile the player is trying to step into.
+// nx/ny may lie outside the grid: the pier ends on the left edge of the map.
 // Returns true if the step opened the fall prompt (and so must be blocked).
 function promptFallAt(p, nx, ny) {
-    if (fallBlocksInput() || currentMapId !== 'island' || !world.tiles[nx]) return false;
-    const target = world.tiles[nx][ny];
+    if (fallBlocksInput() || currentMapId !== 'island' || !world) return false;
     const here = world.tiles[p.x] && world.tiles[p.x][p.y];
-    if (!target) return false;
     const dir = nx > p.x ? 'right' : nx < p.x ? 'left' : ny > p.y ? 'down' : 'up';
+    const offMap = nx < 0 || ny < 0 || nx >= CONFIG.WORLD_WIDTH || ny >= CONFIG.WORLD_HEIGHT;
+    // The pier is drawn from x = 0, so its seaward end has no sea tile past it.
+    // Trying to walk off that end is the way down from the original island.
+    if (offMap) {
+        if (islandDepth() === 0 && here && here.type === 'dock') {
+            fallPrompt = { dir };
+            return true;
+        }
+        return false;
+    }
+    if (!world.tiles[nx]) return false;
+    const target = world.tiles[nx][ny];
+    if (!target) return false;
     // Biome coasts are sky. Stepping into the void only asks to fall when you
     // are standing on that island's shoot. Every other edge just stops you.
     if (target.type === 'void') {

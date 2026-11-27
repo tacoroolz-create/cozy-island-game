@@ -7412,12 +7412,16 @@ class Player {
     }
     
     move(dx, dy) {
-        const newX = constrain(this.x + dx, 0, CONFIG.WORLD_WIDTH - 1);
-        const newY = constrain(this.y + dy, 0, CONFIG.WORLD_HEIGHT - 1);
+        // Raw target, before the world clamp. The pier's seaward end is the
+        // left edge of the grid, so the way down is a step that leaves the map.
+        const rawX = this.x + dx;
+        const rawY = this.y + dy;
+        const newX = constrain(rawX, 0, CONFIG.WORLD_WIDTH - 1);
+        const newY = constrain(rawY, 0, CONFIG.WORLD_HEIGHT - 1);
 
         // Stepping toward the void (or off the end of the pier on island 0)
         // asks whether to fall to the next island down. See islands.js.
-        if (typeof promptFallAt === 'function' && promptFallAt(this, newX, newY)) return;
+        if (typeof promptFallAt === 'function' && promptFallAt(this, rawX, rawY)) return;
 
         // Collision check using per-tile solidity
         if (world && world.tiles[newX] && world.tiles[newX][newY]) {
