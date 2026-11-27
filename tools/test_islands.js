@@ -54,6 +54,33 @@ for (const b of ISLAND_BIOMES) {
         }
     }
     ok(land > 200, b.id + ' has a real footprint (' + land + ' land tiles)');
+    if (b.id === 'meadow') {
+        ok(land > 1000 && land < 2200, 'meadow is a floating oval (' + land + ' land tiles)');
+        ok(grid.cells[0][0].type === 'void' && grid.cells[grid.w - 1][grid.h - 1].type === 'void',
+            'meadow corners are sky');
+        ok(grid.lots.length === 4, 'meadow has four animal yards');
+        let waterSky = 0;
+        for (let x = 0; x < grid.w; x++) {
+            for (let y = 0; y < grid.h; y++) {
+                if (grid.cells[x][y].type !== 'water') continue;
+                for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+                    const n = grid.cells[x + dx] && grid.cells[x + dx][y + dy];
+                    if (!n || n.type === 'void') waterSky++;
+                }
+            }
+        }
+        ok(waterSky === 0, 'meadow pond does not touch the sky (' + waterSky + ')');
+        grid.lots.forEach(function (lot, i) {
+            for (let dy = -1; dy <= 10; dy++) {
+                for (let dx = -1; dx <= 8; dx++) {
+                    const c = grid.cells[lot.x + dx][lot.y + dy];
+                    ok(c && c.type === 'grass' && !c.solid, 'meadow yard ' + i + ' is grass at ' + (lot.x + dx) + ',' + (lot.y + dy));
+                }
+            }
+            const door = (lot.x + 4) + ',' + (lot.y + 8);
+            ok(!!reached[door], 'meadow yard ' + i + ' door is reachable');
+        });
+    }
     const listed = grid.impassable.map(c => c.x + ',' + c.y + ' ' + c.type).sort();
     ok(listed.length === solids.length, b.id + ' impassable count ' + listed.length + ' vs solid cells ' + solids.length);
     const solidSet = {};

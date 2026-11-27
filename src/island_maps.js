@@ -58,29 +58,29 @@ function beachIslandZone(x, y) {
 function islandMapSpecs() {
     return {
         meadow: {
-            w: 42, h: 32,
-            // Yard on the west. The pond sits just east of the door, on the
-            // first screen, so the meadow is a pond and not another lawn.
-            home: [14, 14],
-            ground: [
-                [4, 4, 34, 24],
-                [8, 0, 6, 6],
-                [8, 26, 8, 6]
+            w: 56, h: 48,
+            // Oval of grass in the sky. The player's yard is on the west, and
+            // the pond sits just east of the door, so the first screen is water
+            // and flowers. The four lots are clear yards for animal neighbors
+            // who already have a home: north, south, east, and southwest.
+            disc: { cx: 28, cy: 24, rx: 24, ry: 20 },
+            home: [15, 18],
+            lots: [[25, 7], [27, 31], [40, 18], [17, 30]],
+            water: [
+                [27, 20, 8, 6],
+                [30, 21, 7, 7],
+                [30, 18, 6, 5]
             ],
-            water: [[24, 18, 6, 4]],
-            cliff: [[6, 16, 2, 2]],
-            path: [
-                [10, 0, 2, 32],
-                [23, 18, 1, 6],
-                [4, 16, 8, 2]
-            ],
-            tulip: [[8, 10], [12, 8], [26, 16], [30, 16], [26, 22], [32, 20]],
-            rose: [[28, 22], [32, 18]],
-            tall: [[8, 12], [32, 22], [26, 24]],
-            tree: [[28, 12], [32, 14], [30, 24]],
-            shoot: [10, 0],
-            ladder: [10, 31],
-            skip: { 'skip-city': [8, 17] }
+            // The windmill, a 2x2 stone, with the city skip beside it.
+            cliff: [[18, 12, 2, 2]],
+            tulip: [[10, 12], [12, 11], [9, 14], [22, 15], [23, 16], [21, 14],
+                    [35, 16], [34, 29], [32, 28], [36, 30], [37, 29],
+                    [8, 22], [9, 23], [10, 24], [14, 8], [15, 9], [13, 10]],
+            rose: [[11, 12], [22, 16], [33, 28], [9, 22], [14, 9], [37, 30]],
+            tall: [[12, 16], [20, 15], [35, 17], [8, 24], [24, 28], [36, 15], [11, 28]],
+            shoot: [28, 4],
+            ladder: [28, 43],
+            skip: { 'skip-city': [21, 13] }
         },
         woods: {
             w: 44, h: 34,
@@ -260,6 +260,25 @@ function buildIslandGrid(id) {
         }
     });
 
+    // An oval island. Used by the meadow: grass in the disc, sky in the corners.
+    if (spec.disc) {
+        const d = spec.disc;
+        for (let y = 0; y < H; y++) {
+            for (let x = 0; x < W; x++) {
+                const ang = Math.atan2((y + 0.5 - d.cy) / d.ry, (x + 0.5 - d.cx) / d.rx);
+                const dx = (x + 0.5 - d.cx) / d.rx;
+                const dy = (y + 0.5 - d.cy) / d.ry;
+                const norm = Math.sqrt(dx * dx + dy * dy);
+                const edge = 1
+                    + 0.05 * Math.sin(2 * ang + 0.3)
+                    + 0.035 * Math.sin(3 * ang + 1.1)
+                    + 0.02 * Math.sin(5 * ang + 0.6);
+                if (norm > edge) continue;
+                const c = cells[x][y];
+                if (c.type === 'void') { c.type = 'grass'; c.solid = false; }
+            }
+        }
+    }
     (spec.ground || []).forEach(function (r) { fillRect(r, 'ground', paintGround); });
     (spec.snow || []).forEach(function (r) {
         fillRect(r, 'snow', function (c, x, y) { paintOverLand(c, x, y, 'snow', false, 'snow'); });

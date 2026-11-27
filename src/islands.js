@@ -21,9 +21,9 @@ const ISLAND_GRID = CONFIG.WORLD_WIDTH;   // 100 — the engine grid every islan
 const ISLAND_BIOMES = [
     {
         id: 'meadow', name: 'The Meadow', land: 50,
-        blurb: 'The pond is the whole of it. Flowers, and nothing that wants anything from you.',
+        blurb: 'Flowers, a pond off to the east, and yards for the animals who stay.',
         sky: [150, 195, 230],
-        decor: [['tulip', 16], ['rosebush', 8], ['tree', 4], ['bird_poop', 4]],
+        decor: [['tulip', 16], ['rosebush', 6]],
     },
     {
         id: 'woods', name: 'The Woods', land: 56,
@@ -244,6 +244,28 @@ function updateIslandFall() {
     }
 }
 
+// Animal neighbors are the meadow's residents. Species strings look like
+// "Animal (Rabbit)". getNpcSpeciesGroup lives with the roster.
+function neighborIsAnimal(npc) {
+    const species = npc && npc.species;
+    if (typeof getNpcSpeciesGroup === 'function') return getNpcSpeciesGroup(species) === 'Animal';
+    return !!(species && String(species).indexOf('Animal') === 0);
+}
+
+// Stamp a shack on a reserved yard. The lot origin is the shack's corner,
+// and the neighbor stands on the grass at the door.
+function placeNeighborShack(npc, lot) {
+    const shack = new Building('shack', lot.x, lot.y, npc.id);
+    if (typeof clearBuildingFootprint === 'function') clearBuildingFootprint(shack);
+    buildings.push(shack);
+    npc.hasHome = true;
+    npc.hutX = lot.x;
+    npc.hutY = lot.y;
+    npc.gridX = lot.x + 4;
+    npc.gridY = lot.y + 8;
+    notify(npc.name + ' built a shack!');
+}
+
 // Replace the live island with the next one down. Inventory, friendships,
 // quests and the almanac come along; terrain, buildings and crops do not.
 function fallToNextIsland(dir) {
@@ -283,11 +305,28 @@ function fallToNextIsland(dir) {
     }
 
     npcs = followers;
+    // The meadow's yards belong to animal neighbors who already had a shack.
+    // That home is the test: the player built it for them. Anyone else waits
+    // at the landing. The other islands still rebuild a shack for every follower.
+    let animalLot = 0;
     for (let i = 0; i < npcs.length; i++) {
         const npc = npcs[i];
+        const settledAnimal = biome.id === 'meadow' && npc.hasHome && neighborIsAnimal(npc);
         npc.hasHome = false;
         npc.hutX = null;
         npc.hutY = null;
+        if (settledAnimal) {
+            const lot = next.lots[animalLot++];
+            if (lot) {
+                placeNeighborShack(npc, lot);
+                continue;
+            }
+        }
+        if (biome.id === 'meadow') {
+            npc.gridX = arrival.x;
+            npc.gridY = arrival.y;
+            continue;
+        }
         const lot = next.lots[i];
         npc.gridX = lot ? lot.x : arrival.x;
         npc.gridY = lot ? lot.y : arrival.y;
