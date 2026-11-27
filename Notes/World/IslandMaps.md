@@ -36,11 +36,13 @@ The home beach is the large island. It is an oval of grass with a sand beach, th
 
 The meadow is an oval of grass with sky at the corners. The pond sits east of the door, with flowers and tall grass in the open. Four clear yards are the animal neighbors' lots: north, south, east, and southwest. An animal who already has a shack gets one of those yards when the meadow is made. A save already on the meadow keeps the tiles it stored.
 
+The woods are an oval of trees with sky at the corners. The creek bends in east of the door, and a path crosses it. Trees ring the clearing. While you stand there, the screen carries a thin green shade. Mubaba's Fortress stays on the deep woods. A save already in the woods keeps the tiles it stored.
+
 Each island below is one section of the old map, and its place stands beside the door you land at:
 
 - Beach — the Gettin' Place, inland of the dock
 - Meadow — the pond, east of the yard, and the animal yards around it
-- Woods — the creek, east of the yard
+- Woods — the creek, bending east of the yard, with the path across it
 - Town — Stimmy Tim's cafe, door on the landing row, fountain just east
 - City — the Black Goddess (the club) on the landing row, with the Electric Temple, the Recycle Bin, and the clock
 - Deep woods — Mubaba's Fortress on the landing row, the Bottomless Pit south of the yard, the Inner Temple north

@@ -27,9 +27,9 @@ const ISLAND_BIOMES = [
     },
     {
         id: 'woods', name: 'The Woods', land: 56,
-        blurb: 'The creek runs beside the yard. The trees are the walls.',
+        blurb: 'The creek bends past the door. The trees hold the light.',
         sky: [128, 178, 205],
-        decor: [['tree', 44], ['fir_tree', 16], ['rock', 8], ['shiny_rock', 3]],
+        decor: [['tree', 56], ['fir_tree', 10], ['shiny_rock', 4]],
     },
     {
         id: 'town', name: 'The Town', land: 80,
@@ -399,6 +399,16 @@ function drawIslandVoidBackdrop() {
     );
     rect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
     if (typeof drawSkyClouds === 'function' && deep < 0.5) drawSkyClouds(0);
+}
+
+// The woods sit under a canopy. A thin green wash over the island, so the
+// screen reads a little darker than the meadow without turning into night.
+function drawWoodsShade() {
+    if (typeof currentMapId !== 'undefined' && currentMapId !== 'island') return;
+    if (!world || world.biome !== 'woods') return;
+    noStroke();
+    fill(10, 26, 14, 48);
+    rect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
 }
 
 // ===== PROMPT + FADE OVERLAY =====

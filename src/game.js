@@ -1273,6 +1273,9 @@ function drawGame() {    // Handle continuous movement
     // ===== WEATHER: particles over the world, under the day/night overlay =====
     drawWeather();
 
+    // Woods canopy, under the day/night wash so noon is shaded and night stays night.
+    if (typeof drawWoodsShade === 'function') drawWoodsShade();
+
     // Day/night overlay
     drawDayNightOverlay();
 
