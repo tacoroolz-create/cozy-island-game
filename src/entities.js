@@ -377,7 +377,7 @@ function checkArrivals() {
         npcs.push(npc);
     }
     // Arrive by boat at the end of the west-beach dock.
-    const arrival = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const arrival = (typeof islandDockArrival === 'function') ? islandDockArrival() : { x: 9, y: 50 };
     npc.gridX = arrival.x;
     npc.gridY = arrival.y;
     announce('New neighbor: ' + npc.name + '!');

@@ -12,6 +12,7 @@ vm.createContext(ctx);
 const src = fs.readFileSync('src/island_maps.js', 'utf8') + '\n' + fs.readFileSync('src/islands.js', 'utf8');
 const exported = vm.runInContext(src + `
 ;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable, islandMapSpecs,
+    beachIslandZone,
     promptFallAt, peekFall() { return fallPrompt; }, clearFall() { fallPrompt = null; } })
 `, ctx);
 
@@ -94,6 +95,66 @@ exported.clearFall();
 ok(!exported.promptFallAt({ x: 0, y: 49 }, 1, 49) && !exported.peekFall(),
     'walking along the pier stays on the pier');
 exported.clearFall();
+
+// The home beach is an oval: sky at the corners, grass under the shack and
+// the pond, shallows under the pier, sand at its landward end.
+const zone = exported.beachIslandZone;
+ok(zone(0, 0) === 'void' && zone(99, 99) === 'void', 'beach corners are sky');
+ok(zone(15, 15) === 'void' && zone(20, 20) === 'void', 'the old square corners are sky now');
+let grass = 0, sand = 0, beachOnVoid = 0;
+const grassSeen = {};
+for (let x = 0; x < 100; x++) {
+    for (let y = 0; y < 100; y++) {
+        const z = zone(x, y);
+        if (z === 'grass') { grass++; grassSeen[x + ',' + y] = true; }
+        else if (z === 'beach') {
+            sand++;
+            for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+                const nx = x + dx, ny = y + dy;
+                if (nx < 0 || ny < 0 || nx > 99 || ny > 99 || zone(nx, ny) === 'void') beachOnVoid++;
+            }
+        }
+    }
+}
+ok(beachOnVoid === 0, 'sand never touches the sky (' + beachOnVoid + ')');
+ok(grass + sand > 1800 && grass + sand < 5000, 'beach land is larger than a biome island (' + (grass + sand) + ')');
+// One grass blob, so the yard can walk to the shore.
+let reached = 0;
+const q = [[50, 47]];
+const seen = { '50,47': true };
+while (q.length) {
+    const p = q.pop();
+    reached++;
+    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nx = p[0] + dx, ny = p[1] + dy, k = nx + ',' + ny;
+        if (!grassSeen[k] || seen[k]) continue;
+        seen[k] = true;
+        q.push([nx, ny]);
+    }
+}
+ok(reached === grass, 'grass is one island (' + reached + '/' + grass + ')');
+for (let dy = 0; dy < 6; dy++) {
+    for (let dx = 0; dx < 6; dx++) {
+        ok(zone(47 + dx, 39 + dy) === 'grass', 'pond tile ' + (47 + dx) + ',' + (39 + dy) + ' is grass');
+    }
+}
+for (let dy = 0; dy < 12; dy++) {
+    for (let dx = 0; dx < 10; dx++) {
+        ok(zone(51 + dx, 46 + dy) === 'grass', 'shack yard ' + (51 + dx) + ',' + (46 + dy) + ' is grass');
+    }
+}
+for (let dy = 0; dy < 8; dy++) {
+    for (let dx = 0; dx < 8; dx++) {
+        ok(zone(26 + dx, 42 + dy) === 'grass', 'gettin tile ' + (26 + dx) + ',' + (42 + dy) + ' is grass');
+    }
+}
+ok(zone(46, 41) === 'grass', 'the pond bank where you start is grass');
+for (let py = 0; py < 4; py++) {
+    for (let px = 0; px < 6; px++) ok(zone(8 + px, 45 + py) === 'sea', 'pier water ' + px + ',' + py);
+    ok(zone(14, 45 + py) === 'beach' && zone(15, 45 + py) === 'beach', 'pier sand row ' + py);
+    ok(zone(7, 45 + py) === 'sea', 'one step west of the pier is water, row ' + py);
+}
+ok(zone(16, 47) === 'beach', 'dock arrival is sand');
 
 console.log(fails ? fails + ' FAILURES' : 'islands: all checks passed');
 process.exit(fails ? 1 : 0);

@@ -97,7 +97,7 @@ function ensureBeachGettin() {
     if (currentMapId !== 'island') return;
     if (typeof buildings === 'undefined' || !buildings) return;
     if (buildings.some(function (b) { return b.type === 'ug_gettin'; })) return;
-    const gx = 14, gy = 44, w = 8, h = 8;
+    const gx = 26, gy = 42, w = 8, h = 8;
     for (let dy = 0; dy < h; dy++) {
         for (let dx = 0; dx < w; dx++) {
             if (typeof buildingAt === 'function' && buildingAt(gx + dx, gy + dy)) return;
@@ -334,7 +334,20 @@ function islandArrivalPoint(biome, dir) {
 // islands-above and the depth-specific sky art (08's sprite list) go here when
 // the art exists.
 function drawIslandVoidBackdrop() {
-    if (!onBiomeIsland()) return;
+    if (typeof currentMapId !== 'undefined' && currentMapId !== 'island') return;
+    if (!world) return;
+    // Home beach. The oval sits in the same sky the islands below use.
+    if (!onBiomeIsland()) {
+        const hour = world.timeMinutes / 60;
+        const day = hour >= 6 && hour < 19;
+        noStroke();
+        if (day) fill(150, 198, 230);
+        else fill(20, 28, 58);
+        rect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
+        if (day && typeof drawSkyClouds === 'function') drawSkyClouds(0);
+        else if (!day && typeof drawSkyStars === 'function') drawSkyStars(0);
+        return;
+    }
     const b = ISLAND_BIOMES.find(x => x.id === world.biome);
     if (!b) return;
     // Every 6 islands past the fixed set, the void gets one shade stranger.

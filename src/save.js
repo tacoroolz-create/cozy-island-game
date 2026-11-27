@@ -209,7 +209,8 @@ const MIGRATIONS = [
                     if (!tile || tile.type !== 'sea') continue;
                     const zone = islandZone(x, y);
                     if (zone !== 'sea') {
-                        tiles[x][y] = { type: zone === 'beach' ? 'beach' : 'grass', variant: 0 };
+                        if (zone === 'void') tiles[x][y] = { type: 'void', variant: 0, solid: true };
+                        else tiles[x][y] = { type: zone === 'beach' ? 'beach' : 'grass', variant: 0 };
                     }
                 }
             }

@@ -14,6 +14,47 @@
 const SHACK_CLEAR_W = 10; // dx -1..8
 const SHACK_CLEAR_H = 12; // dy -1..10
 
+// The home beach. Larger than the biome islands, because the shack, the
+// garden, and the holidays live here. It is an oval: grass in the middle,
+// a sand beach (thicker on the south), a thin skirt of shallows, then sky.
+// The west shallows bulge out into a cove so the pier stands in the water.
+const BEACH = { cx: 50, cy: 47, rx: 32, ry: 24, sand: 5, sea: 4 };
+
+function beachAngle(x, y) {
+    return Math.atan2((y + 0.5 - BEACH.cy) / BEACH.ry, (x + 0.5 - BEACH.cx) / BEACH.rx);
+}
+
+function beachNorm(x, y) {
+    const dx = (x + 0.5 - BEACH.cx) / BEACH.rx;
+    const dy = (y + 0.5 - BEACH.cy) / BEACH.ry;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+// 1 at the grass edge. A little wobble, so the shore is not a perfect oval.
+function beachGrassEdge(x, y) {
+    const a = beachAngle(x, y);
+    return 1
+        + 0.06 * Math.sin(2 * a + 0.6)
+        + 0.045 * Math.sin(3 * a + 1.7)
+        + 0.03 * Math.sin(5 * a + 0.4);
+}
+
+// 'grass' | 'beach' | 'sea' | 'void' for a world-grid tile on the home island.
+function beachIslandZone(x, y) {
+    const a = beachAngle(x, y);
+    const edge = beachGrassEdge(x, y);
+    const d = beachNorm(x, y);
+    const south = Math.max(0, Math.sin(a));
+    const west = Math.max(0, -Math.cos(a));
+    const sand = (BEACH.sand + south * 2) / BEACH.rx;
+    // west^8 is a cove: extra water only near due west, where the pier sits.
+    const sea = (BEACH.sea + Math.pow(west, 8) * 5) / BEACH.rx;
+    if (d <= edge) return 'grass';
+    if (d <= edge + sand) return 'beach';
+    if (d <= edge + sand + sea) return 'sea';
+    return 'void';
+}
+
 function islandMapSpecs() {
     return {
         meadow: {

@@ -32,7 +32,9 @@ Skips are marked and walkable, and do not travel yet:
 | Mountain | `skip-meadow` | On the snow, the melt |
 | Mountain | `overlook` | The middle of the snow |
 
-Each island is one section of the old map, and its place stands beside the door you land at:
+The home beach is the large island. It is an oval of grass with a sand beach, thicker along the south shore, then a thin skirt of shallows and sky past that. The west shallows bulge into a cove, and the pier stands in that cove. The shack and the pond stay where they were. The Gettin' Place sits on the west grass, inland of the pier. A new game builds this shape. A save already on the beach keeps the tiles it stored, and guests still arrive at the pier that save actually has.
+
+Each island below is one section of the old map, and its place stands beside the door you land at:
 
 - Beach — the Gettin' Place, inland of the dock
 - Meadow — the pond, east of the yard

@@ -38,15 +38,9 @@ const CONFIG = {
 // has to cover.
 let worldViewScale = 1;
 
-// Island shape: the island is a centered rectangle. Tiles within SEA_MARGIN of the
-// world edge are open ocean; the next BEACH_THICKNESS ring is sandy beach; everything
-// inside that is grass. "Edge distance" is measured to the nearest world edge, so the
-// coastline is a clean rectangle rather than a circle.
-//
-// The land is a square of side (WORLD_WIDTH - 2*SEA_MARGIN). Dropping SEA_MARGIN from 8
-// to 6 grows that side from 84 to 88 tiles — land area 7056 -> 7744, about +9.75% (the
-// closest whole-tile step to +10%). The grass interior is unchanged (still starts at
-// edge 11), so all of the added land becomes beach: the beach ring thickens from 3 to 5.
+// The home beach is an oval island (see beachIslandZone in island_maps.js):
+// grass, a sand ring, a skirt of shallows, sky beyond that. SEA_MARGIN
+// remains only so older checks have a number; the shape itself is the mask.
 const ISLAND = { SEA_MARGIN: 6, BEACH_THICKNESS: 5 };
 // Non-beach decorations (trees, rocks, tall grass, bird poop) must keep at
 // least this many tiles of clearance from the beach, so they never render across
@@ -56,6 +50,7 @@ const NONBEACH_BEACH_BUFFER = 10;
 // water — the outer edge of the beach — and away from the grass line.
 const BEACH_FEATURE_WATER_DIST = 2;
 function islandZone(x, y) {
+    if (typeof beachIslandZone === 'function') return beachIslandZone(x, y);
     const edge = Math.min(x, CONFIG.WORLD_WIDTH - 1 - x, y, CONFIG.WORLD_HEIGHT - 1 - y);
     if (edge < ISLAND.SEA_MARGIN) return 'sea';
     if (edge < ISLAND.SEA_MARGIN + ISLAND.BEACH_THICKNESS) return 'beach';
@@ -379,7 +374,12 @@ function isSolidTile(x, y) {
     // row is the south face/pilings, so standing on either reads as walking on
     // water. Checked before tile.solid so old saves (solid:true everywhere) follow
     // this too.
-    if (tile.type === 'dock') return y < DOCK_DECK_Y0 || y > DOCK_DECK_Y1;
+    // Deck rows follow the pier that is actually on the map, so a save whose
+    // dock still sits at the old spot stays walkable after the origin moves.
+    if (tile.type === 'dock') {
+        const deck = dockDeckSpan();
+        return y < deck.y0 || y > deck.y1;
+    }
     if (tile.solid !== undefined) return tile.solid;
     if (TILE_SOLID.has(tile.type)) return true;
     if (typeof animalAt === 'function' && animalAt(x, y)) return true;
@@ -1224,11 +1224,10 @@ function drawGame() {    // Handle continuous movement
     updateHorizonPeek(deltaTime);
     updateCamera(); // re-apply peek offset after it drifts
 
-    // ===== SKY / HORIZON: screen-space backdrop behind the island =====
-    drawSky();
-
-    // ===== FLOATING ISLANDS: the void behind/around a biome island =====
+    // Sky first, then the north-edge peek sprite, so the peek is not covered.
+    // Void tiles draw nothing; this wash is what shows through them.
     if (typeof drawIslandVoidBackdrop === 'function') drawIslandVoidBackdrop();
+    drawSky();
 
     // Draw world
     world.draw();
@@ -1927,7 +1926,7 @@ function buildWellWishSpots() {
 
 function spawnWellWishGarden() {
     if (!world || typeof npcs === 'undefined') return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     wellWishGardener = findClearGroundNear(dock.x, dock.y, 1, 10);
     wellWishGarden = { day: world.day, spots: buildWellWishSpots(), gaveFlowerToday: false };
     heldWellWishFlower = false;
@@ -2018,7 +2017,7 @@ const PETAL_PATH_WALK_LINES = [
 
 function findPetalPathAnchors() {
     if (!world) return null;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     const home = (typeof getPlayerShack === 'function') ? getPlayerShack() : null;
     const end = home ? findExteriorStandingTile(home)
         : findClearGroundNear(Math.floor(CONFIG.WORLD_WIDTH / 2), Math.floor(CONFIG.WORLD_HEIGHT / 2), 0, 20);
@@ -2038,7 +2037,7 @@ function findPetalPathAnchors() {
 
 function spawnPetalPath() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     const anchors = findPetalPathAnchors();
     if (!anchors) return;
     petalPathArtist = findClearGroundNear(dock.x, dock.y, 1, 10);
@@ -2479,7 +2478,7 @@ let timeCapsuleHistorian = null; // { x, y, revealedToday, donatedToday, day } �
 
 function spawnTimeCapsuleHistorian() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     const spot = findClearGroundNear(dock.x, dock.y, 1, 12) || dock;
     timeCapsuleHistorian = { x: spot.x, y: spot.y, revealedToday: false, donatedToday: false, day: world.day };
     if (timeCapsuleBox) {
@@ -2601,7 +2600,7 @@ let touristTime = null; // { tourists:[{x,y,name,gaveSouvenirToday}], day }
 
 function spawnTouristTime() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     const tourists = [];
     const rings = [[1, 5], [4, 9], [7, 13]];
     for (let i = 0; i < TOURIST_NAMES.length; i++) {
@@ -2687,7 +2686,7 @@ let heldSweetTea = false;
 
 function spawnPeakSaucy() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     peakSaucyElder = findClearGroundNear(dock.x, dock.y, 1, 12);
     peakSaucy = { day: world.day, served: new Set(), keepsakeGiven: false };
     heldSweetTea = false;
@@ -2800,7 +2799,7 @@ function findMemoryStones(count) {
 
 function spawnCoolValley() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     const elder = findClearGroundNear(dock.x, dock.y, 1, 12);
     const lanterns = findLanternShoreLine(COOL_VALLEY_LANTERN_COUNT) || [];
     const stones = findMemoryStones(COOL_VALLEY_STONE_COUNT).map(s => ({ x: s.x, y: s.y, offered: false }));
@@ -2936,7 +2935,7 @@ let sweetValleyAltar = null; // { day, x, y, built, offeredBonusGiven }
 function findSweetValleyAltarSpot() {
     const shore = (typeof findLanternShoreLine === 'function') ? findLanternShoreLine(1) : null;
     if (shore && shore[0]) return shore[0];
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     return findClearGroundNear(dock.x, dock.y, 1, 15);
 }
 
@@ -3051,7 +3050,7 @@ let peakYeesh = null; // { day, spot:{x,y}, built }
 let papaYeesh = null; // { x, y, lastMoveAt }
 
 function findEverburnSpot() {
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     return findClearGroundNear(dock.x, dock.y, 1, 15);
 }
 
@@ -3079,7 +3078,7 @@ function updatePeakYeesh() {
         return;
     }
     if (!papaYeesh) {
-        const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+        const dock = islandDockArrival();
         const spot = findClearGroundNear(dock.x, dock.y, 3, 18);
         if (!spot) return;
         papaYeesh = { x: spot.x, y: spot.y, lastMoveAt: 0 };
@@ -3220,7 +3219,7 @@ function isYarboVisiting() {
 
 function updateYarbo() {
     if (!isYarboVisiting()) { yarbo = null; return; }
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     if (!yarbo) {
         const spot = findClearGroundNear(dock.x, dock.y, 1, YARBO_RADIUS);
         if (!spot) return;
@@ -3260,7 +3259,7 @@ function flealessCostLabel(cost) {
 
 function spawnFlealessMarket() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     flealessMerchant = findClearGroundNear(dock.x, dock.y, 1, 12);
     flealessMarket = { day: world.day, bought: { statue: false, tool: false, seed: false } };
     notify('A traveling merchant has set up near the dock, offering rare goods for barter.', 4500);
@@ -3364,7 +3363,7 @@ let familiar = null; // persistent: { active, name, kindIndex, gridX, gridY, fac
 
 function spawnFamiliarSeller() {
     if (!world) return;
-    const dock = (typeof ISLAND_DOCK_ARRIVAL !== 'undefined') ? ISLAND_DOCK_ARRIVAL : { x: 9, y: 50 };
+    const dock = islandDockArrival();
     familiarDruid = findClearGroundNear(dock.x, dock.y, 1, 12);
     familiarSellerDay = { day: world.day, kindIndex: world.day % FAMILIAR_KINDS.length };
     notify('A traveling druid has set up near the dock with a familiar for sale.', 4500);
@@ -5823,9 +5822,12 @@ function updateHorizonPeek(dt) {
         return;
     }
 
-    // Standing still on the outermost north beach tile while facing up pans
-    // the camera up to HORIZON_PEEK_MAX_TILES to reveal the sky backdrop.
-    const onNorthEdge = player.y === ISLAND.SEA_MARGIN && player.facing === 'up';
+    // Standing still on the north sand, facing the shallows or the sky, pans
+    // the camera up to HORIZON_PEEK_MAX_TILES to reveal the backdrop.
+    const here = world.tiles[player.x] && world.tiles[player.x][player.y];
+    const north = player.y > 0 && world.tiles[player.x] && world.tiles[player.x][player.y - 1];
+    const onNorthEdge = player.facing === 'up' && here && here.type === 'beach' &&
+        north && (north.type === 'sea' || north.type === 'void');
     const moving = keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) ||
                     keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68);
 
@@ -7061,7 +7063,7 @@ function carveStarterPaths() {
     // Only the dock gets a starter path. The tunnel to the underground city is
     // deliberately left pathless so it reads as a natural oddity you stumble on.
     const targets = [
-        ISLAND_DOCK_ARRIVAL, // the west-beach dock landing
+        islandDockArrival(), // the west-beach dock landing
     ];
     for (const t of targets) carveMeanderingPath(start.x, start.y, t.x, t.y);
 }
@@ -7722,10 +7724,11 @@ const UNDERGROUND_TREE_SIZE = { w: 1, h: 2 };
 const UNDERGROUND_POND_SIZE = { w: 6, h: 6 };
 
 // The west-beach dock: an 8x4 tile pier (dock.png), origin at its NW corner.
-// Columns 0-5 stick out over the sea, columns 6-7 sit on the sand. Neighbors
-// and guests "arrive" by boat and appear on the beach tile just east of the
-// dock's landward end (see checkArrivals() in entities.js).
-const ISLAND_DOCK_ORIGIN  = { x: 0, y: 48 };
+// Columns 0-5 stick out over the cove, columns 6-7 sit on the sand.
+// Neighbors and guests "arrive" by boat and appear on the beach tile just
+// east of the dock's landward end (see checkArrivals() in entities.js).
+// The seaward end is the way down: one step west is open water.
+const ISLAND_DOCK_ORIGIN  = { x: 8, y: 45 };
 const ISLAND_DOCK_W = 8, ISLAND_DOCK_H = 4;
 const ISLAND_DOCK_ARRIVAL = { x: ISLAND_DOCK_ORIGIN.x + ISLAND_DOCK_W, y: ISLAND_DOCK_ORIGIN.y + 2 };
 // The 8x4 sprite only draws 3 tile rows of pier: row 0 is empty, row 1 is the
@@ -7733,6 +7736,53 @@ const ISLAND_DOCK_ARRIVAL = { x: ISLAND_DOCK_ORIGIN.x + ISLAND_DOCK_W, y: ISLAND
 // Rows 1-2 are the deck anyone can stand on; see isSolidTile().
 const DOCK_DECK_Y0 = ISLAND_DOCK_ORIGIN.y + 1;
 const DOCK_DECK_Y1 = ISLAND_DOCK_ORIGIN.y + 2;
+
+// Where the placed pier's deck is. A save keeps its own dock tiles, which may
+// not be at ISLAND_DOCK_ORIGIN, so the walkable rows are read off the map.
+let _dockDeckTiles = null;
+let _dockDeck = null;
+function dockDeckSpan() {
+    const tiles = (typeof world !== 'undefined' && world) ? world.tiles : null;
+    if (tiles === _dockDeckTiles && _dockDeck) return _dockDeck;
+    _dockDeckTiles = tiles;
+    const span = { y0: DOCK_DECK_Y0, y1: DOCK_DECK_Y1 };
+    if (tiles) {
+        for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+            const col = tiles[x];
+            if (!col) continue;
+            for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                const t = col[y];
+                if (t && t.type === 'dock' && t.dockOrigin) {
+                    span.y0 = y + 1;
+                    span.y1 = y + 2;
+                    _dockDeck = span;
+                    return span;
+                }
+            }
+        }
+    }
+    _dockDeck = span;
+    return span;
+}
+
+// The sand tile just east of whichever pier is on the map. Holidays and
+// neighbors arrive there. Falls back to the generated pier when no dock exists.
+function islandDockArrival() {
+    const tiles = (typeof world !== 'undefined' && world) ? world.tiles : null;
+    if (tiles) {
+        for (let x = 0; x < CONFIG.WORLD_WIDTH; x++) {
+            const col = tiles[x];
+            if (!col) continue;
+            for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
+                const t = col[y];
+                if (t && t.type === 'dock' && t.dockOrigin) {
+                    return { x: x + ISLAND_DOCK_W, y: y + 2 };
+                }
+            }
+        }
+    }
+    return ISLAND_DOCK_ARRIVAL;
+}
 
 // Eight foundation pads where underground buildings can stand (2 rows x 4 cols).
 // Each pad is PAD_W x PAD_H tiles; (x,y) is its top-left corner.
@@ -7970,7 +8020,9 @@ class World {
             this.tiles[x] = [];
             for (let y = 0; y < CONFIG.WORLD_HEIGHT; y++) {
                 const zone = islandZone(x, y);
-                if (zone === 'sea') {
+                if (zone === 'void') {
+                    this.tiles[x][y] = { type: 'void', variant: 0, solid: true };
+                } else if (zone === 'sea') {
                     this.tiles[x][y] = { type: 'sea', variant: floor(random(3)) };
                 } else if (zone === 'beach') {
                     this.tiles[x][y] = { type: 'beach', variant: floor(random(3)) };
@@ -7979,7 +8031,7 @@ class World {
                 }
             }
         }
-        // The island is a clean rectangle, so no coastline smoothing is needed.
+        // The oval coast comes from beachIslandZone. Smoothing would nibble it.
 
         // Scatter decorations on a 10x10 grid - at most 1 decoration per cell
         // This keeps open space for building
@@ -8628,7 +8680,11 @@ class World {
                         // columns sit on sand, its seaward ones on water. Judge a dock
                         // tile by the terrain underneath it so the shoreline runs
                         // straight through the dock band instead of jogging around it.
-                        if (t.type === 'dock') return islandZone(nx, ny);
+                        if (t.type === 'void') return 'sea';
+                        if (t.type === 'dock') {
+                            const under = islandZone(nx, ny);
+                            return under === 'beach' || under === 'grass' ? under : 'sea';
+                        }
                         return t.type;
                     }
                     function isLandType(type) {
