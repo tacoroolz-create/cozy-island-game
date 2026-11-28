@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sprite Tween</title>
+<style>
+  :root {
+    --bg: #1c1b19;
+    --panel: #2a2723;
+    --line: #4a433a;
+    --text: #f3efe6;
+    --muted: #b7ab9a;
+    --accent: #e2b15a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.45 "Iowan Old Style", Palatino, Georgia, serif;
+  }
+  button, input, select, label.file {
+    font: 13px/1.2 ui-sans-serif, system-ui, sans-serif;
+  }
+  button, .file, select, input[type="number"], input[type="color"] {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+  button { cursor: pointer; }
+  button:hover, .file:hover { border-color: var(--accent); }
+  button:disabled { opacity: 0.45; cursor: default; }
+  button.on, button.primary { background: #3d3424; border-color: var(--accent); color: var(--accent); }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .lede, .foot { color: var(--muted); margin: 0; max-width: 68em; }
+  header, .footwrap { padding: 14px 16px 8px; }
+  .footwrap { padding-top: 0; }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    padding: 10px 16px;
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .file { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+  .file input { display: none; }
+  .file.hot { border-color: var(--accent); color: var(--accent); }
+  label.inline { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; }
+  input[type="number"] { width: 58px; }
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 14px;
+    padding: 14px 16px;
+    align-items: start;
+  }
+  .viewwrap { overflow: auto; max-height: calc(100vh - 300px); min-height: 160px; }
+  canvas#view { image-rendering: pixelated; image-rendering: crisp-edges; touch-action: none; cursor: crosshair; background: #111; }
+  .side { display: flex; flex-direction: column; gap: 8px; }
+  .tools { display: flex; gap: 6px; }
+  .tools button { flex: 1; }
+  #swatches { display: flex; flex-wrap: wrap; gap: 4px; min-height: 22px; }
+  .swatch { width: 18px; height: 18px; padding: 0; border-radius: 2px; }
+  .swatch.on { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .side button { width: 100%; }
+  #status, #meta { color: var(--muted); font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; margin: 0; }
+  #timeline {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 16px 12px;
+  }
+  .framebtn {
+    background: transparent;
+    border: 2px solid var(--line);
+    padding: 4px 4px 2px;
+    color: var(--muted);
+    flex: 0 0 auto;
+  }
+  .framebtn canvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; height: 56px; width: auto; background: #111; }
+  .framebtn.on { border-color: var(--accent); }
+  .framebtn .mark { display: block; font-size: 10px; letter-spacing: 0.04em; text-align: center; margin-top: 2px; }
+  .framebtn.key .mark { color: var(--accent); }
+  @media (max-width: 720px) {
+    .stage { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sprite Tween</h1>
+  <p class="lede">Load the start pose and the end pose. Each pixel slides toward a pixel of the same color, then snaps to the grid. Paint any frame that needs a correction. That frame stays, and the open frames around it rebuild.</p>
+</header>
+
+<div class="toolbar">
+  <label class="file" id="drop-start">Start PNG<input id="file-start" type="file" accept="image/png,image/*"></label>
+  <label class="file" id="drop-end">End PNG<input id="file-end" type="file" accept="image/png,image/*"></label>
+  <button id="example" type="button">Try an example</button>
+  <label class="inline">In-betweens <input id="count" type="number" min="1" max="16" value="5"></label>
+  <button id="build" class="primary" type="button" disabled>Build strip</button>
+  <label class="inline">Ease
+    <select id="ease">
+      <option value="linear">Linear</option>
+      <option value="smooth">Smooth</option>
+    </select>
+  </label>
+  <label class="inline">FPS <input id="fps" type="number" min="1" max="24" value="8"></label>
+  <button id="play" type="button" disabled>Play</button>
+  <label class="inline"><input id="onion" type="checkbox" checked> Onion skin</label>
+  <label class="inline"><input id="auto" type="checkbox" checked> Rebuild around edits</label>
+  <label class="inline"><input id="fullpx" type="checkbox"> Pixels are already 1×</label>
+</div>
+
+<div class="stage">
+  <div class="viewwrap"><canvas id="view" width="2" height="2"></canvas></div>
+  <div class="side">
+    <div class="tools">
+      <button type="button" data-tool="pencil" class="on">Pencil</button>
+      <button type="button" data-tool="eraser">Eraser</button>
+      <button type="button" data-tool="pick">Pick</button>
+    </div>
+    <div id="swatches"></div>
+    <label class="inline">Color <input id="color" type="color" value="#000000"></label>
+    <button id="unlock" type="button" disabled>Unlock frame</button>
+    <button id="retween" type="button" disabled>Rebuild open frames</button>
+    <button id="add" type="button" disabled>Add frame after</button>
+    <button id="del" type="button" disabled>Delete frame</button>
+    <p id="status">Export two poses from Pixsplat as PNG at the same canvas size.</p>
+  </div>
+</div>
+
+<div id="timeline"></div>
+
+<div class="toolbar">
+  <button id="strip" type="button" disabled>Download sprite strip</button>
+  <button id="zip" type="button" disabled>Download frames (.zip)</button>
+  <span id="meta"></span>
+</div>
+<div class="footwrap">
+  <p class="foot">Pixsplat stays the drawing program. This page only fills the gap. A sprite strip is one horizontal PNG, frames left to right, for the game. The zip is one PNG per frame, for bringing the poses back into Pixsplat. Same colors travel. A color that exists on only one pose grows in or shrinks away. A move of N pixels needs about N − 1 in-betweens to land on every pixel along the way. Arrows change frame. Space plays. B pencil, E eraser, I pick. ⌘Z undoes. [ and ] zoom.</p>
+</div>
+
+<script src="tween.js"></script>
+<script>
+(function () {
+  const $ = function (id) { return document.getElementById(id); };
+  const view = $('view');
+  const viewCtx = view.getContext('2d');
+
+  const state = {
+    w: 0,
+    h: 0,
+    frames: [],
+    locked: [],
+    index: 0,
+    tool: 'pencil',
+    color: 0,
+    zoom: 12,
+    painting: false,
+    undo: [],
+    loaded: { start: null, end: null },
+  };
+
+  function hex(c) {
+    const r = c & 255, g = (c >> 8) & 255, b = (c >> 16) & 255;
+    return '#' + [r, g, b].map(function (v) { return v.toString(16).padStart(2, '0'); }).join('');
+  }
+  function fromHex(h) {
+    const n = parseInt(h.slice(1), 16);
+    return (n >> 16 & 255) | (n >> 8 & 255) << 8 | (n & 255) << 16;
+  }
+
+  function setStatus(text) { $('status').textContent = text; }
+
+  function hasStrip() { return state.frames.length >= 2; }
+
+  function easeName() { return $('ease').value; }
+
+  function fitZoom() {
+    const maxW = Math.max(280, Math.min(640, window.innerWidth - 280));
+    const maxH = Math.max(180, window.innerHeight - 320);
+    state.zoom = Math.max(2, Math.min(24, Math.floor(Math.min(maxW / state.w, maxH / state.h))));
+  }
+
+  function decodeFile(file) {
+    return new Promise(function (resolve, reject) {
+      const img = new Image();
+      img.onload = function () {
+        const c = document.createElement('canvas');
+        c.width = img.width;
+        c.height = img.height;
+        const g = c.getContext('2d', { willReadFrequently: true });
+        g.imageSmoothingEnabled = false;
+        g.drawImage(img, 0, 0);
+        const data = g.getImageData(0, 0, img.width, img.height);
+        resolve({ rgba: new Uint8Array(data.data), w: img.width, h: img.height, name: file.name });
+        URL.revokeObjectURL(img.src);
+      };
+      img.onerror = function () { reject(new Error('Could not read ' + file.name)); };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  function normalize(img) {
+    const source = img.source || { rgba: img.rgba, w: img.w, h: img.h, name: img.name };
+    let out;
+    if ($('fullpx').checked) {
+      out = { rgba: source.rgba, w: source.w, h: source.h, scale: 1 };
+    } else {
+      const scale = SpriteTween.detectScale(source.rgba, source.w, source.h);
+      if (scale === 1) out = { rgba: source.rgba, w: source.w, h: source.h, scale: 1 };
+      else {
+        const small = SpriteTween.downscale(source.rgba, source.w, source.h, scale);
+        out = { rgba: small.rgba, w: small.w, h: small.h, scale: scale, fullW: source.w, fullH: source.h };
+      }
+    }
+    out.name = source.name;
+    out.source = source;
+    return out;
+  }
+
+  function scaleNote() {
+    const notes = [];
+    ['start', 'end'].forEach(function (side) {
+      const im = state.loaded[side];
+      if (im && im.scale > 1) notes.push(side + ' was ' + im.fullW + '×' + im.fullH + ' in ' + im.scale + '× blocks');
+    });
+    return notes;
+  }
+
+  function loadInto(which, file) {
+    decodeFile(file).then(function (img) {
+      state.loaded[which] = normalize(img);
+      adoptPair((which === 'start' ? 'Start' : 'End') + ' is ' + state.loaded[which].w + '×' + state.loaded[which].h + '. Load the other pose.');
+    }).catch(function (err) { setStatus(err.message); });
+  }
+
+  function adoptPair(waiting) {
+    const a = state.loaded.start;
+    const b = state.loaded.end;
+    if (!a || !b) {
+      setStatus(waiting);
+      updateButtons();
+      return;
+    }
+    if (a.w !== b.w || a.h !== b.h) {
+      setStatus('Those PNGs are ' + a.w + '×' + a.h + ' and ' + b.w + '×' + b.h + '. Export both poses from the same canvas size.');
+      updateButtons();
+      return;
+    }
+    state.w = a.w;
+    state.h = a.h;
+    state.frames = [];
+    state.locked = [];
+    buildStrip();
+    const notes = scaleNote();
+    if (notes.length) setStatus('Using ' + state.w + '×' + state.h + ' pixels (' + notes.join('; ') + ').');
+  }
+
+  function buildStrip() {
+    const a = state.frames.length ? state.frames[0] : state.loaded.start && state.loaded.start.rgba;
+    const b = state.frames.length ? state.frames[state.frames.length - 1] : state.loaded.end && state.loaded.end.rgba;
+    if (!a || !b) return;
+    const extra = state.locked.some(function (l, i) {
+      return l && i !== 0 && i !== state.locked.length - 1;
+    });
+    if (extra && !confirm('Build again from the start and end frames? Painted frames will be cleared.')) return;
+    const n = clamp(parseInt($('count').value, 10) || 1, 1, 16);
+    $('count').value = n;
+    const mids = SpriteTween.inbetweens(a, b, state.w, state.h, n, easeName());
+    state.frames = [a.slice()].concat(mids, [b.slice()]);
+    state.locked = state.frames.map(function (_, i) {
+      return i === 0 || i === state.frames.length - 1;
+    });
+    state.index = 0;
+    state.undo = [];
+    fitZoom();
+    refresh();
+    setStatus('Built ' + state.frames.length + ' frames at ' + state.w + '×' + state.h + '.');
+  }
+
+  function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+
+  function snapshot() {
+    state.undo.push({
+      frames: state.frames.map(function (f) { return f.slice(); }),
+      locked: state.locked.slice(),
+      index: state.index,
+    });
+    if (state.undo.length > 40) state.undo.shift();
+  }
+
+  function undo() {
+    const snap = state.undo.pop();
+    if (!snap) return;
+    state.frames = snap.frames;
+    state.locked = snap.locked;
+    state.index = snap.index;
+    refresh();
+  }
+
+  function retween() {
+    if (!hasStrip()) return;
+    SpriteTween.retweenUnlocked(state.frames, state.locked, state.w, state.h, easeName());
+  }
+
+  function select(i) {
+    if (!hasStrip()) return;
+    state.index = clamp(i, 0, state.frames.length - 1);
+    draw();
+    markTimeline();
+    updateMeta();
+    updateButtons();
+  }
+
+  function setTool(name) {
+    state.tool = name;
+    document.querySelectorAll('.tools button').forEach(function (btn) {
+      btn.classList.toggle('on', btn.getAttribute('data-tool') === name);
+    });
+  }
+
+  function plot(x, y) {
+    if (x < 0 || y < 0 || x >= state.w || y >= state.h) return;
+    const f = state.frames[state.index];
+    const i = (y * state.w + x) * 4;
+    if (state.tool === 'eraser') {
+      f[i] = f[i + 1] = f[i + 2] = f[i + 3] = 0;
+      return;
+    }
+    f[i] = state.color & 255;
+    f[i + 1] = (state.color >> 8) & 255;
+    f[i + 2] = (state.color >> 16) & 255;
+    f[i + 3] = 255;
+  }
+
+  function pick(x, y) {
+    if (x < 0 || y < 0 || x >= state.w || y >= state.h) return;
+    const f = state.frames[state.index];
+    const i = (y * state.w + x) * 4;
+    if (f[i + 3] < 128) return;
+    state.color = f[i] | (f[i + 1] << 8) | (f[i + 2] << 16);
+    $('color').value = hex(state.color);
+    drawSwatches();
+  }
+
+  function cell(e) {
+    const r = view.getBoundingClientRect();
+    return {
+      x: Math.floor((e.clientX - r.left) / r.width * state.w),
+      y: Math.floor((e.clientY - r.top) / r.height * state.h),
+    };
+  }
+
+  function onDown(e) {
+    if (!hasStrip() || e.button !== 0) return;
+    stopPlay();
+    const p = cell(e);
+    if (e.altKey || state.tool === 'pick') {
+      pick(p.x, p.y);
+      return;
+    }
+    snapshot();
+    state.painting = true;
+    view.setPointerCapture(e.pointerId);
+    plot(p.x, p.y);
+    draw();
+  }
+
+  function onMove(e) {
+    if (!state.painting) return;
+    const p = cell(e);
+    plot(p.x, p.y);
+    draw();
+  }
+
+  function onUp() {
+    if (!state.painting) return;
+    state.painting = false;
+    state.locked[state.index] = true;
+    if ($('auto').checked) retween();
+    refresh();
+    setStatus('Frame ' + (state.index + 1) + ' is pinned.' + ($('auto').checked ? ' Open frames around it were rebuilt.' : ''));
+  }
+
+  function draw() {
+    if (!hasStrip()) return;
+    const img = viewCtx.createImageData(state.w, state.h);
+    const cur = state.frames[state.index];
+    const prev = $('onion').checked ? state.frames[state.index - 1] : null;
+    const next = $('onion').checked ? state.frames[state.index + 1] : null;
+    const d = img.data;
+    for (let y = 0; y < state.h; y++) {
+      for (let x = 0; x < state.w; x++) {
+        const i = (y * state.w + x) * 4;
+        const check = ((x ^ y) & 1) ? 46 : 30;
+        let r = check, g = check, b = check;
+        if (prev && prev[i + 3] >= 128) {
+          r = r * 0.5 + prev[i] * 0.5;
+          g = g * 0.5 + prev[i + 1] * 0.35;
+          b = b * 0.5 + prev[i + 2] * 0.35;
+        }
+        if (next && next[i + 3] >= 128) {
+          r = r * 0.55 + next[i] * 0.25;
+          g = g * 0.55 + next[i + 1] * 0.4;
+          b = b * 0.55 + next[i + 2] * 0.55;
+        }
+        if (cur[i + 3] >= 128) {
+          r = cur[i];
+          g = cur[i + 1];
+          b = cur[i + 2];
+        }
+        d[i] = r;
+        d[i + 1] = g;
+        d[i + 2] = b;
+        d[i + 3] = 255;
+      }
+    }
+    // Draw at 1× and let CSS scale with nearest-neighbor, so retina stays crisp.
+    view.width = state.w;
+    view.height = state.h;
+    view.style.width = (state.w * state.zoom) + 'px';
+    view.style.height = (state.h * state.zoom) + 'px';
+    viewCtx.putImageData(img, 0, 0);
+  }
+
+  function drawSwatches() {
+    const box = $('swatches');
+    box.innerHTML = '';
+    const counts = new Map();
+    state.frames.forEach(function (f) {
+      for (let i = 0; i < f.length; i += 4) {
+        if (f[i + 3] < 128) continue;
+        const c = f[i] | (f[i + 1] << 8) | (f[i + 2] << 16);
+        counts.set(c, (counts.get(c) || 0) + 1);
+      }
+    });
+    const colors = Array.from(counts.keys()).sort(function (a, b) { return counts.get(b) - counts.get(a); });
+    if (!colors.length) return;
+    if (!colors.some(function (c) { return c === state.color; })) state.color = colors[0];
+    $('color').value = hex(state.color);
+    colors.forEach(function (c) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'swatch' + (c === state.color ? ' on' : '');
+      btn.style.background = hex(c);
+      btn.title = hex(c);
+      btn.addEventListener('click', function () {
+        state.color = c;
+        $('color').value = hex(c);
+        setTool('pencil');
+        drawSwatches();
+      });
+      box.appendChild(btn);
+    });
+  }
+
+  function rebuildTimeline() {
+    const bar = $('timeline');
+    bar.innerHTML = '';
+    state.frames.forEach(function (f, i) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'framebtn' + (i === state.index ? ' on' : '') + (state.locked[i] ? ' key' : '');
+      const c = document.createElement('canvas');
+      c.width = state.w;
+      c.height = state.h;
+      c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(f), state.w, state.h), 0, 0);
+      const mark = document.createElement('span');
+      mark.className = 'mark';
+      mark.textContent = state.locked[i] ? 'key' : String(i + 1);
+      btn.appendChild(c);
+      btn.appendChild(mark);
+      btn.addEventListener('click', function () { select(i); });
+      bar.appendChild(btn);
+    });
+  }
+
+  function markTimeline() {
+    const buttons = $('timeline').children;
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.toggle('on', i === state.index);
+    }
+    const btn = buttons[state.index];
+    if (btn) btn.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  function updateMeta() {
+    if (!hasStrip()) {
+      $('meta').textContent = '';
+      return;
+    }
+    const kind = state.locked[state.index] ? 'key' : 'open';
+    $('meta').textContent = state.w + '×' + state.h + ' · frame ' + (state.index + 1) + ' of ' + state.frames.length + ' · ' + kind;
+  }
+
+  function updateButtons() {
+    const on = hasStrip();
+    ['play', 'strip', 'zip', 'unlock', 'retween', 'add', 'del', 'build'].forEach(function (id) {
+      $(id).disabled = !on && id !== 'build';
+    });
+    $('build').disabled = !(state.loaded.start && state.loaded.end && state.loaded.start.w === state.loaded.end.w && state.loaded.start.h === state.loaded.end.h) && !on;
+    if (on) {
+      const last = state.frames.length - 1;
+      $('unlock').disabled = state.index === 0 || state.index === last || !state.locked[state.index];
+      $('del').disabled = state.frames.length <= 2 || state.index === 0 || state.index === last;
+    }
+  }
+
+  function refresh() {
+    drawSwatches();
+    rebuildTimeline();
+    draw();
+    updateMeta();
+    updateButtons();
+  }
+
+  let timer = null;
+  function stopPlay() {
+    if (!timer) return;
+    clearInterval(timer);
+    timer = null;
+    $('play').textContent = 'Play';
+  }
+  function togglePlay() {
+    if (!hasStrip()) return;
+    if (timer) { stopPlay(); return; }
+    $('play').textContent = 'Stop';
+    const fps = clamp(parseInt($('fps').value, 10) || 8, 1, 24);
+    timer = setInterval(function () {
+      state.index = (state.index + 1) % state.frames.length;
+      draw();
+      markTimeline();
+      updateMeta();
+    }, 1000 / fps);
+  }
+
+  function download(blob, name) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  function exportStrip() {
+    const c = document.createElement('canvas');
+    c.width = state.w * state.frames.length;
+    c.height = state.h;
+    const g = c.getContext('2d');
+    state.frames.forEach(function (f, i) {
+      g.putImageData(new ImageData(new Uint8ClampedArray(f), state.w, state.h), i * state.w, 0);
+    });
+    c.toBlob(function (blob) { download(blob, 'tween-strip.png'); });
+  }
+
+  function exportZip() {
+    const jobs = state.frames.map(function (f, i) {
+      const c = document.createElement('canvas');
+      c.width = state.w;
+      c.height = state.h;
+      c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(f), state.w, state.h), 0, 0);
+      return new Promise(function (resolve) {
+        c.toBlob(function (blob) {
+          blob.arrayBuffer().then(function (buf) {
+            const n = String(i).padStart(2, '0');
+            resolve({ name: 'frame_' + n + '.png', data: new Uint8Array(buf) });
+          });
+        }, 'image/png');
+      });
+    });
+    Promise.all(jobs).then(function (files) {
+      const zip = SpriteTween.zipStore(files);
+      download(new Blob([zip], { type: 'application/zip' }), 'tween-frames.zip');
+    });
+  }
+
+  function loadExample() {
+    const ex = SpriteTween.examplePoses();
+    state.loaded.start = { rgba: ex.start, w: ex.w, h: ex.h, scale: 1, name: 'example-start' };
+    state.loaded.end = { rgba: ex.end, w: ex.w, h: ex.h, scale: 1, name: 'example-end' };
+    state.w = ex.w;
+    state.h = ex.h;
+    state.frames = [];
+    state.locked = [];
+    $('count').value = 5;
+    buildStrip();
+    setStatus('Example: the yellow arm rises. Paint a frame to pin a better in-between.');
+  }
+
+  function bindDrop(el, which) {
+    el.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      el.classList.add('hot');
+    });
+    el.addEventListener('dragleave', function () { el.classList.remove('hot'); });
+    el.addEventListener('drop', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      el.classList.remove('hot');
+      const file = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (file) loadInto(which, file);
+    });
+  }
+
+  $('file-start').addEventListener('change', function (e) {
+    if (e.target.files[0]) loadInto('start', e.target.files[0]);
+    e.target.value = '';
+  });
+  $('file-end').addEventListener('change', function (e) {
+    if (e.target.files[0]) loadInto('end', e.target.files[0]);
+    e.target.value = '';
+  });
+  bindDrop($('drop-start'), 'start');
+  bindDrop($('drop-end'), 'end');
+  window.addEventListener('dragover', function (e) { e.preventDefault(); });
+  window.addEventListener('drop', function (e) { e.preventDefault(); });
+
+  $('example').addEventListener('click', loadExample);
+  $('build').addEventListener('click', function () {
+    if (!state.w) return;
+    buildStrip();
+  });
+  $('ease').addEventListener('change', function () {
+    if (!hasStrip()) return;
+    retween();
+    refresh();
+  });
+  $('play').addEventListener('click', togglePlay);
+  $('onion').addEventListener('change', draw);
+  $('unlock').addEventListener('click', function () {
+    if (!hasStrip()) return;
+    snapshot();
+    state.locked[state.index] = false;
+    if ($('auto').checked) retween();
+    refresh();
+  });
+  $('retween').addEventListener('click', function () {
+    snapshot();
+    retween();
+    refresh();
+  });
+  $('add').addEventListener('click', function () {
+    snapshot();
+    const i = state.index;
+    state.frames.splice(i + 1, 0, state.frames[i].slice());
+    state.locked.splice(i + 1, 0, false);
+    state.index = i + 1;
+    if ($('auto').checked) retween();
+    refresh();
+  });
+  $('del').addEventListener('click', function () {
+    if (state.frames.length <= 2) return;
+    if (state.index === 0 || state.index === state.frames.length - 1) return;
+    snapshot();
+    state.frames.splice(state.index, 1);
+    state.locked.splice(state.index, 1);
+    if (state.index >= state.frames.length) state.index = state.frames.length - 1;
+    if ($('auto').checked) retween();
+    refresh();
+  });
+  $('strip').addEventListener('click', exportStrip);
+  $('zip').addEventListener('click', exportZip);
+  $('color').addEventListener('input', function () {
+    state.color = fromHex($('color').value);
+    setTool('pencil');
+    drawSwatches();
+  });
+  document.querySelectorAll('.tools button').forEach(function (btn) {
+    btn.addEventListener('click', function () { setTool(btn.getAttribute('data-tool')); });
+  });
+  $('fullpx').addEventListener('change', function () {
+    const extra = state.locked.some(function (l, i) {
+      return l && i !== 0 && i !== state.locked.length - 1;
+    });
+    if (extra && !confirm('Re-read the PNGs? Painted frames will be cleared.')) {
+      $('fullpx').checked = !$('fullpx').checked;
+      return;
+    }
+    if (state.loaded.start) state.loaded.start = normalize(state.loaded.start);
+    if (state.loaded.end) state.loaded.end = normalize(state.loaded.end);
+    if (state.loaded.start && state.loaded.end) {
+      adoptPair('Load the other pose.');
+      return;
+    }
+    setStatus($('fullpx').checked
+      ? 'PNGs are used at file size.'
+      : 'A PNG made of solid blocks is read back down to 1×.');
+  });
+
+  view.addEventListener('pointerdown', onDown);
+  view.addEventListener('pointermove', onMove);
+  view.addEventListener('pointerup', onUp);
+  view.addEventListener('pointercancel', onUp);
+
+  window.addEventListener('keydown', function (e) {
+    if (e.target.matches('input, select, textarea')) return;
+    if (e.key === 'ArrowRight') select(state.index + 1);
+    else if (e.key === 'ArrowLeft') select(state.index - 1);
+    else if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+    else if (e.key === 'b' || e.key === 'B') setTool('pencil');
+    else if (e.key === 'e' || e.key === 'E') setTool('eraser');
+    else if (e.key === 'i' || e.key === 'I') setTool('pick');
+    else if ((e.key === 'z' || e.key === 'Z') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); undo(); }
+    else if (e.key === '[') { state.zoom = Math.max(2, state.zoom - 1); draw(); }
+    else if (e.key === ']') { state.zoom = Math.min(32, state.zoom + 1); draw(); }
+  });
+})();
+</script>
+</body>
+</html>
