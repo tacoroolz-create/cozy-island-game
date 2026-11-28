@@ -40,12 +40,14 @@ The woods are an oval of trees with sky at the corners. The creek bends in east 
 
 The mountain is an oval of dirt with sky at the corners. Grass is the yards. The Recycle Bin sits east of the door, and the snow on the north ridge is the overlook. Four clear yards are the ghost neighbors' lots: north, east, south, and southwest. A ghost who already has a shack gets one of those yards when the mountain is made. A save already on the mountain keeps the tiles it stored.
 
+The town is an oval of grass with sky at the corners. Stimmy Tim's sits on the landing row, and the fountain is the square, with paths and flower beds around it. Eight yards ring the square. A robot or a monster who already has a shack gets one of those yards when the town is made. Anyone else on the town waits at the landing. A save already on the town keeps the tiles it stored.
+
 Each island below is one section of the old map, and its place stands beside the door you land at:
 
 - Beach — the Gettin' Place, inland of the dock
 - Meadow — the pond, east of the yard, and the animal yards around it
 - Woods — the creek, bending east of the yard, with the path across it
-- Town — Stimmy Tim's cafe, door on the landing row, fountain just east
+- Town — Stimmy Tim's on the landing row, the fountain in the square, and eight yards for robots and monsters
 - City — the Black Goddess (the club) on the landing row, with the Electric Temple and the clock
 - Deep woods — Mubaba's Fortress on the landing row, the Bottomless Pit south of the yard, the Inner Temple north
 - Mountain — the Recycle Bin east of the door, snow on the north ridge, and the ghost yards

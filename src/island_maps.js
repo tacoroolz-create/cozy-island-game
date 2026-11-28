@@ -115,26 +115,30 @@ function islandMapSpecs() {
             ladder: [29, 44]
         },
         town: {
-            w: 48, h: 40,
-            home: [8, 18],
-            lots: [[36, 8], [36, 26]],
-            // Stimmy Tim's, the cafe. The door opens on the same row you land on.
-            buildings: [{ type: 'ug_stimmy_tims', x: 18, y: 21, w: 8, h: 5 }],
-            ground: [
-                [2, 4, 44, 32],
-                [30, 0, 6, 6],
-                [30, 34, 8, 6]
-            ],
-            water: [[28, 18, 3, 3]],
+            w: 64, h: 56,
+            // Oval of grass in the sky. The fountain is the square, and Stimmy
+            // Tim's door is on the landing row just south of it. Eight yards
+            // ring the square for robots and monsters who already have a shack.
+            disc: { cx: 32, cy: 28, rx: 28, ry: 23 },
+            home: [18, 24],
+            lots: [[18, 7], [28, 7], [41, 13], [52, 26], [42, 35], [28, 39], [18, 36], [7, 18]],
+            buildings: [{ type: 'ug_stimmy_tims', x: 28, y: 27, w: 8, h: 5 }],
+            water: [[31, 23, 3, 3]],
             path: [
-                [32, 0, 2, 40],
-                [17, 26, 16, 2]
+                [16, 21, 24, 2],
+                [27, 23, 4, 3],
+                [34, 23, 6, 3],
+                [27, 26, 13, 1],
+                [27, 32, 13, 1]
             ],
-            tulip: [[28, 16], [30, 22], [26, 24], [34, 16]],
-            rose: [[26, 18], [34, 20]],
-            tree: [[2, 10], [2, 20], [2, 30]],
-            shoot: [32, 0],
-            ladder: [32, 39]
+            tulip: [[20, 18], [21, 19], [23, 19], [22, 18],
+                    [35, 18], [37, 18], [36, 19], [38, 20],
+                    [27, 34], [29, 34], [30, 33],
+                    [36, 28], [38, 28], [37, 29], [39, 30]],
+            rose: [[22, 20], [36, 18], [38, 29], [29, 33]],
+            tree: [[10, 32], [13, 35], [44, 26], [38, 37], [48, 30]],
+            shoot: [31, 5],
+            ladder: [31, 50]
         },
         city: {
             w: 46, h: 36,

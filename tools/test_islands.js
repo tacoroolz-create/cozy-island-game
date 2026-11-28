@@ -12,7 +12,7 @@ vm.createContext(ctx);
 const src = fs.readFileSync('src/island_maps.js', 'utf8') + '\n' + fs.readFileSync('src/islands.js', 'utf8');
 const exported = vm.runInContext(src + `
 ;({ ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, islandReachable, islandMapSpecs,
-    beachIslandZone,
+    beachIslandZone, residentGroup, neighborGroup,
     promptFallAt, peekFall() { return fallPrompt; }, clearFall() { fallPrompt = null; } })
 `, ctx);
 
@@ -20,6 +20,16 @@ const { ISLAND_BIOMES, ISLAND_GRID, generateBiomeIsland, buildIslandGrid, island
 
 let fails = 0;
 const ok = (c, m) => { if (!c) { console.error('FAIL: ' + m); fails++; } };
+
+ok(exported.residentGroup('town') === 'Townfolk', 'town yards are for robots and monsters');
+ok(exported.residentGroup('meadow') === 'Animal' && exported.residentGroup('mountain') === 'Ghost',
+    'meadow and mountain keep their own residents');
+ok(exported.residentGroup('city') === null, 'the city still houses whoever followed');
+['Robot', 'Monster', 'Monster (Dragon-like)'].forEach(function (species) {
+    ok(exported.neighborGroup({ species: species }) === 'Townfolk', species + ' is townfolk');
+});
+ok(exported.neighborGroup({ species: 'Animal (Rabbit)' }) === 'Animal', 'animals stay meadow residents');
+ok(exported.neighborGroup({ species: 'Ghost' }) === 'Ghost', 'ghosts stay mountain residents');
 
 for (const b of ISLAND_BIOMES) {
     const grid = buildIslandGrid(b.id);
@@ -96,6 +106,39 @@ for (const b of ISLAND_BIOMES) {
             }
         }
         ok(waterSky === 0, 'woods creek does not touch the sky (' + waterSky + ')');
+    }
+    if (b.id === 'town') {
+        ok(land > 1600 && land < 2400, 'town is a floating oval (' + land + ' land tiles)');
+        ok(grid.cells[0][0].type === 'void' && grid.cells[grid.w - 1][grid.h - 1].type === 'void',
+            'town corners are sky');
+        ok(grid.lots.length === 8, 'town has eight yards');
+        let waterSky = 0;
+        for (let x = 0; x < grid.w; x++) {
+            for (let y = 0; y < grid.h; y++) {
+                if (grid.cells[x][y].type !== 'water') continue;
+                for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+                    const n = grid.cells[x + dx] && grid.cells[x + dx][y + dy];
+                    if (!n || n.type === 'void') waterSky++;
+                }
+            }
+        }
+        ok(waterSky === 0, 'town fountain does not touch the sky (' + waterSky + ')');
+        const cafe = grid.buildings.find(function (bld) { return bld.type === 'ug_stimmy_tims'; });
+        ok(!!cafe, 'town has Stimmy Tim\'s');
+        const step = cafe && grid.cells[cafe.x + Math.floor(cafe.w / 2)][cafe.y + cafe.h];
+        ok(step && !step.solid && step.type !== 'void', 'cafe door is walkable');
+        const landing = grid.links.spawn;
+        ok(landing && cafe.y + cafe.h === landing.y, 'cafe door is on the landing row');
+        grid.lots.forEach(function (lot, i) {
+            for (let dy = -1; dy <= 10; dy++) {
+                for (let dx = -1; dx <= 8; dx++) {
+                    const c = grid.cells[lot.x + dx][lot.y + dy];
+                    ok(c && c.type === 'grass' && !c.solid, 'town yard ' + i + ' is grass at ' + (lot.x + dx) + ',' + (lot.y + dy));
+                }
+            }
+            const door = (lot.x + 4) + ',' + (lot.y + 8);
+            ok(!!reached[door], 'town yard ' + i + ' door is reachable');
+        });
     }
     if (b.id === 'mountain') {
         ok(grid.cells[0][0].type === 'void' && grid.cells[grid.w - 1][grid.h - 1].type === 'void',

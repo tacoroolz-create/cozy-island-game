@@ -33,7 +33,7 @@ const ISLAND_BIOMES = [
     },
     {
         id: 'town', name: 'The Town', land: 80,
-        blurb: 'Stimmy Tim\'s is open on the landing. The fountain is the square.',
+        blurb: 'Stimmy Tim\'s opens on the square. Yards for the robots and monsters who stay.',
         sky: [205, 185, 150],
         decor: [['tree', 12], ['rosebush', 4], ['bird_poop', 6]],
     },
@@ -248,30 +248,42 @@ function updateIslandFall() {
     }
 }
 
-// Animal neighbors are the meadow's residents. Species strings look like
-// "Animal (Rabbit)". getNpcSpeciesGroup lives with the roster.
-function neighborIsAnimal(npc) {
+// Species strings look like "Animal (Rabbit)" or "Monster (Dragon-like)".
+// getNpcSpeciesGroup lives with the roster. It folds animals to "Animal"
+// and leaves the rest of the string as written.
+function speciesName(npc) {
     const species = npc && npc.species;
-    if (typeof getNpcSpeciesGroup === 'function') return getNpcSpeciesGroup(species) === 'Animal';
-    return !!(species && String(species).indexOf('Animal') === 0);
+    if (!species) return '';
+    if (typeof getNpcSpeciesGroup === 'function') return getNpcSpeciesGroup(species) || '';
+    return String(species);
 }
 
-function neighborIsGhost(npc) {
-    const species = npc && npc.species;
-    if (typeof getNpcSpeciesGroup === 'function') return getNpcSpeciesGroup(species) === 'Ghost';
-    return species === 'Ghost';
+function named(npc, prefix) {
+    const name = speciesName(npc);
+    return name === prefix || name.indexOf(prefix) === 0;
 }
+
+function neighborIsAnimal(npc) { return named(npc, 'Animal'); }
+
+function neighborIsGhost(npc) { return speciesName(npc) === 'Ghost'; }
+
+// Town yards are for robots and monsters. Lord Roar's species string is
+// "Monster (Dragon-like)", so the match is the start of the name.
+function neighborIsTownfolk(npc) { return named(npc, 'Robot') || named(npc, 'Monster'); }
 
 // Meadow yards are for animals. Mountain yards are for ghosts.
+// Town yards are for robots and monsters.
 function residentGroup(biomeId) {
     if (biomeId === 'meadow') return 'Animal';
     if (biomeId === 'mountain') return 'Ghost';
+    if (biomeId === 'town') return 'Townfolk';
     return null;
 }
 
 function neighborGroup(npc) {
     if (neighborIsAnimal(npc)) return 'Animal';
     if (neighborIsGhost(npc)) return 'Ghost';
+    if (neighborIsTownfolk(npc)) return 'Townfolk';
     return '';
 }
 
@@ -328,9 +340,10 @@ function fallToNextIsland(dir) {
     }
 
     npcs = followers;
-    // Meadow yards are for animals, mountain yards for ghosts. The test is
-    // the same: they already had a shack. Anyone else waits at the landing.
-    // The other islands still rebuild a shack for every follower.
+    // Meadow yards are for animals, mountain yards for ghosts, town yards for
+    // robots and monsters. The test is the same: they already had a shack.
+    // Anyone else waits at the landing. The other islands still rebuild a
+    // shack for every follower.
     const residents = residentGroup(biome.id);
     let yard = 0;
     for (let i = 0; i < npcs.length; i++) {
